@@ -1,0 +1,7 @@
+@layer WorkWithPlusDS{
+:root
+{
+	--GX-Image_loaderA : url(../WorkWithPlusDS/loaderA.gif);
+}
+.GX_Image_loaderA_Class{content: var(--GX-Image_loaderA);}
+}

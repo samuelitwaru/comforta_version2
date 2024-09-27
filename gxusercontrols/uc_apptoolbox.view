@@ -1,0 +1,235 @@
+<link rel="stylesheet" href="/Resources/UCGrapes/new-design/styles.css" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+<script>
+	function createBootstrapPage(pageData) {
+        let htmlString = '';
+
+        pageData.Row.forEach(row => {
+            htmlString += '<div class="row p-2">';
+            
+            row.Col.forEach(col => {
+                htmlString += `
+                   <div class="col px-2" data-gjs-selectable="false" style="min-height: 100px;">
+                   <button class="btn btn-primary btn-block" style="width: 100%; min-height: 100px;" 
+                   onclick="window.location.href='${col.Tile.ToPageId}'">
+                   ${col.Tile.TileName}
+                   </button>
+                   </div>
+                `;
+            });
+			
+            htmlString += '</div>';
+        });
+	
+        return htmlString;
+    }
+
+	function createLayout(TileJson){
+			
+		const small = `
+				<div class="grid small" data-gjs-selectable="false" data-gjs-draggable="false"></div>
+			`
+		const medium = `
+				<div class="grid medium" data-gjs-selectable="false" data-gjs-draggable="false"></div>
+			`
+		const large = `
+				<div class="grid large" data-gjs-selectable="false" data-gjs-draggable="false"></div>
+			`
+		let layout = `
+			<div class="parent" data-gjs-selectable="false" data-gjs-droppable="false">
+			`
+		for (let i = 0; i < TileJson.ChildTile.length; i++){
+			var childTile = TileJson.ChildTile[i]
+			switch (childTile.SG_TileWidth) {
+				case 1:
+				layout += small
+				break;
+				case 2:
+				layout += medium
+				break;
+				case 3:
+				layout += large
+				break;
+				default:
+				layout += large
+			}	
+		}
+		layout += '</div>'
+		return layout
+	}
+
+	function loadScript(url, callback) {
+		const script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = url;
+	
+		// Execute callback when the script is loaded
+		script.onload = function() {
+			if (callback) {
+				callback();
+			}
+		};
+	
+		// Handle error in loading the script
+		script.onerror = function() {
+			console.error('Failed to load script:', url);
+		};
+	
+		document.body.appendChild(script);
+	}
+</script>
+
+<div id='body'>
+<div class="navbar">
+  <h1>The APP toolbox builder</h1>
+</div>
+
+<div class="container">
+  <div class="sidebar-left">
+    <h3>TEMPLATES</h3>
+    <div class="template" id="gjs-templates"></div>
+  </div>
+  <div class="main-content">
+    <div class="toolbar">
+      <div class="toolbar-item" id="themes-button">
+        <i class="fas fa-palette"></i>
+        <span>Themes</span>
+        <div class="dropdown" id="themes-dropdown">
+              <div class="dropdown-content" id="theme-dropdown"></div>
+        </div>
+      </div>
+      <div class="toolbar-item">
+        <i class="fas fa-image"></i>
+        <span>Media</span>
+      </div>
+      <div class="toolbar-item">
+        <i class="fas fa-code-merge"></i>
+        <span>Mapping</span>
+      </div>
+      <div class="toolbar-item">
+        <i class="fas fa-upload"></i>
+        <span>Publish</span>
+      </div>
+    </div>
+
+    <div class="mobile-frame">
+      <div class="header">
+        <span id="current-time"></span>
+        <script>
+          function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, "0");
+            const ampm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            const timeString = `${hours}:${minutes} ${ampm}`;
+            document.getElementById(
+              "current-time"
+            ).textContent = timeString;
+			
+          }
+          updateTime();
+		  setInterval(updateTime, 10000); // Update the time every minute
+          
+        </script>
+        <span class="icons">
+          <i class="fas fa-signal"></i>
+          <i class="fas fa-wifi"></i>
+          <i class="fas fa-battery-full"></i>
+        </span>
+      </div>
+      <div id="gjs">
+	  	<style>
+			.parent {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 5px; /* Adds spacing between child elements */
+				padding: 5px;
+				height: 100%;
+				border: 1.5px solid red;
+				
+			}
+			.grid {
+				min-height: 100px;
+				background-color: transparent; 
+				height: 100px; 
+				border-radius: 5px; 
+				border: 1.5px dashed #d6d3d3;
+			}
+			.small {
+				flex: 0 1 calc(33.33%);  /* -10px accounts for 2x 5px gutter */
+			}
+			
+			/* Medium div takes 50% of the parent width */
+			.medium {
+				flex: 0 1 calc(50%);
+			}
+			
+			/* Large div takes 100% of the parent width */
+			.large {
+				flex: 0 1 100%;
+			}
+		</style>
+	  </div>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    <div class="tab-container" role="tablist">
+      <button
+        class="tab active"
+        role="tab"
+        aria-selected="true"
+        aria-controls="tools"
+        id="tools-tab"
+        data-target="tools"
+      >
+        Tools
+      </button>
+      <button
+        class="tab"
+        role="tab"
+        aria-selected="false"
+        aria-controls="properties"
+        id="properties-tab"
+        data-target="properties"
+      >
+        Properties
+      </button>
+    </div>
+
+    <div
+      id="tools"
+      class="tab-content active"
+      role="tabpanel"
+      aria-labelledby="tools-tab"
+    >
+      <div class="blocks" id="blocks"></div>
+    </div>
+    <div
+      id="properties"
+      class="tab-content"
+      role="tabpanel"
+      aria-labelledby="properties-tab"
+      hidden
+    >
+    <div class="properties" id="properties-panel"></div>
+      <!-- <div class="properties">
+        <h4>Traits</h4>
+        <div class="properties" id="properties-panel"></div>
+        <h4>Style</h4>
+        <div class="styles" id="styles-panel"></div>
+      </div> -->
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="/Resources/UCGrapes/new-design/plugin.js">
+</script>

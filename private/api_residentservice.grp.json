@@ -1,0 +1,16 @@
+{
+"ObjectType":"ServiceGroup",
+"Name":"API_ResidentService",
+"BasePath":"API_ResidentService",
+"Mappings":
+[
+{
+"Verb":"POST",
+"PathRegexp":"api/auth/resident-login",
+"Path":"api/auth/resident-login",
+"Name":"loginwithqrcode",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_loginwithqrcode",
+"Implementation":"Prc_LoginResident"
+}]}

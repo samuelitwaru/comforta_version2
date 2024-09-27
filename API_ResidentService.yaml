@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: "API_ResidentService"
+  description: "API_Resident Service"
+  version: "20240927173730"
+servers:
+  - url: https://staging.comforta.yukon.software//API_ResidentService
+paths:
+  /api/auth/resident-login:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.LoginWithQrCode"
+      summary: "Login Resident Account (QR Code)"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginWithQrCodeInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_LoginResidentResponse"  
+
+        404:
+          description: "Not found"
+
+components:
+  securitySchemes:
+    oAuthGXGAM:
+      type: oauth2
+      description: GAM OAuth 2
+      flows:
+        password:          
+          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
+          scopes: 
+            fullcontrol: Full access
+
+  schemas:
+    LoginWithQrCodeInput:  
+      properties:
+        secretKey:
+          type: "string"
+  
+    SDT_LoginResidentResponse:
+      properties:
+        access_token:
+          description: "access_token"
+          type: "string"
+        token_type:
+          description: "token_type"
+          type: "string"
+        expires_in:
+          description: "expires_in"
+          type: "number"
+          format: "double"
+        refresh_token:
+          description: "refresh_token"
+          type: "string"
+        scope:
+          description: "scope"
+          type: "string"
+        user_guid:
+          description: "user_guid"
+          type: "string"
+
+
+
+ 
