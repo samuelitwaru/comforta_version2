@@ -39,6 +39,7 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wc_description
 wp_createlocationandreceptioniststep2
 wp_createlocationandreceptioniststep1
 wp_createresidentandnetworkstep3

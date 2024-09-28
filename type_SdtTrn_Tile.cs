@@ -78,7 +78,6 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Trn_tilebgimageurl_Z");
          state.Add("gxTpr_Productserviceid_Z");
          state.Add("gxTpr_Productservicename_Z");
-         state.Add("gxTpr_Productservicedescription_Z");
          state.Add("gxTpr_Sg_topageid_Z");
          state.Add("gxTpr_Sg_topagename_Z");
          state.Add("gxTpr_Productserviceimage_gxi_Z");
@@ -112,7 +111,6 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Tile_Trn_tilebgimageurl_Z = sdt.gxTv_SdtTrn_Tile_Trn_tilebgimageurl_Z ;
          gxTv_SdtTrn_Tile_Productserviceid_Z = sdt.gxTv_SdtTrn_Tile_Productserviceid_Z ;
          gxTv_SdtTrn_Tile_Productservicename_Z = sdt.gxTv_SdtTrn_Tile_Productservicename_Z ;
-         gxTv_SdtTrn_Tile_Productservicedescription_Z = sdt.gxTv_SdtTrn_Tile_Productservicedescription_Z ;
          gxTv_SdtTrn_Tile_Sg_topageid_Z = sdt.gxTv_SdtTrn_Tile_Sg_topageid_Z ;
          gxTv_SdtTrn_Tile_Sg_topagename_Z = sdt.gxTv_SdtTrn_Tile_Sg_topagename_Z ;
          gxTv_SdtTrn_Tile_Productserviceimage_gxi_Z = sdt.gxTv_SdtTrn_Tile_Productserviceimage_gxi_Z ;
@@ -163,7 +161,6 @@ namespace GeneXus.Programs {
             AddObjectProperty("Trn_TileBGImageUrl_Z", gxTv_SdtTrn_Tile_Trn_tilebgimageurl_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceId_Z", gxTv_SdtTrn_Tile_Productserviceid_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceName_Z", gxTv_SdtTrn_Tile_Productservicename_Z, false, includeNonInitialized);
-            AddObjectProperty("ProductServiceDescription_Z", gxTv_SdtTrn_Tile_Productservicedescription_Z, false, includeNonInitialized);
             AddObjectProperty("SG_ToPageId_Z", gxTv_SdtTrn_Tile_Sg_topageid_Z, false, includeNonInitialized);
             AddObjectProperty("SG_ToPageName_Z", gxTv_SdtTrn_Tile_Sg_topagename_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceImage_GXI_Z", gxTv_SdtTrn_Tile_Productserviceimage_gxi_Z, false, includeNonInitialized);
@@ -284,7 +281,6 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Tile_Trn_tilebgimageurl_Z_SetNull( );
                this.gxTv_SdtTrn_Tile_Productserviceid_Z_SetNull( );
                this.gxTv_SdtTrn_Tile_Productservicename_Z_SetNull( );
-               this.gxTv_SdtTrn_Tile_Productservicedescription_Z_SetNull( );
                this.gxTv_SdtTrn_Tile_Sg_topageid_Z_SetNull( );
                this.gxTv_SdtTrn_Tile_Sg_topagename_Z_SetNull( );
                this.gxTv_SdtTrn_Tile_Productserviceimage_gxi_Z_SetNull( );
@@ -811,34 +807,6 @@ namespace GeneXus.Programs {
          return false ;
       }
 
-      [  SoapElement( ElementName = "ProductServiceDescription_Z" )]
-      [  XmlElement( ElementName = "ProductServiceDescription_Z"   )]
-      public string gxTpr_Productservicedescription_Z
-      {
-         get {
-            return gxTv_SdtTrn_Tile_Productservicedescription_Z ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Tile_Productservicedescription_Z = value;
-            SetDirty("Productservicedescription_Z");
-         }
-
-      }
-
-      public void gxTv_SdtTrn_Tile_Productservicedescription_Z_SetNull( )
-      {
-         gxTv_SdtTrn_Tile_Productservicedescription_Z = "";
-         SetDirty("Productservicedescription_Z");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Tile_Productservicedescription_Z_IsNull( )
-      {
-         return false ;
-      }
-
       [  SoapElement( ElementName = "SG_ToPageId_Z" )]
       [  XmlElement( ElementName = "SG_ToPageId_Z"   )]
       public Guid gxTpr_Sg_topageid_Z
@@ -986,7 +954,6 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Tile_Trn_tilebgimageurl_Z = "";
          gxTv_SdtTrn_Tile_Productserviceid_Z = Guid.Empty;
          gxTv_SdtTrn_Tile_Productservicename_Z = "";
-         gxTv_SdtTrn_Tile_Productservicedescription_Z = "";
          gxTv_SdtTrn_Tile_Sg_topageid_Z = Guid.Empty;
          gxTv_SdtTrn_Tile_Sg_topagename_Z = "";
          gxTv_SdtTrn_Tile_Productserviceimage_gxi_Z = "";
@@ -1012,16 +979,15 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Tile_Trn_tilecolor ;
       private string gxTv_SdtTrn_Tile_Mode ;
       private string gxTv_SdtTrn_Tile_Trn_tilecolor_Z ;
+      private string gxTv_SdtTrn_Tile_Productservicedescription ;
       private string gxTv_SdtTrn_Tile_Trn_tilename ;
       private string gxTv_SdtTrn_Tile_Trn_tilebgimageurl ;
       private string gxTv_SdtTrn_Tile_Productservicename ;
-      private string gxTv_SdtTrn_Tile_Productservicedescription ;
       private string gxTv_SdtTrn_Tile_Productserviceimage_gxi ;
       private string gxTv_SdtTrn_Tile_Sg_topagename ;
       private string gxTv_SdtTrn_Tile_Trn_tilename_Z ;
       private string gxTv_SdtTrn_Tile_Trn_tilebgimageurl_Z ;
       private string gxTv_SdtTrn_Tile_Productservicename_Z ;
-      private string gxTv_SdtTrn_Tile_Productservicedescription_Z ;
       private string gxTv_SdtTrn_Tile_Sg_topagename_Z ;
       private string gxTv_SdtTrn_Tile_Productserviceimage_gxi_Z ;
       private string gxTv_SdtTrn_Tile_Productserviceimage ;
@@ -1145,7 +1111,6 @@ namespace GeneXus.Programs {
       }
 
       [DataMember( Name = "ProductServiceDescription" , Order = 7 )]
-      [GxSeudo()]
       public string gxTpr_Productservicedescription
       {
          get {

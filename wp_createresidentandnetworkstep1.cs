@@ -1427,10 +1427,13 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, edtavResidentid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavResidentid_Visible), 5, 0), true);
          edtavResidenttypename_Visible = 0;
          AssignProp(sPrefix, false, edtavResidenttypename_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavResidenttypename_Visible), 5, 0), true);
-         Combo_residentcountry_Selectedvalue_set = "Netherlands";
-         ucCombo_residentcountry.SendProperty(context, sPrefix, false, Combo_residentcountry_Internalname, "SelectedValue_set", Combo_residentcountry_Selectedvalue_set);
-         Combo_residentcountry_Selectedtext_set = "Netherlands";
+         AV38defaultCountry = "Netherlands";
+         Combo_residentcountry_Selectedtext_set = AV38defaultCountry;
          ucCombo_residentcountry.SendProperty(context, sPrefix, false, Combo_residentcountry_Internalname, "SelectedText_set", Combo_residentcountry_Selectedtext_set);
+         Combo_residentcountry_Selectedvalue_set = AV38defaultCountry;
+         ucCombo_residentcountry.SendProperty(context, sPrefix, false, Combo_residentcountry_Internalname, "SelectedValue_set", Combo_residentcountry_Selectedvalue_set);
+         AV26ResidentCountry = AV38defaultCountry;
+         AssignAttri(sPrefix, false, "AV26ResidentCountry", AV26ResidentCountry);
       }
 
       protected void E126Q2( )
@@ -1608,13 +1611,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBORESIDENTCOUNTRY' Routine */
          returnInSub = false;
-         AV39GXV2 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV38GXV1;
+         AV40GXV2 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV39GXV1;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV38GXV1 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV39GXV2 <= AV38GXV1.Count )
+         AV39GXV1 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV40GXV2 <= AV39GXV1.Count )
          {
-            AV37ResidentCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV38GXV1.Item(AV39GXV2));
+            AV37ResidentCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV39GXV1.Item(AV40GXV2));
             AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV36Combo_DataItem.gxTpr_Id = AV37ResidentCountry_DPItem.gxTpr_Countryname;
             AV32ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1622,7 +1625,7 @@ namespace GeneXus.Programs {
             AV32ComboTitles.Add(AV37ResidentCountry_DPItem.gxTpr_Countryflag, 0);
             AV36Combo_DataItem.gxTpr_Title = AV32ComboTitles.ToJSonString(false);
             AV33ResidentCountry_Data.Add(AV36Combo_DataItem, 0);
-            AV39GXV2 = (int)(AV39GXV2+1);
+            AV40GXV2 = (int)(AV40GXV2+1);
          }
          AV33ResidentCountry_Data.Sort("Title");
          Combo_residentcountry_Selectedvalue_set = AV26ResidentCountry;
@@ -1885,7 +1888,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492719445482", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492818141830", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1901,7 +1904,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?202492719445483", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?202492818141831", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2152,11 +2155,12 @@ namespace GeneXus.Programs {
          H006Q5_A97ResidentTypeName = new string[] {""} ;
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          GXt_char2 = "";
-         Combo_residentcountry_Selectedvalue_set = "";
+         AV38defaultCountry = "";
          Combo_residentcountry_Selectedtext_set = "";
+         Combo_residentcountry_Selectedvalue_set = "";
          AV11WizardData = new SdtWP_CreateResidentAndNetworkData(context);
          AV5WebSession = context.GetSession();
-         AV38GXV1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV39GXV1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV37ResidentCountry_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
@@ -2219,7 +2223,7 @@ namespace GeneXus.Programs {
       private int edtavResidentid_Visible ;
       private int edtavResidenttypename_Visible ;
       private int gxdynajaxindex ;
-      private int AV39GXV2 ;
+      private int AV40GXV2 ;
       private int idxLst ;
       private string Combo_residentcountry_Selectedvalue_get ;
       private string gxfirstwebparm ;
@@ -2301,8 +2305,8 @@ namespace GeneXus.Programs {
       private string gxwrpcisep ;
       private string Combo_residentcountry_Htmltemplate ;
       private string GXt_char2 ;
-      private string Combo_residentcountry_Selectedvalue_set ;
       private string Combo_residentcountry_Selectedtext_set ;
+      private string Combo_residentcountry_Selectedvalue_set ;
       private string sCtrlAV6WebSessionKey ;
       private string sCtrlAV8PreviousStep ;
       private string sCtrlAV7GoingBack ;
@@ -2335,6 +2339,7 @@ namespace GeneXus.Programs {
       private string AV30ResidentAddressLine2 ;
       private string AV26ResidentCountry ;
       private string AV24ResidentTypeName ;
+      private string AV38defaultCountry ;
       private Guid AV23ResidentTypeId ;
       private Guid AV25MedicalIndicationId ;
       private Guid AV21ResidentId ;
@@ -2364,7 +2369,7 @@ namespace GeneXus.Programs {
       private string[] H006Q5_A97ResidentTypeName ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
       private SdtWP_CreateResidentAndNetworkData AV11WizardData ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV38GXV1 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV39GXV1 ;
       private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem3 ;
       private SdtSDT_Country_SDT_CountryItem AV37ResidentCountry_DPItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV36Combo_DataItem ;

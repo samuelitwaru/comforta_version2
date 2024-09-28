@@ -39,14 +39,14 @@ type_SdtTrn_AgendaCalendar.cs
 type_SdtTrn_Template.cs
 type_SdtTrn_Page.cs
 type_SdtTrn_Row.cs
-type_SdtTrn_Location.cs
 type_SdtTrn_Col.cs
 type_SdtTrn_Amenity.cs
-type_SdtTrn_SupplierAgb.cs
 type_SdtTrn_Receptionist.cs
 type_SdtTrn_Resident.cs
 type_SdtTrn_Resident_NetworkCompany.cs
 type_SdtTrn_Resident_NetworkIndividual.cs
+type_SdtTrn_Location.cs
+type_SdtTrn_SupplierAgb.cs
 type_SdtTrn_Tile.cs
 type_SdtTrn_Tile_Attribute.cs
 type_SdtTrn_Tile_ChildTile.cs

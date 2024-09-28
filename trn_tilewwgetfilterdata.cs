@@ -1005,6 +1005,12 @@ namespace GeneXus.Programs {
       private string AV34OptionIndexesJson ;
       private string AV36TFTrn_TileWidth_SelsJson ;
       private string AV42TFTrn_TileColor_SelsJson ;
+      private string AV40TFProductServiceDescription ;
+      private string AV41TFProductServiceDescription_Sel ;
+      private string AV59Trn_tilewwds_10_tfproductservicedescription ;
+      private string AV60Trn_tilewwds_11_tfproductservicedescription_sel ;
+      private string lV59Trn_tilewwds_10_tfproductservicedescription ;
+      private string A60ProductServiceDescription ;
       private string AV29DDOName ;
       private string AV30SearchTxtParms ;
       private string AV31SearchTxtTo ;
@@ -1016,8 +1022,6 @@ namespace GeneXus.Programs {
       private string AV45TFTrn_TileBGImageUrl_Sel ;
       private string AV38TFProductServiceName ;
       private string AV39TFProductServiceName_Sel ;
-      private string AV40TFProductServiceDescription ;
-      private string AV41TFProductServiceDescription_Sel ;
       private string AV46TFSG_ToPageName ;
       private string AV47TFSG_ToPageName_Sel ;
       private string AV50Trn_tilewwds_1_filterfulltext ;
@@ -1027,20 +1031,16 @@ namespace GeneXus.Programs {
       private string AV56Trn_tilewwds_7_tftrn_tilebgimageurl_sel ;
       private string AV57Trn_tilewwds_8_tfproductservicename ;
       private string AV58Trn_tilewwds_9_tfproductservicename_sel ;
-      private string AV59Trn_tilewwds_10_tfproductservicedescription ;
-      private string AV60Trn_tilewwds_11_tfproductservicedescription_sel ;
       private string AV61Trn_tilewwds_12_tfsg_topagename ;
       private string AV62Trn_tilewwds_13_tfsg_topagename_sel ;
       private string lV50Trn_tilewwds_1_filterfulltext ;
       private string lV51Trn_tilewwds_2_tftrn_tilename ;
       private string lV55Trn_tilewwds_6_tftrn_tilebgimageurl ;
       private string lV57Trn_tilewwds_8_tfproductservicename ;
-      private string lV59Trn_tilewwds_10_tfproductservicedescription ;
       private string lV61Trn_tilewwds_12_tfsg_topagename ;
       private string A265Trn_TileName ;
       private string A271Trn_TileBGImageUrl ;
       private string A59ProductServiceName ;
-      private string A60ProductServiceDescription ;
       private string A330SG_ToPageName ;
       private string AV18Option ;
       private Guid A58ProductServiceId ;
@@ -1976,8 +1976,8 @@ namespace GeneXus.Programs {
           new ParDef("AV56Trn_tilewwds_7_tftrn_tilebgimageurl_sel",GXType.VarChar,1000,0) ,
           new ParDef("lV57Trn_tilewwds_8_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV58Trn_tilewwds_9_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
+          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.LongVarChar,2097152,0) ,
+          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.LongVarChar,2097152,0) ,
           new ParDef("lV61Trn_tilewwds_12_tfsg_topagename",GXType.VarChar,100,0) ,
           new ParDef("AV62Trn_tilewwds_13_tfsg_topagename_sel",GXType.VarChar,100,0)
           };
@@ -1998,8 +1998,8 @@ namespace GeneXus.Programs {
           new ParDef("AV56Trn_tilewwds_7_tftrn_tilebgimageurl_sel",GXType.VarChar,1000,0) ,
           new ParDef("lV57Trn_tilewwds_8_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV58Trn_tilewwds_9_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
+          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.LongVarChar,2097152,0) ,
+          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.LongVarChar,2097152,0) ,
           new ParDef("lV61Trn_tilewwds_12_tfsg_topagename",GXType.VarChar,100,0) ,
           new ParDef("AV62Trn_tilewwds_13_tfsg_topagename_sel",GXType.VarChar,100,0)
           };
@@ -2020,8 +2020,8 @@ namespace GeneXus.Programs {
           new ParDef("AV56Trn_tilewwds_7_tftrn_tilebgimageurl_sel",GXType.VarChar,1000,0) ,
           new ParDef("lV57Trn_tilewwds_8_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV58Trn_tilewwds_9_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
+          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.LongVarChar,2097152,0) ,
+          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.LongVarChar,2097152,0) ,
           new ParDef("lV61Trn_tilewwds_12_tfsg_topagename",GXType.VarChar,100,0) ,
           new ParDef("AV62Trn_tilewwds_13_tfsg_topagename_sel",GXType.VarChar,100,0)
           };
@@ -2042,8 +2042,8 @@ namespace GeneXus.Programs {
           new ParDef("AV56Trn_tilewwds_7_tftrn_tilebgimageurl_sel",GXType.VarChar,1000,0) ,
           new ParDef("lV57Trn_tilewwds_8_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV58Trn_tilewwds_9_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
+          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.LongVarChar,2097152,0) ,
+          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.LongVarChar,2097152,0) ,
           new ParDef("lV61Trn_tilewwds_12_tfsg_topagename",GXType.VarChar,100,0) ,
           new ParDef("AV62Trn_tilewwds_13_tfsg_topagename_sel",GXType.VarChar,100,0)
           };
@@ -2064,8 +2064,8 @@ namespace GeneXus.Programs {
           new ParDef("AV56Trn_tilewwds_7_tftrn_tilebgimageurl_sel",GXType.VarChar,1000,0) ,
           new ParDef("lV57Trn_tilewwds_8_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV58Trn_tilewwds_9_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
+          new ParDef("lV59Trn_tilewwds_10_tfproductservicedescription",GXType.LongVarChar,2097152,0) ,
+          new ParDef("AV60Trn_tilewwds_11_tfproductservicedescription_sel",GXType.LongVarChar,2097152,0) ,
           new ParDef("lV61Trn_tilewwds_12_tfsg_topagename",GXType.VarChar,100,0) ,
           new ParDef("AV62Trn_tilewwds_13_tfsg_topagename_sel",GXType.VarChar,100,0)
           };
@@ -2091,7 +2091,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[2])[0] = rslt.getGuid(2);
                 ((string[]) buf[3])[0] = rslt.getVarchar(3);
                 ((string[]) buf[4])[0] = rslt.getVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
                 ((string[]) buf[6])[0] = rslt.getVarchar(6);
                 ((string[]) buf[7])[0] = rslt.getVarchar(7);
                 ((string[]) buf[8])[0] = rslt.getString(8, 20);
@@ -2104,7 +2104,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[2])[0] = rslt.getGuid(2);
                 ((string[]) buf[3])[0] = rslt.getVarchar(3);
                 ((string[]) buf[4])[0] = rslt.getVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
                 ((string[]) buf[6])[0] = rslt.getVarchar(6);
                 ((string[]) buf[7])[0] = rslt.getString(7, 20);
                 ((short[]) buf[8])[0] = rslt.getShort(8);
@@ -2116,7 +2116,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((bool[]) buf[2])[0] = rslt.wasNull(2);
                 ((string[]) buf[3])[0] = rslt.getVarchar(3);
-                ((string[]) buf[4])[0] = rslt.getVarchar(4);
+                ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
                 ((string[]) buf[5])[0] = rslt.getVarchar(5);
                 ((string[]) buf[6])[0] = rslt.getVarchar(6);
                 ((string[]) buf[7])[0] = rslt.getString(7, 20);
@@ -2128,7 +2128,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((bool[]) buf[1])[0] = rslt.wasNull(1);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(2);
-                ((string[]) buf[3])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getLongVarchar(3);
                 ((string[]) buf[4])[0] = rslt.getVarchar(4);
                 ((string[]) buf[5])[0] = rslt.getVarchar(5);
                 ((string[]) buf[6])[0] = rslt.getVarchar(6);
@@ -2142,7 +2142,7 @@ namespace GeneXus.Programs {
                 ((bool[]) buf[1])[0] = rslt.wasNull(1);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(2);
                 ((string[]) buf[3])[0] = rslt.getVarchar(3);
-                ((string[]) buf[4])[0] = rslt.getVarchar(4);
+                ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
                 ((string[]) buf[5])[0] = rslt.getVarchar(5);
                 ((string[]) buf[6])[0] = rslt.getVarchar(6);
                 ((string[]) buf[7])[0] = rslt.getString(7, 20);

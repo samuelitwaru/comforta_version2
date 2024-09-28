@@ -2595,7 +2595,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492720371748", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492818162933", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2611,7 +2611,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_tileww.js", "?202492720371750", false, true);
+         context.AddJavascriptSource("trn_tileww.js", "?202492818162935", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2817,7 +2817,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtProductServiceDescription_Internalname,(string)A60ProductServiceDescription,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtProductServiceDescription_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)200,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"GeneXusUnanimo\\Description",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtProductServiceDescription_Internalname,(string)A60ProductServiceDescription,(string)A60ProductServiceDescription,(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtProductServiceDescription_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)37,(short)0,(short)0,(short)-1,(bool)true,(string)"LongDescription",(string)"start",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3637,8 +3637,14 @@ namespace GeneXus.Programs {
       private bool bDynCreated_Wwpaux_wc ;
       private bool GXt_boolean1 ;
       private bool A61ProductServiceImage_IsBlob ;
+      private string AV30TFProductServiceDescription ;
+      private string AV31TFProductServiceDescription_Sel ;
       private string AV22TFTrn_TileWidth_SelsJson ;
       private string AV24TFTrn_TileColor_SelsJson ;
+      private string A60ProductServiceDescription ;
+      private string lV64Trn_tilewwds_10_tfproductservicedescription ;
+      private string AV65Trn_tilewwds_11_tfproductservicedescription_sel ;
+      private string AV64Trn_tilewwds_10_tfproductservicedescription ;
       private string AV18ManageFiltersXml ;
       private string AV15FilterFullText ;
       private string AV20TFTrn_TileName ;
@@ -3647,22 +3653,18 @@ namespace GeneXus.Programs {
       private string AV27TFTrn_TileBGImageUrl_Sel ;
       private string AV28TFProductServiceName ;
       private string AV29TFProductServiceName_Sel ;
-      private string AV30TFProductServiceDescription ;
-      private string AV31TFProductServiceDescription_Sel ;
       private string AV51TFSG_ToPageName ;
       private string AV52TFSG_ToPageName_Sel ;
       private string AV40GridAppliedFilters ;
       private string A265Trn_TileName ;
       private string A271Trn_TileBGImageUrl ;
       private string A59ProductServiceName ;
-      private string A60ProductServiceDescription ;
       private string A40000ProductServiceImage_GXI ;
       private string A330SG_ToPageName ;
       private string lV55Trn_tilewwds_1_filterfulltext ;
       private string lV56Trn_tilewwds_2_tftrn_tilename ;
       private string lV60Trn_tilewwds_6_tftrn_tilebgimageurl ;
       private string lV62Trn_tilewwds_8_tfproductservicename ;
-      private string lV64Trn_tilewwds_10_tfproductservicedescription ;
       private string lV66Trn_tilewwds_12_tfsg_topagename ;
       private string AV55Trn_tilewwds_1_filterfulltext ;
       private string AV57Trn_tilewwds_3_tftrn_tilename_sel ;
@@ -3671,8 +3673,6 @@ namespace GeneXus.Programs {
       private string AV60Trn_tilewwds_6_tftrn_tilebgimageurl ;
       private string AV63Trn_tilewwds_9_tfproductservicename_sel ;
       private string AV62Trn_tilewwds_8_tfproductservicename ;
-      private string AV65Trn_tilewwds_11_tfproductservicedescription_sel ;
-      private string AV64Trn_tilewwds_10_tfproductservicedescription ;
       private string AV67Trn_tilewwds_13_tfsg_topagename_sel ;
       private string AV66Trn_tilewwds_12_tfsg_topagename ;
       private string A61ProductServiceImage ;
@@ -4270,8 +4270,8 @@ namespace GeneXus.Programs {
           new ParDef("AV61Trn_tilewwds_7_tftrn_tilebgimageurl_sel",GXType.VarChar,1000,0) ,
           new ParDef("lV62Trn_tilewwds_8_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV63Trn_tilewwds_9_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV64Trn_tilewwds_10_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV65Trn_tilewwds_11_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
+          new ParDef("lV64Trn_tilewwds_10_tfproductservicedescription",GXType.LongVarChar,2097152,0) ,
+          new ParDef("AV65Trn_tilewwds_11_tfproductservicedescription_sel",GXType.LongVarChar,2097152,0) ,
           new ParDef("lV66Trn_tilewwds_12_tfsg_topagename",GXType.VarChar,100,0) ,
           new ParDef("AV67Trn_tilewwds_13_tfsg_topagename_sel",GXType.VarChar,100,0) ,
           new ParDef("GXPagingFrom2",GXType.Int32,9,0) ,
@@ -4295,8 +4295,8 @@ namespace GeneXus.Programs {
           new ParDef("AV61Trn_tilewwds_7_tftrn_tilebgimageurl_sel",GXType.VarChar,1000,0) ,
           new ParDef("lV62Trn_tilewwds_8_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV63Trn_tilewwds_9_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV64Trn_tilewwds_10_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV65Trn_tilewwds_11_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
+          new ParDef("lV64Trn_tilewwds_10_tfproductservicedescription",GXType.LongVarChar,2097152,0) ,
+          new ParDef("AV65Trn_tilewwds_11_tfproductservicedescription_sel",GXType.LongVarChar,2097152,0) ,
           new ParDef("lV66Trn_tilewwds_12_tfsg_topagename",GXType.VarChar,100,0) ,
           new ParDef("AV67Trn_tilewwds_13_tfsg_topagename_sel",GXType.VarChar,100,0)
           };
@@ -4317,7 +4317,7 @@ namespace GeneXus.Programs {
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
                 ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((Guid[]) buf[5])[0] = rslt.getGuid(6);
                 ((bool[]) buf[6])[0] = rslt.wasNull(6);

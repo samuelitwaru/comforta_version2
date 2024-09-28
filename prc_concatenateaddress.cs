@@ -100,7 +100,7 @@ namespace GeneXus.Programs {
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11City)) )
          {
-            AV8Address += AV11City + " ";
+            AV8Address += AV11City + ", ";
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12Country)) )
          {

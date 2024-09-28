@@ -267,7 +267,6 @@ namespace GeneXus.Programs {
          if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
          {
             Z59ProductServiceName = A59ProductServiceName;
-            Z60ProductServiceDescription = A60ProductServiceDescription;
          }
          if ( ( GX_JID == 13 ) || ( GX_JID == 0 ) )
          {
@@ -1428,7 +1427,6 @@ namespace GeneXus.Programs {
          obj71.gxTpr_Trn_tilebgimageurl_Z = Z271Trn_TileBGImageUrl;
          obj71.gxTpr_Productserviceid_Z = Z58ProductServiceId;
          obj71.gxTpr_Productservicename_Z = Z59ProductServiceName;
-         obj71.gxTpr_Productservicedescription_Z = Z60ProductServiceDescription;
          obj71.gxTpr_Sg_topageid_Z = Z329SG_ToPageId;
          obj71.gxTpr_Sg_topagename_Z = Z330SG_ToPageName;
          obj71.gxTpr_Productserviceimage_gxi_Z = Z40000ProductServiceImage_GXI;
@@ -1467,7 +1465,6 @@ namespace GeneXus.Programs {
          Z271Trn_TileBGImageUrl = obj71.gxTpr_Trn_tilebgimageurl_Z;
          Z58ProductServiceId = obj71.gxTpr_Productserviceid_Z;
          Z59ProductServiceName = obj71.gxTpr_Productservicename_Z;
-         Z60ProductServiceDescription = obj71.gxTpr_Productservicedescription_Z;
          Z329SG_ToPageId = obj71.gxTpr_Sg_topageid_Z;
          Z330SG_ToPageName = obj71.gxTpr_Sg_topagename_Z;
          Z40000ProductServiceImage_GXI = obj71.gxTpr_Productserviceimage_gxi_Z;
@@ -2001,10 +1998,10 @@ namespace GeneXus.Programs {
          A329SG_ToPageId = Guid.Empty;
          Z59ProductServiceName = "";
          A59ProductServiceName = "";
-         Z60ProductServiceDescription = "";
-         A60ProductServiceDescription = "";
          Z330SG_ToPageName = "";
          A330SG_ToPageName = "";
+         Z60ProductServiceDescription = "";
+         A60ProductServiceDescription = "";
          Z61ProductServiceImage = "";
          A61ProductServiceImage = "";
          Z40000ProductServiceImage_GXI = "";
@@ -2192,14 +2189,14 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool n58ProductServiceId ;
       private bool Gx_longc ;
+      private string Z60ProductServiceDescription ;
+      private string A60ProductServiceDescription ;
       private string Z265Trn_TileName ;
       private string A265Trn_TileName ;
       private string Z271Trn_TileBGImageUrl ;
       private string A271Trn_TileBGImageUrl ;
       private string Z59ProductServiceName ;
       private string A59ProductServiceName ;
-      private string Z60ProductServiceDescription ;
-      private string A60ProductServiceDescription ;
       private string Z330SG_ToPageName ;
       private string A330SG_ToPageName ;
       private string Z40000ProductServiceImage_GXI ;
@@ -2545,7 +2542,7 @@ namespace GeneXus.Programs {
               return;
            case 4 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
               ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
               ((string[]) buf[3])[0] = rslt.getMultimediaFile(4, rslt.getVarchar(3));
               return;
@@ -2559,7 +2556,7 @@ namespace GeneXus.Programs {
               ((string[]) buf[3])[0] = rslt.getString(4, 20);
               ((string[]) buf[4])[0] = rslt.getVarchar(5);
               ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
+              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
               ((string[]) buf[7])[0] = rslt.getMultimediaUri(8);
               ((string[]) buf[8])[0] = rslt.getVarchar(9);
               ((Guid[]) buf[9])[0] = rslt.getGuid(10);
@@ -2572,7 +2569,7 @@ namespace GeneXus.Programs {
               return;
            case 11 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
               ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
               ((string[]) buf[3])[0] = rslt.getMultimediaFile(4, rslt.getVarchar(3));
               return;
@@ -2589,7 +2586,7 @@ namespace GeneXus.Programs {
               ((string[]) buf[3])[0] = rslt.getString(4, 20);
               ((string[]) buf[4])[0] = rslt.getVarchar(5);
               ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
+              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
               ((string[]) buf[7])[0] = rslt.getMultimediaUri(8);
               ((string[]) buf[8])[0] = rslt.getVarchar(9);
               ((Guid[]) buf[9])[0] = rslt.getGuid(10);

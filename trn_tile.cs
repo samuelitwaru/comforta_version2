@@ -555,7 +555,7 @@ namespace GeneXus.Programs {
          StyleString = "";
          ClassString = "Attribute";
          StyleString = "";
-         GxWebStd.gx_html_textarea( context, edtProductServiceDescription_Internalname, A60ProductServiceDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,55);\"", 0, 1, edtProductServiceDescription_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "GeneXusUnanimo\\Description", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_Tile.htm");
+         GxWebStd.gx_html_textarea( context, edtProductServiceDescription_Internalname, A60ProductServiceDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,55);\"", 0, 1, edtProductServiceDescription_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "LongDescription", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_Tile.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -3693,7 +3693,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249271948263", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492818152228", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3709,7 +3709,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_tile.js", "?20249271948266", false, true);
+         context.AddJavascriptSource("trn_tile.js", "?202492818152230", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -4597,14 +4597,15 @@ namespace GeneXus.Programs {
       private bool Dvpanel_tableattributes_Visible ;
       private bool returnInSub ;
       private bool Gx_longc ;
+      private string A60ProductServiceDescription ;
       private string AV17Combo_DataJson ;
+      private string Z60ProductServiceDescription ;
       private string Z265Trn_TileName ;
       private string Z271Trn_TileBGImageUrl ;
       private string Z273AttributeName ;
       private string Z274AttrbuteValue ;
       private string A265Trn_TileName ;
       private string A271Trn_TileBGImageUrl ;
-      private string A60ProductServiceDescription ;
       private string A40000ProductServiceImage_GXI ;
       private string A59ProductServiceName ;
       private string A330SG_ToPageName ;
@@ -4613,7 +4614,6 @@ namespace GeneXus.Programs {
       private string AV15ComboSelectedValue ;
       private string AV16ComboSelectedText ;
       private string Z59ProductServiceName ;
-      private string Z60ProductServiceDescription ;
       private string Z40000ProductServiceImage_GXI ;
       private string Z330SG_ToPageName ;
       private string A61ProductServiceImage ;
@@ -4988,7 +4988,7 @@ namespace GeneXus.Programs {
               return;
            case 4 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
               ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
               ((string[]) buf[3])[0] = rslt.getMultimediaFile(4, rslt.getVarchar(3));
               return;
@@ -5002,7 +5002,7 @@ namespace GeneXus.Programs {
               ((string[]) buf[3])[0] = rslt.getString(4, 20);
               ((string[]) buf[4])[0] = rslt.getVarchar(5);
               ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
+              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
               ((string[]) buf[7])[0] = rslt.getMultimediaUri(8);
               ((string[]) buf[8])[0] = rslt.getVarchar(9);
               ((Guid[]) buf[9])[0] = rslt.getGuid(10);
@@ -5012,7 +5012,7 @@ namespace GeneXus.Programs {
               return;
            case 7 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
               ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
               ((string[]) buf[3])[0] = rslt.getMultimediaFile(4, rslt.getVarchar(3));
               return;
@@ -5030,7 +5030,7 @@ namespace GeneXus.Programs {
               return;
            case 15 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
               ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
               ((string[]) buf[3])[0] = rslt.getMultimediaFile(4, rslt.getVarchar(3));
               return;

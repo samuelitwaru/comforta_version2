@@ -547,7 +547,7 @@ namespace GeneXus.Programs {
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtProductServiceDescription_Internalname, A60ProductServiceDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,41);\"", 0, 1, edtProductServiceDescription_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "GeneXusUnanimo\\Description", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_TileGeneral.htm");
+            GxWebStd.gx_html_textarea( context, edtProductServiceDescription_Internalname, A60ProductServiceDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,41);\"", 0, 1, edtProductServiceDescription_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "LongDescription", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_TileGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1500,7 +1500,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492719474619", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492818143558", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1516,7 +1516,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_tilegeneral.js", "?202492719474619", false, true);
+         context.AddJavascriptSource("trn_tilegeneral.js", "?202492818143559", false, true);
          /* End function include_jscripts */
       }
 
@@ -1784,10 +1784,10 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool AV14TempBoolean ;
       private bool GXt_boolean1 ;
+      private string A60ProductServiceDescription ;
       private string A271Trn_TileBGImageUrl ;
       private string A265Trn_TileName ;
       private string A59ProductServiceName ;
-      private string A60ProductServiceDescription ;
       private string A40000ProductServiceImage_GXI ;
       private string A330SG_ToPageName ;
       private string A61ProductServiceImage ;
@@ -1861,7 +1861,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[3])[0] = rslt.getGuid(3);
                 ((string[]) buf[4])[0] = rslt.getVarchar(4);
                 ((string[]) buf[5])[0] = rslt.getMultimediaUri(5);
-                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
                 ((string[]) buf[7])[0] = rslt.getVarchar(7);
                 ((string[]) buf[8])[0] = rslt.getVarchar(8);
                 ((string[]) buf[9])[0] = rslt.getString(9, 20);
