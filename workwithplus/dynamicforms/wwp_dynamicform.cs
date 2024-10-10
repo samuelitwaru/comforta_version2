@@ -285,7 +285,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          GxWebStd.gx_hidden_field( context, "vWWPFORMREFERENCENAME", AV14WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMREFERENCENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14WWPFormReferenceName, "")), context));
-         GxWebStd.gx_hidden_field( context, "vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9WWPFormInstanceId), 6, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMINSTANCEID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV9WWPFormInstanceId), "ZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "vWWPDYNAMICFORMMODE", StringUtil.RTrim( AV8WWPDynamicFormMode));
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPDYNAMICFORMMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV8WWPDynamicFormMode, "")), context));
@@ -297,11 +297,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "WWPFORMREFERENCENAME", A208WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, "vWWPFORMREFERENCENAME", AV14WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMREFERENCENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14WWPFormReferenceName, "")), context));
-         GxWebStd.gx_hidden_field( context, "WWPFORMID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A206WWPFormId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "WWPFORMID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A206WWPFormId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWWPFORMINSTANCE", AV7WWPFormInstance);
@@ -317,7 +317,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.gx_hidden_field( context, "vDEFAULTSTEP", AV22DefaultStep);
          GxWebStd.gx_boolean_hidden_field( context, "vEXECUTEENTEREVENT", AV23ExecuteEnterEvent);
          GxWebStd.gx_boolean_hidden_field( context, "vWWPFORMISWIZARD", AV11WWPFormIsWizard);
-         GxWebStd.gx_hidden_field( context, "vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9WWPFormInstanceId), 6, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMINSTANCEID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV9WWPFormInstanceId), "ZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "DVELOP_CONFIRMPANEL_UARESUME_Title", StringUtil.RTrim( Dvelop_confirmpanel_uaresume_Title));
          GxWebStd.gx_hidden_field( context, "DVELOP_CONFIRMPANEL_UARESUME_Confirmationtext", StringUtil.RTrim( Dvelop_confirmpanel_uaresume_Confirmationtext));
@@ -353,6 +353,18 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             WebComp_Wcwwp_dynamicformfs_wc.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -397,7 +409,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       public override string GetPgmdesc( )
       {
-         return "Dynamic Form" ;
+         return context.GetMessage( "Dynamic Form", "") ;
       }
 
       protected void WB1Z0( )
@@ -435,7 +447,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-lg-9", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Control Group */
+            GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
@@ -445,16 +459,16 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
-               GxWebStd.gx_hidden_field( context, "W0015"+"", StringUtil.RTrim( WebComp_Wcwwp_dynamicformfs_wc_Component));
+               GxWebStd.gx_hidden_field( context, "W0016"+"", StringUtil.RTrim( WebComp_Wcwwp_dynamicformfs_wc_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
-               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0015"+""+"\""+"") ;
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0016"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
                if ( StringUtil.Len( WebComp_Wcwwp_dynamicformfs_wc_Component) != 0 )
                {
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWcwwp_dynamicformfs_wc), StringUtil.Lower( WebComp_Wcwwp_dynamicformfs_wc_Component)) != 0 )
                   {
-                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0015"+"");
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0016"+"");
                   }
                   WebComp_Wcwwp_dynamicformfs_wc.componentdraw();
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWcwwp_dynamicformfs_wc), StringUtil.Lower( WebComp_Wcwwp_dynamicformfs_wc_Component)) != 0 )
@@ -467,6 +481,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</fieldset>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -477,24 +492,24 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 20,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Confirm", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 22,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtncancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtncancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuaresume_Internalname, "", "Resume", bttBtnuaresume_Jsonclick, 7, "Resume", "", StyleString, ClassString, bttBtnuaresume_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e111z1_client"+"'", TempTags, "", 2, "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuaresume_Internalname, "", context.GetMessage( "Resume", ""), bttBtnuaresume_Jsonclick, 7, context.GetMessage( "Resume", ""), "", StyleString, ClassString, bttBtnuaresume_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e111z1_client"+"'", TempTags, "", 2, "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -509,18 +524,18 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSessionid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV5SessionId), 4, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV5SessionId), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,28);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSessionid_Jsonclick, 0, "Attribute", "", "", "", "", edtavSessionid_Visible, 1, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
-            wb_table1_29_1Z2( true) ;
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavSessionid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV5SessionId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV5SessionId), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,29);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSessionid_Jsonclick, 0, "Attribute", "", "", "", "", edtavSessionid_Visible, 1, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_DynamicForm.htm");
+            wb_table1_30_1Z2( true) ;
          }
          else
          {
-            wb_table1_29_1Z2( false) ;
+            wb_table1_30_1Z2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table1_29_1Z2e( bool wbgen )
+      protected void wb_table1_30_1Z2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -545,7 +560,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Dynamic Form", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Dynamic Form", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -648,9 +663,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                         sEvtType = StringUtil.Left( sEvt, 4);
                         sEvt = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-4));
                         nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
-                        if ( nCmpId == 15 )
+                        if ( nCmpId == 16 )
                         {
-                           OldWcwwp_dynamicformfs_wc = cgiGet( "W0015");
+                           OldWcwwp_dynamicformfs_wc = cgiGet( "W0016");
                            if ( ( StringUtil.Len( OldWcwwp_dynamicformfs_wc) == 0 ) || ( StringUtil.StrCmp(OldWcwwp_dynamicformfs_wc, WebComp_Wcwwp_dynamicformfs_wc_Component) != 0 ) )
                            {
                               WebComp_Wcwwp_dynamicformfs_wc = getWebComponent(GetType(), "GeneXus.Programs", OldWcwwp_dynamicformfs_wc, new Object[] {context} );
@@ -660,7 +675,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                            }
                            if ( StringUtil.Len( WebComp_Wcwwp_dynamicformfs_wc_Component) != 0 )
                            {
-                              WebComp_Wcwwp_dynamicformfs_wc.componentprocess("W0015", "", sEvt);
+                              WebComp_Wcwwp_dynamicformfs_wc.componentprocess("W0016", "", sEvt);
                            }
                            WebComp_Wcwwp_dynamicformfs_wc_Component = OldWcwwp_dynamicformfs_wc;
                         }
@@ -872,7 +887,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             Dvelop_confirmpanel_uaresume_Confirmtype = cgiGet( "DVELOP_CONFIRMPANEL_UARESUME_Confirmtype");
             Dvelop_confirmpanel_uaresume_Result = cgiGet( "DVELOP_CONFIRMPANEL_UARESUME_Result");
             /* Read variables values. */
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSessionid_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSessionid_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSessionid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSessionid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSESSIONID");
                GX_FocusControl = edtavSessionid_Internalname;
@@ -883,7 +898,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             }
             else
             {
-               AV5SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSessionid_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV5SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSessionid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV5SessionId", StringUtil.LTrimStr( (decimal)(AV5SessionId), 4, 0));
             }
             /* Read subfile selected row values. */
@@ -1178,7 +1193,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_clearunusedreferences(context ).execute( ref  AV7WWPFormInstance) ;
          if ( ! AV7WWPFormInstance.Success() )
          {
-            GX_msglist.addItem(StringUtil.Format( "Error loading new Form instance (%1)", ((GeneXus.Utils.SdtMessages_Message)AV7WWPFormInstance.GetMessages().Item(1)).gxTpr_Description, "", "", "", "", "", "", "", ""));
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_DF_ErrorLoadingFormInstance", ""), ((GeneXus.Utils.SdtMessages_Message)AV7WWPFormInstance.GetMessages().Item(1)).gxTpr_Description, "", "", "", "", "", "", "", ""));
          }
          AV12WWPForm.Load(AV7WWPFormInstance.gxTpr_Wwpformid, AV7WWPFormInstance.gxTpr_Wwpformversionnumber);
          if ( ! AV12WWPForm.gxTpr_Wwpforminstantiated )
@@ -1232,12 +1247,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             if ( StringUtil.Len( WebComp_Wcwwp_dynamicformfs_wc_Component) != 0 )
             {
                WebComp_Wcwwp_dynamicformfs_wc.setjustcreated();
-               WebComp_Wcwwp_dynamicformfs_wc.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV8WWPDynamicFormMode,(short)AV5SessionId,(string)AV22DefaultStep,(GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance)AV7WWPFormInstance});
+               WebComp_Wcwwp_dynamicformfs_wc.componentprepare(new Object[] {(string)"W0016",(string)"",(string)AV8WWPDynamicFormMode,(short)AV5SessionId,(string)AV22DefaultStep,(GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance)AV7WWPFormInstance});
                WebComp_Wcwwp_dynamicformfs_wc.componentbind(new Object[] {(string)"",(string)"vSESSIONID",(string)"",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wcwwp_dynamicformfs_wc )
             {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0015"+"");
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0016"+"");
                WebComp_Wcwwp_dynamicformfs_wc.componentdraw();
                context.httpAjaxContext.ajax_rspEndCmp();
             }
@@ -1269,12 +1284,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             if ( StringUtil.Len( WebComp_Wcwwp_dynamicformfs_wc_Component) != 0 )
             {
                WebComp_Wcwwp_dynamicformfs_wc.setjustcreated();
-               WebComp_Wcwwp_dynamicformfs_wc.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV8WWPDynamicFormMode,(short)0,(short)0,(short)AV5SessionId,(GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance)AV7WWPFormInstance});
+               WebComp_Wcwwp_dynamicformfs_wc.componentprepare(new Object[] {(string)"W0016",(string)"",(string)AV8WWPDynamicFormMode,(short)0,(short)0,(short)AV5SessionId,(GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance)AV7WWPFormInstance});
                WebComp_Wcwwp_dynamicformfs_wc.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)"vSESSIONID",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wcwwp_dynamicformfs_wc )
             {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0015"+"");
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0016"+"");
                WebComp_Wcwwp_dynamicformfs_wc.componentdraw();
                context.httpAjaxContext.ajax_rspEndCmp();
             }
@@ -1291,7 +1306,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          returnInSub = false;
       }
 
-      protected void wb_table1_29_1Z2( bool wbgen )
+      protected void wb_table1_30_1Z2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -1317,11 +1332,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             context.WriteHtmlText( "</tbody>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table1_29_1Z2e( true) ;
+            wb_table1_30_1Z2e( true) ;
          }
          else
          {
-            wb_table1_29_1Z2e( false) ;
+            wb_table1_30_1Z2e( false) ;
          }
       }
 
@@ -1381,7 +1396,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492719485374", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016434514", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1396,8 +1411,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dynamicform.js", "?202492719485374", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dynamicform.js", "?2024101016434515", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
@@ -1412,6 +1427,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       protected void init_default_properties( )
       {
          divTablecontent_Internalname = "TABLECONTENT";
+         grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
          bttBtnenter_Internalname = "BTNENTER";
          bttBtncancel_Internalname = "BTNCANCEL";
          bttBtnuaresume_Internalname = "BTNUARESUME";
@@ -1445,12 +1461,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Dvelop_confirmpanel_uaresume_Nobuttoncaption = "WWP_ConfirmTextNo";
          Dvelop_confirmpanel_uaresume_Yesbuttoncaption = "WWP_ConfirmTextYes";
          Dvelop_confirmpanel_uaresume_Confirmationtext = "";
-         Dvelop_confirmpanel_uaresume_Title = "Resume";
+         Dvelop_confirmpanel_uaresume_Title = context.GetMessage( "Resume", "");
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Dynamic Form";
+         Form.Caption = context.GetMessage( "Dynamic Form", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {
@@ -1617,6 +1633,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string divTablemain_Class ;
       private string ClassString ;
       private string StyleString ;
+      private string grpUnnamedgroup1_Internalname ;
       private string divTablecontent_Internalname ;
       private string WebComp_Wcwwp_dynamicformfs_wc_Component ;
       private string OldWcwwp_dynamicformfs_wc ;

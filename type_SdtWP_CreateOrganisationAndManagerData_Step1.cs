@@ -30,23 +30,29 @@ namespace GeneXus.Programs
 		public SdtWP_CreateOrganisationAndManagerData_Step1( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline1 = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline2 = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry = "";
+
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname = "";
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber = "";
 
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber = "";
+
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail = "";
 
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonecode = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonenumber = "";
+
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline1 = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline2 = "";
 
 		}
 
@@ -75,206 +81,52 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("OrganisationId", gxTpr_Organisationid, false);
+			AddObjectProperty("OrganisationAddressLine1", gxTpr_Organisationaddressline1, false);
 
 
-			AddObjectProperty("OrganisationName", gxTpr_Organisationname, false);
-
-
-			AddObjectProperty("OrganisationTypeId", gxTpr_Organisationtypeid, false);
-
-
-			AddObjectProperty("OrganisationKvkNumber", gxTpr_Organisationkvknumber, false);
-
-
-			AddObjectProperty("OrganisationEmail", gxTpr_Organisationemail, false);
-
-
-			AddObjectProperty("OrganisationPhone", gxTpr_Organisationphone, false);
-
-
-			AddObjectProperty("OrganisationVATNumber", gxTpr_Organisationvatnumber, false);
-
-
-			AddObjectProperty("OrganisationAddressCountry", gxTpr_Organisationaddresscountry, false);
-
-
-			AddObjectProperty("OrganisationAddressCity", gxTpr_Organisationaddresscity, false);
+			AddObjectProperty("OrganisationAddressLine2", gxTpr_Organisationaddressline2, false);
 
 
 			AddObjectProperty("OrganisationAddressZipCode", gxTpr_Organisationaddresszipcode, false);
 
 
-			AddObjectProperty("OrganisationAddressLine1", gxTpr_Organisationaddressline1, false);
+			AddObjectProperty("OrganisationAddressCity", gxTpr_Organisationaddresscity, false);
 
 
-			AddObjectProperty("OrganisationAddressLine2", gxTpr_Organisationaddressline2, false);
+			AddObjectProperty("OrganisationAddressCountry", gxTpr_Organisationaddresscountry, false);
+
+
+			AddObjectProperty("OrganisationId", gxTpr_Organisationid, false);
+
+
+			AddObjectProperty("OrganisationTypeId", gxTpr_Organisationtypeid, false);
+
+
+			AddObjectProperty("OrganisationName", gxTpr_Organisationname, false);
+
+
+			AddObjectProperty("OrganisationKvkNumber", gxTpr_Organisationkvknumber, false);
+
+
+			AddObjectProperty("OrganisationVATNumber", gxTpr_Organisationvatnumber, false);
+
+
+			AddObjectProperty("OrganisationEmail", gxTpr_Organisationemail, false);
+
+
+			AddObjectProperty("OrganisationPhoneCode", gxTpr_Organisationphonecode, false);
+
+
+			AddObjectProperty("OrganisationPhoneNumber", gxTpr_Organisationphonenumber, false);
+
+
+			AddObjectProperty("OrganisationPhone", gxTpr_Organisationphone, false);
 
 			return;
 		}
 		#endregion
 
 		#region Properties
-
-		[SoapElement(ElementName="OrganisationId")]
-		[XmlElement(ElementName="OrganisationId")]
-		public Guid gxTpr_Organisationid
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationid; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationid = value;
-				SetDirty("Organisationid");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationName")]
-		[XmlElement(ElementName="OrganisationName")]
-		public string gxTpr_Organisationname
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname = value;
-				SetDirty("Organisationname");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationTypeId")]
-		[XmlElement(ElementName="OrganisationTypeId")]
-		public Guid gxTpr_Organisationtypeid
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationtypeid; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationtypeid = value;
-				SetDirty("Organisationtypeid");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationKvkNumber")]
-		[XmlElement(ElementName="OrganisationKvkNumber")]
-		public string gxTpr_Organisationkvknumber
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber = value;
-				SetDirty("Organisationkvknumber");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationEmail")]
-		[XmlElement(ElementName="OrganisationEmail")]
-		public string gxTpr_Organisationemail
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail = value;
-				SetDirty("Organisationemail");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationPhone")]
-		[XmlElement(ElementName="OrganisationPhone")]
-		public string gxTpr_Organisationphone
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone = value;
-				SetDirty("Organisationphone");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationVATNumber")]
-		[XmlElement(ElementName="OrganisationVATNumber")]
-		public int gxTpr_Organisationvatnumber
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber = value;
-				SetDirty("Organisationvatnumber");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationAddressCountry")]
-		[XmlElement(ElementName="OrganisationAddressCountry")]
-		public string gxTpr_Organisationaddresscountry
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry = value;
-				SetDirty("Organisationaddresscountry");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationAddressCity")]
-		[XmlElement(ElementName="OrganisationAddressCity")]
-		public string gxTpr_Organisationaddresscity
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity = value;
-				SetDirty("Organisationaddresscity");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationAddressZipCode")]
-		[XmlElement(ElementName="OrganisationAddressZipCode")]
-		public string gxTpr_Organisationaddresszipcode
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode = value;
-				SetDirty("Organisationaddresszipcode");
-			}
-		}
-
-
-
 
 		[SoapElement(ElementName="OrganisationAddressLine1")]
 		[XmlElement(ElementName="OrganisationAddressLine1")]
@@ -307,6 +159,198 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="OrganisationAddressZipCode")]
+		[XmlElement(ElementName="OrganisationAddressZipCode")]
+		public string gxTpr_Organisationaddresszipcode
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode = value;
+				SetDirty("Organisationaddresszipcode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationAddressCity")]
+		[XmlElement(ElementName="OrganisationAddressCity")]
+		public string gxTpr_Organisationaddresscity
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity = value;
+				SetDirty("Organisationaddresscity");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationAddressCountry")]
+		[XmlElement(ElementName="OrganisationAddressCountry")]
+		public string gxTpr_Organisationaddresscountry
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry = value;
+				SetDirty("Organisationaddresscountry");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationId")]
+		[XmlElement(ElementName="OrganisationId")]
+		public Guid gxTpr_Organisationid
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationid; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationid = value;
+				SetDirty("Organisationid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationTypeId")]
+		[XmlElement(ElementName="OrganisationTypeId")]
+		public Guid gxTpr_Organisationtypeid
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationtypeid; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationtypeid = value;
+				SetDirty("Organisationtypeid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationName")]
+		[XmlElement(ElementName="OrganisationName")]
+		public string gxTpr_Organisationname
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname = value;
+				SetDirty("Organisationname");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationKvkNumber")]
+		[XmlElement(ElementName="OrganisationKvkNumber")]
+		public string gxTpr_Organisationkvknumber
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber = value;
+				SetDirty("Organisationkvknumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationVATNumber")]
+		[XmlElement(ElementName="OrganisationVATNumber")]
+		public string gxTpr_Organisationvatnumber
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber = value;
+				SetDirty("Organisationvatnumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationEmail")]
+		[XmlElement(ElementName="OrganisationEmail")]
+		public string gxTpr_Organisationemail
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail = value;
+				SetDirty("Organisationemail");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationPhoneCode")]
+		[XmlElement(ElementName="OrganisationPhoneCode")]
+		public string gxTpr_Organisationphonecode
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonecode; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonecode = value;
+				SetDirty("Organisationphonecode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationPhoneNumber")]
+		[XmlElement(ElementName="OrganisationPhoneNumber")]
+		public string gxTpr_Organisationphonenumber
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonenumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonenumber = value;
+				SetDirty("Organisationphonenumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationPhone")]
+		[XmlElement(ElementName="OrganisationPhone")]
+		public string gxTpr_Organisationphone
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone = value;
+				SetDirty("Organisationphone");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -328,17 +372,20 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline1 = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline2 = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry = "";
+
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonecode = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonenumber = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone = "";
 			return  ;
 		}
 
@@ -348,40 +395,46 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected Guid gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationid;
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline1;
 		 
 
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname;
-		 
-
-		protected Guid gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationtypeid;
-		 
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber;
-		 
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail;
-		 
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone;
-		 
-
-		protected int gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber;
-		 
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry;
-		 
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity;
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline2;
 		 
 
 		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresszipcode;
 		 
 
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline1;
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscity;
 		 
 
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddressline2;
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationaddresscountry;
+		 
+
+		protected Guid gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationid;
+		 
+
+		protected Guid gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationtypeid;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationname;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationkvknumber;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonecode;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonenumber;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone;
 		 
 
 
@@ -401,127 +454,7 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="OrganisationId", Order=0)]
-		public Guid gxTpr_Organisationid
-		{
-			get { 
-				return sdt.gxTpr_Organisationid;
-
-			}
-			set { 
-				sdt.gxTpr_Organisationid = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationName", Order=1)]
-		public  string gxTpr_Organisationname
-		{
-			get { 
-				return sdt.gxTpr_Organisationname;
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationname = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationTypeId", Order=2)]
-		public Guid gxTpr_Organisationtypeid
-		{
-			get { 
-				return sdt.gxTpr_Organisationtypeid;
-
-			}
-			set { 
-				sdt.gxTpr_Organisationtypeid = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationKvkNumber", Order=3)]
-		public  string gxTpr_Organisationkvknumber
-		{
-			get { 
-				return sdt.gxTpr_Organisationkvknumber;
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationkvknumber = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationEmail", Order=4)]
-		public  string gxTpr_Organisationemail
-		{
-			get { 
-				return sdt.gxTpr_Organisationemail;
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationemail = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationPhone", Order=5)]
-		public  string gxTpr_Organisationphone
-		{
-			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Organisationphone);
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationphone = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationVATNumber", Order=6)]
-		public  string gxTpr_Organisationvatnumber
-		{
-			get { 
-				return StringUtil.LTrim( StringUtil.Str( (decimal) sdt.gxTpr_Organisationvatnumber, 8, 0));
-
-			}
-			set { 
-				sdt.gxTpr_Organisationvatnumber = (int) NumberUtil.Val( value, ".");
-			}
-		}
-
-		[DataMember(Name="OrganisationAddressCountry", Order=7)]
-		public  string gxTpr_Organisationaddresscountry
-		{
-			get { 
-				return sdt.gxTpr_Organisationaddresscountry;
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationaddresscountry = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationAddressCity", Order=8)]
-		public  string gxTpr_Organisationaddresscity
-		{
-			get { 
-				return sdt.gxTpr_Organisationaddresscity;
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationaddresscity = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationAddressZipCode", Order=9)]
-		public  string gxTpr_Organisationaddresszipcode
-		{
-			get { 
-				return sdt.gxTpr_Organisationaddresszipcode;
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationaddresszipcode = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationAddressLine1", Order=10)]
+		[DataMember(Name="OrganisationAddressLine1", Order=0)]
 		public  string gxTpr_Organisationaddressline1
 		{
 			get { 
@@ -533,7 +466,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="OrganisationAddressLine2", Order=11)]
+		[DataMember(Name="OrganisationAddressLine2", Order=1)]
 		public  string gxTpr_Organisationaddressline2
 		{
 			get { 
@@ -542,6 +475,150 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Organisationaddressline2 = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationAddressZipCode", Order=2)]
+		public  string gxTpr_Organisationaddresszipcode
+		{
+			get { 
+				return sdt.gxTpr_Organisationaddresszipcode;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationaddresszipcode = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationAddressCity", Order=3)]
+		public  string gxTpr_Organisationaddresscity
+		{
+			get { 
+				return sdt.gxTpr_Organisationaddresscity;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationaddresscity = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationAddressCountry", Order=4)]
+		public  string gxTpr_Organisationaddresscountry
+		{
+			get { 
+				return sdt.gxTpr_Organisationaddresscountry;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationaddresscountry = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationId", Order=5)]
+		public Guid gxTpr_Organisationid
+		{
+			get { 
+				return sdt.gxTpr_Organisationid;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationid = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationTypeId", Order=6)]
+		public Guid gxTpr_Organisationtypeid
+		{
+			get { 
+				return sdt.gxTpr_Organisationtypeid;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationtypeid = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationName", Order=7)]
+		public  string gxTpr_Organisationname
+		{
+			get { 
+				return sdt.gxTpr_Organisationname;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationname = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationKvkNumber", Order=8)]
+		public  string gxTpr_Organisationkvknumber
+		{
+			get { 
+				return sdt.gxTpr_Organisationkvknumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationkvknumber = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationVATNumber", Order=9)]
+		public  string gxTpr_Organisationvatnumber
+		{
+			get { 
+				return sdt.gxTpr_Organisationvatnumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationvatnumber = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationEmail", Order=10)]
+		public  string gxTpr_Organisationemail
+		{
+			get { 
+				return sdt.gxTpr_Organisationemail;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationemail = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationPhoneCode", Order=11)]
+		public  string gxTpr_Organisationphonecode
+		{
+			get { 
+				return sdt.gxTpr_Organisationphonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationphonecode = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationPhoneNumber", Order=12)]
+		public  string gxTpr_Organisationphonenumber
+		{
+			get { 
+				return sdt.gxTpr_Organisationphonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationphonenumber = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationPhone", Order=13)]
+		public  string gxTpr_Organisationphone
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Organisationphone);
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationphone = value;
 			}
 		}
 

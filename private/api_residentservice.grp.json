@@ -1,16 +1,66 @@
 {
 "ObjectType":"ServiceGroup",
 "Name":"API_ResidentService",
-"BasePath":"API_ResidentService",
+"BasePath":"api",
 "Mappings":
 [
 {
 "Verb":"POST",
-"PathRegexp":"api/auth/resident-login",
-"Path":"api/auth/resident-login",
+"PathRegexp":"auth/resident-login",
+"Path":"auth/resident-login",
 "Name":"loginwithqrcode",
 "Bodystyle":"Wrapped",
 "VariableAlias": [],
 "ServiceMethod":"gxep_loginwithqrcode",
 "Implementation":"Prc_LoginResident"
+},
+{
+"PathRegexp":"auth/resident",
+"Path":"auth/resident",
+"Name":"getresidentinformation",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getresidentinformation",
+"Implementation":"Prc_GetResidentInformation",
+"Verb":"GET"
+},
+{
+"PathRegexp":"resident/organisation",
+"Path":"resident/organisation",
+"Name":"getorganisationinformation",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getorganisationinformation",
+"Implementation":"Prc_GetOrganisationInformation",
+"Verb":"GET"
+},
+{
+"PathRegexp":"resident/location",
+"Path":"resident/location",
+"Name":"getlocationinformation",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getlocationinformation",
+"Implementation":"Prc_GetLocationInformation",
+"Verb":"GET"
+},
+{
+"PathRegexp":"mobile/register-device",
+"Path":"mobile/register-device",
+"Verb":"POST",
+"Name":"registerdevice",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_registerdevice",
+"Implementation":"Prc_RegisterMobileDevice"
+},
+{
+"PathRegexp":"mobile/send-notification",
+"Path":"mobile/send-notification",
+"Verb":"POST",
+"Name":"sendnotification",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_sendnotification",
+"Implementation":"Prc_SendNotification"
 }]}

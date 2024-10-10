@@ -1,12 +1,12 @@
 openapi: 3.0.0
 info:
   title: "API_ResidentService"
-  description: "API_Resident Service"
-  version: "20240928151644"
+  description: "API Services"
+  version: "20241010134551"
 servers:
-  - url: https://staging.comforta.yukon.software//API_ResidentService
+  - url: https://staging.comforta.yukon.software/api
 paths:
-  /api/auth/resident-login:
+  /auth/resident-login:
     post:
       tags:
         - API_ResidentService  
@@ -32,6 +32,141 @@ paths:
         404:
           description: "Not found"
 
+  /auth/resident:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetResidentInformation"
+      summary: "Get Resident Information"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Userid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Resident"  
+
+        404:
+          description: "Not found"
+
+  /resident/organisation:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetOrganisationInformation"
+      summary: "Get Organisation Information"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Organisation"  
+
+        404:
+          description: "Not found"
+
+  /resident/location:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetLocationInformation"
+      summary: "Get Location Information"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Location"  
+
+        404:
+          description: "Not found"
+
+  /mobile/register-device:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.RegisterDevice"
+      summary: "Register Resident Device Information"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterDeviceInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /mobile/send-notification:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.SendNotification"
+      summary: "Send Push Notification"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendNotificationInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
 components:
   securitySchemes:
     oAuthGXGAM:
@@ -39,7 +174,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
+          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -47,6 +182,32 @@ components:
     LoginWithQrCodeInput:  
       properties:
         secretKey:
+          type: "string"
+
+
+
+
+    RegisterDeviceInput:  
+      properties:
+        DeviceToken:
+          type: "string"
+        DeviceID:
+          type: "string"
+        DeviceType:
+          type: "integer"
+          format: "int32"
+        NotificationPlatform:
+          type: "string"
+        NotificationPlatformId:
+          type: "string"
+        userId:
+          type: "string"
+
+    SendNotificationInput:  
+      properties:
+        title:
+          type: "string"
+        message:
           type: "string"
   
     SDT_LoginResidentResponse:
@@ -69,6 +230,157 @@ components:
           type: "string"
         user_guid:
           description: "user_guid"
+          type: "string"
+
+
+
+    SDT_Resident:
+      properties:
+        ResidentId:
+          description: "Resident Id"
+          type: "string"
+          format: "uuid"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        ResidentSalutation:
+          description: "Resident Salutation"
+          type: "string"
+        ResidentBsnNumber:
+          description: "Resident Bsn Number"
+          type: "string"
+        ResidentGivenName:
+          description: "Resident Given Name"
+          type: "string"
+        ResidentLastName:
+          description: "Resident Last Name"
+          type: "string"
+        ResidentInitials:
+          description: "Resident Initials"
+          type: "string"
+        ResidentEmail:
+          description: "Resident Email"
+          type: "string"
+        ResidentGender:
+          description: "Resident Gender"
+          type: "string"
+        ResidentAddress:
+          description: "Resident Address"
+          type: "string"
+        ResidentPhone:
+          description: "Resident Phone"
+          type: "string"
+        ResidentBirthDate:
+          description: "Resident Birth Date"
+          type: "string"
+          format: "date"
+        ResidentGUID:
+          description: "Resident GUID"
+          type: "string"
+        ResidentTypeId:
+          description: "Resident Type Id"
+          type: "string"
+          format: "uuid"
+        ResidentTypeName:
+          description: "Resident Type Name"
+          type: "string"
+        MedicalIndicationId:
+          description: "Medical Indication Id"
+          type: "string"
+          format: "uuid"
+        MedicalIndicationName:
+          description: "Medical Indication Name"
+          type: "string"
+
+
+
+    SDT_Organisation:
+      properties:
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        OrganisationName:
+          description: "Organisation Name"
+          type: "string"
+        OrganisationKvkNumber:
+          description: "Organisation Kvk Number"
+          type: "string"
+        OrganisationEmail:
+          description: "Organisation Email"
+          type: "string"
+        OrganisationPhone:
+          description: "Organisation Phone"
+          type: "string"
+        OrganisationVATNumber:
+          description: "Organisation VATNumber"
+          type: "string"
+        OrganisationCountry:
+          description: "Organisation Address Country"
+          type: "string"
+        OrganisationCity:
+          description: "Organisation Address City"
+          type: "string"
+        OrganisationZipCode:
+          description: "Organisation Address Zip Code"
+          type: "string"
+        OrganisationAddressLine1:
+          description: "Organisation Address Line1"
+          type: "string"
+        OrganisationAddressLine2:
+          description: "Organisation Address Line2"
+          type: "string"
+        OrganisationTypeId:
+          description: "Organisation Type Id"
+          type: "string"
+          format: "uuid"
+        OrganisationTypeName:
+          description: "Organisation Type Name"
+          type: "string"
+
+
+
+    SDT_Location:
+      properties:
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        LocationName:
+          description: "Location Name"
+          type: "string"
+        LocationCountry:
+          description: "Location Country"
+          type: "string"
+        LocationCity:
+          description: "Location City"
+          type: "string"
+        LocationZipCode:
+          description: "Location Zip Code"
+          type: "string"
+        LocationAddressLine1:
+          description: "Location Address Line1"
+          type: "string"
+        LocationAddressLine2:
+          description: "Location Address Line2"
+          type: "string"
+        LocationEmail:
+          description: "Location Email"
+          type: "string"
+        LocationPhone:
+          description: "Location Phone"
+          type: "string"
+        LocationDescription:
+          description: "Location Description"
           type: "string"
 
 

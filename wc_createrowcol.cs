@@ -223,7 +223,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WC_Create Row Col") ;
+            context.SendWebValue( context.GetMessage( "WC_Create Row Col", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -390,7 +390,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WC_Create Row Col" ;
+         return context.GetMessage( "WC_Create Row Col", "") ;
       }
 
       protected void WB5S0( )
@@ -448,7 +448,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_colname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_colname_Internalname, "Trn_Col Name", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_colname_Internalname, context.GetMessage( "Trn_Col Name", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -462,7 +462,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+dynavTrn_tileid_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, dynavTrn_tileid_Internalname, "Trn_Tile Id", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, dynavTrn_tileid_Internalname, context.GetMessage( "Trn_Tile Id", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'" + sPrefix + "',false,'',0)\"";
@@ -482,7 +482,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Confirm", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WC_CreateRowCol.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WC_CreateRowCol.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -532,7 +532,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WC_Create Row Col", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WC_Create Row Col", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1045,7 +1045,7 @@ namespace GeneXus.Programs {
          if ( AV19BC_Trn_Col.Success() )
          {
             context.CommitDataStores("wc_createrowcol",pr_default);
-            GX_msglist.addItem("Col added successfully");
+            GX_msglist.addItem(context.GetMessage( "Col added successfully", ""));
             this.executeExternalObjectMethod(sPrefix, false, "GlobalEvents", "WC_CreateRowCol_ColAdded", new Object[] {}, true);
          }
          else
@@ -1287,7 +1287,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20249271948081", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016433515", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1303,7 +1303,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_createrowcol.js", "?20249271948081", false, true);
+         context.AddJavascriptSource("wc_createrowcol.js", "?2024101016433515", false, true);
          /* End function include_jscripts */
       }
 
@@ -1608,10 +1608,10 @@ namespace GeneXus.Programs {
         prmH005S5 = new Object[] {
         };
         def= new CursorDef[] {
-            new CursorDef("H005S2", "SELECT Trn_TileId, Trn_TileName FROM Trn_Col ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S2,0, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("H005S3", "SELECT Trn_TileId, Trn_TileName FROM Trn_Col ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S3,0, GxCacheFrequency.OFF ,true,false )
+            new CursorDef("H005S2", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S2,0, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("H005S3", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S3,0, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("H005S4", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ORDER BY Trn_RowId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S4,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("H005S5", "SELECT Trn_TileId, Trn_TileName FROM Trn_Col ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S5,0, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("H005S5", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S5,0, GxCacheFrequency.OFF ,true,false )
         };
      }
   }

@@ -100,6 +100,7 @@
 	--GX-Image_faviconImg : url(../faviconImg.png);
 	--GX-Image_LoginImage : url(../LoginImage.jpg);
 	--GX-Image_ComfortaLogo : url(../ComfortaLogo.png);
+	--GX-Image_loaderA : url(../loaderA.gif);
 }
 
 .GX_Image_SelectRow_Class{content: var(--GX-Image_SelectRow);}
@@ -201,4 +202,5 @@
 .GX_Image_faviconImg_Class{content: var(--GX-Image_faviconImg);}
 .GX_Image_LoginImage_Class{content: var(--GX-Image_LoginImage);}
 .GX_Image_ComfortaLogo_Class{content: var(--GX-Image_ComfortaLogo);}
+.GX_Image_loaderA_Class{content: var(--GX-Image_loaderA);}
 }

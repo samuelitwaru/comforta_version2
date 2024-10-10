@@ -48,7 +48,8 @@ namespace GeneXus.Programs {
          metadata.Set("Name", "ChildTile");
          metadata.Set("BT", "Trn_TileChildTile");
          metadata.Set("PK", "[ \"SG_TileId\" ]");
-         metadata.Set("FKList", "[ { \"FK\":[ \"SG_TileId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"Trn_TileId\" ],\"FKMap\":[  ] } ]");
+         metadata.Set("PKAssigned", "[ \"SG_TileId\" ]");
+         metadata.Set("FKList", "[ { \"FK\":[ \"Trn_TileId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"Trn_TileId\" ],\"FKMap\":[ \"SG_TileId-Trn_TileId\" ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");
@@ -197,18 +198,6 @@ namespace GeneXus.Programs {
 
       }
 
-      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilename_SetNull( )
-      {
-         gxTv_SdtTrn_Tile_ChildTile_Sg_tilename = "";
-         SetDirty("Sg_tilename");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilename_IsNull( )
-      {
-         return false ;
-      }
-
       [  SoapElement( ElementName = "SG_TileWidth" )]
       [  XmlElement( ElementName = "SG_TileWidth"   )]
       public short gxTpr_Sg_tilewidth
@@ -224,18 +213,6 @@ namespace GeneXus.Programs {
             SetDirty("Sg_tilewidth");
          }
 
-      }
-
-      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_SetNull( )
-      {
-         gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth = 0;
-         SetDirty("Sg_tilewidth");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_IsNull( )
-      {
-         return false ;
       }
 
       [  SoapElement( ElementName = "SG_TileColor" )]
@@ -255,18 +232,6 @@ namespace GeneXus.Programs {
 
       }
 
-      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_SetNull( )
-      {
-         gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor = "";
-         SetDirty("Sg_tilecolor");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_IsNull( )
-      {
-         return false ;
-      }
-
       [  SoapElement( ElementName = "SG_TileBGImageUrl" )]
       [  XmlElement( ElementName = "SG_TileBGImageUrl"   )]
       public string gxTpr_Sg_tilebgimageurl
@@ -282,18 +247,6 @@ namespace GeneXus.Programs {
             SetDirty("Sg_tilebgimageurl");
          }
 
-      }
-
-      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_SetNull( )
-      {
-         gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl = "";
-         SetDirty("Sg_tilebgimageurl");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_IsNull( )
-      {
-         return false ;
       }
 
       [  SoapElement( ElementName = "ChildTileOrder" )]

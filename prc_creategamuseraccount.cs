@@ -108,7 +108,17 @@ namespace GeneXus.Programs {
             }
             if ( StringUtil.StrCmp(AV12RoleName, "Resident") != 0 )
             {
-               new prc_activateresidentaccount(context ).execute(  AV9GAMUserGUID) ;
+               GXt_char1 = AV19HttpRequest.BaseURL;
+               new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid, ref  GXt_char1, out  AV18isSuccessful) ;
+               if ( AV18isSuccessful )
+               {
+                  new prc_logtofile(context ).execute(  context.GetMessage( "Email Sent: ", "")+AV12RoleName) ;
+                  context.CommitDataStores("prc_creategamuseraccount",pr_default);
+               }
+               else
+               {
+                  new prc_logtofile(context ).execute(  context.GetMessage( "No Email Sent: ", "")+AV12RoleName) ;
+               }
             }
             else
             {
@@ -139,6 +149,8 @@ namespace GeneXus.Programs {
          AV16Role = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV15GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV14GAMRole = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
+         AV19HttpRequest = new GxHttpRequest( context);
+         GXt_char1 = "";
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_creategamuseraccount__gam(),
             new Object[][] {
             }
@@ -150,11 +162,14 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private string GXt_char1 ;
+      private bool AV18isSuccessful ;
       private string AV8Email ;
       private string AV10GivenName ;
       private string AV11LastName ;
       private string AV12RoleName ;
       private string AV9GAMUserGUID ;
+      private GxHttpRequest AV19HttpRequest ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV13GAMUser ;

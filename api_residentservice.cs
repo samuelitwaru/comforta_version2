@@ -35,19 +35,32 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
-         return GAMSecurityLevel.SecurityHigh ;
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getresidentinformation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getorganisationinformation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getlocationinformation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_registerdevice") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_sendnotification") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         return GAMSecurityLevel.SecurityLow ;
       }
 
       protected override string ApiExecutePermissionPrefix( string permissionMethod )
       {
-         if ( StringUtil.StrCmp(permissionMethod, "gxep_loginwithqrcode") == 0 )
-         {
-            return "api_residentservice_Services_LoginWithQrCode" ;
-         }
-         else
-         {
-            return "api_residentservice_Services_FullControl" ;
-         }
+         return "" ;
       }
 
       public api_residentservice( )
@@ -85,13 +98,75 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_loginwithqrcode( string aP0_secretKey ,
-                                        out SdtSDT_LoginResidentResponse aP1_response )
+                                        out SdtSDT_LoginResidentResponse aP1_loginResult )
       {
          this.AV7secretKey = aP0_secretKey;
          initialize();
          /* LoginWithQrCode Constructor */
-         new prc_loginresident(context ).execute(  AV7secretKey, out  AV6response) ;
-         aP1_response=this.AV6response;
+         new prc_loginresident(context ).execute(  AV7secretKey, out  AV17result) ;
+         aP1_loginResult=this.AV21loginResult;
+      }
+
+      public void gxep_getresidentinformation( string aP0_userId ,
+                                               out SdtSDT_Resident aP1_SDT_Resident )
+      {
+         this.AV8userId = aP0_userId;
+         initialize();
+         /* GetResidentInformation Constructor */
+         new prc_getresidentinformation(context ).execute(  AV8userId, out  AV17result) ;
+         aP1_SDT_Resident=this.AV22SDT_Resident;
+      }
+
+      public void gxep_getorganisationinformation( Guid aP0_organisationId ,
+                                                   out SdtSDT_Organisation aP1_SDT_Organisation )
+      {
+         this.AV16organisationId = aP0_organisationId;
+         initialize();
+         /* GetOrganisationInformation Constructor */
+         new prc_getorganisationinformation(context ).execute(  AV16organisationId, out  AV17result) ;
+         aP1_SDT_Organisation=this.AV23SDT_Organisation;
+      }
+
+      public void gxep_getlocationinformation( Guid aP0_locationId ,
+                                               out SdtSDT_Location aP1_SDT_Location )
+      {
+         this.AV12locationId = aP0_locationId;
+         initialize();
+         /* GetLocationInformation Constructor */
+         new prc_getlocationinformation(context ).execute(  AV12locationId, out  AV17result) ;
+         aP1_SDT_Location=this.AV18SDT_Location;
+      }
+
+      public void gxep_registerdevice( string aP0_DeviceToken ,
+                                       string aP1_DeviceID ,
+                                       short aP2_DeviceType ,
+                                       string aP3_NotificationPlatform ,
+                                       string aP4_NotificationPlatformId ,
+                                       string aP5_userId ,
+                                       out string aP6_result )
+      {
+         this.AV10DeviceToken = aP0_DeviceToken;
+         this.AV9DeviceID = aP1_DeviceID;
+         this.AV11DeviceType = aP2_DeviceType;
+         this.AV14NotificationPlatform = aP3_NotificationPlatform;
+         this.AV15NotificationPlatformId = aP4_NotificationPlatformId;
+         this.AV8userId = aP5_userId;
+         initialize();
+         /* RegisterDevice Constructor */
+         new prc_registermobiledevice(context ).execute(  AV10DeviceToken,  AV9DeviceID,  AV11DeviceType,  AV14NotificationPlatform,  AV15NotificationPlatformId,  AV8userId, out  AV17result) ;
+         aP6_result=this.AV17result;
+      }
+
+      public void gxep_sendnotification( string aP0_title ,
+                                         string aP1_message ,
+                                         out string aP2_result )
+      {
+         this.AV19title = aP0_title;
+         this.AV13message = aP1_message;
+         initialize();
+         /* SendNotification Constructor */
+         new prc_sendnotification(context ).execute(  AV19title,  AV13message, out  AV17result) ;
+         aP2_result=this.AV17result;
       }
 
       public override void cleanup( )
@@ -101,16 +176,39 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV6response = new SdtSDT_LoginResidentResponse(context);
+         AV21loginResult = new SdtSDT_LoginResidentResponse(context);
+         AV17result = "";
+         AV22SDT_Resident = new SdtSDT_Resident(context);
+         AV23SDT_Organisation = new SdtSDT_Organisation(context);
+         AV18SDT_Location = new SdtSDT_Location(context);
          /* GeneXus formulas. */
       }
 
+      protected short AV11DeviceType ;
       protected string Gx_restmethod ;
+      protected string AV10DeviceToken ;
+      protected string AV9DeviceID ;
       protected string AV7secretKey ;
+      protected string AV17result ;
+      protected string AV8userId ;
+      protected string AV14NotificationPlatform ;
+      protected string AV15NotificationPlatformId ;
+      protected string AV19title ;
+      protected string AV13message ;
+      protected Guid AV16organisationId ;
+      protected Guid AV12locationId ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
-      protected SdtSDT_LoginResidentResponse AV6response ;
-      protected SdtSDT_LoginResidentResponse aP1_response ;
+      protected SdtSDT_LoginResidentResponse AV21loginResult ;
+      protected SdtSDT_LoginResidentResponse aP1_loginResult ;
+      protected SdtSDT_Resident AV22SDT_Resident ;
+      protected SdtSDT_Resident aP1_SDT_Resident ;
+      protected SdtSDT_Organisation AV23SDT_Organisation ;
+      protected SdtSDT_Organisation aP1_SDT_Organisation ;
+      protected SdtSDT_Location AV18SDT_Location ;
+      protected SdtSDT_Location aP1_SDT_Location ;
+      protected string aP6_result ;
+      protected string aP2_result ;
    }
 
 }

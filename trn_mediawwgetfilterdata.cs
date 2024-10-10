@@ -479,7 +479,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_mediawwds_3_tftrn_medianame_sel)) && ! ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_mediawwds_3_tftrn_medianame_sel)) && ! ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_MediaName = ( :AV42Trn_mediawwds_3_tftrn_medianame_sel))");
          }
@@ -487,7 +487,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_MediaName))=0))");
          }
@@ -499,7 +499,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_5_tftrn_mediaurl_sel)) && ! ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_5_tftrn_mediaurl_sel)) && ! ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_MediaUrl = ( :AV44Trn_mediawwds_5_tftrn_mediaurl_sel))");
          }
@@ -507,7 +507,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_MediaUrl))=0))");
          }
@@ -549,7 +549,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_mediawwds_3_tftrn_medianame_sel)) && ! ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_mediawwds_3_tftrn_medianame_sel)) && ! ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_MediaName = ( :AV42Trn_mediawwds_3_tftrn_medianame_sel))");
          }
@@ -557,7 +557,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_MediaName))=0))");
          }
@@ -569,7 +569,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_5_tftrn_mediaurl_sel)) && ! ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_5_tftrn_mediaurl_sel)) && ! ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_MediaUrl = ( :AV44Trn_mediawwds_5_tftrn_mediaurl_sel))");
          }
@@ -577,7 +577,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_MediaUrl))=0))");
          }

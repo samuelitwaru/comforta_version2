@@ -203,7 +203,7 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( "WP_Application Design") ;
+         context.SendWebValue( context.GetMessage( "WP_Application Design", "")) ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -335,6 +335,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -350,7 +362,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WP_Application Design" ;
+         return context.GetMessage( "WP_Application Design", "") ;
       }
 
       protected void WB470( )
@@ -424,7 +436,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "WP_Application Design", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WP_Application Design", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -701,7 +713,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         Form.Headerrawhtml = Form.Headerrawhtml+"<link rel=\"stylesheet\" href=\"Resources/UCGrapes/grapes.min.css\">"+"<script src=\"Resources/UCGrapes/grapes.min.js\"></script>";
+         Form.Headerrawhtml = Form.Headerrawhtml+context.GetMessage( "<link rel=\"stylesheet\" href=\"Resources/UCGrapes/grapes.min.css\">", "")+context.GetMessage( "<script src=\"Resources/UCGrapes/grapes.min.js\"></script>", "");
          /* Using cursor H00472 */
          pr_default.execute(0, new Object[] {AV16Trn_PageId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -720,7 +732,10 @@ namespace GeneXus.Programs {
          {
             A265Trn_TileName = H00473_A265Trn_TileName[0];
             A264Trn_TileId = H00473_A264Trn_TileId[0];
-            AV9BC_Trn_Tile.Load(A264Trn_TileId);
+            if ( StringUtil.StrCmp(A265Trn_TileName, context.GetMessage( "Home", "")) == 0 )
+            {
+               AV9BC_Trn_Tile.Load(A264Trn_TileId);
+            }
             pr_default.readNext(1);
          }
          pr_default.close(1);
@@ -800,7 +815,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492818144051", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016441815", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -817,8 +832,8 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?202492818144051", false, true);
+            context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?2024101016441815", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -1040,7 +1055,7 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("H00472", "SELECT Trn_PageId, Trn_PageName FROM Trn_Page WHERE Trn_PageId = :AV16Trn_PageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00472,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("H00473", "SELECT Trn_TileName, Trn_TileId FROM Trn_Col WHERE Trn_TileName = ( 'Home') ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00473", "SELECT Trn_TileName, Trn_TileId FROM Trn_Tile ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00474", "SELECT Trn_TemplateId FROM Trn_Template ORDER BY Trn_TemplateId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00475", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
           };

@@ -368,14 +368,26 @@ namespace GeneXus.Programs {
          {
             WebComp_Attributewc.componentjscripts();
          }
-         if ( ! ( WebComp_Trn_colwc == null ) )
+         if ( ! ( WebComp_Childtilewc == null ) )
          {
-            WebComp_Trn_colwc.componentjscripts();
+            WebComp_Childtilewc.componentjscripts();
          }
          if ( ! ( WebComp_Wwpaux_wc == null ) )
          {
             WebComp_Wwpaux_wc.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -420,7 +432,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Trn_Tile View" ;
+         return context.GetMessage( "Trn_Tile View", "") ;
       }
 
       protected void WB5Y0( )
@@ -456,7 +468,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "ViewCellRightItem", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblWorkwithlink_Internalname, "Go to Tile", lblWorkwithlink_Link, "", lblWorkwithlink_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockLink", 0, "", 1, 1, 0, 0, "HLP_Trn_TileView.htm");
+            GxWebStd.gx_label_ctrl( context, lblWorkwithlink_Internalname, context.GetMessage( "Go to Tile", ""), lblWorkwithlink_Link, "", lblWorkwithlink_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockLink", 0, "", 1, 1, 0, 0, "HLP_Trn_TileView.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "ViewCellRightItem", "start", "top", "", "", "div");
@@ -549,7 +561,7 @@ namespace GeneXus.Programs {
             ucTabs.Render(context, "tab", Tabs_Internalname, "TABSContainer");
             context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title1"+"\" style=\"display:none;\">") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblAttribute_title_Internalname, "Attribute", "", "", lblAttribute_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_TileView.htm");
+            GxWebStd.gx_label_ctrl( context, lblAttribute_title_Internalname, context.GetMessage( "Attribute", ""), "", "", lblAttribute_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_TileView.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
             context.WriteHtmlText( "Attribute") ;
@@ -590,15 +602,15 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</div>") ;
             context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title2"+"\" style=\"display:none;\">") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTrn_col_title_Internalname, "Trn_Col", "", "", lblTrn_col_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_TileView.htm");
+            GxWebStd.gx_label_ctrl( context, lblChildtile_title_Internalname, context.GetMessage( "Child Tile", ""), "", "", lblChildtile_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_TileView.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
-            context.WriteHtmlText( "Trn_Col") ;
+            context.WriteHtmlText( "ChildTile") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</div>") ;
             context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"panel2"+"\" style=\"display:none;\">") ;
             /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_col_Internalname, 1, 0, "px", 0, "px", "TableViewTab", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divUnnamedtablechildtile_Internalname, 1, 0, "px", 0, "px", "TableViewTab", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -606,19 +618,19 @@ namespace GeneXus.Programs {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
-               GxWebStd.gx_hidden_field( context, "W0045"+"", StringUtil.RTrim( WebComp_Trn_colwc_Component));
+               GxWebStd.gx_hidden_field( context, "W0045"+"", StringUtil.RTrim( WebComp_Childtilewc_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
                context.WriteHtmlText( " id=\""+"gxHTMLWrpW0045"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
-               if ( StringUtil.Len( WebComp_Trn_colwc_Component) != 0 )
+               if ( StringUtil.Len( WebComp_Childtilewc_Component) != 0 )
                {
-                  if ( StringUtil.StrCmp(StringUtil.Lower( OldTrn_colwc), StringUtil.Lower( WebComp_Trn_colwc_Component)) != 0 )
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldChildtilewc), StringUtil.Lower( WebComp_Childtilewc_Component)) != 0 )
                   {
                      context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0045"+"");
                   }
-                  WebComp_Trn_colwc.componentdraw();
-                  if ( StringUtil.StrCmp(StringUtil.Lower( OldTrn_colwc), StringUtil.Lower( WebComp_Trn_colwc_Component)) != 0 )
+                  WebComp_Childtilewc.componentdraw();
+                  if ( StringUtil.StrCmp(StringUtil.Lower( OldChildtilewc), StringUtil.Lower( WebComp_Childtilewc_Component)) != 0 )
                   {
                      context.httpAjaxContext.ajax_rspEndCmp();
                   }
@@ -689,7 +701,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Trn_Tile View", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Trn_Tile View", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -838,19 +850,19 @@ namespace GeneXus.Programs {
                         }
                         else if ( nCmpId == 45 )
                         {
-                           OldTrn_colwc = cgiGet( "W0045");
-                           if ( ( StringUtil.Len( OldTrn_colwc) == 0 ) || ( StringUtil.StrCmp(OldTrn_colwc, WebComp_Trn_colwc_Component) != 0 ) )
+                           OldChildtilewc = cgiGet( "W0045");
+                           if ( ( StringUtil.Len( OldChildtilewc) == 0 ) || ( StringUtil.StrCmp(OldChildtilewc, WebComp_Childtilewc_Component) != 0 ) )
                            {
-                              WebComp_Trn_colwc = getWebComponent(GetType(), "GeneXus.Programs", OldTrn_colwc, new Object[] {context} );
-                              WebComp_Trn_colwc.ComponentInit();
-                              WebComp_Trn_colwc.Name = "OldTrn_colwc";
-                              WebComp_Trn_colwc_Component = OldTrn_colwc;
+                              WebComp_Childtilewc = getWebComponent(GetType(), "GeneXus.Programs", OldChildtilewc, new Object[] {context} );
+                              WebComp_Childtilewc.ComponentInit();
+                              WebComp_Childtilewc.Name = "OldChildtilewc";
+                              WebComp_Childtilewc_Component = OldChildtilewc;
                            }
-                           if ( StringUtil.Len( WebComp_Trn_colwc_Component) != 0 )
+                           if ( StringUtil.Len( WebComp_Childtilewc_Component) != 0 )
                            {
-                              WebComp_Trn_colwc.componentprocess("W0045", "", sEvt);
+                              WebComp_Childtilewc.componentprocess("W0045", "", sEvt);
                            }
-                           WebComp_Trn_colwc_Component = OldTrn_colwc;
+                           WebComp_Childtilewc_Component = OldChildtilewc;
                         }
                         else if ( nCmpId == 50 )
                         {
@@ -1042,9 +1054,9 @@ namespace GeneXus.Programs {
          {
             if ( 1 != 0 )
             {
-               if ( StringUtil.Len( WebComp_Trn_colwc_Component) != 0 )
+               if ( StringUtil.Len( WebComp_Childtilewc_Component) != 0 )
                {
-                  WebComp_Trn_colwc.componentstart();
+                  WebComp_Childtilewc.componentstart();
                }
             }
          }
@@ -1123,7 +1135,7 @@ namespace GeneXus.Programs {
             Panel_general_Iconposition = cgiGet( "PANEL_GENERAL_Iconposition");
             Panel_general_Autoscroll = StringUtil.StrToBool( cgiGet( "PANEL_GENERAL_Autoscroll"));
             Tabs_Activepagecontrolname = cgiGet( "TABS_Activepagecontrolname");
-            Tabs_Pagecount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "TABS_Pagecount"), ".", ","), 18, MidpointRounding.ToEven));
+            Tabs_Pagecount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "TABS_Pagecount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Tabs_Class = cgiGet( "TABS_Class");
             Tabs_Historymanagement = StringUtil.StrToBool( cgiGet( "TABS_Historymanagement"));
             Tabs_Activepagecontrolname = cgiGet( "TABS_Activepagecontrolname");
@@ -1173,7 +1185,7 @@ namespace GeneXus.Programs {
          pr_default.close(1);
          if ( AV16GXLvl9 == 0 )
          {
-            Form.Caption = "Record not found";
+            Form.Caption = context.GetMessage( "WWP_RecordNotFound", "");
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
             AV9Exists = false;
          }
@@ -1213,7 +1225,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( ! new GeneXus.Programs.wwpbaseobjects.discussions.wwp_hasdiscussionmessages(context).executeUdp(  "Trn_Tile",  StringUtil.Trim( A264Trn_TileId.ToString())) )
          {
-            Ddc_discussions_Icon = "far fa-comment";
+            Ddc_discussions_Icon = context.GetMessage( "far fa-comment", "");
             ucDdc_discussions.SendProperty(context, "", false, Ddc_discussions_Internalname, "Icon", Ddc_discussions_Icon);
          }
          if ( new GeneXus.Programs.wwpbaseobjects.subscriptions.wwp_hassubscriptionstodisplay(context).executeUdp(  "Trn_Tile",  2) )
@@ -1386,30 +1398,30 @@ namespace GeneXus.Programs {
                context.httpAjaxContext.ajax_rspEndCmp();
             }
          }
-         if ( AV11LoadAllTabs || ( StringUtil.StrCmp(AV12SelectedTabCode, "Trn_Col") == 0 ) )
+         if ( AV11LoadAllTabs || ( StringUtil.StrCmp(AV12SelectedTabCode, "ChildTile") == 0 ) )
          {
             /* Object Property */
             if ( true )
             {
-               bDynCreated_Trn_colwc = true;
+               bDynCreated_Childtilewc = true;
             }
-            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Trn_colwc_Component), StringUtil.Lower( "Trn_TileTrn_ColWC")) != 0 )
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Childtilewc_Component), StringUtil.Lower( "Trn_TileChildTileWC")) != 0 )
             {
-               WebComp_Trn_colwc = getWebComponent(GetType(), "GeneXus.Programs", "trn_tiletrn_colwc", new Object[] {context} );
-               WebComp_Trn_colwc.ComponentInit();
-               WebComp_Trn_colwc.Name = "Trn_TileTrn_ColWC";
-               WebComp_Trn_colwc_Component = "Trn_TileTrn_ColWC";
+               WebComp_Childtilewc = getWebComponent(GetType(), "GeneXus.Programs", "trn_tilechildtilewc", new Object[] {context} );
+               WebComp_Childtilewc.ComponentInit();
+               WebComp_Childtilewc.Name = "Trn_TileChildTileWC";
+               WebComp_Childtilewc_Component = "Trn_TileChildTileWC";
             }
-            if ( StringUtil.Len( WebComp_Trn_colwc_Component) != 0 )
+            if ( StringUtil.Len( WebComp_Childtilewc_Component) != 0 )
             {
-               WebComp_Trn_colwc.setjustcreated();
-               WebComp_Trn_colwc.componentprepare(new Object[] {(string)"W0045",(string)"",(Guid)AV10Trn_TileId});
-               WebComp_Trn_colwc.componentbind(new Object[] {(string)""});
+               WebComp_Childtilewc.setjustcreated();
+               WebComp_Childtilewc.componentprepare(new Object[] {(string)"W0045",(string)"",(Guid)AV10Trn_TileId});
+               WebComp_Childtilewc.componentbind(new Object[] {(string)""});
             }
-            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Trn_colwc )
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Childtilewc )
             {
                context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0045"+"");
-               WebComp_Trn_colwc.componentdraw();
+               WebComp_Childtilewc.componentdraw();
                context.httpAjaxContext.ajax_rspEndCmp();
             }
          }
@@ -1466,11 +1478,11 @@ namespace GeneXus.Programs {
                WebComp_Attributewc.componentthemes();
             }
          }
-         if ( ! ( WebComp_Trn_colwc == null ) )
+         if ( ! ( WebComp_Childtilewc == null ) )
          {
-            if ( StringUtil.Len( WebComp_Trn_colwc_Component) != 0 )
+            if ( StringUtil.Len( WebComp_Childtilewc_Component) != 0 )
             {
-               WebComp_Trn_colwc.componentthemes();
+               WebComp_Childtilewc.componentthemes();
             }
          }
          if ( ! ( WebComp_Wwpaux_wc == null ) )
@@ -1488,7 +1500,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492720365663", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016444868", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1503,8 +1515,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_tileview.js", "?202492720365664", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("trn_tileview.js", "?2024101016444868", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1538,8 +1550,8 @@ namespace GeneXus.Programs {
          divTrn_tilegeneral_cell_Internalname = "TRN_TILEGENERAL_CELL";
          lblAttribute_title_Internalname = "ATTRIBUTE_TITLE";
          divUnnamedtableattribute_Internalname = "UNNAMEDTABLEATTRIBUTE";
-         lblTrn_col_title_Internalname = "TRN_COL_TITLE";
-         divUnnamedtabletrn_col_Internalname = "UNNAMEDTABLETRN_COL";
+         lblChildtile_title_Internalname = "CHILDTILE_TITLE";
+         divUnnamedtablechildtile_Internalname = "UNNAMEDTABLECHILDTILE";
          Tabs_Internalname = "TABS";
          divUnnamedtableviewcontainer_Internalname = "UNNAMEDTABLEVIEWCONTAINER";
          divTablemain_Internalname = "TABLEMAIN";
@@ -1568,7 +1580,7 @@ namespace GeneXus.Programs {
          Panel_general_Showcollapseicon = Convert.ToBoolean( 0);
          Panel_general_Collapsed = Convert.ToBoolean( 0);
          Panel_general_Collapsible = Convert.ToBoolean( -1);
-         Panel_general_Title = "General Information";
+         Panel_general_Title = context.GetMessage( "WWP_TemplateDataPanelTitle", "");
          Panel_general_Cls = "PanelWithBorder Panel_BaseColor";
          Panel_general_Autoheight = Convert.ToBoolean( -1);
          Panel_general_Autowidth = Convert.ToBoolean( 0);
@@ -1586,7 +1598,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Trn_Tile View";
+         Form.Caption = context.GetMessage( "Trn_Tile View", "");
          if ( context.isSpaRequest( ) )
          {
             enableJsOutput();
@@ -1607,7 +1619,7 @@ namespace GeneXus.Programs {
          setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E125Y2","iparms":[{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A264Trn_TileId","fld":"TRN_TILEID"}]""");
          setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
          setEventMetadata("TABS.TABCHANGED","""{"handler":"E135Y2","iparms":[{"av":"Tabs_Activepagecontrolname","ctrl":"TABS","prop":"ActivePageControlName"},{"av":"AV11LoadAllTabs","fld":"vLOADALLTABS"},{"av":"AV12SelectedTabCode","fld":"vSELECTEDTABCODE"},{"av":"AV10Trn_TileId","fld":"vTRN_TILEID","hsh":true}]""");
-         setEventMetadata("TABS.TABCHANGED",""","oparms":[{"av":"AV12SelectedTabCode","fld":"vSELECTEDTABCODE"},{"av":"AV11LoadAllTabs","fld":"vLOADALLTABS"},{"ctrl":"ATTRIBUTEWC"},{"ctrl":"TRN_COLWC"}]}""");
+         setEventMetadata("TABS.TABCHANGED",""","oparms":[{"av":"AV12SelectedTabCode","fld":"vSELECTEDTABCODE"},{"av":"AV11LoadAllTabs","fld":"vLOADALLTABS"},{"ctrl":"ATTRIBUTEWC"},{"ctrl":"CHILDTILEWC"}]}""");
          return  ;
       }
 
@@ -1648,9 +1660,9 @@ namespace GeneXus.Programs {
          lblAttribute_title_Jsonclick = "";
          WebComp_Attributewc_Component = "";
          OldAttributewc = "";
-         lblTrn_col_title_Jsonclick = "";
-         WebComp_Trn_colwc_Component = "";
-         OldTrn_colwc = "";
+         lblChildtile_title_Jsonclick = "";
+         WebComp_Childtilewc_Component = "";
+         OldChildtilewc = "";
          WebComp_Wwpaux_wc_Component = "";
          OldWwpaux_wc = "";
          sEvt = "";
@@ -1678,7 +1690,7 @@ namespace GeneXus.Programs {
          );
          WebComp_Webcomponent_general = new GeneXus.Http.GXNullWebComponent();
          WebComp_Attributewc = new GeneXus.Http.GXNullWebComponent();
-         WebComp_Trn_colwc = new GeneXus.Http.GXNullWebComponent();
+         WebComp_Childtilewc = new GeneXus.Http.GXNullWebComponent();
          WebComp_Wwpaux_wc = new GeneXus.Http.GXNullWebComponent();
          /* GeneXus formulas. */
       }
@@ -1745,11 +1757,11 @@ namespace GeneXus.Programs {
       private string divUnnamedtableattribute_Internalname ;
       private string WebComp_Attributewc_Component ;
       private string OldAttributewc ;
-      private string lblTrn_col_title_Internalname ;
-      private string lblTrn_col_title_Jsonclick ;
-      private string divUnnamedtabletrn_col_Internalname ;
-      private string WebComp_Trn_colwc_Component ;
-      private string OldTrn_colwc ;
+      private string lblChildtile_title_Internalname ;
+      private string lblChildtile_title_Jsonclick ;
+      private string divUnnamedtablechildtile_Internalname ;
+      private string WebComp_Childtilewc_Component ;
+      private string OldChildtilewc ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
       private string divDiv_wwpauxwc_Internalname ;
       private string WebComp_Wwpaux_wc_Component ;
@@ -1779,7 +1791,7 @@ namespace GeneXus.Programs {
       private bool bDynCreated_Wwpaux_wc ;
       private bool bDynCreated_Webcomponent_general ;
       private bool bDynCreated_Attributewc ;
-      private bool bDynCreated_Trn_colwc ;
+      private bool bDynCreated_Childtilewc ;
       private string AV14RecordDescription ;
       private string A265Trn_TileName ;
       private Guid AV10Trn_TileId ;
@@ -1788,7 +1800,7 @@ namespace GeneXus.Programs {
       private IGxSession AV15Session ;
       private GXWebComponent WebComp_Webcomponent_general ;
       private GXWebComponent WebComp_Attributewc ;
-      private GXWebComponent WebComp_Trn_colwc ;
+      private GXWebComponent WebComp_Childtilewc ;
       private GXWebComponent WebComp_Wwpaux_wc ;
       private GXUserControl ucDdc_subscriptions ;
       private GXUserControl ucDdc_discussions ;
@@ -1831,8 +1843,8 @@ namespace GeneXus.Programs {
           new ParDef("AV10Trn_TileId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H005Y2", "SELECT Trn_TileId FROM Trn_Col WHERE Trn_TileId = :AV10Trn_TileId ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005Y2,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("H005Y3", "SELECT Trn_TileId, Trn_TileName FROM Trn_Col WHERE Trn_TileId = :AV10Trn_TileId ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005Y3,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("H005Y2", "SELECT Trn_TileId FROM Trn_Tile WHERE Trn_TileId = :AV10Trn_TileId ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005Y2,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("H005Y3", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile WHERE Trn_TileId = :AV10Trn_TileId ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005Y3,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }

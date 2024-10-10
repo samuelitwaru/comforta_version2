@@ -271,7 +271,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WWPForm Instance", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WWPForm Instance", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -310,9 +310,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void gxnrGridlevel_element_newrow_invoke( )
       {
-         nRC_GXsfl_48 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_48"), "."), 18, MidpointRounding.ToEven));
-         nGXsfl_48_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_48_idx"), "."), 18, MidpointRounding.ToEven));
-         sGXsfl_48_idx = GetPar( "sGXsfl_48_idx");
+         nRC_GXsfl_47 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_47"), "."), 18, MidpointRounding.ToEven));
+         nGXsfl_47_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_47_idx"), "."), 18, MidpointRounding.ToEven));
+         sGXsfl_47_idx = GetPar( "sGXsfl_47_idx");
          sPrefix = GetPar( "sPrefix");
          Gx_mode = GetPar( "Mode");
          setAjaxCallMode();
@@ -447,9 +447,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          if ( StringUtil.Len( sPrefix) != 0 )
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "workwithplus.dynamicforms.wwp_forminstance.aspx");
-            context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
-            context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
-            context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
          }
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", " "+"data-gx-base-lib=\"bootstrapv3\""+" "+"data-abstract-form"+" ", "", "div");
@@ -474,25 +471,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+         /* Control Group */
+         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "CellMarginTop10", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
-         /* User Defined Control */
-         ucDvpanel_tableattributes.SetProperty("Width", Dvpanel_tableattributes_Width);
-         ucDvpanel_tableattributes.SetProperty("AutoWidth", Dvpanel_tableattributes_Autowidth);
-         ucDvpanel_tableattributes.SetProperty("AutoHeight", Dvpanel_tableattributes_Autoheight);
-         ucDvpanel_tableattributes.SetProperty("Cls", Dvpanel_tableattributes_Cls);
-         ucDvpanel_tableattributes.SetProperty("Title", Dvpanel_tableattributes_Title);
-         ucDvpanel_tableattributes.SetProperty("Collapsible", Dvpanel_tableattributes_Collapsible);
-         ucDvpanel_tableattributes.SetProperty("Collapsed", Dvpanel_tableattributes_Collapsed);
-         ucDvpanel_tableattributes.SetProperty("ShowCollapseIcon", Dvpanel_tableattributes_Showcollapseicon);
-         ucDvpanel_tableattributes.SetProperty("IconPosition", Dvpanel_tableattributes_Iconposition);
-         ucDvpanel_tableattributes.SetProperty("AutoScroll", Dvpanel_tableattributes_Autoscroll);
-         ucDvpanel_tableattributes.Render(context, "dvelop.gxbootstrap.panel_al", Dvpanel_tableattributes_Internalname, sPrefix+"DVPANEL_TABLEATTRIBUTESContainer");
-         context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+sPrefix+"DVPANEL_TABLEATTRIBUTESContainer"+"TableAttributes"+"\" style=\"display:none;\">") ;
          /* Div Control */
          GxWebStd.gx_div_start( context, divTableattributes_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
@@ -502,13 +488,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPFormInstanceId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPFormInstanceId_Internalname, "Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPFormInstanceId_Internalname, context.GetMessage( "Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          AssignAttri(sPrefix, false, "A214WWPFormInstanceId", StringUtil.LTrimStr( (decimal)(A214WWPFormInstanceId), 6, 0));
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 22,'" + sPrefix + "',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPFormInstanceId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A214WWPFormInstanceId), 6, 0, ".", "")), StringUtil.LTrim( ((edtWWPFormInstanceId_Enabled!=0) ? context.localUtil.Format( (decimal)(A214WWPFormInstanceId), "ZZZZZ9") : context.localUtil.Format( (decimal)(A214WWPFormInstanceId), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,22);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormInstanceId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPFormInstanceId_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'" + sPrefix + "',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtWWPFormInstanceId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A214WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtWWPFormInstanceId_Enabled!=0) ? context.localUtil.Format( (decimal)(A214WWPFormInstanceId), "ZZZZZ9") : context.localUtil.Format( (decimal)(A214WWPFormInstanceId), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,21);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormInstanceId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPFormInstanceId_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -520,14 +506,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPFormInstanceDate_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPFormInstanceDate_Internalname, "Date", "col-sm-3 AttributeDateLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPFormInstanceDate_Internalname, context.GetMessage( "Date", ""), "col-sm-4 AttributeDateLabel", 1, true, "");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 27,'" + sPrefix + "',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'" + sPrefix + "',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtWWPFormInstanceDate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtWWPFormInstanceDate_Internalname, context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"), context.localUtil.Format( A239WWPFormInstanceDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,0);"+";gx.evt.onblur(this,27);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormInstanceDate_Jsonclick, 0, "AttributeDate", "", "", "", "", 1, edtWWPFormInstanceDate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPFormInstanceDate_Internalname, context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"), context.localUtil.Format( A239WWPFormInstanceDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,26);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormInstanceDate_Jsonclick, 0, "AttributeDate", "", "", "", "", 1, edtWWPFormInstanceDate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_bitmap( context, edtWWPFormInstanceDate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtWWPFormInstanceDate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -541,13 +527,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPFormId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPFormId_Internalname, "WWPForm Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPFormId_Internalname, context.GetMessage( "WWPForm Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          AssignAttri(sPrefix, false, "A206WWPFormId", StringUtil.LTrimStr( (decimal)(A206WWPFormId), 4, 0));
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 32,'" + sPrefix + "',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPFormId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A206WWPFormId), 4, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(A206WWPFormId), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,32);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPFormId_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'" + sPrefix + "',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtWWPFormId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A206WWPFormId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(A206WWPFormId), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,31);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPFormId_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -559,13 +545,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPFormVersionNumber_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPFormVersionNumber_Internalname, "WWPForm Version Number", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPFormVersionNumber_Internalname, context.GetMessage( "WWPForm Version Number", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          AssignAttri(sPrefix, false, "A207WWPFormVersionNumber", StringUtil.LTrimStr( (decimal)(A207WWPFormVersionNumber), 4, 0));
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 37,'" + sPrefix + "',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPFormVersionNumber_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(A207WWPFormVersionNumber), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,37);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormVersionNumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPFormVersionNumber_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'" + sPrefix + "',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtWWPFormVersionNumber_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(A207WWPFormVersionNumber), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,36);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormVersionNumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPFormVersionNumber_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -577,22 +563,22 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPFormTitle_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPFormTitle_Internalname, "WWPForm Title", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPFormTitle_Internalname, context.GetMessage( "WWPForm Title", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          AssignAttri(sPrefix, false, "A209WWPFormTitle", A209WWPFormTitle);
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 42,'" + sPrefix + "',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPFormTitle_Internalname, A209WWPFormTitle, StringUtil.RTrim( context.localUtil.Format( A209WWPFormTitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,42);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormTitle_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPFormTitle_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 41,'" + sPrefix + "',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtWWPFormTitle_Internalname, A209WWPFormTitle, StringUtil.RTrim( context.localUtil.Format( A209WWPFormTitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,41);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormTitle_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPFormTitle_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
-         context.WriteHtmlText( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
+         context.WriteHtmlText( "</fieldset>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -619,24 +605,24 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 67,'" + sPrefix + "',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'" + sPrefix + "',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", "Confirm", bttBtntrn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'" + sPrefix + "',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 68,'" + sPrefix + "',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", "Cancel", bttBtntrn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 71,'" + sPrefix + "',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'" + sPrefix + "',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", "Delete", bttBtntrn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -651,8 +637,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       protected void gxdraw_Gridlevel_element( )
       {
          /*  Grid Control  */
-         StartGridControl48( ) ;
-         nGXsfl_48_idx = 0;
+         StartGridControl47( ) ;
+         nGXsfl_47_idx = 0;
          if ( ( nKeyPressed == 1 ) && ( AnyError == 0 ) )
          {
             /* Enter key processing. */
@@ -679,38 +665,38 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             standaloneNotModal0U43( ) ;
             standaloneModal0U43( ) ;
             sMode43 = Gx_mode;
-            while ( nGXsfl_48_idx < nRC_GXsfl_48 )
+            while ( nGXsfl_47_idx < nRC_GXsfl_47 )
             {
-               bGXsfl_48_Refreshing = true;
+               bGXsfl_47_Refreshing = true;
                ReadRow0U43( ) ;
-               edtWWPFormElementId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTID_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormInstanceElementId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormElementTitle_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormElementTitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               cmbWWPFormElementDataType.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, cmbWWPFormElementDataType_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormInstanceElemChar_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemChar_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormInstanceElemDate_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemDate_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormInstanceElemNumeric_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemNumeric_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormInstanceElemBlob_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               chkWWPFormInstanceElemBoolean.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, chkWWPFormInstanceElemBoolean_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormElementReferenceId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormElementReferenceId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormElementParentId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormElementParentId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormInstanceElemDateTime_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemDateTime_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormInstanceElemBlobFileNam_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlobFileNam_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0), !bGXsfl_48_Refreshing);
-               edtWWPFormInstanceElemBlobFileTyp_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlobFileTyp_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+               edtWWPFormElementId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTID_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormInstanceElementId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormElementTitle_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormElementTitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               cmbWWPFormElementDataType.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, cmbWWPFormElementDataType_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormInstanceElemChar_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemChar_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormInstanceElemDate_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemDate_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormInstanceElemNumeric_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemNumeric_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormInstanceElemBlob_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               chkWWPFormInstanceElemBoolean.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, chkWWPFormInstanceElemBoolean_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormElementReferenceId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormElementReferenceId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormElementParentId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormElementParentId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormInstanceElemDateTime_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemDateTime_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormInstanceElemBlobFileNam_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlobFileNam_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0), !bGXsfl_47_Refreshing);
+               edtWWPFormInstanceElemBlobFileTyp_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlobFileTyp_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0), !bGXsfl_47_Refreshing);
                if ( ( nRcdExists_43 == 0 ) && ! IsIns( ) )
                {
                   Gx_mode = "INS";
@@ -718,7 +704,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   standaloneModal0U43( ) ;
                }
                SendRow0U43( ) ;
-               bGXsfl_48_Refreshing = false;
+               bGXsfl_47_Refreshing = false;
             }
             Gx_mode = sMode43;
             AssignAttri(sPrefix, false, "Gx_mode", Gx_mode);
@@ -733,8 +719,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                ScanStart0U43( ) ;
                while ( RcdFound43 != 0 )
                {
-                  sGXsfl_48_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_48_idx+1), 4, 0), 4, "0");
-                  SubsflControlProps_4843( ) ;
+                  sGXsfl_47_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_47_idx+1), 4, 0), 4, "0");
+                  SubsflControlProps_4743( ) ;
                   init_level_properties43( ) ;
                   standaloneNotModal0U43( ) ;
                   getByPrimaryKey0U43( ) ;
@@ -751,8 +737,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             sMode43 = Gx_mode;
             Gx_mode = "INS";
             AssignAttri(sPrefix, false, "Gx_mode", Gx_mode);
-            sGXsfl_48_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_48_idx+1), 4, 0), 4, "0");
-            SubsflControlProps_4843( ) ;
+            sGXsfl_47_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_47_idx+1), 4, 0), 4, "0");
+            SubsflControlProps_4743( ) ;
             InitAll0U43( ) ;
             init_level_properties43( ) ;
             nRcdExists_43 = 0;
@@ -837,62 +823,45 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             {
                /* Read saved SDTs. */
                /* Read saved values. */
-               Z214WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z214WWPFormInstanceId"), ".", ","), 18, MidpointRounding.ToEven));
+               Z214WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z214WWPFormInstanceId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Z239WWPFormInstanceDate = context.localUtil.CToD( cgiGet( sPrefix+"Z239WWPFormInstanceDate"), 0);
-               Z206WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z206WWPFormId"), ".", ","), 18, MidpointRounding.ToEven));
-               Z207WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z207WWPFormVersionNumber"), ".", ","), 18, MidpointRounding.ToEven));
+               Z206WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z206WWPFormId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               Z207WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z207WWPFormVersionNumber"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Z112WWPUserExtendedId = cgiGet( sPrefix+"Z112WWPUserExtendedId");
                wcpOGx_mode = cgiGet( sPrefix+"wcpOGx_mode");
-               wcpOAV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV7WWPFormInstanceId"), ".", ","), 18, MidpointRounding.ToEven));
+               wcpOAV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV7WWPFormInstanceId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A112WWPUserExtendedId = cgiGet( sPrefix+"Z112WWPUserExtendedId");
-               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( sPrefix+"Mode");
-               nRC_GXsfl_48 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_48"), ".", ","), 18, MidpointRounding.ToEven));
-               N206WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"N206WWPFormId"), ".", ","), 18, MidpointRounding.ToEven));
-               N207WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"N207WWPFormVersionNumber"), ".", ","), 18, MidpointRounding.ToEven));
+               nRC_GXsfl_47 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_47"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               N206WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"N206WWPFormId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               N207WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"N207WWPFormVersionNumber"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                N112WWPUserExtendedId = cgiGet( sPrefix+"N112WWPUserExtendedId");
-               AV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMINSTANCEID"), ".", ","), 18, MidpointRounding.ToEven));
-               AV11Insert_WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vINSERT_WWPFORMID"), ".", ","), 18, MidpointRounding.ToEven));
-               AV12Insert_WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vINSERT_WWPFORMVERSIONNUMBER"), ".", ","), 18, MidpointRounding.ToEven));
+               AV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMINSTANCEID"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV11Insert_WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vINSERT_WWPFORMID"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV12Insert_WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vINSERT_WWPFORMVERSIONNUMBER"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AV16Insert_WWPUserExtendedId = cgiGet( sPrefix+"vINSERT_WWPUSEREXTENDEDID");
                A112WWPUserExtendedId = cgiGet( sPrefix+"WWPUSEREXTENDEDID");
                Gx_date = context.localUtil.CToD( cgiGet( sPrefix+"vTODAY"), 0);
-               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A243WWPFormInstanceRecordKey = cgiGet( sPrefix+"WWPFORMINSTANCERECORDKEY");
                n243WWPFormInstanceRecordKey = false;
                n243WWPFormInstanceRecordKey = (String.IsNullOrEmpty(StringUtil.RTrim( A243WWPFormInstanceRecordKey)) ? true : false);
-               A216WWPFormResume = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMRESUME"), ".", ","), 18, MidpointRounding.ToEven));
+               A216WWPFormResume = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMRESUME"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A233WWPFormValidations = cgiGet( sPrefix+"WWPFORMVALIDATIONS");
                A113WWPUserExtendedFullName = cgiGet( sPrefix+"WWPUSEREXTENDEDFULLNAME");
                AV19Pgmname = cgiGet( sPrefix+"vPGMNAME");
-               A217WWPFormElementType = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTTYPE"), ".", ","), 18, MidpointRounding.ToEven));
+               A217WWPFormElementType = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTTYPE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A236WWPFormElementMetadata = cgiGet( sPrefix+"WWPFORMELEMENTMETADATA");
-               A237WWPFormElementCaption = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTCAPTION"), ".", ","), 18, MidpointRounding.ToEven));
-               A230WWPFormElementParentType = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTPARENTTYPE"), ".", ","), 18, MidpointRounding.ToEven));
-               Dvpanel_tableattributes_Objectcall = cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Objectcall");
-               Dvpanel_tableattributes_Class = cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Class");
-               Dvpanel_tableattributes_Enabled = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Enabled"));
-               Dvpanel_tableattributes_Width = cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Width");
-               Dvpanel_tableattributes_Height = cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Height");
-               Dvpanel_tableattributes_Autowidth = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Autowidth"));
-               Dvpanel_tableattributes_Autoheight = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Autoheight"));
-               Dvpanel_tableattributes_Cls = cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Cls");
-               Dvpanel_tableattributes_Showheader = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Showheader"));
-               Dvpanel_tableattributes_Title = cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Title");
-               Dvpanel_tableattributes_Collapsible = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Collapsible"));
-               Dvpanel_tableattributes_Collapsed = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Collapsed"));
-               Dvpanel_tableattributes_Showcollapseicon = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Showcollapseicon"));
-               Dvpanel_tableattributes_Iconposition = cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Iconposition");
-               Dvpanel_tableattributes_Autoscroll = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Autoscroll"));
-               Dvpanel_tableattributes_Visible = StringUtil.StrToBool( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Visible"));
-               Dvpanel_tableattributes_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"DVPANEL_TABLEATTRIBUTES_Gxcontroltype"), ".", ","), 18, MidpointRounding.ToEven));
+               A237WWPFormElementCaption = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTCAPTION"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               A230WWPFormElementParentType = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTPARENTTYPE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
-               A214WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormInstanceId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A214WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormInstanceId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri(sPrefix, false, "A214WWPFormInstanceId", StringUtil.LTrimStr( (decimal)(A214WWPFormInstanceId), 6, 0));
-               if ( context.localUtil.VCDate( cgiGet( edtWWPFormInstanceDate_Internalname), 1) == 0 )
+               if ( context.localUtil.VCDate( cgiGet( edtWWPFormInstanceDate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
                {
-                  GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"Instance Date"}), 1, "WWPFORMINSTANCEDATE");
+                  GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Instance Date", "")}), 1, "WWPFORMINSTANCEDATE");
                   AnyError = 1;
                   GX_FocusControl = edtWWPFormInstanceDate_Internalname;
                   AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
@@ -902,10 +871,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
                else
                {
-                  A239WWPFormInstanceDate = context.localUtil.CToD( cgiGet( edtWWPFormInstanceDate_Internalname), 1);
+                  A239WWPFormInstanceDate = context.localUtil.CToD( cgiGet( edtWWPFormInstanceDate_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
                   AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
                }
-               if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormId_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+               if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
                {
                   GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWPFORMID");
                   AnyError = 1;
@@ -917,10 +886,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
                else
                {
-                  A206WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                  A206WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                   AssignAttri(sPrefix, false, "A206WWPFormId", StringUtil.LTrimStr( (decimal)(A206WWPFormId), 4, 0));
                }
-               if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormVersionNumber_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormVersionNumber_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+               if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormVersionNumber_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormVersionNumber_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
                {
                   GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWPFORMVERSIONNUMBER");
                   AnyError = 1;
@@ -932,7 +901,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
                else
                {
-                  A207WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormVersionNumber_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                  A207WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormVersionNumber_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                   AssignAttri(sPrefix, false, "A207WWPFormVersionNumber", StringUtil.LTrimStr( (decimal)(A207WWPFormVersionNumber), 4, 0));
                }
                A209WWPFormTitle = cgiGet( edtWWPFormTitle_Internalname);
@@ -1210,8 +1179,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void CONFIRM_0U43( )
       {
-         nGXsfl_48_idx = 0;
-         while ( nGXsfl_48_idx < nRC_GXsfl_48 )
+         nGXsfl_47_idx = 0;
+         while ( nGXsfl_47_idx < nRC_GXsfl_47 )
          {
             ReadRow0U43( ) ;
             if ( ( nRcdExists_43 != 0 ) || ( nIsMod_43 != 0 ) )
@@ -1237,7 +1206,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   }
                   else
                   {
-                     GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_48_idx;
+                     GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_47_idx;
                      GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, GXCCtl);
                      AnyError = 1;
                      GX_FocusControl = edtWWPFormElementId_Internalname;
@@ -1284,7 +1253,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   {
                      if ( nRcdDeleted_43 == 0 )
                      {
-                        GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_48_idx;
+                        GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_47_idx;
                         GX_msglist.addItem(context.GetMessage( "GXM_recdeleted", ""), 1, GXCCtl);
                         AnyError = 1;
                         GX_FocusControl = edtWWPFormElementId_Internalname;
@@ -1293,45 +1262,45 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   }
                }
             }
-            ChangePostValue( sPrefix+edtWWPFormElementId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A210WWPFormElementId), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+edtWWPFormInstanceElementId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A215WWPFormInstanceElementId), 4, 0, ".", ""))) ;
+            ChangePostValue( sPrefix+edtWWPFormElementId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A210WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+edtWWPFormInstanceElementId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A215WWPFormInstanceElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             ChangePostValue( sPrefix+edtWWPFormElementTitle_Internalname, A229WWPFormElementTitle) ;
             ChangePostValue( sPrefix+cmbWWPFormElementDataType_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A218WWPFormElementDataType), 2, 0, ".", ""))) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemChar_Internalname, A221WWPFormInstanceElemChar) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemDate_Internalname, context.localUtil.Format(A220WWPFormInstanceElemDate, "99/99/99")) ;
-            ChangePostValue( sPrefix+edtWWPFormInstanceElemNumeric_Internalname, StringUtil.LTrim( StringUtil.NToC( A222WWPFormInstanceElemNumeric, 21, 5, ".", ""))) ;
+            ChangePostValue( sPrefix+edtWWPFormInstanceElemNumeric_Internalname, StringUtil.LTrim( StringUtil.NToC( A222WWPFormInstanceElemNumeric, 21, 5, context.GetLanguageProperty( "decimal_point"), ""))) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemBlob_Internalname, A223WWPFormInstanceElemBlob) ;
             ChangePostValue( sPrefix+chkWWPFormInstanceElemBoolean_Internalname, StringUtil.BoolToStr( A226WWPFormInstanceElemBoolean)) ;
             ChangePostValue( sPrefix+edtWWPFormElementReferenceId_Internalname, A213WWPFormElementReferenceId) ;
-            ChangePostValue( sPrefix+edtWWPFormElementParentId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A211WWPFormElementParentId), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+edtWWPFormInstanceElemDateTime_Internalname, context.localUtil.TToC( A227WWPFormInstanceElemDateTime, 10, 8, 1, 2, "/", ":", " ")) ;
+            ChangePostValue( sPrefix+edtWWPFormElementParentId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A211WWPFormElementParentId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+edtWWPFormInstanceElemDateTime_Internalname, context.localUtil.TToC( A227WWPFormInstanceElemDateTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " ")) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemBlobFileNam_Internalname, A225WWPFormInstanceElemBlobFileNam) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemBlobFileTyp_Internalname, A224WWPFormInstanceElemBlobFileTyp) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z210WWPFormElementId_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z210WWPFormElementId), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z215WWPFormInstanceElementId_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z215WWPFormInstanceElementId), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z220WWPFormInstanceElemDate_"+sGXsfl_48_idx, context.localUtil.DToC( Z220WWPFormInstanceElemDate, 0, "/")) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_48_idx, context.localUtil.TToC( Z227WWPFormInstanceElemDateTime, 10, 8, 0, 0, "/", ":", " ")) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( Z222WWPFormInstanceElemNumeric, 18, 5, ".", ""))) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_48_idx, StringUtil.BoolToStr( Z226WWPFormInstanceElemBoolean)) ;
-            ChangePostValue( sPrefix+"nRcdDeleted_43_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_43), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+"nRcdExists_43_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_43), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+"nIsMod_43_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_43), 4, 0, ".", ""))) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z210WWPFormElementId_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z210WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z215WWPFormInstanceElementId_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z215WWPFormInstanceElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z220WWPFormInstanceElemDate_"+sGXsfl_47_idx, context.localUtil.DToC( Z220WWPFormInstanceElemDate, 0, "/")) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_47_idx, context.localUtil.TToC( Z227WWPFormInstanceElemDateTime, 10, 8, 0, 0, "/", ":", " ")) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( Z222WWPFormInstanceElemNumeric, 18, 5, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_47_idx, StringUtil.BoolToStr( Z226WWPFormInstanceElemBoolean)) ;
+            ChangePostValue( sPrefix+"nRcdDeleted_43_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_43), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"nRcdExists_43_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_43), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"nIsMod_43_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_43), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_43 != 0 )
             {
-               ChangePostValue( sPrefix+"WWPFORMELEMENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0, ".", ""))) ;
             }
          }
          /* Start of After( level) rules */
@@ -1560,7 +1529,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(6, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
          if ( (pr_default.getStatus(6) == 101) )
          {
-            GX_msglist.addItem("No matching 'Dynamic Form'.", "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
             AnyError = 1;
             GX_FocusControl = edtWWPFormId_Internalname;
             AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
@@ -1574,7 +1543,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(7, new Object[] {A112WWPUserExtendedId});
          if ( (pr_default.getStatus(7) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
             AnyError = 1;
          }
          A113WWPUserExtendedFullName = T000U9_A113WWPUserExtendedFullName[0];
@@ -1598,7 +1567,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(9, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
          if ( (pr_default.getStatus(9) == 101) )
          {
-            GX_msglist.addItem("No matching 'Dynamic Form'.", "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
             AnyError = 1;
             GX_FocusControl = edtWWPFormId_Internalname;
             AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
@@ -1626,7 +1595,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(10, new Object[] {A112WWPUserExtendedId});
          if ( (pr_default.getStatus(10) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
             AnyError = 1;
          }
          A113WWPUserExtendedFullName = T000U12_A113WWPUserExtendedFullName[0];
@@ -2128,8 +2097,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void ProcessNestedLevel0U43( )
       {
-         nGXsfl_48_idx = 0;
-         while ( nGXsfl_48_idx < nRC_GXsfl_48 )
+         nGXsfl_47_idx = 0;
+         while ( nGXsfl_47_idx < nRC_GXsfl_47 )
          {
             ReadRow0U43( ) ;
             if ( ( nRcdExists_43 != 0 ) || ( nIsMod_43 != 0 ) )
@@ -2166,7 +2135,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   {
                      if ( nRcdDeleted_43 == 0 )
                      {
-                        GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_48_idx;
+                        GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_47_idx;
                         GX_msglist.addItem(context.GetMessage( "GXM_recdeleted", ""), 1, GXCCtl);
                         AnyError = 1;
                         GX_FocusControl = edtWWPFormElementId_Internalname;
@@ -2175,45 +2144,45 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   }
                }
             }
-            ChangePostValue( sPrefix+edtWWPFormElementId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A210WWPFormElementId), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+edtWWPFormInstanceElementId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A215WWPFormInstanceElementId), 4, 0, ".", ""))) ;
+            ChangePostValue( sPrefix+edtWWPFormElementId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A210WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+edtWWPFormInstanceElementId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A215WWPFormInstanceElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             ChangePostValue( sPrefix+edtWWPFormElementTitle_Internalname, A229WWPFormElementTitle) ;
             ChangePostValue( sPrefix+cmbWWPFormElementDataType_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A218WWPFormElementDataType), 2, 0, ".", ""))) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemChar_Internalname, A221WWPFormInstanceElemChar) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemDate_Internalname, context.localUtil.Format(A220WWPFormInstanceElemDate, "99/99/99")) ;
-            ChangePostValue( sPrefix+edtWWPFormInstanceElemNumeric_Internalname, StringUtil.LTrim( StringUtil.NToC( A222WWPFormInstanceElemNumeric, 21, 5, ".", ""))) ;
+            ChangePostValue( sPrefix+edtWWPFormInstanceElemNumeric_Internalname, StringUtil.LTrim( StringUtil.NToC( A222WWPFormInstanceElemNumeric, 21, 5, context.GetLanguageProperty( "decimal_point"), ""))) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemBlob_Internalname, A223WWPFormInstanceElemBlob) ;
             ChangePostValue( sPrefix+chkWWPFormInstanceElemBoolean_Internalname, StringUtil.BoolToStr( A226WWPFormInstanceElemBoolean)) ;
             ChangePostValue( sPrefix+edtWWPFormElementReferenceId_Internalname, A213WWPFormElementReferenceId) ;
-            ChangePostValue( sPrefix+edtWWPFormElementParentId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A211WWPFormElementParentId), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+edtWWPFormInstanceElemDateTime_Internalname, context.localUtil.TToC( A227WWPFormInstanceElemDateTime, 10, 8, 1, 2, "/", ":", " ")) ;
+            ChangePostValue( sPrefix+edtWWPFormElementParentId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A211WWPFormElementParentId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+edtWWPFormInstanceElemDateTime_Internalname, context.localUtil.TToC( A227WWPFormInstanceElemDateTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " ")) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemBlobFileNam_Internalname, A225WWPFormInstanceElemBlobFileNam) ;
             ChangePostValue( sPrefix+edtWWPFormInstanceElemBlobFileTyp_Internalname, A224WWPFormInstanceElemBlobFileTyp) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z210WWPFormElementId_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z210WWPFormElementId), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z215WWPFormInstanceElementId_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z215WWPFormInstanceElementId), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z220WWPFormInstanceElemDate_"+sGXsfl_48_idx, context.localUtil.DToC( Z220WWPFormInstanceElemDate, 0, "/")) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_48_idx, context.localUtil.TToC( Z227WWPFormInstanceElemDateTime, 10, 8, 0, 0, "/", ":", " ")) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( Z222WWPFormInstanceElemNumeric, 18, 5, ".", ""))) ;
-            ChangePostValue( sPrefix+"ZT_"+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_48_idx, StringUtil.BoolToStr( Z226WWPFormInstanceElemBoolean)) ;
-            ChangePostValue( sPrefix+"nRcdDeleted_43_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_43), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+"nRcdExists_43_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_43), 4, 0, ".", ""))) ;
-            ChangePostValue( sPrefix+"nIsMod_43_"+sGXsfl_48_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_43), 4, 0, ".", ""))) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z210WWPFormElementId_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z210WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z215WWPFormInstanceElementId_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z215WWPFormInstanceElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z220WWPFormInstanceElemDate_"+sGXsfl_47_idx, context.localUtil.DToC( Z220WWPFormInstanceElemDate, 0, "/")) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_47_idx, context.localUtil.TToC( Z227WWPFormInstanceElemDateTime, 10, 8, 0, 0, "/", ":", " ")) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( Z222WWPFormInstanceElemNumeric, 18, 5, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"ZT_"+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_47_idx, StringUtil.BoolToStr( Z226WWPFormInstanceElemBoolean)) ;
+            ChangePostValue( sPrefix+"nRcdDeleted_43_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_43), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"nRcdExists_43_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_43), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( sPrefix+"nIsMod_43_"+sGXsfl_47_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_43), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_43 != 0 )
             {
-               ChangePostValue( sPrefix+"WWPFORMELEMENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0, ".", ""))) ;
             }
          }
          /* Start of After( level) rules */
@@ -2405,22 +2374,22 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          if ( StringUtil.StrCmp(Gx_mode, "INS") != 0 )
          {
             edtWWPFormElementId_Enabled = 0;
-            AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          }
          else
          {
             edtWWPFormElementId_Enabled = 1;
-            AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") != 0 )
          {
             edtWWPFormInstanceElementId_Enabled = 0;
-            AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          }
          else
          {
             edtWWPFormInstanceElementId_Enabled = 1;
-            AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          }
       }
 
@@ -2450,14 +2419,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             n226WWPFormInstanceElemBoolean = T000U23_n226WWPFormInstanceElemBoolean[0];
             A224WWPFormInstanceElemBlobFileTyp = T000U23_A224WWPFormInstanceElemBlobFileTyp[0];
             edtWWPFormInstanceElemBlob_Filetype = A224WWPFormInstanceElemBlobFileTyp;
-            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_47_Refreshing);
             A225WWPFormInstanceElemBlobFileNam = T000U23_A225WWPFormInstanceElemBlobFileNam[0];
             edtWWPFormInstanceElemBlob_Filename = A225WWPFormInstanceElemBlobFileNam;
             A211WWPFormElementParentId = T000U23_A211WWPFormElementParentId[0];
             n211WWPFormElementParentId = T000U23_n211WWPFormElementParentId[0];
             A223WWPFormInstanceElemBlob = T000U23_A223WWPFormInstanceElemBlob[0];
             n223WWPFormInstanceElemBlob = T000U23_n223WWPFormInstanceElemBlob[0];
-            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_47_Refreshing);
             ZM0U43( -17) ;
          }
          pr_default.close(21);
@@ -2478,8 +2447,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(2, new Object[] {A206WWPFormId, A207WWPFormVersionNumber, A210WWPFormElementId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_48_idx;
-            GX_msglist.addItem("No matching 'Element'.", "ForeignKeyNotFound", 1, GXCCtl);
+            GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_47_idx;
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Element", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtWWPFormElementId_Internalname;
             AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
@@ -2499,8 +2468,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             if ( ! ( (0==A206WWPFormId) || (0==A207WWPFormVersionNumber) || (0==A211WWPFormElementParentId) ) )
             {
-               GXCCtl = "WWPFORMELEMENTPARENTID_" + sGXsfl_48_idx;
-               GX_msglist.addItem("No matching 'WWPForm Element Parent'.", "ForeignKeyNotFound", 1, GXCCtl);
+               GXCCtl = "WWPFORMELEMENTPARENTID_" + sGXsfl_47_idx;
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWPForm Element Parent", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, GXCCtl);
                AnyError = 1;
                GX_FocusControl = edtWWPFormId_Internalname;
                AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
@@ -2528,8 +2497,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(22, new Object[] {A206WWPFormId, A207WWPFormVersionNumber, A210WWPFormElementId});
          if ( (pr_default.getStatus(22) == 101) )
          {
-            GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_48_idx;
-            GX_msglist.addItem("No matching 'Element'.", "ForeignKeyNotFound", 1, GXCCtl);
+            GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_47_idx;
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Element", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtWWPFormElementId_Internalname;
             AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
@@ -2565,8 +2534,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             if ( ! ( (0==A206WWPFormId) || (0==A207WWPFormVersionNumber) || (0==A211WWPFormElementParentId) ) )
             {
-               GXCCtl = "WWPFORMELEMENTPARENTID_" + sGXsfl_48_idx;
-               GX_msglist.addItem("No matching 'WWPForm Element Parent'.", "ForeignKeyNotFound", 1, GXCCtl);
+               GXCCtl = "WWPFORMELEMENTPARENTID_" + sGXsfl_47_idx;
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWPForm Element Parent", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, GXCCtl);
                AnyError = 1;
                GX_FocusControl = edtWWPFormId_Internalname;
                AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
@@ -2623,13 +2592,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             n226WWPFormInstanceElemBoolean = T000U3_n226WWPFormInstanceElemBoolean[0];
             A224WWPFormInstanceElemBlobFileTyp = T000U3_A224WWPFormInstanceElemBlobFileTyp[0];
             edtWWPFormInstanceElemBlob_Filetype = A224WWPFormInstanceElemBlobFileTyp;
-            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_47_Refreshing);
             A225WWPFormInstanceElemBlobFileNam = T000U3_A225WWPFormInstanceElemBlobFileNam[0];
             edtWWPFormInstanceElemBlob_Filename = A225WWPFormInstanceElemBlobFileNam;
             A210WWPFormElementId = T000U3_A210WWPFormElementId[0];
             A223WWPFormInstanceElemBlob = T000U3_A223WWPFormInstanceElemBlob[0];
             n223WWPFormInstanceElemBlob = T000U3_n223WWPFormInstanceElemBlob[0];
-            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_47_Refreshing);
             Z214WWPFormInstanceId = A214WWPFormInstanceId;
             Z210WWPFormElementId = A210WWPFormElementId;
             Z215WWPFormInstanceElementId = A215WWPFormInstanceElementId;
@@ -2972,33 +2941,33 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       protected void DisableAttributes0U43( )
       {
          edtWWPFormElementId_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElementId_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormElementTitle_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormElementTitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormElementTitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          cmbWWPFormElementDataType.Enabled = 0;
-         AssignProp(sPrefix, false, cmbWWPFormElementDataType_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, cmbWWPFormElementDataType_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElemChar_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemChar_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemChar_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElemDate_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemDate_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemDate_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElemNumeric_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemNumeric_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemNumeric_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElemBlob_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          chkWWPFormInstanceElemBoolean.Enabled = 0;
-         AssignProp(sPrefix, false, chkWWPFormInstanceElemBoolean_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, chkWWPFormInstanceElemBoolean_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormElementReferenceId_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormElementReferenceId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormElementReferenceId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormElementParentId_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormElementParentId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormElementParentId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElemDateTime_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemDateTime_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemDateTime_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElemBlobFileNam_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlobFileNam_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlobFileNam_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElemBlobFileTyp_Enabled = 0;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlobFileTyp_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlobFileTyp_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0), !bGXsfl_47_Refreshing);
       }
 
       protected void send_integrity_lvl_hashes0U43( )
@@ -3009,47 +2978,47 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
       }
 
-      protected void SubsflControlProps_4843( )
+      protected void SubsflControlProps_4743( )
       {
-         edtWWPFormElementId_Internalname = sPrefix+"WWPFORMELEMENTID_"+sGXsfl_48_idx;
-         edtWWPFormInstanceElementId_Internalname = sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_48_idx;
-         edtWWPFormElementTitle_Internalname = sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_48_idx;
-         cmbWWPFormElementDataType_Internalname = sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_48_idx;
-         edtWWPFormInstanceElemChar_Internalname = sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_48_idx;
-         edtWWPFormInstanceElemDate_Internalname = sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_48_idx;
-         edtWWPFormInstanceElemNumeric_Internalname = sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_48_idx;
-         edtWWPFormInstanceElemBlob_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_48_idx;
-         chkWWPFormInstanceElemBoolean_Internalname = sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_48_idx;
-         edtWWPFormElementReferenceId_Internalname = sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_48_idx;
-         edtWWPFormElementParentId_Internalname = sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_48_idx;
-         edtWWPFormInstanceElemDateTime_Internalname = sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_48_idx;
-         edtWWPFormInstanceElemBlobFileNam_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_48_idx;
-         edtWWPFormInstanceElemBlobFileTyp_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_48_idx;
+         edtWWPFormElementId_Internalname = sPrefix+"WWPFORMELEMENTID_"+sGXsfl_47_idx;
+         edtWWPFormInstanceElementId_Internalname = sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_47_idx;
+         edtWWPFormElementTitle_Internalname = sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_47_idx;
+         cmbWWPFormElementDataType_Internalname = sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_47_idx;
+         edtWWPFormInstanceElemChar_Internalname = sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_47_idx;
+         edtWWPFormInstanceElemDate_Internalname = sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_47_idx;
+         edtWWPFormInstanceElemNumeric_Internalname = sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_47_idx;
+         edtWWPFormInstanceElemBlob_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_47_idx;
+         chkWWPFormInstanceElemBoolean_Internalname = sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_47_idx;
+         edtWWPFormElementReferenceId_Internalname = sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_47_idx;
+         edtWWPFormElementParentId_Internalname = sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_47_idx;
+         edtWWPFormInstanceElemDateTime_Internalname = sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_47_idx;
+         edtWWPFormInstanceElemBlobFileNam_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_47_idx;
+         edtWWPFormInstanceElemBlobFileTyp_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_47_idx;
       }
 
-      protected void SubsflControlProps_fel_4843( )
+      protected void SubsflControlProps_fel_4743( )
       {
-         edtWWPFormElementId_Internalname = sPrefix+"WWPFORMELEMENTID_"+sGXsfl_48_fel_idx;
-         edtWWPFormInstanceElementId_Internalname = sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_48_fel_idx;
-         edtWWPFormElementTitle_Internalname = sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_48_fel_idx;
-         cmbWWPFormElementDataType_Internalname = sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_48_fel_idx;
-         edtWWPFormInstanceElemChar_Internalname = sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_48_fel_idx;
-         edtWWPFormInstanceElemDate_Internalname = sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_48_fel_idx;
-         edtWWPFormInstanceElemNumeric_Internalname = sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_48_fel_idx;
-         edtWWPFormInstanceElemBlob_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_48_fel_idx;
-         chkWWPFormInstanceElemBoolean_Internalname = sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_48_fel_idx;
-         edtWWPFormElementReferenceId_Internalname = sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_48_fel_idx;
-         edtWWPFormElementParentId_Internalname = sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_48_fel_idx;
-         edtWWPFormInstanceElemDateTime_Internalname = sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_48_fel_idx;
-         edtWWPFormInstanceElemBlobFileNam_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_48_fel_idx;
-         edtWWPFormInstanceElemBlobFileTyp_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_48_fel_idx;
+         edtWWPFormElementId_Internalname = sPrefix+"WWPFORMELEMENTID_"+sGXsfl_47_fel_idx;
+         edtWWPFormInstanceElementId_Internalname = sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_47_fel_idx;
+         edtWWPFormElementTitle_Internalname = sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_47_fel_idx;
+         cmbWWPFormElementDataType_Internalname = sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_47_fel_idx;
+         edtWWPFormInstanceElemChar_Internalname = sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_47_fel_idx;
+         edtWWPFormInstanceElemDate_Internalname = sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_47_fel_idx;
+         edtWWPFormInstanceElemNumeric_Internalname = sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_47_fel_idx;
+         edtWWPFormInstanceElemBlob_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_47_fel_idx;
+         chkWWPFormInstanceElemBoolean_Internalname = sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_47_fel_idx;
+         edtWWPFormElementReferenceId_Internalname = sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_47_fel_idx;
+         edtWWPFormElementParentId_Internalname = sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_47_fel_idx;
+         edtWWPFormInstanceElemDateTime_Internalname = sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_47_fel_idx;
+         edtWWPFormInstanceElemBlobFileNam_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_47_fel_idx;
+         edtWWPFormInstanceElemBlobFileTyp_Internalname = sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_47_fel_idx;
       }
 
       protected void AddRow0U43( )
       {
-         nGXsfl_48_idx = (int)(nGXsfl_48_idx+1);
-         sGXsfl_48_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_48_idx), 4, 0), 4, "0");
-         SubsflControlProps_4843( ) ;
+         nGXsfl_47_idx = (int)(nGXsfl_47_idx+1);
+         sGXsfl_47_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_47_idx), 4, 0), 4, "0");
+         SubsflControlProps_4743( ) ;
          SendRow0U43( ) ;
       }
 
@@ -3089,7 +3058,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             /* Report style subfile background logic. */
             subGridlevel_element_Backstyle = 1;
-            if ( ((int)((nGXsfl_48_idx) % (2))) == 0 )
+            if ( ((int)((nGXsfl_47_idx) % (2))) == 0 )
             {
                subGridlevel_element_Backcolor = (int)(0x0);
                if ( StringUtil.StrCmp(subGridlevel_element_Class, "") != 0 )
@@ -3108,66 +3077,66 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 49,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 48,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormElementId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A210WWPFormElementId), 4, 0, ".", "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A210WWPFormElementId), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,49);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormElementId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormElementId_Enabled,(short)1,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)4,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormElementId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A210WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A210WWPFormElementId), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,48);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormElementId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormElementId_Enabled,(short)1,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)4,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 50,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 49,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElementId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A215WWPFormInstanceElementId), 4, 0, ".", "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A215WWPFormInstanceElementId), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,50);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElementId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElementId_Enabled,(short)1,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)4,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElementId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A215WWPFormInstanceElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A215WWPFormInstanceElementId), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,49);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElementId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElementId_Enabled,(short)1,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)4,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 51,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 50,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormElementTitle_Internalname,(string)A229WWPFormElementTitle,(string)A229WWPFormElementTitle,TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,51);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormElementTitle_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormElementTitle_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)48,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormElementTitle_Internalname,(string)A229WWPFormElementTitle,(string)A229WWPFormElementTitle,TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,50);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormElementTitle_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormElementTitle_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)47,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
          /* Subfile cell */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 52,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
-         GXCCtl = "WWPFORMELEMENTDATATYPE_" + sGXsfl_48_idx;
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 51,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
+         GXCCtl = "WWPFORMELEMENTDATATYPE_" + sGXsfl_47_idx;
          cmbWWPFormElementDataType.Name = GXCCtl;
          cmbWWPFormElementDataType.WebTags = "";
-         cmbWWPFormElementDataType.addItem("1", "Boolean", 0);
-         cmbWWPFormElementDataType.addItem("2", "Character", 0);
-         cmbWWPFormElementDataType.addItem("3", "Numeric", 0);
-         cmbWWPFormElementDataType.addItem("4", "Date", 0);
-         cmbWWPFormElementDataType.addItem("5", "Datetime", 0);
-         cmbWWPFormElementDataType.addItem("6", "Password", 0);
-         cmbWWPFormElementDataType.addItem("7", "Email", 0);
-         cmbWWPFormElementDataType.addItem("8", "Url", 0);
-         cmbWWPFormElementDataType.addItem("9", "File", 0);
-         cmbWWPFormElementDataType.addItem("10", "Image", 0);
+         cmbWWPFormElementDataType.addItem("1", context.GetMessage( "WWP_DF_DataType_Boolean", ""), 0);
+         cmbWWPFormElementDataType.addItem("2", context.GetMessage( "WWP_DF_DataType_Character", ""), 0);
+         cmbWWPFormElementDataType.addItem("3", context.GetMessage( "WWP_DF_DataType_Numeric", ""), 0);
+         cmbWWPFormElementDataType.addItem("4", context.GetMessage( "WWP_DF_DataType_Date", ""), 0);
+         cmbWWPFormElementDataType.addItem("5", context.GetMessage( "WWP_DF_DataType_Datetime", ""), 0);
+         cmbWWPFormElementDataType.addItem("6", context.GetMessage( "WWP_DF_DataType_Password", ""), 0);
+         cmbWWPFormElementDataType.addItem("7", context.GetMessage( "WWP_DF_DataType_Email", ""), 0);
+         cmbWWPFormElementDataType.addItem("8", context.GetMessage( "WWP_DF_DataType_Url", ""), 0);
+         cmbWWPFormElementDataType.addItem("9", context.GetMessage( "WWP_DF_DataType_File", ""), 0);
+         cmbWWPFormElementDataType.addItem("10", context.GetMessage( "WWP_DF_DataType_Image", ""), 0);
          if ( cmbWWPFormElementDataType.ItemCount > 0 )
          {
             A218WWPFormElementDataType = (short)(Math.Round(NumberUtil.Val( cmbWWPFormElementDataType.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(A218WWPFormElementDataType), 2, 0))), "."), 18, MidpointRounding.ToEven));
          }
          /* ComboBox */
-         Gridlevel_elementRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbWWPFormElementDataType,(string)cmbWWPFormElementDataType_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(A218WWPFormElementDataType), 2, 0)),(short)1,(string)cmbWWPFormElementDataType_Jsonclick,(short)0,(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"int",(string)"",(short)-1,cmbWWPFormElementDataType.Enabled,(short)1,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"TrnColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,52);\"",(string)"",(bool)true,(short)0});
+         Gridlevel_elementRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbWWPFormElementDataType,(string)cmbWWPFormElementDataType_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(A218WWPFormElementDataType), 2, 0)),(short)1,(string)cmbWWPFormElementDataType_Jsonclick,(short)0,(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"int",(string)"",(short)-1,cmbWWPFormElementDataType.Enabled,(short)1,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"TrnColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,51);\"",(string)"",(bool)true,(short)0});
          cmbWWPFormElementDataType.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(A218WWPFormElementDataType), 2, 0));
-         AssignProp(sPrefix, false, cmbWWPFormElementDataType_Internalname, "Values", (string)(cmbWWPFormElementDataType.ToJavascriptSource()), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, cmbWWPFormElementDataType_Internalname, "Values", (string)(cmbWWPFormElementDataType.ToJavascriptSource()), !bGXsfl_47_Refreshing);
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 53,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 52,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemChar_Internalname,(string)A221WWPFormInstanceElemChar,(string)A221WWPFormInstanceElemChar,TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,53);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemChar_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemChar_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)48,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemChar_Internalname,(string)A221WWPFormInstanceElemChar,(string)A221WWPFormInstanceElemChar,TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,52);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemChar_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemChar_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)47,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 54,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 53,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "AttributeDate";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemDate_Internalname,context.localUtil.Format(A220WWPFormInstanceElemDate, "99/99/99"),context.localUtil.Format( A220WWPFormInstanceElemDate, "99/99/99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,0);"+";gx.evt.onblur(this,54);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemDate_Jsonclick,(short)0,(string)"AttributeDate",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemDate_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)8,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemDate_Internalname,context.localUtil.Format(A220WWPFormInstanceElemDate, "99/99/99"),context.localUtil.Format( A220WWPFormInstanceElemDate, "99/99/99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,53);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemDate_Jsonclick,(short)0,(string)"AttributeDate",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemDate_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)8,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 55,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 54,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemNumeric_Internalname,StringUtil.LTrim( StringUtil.NToC( A222WWPFormInstanceElemNumeric, 21, 5, ".", "")),StringUtil.LTrim( ((edtWWPFormInstanceElemNumeric_Enabled!=0) ? context.localUtil.Format( A222WWPFormInstanceElemNumeric, "ZZZ,ZZZ,ZZZ,ZZ9.99999") : context.localUtil.Format( A222WWPFormInstanceElemNumeric, "ZZZ,ZZZ,ZZZ,ZZ9.99999"))),TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','5');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','5');"+";gx.evt.onblur(this,55);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemNumeric_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemNumeric_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)21,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemNumeric_Internalname,StringUtil.LTrim( StringUtil.NToC( A222WWPFormInstanceElemNumeric, 21, 5, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( ((edtWWPFormInstanceElemNumeric_Enabled!=0) ? context.localUtil.Format( A222WWPFormInstanceElemNumeric, "ZZZ,ZZZ,ZZZ,ZZ9.99999") : context.localUtil.Format( A222WWPFormInstanceElemNumeric, "ZZZ,ZZZ,ZZZ,ZZ9.99999"))),TempTags+" onchange=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'5');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'5');"+";gx.evt.onblur(this,54);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemNumeric_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemNumeric_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)21,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          ClassString = "Attribute";
          StyleString = "";
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 56,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 55,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          edtWWPFormInstanceElemBlob_Filename = A225WWPFormInstanceElemBlobFileNam;
          edtWWPFormInstanceElemBlob_Filetype = "";
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_47_Refreshing);
          edtWWPFormInstanceElemBlob_Filetype = A224WWPFormInstanceElemBlobFileTyp;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_47_Refreshing);
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A223WWPFormInstanceElemBlob)) )
          {
             gxblobfileaux.Source = A223WWPFormInstanceElemBlob;
@@ -3179,133 +3148,133 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             {
                A223WWPFormInstanceElemBlob = gxblobfileaux.GetURI();
                n223WWPFormInstanceElemBlob = false;
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_48_Refreshing);
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_47_Refreshing);
                edtWWPFormInstanceElemBlob_Filetype = gxblobfileaux.GetExtension();
-               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_48_Refreshing);
+               AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "Filetype", edtWWPFormInstanceElemBlob_Filetype, !bGXsfl_47_Refreshing);
             }
-            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_48_Refreshing);
+            AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_47_Refreshing);
          }
-         Gridlevel_elementRow.AddColumnProperties("blob", 2, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemBlob_Internalname,StringUtil.RTrim( A223WWPFormInstanceElemBlob),context.PathToRelativeUrl( A223WWPFormInstanceElemBlob),(String.IsNullOrEmpty(StringUtil.RTrim( edtWWPFormInstanceElemBlob_Contenttype)) ? context.GetContentType( (String.IsNullOrEmpty(StringUtil.RTrim( edtWWPFormInstanceElemBlob_Filetype)) ? A223WWPFormInstanceElemBlob : edtWWPFormInstanceElemBlob_Filetype)) : edtWWPFormInstanceElemBlob_Contenttype),(bool)true,(string)"",(string)edtWWPFormInstanceElemBlob_Parameters,(short)0,(int)edtWWPFormInstanceElemBlob_Enabled,(short)-1,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)60,(string)"px",(short)0,(short)0,(short)0,(string)edtWWPFormInstanceElemBlob_Jsonclick,(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)StyleString,(string)ClassString,(string)"TrnColumn",(string)"",""+TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,56);\"",(string)"",(string)""});
+         Gridlevel_elementRow.AddColumnProperties("blob", 2, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemBlob_Internalname,StringUtil.RTrim( A223WWPFormInstanceElemBlob),context.PathToRelativeUrl( A223WWPFormInstanceElemBlob),(String.IsNullOrEmpty(StringUtil.RTrim( edtWWPFormInstanceElemBlob_Contenttype)) ? context.GetContentType( (String.IsNullOrEmpty(StringUtil.RTrim( edtWWPFormInstanceElemBlob_Filetype)) ? A223WWPFormInstanceElemBlob : edtWWPFormInstanceElemBlob_Filetype)) : edtWWPFormInstanceElemBlob_Contenttype),(bool)true,(string)"",(string)edtWWPFormInstanceElemBlob_Parameters,(short)0,(int)edtWWPFormInstanceElemBlob_Enabled,(short)-1,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)60,(string)"px",(short)0,(short)0,(short)0,(string)edtWWPFormInstanceElemBlob_Jsonclick,(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)StyleString,(string)ClassString,(string)"TrnColumn",(string)"",""+TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,55);\"",(string)"",(string)""});
          /* Subfile cell */
          /* Check box */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 57,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 56,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ClassString = "AttributeCheckBox";
          StyleString = "";
-         GXCCtl = "WWPFORMINSTANCEELEMBOOLEAN_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBOOLEAN_" + sGXsfl_47_idx;
          chkWWPFormInstanceElemBoolean.Name = GXCCtl;
          chkWWPFormInstanceElemBoolean.WebTags = "";
          chkWWPFormInstanceElemBoolean.Caption = "";
-         AssignProp(sPrefix, false, chkWWPFormInstanceElemBoolean_Internalname, "TitleCaption", chkWWPFormInstanceElemBoolean.Caption, !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, chkWWPFormInstanceElemBoolean_Internalname, "TitleCaption", chkWWPFormInstanceElemBoolean.Caption, !bGXsfl_47_Refreshing);
          chkWWPFormInstanceElemBoolean.CheckedValue = "false";
-         Gridlevel_elementRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkWWPFormInstanceElemBoolean_Internalname,StringUtil.BoolToStr( A226WWPFormInstanceElemBoolean),(string)"",(string)"",(short)-1,chkWWPFormInstanceElemBoolean.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"TrnColumn",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(57, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,57);\""});
+         Gridlevel_elementRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkWWPFormInstanceElemBoolean_Internalname,StringUtil.BoolToStr( A226WWPFormInstanceElemBoolean),(string)"",(string)"",(short)-1,chkWWPFormInstanceElemBoolean.Enabled,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"TrnColumn",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(56, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,56);\""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 58,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 57,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormElementReferenceId_Internalname,(string)A213WWPFormElementReferenceId,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormElementReferenceId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormElementReferenceId_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormElementReferenceId_Internalname,(string)A213WWPFormElementReferenceId,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,57);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormElementReferenceId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormElementReferenceId_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 59,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 58,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormElementParentId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A211WWPFormElementParentId), 4, 0, ".", "")),StringUtil.LTrim( ((edtWWPFormElementParentId_Enabled!=0) ? context.localUtil.Format( (decimal)(A211WWPFormElementParentId), "ZZZ9") : context.localUtil.Format( (decimal)(A211WWPFormElementParentId), "ZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,59);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormElementParentId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormElementParentId_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)4,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormElementParentId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A211WWPFormElementParentId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( ((edtWWPFormElementParentId_Enabled!=0) ? context.localUtil.Format( (decimal)(A211WWPFormElementParentId), "ZZZ9") : context.localUtil.Format( (decimal)(A211WWPFormElementParentId), "ZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,58);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormElementParentId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormElementParentId_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)4,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 60,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 59,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "AttributeDateTime";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemDateTime_Internalname,context.localUtil.TToC( A227WWPFormInstanceElemDateTime, 10, 8, 1, 2, "/", ":", " "),context.localUtil.Format( A227WWPFormInstanceElemDateTime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',5,12,'eng',false,0);"+";gx.evt.onblur(this,60);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemDateTime_Jsonclick,(short)0,(string)"AttributeDateTime",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemDateTime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemDateTime_Internalname,context.localUtil.TToC( A227WWPFormInstanceElemDateTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "),context.localUtil.Format( A227WWPFormInstanceElemDateTime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,59);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemDateTime_Jsonclick,(short)0,(string)"AttributeDateTime",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemDateTime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 61,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 60,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemBlobFileNam_Internalname,(string)A225WWPFormInstanceElemBlobFileNam,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,61);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemBlobFileNam_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemBlobFileNam_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemBlobFileNam_Internalname,(string)A225WWPFormInstanceElemBlobFileNam,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,60);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemBlobFileNam_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemBlobFileNam_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_48_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 62,'" + sPrefix + "',false,'" + sGXsfl_48_idx + "',48)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_43_" + sGXsfl_47_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 61,'" + sPrefix + "',false,'" + sGXsfl_47_idx + "',47)\"";
          ROClassString = "Attribute";
-         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemBlobFileTyp_Internalname,(string)A224WWPFormInstanceElemBlobFileTyp,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,62);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemBlobFileTyp_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemBlobFileTyp_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)48,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         Gridlevel_elementRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPFormInstanceElemBlobFileTyp_Internalname,(string)A224WWPFormInstanceElemBlobFileTyp,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,61);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPFormInstanceElemBlobFileTyp_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtWWPFormInstanceElemBlobFileTyp_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)47,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          ajax_sending_grid_row(Gridlevel_elementRow);
          send_integrity_lvl_hashes0U43( ) ;
-         GXCCtl = "Z210WWPFormElementId_" + sGXsfl_48_idx;
-         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z210WWPFormElementId), 4, 0, ".", "")));
-         GXCCtl = "Z215WWPFormInstanceElementId_" + sGXsfl_48_idx;
-         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z215WWPFormInstanceElementId), 4, 0, ".", "")));
-         GXCCtl = "Z220WWPFormInstanceElemDate_" + sGXsfl_48_idx;
+         GXCCtl = "Z210WWPFormElementId_" + sGXsfl_47_idx;
+         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z210WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "Z215WWPFormInstanceElementId_" + sGXsfl_47_idx;
+         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(Z215WWPFormInstanceElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "Z220WWPFormInstanceElemDate_" + sGXsfl_47_idx;
          GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, context.localUtil.DToC( Z220WWPFormInstanceElemDate, 0, "/"));
-         GXCCtl = "Z227WWPFormInstanceElemDateTime_" + sGXsfl_48_idx;
+         GXCCtl = "Z227WWPFormInstanceElemDateTime_" + sGXsfl_47_idx;
          GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, context.localUtil.TToC( Z227WWPFormInstanceElemDateTime, 10, 8, 0, 0, "/", ":", " "));
-         GXCCtl = "Z222WWPFormInstanceElemNumeric_" + sGXsfl_48_idx;
-         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( Z222WWPFormInstanceElemNumeric, 18, 5, ".", "")));
-         GXCCtl = "Z226WWPFormInstanceElemBoolean_" + sGXsfl_48_idx;
+         GXCCtl = "Z222WWPFormInstanceElemNumeric_" + sGXsfl_47_idx;
+         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( Z222WWPFormInstanceElemNumeric, 18, 5, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "Z226WWPFormInstanceElemBoolean_" + sGXsfl_47_idx;
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+GXCCtl, Z226WWPFormInstanceElemBoolean);
-         GXCCtl = "nRcdDeleted_43_" + sGXsfl_48_idx;
-         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_43), 4, 0, ".", "")));
-         GXCCtl = "nRcdExists_43_" + sGXsfl_48_idx;
-         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_43), 4, 0, ".", "")));
-         GXCCtl = "nIsMod_43_" + sGXsfl_48_idx;
-         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_43), 4, 0, ".", "")));
-         GXCCtl = "vMODE_" + sGXsfl_48_idx;
+         GXCCtl = "nRcdDeleted_43_" + sGXsfl_47_idx;
+         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_43), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "nRcdExists_43_" + sGXsfl_47_idx;
+         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_43), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "nIsMod_43_" + sGXsfl_47_idx;
+         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_43), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "vMODE_" + sGXsfl_47_idx;
          GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.RTrim( Gx_mode));
-         GXCCtl = "vWWPFORMINSTANCEID_" + sGXsfl_48_idx;
-         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7WWPFormInstanceId), 6, 0, ".", "")));
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_" + sGXsfl_48_idx;
+         GXCCtl = "vWWPFORMINSTANCEID_" + sGXsfl_47_idx;
+         GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_" + sGXsfl_47_idx;
          GXCCtlgxBlob = GXCCtl + "_gxBlob";
          GxWebStd.gx_hidden_field( context, sPrefix+GXCCtlgxBlob, A223WWPFormInstanceElemBlob);
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filetype_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filetype_" + sGXsfl_47_idx;
          GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.RTrim( edtWWPFormInstanceElemBlob_Filetype));
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filename_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filename_" + sGXsfl_47_idx;
          GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.RTrim( edtWWPFormInstanceElemBlob_Filename));
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filename_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filename_" + sGXsfl_47_idx;
          GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.RTrim( edtWWPFormInstanceElemBlob_Filename));
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filetype_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filetype_" + sGXsfl_47_idx;
          GxWebStd.gx_hidden_field( context, sPrefix+GXCCtl, StringUtil.RTrim( edtWWPFormInstanceElemBlob_Filetype));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementId_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_48_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementId_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementTitle_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbWWPFormElementDataType.Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemChar_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDate_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemNumeric_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlob_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(chkWWPFormInstanceElemBoolean.Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementReferenceId_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileNam_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_47_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemBlobFileTyp_Enabled), 5, 0, ".", "")));
          ajax_sending_grid_row(null);
          Gridlevel_elementContainer.AddRow(Gridlevel_elementRow);
       }
 
       protected void ReadRow0U43( )
       {
-         nGXsfl_48_idx = (int)(nGXsfl_48_idx+1);
-         sGXsfl_48_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_48_idx), 4, 0), 4, "0");
-         SubsflControlProps_4843( ) ;
-         edtWWPFormElementId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTID_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormInstanceElementId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormElementTitle_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         cmbWWPFormElementDataType.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormInstanceElemChar_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormInstanceElemDate_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormInstanceElemNumeric_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormInstanceElemBlob_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         chkWWPFormInstanceElemBoolean.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormElementReferenceId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormElementParentId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormInstanceElemDateTime_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormInstanceElemBlobFileNam_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPFormInstanceElemBlobFileTyp_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_48_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filetype_" + sGXsfl_48_idx;
+         nGXsfl_47_idx = (int)(nGXsfl_47_idx+1);
+         sGXsfl_47_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_47_idx), 4, 0), 4, "0");
+         SubsflControlProps_4743( ) ;
+         edtWWPFormElementId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTID_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormInstanceElementId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMENTID_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormElementTitle_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTTITLE_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         cmbWWPFormElementDataType.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTDATATYPE_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormInstanceElemChar_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMCHAR_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormInstanceElemDate_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMDATE_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormInstanceElemNumeric_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMNUMERIC_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormInstanceElemBlob_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOB_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         chkWWPFormInstanceElemBoolean.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBOOLEAN_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormElementReferenceId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTREFERENCEID_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormElementParentId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTPARENTID_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormInstanceElemDateTime_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMDATETIME_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormInstanceElemBlobFileNam_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOBFILENAM_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPFormInstanceElemBlobFileTyp_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMINSTANCEELEMBLOBFILETYP_"+sGXsfl_47_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filetype_" + sGXsfl_47_idx;
          edtWWPFormInstanceElemBlob_Filetype = cgiGet( sPrefix+GXCCtl);
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filename_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filename_" + sGXsfl_47_idx;
          edtWWPFormInstanceElemBlob_Filename = cgiGet( sPrefix+GXCCtl);
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filename_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filename_" + sGXsfl_47_idx;
          edtWWPFormInstanceElemBlob_Filename = cgiGet( sPrefix+GXCCtl);
-         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filetype_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBLOB_Filetype_" + sGXsfl_47_idx;
          edtWWPFormInstanceElemBlob_Filetype = cgiGet( sPrefix+GXCCtl);
-         if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormElementId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormElementId_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+         if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormElementId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormElementId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
          {
-            GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_48_idx;
+            GXCCtl = "WWPFORMELEMENTID_" + sGXsfl_47_idx;
             GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtWWPFormElementId_Internalname;
@@ -3314,11 +3283,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          else
          {
-            A210WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormElementId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+            A210WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormElementId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
-         if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormInstanceElementId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormInstanceElementId_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+         if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormInstanceElementId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormInstanceElementId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
          {
-            GXCCtl = "WWPFORMINSTANCEELEMENTID_" + sGXsfl_48_idx;
+            GXCCtl = "WWPFORMINSTANCEELEMENTID_" + sGXsfl_47_idx;
             GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtWWPFormInstanceElementId_Internalname;
@@ -3327,7 +3296,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          else
          {
-            A215WWPFormInstanceElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormInstanceElementId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+            A215WWPFormInstanceElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormInstanceElementId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
          A229WWPFormElementTitle = cgiGet( edtWWPFormElementTitle_Internalname);
          cmbWWPFormElementDataType.Name = cmbWWPFormElementDataType_Internalname;
@@ -3336,10 +3305,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          A221WWPFormInstanceElemChar = cgiGet( edtWWPFormInstanceElemChar_Internalname);
          n221WWPFormInstanceElemChar = false;
          n221WWPFormInstanceElemChar = (String.IsNullOrEmpty(StringUtil.RTrim( A221WWPFormInstanceElemChar)) ? true : false);
-         if ( context.localUtil.VCDate( cgiGet( edtWWPFormInstanceElemDate_Internalname), 1) == 0 )
+         if ( context.localUtil.VCDate( cgiGet( edtWWPFormInstanceElemDate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
          {
-            GXCCtl = "WWPFORMINSTANCEELEMDATE_" + sGXsfl_48_idx;
-            GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"WWPForm Instance Elem Date"}), 1, GXCCtl);
+            GXCCtl = "WWPFORMINSTANCEELEMDATE_" + sGXsfl_47_idx;
+            GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "WWPForm Instance Elem Date", "")}), 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtWWPFormInstanceElemDate_Internalname;
             wbErr = true;
@@ -3348,13 +3317,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          else
          {
-            A220WWPFormInstanceElemDate = context.localUtil.CToD( cgiGet( edtWWPFormInstanceElemDate_Internalname), 1);
+            A220WWPFormInstanceElemDate = context.localUtil.CToD( cgiGet( edtWWPFormInstanceElemDate_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             n220WWPFormInstanceElemDate = false;
          }
          n220WWPFormInstanceElemDate = ((DateTime.MinValue==A220WWPFormInstanceElemDate) ? true : false);
-         if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormInstanceElemNumeric_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormInstanceElemNumeric_Internalname), ".", ",") > 999999999999.99999m ) ) )
+         if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormInstanceElemNumeric_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormInstanceElemNumeric_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > 999999999999.99999m ) ) )
          {
-            GXCCtl = "WWPFORMINSTANCEELEMNUMERIC_" + sGXsfl_48_idx;
+            GXCCtl = "WWPFORMINSTANCEELEMNUMERIC_" + sGXsfl_47_idx;
             GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtWWPFormInstanceElemNumeric_Internalname;
@@ -3364,7 +3333,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          else
          {
-            A222WWPFormInstanceElemNumeric = context.localUtil.CToN( cgiGet( edtWWPFormInstanceElemNumeric_Internalname), ".", ",");
+            A222WWPFormInstanceElemNumeric = context.localUtil.CToN( cgiGet( edtWWPFormInstanceElemNumeric_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep"));
             n222WWPFormInstanceElemNumeric = false;
          }
          n222WWPFormInstanceElemNumeric = ((Convert.ToDecimal(0)==A222WWPFormInstanceElemNumeric) ? true : false);
@@ -3375,12 +3344,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          n226WWPFormInstanceElemBoolean = false;
          n226WWPFormInstanceElemBoolean = ((false==A226WWPFormInstanceElemBoolean) ? true : false);
          A213WWPFormElementReferenceId = cgiGet( edtWWPFormElementReferenceId_Internalname);
-         A211WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormElementParentId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+         A211WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormElementParentId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          n211WWPFormElementParentId = false;
-         if ( context.localUtil.VCDateTime( cgiGet( edtWWPFormInstanceElemDateTime_Internalname), 1, 1) == 0 )
+         if ( context.localUtil.VCDateTime( cgiGet( edtWWPFormInstanceElemDateTime_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
          {
-            GXCCtl = "WWPFORMINSTANCEELEMDATETIME_" + sGXsfl_48_idx;
-            GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"WWPForm Instance Elem Date Time"}), 1, GXCCtl);
+            GXCCtl = "WWPFORMINSTANCEELEMDATETIME_" + sGXsfl_47_idx;
+            GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "WWPForm Instance Elem Date Time", "")}), 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtWWPFormInstanceElemDateTime_Internalname;
             wbErr = true;
@@ -3393,28 +3362,28 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             n227WWPFormInstanceElemDateTime = false;
          }
          n227WWPFormInstanceElemDateTime = ((DateTime.MinValue==A227WWPFormInstanceElemDateTime) ? true : false);
-         GXCCtl = "Z210WWPFormElementId_" + sGXsfl_48_idx;
-         Z210WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
-         GXCCtl = "Z215WWPFormInstanceElementId_" + sGXsfl_48_idx;
-         Z215WWPFormInstanceElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
-         GXCCtl = "Z220WWPFormInstanceElemDate_" + sGXsfl_48_idx;
+         GXCCtl = "Z210WWPFormElementId_" + sGXsfl_47_idx;
+         Z210WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         GXCCtl = "Z215WWPFormInstanceElementId_" + sGXsfl_47_idx;
+         Z215WWPFormInstanceElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         GXCCtl = "Z220WWPFormInstanceElemDate_" + sGXsfl_47_idx;
          Z220WWPFormInstanceElemDate = context.localUtil.CToD( cgiGet( sPrefix+GXCCtl), 0);
          n220WWPFormInstanceElemDate = ((DateTime.MinValue==A220WWPFormInstanceElemDate) ? true : false);
-         GXCCtl = "Z227WWPFormInstanceElemDateTime_" + sGXsfl_48_idx;
+         GXCCtl = "Z227WWPFormInstanceElemDateTime_" + sGXsfl_47_idx;
          Z227WWPFormInstanceElemDateTime = context.localUtil.CToT( cgiGet( sPrefix+GXCCtl), 0);
          n227WWPFormInstanceElemDateTime = ((DateTime.MinValue==A227WWPFormInstanceElemDateTime) ? true : false);
-         GXCCtl = "Z222WWPFormInstanceElemNumeric_" + sGXsfl_48_idx;
-         Z222WWPFormInstanceElemNumeric = context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), ".", ",");
+         GXCCtl = "Z222WWPFormInstanceElemNumeric_" + sGXsfl_47_idx;
+         Z222WWPFormInstanceElemNumeric = context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep"));
          n222WWPFormInstanceElemNumeric = ((Convert.ToDecimal(0)==A222WWPFormInstanceElemNumeric) ? true : false);
-         GXCCtl = "Z226WWPFormInstanceElemBoolean_" + sGXsfl_48_idx;
+         GXCCtl = "Z226WWPFormInstanceElemBoolean_" + sGXsfl_47_idx;
          Z226WWPFormInstanceElemBoolean = StringUtil.StrToBool( cgiGet( sPrefix+GXCCtl));
          n226WWPFormInstanceElemBoolean = ((false==A226WWPFormInstanceElemBoolean) ? true : false);
-         GXCCtl = "nRcdDeleted_43_" + sGXsfl_48_idx;
-         nRcdDeleted_43 = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
-         GXCCtl = "nRcdExists_43_" + sGXsfl_48_idx;
-         nRcdExists_43 = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
-         GXCCtl = "nIsMod_43_" + sGXsfl_48_idx;
-         nIsMod_43 = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         GXCCtl = "nRcdDeleted_43_" + sGXsfl_47_idx;
+         nRcdDeleted_43 = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         GXCCtl = "nRcdExists_43_" + sGXsfl_47_idx;
+         nRcdExists_43 = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         GXCCtl = "nIsMod_43_" + sGXsfl_47_idx;
+         nIsMod_43 = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( ( nRcdDeleted_43 == 0 ) && ( nIsMod_43 == 1 ) && ! String.IsNullOrEmpty(StringUtil.RTrim( A223WWPFormInstanceElemBlob)) )
          {
             edtWWPFormInstanceElemBlob_Filename = (string)(CGIGetFileName(edtWWPFormInstanceElemBlob_Internalname));
@@ -3424,7 +3393,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          A225WWPFormInstanceElemBlobFileNam = edtWWPFormInstanceElemBlob_Filename;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A223WWPFormInstanceElemBlob)) )
          {
-            GXCCtl = "WWPFORMINSTANCEELEMBLOB_" + sGXsfl_48_idx;
+            GXCCtl = "WWPFORMINSTANCEELEMBLOB_" + sGXsfl_47_idx;
             GXCCtlgxBlob = GXCCtl + "_gxBlob";
             A223WWPFormInstanceElemBlob = cgiGet( sPrefix+GXCCtlgxBlob);
             n223WWPFormInstanceElemBlob = false;
@@ -3439,26 +3408,26 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void ConfirmValues0U0( )
       {
-         nGXsfl_48_idx = 0;
-         sGXsfl_48_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_48_idx), 4, 0), 4, "0");
-         SubsflControlProps_4843( ) ;
-         while ( nGXsfl_48_idx < nRC_GXsfl_48 )
+         nGXsfl_47_idx = 0;
+         sGXsfl_47_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_47_idx), 4, 0), 4, "0");
+         SubsflControlProps_4743( ) ;
+         while ( nGXsfl_47_idx < nRC_GXsfl_47 )
          {
-            nGXsfl_48_idx = (int)(nGXsfl_48_idx+1);
-            sGXsfl_48_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_48_idx), 4, 0), 4, "0");
-            SubsflControlProps_4843( ) ;
-            ChangePostValue( sPrefix+"Z210WWPFormElementId_"+sGXsfl_48_idx, cgiGet( sPrefix+"ZT_"+"Z210WWPFormElementId_"+sGXsfl_48_idx)) ;
-            DeletePostValue( sPrefix+"ZT_"+"Z210WWPFormElementId_"+sGXsfl_48_idx) ;
-            ChangePostValue( sPrefix+"Z215WWPFormInstanceElementId_"+sGXsfl_48_idx, cgiGet( sPrefix+"ZT_"+"Z215WWPFormInstanceElementId_"+sGXsfl_48_idx)) ;
-            DeletePostValue( sPrefix+"ZT_"+"Z215WWPFormInstanceElementId_"+sGXsfl_48_idx) ;
-            ChangePostValue( sPrefix+"Z220WWPFormInstanceElemDate_"+sGXsfl_48_idx, cgiGet( sPrefix+"ZT_"+"Z220WWPFormInstanceElemDate_"+sGXsfl_48_idx)) ;
-            DeletePostValue( sPrefix+"ZT_"+"Z220WWPFormInstanceElemDate_"+sGXsfl_48_idx) ;
-            ChangePostValue( sPrefix+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_48_idx, cgiGet( sPrefix+"ZT_"+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_48_idx)) ;
-            DeletePostValue( sPrefix+"ZT_"+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_48_idx) ;
-            ChangePostValue( sPrefix+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_48_idx, cgiGet( sPrefix+"ZT_"+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_48_idx)) ;
-            DeletePostValue( sPrefix+"ZT_"+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_48_idx) ;
-            ChangePostValue( sPrefix+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_48_idx, cgiGet( sPrefix+"ZT_"+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_48_idx)) ;
-            DeletePostValue( sPrefix+"ZT_"+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_48_idx) ;
+            nGXsfl_47_idx = (int)(nGXsfl_47_idx+1);
+            sGXsfl_47_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_47_idx), 4, 0), 4, "0");
+            SubsflControlProps_4743( ) ;
+            ChangePostValue( sPrefix+"Z210WWPFormElementId_"+sGXsfl_47_idx, cgiGet( sPrefix+"ZT_"+"Z210WWPFormElementId_"+sGXsfl_47_idx)) ;
+            DeletePostValue( sPrefix+"ZT_"+"Z210WWPFormElementId_"+sGXsfl_47_idx) ;
+            ChangePostValue( sPrefix+"Z215WWPFormInstanceElementId_"+sGXsfl_47_idx, cgiGet( sPrefix+"ZT_"+"Z215WWPFormInstanceElementId_"+sGXsfl_47_idx)) ;
+            DeletePostValue( sPrefix+"ZT_"+"Z215WWPFormInstanceElementId_"+sGXsfl_47_idx) ;
+            ChangePostValue( sPrefix+"Z220WWPFormInstanceElemDate_"+sGXsfl_47_idx, cgiGet( sPrefix+"ZT_"+"Z220WWPFormInstanceElemDate_"+sGXsfl_47_idx)) ;
+            DeletePostValue( sPrefix+"ZT_"+"Z220WWPFormInstanceElemDate_"+sGXsfl_47_idx) ;
+            ChangePostValue( sPrefix+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_47_idx, cgiGet( sPrefix+"ZT_"+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_47_idx)) ;
+            DeletePostValue( sPrefix+"ZT_"+"Z227WWPFormInstanceElemDateTime_"+sGXsfl_47_idx) ;
+            ChangePostValue( sPrefix+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_47_idx, cgiGet( sPrefix+"ZT_"+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_47_idx)) ;
+            DeletePostValue( sPrefix+"ZT_"+"Z222WWPFormInstanceElemNumeric_"+sGXsfl_47_idx) ;
+            ChangePostValue( sPrefix+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_47_idx, cgiGet( sPrefix+"ZT_"+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_47_idx)) ;
+            DeletePostValue( sPrefix+"ZT_"+"Z226WWPFormInstanceElemBoolean_"+sGXsfl_47_idx) ;
          }
       }
 
@@ -3476,7 +3445,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WWPForm Instance") ;
+            context.SendWebValue( context.GetMessage( "WWPForm Instance", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -3501,10 +3470,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -3585,49 +3551,37 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, sPrefix+"Z214WWPFormInstanceId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z214WWPFormInstanceId), 6, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"Z214WWPFormInstanceId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z214WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"Z239WWPFormInstanceDate", context.localUtil.DToC( Z239WWPFormInstanceDate, 0, "/"));
-         GxWebStd.gx_hidden_field( context, sPrefix+"Z206WWPFormId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z206WWPFormId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"Z207WWPFormVersionNumber", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z207WWPFormVersionNumber), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"Z206WWPFormId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z206WWPFormId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"Z207WWPFormVersionNumber", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z207WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"Z112WWPUserExtendedId", StringUtil.RTrim( Z112WWPUserExtendedId));
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOGx_mode", StringUtil.RTrim( wcpOGx_mode));
-         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV7WWPFormInstanceId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV7WWPFormInstanceId), 6, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV7WWPFormInstanceId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV7WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"Mode", StringUtil.RTrim( Gx_mode));
-         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_48", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_48_idx), 8, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"N206WWPFormId", StringUtil.LTrim( StringUtil.NToC( (decimal)(A206WWPFormId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"N207WWPFormVersionNumber", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_47", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_47_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"N206WWPFormId", StringUtil.LTrim( StringUtil.NToC( (decimal)(A206WWPFormId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"N207WWPFormVersionNumber", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"N112WWPUserExtendedId", StringUtil.RTrim( A112WWPUserExtendedId));
          GxWebStd.gx_hidden_field( context, sPrefix+"vMODE", StringUtil.RTrim( Gx_mode));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7WWPFormInstanceId), 6, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vINSERT_WWPFORMID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11Insert_WWPFormId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vINSERT_WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV12Insert_WWPFormVersionNumber), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vINSERT_WWPFORMID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11Insert_WWPFormId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vINSERT_WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV12Insert_WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vINSERT_WWPUSEREXTENDEDID", StringUtil.RTrim( AV16Insert_WWPUserExtendedId));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPUSEREXTENDEDID", StringUtil.RTrim( A112WWPUserExtendedId));
          GxWebStd.gx_hidden_field( context, sPrefix+"vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCERECORDKEY", A243WWPFormInstanceRecordKey);
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMRESUME", StringUtil.LTrim( StringUtil.NToC( (decimal)(A216WWPFormResume), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMRESUME", StringUtil.LTrim( StringUtil.NToC( (decimal)(A216WWPFormResume), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMVALIDATIONS", A233WWPFormValidations);
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPUSEREXTENDEDFULLNAME", A113WWPUserExtendedFullName);
          GxWebStd.gx_hidden_field( context, sPrefix+"vPGMNAME", StringUtil.RTrim( AV19Pgmname));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTTYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(A217WWPFormElementType), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTTYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(A217WWPFormElementType), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTMETADATA", A236WWPFormElementMetadata);
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTCAPTION", StringUtil.LTrim( StringUtil.NToC( (decimal)(A237WWPFormElementCaption), 1, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTPARENTTYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(A230WWPFormElementParentType), 1, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Objectcall", StringUtil.RTrim( Dvpanel_tableattributes_Objectcall));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Enabled", StringUtil.BoolToStr( Dvpanel_tableattributes_Enabled));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Width", StringUtil.RTrim( Dvpanel_tableattributes_Width));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Autowidth", StringUtil.BoolToStr( Dvpanel_tableattributes_Autowidth));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Autoheight", StringUtil.BoolToStr( Dvpanel_tableattributes_Autoheight));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Cls", StringUtil.RTrim( Dvpanel_tableattributes_Cls));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Title", StringUtil.RTrim( Dvpanel_tableattributes_Title));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Collapsible", StringUtil.BoolToStr( Dvpanel_tableattributes_Collapsible));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Collapsed", StringUtil.BoolToStr( Dvpanel_tableattributes_Collapsed));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Showcollapseicon", StringUtil.BoolToStr( Dvpanel_tableattributes_Showcollapseicon));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Iconposition", StringUtil.RTrim( Dvpanel_tableattributes_Iconposition));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DVPANEL_TABLEATTRIBUTES_Autoscroll", StringUtil.BoolToStr( Dvpanel_tableattributes_Autoscroll));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTCAPTION", StringUtil.LTrim( StringUtil.NToC( (decimal)(A237WWPFormElementCaption), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTPARENTTYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(A230WWPFormElementParentType), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
       }
 
       protected void RenderHtmlCloseForm0U42( )
@@ -3684,7 +3638,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       public override string GetPgmdesc( )
       {
-         return "WWPForm Instance" ;
+         return context.GetMessage( "WWPForm Instance", "") ;
       }
 
       protected void InitializeNonKey0U42( )
@@ -3752,7 +3706,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          n222WWPFormInstanceElemNumeric = false;
          A223WWPFormInstanceElemBlob = "";
          n223WWPFormInstanceElemBlob = false;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElemBlob_Internalname, "URL", context.PathToRelativeUrl( A223WWPFormInstanceElemBlob), !bGXsfl_47_Refreshing);
          A226WWPFormInstanceElemBoolean = false;
          n226WWPFormInstanceElemBoolean = false;
          A224WWPFormInstanceElemBlobFileTyp = "";
@@ -3833,7 +3787,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             AssignAttri(sPrefix, false, "AV7WWPFormInstanceId", StringUtil.LTrimStr( (decimal)(AV7WWPFormInstanceId), 6, 0));
          }
          wcpOGx_mode = cgiGet( sPrefix+"wcpOGx_mode");
-         wcpOAV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV7WWPFormInstanceId"), ".", ","), 18, MidpointRounding.ToEven));
+         wcpOAV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV7WWPFormInstanceId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(Gx_mode, wcpOGx_mode) != 0 ) || ( AV7WWPFormInstanceId != wcpOAV7WWPFormInstanceId ) ) )
          {
             setjustcreated();
@@ -3858,12 +3812,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          sCtrlAV7WWPFormInstanceId = cgiGet( sPrefix+"AV7WWPFormInstanceId_CTRL");
          if ( StringUtil.Len( sCtrlAV7WWPFormInstanceId) > 0 )
          {
-            AV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV7WWPFormInstanceId), ".", ","), 18, MidpointRounding.ToEven));
+            AV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV7WWPFormInstanceId), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AssignAttri(sPrefix, false, "AV7WWPFormInstanceId", StringUtil.LTrimStr( (decimal)(AV7WWPFormInstanceId), 6, 0));
          }
          else
          {
-            AV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV7WWPFormInstanceId_PARM"), ".", ","), 18, MidpointRounding.ToEven));
+            AV7WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV7WWPFormInstanceId_PARM"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
       }
 
@@ -3922,7 +3876,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"Gx_mode_CTRL", StringUtil.RTrim( sCtrlGx_mode));
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"AV7WWPFormInstanceId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7WWPFormInstanceId), 6, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"AV7WWPFormInstanceId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV7WWPFormInstanceId)) > 0 )
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV7WWPFormInstanceId_CTRL", StringUtil.RTrim( sCtrlAV7WWPFormInstanceId));
@@ -3979,7 +3933,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492719451126", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016415270", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3995,22 +3949,19 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_forminstance.js", "?202492719451127", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_forminstance.js", "?2024101016415270", false, true);
          /* End function include_jscripts */
       }
 
       protected void init_level_properties43( )
       {
          edtWWPFormInstanceElementId_Enabled = defedtWWPFormInstanceElementId_Enabled;
-         AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormInstanceElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
          edtWWPFormElementId_Enabled = defedtWWPFormElementId_Enabled;
-         AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, edtWWPFormElementId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormElementId_Enabled), 5, 0), !bGXsfl_47_Refreshing);
       }
 
-      protected void StartGridControl48( )
+      protected void StartGridControl47( )
       {
          Gridlevel_elementContainer.AddObjectProperty("GridName", "Gridlevel_element");
          Gridlevel_elementContainer.AddObjectProperty("Header", subGridlevel_element_Header);
@@ -4065,7 +4016,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Gridlevel_elementColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormElementParentId_Enabled), 5, 0, ".", "")));
          Gridlevel_elementContainer.AddColumnProperties(Gridlevel_elementColumn);
          Gridlevel_elementColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-         Gridlevel_elementColumn.AddObjectProperty("Value", GXUtil.ValueEncode( context.localUtil.TToC( A227WWPFormInstanceElemDateTime, 10, 8, 1, 2, "/", ":", " ")));
+         Gridlevel_elementColumn.AddObjectProperty("Value", GXUtil.ValueEncode( context.localUtil.TToC( A227WWPFormInstanceElemDateTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " ")));
          Gridlevel_elementColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPFormInstanceElemDateTime_Enabled), 5, 0, ".", "")));
          Gridlevel_elementContainer.AddColumnProperties(Gridlevel_elementColumn);
          Gridlevel_elementColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
@@ -4093,8 +4044,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          edtWWPFormVersionNumber_Internalname = sPrefix+"WWPFORMVERSIONNUMBER";
          edtWWPFormTitle_Internalname = sPrefix+"WWPFORMTITLE";
          divTableattributes_Internalname = sPrefix+"TABLEATTRIBUTES";
-         Dvpanel_tableattributes_Internalname = sPrefix+"DVPANEL_TABLEATTRIBUTES";
          divTablecontent_Internalname = sPrefix+"TABLECONTENT";
+         grpUnnamedgroup1_Internalname = sPrefix+"UNNAMEDGROUP1";
          edtWWPFormElementId_Internalname = sPrefix+"WWPFORMELEMENTID";
          edtWWPFormInstanceElementId_Internalname = sPrefix+"WWPFORMINSTANCEELEMENTID";
          edtWWPFormElementTitle_Internalname = sPrefix+"WWPFORMELEMENTTITLE";
@@ -4185,16 +4136,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          edtWWPFormInstanceDate_Enabled = 1;
          edtWWPFormInstanceId_Jsonclick = "";
          edtWWPFormInstanceId_Enabled = 0;
-         Dvpanel_tableattributes_Autoscroll = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Iconposition = "Right";
-         Dvpanel_tableattributes_Showcollapseicon = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Collapsed = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Title = "General Information";
-         Dvpanel_tableattributes_Cls = "PanelWithBorder Panel_BaseColor";
-         Dvpanel_tableattributes_Autoheight = Convert.ToBoolean( -1);
-         Dvpanel_tableattributes_Autowidth = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Width = "100%";
          divLayoutmaintable_Class = "Table";
          context.GX_msglist.DisplayMode = 1;
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -4242,8 +4183,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.set_html_headers( context, 0, "", "");
          Gx_mode = "INS";
          AssignAttri(sPrefix, false, "Gx_mode", Gx_mode);
-         SubsflControlProps_4843( ) ;
-         while ( nGXsfl_48_idx <= nRC_GXsfl_48 )
+         SubsflControlProps_4743( ) ;
+         while ( nGXsfl_47_idx <= nRC_GXsfl_47 )
          {
             standaloneNotModal( ) ;
             standaloneModal( ) ;
@@ -4252,9 +4193,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             init_web_controls( ) ;
             dynload_actions( ) ;
             SendRow0U43( ) ;
-            nGXsfl_48_idx = (int)(nGXsfl_48_idx+1);
-            sGXsfl_48_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_48_idx), 4, 0), 4, "0");
-            SubsflControlProps_4843( ) ;
+            nGXsfl_47_idx = (int)(nGXsfl_47_idx+1);
+            sGXsfl_47_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_47_idx), 4, 0), 4, "0");
+            SubsflControlProps_4743( ) ;
          }
          AddString( context.httpAjaxContext.getJSONContainerResponse( Gridlevel_elementContainer)) ;
          /* End function gxnrGridlevel_element_newrow */
@@ -4262,27 +4203,27 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void init_web_controls( )
       {
-         GXCCtl = "WWPFORMELEMENTDATATYPE_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMELEMENTDATATYPE_" + sGXsfl_47_idx;
          cmbWWPFormElementDataType.Name = GXCCtl;
          cmbWWPFormElementDataType.WebTags = "";
-         cmbWWPFormElementDataType.addItem("1", "Boolean", 0);
-         cmbWWPFormElementDataType.addItem("2", "Character", 0);
-         cmbWWPFormElementDataType.addItem("3", "Numeric", 0);
-         cmbWWPFormElementDataType.addItem("4", "Date", 0);
-         cmbWWPFormElementDataType.addItem("5", "Datetime", 0);
-         cmbWWPFormElementDataType.addItem("6", "Password", 0);
-         cmbWWPFormElementDataType.addItem("7", "Email", 0);
-         cmbWWPFormElementDataType.addItem("8", "Url", 0);
-         cmbWWPFormElementDataType.addItem("9", "File", 0);
-         cmbWWPFormElementDataType.addItem("10", "Image", 0);
+         cmbWWPFormElementDataType.addItem("1", context.GetMessage( "WWP_DF_DataType_Boolean", ""), 0);
+         cmbWWPFormElementDataType.addItem("2", context.GetMessage( "WWP_DF_DataType_Character", ""), 0);
+         cmbWWPFormElementDataType.addItem("3", context.GetMessage( "WWP_DF_DataType_Numeric", ""), 0);
+         cmbWWPFormElementDataType.addItem("4", context.GetMessage( "WWP_DF_DataType_Date", ""), 0);
+         cmbWWPFormElementDataType.addItem("5", context.GetMessage( "WWP_DF_DataType_Datetime", ""), 0);
+         cmbWWPFormElementDataType.addItem("6", context.GetMessage( "WWP_DF_DataType_Password", ""), 0);
+         cmbWWPFormElementDataType.addItem("7", context.GetMessage( "WWP_DF_DataType_Email", ""), 0);
+         cmbWWPFormElementDataType.addItem("8", context.GetMessage( "WWP_DF_DataType_Url", ""), 0);
+         cmbWWPFormElementDataType.addItem("9", context.GetMessage( "WWP_DF_DataType_File", ""), 0);
+         cmbWWPFormElementDataType.addItem("10", context.GetMessage( "WWP_DF_DataType_Image", ""), 0);
          if ( cmbWWPFormElementDataType.ItemCount > 0 )
          {
          }
-         GXCCtl = "WWPFORMINSTANCEELEMBOOLEAN_" + sGXsfl_48_idx;
+         GXCCtl = "WWPFORMINSTANCEELEMBOOLEAN_" + sGXsfl_47_idx;
          chkWWPFormInstanceElemBoolean.Name = GXCCtl;
          chkWWPFormInstanceElemBoolean.WebTags = "";
          chkWWPFormInstanceElemBoolean.Caption = "";
-         AssignProp(sPrefix, false, chkWWPFormInstanceElemBoolean_Internalname, "TitleCaption", chkWWPFormInstanceElemBoolean.Caption, !bGXsfl_48_Refreshing);
+         AssignProp(sPrefix, false, chkWWPFormInstanceElemBoolean_Internalname, "TitleCaption", chkWWPFormInstanceElemBoolean.Caption, !bGXsfl_47_Refreshing);
          chkWWPFormInstanceElemBoolean.CheckedValue = "false";
          /* End function init_web_controls */
       }
@@ -4313,7 +4254,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(18, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
          if ( (pr_default.getStatus(18) == 101) )
          {
-            GX_msglist.addItem("No matching 'Dynamic Form'.", "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
             AnyError = 1;
             GX_FocusControl = edtWWPFormId_Internalname;
          }
@@ -4337,7 +4278,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(29, new Object[] {A206WWPFormId, A207WWPFormVersionNumber, A210WWPFormElementId});
          if ( (pr_default.getStatus(29) == 101) )
          {
-            GX_msglist.addItem("No matching 'Element'.", "ForeignKeyNotFound", 1, "WWPFORMELEMENTID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Element", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMELEMENTID");
             AnyError = 1;
             GX_FocusControl = edtWWPFormElementId_Internalname;
          }
@@ -4357,7 +4298,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             if ( ! ( (0==A206WWPFormId) || (0==A207WWPFormVersionNumber) || (0==A211WWPFormElementParentId) ) )
             {
-               GX_msglist.addItem("No matching 'WWPForm Element Parent'.", "ForeignKeyNotFound", 1, "WWPFORMELEMENTPARENTID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWPForm Element Parent", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMELEMENTPARENTID");
                AnyError = 1;
                GX_FocusControl = edtWWPFormId_Internalname;
             }
@@ -4450,7 +4391,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GX_FocusControl = "";
          ClassString = "";
          StyleString = "";
-         ucDvpanel_tableattributes = new GXUserControl();
          TempTags = "";
          A239WWPFormInstanceDate = DateTime.MinValue;
          A209WWPFormTitle = "";
@@ -4466,9 +4406,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          A113WWPUserExtendedFullName = "";
          AV19Pgmname = "";
          A236WWPFormElementMetadata = "";
-         Dvpanel_tableattributes_Objectcall = "";
-         Dvpanel_tableattributes_Class = "";
-         Dvpanel_tableattributes_Height = "";
          forbiddenHiddens = new GXProperties();
          hsh = "";
          sMode42 = "";
@@ -4817,8 +4754,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private short subGridlevel_element_Collapsed ;
       private int wcpOAV7WWPFormInstanceId ;
       private int Z214WWPFormInstanceId ;
-      private int nRC_GXsfl_48 ;
-      private int nGXsfl_48_idx=1 ;
+      private int nRC_GXsfl_47 ;
+      private int nGXsfl_47_idx=1 ;
       private int AV7WWPFormInstanceId ;
       private int trnEnded ;
       private int A214WWPFormInstanceId ;
@@ -4845,7 +4782,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private int edtWWPFormInstanceElemBlobFileNam_Enabled ;
       private int edtWWPFormInstanceElemBlobFileTyp_Enabled ;
       private int fRowAdded ;
-      private int Dvpanel_tableattributes_Gxcontroltype ;
       private int AV20GXV1 ;
       private int subGridlevel_element_Backcolor ;
       private int subGridlevel_element_Allbackcolor ;
@@ -4876,18 +4812,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string sXEvt ;
       private string GX_FocusControl ;
       private string edtWWPFormInstanceDate_Internalname ;
-      private string sGXsfl_48_idx="0001" ;
+      private string sGXsfl_47_idx="0001" ;
       private string divLayoutmaintable_Internalname ;
       private string divLayoutmaintable_Class ;
       private string divTablemain_Internalname ;
       private string ClassString ;
       private string StyleString ;
+      private string grpUnnamedgroup1_Internalname ;
       private string divTablecontent_Internalname ;
-      private string Dvpanel_tableattributes_Width ;
-      private string Dvpanel_tableattributes_Cls ;
-      private string Dvpanel_tableattributes_Title ;
-      private string Dvpanel_tableattributes_Iconposition ;
-      private string Dvpanel_tableattributes_Internalname ;
       private string divTableattributes_Internalname ;
       private string edtWWPFormInstanceId_Internalname ;
       private string TempTags ;
@@ -4924,9 +4856,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string sStyleString ;
       private string subGridlevel_element_Internalname ;
       private string AV19Pgmname ;
-      private string Dvpanel_tableattributes_Objectcall ;
-      private string Dvpanel_tableattributes_Class ;
-      private string Dvpanel_tableattributes_Height ;
       private string hsh ;
       private string sMode42 ;
       private string sEvt ;
@@ -4938,7 +4867,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string GXCCtl ;
       private string edtWWPFormInstanceElemBlob_Filetype ;
       private string edtWWPFormInstanceElemBlob_Filename ;
-      private string sGXsfl_48_fel_idx="0001" ;
+      private string sGXsfl_47_fel_idx="0001" ;
       private string subGridlevel_element_Class ;
       private string subGridlevel_element_Linesclass ;
       private string ROClassString ;
@@ -4979,17 +4908,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private bool toggleJsOutput ;
       private bool n211WWPFormElementParentId ;
       private bool wbErr ;
-      private bool Dvpanel_tableattributes_Autowidth ;
-      private bool Dvpanel_tableattributes_Autoheight ;
-      private bool Dvpanel_tableattributes_Collapsible ;
-      private bool Dvpanel_tableattributes_Collapsed ;
-      private bool Dvpanel_tableattributes_Showcollapseicon ;
-      private bool Dvpanel_tableattributes_Autoscroll ;
-      private bool bGXsfl_48_Refreshing=false ;
+      private bool bGXsfl_47_Refreshing=false ;
       private bool n243WWPFormInstanceRecordKey ;
-      private bool Dvpanel_tableattributes_Enabled ;
-      private bool Dvpanel_tableattributes_Showheader ;
-      private bool Dvpanel_tableattributes_Visible ;
       private bool A226WWPFormInstanceElemBoolean ;
       private bool returnInSub ;
       private bool n221WWPFormInstanceElemChar ;
@@ -5026,7 +4946,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private GXWebGrid Gridlevel_elementContainer ;
       private GXWebRow Gridlevel_elementRow ;
       private GXWebColumn Gridlevel_elementColumn ;
-      private GXUserControl ucDvpanel_tableattributes ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;

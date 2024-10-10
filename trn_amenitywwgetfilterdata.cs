@@ -382,7 +382,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_amenitywwds_3_tfamenityname_sel)) && ! ( StringUtil.StrCmp(AV42Trn_amenitywwds_3_tfamenityname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_amenitywwds_3_tfamenityname_sel)) && ! ( StringUtil.StrCmp(AV42Trn_amenitywwds_3_tfamenityname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(AmenityName = ( :AV42Trn_amenitywwds_3_tfamenityname_sel))");
          }
@@ -390,7 +390,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Trn_amenitywwds_3_tfamenityname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV42Trn_amenitywwds_3_tfamenityname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AmenityName))=0))");
          }

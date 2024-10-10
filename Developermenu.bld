@@ -1,3 +1,4 @@
+trn_device
 trn_col
 trn_row
 trn_page
@@ -39,6 +40,8 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+trn_tilechildtilewc
+trn_productservicecalltoactionwc
 wc_description
 wp_createlocationandreceptioniststep2
 wp_createlocationandreceptioniststep1
@@ -73,7 +76,6 @@ trn_rowww
 trn_rowview
 trn_tileww
 trn_tileview
-trn_tiletrn_colwc
 trn_colgeneral
 trn_colww
 trn_colview
@@ -250,7 +252,6 @@ gx00o0
 gx00m0
 gx00h0
 gx00j0
-gx00d0
 gx00b0
 gx0090
 gx0060
@@ -259,6 +260,7 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+prc_getlocationinformation
 trn_residenttypewwgetfilterdata
 trn_residentwwgetfilterdata
 trn_residentloaddvcombo

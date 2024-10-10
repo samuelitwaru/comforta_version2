@@ -215,7 +215,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A319Trn_RowId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Row'.", "ForeignKeyNotFound", 1, "TRN_ROWID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Row", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_ROWID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -223,7 +223,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A264Trn_TileId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Col'.", "ForeignKeyNotFound", 1, "TRN_TILEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Tile", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_TILEID");
             AnyError = 1;
          }
          pr_default.close(3);
@@ -1373,7 +1373,7 @@ namespace GeneXus.Programs {
             new CursorDef("BC00192", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId  FOR UPDATE OF Trn_Col1",true, GxErrorMask.GX_NOMASK, false, this,prmBC00192,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00193", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00193,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00194", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00194,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00195", "SELECT Trn_TileId FROM Trn_Col WHERE Trn_TileId = :Trn_TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00195,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00195", "SELECT Trn_TileId FROM Trn_Tile WHERE Trn_TileId = :Trn_TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00195,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00196", "SELECT TM1.Trn_ColId, TM1.Trn_ColName, TM1.Trn_RowId, TM1.Trn_TileId FROM Trn_Col1 TM1 WHERE TM1.Trn_ColId = :Trn_ColId ORDER BY TM1.Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00196,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00197", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00197,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00198", "SAVEPOINT gxupdate;INSERT INTO Trn_Col1(Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId) VALUES(:Trn_ColId, :Trn_ColName, :Trn_RowId, :Trn_TileId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00198)

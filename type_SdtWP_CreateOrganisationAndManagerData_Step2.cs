@@ -30,19 +30,23 @@ namespace GeneXus.Programs
 		public SdtWP_CreateOrganisationAndManagerData_Step2( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = "";
+
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergamguid = "";
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergivenname = "";
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerlastname = "";
 
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail = "";
-
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergender = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = "";
 
 		}
 
@@ -71,6 +75,24 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
+			AddObjectProperty("ManagerEmail", gxTpr_Manageremail, false);
+
+
+			AddObjectProperty("ManagerInitials", gxTpr_Managerinitials, false);
+
+
+			AddObjectProperty("ManagerPhoneCode", gxTpr_Managerphonecode, false);
+
+
+			AddObjectProperty("ManagerPhoneNumber", gxTpr_Managerphonenumber, false);
+
+
+			AddObjectProperty("ManagerPhone", gxTpr_Managerphone, false);
+
+
+			AddObjectProperty("ManagerIsMainManager", gxTpr_Managerismainmanager, false);
+
+
 			AddObjectProperty("ManagerId", gxTpr_Managerid, false);
 
 
@@ -83,16 +105,7 @@ namespace GeneXus.Programs
 			AddObjectProperty("ManagerLastName", gxTpr_Managerlastname, false);
 
 
-			AddObjectProperty("ManagerEmail", gxTpr_Manageremail, false);
-
-
 			AddObjectProperty("ManagerGender", gxTpr_Managergender, false);
-
-
-			AddObjectProperty("ManagerInitials", gxTpr_Managerinitials, false);
-
-
-			AddObjectProperty("ManagerPhone", gxTpr_Managerphone, false);
 
 			if (gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Sdt_managers != null)
 			{
@@ -103,6 +116,102 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Properties
+
+		[SoapElement(ElementName="ManagerEmail")]
+		[XmlElement(ElementName="ManagerEmail")]
+		public string gxTpr_Manageremail
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail = value;
+				SetDirty("Manageremail");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerInitials")]
+		[XmlElement(ElementName="ManagerInitials")]
+		public string gxTpr_Managerinitials
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials = value;
+				SetDirty("Managerinitials");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerPhoneCode")]
+		[XmlElement(ElementName="ManagerPhoneCode")]
+		public string gxTpr_Managerphonecode
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = value;
+				SetDirty("Managerphonecode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerPhoneNumber")]
+		[XmlElement(ElementName="ManagerPhoneNumber")]
+		public string gxTpr_Managerphonenumber
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber = value;
+				SetDirty("Managerphonenumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerPhone")]
+		[XmlElement(ElementName="ManagerPhone")]
+		public string gxTpr_Managerphone
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = value;
+				SetDirty("Managerphone");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerIsMainManager")]
+		[XmlElement(ElementName="ManagerIsMainManager")]
+		public bool gxTpr_Managerismainmanager
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerismainmanager; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerismainmanager = value;
+				SetDirty("Managerismainmanager");
+			}
+		}
+
+
+
 
 		[SoapElement(ElementName="ManagerId")]
 		[XmlElement(ElementName="ManagerId")]
@@ -168,22 +277,6 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="ManagerEmail")]
-		[XmlElement(ElementName="ManagerEmail")]
-		public string gxTpr_Manageremail
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail = value;
-				SetDirty("Manageremail");
-			}
-		}
-
-
-
-
 		[SoapElement(ElementName="ManagerGender")]
 		[XmlElement(ElementName="ManagerGender")]
 		public string gxTpr_Managergender
@@ -194,38 +287,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergender = value;
 				SetDirty("Managergender");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="ManagerInitials")]
-		[XmlElement(ElementName="ManagerInitials")]
-		public string gxTpr_Managerinitials
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials = value;
-				SetDirty("Managerinitials");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="ManagerPhone")]
-		[XmlElement(ElementName="ManagerPhone")]
-		public string gxTpr_Managerphone
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = value;
-				SetDirty("Managerphone");
 			}
 		}
 
@@ -305,13 +366,17 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerismainmanager = false;
+
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergamguid = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergivenname = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerlastname = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergender = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = "";
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Sdt_managers_N = true;
 
@@ -323,6 +388,24 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Declaration
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone;
+		 
+
+		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerismainmanager;
+		 
 
 		protected Guid gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerid;
 		 
@@ -336,16 +419,7 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerlastname;
 		 
 
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail;
-		 
-
 		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergender;
-		 
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials;
-		 
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone;
 		 
 		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Sdt_managers_N;
 		protected GXBaseCollection<GeneXus.Programs.SdtSDT_Managers_SDT_ManagersItem> gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Sdt_managers = null;  
@@ -367,55 +441,7 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="ManagerId", Order=0)]
-		public Guid gxTpr_Managerid
-		{
-			get { 
-				return sdt.gxTpr_Managerid;
-
-			}
-			set { 
-				sdt.gxTpr_Managerid = value;
-			}
-		}
-
-		[DataMember(Name="ManagerGAMGUID", Order=1)]
-		public  string gxTpr_Managergamguid
-		{
-			get { 
-				return sdt.gxTpr_Managergamguid;
-
-			}
-			set { 
-				 sdt.gxTpr_Managergamguid = value;
-			}
-		}
-
-		[DataMember(Name="ManagerGivenName", Order=2)]
-		public  string gxTpr_Managergivenname
-		{
-			get { 
-				return sdt.gxTpr_Managergivenname;
-
-			}
-			set { 
-				 sdt.gxTpr_Managergivenname = value;
-			}
-		}
-
-		[DataMember(Name="ManagerLastName", Order=3)]
-		public  string gxTpr_Managerlastname
-		{
-			get { 
-				return sdt.gxTpr_Managerlastname;
-
-			}
-			set { 
-				 sdt.gxTpr_Managerlastname = value;
-			}
-		}
-
-		[DataMember(Name="ManagerEmail", Order=4)]
+		[DataMember(Name="ManagerEmail", Order=0)]
 		public  string gxTpr_Manageremail
 		{
 			get { 
@@ -427,19 +453,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ManagerGender", Order=5)]
-		public  string gxTpr_Managergender
-		{
-			get { 
-				return sdt.gxTpr_Managergender;
-
-			}
-			set { 
-				 sdt.gxTpr_Managergender = value;
-			}
-		}
-
-		[DataMember(Name="ManagerInitials", Order=6)]
+		[DataMember(Name="ManagerInitials", Order=1)]
 		public  string gxTpr_Managerinitials
 		{
 			get { 
@@ -451,7 +465,31 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ManagerPhone", Order=7)]
+		[DataMember(Name="ManagerPhoneCode", Order=2)]
+		public  string gxTpr_Managerphonecode
+		{
+			get { 
+				return sdt.gxTpr_Managerphonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Managerphonecode = value;
+			}
+		}
+
+		[DataMember(Name="ManagerPhoneNumber", Order=3)]
+		public  string gxTpr_Managerphonenumber
+		{
+			get { 
+				return sdt.gxTpr_Managerphonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Managerphonenumber = value;
+			}
+		}
+
+		[DataMember(Name="ManagerPhone", Order=4)]
 		public  string gxTpr_Managerphone
 		{
 			get { 
@@ -463,7 +501,79 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="SDT_Managers", Order=8, EmitDefaultValue=false)]
+		[DataMember(Name="ManagerIsMainManager", Order=5)]
+		public bool gxTpr_Managerismainmanager
+		{
+			get { 
+				return sdt.gxTpr_Managerismainmanager;
+
+			}
+			set { 
+				sdt.gxTpr_Managerismainmanager = value;
+			}
+		}
+
+		[DataMember(Name="ManagerId", Order=6)]
+		public Guid gxTpr_Managerid
+		{
+			get { 
+				return sdt.gxTpr_Managerid;
+
+			}
+			set { 
+				sdt.gxTpr_Managerid = value;
+			}
+		}
+
+		[DataMember(Name="ManagerGAMGUID", Order=7)]
+		public  string gxTpr_Managergamguid
+		{
+			get { 
+				return sdt.gxTpr_Managergamguid;
+
+			}
+			set { 
+				 sdt.gxTpr_Managergamguid = value;
+			}
+		}
+
+		[DataMember(Name="ManagerGivenName", Order=8)]
+		public  string gxTpr_Managergivenname
+		{
+			get { 
+				return sdt.gxTpr_Managergivenname;
+
+			}
+			set { 
+				 sdt.gxTpr_Managergivenname = value;
+			}
+		}
+
+		[DataMember(Name="ManagerLastName", Order=9)]
+		public  string gxTpr_Managerlastname
+		{
+			get { 
+				return sdt.gxTpr_Managerlastname;
+
+			}
+			set { 
+				 sdt.gxTpr_Managerlastname = value;
+			}
+		}
+
+		[DataMember(Name="ManagerGender", Order=10)]
+		public  string gxTpr_Managergender
+		{
+			get { 
+				return sdt.gxTpr_Managergender;
+
+			}
+			set { 
+				 sdt.gxTpr_Managergender = value;
+			}
+		}
+
+		[DataMember(Name="SDT_Managers", Order=11, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Managers_SDT_ManagersItem_RESTInterface> gxTpr_Sdt_managers
 		{
 			get { 

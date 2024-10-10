@@ -30,21 +30,25 @@ namespace GeneXus.Programs
 		public SdtWP_CreateLocationAndReceptionistData_Step1( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1 = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2 = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry = "";
+
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationname = "";
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationemail = "";
 
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = "";
+
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphone = "";
-
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry = "";
-
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity = "";
-
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode = "";
-
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1 = "";
-
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2 = "";
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationdescription = "";
 
@@ -75,6 +79,21 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
+			AddObjectProperty("LocationAddressLine1", gxTpr_Locationaddressline1, false);
+
+
+			AddObjectProperty("LocationAddressLine2", gxTpr_Locationaddressline2, false);
+
+
+			AddObjectProperty("LocationZipCode", gxTpr_Locationzipcode, false);
+
+
+			AddObjectProperty("LocationCity", gxTpr_Locationcity, false);
+
+
+			AddObjectProperty("LocationCountry", gxTpr_Locationcountry, false);
+
+
 			AddObjectProperty("LocationId", gxTpr_Locationid, false);
 
 
@@ -84,22 +103,13 @@ namespace GeneXus.Programs
 			AddObjectProperty("LocationEmail", gxTpr_Locationemail, false);
 
 
+			AddObjectProperty("LocationPhoneCode", gxTpr_Locationphonecode, false);
+
+
+			AddObjectProperty("LocationPhoneNumber", gxTpr_Locationphonenumber, false);
+
+
 			AddObjectProperty("LocationPhone", gxTpr_Locationphone, false);
-
-
-			AddObjectProperty("LocationCountry", gxTpr_Locationcountry, false);
-
-
-			AddObjectProperty("LocationCity", gxTpr_Locationcity, false);
-
-
-			AddObjectProperty("LocationZipCode", gxTpr_Locationzipcode, false);
-
-
-			AddObjectProperty("LocationAddressLine1", gxTpr_Locationaddressline1, false);
-
-
-			AddObjectProperty("LocationAddressLine2", gxTpr_Locationaddressline2, false);
 
 
 			AddObjectProperty("LocationDescription", gxTpr_Locationdescription, false);
@@ -109,6 +119,86 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Properties
+
+		[SoapElement(ElementName="LocationAddressLine1")]
+		[XmlElement(ElementName="LocationAddressLine1")]
+		public string gxTpr_Locationaddressline1
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1 = value;
+				SetDirty("Locationaddressline1");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationAddressLine2")]
+		[XmlElement(ElementName="LocationAddressLine2")]
+		public string gxTpr_Locationaddressline2
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2 = value;
+				SetDirty("Locationaddressline2");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationZipCode")]
+		[XmlElement(ElementName="LocationZipCode")]
+		public string gxTpr_Locationzipcode
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode = value;
+				SetDirty("Locationzipcode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationCity")]
+		[XmlElement(ElementName="LocationCity")]
+		public string gxTpr_Locationcity
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity = value;
+				SetDirty("Locationcity");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationCountry")]
+		[XmlElement(ElementName="LocationCountry")]
+		public string gxTpr_Locationcountry
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry = value;
+				SetDirty("Locationcountry");
+			}
+		}
+
+
+
 
 		[SoapElement(ElementName="LocationId")]
 		[XmlElement(ElementName="LocationId")]
@@ -158,6 +248,38 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="LocationPhoneCode")]
+		[XmlElement(ElementName="LocationPhoneCode")]
+		public string gxTpr_Locationphonecode
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = value;
+				SetDirty("Locationphonecode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationPhoneNumber")]
+		[XmlElement(ElementName="LocationPhoneNumber")]
+		public string gxTpr_Locationphonenumber
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = value;
+				SetDirty("Locationphonenumber");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="LocationPhone")]
 		[XmlElement(ElementName="LocationPhone")]
 		public string gxTpr_Locationphone
@@ -168,86 +290,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphone = value;
 				SetDirty("Locationphone");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="LocationCountry")]
-		[XmlElement(ElementName="LocationCountry")]
-		public string gxTpr_Locationcountry
-		{
-			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry; 
-			}
-			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry = value;
-				SetDirty("Locationcountry");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="LocationCity")]
-		[XmlElement(ElementName="LocationCity")]
-		public string gxTpr_Locationcity
-		{
-			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity; 
-			}
-			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity = value;
-				SetDirty("Locationcity");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="LocationZipCode")]
-		[XmlElement(ElementName="LocationZipCode")]
-		public string gxTpr_Locationzipcode
-		{
-			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode; 
-			}
-			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode = value;
-				SetDirty("Locationzipcode");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="LocationAddressLine1")]
-		[XmlElement(ElementName="LocationAddressLine1")]
-		public string gxTpr_Locationaddressline1
-		{
-			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1; 
-			}
-			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1 = value;
-				SetDirty("Locationaddressline1");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="LocationAddressLine2")]
-		[XmlElement(ElementName="LocationAddressLine2")]
-		public string gxTpr_Locationaddressline2
-		{
-			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2; 
-			}
-			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2 = value;
-				SetDirty("Locationaddressline2");
 			}
 		}
 
@@ -290,14 +332,17 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationname = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationemail = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphone = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1 = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2 = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationname = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationemail = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphone = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationdescription = "";
 			return  ;
 		}
@@ -308,6 +353,21 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry;
+		 
+
 		protected Guid gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationid;
 		 
 
@@ -317,22 +377,13 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationemail;
 		 
 
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber;
+		 
+
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphone;
-		 
-
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcountry;
-		 
-
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationcity;
-		 
-
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationzipcode;
-		 
-
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline1;
-		 
-
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationaddressline2;
 		 
 
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationdescription;
@@ -355,51 +406,51 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="LocationId", Order=0)]
-		public Guid gxTpr_Locationid
+		[DataMember(Name="LocationAddressLine1", Order=0)]
+		public  string gxTpr_Locationaddressline1
 		{
 			get { 
-				return sdt.gxTpr_Locationid;
+				return sdt.gxTpr_Locationaddressline1;
 
 			}
 			set { 
-				sdt.gxTpr_Locationid = value;
+				 sdt.gxTpr_Locationaddressline1 = value;
 			}
 		}
 
-		[DataMember(Name="LocationName", Order=1)]
-		public  string gxTpr_Locationname
+		[DataMember(Name="LocationAddressLine2", Order=1)]
+		public  string gxTpr_Locationaddressline2
 		{
 			get { 
-				return sdt.gxTpr_Locationname;
+				return sdt.gxTpr_Locationaddressline2;
 
 			}
 			set { 
-				 sdt.gxTpr_Locationname = value;
+				 sdt.gxTpr_Locationaddressline2 = value;
 			}
 		}
 
-		[DataMember(Name="LocationEmail", Order=2)]
-		public  string gxTpr_Locationemail
+		[DataMember(Name="LocationZipCode", Order=2)]
+		public  string gxTpr_Locationzipcode
 		{
 			get { 
-				return sdt.gxTpr_Locationemail;
+				return sdt.gxTpr_Locationzipcode;
 
 			}
 			set { 
-				 sdt.gxTpr_Locationemail = value;
+				 sdt.gxTpr_Locationzipcode = value;
 			}
 		}
 
-		[DataMember(Name="LocationPhone", Order=3)]
-		public  string gxTpr_Locationphone
+		[DataMember(Name="LocationCity", Order=3)]
+		public  string gxTpr_Locationcity
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Locationphone);
+				return sdt.gxTpr_Locationcity;
 
 			}
 			set { 
-				 sdt.gxTpr_Locationphone = value;
+				 sdt.gxTpr_Locationcity = value;
 			}
 		}
 
@@ -415,55 +466,79 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="LocationCity", Order=5)]
-		public  string gxTpr_Locationcity
+		[DataMember(Name="LocationId", Order=5)]
+		public Guid gxTpr_Locationid
 		{
 			get { 
-				return sdt.gxTpr_Locationcity;
+				return sdt.gxTpr_Locationid;
 
 			}
 			set { 
-				 sdt.gxTpr_Locationcity = value;
+				sdt.gxTpr_Locationid = value;
 			}
 		}
 
-		[DataMember(Name="LocationZipCode", Order=6)]
-		public  string gxTpr_Locationzipcode
+		[DataMember(Name="LocationName", Order=6)]
+		public  string gxTpr_Locationname
 		{
 			get { 
-				return sdt.gxTpr_Locationzipcode;
+				return sdt.gxTpr_Locationname;
 
 			}
 			set { 
-				 sdt.gxTpr_Locationzipcode = value;
+				 sdt.gxTpr_Locationname = value;
 			}
 		}
 
-		[DataMember(Name="LocationAddressLine1", Order=7)]
-		public  string gxTpr_Locationaddressline1
+		[DataMember(Name="LocationEmail", Order=7)]
+		public  string gxTpr_Locationemail
 		{
 			get { 
-				return sdt.gxTpr_Locationaddressline1;
+				return sdt.gxTpr_Locationemail;
 
 			}
 			set { 
-				 sdt.gxTpr_Locationaddressline1 = value;
+				 sdt.gxTpr_Locationemail = value;
 			}
 		}
 
-		[DataMember(Name="LocationAddressLine2", Order=8)]
-		public  string gxTpr_Locationaddressline2
+		[DataMember(Name="LocationPhoneCode", Order=8)]
+		public  string gxTpr_Locationphonecode
 		{
 			get { 
-				return sdt.gxTpr_Locationaddressline2;
+				return sdt.gxTpr_Locationphonecode;
 
 			}
 			set { 
-				 sdt.gxTpr_Locationaddressline2 = value;
+				 sdt.gxTpr_Locationphonecode = value;
 			}
 		}
 
-		[DataMember(Name="LocationDescription", Order=9)]
+		[DataMember(Name="LocationPhoneNumber", Order=9)]
+		public  string gxTpr_Locationphonenumber
+		{
+			get { 
+				return sdt.gxTpr_Locationphonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Locationphonenumber = value;
+			}
+		}
+
+		[DataMember(Name="LocationPhone", Order=10)]
+		public  string gxTpr_Locationphone
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Locationphone);
+
+			}
+			set { 
+				 sdt.gxTpr_Locationphone = value;
+			}
+		}
+
+		[DataMember(Name="LocationDescription", Order=11)]
 		public  string gxTpr_Locationdescription
 		{
 			get { 

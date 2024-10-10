@@ -470,7 +470,7 @@ namespace GeneXus.Programs {
          string sFromString;
          string sOrderString;
          sSelectString = " Trn_TileName, Trn_TileId";
-         sFromString = " FROM Trn_Col";
+         sFromString = " FROM Trn_Tile";
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14SearchTxt)) )
          {
@@ -554,8 +554,8 @@ namespace GeneXus.Programs {
              ,new CursorDef("P00743", "SELECT T1.Trn_ColId, T1.Trn_RowId, T2.Trn_RowName FROM (Trn_Col1 T1 INNER JOIN Trn_Row T2 ON T2.Trn_RowId = T1.Trn_RowId) WHERE T1.Trn_ColId = :AV20Trn_ColId ORDER BY T1.Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00743,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P00744", "SELECT Trn_RowId, Trn_RowName FROM Trn_Row WHERE Trn_RowId = :AV28Trn_RowId ORDER BY Trn_RowId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00744,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P00745", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00745,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00746", "SELECT T1.Trn_ColId, T1.Trn_TileId, T2.Trn_TileName FROM (Trn_Col1 T1 INNER JOIN Trn_Col T2 ON T2.Trn_TileId = T1.Trn_TileId) WHERE T1.Trn_ColId = :AV20Trn_ColId ORDER BY T1.Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00746,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00747", "SELECT Trn_TileId, Trn_TileName FROM Trn_Col WHERE Trn_TileId = :AV29Trn_TileId ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00747,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00746", "SELECT T1.Trn_ColId, T1.Trn_TileId, T2.Trn_TileName FROM (Trn_Col1 T1 INNER JOIN Trn_Tile T2 ON T2.Trn_TileId = T1.Trn_TileId) WHERE T1.Trn_ColId = :AV20Trn_ColId ORDER BY T1.Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00746,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00747", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile WHERE Trn_TileId = :AV29Trn_TileId ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00747,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }

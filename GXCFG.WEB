@@ -36,9 +36,9 @@
       <add  key="Connection-Default-Opts" value=";Integrated Security=no;"/>
       <add  key="Connection-Default-TrnInt" value="1"/>
       <add  key="DateFormat" value="MDY"/>
-      <add  key="YearLimit" value="1910"/>
+      <add  key="YearLimit" value="1940"/>
       <add  key="TimeAmPmFormat" value="12"/>
-      <add  key="VER_STAMP" value="20240928.150622"/>
+      <add  key="VER_STAMP" value="20241010.131122"/>
       <add  key="CS_BLOB_PATH" value="PublicTempStorage"/>
       <add  key="TMPMEDIA_DIR" value="PrivateTempStorage"/>
       <add  key="PRINT_LAYOUT_METADATA_DIR" value="LayoutMetadata"/>
@@ -72,7 +72,7 @@
       <add  key="wcf:serviceHostingEnvironment:useClassicReadEntityBodyMode" value="true"/>
       <add  key="HTTP_PROTOCOL" value="Unsecure"/>
       <add  key="SAMESITE_COOKIE" value="Lax"/>
-      <add  key="CACHE_INVALIDATION_TOKEN" value="20249281816375"/>
+      <add  key="CACHE_INVALIDATION_TOKEN" value="2024101016521444"/>
       <add  key="CORS_ALLOW_ORIGIN" value=""/>
       <add  key="LOG_OUTPUT" value="RollingFile"/>
       <add  key="MaxFileUploadSize" value="528000000"/>

@@ -192,10 +192,10 @@ namespace GeneXus.Programs {
          {
             AV40GridState.FromXml(AV38Session.Get("Trn_OrganisationWWGridState"), null, "", "");
          }
-         AV64GXV1 = 1;
-         while ( AV64GXV1 <= AV40GridState.gxTpr_Filtervalues.Count )
+         AV68GXV1 = 1;
+         while ( AV68GXV1 <= AV40GridState.gxTpr_Filtervalues.Count )
          {
-            AV41GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV40GridState.gxTpr_Filtervalues.Item(AV64GXV1));
+            AV41GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV40GridState.gxTpr_Filtervalues.Item(AV68GXV1));
             if ( StringUtil.StrCmp(AV41GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV49FilterFullText = AV41GridStateFilterValue.gxTpr_Value;
@@ -232,7 +232,7 @@ namespace GeneXus.Programs {
             {
                AV22TFOrganisationPhone_Sel = AV41GridStateFilterValue.gxTpr_Value;
             }
-            AV64GXV1 = (int)(AV64GXV1+1);
+            AV68GXV1 = (int)(AV68GXV1+1);
          }
       }
 
@@ -242,25 +242,25 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV13TFOrganisationName = AV27SearchTxt;
          AV14TFOrganisationName_Sel = "";
-         AV66Trn_organisationwwds_1_filterfulltext = AV49FilterFullText;
-         AV67Trn_organisationwwds_2_tforganisationname = AV13TFOrganisationName;
-         AV68Trn_organisationwwds_3_tforganisationname_sel = AV14TFOrganisationName_Sel;
-         AV69Trn_organisationwwds_4_tforganisationtypename = AV25TFOrganisationTypeName;
-         AV70Trn_organisationwwds_5_tforganisationtypename_sel = AV26TFOrganisationTypeName_Sel;
-         AV71Trn_organisationwwds_6_tforganisationemail = AV19TFOrganisationEmail;
-         AV72Trn_organisationwwds_7_tforganisationemail_sel = AV20TFOrganisationEmail_Sel;
-         AV73Trn_organisationwwds_8_tforganisationphone = AV21TFOrganisationPhone;
-         AV74Trn_organisationwwds_9_tforganisationphone_sel = AV22TFOrganisationPhone_Sel;
+         AV70Trn_organisationwwds_1_filterfulltext = AV49FilterFullText;
+         AV71Trn_organisationwwds_2_tforganisationname = AV13TFOrganisationName;
+         AV72Trn_organisationwwds_3_tforganisationname_sel = AV14TFOrganisationName_Sel;
+         AV73Trn_organisationwwds_4_tforganisationtypename = AV25TFOrganisationTypeName;
+         AV74Trn_organisationwwds_5_tforganisationtypename_sel = AV26TFOrganisationTypeName_Sel;
+         AV75Trn_organisationwwds_6_tforganisationemail = AV19TFOrganisationEmail;
+         AV76Trn_organisationwwds_7_tforganisationemail_sel = AV20TFOrganisationEmail_Sel;
+         AV77Trn_organisationwwds_8_tforganisationphone = AV21TFOrganisationPhone;
+         AV78Trn_organisationwwds_9_tforganisationphone_sel = AV22TFOrganisationPhone_Sel;
          pr_default.dynParam(0, new Object[]{ new Object[]{
-                                              AV66Trn_organisationwwds_1_filterfulltext ,
-                                              AV68Trn_organisationwwds_3_tforganisationname_sel ,
-                                              AV67Trn_organisationwwds_2_tforganisationname ,
-                                              AV70Trn_organisationwwds_5_tforganisationtypename_sel ,
-                                              AV69Trn_organisationwwds_4_tforganisationtypename ,
-                                              AV72Trn_organisationwwds_7_tforganisationemail_sel ,
-                                              AV71Trn_organisationwwds_6_tforganisationemail ,
-                                              AV74Trn_organisationwwds_9_tforganisationphone_sel ,
-                                              AV73Trn_organisationwwds_8_tforganisationphone ,
+                                              AV70Trn_organisationwwds_1_filterfulltext ,
+                                              AV72Trn_organisationwwds_3_tforganisationname_sel ,
+                                              AV71Trn_organisationwwds_2_tforganisationname ,
+                                              AV74Trn_organisationwwds_5_tforganisationtypename_sel ,
+                                              AV73Trn_organisationwwds_4_tforganisationtypename ,
+                                              AV76Trn_organisationwwds_7_tforganisationemail_sel ,
+                                              AV75Trn_organisationwwds_6_tforganisationemail ,
+                                              AV78Trn_organisationwwds_9_tforganisationphone_sel ,
+                                              AV77Trn_organisationwwds_8_tforganisationphone ,
                                               A13OrganisationName ,
                                               A20OrganisationTypeName ,
                                               A16OrganisationEmail ,
@@ -268,16 +268,16 @@ namespace GeneXus.Programs {
                                               new int[]{
                                               }
          });
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV67Trn_organisationwwds_2_tforganisationname = StringUtil.Concat( StringUtil.RTrim( AV67Trn_organisationwwds_2_tforganisationname), "%", "");
-         lV69Trn_organisationwwds_4_tforganisationtypename = StringUtil.Concat( StringUtil.RTrim( AV69Trn_organisationwwds_4_tforganisationtypename), "%", "");
-         lV71Trn_organisationwwds_6_tforganisationemail = StringUtil.Concat( StringUtil.RTrim( AV71Trn_organisationwwds_6_tforganisationemail), "%", "");
-         lV73Trn_organisationwwds_8_tforganisationphone = StringUtil.PadR( StringUtil.RTrim( AV73Trn_organisationwwds_8_tforganisationphone), 20, "%");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV71Trn_organisationwwds_2_tforganisationname = StringUtil.Concat( StringUtil.RTrim( AV71Trn_organisationwwds_2_tforganisationname), "%", "");
+         lV73Trn_organisationwwds_4_tforganisationtypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_organisationwwds_4_tforganisationtypename), "%", "");
+         lV75Trn_organisationwwds_6_tforganisationemail = StringUtil.Concat( StringUtil.RTrim( AV75Trn_organisationwwds_6_tforganisationemail), "%", "");
+         lV77Trn_organisationwwds_8_tforganisationphone = StringUtil.PadR( StringUtil.RTrim( AV77Trn_organisationwwds_8_tforganisationphone), 20, "%");
          /* Using cursor P00652 */
-         pr_default.execute(0, new Object[] {lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV67Trn_organisationwwds_2_tforganisationname, AV68Trn_organisationwwds_3_tforganisationname_sel, lV69Trn_organisationwwds_4_tforganisationtypename, AV70Trn_organisationwwds_5_tforganisationtypename_sel, lV71Trn_organisationwwds_6_tforganisationemail, AV72Trn_organisationwwds_7_tforganisationemail_sel, lV73Trn_organisationwwds_8_tforganisationphone, AV74Trn_organisationwwds_9_tforganisationphone_sel});
+         pr_default.execute(0, new Object[] {lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV71Trn_organisationwwds_2_tforganisationname, AV72Trn_organisationwwds_3_tforganisationname_sel, lV73Trn_organisationwwds_4_tforganisationtypename, AV74Trn_organisationwwds_5_tforganisationtypename_sel, lV75Trn_organisationwwds_6_tforganisationemail, AV76Trn_organisationwwds_7_tforganisationemail_sel, lV77Trn_organisationwwds_8_tforganisationphone, AV78Trn_organisationwwds_9_tforganisationphone_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK652 = false;
@@ -327,25 +327,25 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV25TFOrganisationTypeName = AV27SearchTxt;
          AV26TFOrganisationTypeName_Sel = "";
-         AV66Trn_organisationwwds_1_filterfulltext = AV49FilterFullText;
-         AV67Trn_organisationwwds_2_tforganisationname = AV13TFOrganisationName;
-         AV68Trn_organisationwwds_3_tforganisationname_sel = AV14TFOrganisationName_Sel;
-         AV69Trn_organisationwwds_4_tforganisationtypename = AV25TFOrganisationTypeName;
-         AV70Trn_organisationwwds_5_tforganisationtypename_sel = AV26TFOrganisationTypeName_Sel;
-         AV71Trn_organisationwwds_6_tforganisationemail = AV19TFOrganisationEmail;
-         AV72Trn_organisationwwds_7_tforganisationemail_sel = AV20TFOrganisationEmail_Sel;
-         AV73Trn_organisationwwds_8_tforganisationphone = AV21TFOrganisationPhone;
-         AV74Trn_organisationwwds_9_tforganisationphone_sel = AV22TFOrganisationPhone_Sel;
+         AV70Trn_organisationwwds_1_filterfulltext = AV49FilterFullText;
+         AV71Trn_organisationwwds_2_tforganisationname = AV13TFOrganisationName;
+         AV72Trn_organisationwwds_3_tforganisationname_sel = AV14TFOrganisationName_Sel;
+         AV73Trn_organisationwwds_4_tforganisationtypename = AV25TFOrganisationTypeName;
+         AV74Trn_organisationwwds_5_tforganisationtypename_sel = AV26TFOrganisationTypeName_Sel;
+         AV75Trn_organisationwwds_6_tforganisationemail = AV19TFOrganisationEmail;
+         AV76Trn_organisationwwds_7_tforganisationemail_sel = AV20TFOrganisationEmail_Sel;
+         AV77Trn_organisationwwds_8_tforganisationphone = AV21TFOrganisationPhone;
+         AV78Trn_organisationwwds_9_tforganisationphone_sel = AV22TFOrganisationPhone_Sel;
          pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              AV66Trn_organisationwwds_1_filterfulltext ,
-                                              AV68Trn_organisationwwds_3_tforganisationname_sel ,
-                                              AV67Trn_organisationwwds_2_tforganisationname ,
-                                              AV70Trn_organisationwwds_5_tforganisationtypename_sel ,
-                                              AV69Trn_organisationwwds_4_tforganisationtypename ,
-                                              AV72Trn_organisationwwds_7_tforganisationemail_sel ,
-                                              AV71Trn_organisationwwds_6_tforganisationemail ,
-                                              AV74Trn_organisationwwds_9_tforganisationphone_sel ,
-                                              AV73Trn_organisationwwds_8_tforganisationphone ,
+                                              AV70Trn_organisationwwds_1_filterfulltext ,
+                                              AV72Trn_organisationwwds_3_tforganisationname_sel ,
+                                              AV71Trn_organisationwwds_2_tforganisationname ,
+                                              AV74Trn_organisationwwds_5_tforganisationtypename_sel ,
+                                              AV73Trn_organisationwwds_4_tforganisationtypename ,
+                                              AV76Trn_organisationwwds_7_tforganisationemail_sel ,
+                                              AV75Trn_organisationwwds_6_tforganisationemail ,
+                                              AV78Trn_organisationwwds_9_tforganisationphone_sel ,
+                                              AV77Trn_organisationwwds_8_tforganisationphone ,
                                               A13OrganisationName ,
                                               A20OrganisationTypeName ,
                                               A16OrganisationEmail ,
@@ -353,16 +353,16 @@ namespace GeneXus.Programs {
                                               new int[]{
                                               }
          });
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV67Trn_organisationwwds_2_tforganisationname = StringUtil.Concat( StringUtil.RTrim( AV67Trn_organisationwwds_2_tforganisationname), "%", "");
-         lV69Trn_organisationwwds_4_tforganisationtypename = StringUtil.Concat( StringUtil.RTrim( AV69Trn_organisationwwds_4_tforganisationtypename), "%", "");
-         lV71Trn_organisationwwds_6_tforganisationemail = StringUtil.Concat( StringUtil.RTrim( AV71Trn_organisationwwds_6_tforganisationemail), "%", "");
-         lV73Trn_organisationwwds_8_tforganisationphone = StringUtil.PadR( StringUtil.RTrim( AV73Trn_organisationwwds_8_tforganisationphone), 20, "%");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV71Trn_organisationwwds_2_tforganisationname = StringUtil.Concat( StringUtil.RTrim( AV71Trn_organisationwwds_2_tforganisationname), "%", "");
+         lV73Trn_organisationwwds_4_tforganisationtypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_organisationwwds_4_tforganisationtypename), "%", "");
+         lV75Trn_organisationwwds_6_tforganisationemail = StringUtil.Concat( StringUtil.RTrim( AV75Trn_organisationwwds_6_tforganisationemail), "%", "");
+         lV77Trn_organisationwwds_8_tforganisationphone = StringUtil.PadR( StringUtil.RTrim( AV77Trn_organisationwwds_8_tforganisationphone), 20, "%");
          /* Using cursor P00653 */
-         pr_default.execute(1, new Object[] {lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV67Trn_organisationwwds_2_tforganisationname, AV68Trn_organisationwwds_3_tforganisationname_sel, lV69Trn_organisationwwds_4_tforganisationtypename, AV70Trn_organisationwwds_5_tforganisationtypename_sel, lV71Trn_organisationwwds_6_tforganisationemail, AV72Trn_organisationwwds_7_tforganisationemail_sel, lV73Trn_organisationwwds_8_tforganisationphone, AV74Trn_organisationwwds_9_tforganisationphone_sel});
+         pr_default.execute(1, new Object[] {lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV71Trn_organisationwwds_2_tforganisationname, AV72Trn_organisationwwds_3_tforganisationname_sel, lV73Trn_organisationwwds_4_tforganisationtypename, AV74Trn_organisationwwds_5_tforganisationtypename_sel, lV75Trn_organisationwwds_6_tforganisationemail, AV76Trn_organisationwwds_7_tforganisationemail_sel, lV77Trn_organisationwwds_8_tforganisationphone, AV78Trn_organisationwwds_9_tforganisationphone_sel});
          while ( (pr_default.getStatus(1) != 101) )
          {
             BRK654 = false;
@@ -416,25 +416,25 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV19TFOrganisationEmail = AV27SearchTxt;
          AV20TFOrganisationEmail_Sel = "";
-         AV66Trn_organisationwwds_1_filterfulltext = AV49FilterFullText;
-         AV67Trn_organisationwwds_2_tforganisationname = AV13TFOrganisationName;
-         AV68Trn_organisationwwds_3_tforganisationname_sel = AV14TFOrganisationName_Sel;
-         AV69Trn_organisationwwds_4_tforganisationtypename = AV25TFOrganisationTypeName;
-         AV70Trn_organisationwwds_5_tforganisationtypename_sel = AV26TFOrganisationTypeName_Sel;
-         AV71Trn_organisationwwds_6_tforganisationemail = AV19TFOrganisationEmail;
-         AV72Trn_organisationwwds_7_tforganisationemail_sel = AV20TFOrganisationEmail_Sel;
-         AV73Trn_organisationwwds_8_tforganisationphone = AV21TFOrganisationPhone;
-         AV74Trn_organisationwwds_9_tforganisationphone_sel = AV22TFOrganisationPhone_Sel;
+         AV70Trn_organisationwwds_1_filterfulltext = AV49FilterFullText;
+         AV71Trn_organisationwwds_2_tforganisationname = AV13TFOrganisationName;
+         AV72Trn_organisationwwds_3_tforganisationname_sel = AV14TFOrganisationName_Sel;
+         AV73Trn_organisationwwds_4_tforganisationtypename = AV25TFOrganisationTypeName;
+         AV74Trn_organisationwwds_5_tforganisationtypename_sel = AV26TFOrganisationTypeName_Sel;
+         AV75Trn_organisationwwds_6_tforganisationemail = AV19TFOrganisationEmail;
+         AV76Trn_organisationwwds_7_tforganisationemail_sel = AV20TFOrganisationEmail_Sel;
+         AV77Trn_organisationwwds_8_tforganisationphone = AV21TFOrganisationPhone;
+         AV78Trn_organisationwwds_9_tforganisationphone_sel = AV22TFOrganisationPhone_Sel;
          pr_default.dynParam(2, new Object[]{ new Object[]{
-                                              AV66Trn_organisationwwds_1_filterfulltext ,
-                                              AV68Trn_organisationwwds_3_tforganisationname_sel ,
-                                              AV67Trn_organisationwwds_2_tforganisationname ,
-                                              AV70Trn_organisationwwds_5_tforganisationtypename_sel ,
-                                              AV69Trn_organisationwwds_4_tforganisationtypename ,
-                                              AV72Trn_organisationwwds_7_tforganisationemail_sel ,
-                                              AV71Trn_organisationwwds_6_tforganisationemail ,
-                                              AV74Trn_organisationwwds_9_tforganisationphone_sel ,
-                                              AV73Trn_organisationwwds_8_tforganisationphone ,
+                                              AV70Trn_organisationwwds_1_filterfulltext ,
+                                              AV72Trn_organisationwwds_3_tforganisationname_sel ,
+                                              AV71Trn_organisationwwds_2_tforganisationname ,
+                                              AV74Trn_organisationwwds_5_tforganisationtypename_sel ,
+                                              AV73Trn_organisationwwds_4_tforganisationtypename ,
+                                              AV76Trn_organisationwwds_7_tforganisationemail_sel ,
+                                              AV75Trn_organisationwwds_6_tforganisationemail ,
+                                              AV78Trn_organisationwwds_9_tforganisationphone_sel ,
+                                              AV77Trn_organisationwwds_8_tforganisationphone ,
                                               A13OrganisationName ,
                                               A20OrganisationTypeName ,
                                               A16OrganisationEmail ,
@@ -442,16 +442,16 @@ namespace GeneXus.Programs {
                                               new int[]{
                                               }
          });
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV67Trn_organisationwwds_2_tforganisationname = StringUtil.Concat( StringUtil.RTrim( AV67Trn_organisationwwds_2_tforganisationname), "%", "");
-         lV69Trn_organisationwwds_4_tforganisationtypename = StringUtil.Concat( StringUtil.RTrim( AV69Trn_organisationwwds_4_tforganisationtypename), "%", "");
-         lV71Trn_organisationwwds_6_tforganisationemail = StringUtil.Concat( StringUtil.RTrim( AV71Trn_organisationwwds_6_tforganisationemail), "%", "");
-         lV73Trn_organisationwwds_8_tforganisationphone = StringUtil.PadR( StringUtil.RTrim( AV73Trn_organisationwwds_8_tforganisationphone), 20, "%");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV71Trn_organisationwwds_2_tforganisationname = StringUtil.Concat( StringUtil.RTrim( AV71Trn_organisationwwds_2_tforganisationname), "%", "");
+         lV73Trn_organisationwwds_4_tforganisationtypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_organisationwwds_4_tforganisationtypename), "%", "");
+         lV75Trn_organisationwwds_6_tforganisationemail = StringUtil.Concat( StringUtil.RTrim( AV75Trn_organisationwwds_6_tforganisationemail), "%", "");
+         lV77Trn_organisationwwds_8_tforganisationphone = StringUtil.PadR( StringUtil.RTrim( AV77Trn_organisationwwds_8_tforganisationphone), 20, "%");
          /* Using cursor P00654 */
-         pr_default.execute(2, new Object[] {lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV67Trn_organisationwwds_2_tforganisationname, AV68Trn_organisationwwds_3_tforganisationname_sel, lV69Trn_organisationwwds_4_tforganisationtypename, AV70Trn_organisationwwds_5_tforganisationtypename_sel, lV71Trn_organisationwwds_6_tforganisationemail, AV72Trn_organisationwwds_7_tforganisationemail_sel, lV73Trn_organisationwwds_8_tforganisationphone, AV74Trn_organisationwwds_9_tforganisationphone_sel});
+         pr_default.execute(2, new Object[] {lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV71Trn_organisationwwds_2_tforganisationname, AV72Trn_organisationwwds_3_tforganisationname_sel, lV73Trn_organisationwwds_4_tforganisationtypename, AV74Trn_organisationwwds_5_tforganisationtypename_sel, lV75Trn_organisationwwds_6_tforganisationemail, AV76Trn_organisationwwds_7_tforganisationemail_sel, lV77Trn_organisationwwds_8_tforganisationphone, AV78Trn_organisationwwds_9_tforganisationphone_sel});
          while ( (pr_default.getStatus(2) != 101) )
          {
             BRK656 = false;
@@ -501,25 +501,25 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV21TFOrganisationPhone = AV27SearchTxt;
          AV22TFOrganisationPhone_Sel = "";
-         AV66Trn_organisationwwds_1_filterfulltext = AV49FilterFullText;
-         AV67Trn_organisationwwds_2_tforganisationname = AV13TFOrganisationName;
-         AV68Trn_organisationwwds_3_tforganisationname_sel = AV14TFOrganisationName_Sel;
-         AV69Trn_organisationwwds_4_tforganisationtypename = AV25TFOrganisationTypeName;
-         AV70Trn_organisationwwds_5_tforganisationtypename_sel = AV26TFOrganisationTypeName_Sel;
-         AV71Trn_organisationwwds_6_tforganisationemail = AV19TFOrganisationEmail;
-         AV72Trn_organisationwwds_7_tforganisationemail_sel = AV20TFOrganisationEmail_Sel;
-         AV73Trn_organisationwwds_8_tforganisationphone = AV21TFOrganisationPhone;
-         AV74Trn_organisationwwds_9_tforganisationphone_sel = AV22TFOrganisationPhone_Sel;
+         AV70Trn_organisationwwds_1_filterfulltext = AV49FilterFullText;
+         AV71Trn_organisationwwds_2_tforganisationname = AV13TFOrganisationName;
+         AV72Trn_organisationwwds_3_tforganisationname_sel = AV14TFOrganisationName_Sel;
+         AV73Trn_organisationwwds_4_tforganisationtypename = AV25TFOrganisationTypeName;
+         AV74Trn_organisationwwds_5_tforganisationtypename_sel = AV26TFOrganisationTypeName_Sel;
+         AV75Trn_organisationwwds_6_tforganisationemail = AV19TFOrganisationEmail;
+         AV76Trn_organisationwwds_7_tforganisationemail_sel = AV20TFOrganisationEmail_Sel;
+         AV77Trn_organisationwwds_8_tforganisationphone = AV21TFOrganisationPhone;
+         AV78Trn_organisationwwds_9_tforganisationphone_sel = AV22TFOrganisationPhone_Sel;
          pr_default.dynParam(3, new Object[]{ new Object[]{
-                                              AV66Trn_organisationwwds_1_filterfulltext ,
-                                              AV68Trn_organisationwwds_3_tforganisationname_sel ,
-                                              AV67Trn_organisationwwds_2_tforganisationname ,
-                                              AV70Trn_organisationwwds_5_tforganisationtypename_sel ,
-                                              AV69Trn_organisationwwds_4_tforganisationtypename ,
-                                              AV72Trn_organisationwwds_7_tforganisationemail_sel ,
-                                              AV71Trn_organisationwwds_6_tforganisationemail ,
-                                              AV74Trn_organisationwwds_9_tforganisationphone_sel ,
-                                              AV73Trn_organisationwwds_8_tforganisationphone ,
+                                              AV70Trn_organisationwwds_1_filterfulltext ,
+                                              AV72Trn_organisationwwds_3_tforganisationname_sel ,
+                                              AV71Trn_organisationwwds_2_tforganisationname ,
+                                              AV74Trn_organisationwwds_5_tforganisationtypename_sel ,
+                                              AV73Trn_organisationwwds_4_tforganisationtypename ,
+                                              AV76Trn_organisationwwds_7_tforganisationemail_sel ,
+                                              AV75Trn_organisationwwds_6_tforganisationemail ,
+                                              AV78Trn_organisationwwds_9_tforganisationphone_sel ,
+                                              AV77Trn_organisationwwds_8_tforganisationphone ,
                                               A13OrganisationName ,
                                               A20OrganisationTypeName ,
                                               A16OrganisationEmail ,
@@ -527,16 +527,16 @@ namespace GeneXus.Programs {
                                               new int[]{
                                               }
          });
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV66Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext), "%", "");
-         lV67Trn_organisationwwds_2_tforganisationname = StringUtil.Concat( StringUtil.RTrim( AV67Trn_organisationwwds_2_tforganisationname), "%", "");
-         lV69Trn_organisationwwds_4_tforganisationtypename = StringUtil.Concat( StringUtil.RTrim( AV69Trn_organisationwwds_4_tforganisationtypename), "%", "");
-         lV71Trn_organisationwwds_6_tforganisationemail = StringUtil.Concat( StringUtil.RTrim( AV71Trn_organisationwwds_6_tforganisationemail), "%", "");
-         lV73Trn_organisationwwds_8_tforganisationphone = StringUtil.PadR( StringUtil.RTrim( AV73Trn_organisationwwds_8_tforganisationphone), 20, "%");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV70Trn_organisationwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext), "%", "");
+         lV71Trn_organisationwwds_2_tforganisationname = StringUtil.Concat( StringUtil.RTrim( AV71Trn_organisationwwds_2_tforganisationname), "%", "");
+         lV73Trn_organisationwwds_4_tforganisationtypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_organisationwwds_4_tforganisationtypename), "%", "");
+         lV75Trn_organisationwwds_6_tforganisationemail = StringUtil.Concat( StringUtil.RTrim( AV75Trn_organisationwwds_6_tforganisationemail), "%", "");
+         lV77Trn_organisationwwds_8_tforganisationphone = StringUtil.PadR( StringUtil.RTrim( AV77Trn_organisationwwds_8_tforganisationphone), 20, "%");
          /* Using cursor P00655 */
-         pr_default.execute(3, new Object[] {lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV66Trn_organisationwwds_1_filterfulltext, lV67Trn_organisationwwds_2_tforganisationname, AV68Trn_organisationwwds_3_tforganisationname_sel, lV69Trn_organisationwwds_4_tforganisationtypename, AV70Trn_organisationwwds_5_tforganisationtypename_sel, lV71Trn_organisationwwds_6_tforganisationemail, AV72Trn_organisationwwds_7_tforganisationemail_sel, lV73Trn_organisationwwds_8_tforganisationphone, AV74Trn_organisationwwds_9_tforganisationphone_sel});
+         pr_default.execute(3, new Object[] {lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV70Trn_organisationwwds_1_filterfulltext, lV71Trn_organisationwwds_2_tforganisationname, AV72Trn_organisationwwds_3_tforganisationname_sel, lV73Trn_organisationwwds_4_tforganisationtypename, AV74Trn_organisationwwds_5_tforganisationtypename_sel, lV75Trn_organisationwwds_6_tforganisationemail, AV76Trn_organisationwwds_7_tforganisationemail_sel, lV77Trn_organisationwwds_8_tforganisationphone, AV78Trn_organisationwwds_9_tforganisationphone_sel});
          while ( (pr_default.getStatus(3) != 101) )
          {
             BRK658 = false;
@@ -612,20 +612,20 @@ namespace GeneXus.Programs {
          AV20TFOrganisationEmail_Sel = "";
          AV21TFOrganisationPhone = "";
          AV22TFOrganisationPhone_Sel = "";
-         AV66Trn_organisationwwds_1_filterfulltext = "";
-         AV67Trn_organisationwwds_2_tforganisationname = "";
-         AV68Trn_organisationwwds_3_tforganisationname_sel = "";
-         AV69Trn_organisationwwds_4_tforganisationtypename = "";
-         AV70Trn_organisationwwds_5_tforganisationtypename_sel = "";
-         AV71Trn_organisationwwds_6_tforganisationemail = "";
-         AV72Trn_organisationwwds_7_tforganisationemail_sel = "";
-         AV73Trn_organisationwwds_8_tforganisationphone = "";
-         AV74Trn_organisationwwds_9_tforganisationphone_sel = "";
-         lV66Trn_organisationwwds_1_filterfulltext = "";
-         lV67Trn_organisationwwds_2_tforganisationname = "";
-         lV69Trn_organisationwwds_4_tforganisationtypename = "";
-         lV71Trn_organisationwwds_6_tforganisationemail = "";
-         lV73Trn_organisationwwds_8_tforganisationphone = "";
+         AV70Trn_organisationwwds_1_filterfulltext = "";
+         AV71Trn_organisationwwds_2_tforganisationname = "";
+         AV72Trn_organisationwwds_3_tforganisationname_sel = "";
+         AV73Trn_organisationwwds_4_tforganisationtypename = "";
+         AV74Trn_organisationwwds_5_tforganisationtypename_sel = "";
+         AV75Trn_organisationwwds_6_tforganisationemail = "";
+         AV76Trn_organisationwwds_7_tforganisationemail_sel = "";
+         AV77Trn_organisationwwds_8_tforganisationphone = "";
+         AV78Trn_organisationwwds_9_tforganisationphone_sel = "";
+         lV70Trn_organisationwwds_1_filterfulltext = "";
+         lV71Trn_organisationwwds_2_tforganisationname = "";
+         lV73Trn_organisationwwds_4_tforganisationtypename = "";
+         lV75Trn_organisationwwds_6_tforganisationemail = "";
+         lV77Trn_organisationwwds_8_tforganisationphone = "";
          A13OrganisationName = "";
          A20OrganisationTypeName = "";
          A16OrganisationEmail = "";
@@ -679,14 +679,14 @@ namespace GeneXus.Programs {
       private short AV30MaxItems ;
       private short AV29PageIndex ;
       private short AV28SkipItems ;
-      private int AV64GXV1 ;
+      private int AV68GXV1 ;
       private int AV31InsertIndex ;
       private long AV37count ;
       private string AV21TFOrganisationPhone ;
       private string AV22TFOrganisationPhone_Sel ;
-      private string AV73Trn_organisationwwds_8_tforganisationphone ;
-      private string AV74Trn_organisationwwds_9_tforganisationphone_sel ;
-      private string lV73Trn_organisationwwds_8_tforganisationphone ;
+      private string AV77Trn_organisationwwds_8_tforganisationphone ;
+      private string AV78Trn_organisationwwds_9_tforganisationphone_sel ;
+      private string lV77Trn_organisationwwds_8_tforganisationphone ;
       private string A17OrganisationPhone ;
       private bool returnInSub ;
       private bool BRK652 ;
@@ -707,17 +707,17 @@ namespace GeneXus.Programs {
       private string AV26TFOrganisationTypeName_Sel ;
       private string AV19TFOrganisationEmail ;
       private string AV20TFOrganisationEmail_Sel ;
-      private string AV66Trn_organisationwwds_1_filterfulltext ;
-      private string AV67Trn_organisationwwds_2_tforganisationname ;
-      private string AV68Trn_organisationwwds_3_tforganisationname_sel ;
-      private string AV69Trn_organisationwwds_4_tforganisationtypename ;
-      private string AV70Trn_organisationwwds_5_tforganisationtypename_sel ;
-      private string AV71Trn_organisationwwds_6_tforganisationemail ;
-      private string AV72Trn_organisationwwds_7_tforganisationemail_sel ;
-      private string lV66Trn_organisationwwds_1_filterfulltext ;
-      private string lV67Trn_organisationwwds_2_tforganisationname ;
-      private string lV69Trn_organisationwwds_4_tforganisationtypename ;
-      private string lV71Trn_organisationwwds_6_tforganisationemail ;
+      private string AV70Trn_organisationwwds_1_filterfulltext ;
+      private string AV71Trn_organisationwwds_2_tforganisationname ;
+      private string AV72Trn_organisationwwds_3_tforganisationname_sel ;
+      private string AV73Trn_organisationwwds_4_tforganisationtypename ;
+      private string AV74Trn_organisationwwds_5_tforganisationtypename_sel ;
+      private string AV75Trn_organisationwwds_6_tforganisationemail ;
+      private string AV76Trn_organisationwwds_7_tforganisationemail_sel ;
+      private string lV70Trn_organisationwwds_1_filterfulltext ;
+      private string lV71Trn_organisationwwds_2_tforganisationname ;
+      private string lV73Trn_organisationwwds_4_tforganisationtypename ;
+      private string lV75Trn_organisationwwds_6_tforganisationemail ;
       private string A13OrganisationName ;
       private string A20OrganisationTypeName ;
       private string A16OrganisationEmail ;
@@ -766,15 +766,15 @@ namespace GeneXus.Programs {
    public class trn_organisationwwgetfilterdata__default : DataStoreHelperBase, IDataStoreHelper
    {
       protected Object[] conditional_P00652( IGxContext context ,
-                                             string AV66Trn_organisationwwds_1_filterfulltext ,
-                                             string AV68Trn_organisationwwds_3_tforganisationname_sel ,
-                                             string AV67Trn_organisationwwds_2_tforganisationname ,
-                                             string AV70Trn_organisationwwds_5_tforganisationtypename_sel ,
-                                             string AV69Trn_organisationwwds_4_tforganisationtypename ,
-                                             string AV72Trn_organisationwwds_7_tforganisationemail_sel ,
-                                             string AV71Trn_organisationwwds_6_tforganisationemail ,
-                                             string AV74Trn_organisationwwds_9_tforganisationphone_sel ,
-                                             string AV73Trn_organisationwwds_8_tforganisationphone ,
+                                             string AV70Trn_organisationwwds_1_filterfulltext ,
+                                             string AV72Trn_organisationwwds_3_tforganisationname_sel ,
+                                             string AV71Trn_organisationwwds_2_tforganisationname ,
+                                             string AV74Trn_organisationwwds_5_tforganisationtypename_sel ,
+                                             string AV73Trn_organisationwwds_4_tforganisationtypename ,
+                                             string AV76Trn_organisationwwds_7_tforganisationemail_sel ,
+                                             string AV75Trn_organisationwwds_6_tforganisationemail ,
+                                             string AV78Trn_organisationwwds_9_tforganisationphone_sel ,
+                                             string AV77Trn_organisationwwds_8_tforganisationphone ,
                                              string A13OrganisationName ,
                                              string A20OrganisationTypeName ,
                                              string A16OrganisationEmail ,
@@ -785,9 +785,9 @@ namespace GeneXus.Programs {
          short[] GXv_int1 = new short[12];
          Object[] GXv_Object2 = new Object[2];
          scmdbuf = "SELECT T1.OrganisationTypeId, T1.OrganisationName, T1.OrganisationPhone, T1.OrganisationEmail, T2.OrganisationTypeName, T1.OrganisationId FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext)) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV66Trn_organisationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV70Trn_organisationwwds_1_filterfulltext))");
          }
          else
          {
@@ -796,83 +796,83 @@ namespace GeneXus.Programs {
             GXv_int1[2] = 1;
             GXv_int1[3] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_organisationwwds_2_tforganisationname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_organisationwwds_2_tforganisationname)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationName like :lV67Trn_organisationwwds_2_tforganisationname)");
+            AddWhere(sWhereString, "(T1.OrganisationName like :lV71Trn_organisationwwds_2_tforganisationname)");
          }
          else
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV68Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationName = ( :AV68Trn_organisationwwds_3_tforganisationname_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationName = ( :AV72Trn_organisationwwds_3_tforganisationname_sel))");
          }
          else
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_organisationwwds_4_tforganisationtypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_organisationwwds_4_tforganisationtypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV69Trn_organisationwwds_4_tforganisationtypename)");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV73Trn_organisationwwds_4_tforganisationtypename)");
          }
          else
          {
             GXv_int1[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV70Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV70Trn_organisationwwds_5_tforganisationtypename_sel))");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV74Trn_organisationwwds_5_tforganisationtypename_sel))");
          }
          else
          {
             GXv_int1[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.OrganisationTypeName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_organisationwwds_6_tforganisationemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_organisationwwds_6_tforganisationemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV71Trn_organisationwwds_6_tforganisationemail)");
+            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV75Trn_organisationwwds_6_tforganisationemail)");
          }
          else
          {
             GXv_int1[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV72Trn_organisationwwds_7_tforganisationemail_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV76Trn_organisationwwds_7_tforganisationemail_sel))");
          }
          else
          {
             GXv_int1[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_organisationwwds_8_tforganisationphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Trn_organisationwwds_8_tforganisationphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV73Trn_organisationwwds_8_tforganisationphone)");
+            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV77Trn_organisationwwds_8_tforganisationphone)");
          }
          else
          {
             GXv_int1[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV74Trn_organisationwwds_9_tforganisationphone_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV78Trn_organisationwwds_9_tforganisationphone_sel))");
          }
          else
          {
             GXv_int1[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationPhone))=0))");
          }
@@ -884,15 +884,15 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P00653( IGxContext context ,
-                                             string AV66Trn_organisationwwds_1_filterfulltext ,
-                                             string AV68Trn_organisationwwds_3_tforganisationname_sel ,
-                                             string AV67Trn_organisationwwds_2_tforganisationname ,
-                                             string AV70Trn_organisationwwds_5_tforganisationtypename_sel ,
-                                             string AV69Trn_organisationwwds_4_tforganisationtypename ,
-                                             string AV72Trn_organisationwwds_7_tforganisationemail_sel ,
-                                             string AV71Trn_organisationwwds_6_tforganisationemail ,
-                                             string AV74Trn_organisationwwds_9_tforganisationphone_sel ,
-                                             string AV73Trn_organisationwwds_8_tforganisationphone ,
+                                             string AV70Trn_organisationwwds_1_filterfulltext ,
+                                             string AV72Trn_organisationwwds_3_tforganisationname_sel ,
+                                             string AV71Trn_organisationwwds_2_tforganisationname ,
+                                             string AV74Trn_organisationwwds_5_tforganisationtypename_sel ,
+                                             string AV73Trn_organisationwwds_4_tforganisationtypename ,
+                                             string AV76Trn_organisationwwds_7_tforganisationemail_sel ,
+                                             string AV75Trn_organisationwwds_6_tforganisationemail ,
+                                             string AV78Trn_organisationwwds_9_tforganisationphone_sel ,
+                                             string AV77Trn_organisationwwds_8_tforganisationphone ,
                                              string A13OrganisationName ,
                                              string A20OrganisationTypeName ,
                                              string A16OrganisationEmail ,
@@ -903,9 +903,9 @@ namespace GeneXus.Programs {
          short[] GXv_int3 = new short[12];
          Object[] GXv_Object4 = new Object[2];
          scmdbuf = "SELECT T1.OrganisationTypeId, T1.OrganisationPhone, T1.OrganisationEmail, T2.OrganisationTypeName, T1.OrganisationName, T1.OrganisationId FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext)) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV66Trn_organisationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV70Trn_organisationwwds_1_filterfulltext))");
          }
          else
          {
@@ -914,83 +914,83 @@ namespace GeneXus.Programs {
             GXv_int3[2] = 1;
             GXv_int3[3] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_organisationwwds_2_tforganisationname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_organisationwwds_2_tforganisationname)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationName like :lV67Trn_organisationwwds_2_tforganisationname)");
+            AddWhere(sWhereString, "(T1.OrganisationName like :lV71Trn_organisationwwds_2_tforganisationname)");
          }
          else
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV68Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationName = ( :AV68Trn_organisationwwds_3_tforganisationname_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationName = ( :AV72Trn_organisationwwds_3_tforganisationname_sel))");
          }
          else
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_organisationwwds_4_tforganisationtypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_organisationwwds_4_tforganisationtypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV69Trn_organisationwwds_4_tforganisationtypename)");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV73Trn_organisationwwds_4_tforganisationtypename)");
          }
          else
          {
             GXv_int3[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV70Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV70Trn_organisationwwds_5_tforganisationtypename_sel))");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV74Trn_organisationwwds_5_tforganisationtypename_sel))");
          }
          else
          {
             GXv_int3[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.OrganisationTypeName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_organisationwwds_6_tforganisationemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_organisationwwds_6_tforganisationemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV71Trn_organisationwwds_6_tforganisationemail)");
+            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV75Trn_organisationwwds_6_tforganisationemail)");
          }
          else
          {
             GXv_int3[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV72Trn_organisationwwds_7_tforganisationemail_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV76Trn_organisationwwds_7_tforganisationemail_sel))");
          }
          else
          {
             GXv_int3[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_organisationwwds_8_tforganisationphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Trn_organisationwwds_8_tforganisationphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV73Trn_organisationwwds_8_tforganisationphone)");
+            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV77Trn_organisationwwds_8_tforganisationphone)");
          }
          else
          {
             GXv_int3[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV74Trn_organisationwwds_9_tforganisationphone_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV78Trn_organisationwwds_9_tforganisationphone_sel))");
          }
          else
          {
             GXv_int3[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationPhone))=0))");
          }
@@ -1002,15 +1002,15 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P00654( IGxContext context ,
-                                             string AV66Trn_organisationwwds_1_filterfulltext ,
-                                             string AV68Trn_organisationwwds_3_tforganisationname_sel ,
-                                             string AV67Trn_organisationwwds_2_tforganisationname ,
-                                             string AV70Trn_organisationwwds_5_tforganisationtypename_sel ,
-                                             string AV69Trn_organisationwwds_4_tforganisationtypename ,
-                                             string AV72Trn_organisationwwds_7_tforganisationemail_sel ,
-                                             string AV71Trn_organisationwwds_6_tforganisationemail ,
-                                             string AV74Trn_organisationwwds_9_tforganisationphone_sel ,
-                                             string AV73Trn_organisationwwds_8_tforganisationphone ,
+                                             string AV70Trn_organisationwwds_1_filterfulltext ,
+                                             string AV72Trn_organisationwwds_3_tforganisationname_sel ,
+                                             string AV71Trn_organisationwwds_2_tforganisationname ,
+                                             string AV74Trn_organisationwwds_5_tforganisationtypename_sel ,
+                                             string AV73Trn_organisationwwds_4_tforganisationtypename ,
+                                             string AV76Trn_organisationwwds_7_tforganisationemail_sel ,
+                                             string AV75Trn_organisationwwds_6_tforganisationemail ,
+                                             string AV78Trn_organisationwwds_9_tforganisationphone_sel ,
+                                             string AV77Trn_organisationwwds_8_tforganisationphone ,
                                              string A13OrganisationName ,
                                              string A20OrganisationTypeName ,
                                              string A16OrganisationEmail ,
@@ -1021,9 +1021,9 @@ namespace GeneXus.Programs {
          short[] GXv_int5 = new short[12];
          Object[] GXv_Object6 = new Object[2];
          scmdbuf = "SELECT T1.OrganisationTypeId, T1.OrganisationEmail, T1.OrganisationPhone, T2.OrganisationTypeName, T1.OrganisationName, T1.OrganisationId FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext)) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV66Trn_organisationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV70Trn_organisationwwds_1_filterfulltext))");
          }
          else
          {
@@ -1032,83 +1032,83 @@ namespace GeneXus.Programs {
             GXv_int5[2] = 1;
             GXv_int5[3] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_organisationwwds_2_tforganisationname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_organisationwwds_2_tforganisationname)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationName like :lV67Trn_organisationwwds_2_tforganisationname)");
+            AddWhere(sWhereString, "(T1.OrganisationName like :lV71Trn_organisationwwds_2_tforganisationname)");
          }
          else
          {
             GXv_int5[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV68Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationName = ( :AV68Trn_organisationwwds_3_tforganisationname_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationName = ( :AV72Trn_organisationwwds_3_tforganisationname_sel))");
          }
          else
          {
             GXv_int5[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_organisationwwds_4_tforganisationtypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_organisationwwds_4_tforganisationtypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV69Trn_organisationwwds_4_tforganisationtypename)");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV73Trn_organisationwwds_4_tforganisationtypename)");
          }
          else
          {
             GXv_int5[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV70Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV70Trn_organisationwwds_5_tforganisationtypename_sel))");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV74Trn_organisationwwds_5_tforganisationtypename_sel))");
          }
          else
          {
             GXv_int5[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.OrganisationTypeName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_organisationwwds_6_tforganisationemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_organisationwwds_6_tforganisationemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV71Trn_organisationwwds_6_tforganisationemail)");
+            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV75Trn_organisationwwds_6_tforganisationemail)");
          }
          else
          {
             GXv_int5[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV72Trn_organisationwwds_7_tforganisationemail_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV76Trn_organisationwwds_7_tforganisationemail_sel))");
          }
          else
          {
             GXv_int5[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_organisationwwds_8_tforganisationphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Trn_organisationwwds_8_tforganisationphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV73Trn_organisationwwds_8_tforganisationphone)");
+            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV77Trn_organisationwwds_8_tforganisationphone)");
          }
          else
          {
             GXv_int5[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV74Trn_organisationwwds_9_tforganisationphone_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV78Trn_organisationwwds_9_tforganisationphone_sel))");
          }
          else
          {
             GXv_int5[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationPhone))=0))");
          }
@@ -1120,15 +1120,15 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P00655( IGxContext context ,
-                                             string AV66Trn_organisationwwds_1_filterfulltext ,
-                                             string AV68Trn_organisationwwds_3_tforganisationname_sel ,
-                                             string AV67Trn_organisationwwds_2_tforganisationname ,
-                                             string AV70Trn_organisationwwds_5_tforganisationtypename_sel ,
-                                             string AV69Trn_organisationwwds_4_tforganisationtypename ,
-                                             string AV72Trn_organisationwwds_7_tforganisationemail_sel ,
-                                             string AV71Trn_organisationwwds_6_tforganisationemail ,
-                                             string AV74Trn_organisationwwds_9_tforganisationphone_sel ,
-                                             string AV73Trn_organisationwwds_8_tforganisationphone ,
+                                             string AV70Trn_organisationwwds_1_filterfulltext ,
+                                             string AV72Trn_organisationwwds_3_tforganisationname_sel ,
+                                             string AV71Trn_organisationwwds_2_tforganisationname ,
+                                             string AV74Trn_organisationwwds_5_tforganisationtypename_sel ,
+                                             string AV73Trn_organisationwwds_4_tforganisationtypename ,
+                                             string AV76Trn_organisationwwds_7_tforganisationemail_sel ,
+                                             string AV75Trn_organisationwwds_6_tforganisationemail ,
+                                             string AV78Trn_organisationwwds_9_tforganisationphone_sel ,
+                                             string AV77Trn_organisationwwds_8_tforganisationphone ,
                                              string A13OrganisationName ,
                                              string A20OrganisationTypeName ,
                                              string A16OrganisationEmail ,
@@ -1139,9 +1139,9 @@ namespace GeneXus.Programs {
          short[] GXv_int7 = new short[12];
          Object[] GXv_Object8 = new Object[2];
          scmdbuf = "SELECT T1.OrganisationTypeId, T1.OrganisationPhone, T1.OrganisationEmail, T2.OrganisationTypeName, T1.OrganisationName, T1.OrganisationId FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_organisationwwds_1_filterfulltext)) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV66Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV66Trn_organisationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV70Trn_organisationwwds_1_filterfulltext))");
          }
          else
          {
@@ -1150,83 +1150,83 @@ namespace GeneXus.Programs {
             GXv_int7[2] = 1;
             GXv_int7[3] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_organisationwwds_2_tforganisationname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_organisationwwds_2_tforganisationname)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationName like :lV67Trn_organisationwwds_2_tforganisationname)");
+            AddWhere(sWhereString, "(T1.OrganisationName like :lV71Trn_organisationwwds_2_tforganisationname)");
          }
          else
          {
             GXv_int7[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV68Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationName = ( :AV68Trn_organisationwwds_3_tforganisationname_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationName = ( :AV72Trn_organisationwwds_3_tforganisationname_sel))");
          }
          else
          {
             GXv_int7[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_organisationwwds_4_tforganisationtypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_organisationwwds_4_tforganisationtypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV69Trn_organisationwwds_4_tforganisationtypename)");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV73Trn_organisationwwds_4_tforganisationtypename)");
          }
          else
          {
             GXv_int7[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV70Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV70Trn_organisationwwds_5_tforganisationtypename_sel))");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV74Trn_organisationwwds_5_tforganisationtypename_sel))");
          }
          else
          {
             GXv_int7[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.OrganisationTypeName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_organisationwwds_6_tforganisationemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_organisationwwds_6_tforganisationemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV71Trn_organisationwwds_6_tforganisationemail)");
+            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV75Trn_organisationwwds_6_tforganisationemail)");
          }
          else
          {
             GXv_int7[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV72Trn_organisationwwds_7_tforganisationemail_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV76Trn_organisationwwds_7_tforganisationemail_sel))");
          }
          else
          {
             GXv_int7[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_organisationwwds_8_tforganisationphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Trn_organisationwwds_8_tforganisationphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV73Trn_organisationwwds_8_tforganisationphone)");
+            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV77Trn_organisationwwds_8_tforganisationphone)");
          }
          else
          {
             GXv_int7[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV74Trn_organisationwwds_9_tforganisationphone_sel))");
+            AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV78Trn_organisationwwds_9_tforganisationphone_sel))");
          }
          else
          {
             GXv_int7[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationPhone))=0))");
          }
@@ -1273,63 +1273,63 @@ namespace GeneXus.Programs {
        {
           Object[] prmP00652;
           prmP00652 = new Object[] {
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_organisationwwds_2_tforganisationname",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_organisationwwds_3_tforganisationname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_organisationwwds_4_tforganisationtypename",GXType.VarChar,100,0) ,
-          new ParDef("AV70Trn_organisationwwds_5_tforganisationtypename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV71Trn_organisationwwds_6_tforganisationemail",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_organisationwwds_7_tforganisationemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV73Trn_organisationwwds_8_tforganisationphone",GXType.Char,20,0) ,
-          new ParDef("AV74Trn_organisationwwds_9_tforganisationphone_sel",GXType.Char,20,0)
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_organisationwwds_2_tforganisationname",GXType.VarChar,100,0) ,
+          new ParDef("AV72Trn_organisationwwds_3_tforganisationname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV73Trn_organisationwwds_4_tforganisationtypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_organisationwwds_5_tforganisationtypename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV75Trn_organisationwwds_6_tforganisationemail",GXType.VarChar,100,0) ,
+          new ParDef("AV76Trn_organisationwwds_7_tforganisationemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV77Trn_organisationwwds_8_tforganisationphone",GXType.Char,20,0) ,
+          new ParDef("AV78Trn_organisationwwds_9_tforganisationphone_sel",GXType.Char,20,0)
           };
           Object[] prmP00653;
           prmP00653 = new Object[] {
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_organisationwwds_2_tforganisationname",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_organisationwwds_3_tforganisationname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_organisationwwds_4_tforganisationtypename",GXType.VarChar,100,0) ,
-          new ParDef("AV70Trn_organisationwwds_5_tforganisationtypename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV71Trn_organisationwwds_6_tforganisationemail",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_organisationwwds_7_tforganisationemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV73Trn_organisationwwds_8_tforganisationphone",GXType.Char,20,0) ,
-          new ParDef("AV74Trn_organisationwwds_9_tforganisationphone_sel",GXType.Char,20,0)
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_organisationwwds_2_tforganisationname",GXType.VarChar,100,0) ,
+          new ParDef("AV72Trn_organisationwwds_3_tforganisationname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV73Trn_organisationwwds_4_tforganisationtypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_organisationwwds_5_tforganisationtypename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV75Trn_organisationwwds_6_tforganisationemail",GXType.VarChar,100,0) ,
+          new ParDef("AV76Trn_organisationwwds_7_tforganisationemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV77Trn_organisationwwds_8_tforganisationphone",GXType.Char,20,0) ,
+          new ParDef("AV78Trn_organisationwwds_9_tforganisationphone_sel",GXType.Char,20,0)
           };
           Object[] prmP00654;
           prmP00654 = new Object[] {
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_organisationwwds_2_tforganisationname",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_organisationwwds_3_tforganisationname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_organisationwwds_4_tforganisationtypename",GXType.VarChar,100,0) ,
-          new ParDef("AV70Trn_organisationwwds_5_tforganisationtypename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV71Trn_organisationwwds_6_tforganisationemail",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_organisationwwds_7_tforganisationemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV73Trn_organisationwwds_8_tforganisationphone",GXType.Char,20,0) ,
-          new ParDef("AV74Trn_organisationwwds_9_tforganisationphone_sel",GXType.Char,20,0)
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_organisationwwds_2_tforganisationname",GXType.VarChar,100,0) ,
+          new ParDef("AV72Trn_organisationwwds_3_tforganisationname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV73Trn_organisationwwds_4_tforganisationtypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_organisationwwds_5_tforganisationtypename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV75Trn_organisationwwds_6_tforganisationemail",GXType.VarChar,100,0) ,
+          new ParDef("AV76Trn_organisationwwds_7_tforganisationemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV77Trn_organisationwwds_8_tforganisationphone",GXType.Char,20,0) ,
+          new ParDef("AV78Trn_organisationwwds_9_tforganisationphone_sel",GXType.Char,20,0)
           };
           Object[] prmP00655;
           prmP00655 = new Object[] {
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV66Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_organisationwwds_2_tforganisationname",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_organisationwwds_3_tforganisationname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_organisationwwds_4_tforganisationtypename",GXType.VarChar,100,0) ,
-          new ParDef("AV70Trn_organisationwwds_5_tforganisationtypename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV71Trn_organisationwwds_6_tforganisationemail",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_organisationwwds_7_tforganisationemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV73Trn_organisationwwds_8_tforganisationphone",GXType.Char,20,0) ,
-          new ParDef("AV74Trn_organisationwwds_9_tforganisationphone_sel",GXType.Char,20,0)
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV70Trn_organisationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_organisationwwds_2_tforganisationname",GXType.VarChar,100,0) ,
+          new ParDef("AV72Trn_organisationwwds_3_tforganisationname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV73Trn_organisationwwds_4_tforganisationtypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_organisationwwds_5_tforganisationtypename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV75Trn_organisationwwds_6_tforganisationemail",GXType.VarChar,100,0) ,
+          new ParDef("AV76Trn_organisationwwds_7_tforganisationemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV77Trn_organisationwwds_8_tforganisationphone",GXType.Char,20,0) ,
+          new ParDef("AV78Trn_organisationwwds_9_tforganisationphone_sel",GXType.Char,20,0)
           };
           def= new CursorDef[] {
               new CursorDef("P00652", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00652,100, GxCacheFrequency.OFF ,true,false )

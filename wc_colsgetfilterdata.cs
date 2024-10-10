@@ -456,7 +456,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[6];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT T1.Trn_TileId, T1.Trn_RowId, T1.Trn_ColName, T2.Trn_TileName, T1.Trn_ColId FROM (Trn_Col1 T1 INNER JOIN Trn_Col T2 ON T2.Trn_TileId = T1.Trn_TileId)";
+         scmdbuf = "SELECT T1.Trn_TileId, T1.Trn_RowId, T1.Trn_ColName, T2.Trn_TileName, T1.Trn_ColId FROM (Trn_Col1 T1 INNER JOIN Trn_Tile T2 ON T2.Trn_TileId = T1.Trn_TileId)";
          AddWhere(sWhereString, "(T1.Trn_RowId = :AV40Wc_colsds_1_trn_rowid)");
          AddWhere(sWhereString, "(T1.Trn_RowId = :AV35Trn_RowId)");
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Wc_colsds_2_tftrn_colname)) ) )
@@ -467,7 +467,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ! ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ! ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.Trn_ColName = ( :AV42Wc_colsds_3_tftrn_colname_sel))");
          }
@@ -475,7 +475,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.Trn_ColName))=0))");
          }
@@ -487,7 +487,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_5_tftrn_tilename_sel)) && ! ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_5_tftrn_tilename_sel)) && ! ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.Trn_TileName = ( :AV44Wc_colsds_5_tftrn_tilename_sel))");
          }
@@ -495,7 +495,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.Trn_TileName))=0))");
          }
@@ -521,7 +521,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int3 = new short[6];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT T1.Trn_TileId, T1.Trn_RowId, T2.Trn_TileName, T1.Trn_ColName, T1.Trn_ColId FROM (Trn_Col1 T1 INNER JOIN Trn_Col T2 ON T2.Trn_TileId = T1.Trn_TileId)";
+         scmdbuf = "SELECT T1.Trn_TileId, T1.Trn_RowId, T2.Trn_TileName, T1.Trn_ColName, T1.Trn_ColId FROM (Trn_Col1 T1 INNER JOIN Trn_Tile T2 ON T2.Trn_TileId = T1.Trn_TileId)";
          AddWhere(sWhereString, "(T1.Trn_RowId = :AV40Wc_colsds_1_trn_rowid)");
          AddWhere(sWhereString, "(T1.Trn_RowId = :AV35Trn_RowId)");
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Wc_colsds_2_tftrn_colname)) ) )
@@ -532,7 +532,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ! ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ! ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.Trn_ColName = ( :AV42Wc_colsds_3_tftrn_colname_sel))");
          }
@@ -540,7 +540,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.Trn_ColName))=0))");
          }
@@ -552,7 +552,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_5_tftrn_tilename_sel)) && ! ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_5_tftrn_tilename_sel)) && ! ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.Trn_TileName = ( :AV44Wc_colsds_5_tftrn_tilename_sel))");
          }
@@ -560,7 +560,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.Trn_TileName))=0))");
          }

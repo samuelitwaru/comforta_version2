@@ -124,7 +124,7 @@ namespace GeneXus.Programs.workwithplus {
             AV15EventEndDate = context.localUtil.YMDHMSToT( (short)(DateTimeUtil.Year( AV12EndDate)), (short)(DateTimeUtil.Month( AV12EndDate)), (short)(DateTimeUtil.Day( AV12EndDate)), (short)(DateTimeUtil.Hour( AV21ToTime)), (short)(DateTimeUtil.Minute( AV21ToTime)), 0);
          }
          AV19Message = new GeneXus.Utils.SdtMessages_Message(context);
-         AV19Message.gxTpr_Description = "In order to add events, you need to add the code in the procedures that are in WorkWithPlus Module / UCCalendar / CalendarUser folder";
+         AV19Message.gxTpr_Description = context.GetMessage( "In order to add events, you need to add the code in the procedures that are in WorkWithPlus Module / UCCalendar / CalendarUser folder", "");
          AV13ErrorMessages.Add(AV19Message, 0);
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {

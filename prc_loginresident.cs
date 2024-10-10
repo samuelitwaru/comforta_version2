@@ -38,26 +38,26 @@ namespace GeneXus.Programs {
       }
 
       public void execute( string aP0_secretKey ,
-                           out SdtSDT_LoginResidentResponse aP1_response )
+                           out string aP1_response )
       {
          this.AV13secretKey = aP0_secretKey;
-         this.AV16response = new SdtSDT_LoginResidentResponse(context) ;
+         this.AV16response = "" ;
          initialize();
          ExecuteImpl();
          aP1_response=this.AV16response;
       }
 
-      public SdtSDT_LoginResidentResponse executeUdp( string aP0_secretKey )
+      public string executeUdp( string aP0_secretKey )
       {
          execute(aP0_secretKey, out aP1_response);
          return AV16response ;
       }
 
       public void executeSubmit( string aP0_secretKey ,
-                                 out SdtSDT_LoginResidentResponse aP1_response )
+                                 out string aP1_response )
       {
          this.AV13secretKey = aP0_secretKey;
-         this.AV16response = new SdtSDT_LoginResidentResponse(context) ;
+         this.AV16response = "" ;
          SubmitImpl();
          aP1_response=this.AV16response;
       }
@@ -67,37 +67,35 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9clientId = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).getclientid();
-         if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, "localhost") == 0 )
+         if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, context.GetMessage( "localhost", "")) == 0 )
          {
-            AV8baseUrl = "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL";
+            AV8baseUrl = context.GetMessage( "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL", "");
          }
          else
          {
-            AV8baseUrl = "https://comforta.yukon.software";
+            AV8baseUrl = context.GetMessage( "https://staging.comforta.yukon.software", "");
          }
-         AV14url = AV8baseUrl + "/oauth/access_token";
+         AV14url = AV8baseUrl + context.GetMessage( "/oauth/access_token", "");
+         new prc_logtofile(context ).execute(  AV14url) ;
          new prc_decodeqrcode(context ).execute(  AV13secretKey, out  AV15username, out  AV12password) ;
-         new prc_logtofile(context ).execute(  "BASE URL:"+AV11HttpRequest.BaseURL) ;
-         new prc_logtofile(context ).execute(  "Key:"+AV13secretKey) ;
-         new prc_logtofile(context ).execute(  "user:"+AV15username) ;
-         new prc_logtofile(context ).execute(  "pwd:"+AV12password) ;
-         AV10httpclient.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-         AV10httpclient.AddVariable("client_id", AV9clientId);
-         AV10httpclient.AddVariable("grant_type", "password");
-         AV10httpclient.AddVariable("scope", "gam_user_data");
-         AV10httpclient.AddVariable("username", AV15username);
-         AV10httpclient.AddVariable("password", AV12password);
-         AV10httpclient.Execute("POST", AV14url);
+         AV10httpclient.AddHeader(context.GetMessage( "Content-Type", ""), context.GetMessage( "application/x-www-form-urlencoded", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "client_id", ""), AV9clientId);
+         AV10httpclient.AddVariable(context.GetMessage( "grant_type", ""), context.GetMessage( "password", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "scope", ""), context.GetMessage( "gam_user_data", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "username", ""), AV15username);
+         AV10httpclient.AddVariable(context.GetMessage( "password", ""), AV12password);
+         AV10httpclient.Execute(context.GetMessage( "POST", ""), AV14url);
          AV17result = AV10httpclient.ToString();
-         new prc_logtofile(context ).execute(  AV17result) ;
-         if ( StringUtil.Contains( AV17result, "error") )
+         if ( AV10httpclient.StatusCode != 200 )
          {
-            AV16response.gxTpr_Expires_in = (decimal)(0);
-            AV16response.gxTpr_Scope = "Invalid Key";
+            AV19ErrorResponse.gxTpr_Message = AV10httpclient.ErrDescription;
+            AV19ErrorResponse.gxTpr_Code = StringUtil.Trim( StringUtil.Str( (decimal)(AV10httpclient.StatusCode), 10, 2));
+            AV16response = AV19ErrorResponse.ToJSonString(false, true);
          }
          else
          {
-            AV16response.FromJSonString(AV17result, null);
+            AV18LoginResponse.FromJSonString(AV17result, null);
+            AV16response = AV18LoginResponse.ToJSonString(false, true);
          }
          cleanup();
       }
@@ -114,7 +112,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV16response = new SdtSDT_LoginResidentResponse(context);
+         AV16response = "";
          AV9clientId = "";
          AV11HttpRequest = new GxHttpRequest( context);
          AV8baseUrl = "";
@@ -123,10 +121,13 @@ namespace GeneXus.Programs {
          AV12password = "";
          AV10httpclient = new GxHttpClient( context);
          AV17result = "";
+         AV19ErrorResponse = new SdtSDT_ErrorResponse(context);
+         AV18LoginResponse = new SdtSDT_LoginResidentResponse(context);
          /* GeneXus formulas. */
       }
 
       private string AV13secretKey ;
+      private string AV16response ;
       private string AV17result ;
       private string AV9clientId ;
       private string AV8baseUrl ;
@@ -135,8 +136,9 @@ namespace GeneXus.Programs {
       private string AV12password ;
       private GxHttpClient AV10httpclient ;
       private GxHttpRequest AV11HttpRequest ;
-      private SdtSDT_LoginResidentResponse AV16response ;
-      private SdtSDT_LoginResidentResponse aP1_response ;
+      private SdtSDT_ErrorResponse AV19ErrorResponse ;
+      private SdtSDT_LoginResidentResponse AV18LoginResponse ;
+      private string aP1_response ;
    }
 
 }

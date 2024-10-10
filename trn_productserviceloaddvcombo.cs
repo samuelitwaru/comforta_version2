@@ -69,43 +69,53 @@ namespace GeneXus.Programs {
       public void execute( string aP0_ComboName ,
                            string aP1_TrnMode ,
                            Guid aP2_ProductServiceId ,
-                           out string aP3_SelectedValue ,
-                           out GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP4_Combo_Data )
+                           Guid aP3_LocationId ,
+                           Guid aP4_OrganisationId ,
+                           out string aP5_SelectedValue ,
+                           out GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP6_Combo_Data )
       {
          this.AV17ComboName = aP0_ComboName;
          this.AV18TrnMode = aP1_TrnMode;
          this.AV20ProductServiceId = aP2_ProductServiceId;
+         this.AV31LocationId = aP3_LocationId;
+         this.AV30OrganisationId = aP4_OrganisationId;
          this.AV22SelectedValue = "" ;
          this.AV15Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "") ;
          initialize();
          ExecuteImpl();
-         aP3_SelectedValue=this.AV22SelectedValue;
-         aP4_Combo_Data=this.AV15Combo_Data;
+         aP5_SelectedValue=this.AV22SelectedValue;
+         aP6_Combo_Data=this.AV15Combo_Data;
       }
 
       public GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> executeUdp( string aP0_ComboName ,
                                                                                                     string aP1_TrnMode ,
                                                                                                     Guid aP2_ProductServiceId ,
-                                                                                                    out string aP3_SelectedValue )
+                                                                                                    Guid aP3_LocationId ,
+                                                                                                    Guid aP4_OrganisationId ,
+                                                                                                    out string aP5_SelectedValue )
       {
-         execute(aP0_ComboName, aP1_TrnMode, aP2_ProductServiceId, out aP3_SelectedValue, out aP4_Combo_Data);
+         execute(aP0_ComboName, aP1_TrnMode, aP2_ProductServiceId, aP3_LocationId, aP4_OrganisationId, out aP5_SelectedValue, out aP6_Combo_Data);
          return AV15Combo_Data ;
       }
 
       public void executeSubmit( string aP0_ComboName ,
                                  string aP1_TrnMode ,
                                  Guid aP2_ProductServiceId ,
-                                 out string aP3_SelectedValue ,
-                                 out GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP4_Combo_Data )
+                                 Guid aP3_LocationId ,
+                                 Guid aP4_OrganisationId ,
+                                 out string aP5_SelectedValue ,
+                                 out GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP6_Combo_Data )
       {
          this.AV17ComboName = aP0_ComboName;
          this.AV18TrnMode = aP1_TrnMode;
          this.AV20ProductServiceId = aP2_ProductServiceId;
+         this.AV31LocationId = aP3_LocationId;
+         this.AV30OrganisationId = aP4_OrganisationId;
          this.AV22SelectedValue = "" ;
          this.AV15Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "") ;
          SubmitImpl();
-         aP3_SelectedValue=this.AV22SelectedValue;
-         aP4_Combo_Data=this.AV15Combo_Data;
+         aP5_SelectedValue=this.AV22SelectedValue;
+         aP6_Combo_Data=this.AV15Combo_Data;
       }
 
       protected override void ExecutePrivate( )
@@ -157,9 +167,11 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
          {
             /* Using cursor P00783 */
-            pr_default.execute(1, new Object[] {AV20ProductServiceId});
+            pr_default.execute(1, new Object[] {AV20ProductServiceId, AV31LocationId, AV30OrganisationId});
             while ( (pr_default.getStatus(1) != 101) )
             {
+               A11OrganisationId = P00783_A11OrganisationId[0];
+               A29LocationId = P00783_A29LocationId[0];
                A58ProductServiceId = P00783_A58ProductServiceId[0];
                A49SupplierAgbId = P00783_A49SupplierAgbId[0];
                n49SupplierAgbId = P00783_n49SupplierAgbId[0];
@@ -192,9 +204,11 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
          {
             /* Using cursor P00785 */
-            pr_default.execute(3, new Object[] {AV20ProductServiceId});
+            pr_default.execute(3, new Object[] {AV20ProductServiceId, AV31LocationId, AV30OrganisationId});
             while ( (pr_default.getStatus(3) != 101) )
             {
+               A11OrganisationId = P00785_A11OrganisationId[0];
+               A29LocationId = P00785_A29LocationId[0];
                A58ProductServiceId = P00785_A58ProductServiceId[0];
                A42SupplierGenId = P00785_A42SupplierGenId[0];
                n42SupplierGenId = P00785_n42SupplierGenId[0];
@@ -227,15 +241,21 @@ namespace GeneXus.Programs {
          A49SupplierAgbId = Guid.Empty;
          A51SupplierAgbName = "";
          AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
+         P00783_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00783_A29LocationId = new Guid[] {Guid.Empty} ;
          P00783_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          P00783_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
          P00783_n49SupplierAgbId = new bool[] {false} ;
+         A11OrganisationId = Guid.Empty;
+         A29LocationId = Guid.Empty;
          A58ProductServiceId = Guid.Empty;
          P00784_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          P00784_n42SupplierGenId = new bool[] {false} ;
          P00784_A44SupplierGenCompanyName = new string[] {""} ;
          A42SupplierGenId = Guid.Empty;
          A44SupplierGenCompanyName = "";
+         P00785_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00785_A29LocationId = new Guid[] {Guid.Empty} ;
          P00785_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          P00785_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          P00785_n42SupplierGenId = new bool[] {false} ;
@@ -245,13 +265,13 @@ namespace GeneXus.Programs {
                P00782_A49SupplierAgbId, P00782_A51SupplierAgbName
                }
                , new Object[] {
-               P00783_A58ProductServiceId, P00783_A49SupplierAgbId, P00783_n49SupplierAgbId
+               P00783_A11OrganisationId, P00783_A29LocationId, P00783_A58ProductServiceId, P00783_A49SupplierAgbId, P00783_n49SupplierAgbId
                }
                , new Object[] {
                P00784_A42SupplierGenId, P00784_A44SupplierGenCompanyName
                }
                , new Object[] {
-               P00785_A58ProductServiceId, P00785_A42SupplierGenId, P00785_n42SupplierGenId
+               P00785_A11OrganisationId, P00785_A29LocationId, P00785_A58ProductServiceId, P00785_A42SupplierGenId, P00785_n42SupplierGenId
                }
             }
          );
@@ -267,7 +287,11 @@ namespace GeneXus.Programs {
       private string A51SupplierAgbName ;
       private string A44SupplierGenCompanyName ;
       private Guid AV20ProductServiceId ;
+      private Guid AV31LocationId ;
+      private Guid AV30OrganisationId ;
       private Guid A49SupplierAgbId ;
+      private Guid A11OrganisationId ;
+      private Guid A29LocationId ;
       private Guid A58ProductServiceId ;
       private Guid A42SupplierGenId ;
       private IGxDataStore dsGAM ;
@@ -279,17 +303,21 @@ namespace GeneXus.Programs {
       private bool[] P00782_n49SupplierAgbId ;
       private string[] P00782_A51SupplierAgbName ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV16Combo_DataItem ;
+      private Guid[] P00783_A11OrganisationId ;
+      private Guid[] P00783_A29LocationId ;
       private Guid[] P00783_A58ProductServiceId ;
       private Guid[] P00783_A49SupplierAgbId ;
       private bool[] P00783_n49SupplierAgbId ;
       private Guid[] P00784_A42SupplierGenId ;
       private bool[] P00784_n42SupplierGenId ;
       private string[] P00784_A44SupplierGenCompanyName ;
+      private Guid[] P00785_A11OrganisationId ;
+      private Guid[] P00785_A29LocationId ;
       private Guid[] P00785_A58ProductServiceId ;
       private Guid[] P00785_A42SupplierGenId ;
       private bool[] P00785_n42SupplierGenId ;
-      private string aP3_SelectedValue ;
-      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP4_Combo_Data ;
+      private string aP5_SelectedValue ;
+      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP6_Combo_Data ;
    }
 
    public class trn_productserviceloaddvcombo__default : DataStoreHelperBase, IDataStoreHelper
@@ -315,20 +343,24 @@ namespace GeneXus.Programs {
           };
           Object[] prmP00783;
           prmP00783 = new Object[] {
-          new ParDef("AV20ProductServiceId",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV20ProductServiceId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV31LocationId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV30OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP00784;
           prmP00784 = new Object[] {
           };
           Object[] prmP00785;
           prmP00785 = new Object[] {
-          new ParDef("AV20ProductServiceId",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV20ProductServiceId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV31LocationId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV30OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
               new CursorDef("P00782", "SELECT SupplierAgbId, SupplierAgbName FROM Trn_SupplierAGB ORDER BY SupplierAgbName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00782,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00783", "SELECT ProductServiceId, SupplierAgbId FROM Trn_ProductService WHERE ProductServiceId = :AV20ProductServiceId ORDER BY ProductServiceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00783,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00783", "SELECT OrganisationId, LocationId, ProductServiceId, SupplierAgbId FROM Trn_ProductService WHERE ProductServiceId = :AV20ProductServiceId and LocationId = :AV31LocationId and OrganisationId = :AV30OrganisationId ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00783,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P00784", "SELECT SupplierGenId, SupplierGenCompanyName FROM Trn_SupplierGen ORDER BY SupplierGenCompanyName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00784,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00785", "SELECT ProductServiceId, SupplierGenId FROM Trn_ProductService WHERE ProductServiceId = :AV20ProductServiceId ORDER BY ProductServiceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00785,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00785", "SELECT OrganisationId, LocationId, ProductServiceId, SupplierGenId FROM Trn_ProductService WHERE ProductServiceId = :AV20ProductServiceId and LocationId = :AV31LocationId and OrganisationId = :AV30OrganisationId ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00785,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -346,7 +378,9 @@ namespace GeneXus.Programs {
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((bool[]) buf[4])[0] = rslt.wasNull(4);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -355,7 +389,9 @@ namespace GeneXus.Programs {
              case 3 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((bool[]) buf[4])[0] = rslt.wasNull(4);
                 return;
        }
     }

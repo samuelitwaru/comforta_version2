@@ -38,6 +38,14 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_Receptionist_Receptionistphone = "";
 
+			gxTv_SdtSDT_Receptionist_Receptionistphonecode = "";
+
+			gxTv_SdtSDT_Receptionist_Receptionistphonenumber = "";
+
+			gxTv_SdtSDT_Receptionist_Receptioniststatus = "";
+
+			gxTv_SdtSDT_Receptionist_Receptionistgamguid = "";
+
 		}
 
 		public SdtSDT_Receptionist(IGxContext context)
@@ -84,6 +92,18 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("ReceptionistPhone", gxTpr_Receptionistphone, false);
+
+
+			AddObjectProperty("ReceptionistPhoneCode", gxTpr_Receptionistphonecode, false);
+
+
+			AddObjectProperty("ReceptionistPhoneNumber", gxTpr_Receptionistphonenumber, false);
+
+
+			AddObjectProperty("ReceptionistStatus", gxTpr_Receptioniststatus, false);
+
+
+			AddObjectProperty("ReceptionistGAMGUID", gxTpr_Receptionistgamguid, false);
 
 			return;
 		}
@@ -202,6 +222,70 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="ReceptionistPhoneCode")]
+		[XmlElement(ElementName="ReceptionistPhoneCode")]
+		public string gxTpr_Receptionistphonecode
+		{
+			get {
+				return gxTv_SdtSDT_Receptionist_Receptionistphonecode; 
+			}
+			set {
+				gxTv_SdtSDT_Receptionist_Receptionistphonecode = value;
+				SetDirty("Receptionistphonecode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ReceptionistPhoneNumber")]
+		[XmlElement(ElementName="ReceptionistPhoneNumber")]
+		public string gxTpr_Receptionistphonenumber
+		{
+			get {
+				return gxTv_SdtSDT_Receptionist_Receptionistphonenumber; 
+			}
+			set {
+				gxTv_SdtSDT_Receptionist_Receptionistphonenumber = value;
+				SetDirty("Receptionistphonenumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ReceptionistStatus")]
+		[XmlElement(ElementName="ReceptionistStatus")]
+		public string gxTpr_Receptioniststatus
+		{
+			get {
+				return gxTv_SdtSDT_Receptionist_Receptioniststatus; 
+			}
+			set {
+				gxTv_SdtSDT_Receptionist_Receptioniststatus = value;
+				SetDirty("Receptioniststatus");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ReceptionistGAMGUID")]
+		[XmlElement(ElementName="ReceptionistGAMGUID")]
+		public string gxTpr_Receptionistgamguid
+		{
+			get {
+				return gxTv_SdtSDT_Receptionist_Receptionistgamguid; 
+			}
+			set {
+				gxTv_SdtSDT_Receptionist_Receptionistgamguid = value;
+				SetDirty("Receptionistgamguid");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -227,6 +311,10 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Receptionist_Receptionistlastname = "";
 			gxTv_SdtSDT_Receptionist_Receptionistemail = "";
 			gxTv_SdtSDT_Receptionist_Receptionistphone = "";
+			gxTv_SdtSDT_Receptionist_Receptionistphonecode = "";
+			gxTv_SdtSDT_Receptionist_Receptionistphonenumber = "";
+			gxTv_SdtSDT_Receptionist_Receptioniststatus = "";
+			gxTv_SdtSDT_Receptionist_Receptionistgamguid = "";
 			return  ;
 		}
 
@@ -255,6 +343,18 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Receptionist_Receptionistphone;
+		 
+
+		protected string gxTv_SdtSDT_Receptionist_Receptionistphonecode;
+		 
+
+		protected string gxTv_SdtSDT_Receptionist_Receptionistphonenumber;
+		 
+
+		protected string gxTv_SdtSDT_Receptionist_Receptioniststatus;
+		 
+
+		protected string gxTv_SdtSDT_Receptionist_Receptionistgamguid;
 		 
 
 
@@ -355,6 +455,54 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Receptionistphone = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistPhoneCode", Order=7)]
+		public  string gxTpr_Receptionistphonecode
+		{
+			get { 
+				return sdt.gxTpr_Receptionistphonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Receptionistphonecode = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistPhoneNumber", Order=8)]
+		public  string gxTpr_Receptionistphonenumber
+		{
+			get { 
+				return sdt.gxTpr_Receptionistphonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Receptionistphonenumber = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistStatus", Order=9)]
+		public  string gxTpr_Receptioniststatus
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Receptioniststatus);
+
+			}
+			set { 
+				 sdt.gxTpr_Receptioniststatus = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistGAMGUID", Order=10)]
+		public  string gxTpr_Receptionistgamguid
+		{
+			get { 
+				return sdt.gxTpr_Receptionistgamguid;
+
+			}
+			set { 
+				 sdt.gxTpr_Receptionistgamguid = value;
 			}
 		}
 

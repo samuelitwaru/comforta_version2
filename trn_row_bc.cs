@@ -204,7 +204,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A310Trn_PageId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Page'.", "ForeignKeyNotFound", 1, "TRN_PAGEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Page", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_PAGEID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -487,7 +487,7 @@ namespace GeneXus.Programs {
             pr_default.execute(8, new Object[] {A319Trn_RowId});
             if ( (pr_default.getStatus(8) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Col"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Col", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(8);

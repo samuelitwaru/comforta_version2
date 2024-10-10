@@ -165,7 +165,7 @@ namespace GeneXus.Programs {
          AV8cOrganisationName = GetPar( "cOrganisationName");
          AV9cOrganisationEmail = GetPar( "cOrganisationEmail");
          AV10cOrganisationPhone = GetPar( "cOrganisationPhone");
-         AV11cOrganisationVATNumber = (int)(Math.Round(NumberUtil.Val( GetPar( "cOrganisationVATNumber"), "."), 18, MidpointRounding.ToEven));
+         AV11cOrganisationVATNumber = GetPar( "cOrganisationVATNumber");
          AV12cOrganisationTypeId = StringUtil.StrToGuid( GetPar( "cOrganisationTypeId"));
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
@@ -339,14 +339,14 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GXH_vCORGANISATIONNAME", AV8cOrganisationName);
          GxWebStd.gx_hidden_field( context, "GXH_vCORGANISATIONEMAIL", AV9cOrganisationEmail);
          GxWebStd.gx_hidden_field( context, "GXH_vCORGANISATIONPHONE", StringUtil.RTrim( AV10cOrganisationPhone));
-         GxWebStd.gx_hidden_field( context, "GXH_vCORGANISATIONVATNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11cOrganisationVATNumber), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "GXH_vCORGANISATIONVATNUMBER", AV11cOrganisationVATNumber);
          GxWebStd.gx_hidden_field( context, "GXH_vCORGANISATIONTYPEID", AV12cOrganisationTypeId.ToString());
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_84", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_84), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_84", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_84), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vPORGANISATIONID", AV13pOrganisationId.ToString());
-         GxWebStd.gx_hidden_field( context, "GRID1_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID1_nFirstRecordOnPage), 15, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "GRID1_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID1_nEOF), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "GRID1_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID1_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "GRID1_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID1_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "ADVANCEDCONTAINER_Class", StringUtil.RTrim( divAdvancedcontainer_Class));
          GxWebStd.gx_hidden_field( context, "BTNTOGGLE_Class", StringUtil.RTrim( bttBtntoggle_Class));
          GxWebStd.gx_hidden_field( context, "ORGANISATIONIDFILTERCONTAINER_Class", StringUtil.RTrim( divOrganisationidfiltercontainer_Class));
@@ -377,6 +377,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -419,7 +431,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Selection List Organisation" ;
+         return context.GetMessage( "Selection List Organisation", "") ;
       }
 
       protected void WB040( )
@@ -457,7 +469,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblLblorganisationidfilter_Internalname, "Organisation Id", "", "", lblLblorganisationidfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e11041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
+            GxWebStd.gx_label_ctrl( context, lblLblorganisationidfilter_Internalname, context.GetMessage( "Organisation Id", ""), "", "", lblLblorganisationidfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e11041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -467,7 +479,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, dynavCorganisationid_Internalname, "Organisation Id", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, dynavCorganisationid_Internalname, context.GetMessage( "Organisation Id", ""), "col-sm-3 AttributeLabel", 0, true, "");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'" + sGXsfl_84_idx + "',0)\"";
             /* ComboBox */
             GxWebStd.gx_combobox_ctrl1( context, dynavCorganisationid, dynavCorganisationid_Internalname, AV6cOrganisationId.ToString(), 1, dynavCorganisationid_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "guid", "", dynavCorganisationid.Visible, dynavCorganisationid.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,16);\"", "", true, 0, "HLP_Gx0030.htm");
@@ -490,7 +502,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblLblorganisationkvknumberfilter_Internalname, "Organisation Kvk Number", "", "", lblLblorganisationkvknumberfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e12041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
+            GxWebStd.gx_label_ctrl( context, lblLblorganisationkvknumberfilter_Internalname, context.GetMessage( "Organisation Kvk Number", ""), "", "", lblLblorganisationkvknumberfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e12041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -500,10 +512,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCorganisationkvknumber_Internalname, "Organisation Kvk Number", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavCorganisationkvknumber_Internalname, context.GetMessage( "Organisation Kvk Number", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'" + sGXsfl_84_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavCorganisationkvknumber_Internalname, AV7cOrganisationKvkNumber, StringUtil.RTrim( context.localUtil.Format( AV7cOrganisationKvkNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCorganisationkvknumber_Jsonclick, 0, "Attribute", "", "", "", "", edtavCorganisationkvknumber_Visible, edtavCorganisationkvknumber_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Gx0030.htm");
+            GxWebStd.gx_single_line_edit( context, edtavCorganisationkvknumber_Internalname, AV7cOrganisationKvkNumber, StringUtil.RTrim( context.localUtil.Format( AV7cOrganisationKvkNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCorganisationkvknumber_Jsonclick, 0, "Attribute", "", "", "", "", edtavCorganisationkvknumber_Visible, edtavCorganisationkvknumber_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -521,7 +533,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblLblorganisationnamefilter_Internalname, "Organisation Name", "", "", lblLblorganisationnamefilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e13041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
+            GxWebStd.gx_label_ctrl( context, lblLblorganisationnamefilter_Internalname, context.GetMessage( "Organisation Name", ""), "", "", lblLblorganisationnamefilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e13041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -531,7 +543,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCorganisationname_Internalname, "Organisation Name", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavCorganisationname_Internalname, context.GetMessage( "Organisation Name", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'" + sGXsfl_84_idx + "',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavCorganisationname_Internalname, AV8cOrganisationName, StringUtil.RTrim( context.localUtil.Format( AV8cOrganisationName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCorganisationname_Jsonclick, 0, "Attribute", "", "", "", "", edtavCorganisationname_Visible, edtavCorganisationname_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Gx0030.htm");
@@ -552,7 +564,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblLblorganisationemailfilter_Internalname, "Organisation Email", "", "", lblLblorganisationemailfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e14041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
+            GxWebStd.gx_label_ctrl( context, lblLblorganisationemailfilter_Internalname, context.GetMessage( "Organisation Email", ""), "", "", lblLblorganisationemailfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e14041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -562,7 +574,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCorganisationemail_Internalname, "Organisation Email", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavCorganisationemail_Internalname, context.GetMessage( "Organisation Email", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 46,'',false,'" + sGXsfl_84_idx + "',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavCorganisationemail_Internalname, AV9cOrganisationEmail, StringUtil.RTrim( context.localUtil.Format( AV9cOrganisationEmail, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,46);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCorganisationemail_Jsonclick, 0, "Attribute", "", "", "", "", edtavCorganisationemail_Visible, edtavCorganisationemail_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_Gx0030.htm");
@@ -583,7 +595,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblLblorganisationphonefilter_Internalname, "Organisation Phone", "", "", lblLblorganisationphonefilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e15041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
+            GxWebStd.gx_label_ctrl( context, lblLblorganisationphonefilter_Internalname, context.GetMessage( "Organisation Phone", ""), "", "", lblLblorganisationphonefilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e15041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -593,7 +605,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCorganisationphone_Internalname, "Organisation Phone", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavCorganisationphone_Internalname, context.GetMessage( "Organisation Phone", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 56,'',false,'" + sGXsfl_84_idx + "',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavCorganisationphone_Internalname, StringUtil.RTrim( AV10cOrganisationPhone), StringUtil.RTrim( context.localUtil.Format( AV10cOrganisationPhone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,56);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCorganisationphone_Jsonclick, 0, "Attribute", "", "", "", "", edtavCorganisationphone_Visible, edtavCorganisationphone_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_Gx0030.htm");
@@ -614,7 +626,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblLblorganisationvatnumberfilter_Internalname, "Organisation VATNumber", "", "", lblLblorganisationvatnumberfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e16041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
+            GxWebStd.gx_label_ctrl( context, lblLblorganisationvatnumberfilter_Internalname, context.GetMessage( "Organisation VATNumber", ""), "", "", lblLblorganisationvatnumberfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e16041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -624,10 +636,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCorganisationvatnumber_Internalname, "Organisation VATNumber", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavCorganisationvatnumber_Internalname, context.GetMessage( "Organisation VATNumber", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'',false,'" + sGXsfl_84_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavCorganisationvatnumber_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11cOrganisationVATNumber), 8, 0, ".", "")), StringUtil.LTrim( ((edtavCorganisationvatnumber_Enabled!=0) ? context.localUtil.Format( (decimal)(AV11cOrganisationVATNumber), "ZZZZZZZ9") : context.localUtil.Format( (decimal)(AV11cOrganisationVATNumber), "ZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,66);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCorganisationvatnumber_Jsonclick, 0, "Attribute", "", "", "", "", edtavCorganisationvatnumber_Visible, edtavCorganisationvatnumber_Enabled, 0, "text", "1", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Gx0030.htm");
+            GxWebStd.gx_single_line_edit( context, edtavCorganisationvatnumber_Internalname, AV11cOrganisationVATNumber, StringUtil.RTrim( context.localUtil.Format( AV11cOrganisationVATNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,66);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCorganisationvatnumber_Jsonclick, 0, "Attribute", "", "", "", "", edtavCorganisationvatnumber_Visible, edtavCorganisationvatnumber_Enabled, 0, "text", "", 14, "chr", 1, "row", 14, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -645,7 +657,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblLblorganisationtypeidfilter_Internalname, "Organisation Type Id", "", "", lblLblorganisationtypeidfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e17041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
+            GxWebStd.gx_label_ctrl( context, lblLblorganisationtypeidfilter_Internalname, context.GetMessage( "Organisation Type Id", ""), "", "", lblLblorganisationtypeidfilter_Jsonclick, "'"+""+"'"+",false,"+"'"+"e17041_client"+"'", "", "WWAdvancedLabel WWFilterLabel", 7, "", 1, 1, 0, 1, "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -655,7 +667,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCorganisationtypeid_Internalname, "Organisation Type Id", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavCorganisationtypeid_Internalname, context.GetMessage( "Organisation Type Id", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 76,'',false,'" + sGXsfl_84_idx + "',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavCorganisationtypeid_Internalname, AV12cOrganisationTypeId.ToString(), AV12cOrganisationTypeId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,76);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCorganisationtypeid_Jsonclick, 0, "Attribute", "", "", "", "", edtavCorganisationtypeid_Visible, edtavCorganisationtypeid_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_Gx0030.htm");
@@ -727,7 +739,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 92,'',false,'',0)\"";
             ClassString = "BtnCancel";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(84), 2, 0)+","+"null"+");", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Gx0030.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(84), 2, 0)+","+"null"+");", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Gx0030.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -783,7 +795,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Selection List Organisation", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Selection List Organisation", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -873,7 +885,7 @@ namespace GeneXus.Programs {
                               A11OrganisationId = StringUtil.StrToGuid( cgiGet( dynOrganisationId_Internalname));
                               A12OrganisationKvkNumber = cgiGet( edtOrganisationKvkNumber_Internalname);
                               A17OrganisationPhone = cgiGet( edtOrganisationPhone_Internalname);
-                              A18OrganisationVATNumber = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtOrganisationVATNumber_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                              A18OrganisationVATNumber = cgiGet( edtOrganisationVATNumber_Internalname);
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
                               {
@@ -924,7 +936,7 @@ namespace GeneXus.Programs {
                                           Rfr0gs = true;
                                        }
                                        /* Set Refresh If Corganisationvatnumber Changed */
-                                       if ( ( context.localUtil.CToN( cgiGet( "GXH_vCORGANISATIONVATNUMBER"), ".", ",") != Convert.ToDecimal( AV11cOrganisationVATNumber )) )
+                                       if ( StringUtil.StrCmp(cgiGet( "GXH_vCORGANISATIONVATNUMBER"), AV11cOrganisationVATNumber) != 0 )
                                        {
                                           Rfr0gs = true;
                                        }
@@ -1088,7 +1100,7 @@ namespace GeneXus.Programs {
                                         string AV8cOrganisationName ,
                                         string AV9cOrganisationEmail ,
                                         string AV10cOrganisationPhone ,
-                                        int AV11cOrganisationVATNumber ,
+                                        string AV11cOrganisationVATNumber ,
                                         Guid AV12cOrganisationTypeId )
       {
          initialize_formulas( ) ;
@@ -1205,7 +1217,6 @@ namespace GeneXus.Programs {
                                                  A19OrganisationTypeId ,
                                                  AV6cOrganisationId } ,
                                                  new int[]{
-                                                 TypeConstants.INT, TypeConstants.INT
                                                  }
             });
             lV7cOrganisationKvkNumber = StringUtil.Concat( StringUtil.RTrim( AV7cOrganisationKvkNumber), "%", "");
@@ -1271,7 +1282,6 @@ namespace GeneXus.Programs {
                                               A19OrganisationTypeId ,
                                               AV6cOrganisationId } ,
                                               new int[]{
-                                              TypeConstants.INT, TypeConstants.INT
                                               }
          });
          lV7cOrganisationKvkNumber = StringUtil.Concat( StringUtil.RTrim( AV7cOrganisationKvkNumber), "%", "");
@@ -1416,9 +1426,9 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_84 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_84"), ".", ","), 18, MidpointRounding.ToEven));
-            GRID1_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID1_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
-            GRID1_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID1_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_84 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_84"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRID1_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID1_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRID1_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID1_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             dynavCorganisationid.Name = dynavCorganisationid_Internalname;
             dynavCorganisationid.CurrentValue = cgiGet( dynavCorganisationid_Internalname);
@@ -1432,20 +1442,8 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV9cOrganisationEmail", AV9cOrganisationEmail);
             AV10cOrganisationPhone = cgiGet( edtavCorganisationphone_Internalname);
             AssignAttri("", false, "AV10cOrganisationPhone", AV10cOrganisationPhone);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavCorganisationvatnumber_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavCorganisationvatnumber_Internalname), ".", ",") > Convert.ToDecimal( 99999999 )) ) )
-            {
-               GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vCORGANISATIONVATNUMBER");
-               GX_FocusControl = edtavCorganisationvatnumber_Internalname;
-               AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
-               wbErr = true;
-               AV11cOrganisationVATNumber = 0;
-               AssignAttri("", false, "AV11cOrganisationVATNumber", StringUtil.LTrimStr( (decimal)(AV11cOrganisationVATNumber), 8, 0));
-            }
-            else
-            {
-               AV11cOrganisationVATNumber = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavCorganisationvatnumber_Internalname), ".", ","), 18, MidpointRounding.ToEven));
-               AssignAttri("", false, "AV11cOrganisationVATNumber", StringUtil.LTrimStr( (decimal)(AV11cOrganisationVATNumber), 8, 0));
-            }
+            AV11cOrganisationVATNumber = cgiGet( edtavCorganisationvatnumber_Internalname);
+            AssignAttri("", false, "AV11cOrganisationVATNumber", AV11cOrganisationVATNumber);
             if ( StringUtil.StrCmp(cgiGet( edtavCorganisationtypeid_Internalname), "") == 0 )
             {
                AV12cOrganisationTypeId = Guid.Empty;
@@ -1490,7 +1488,7 @@ namespace GeneXus.Programs {
             {
                GRID1_nFirstRecordOnPage = 0;
             }
-            if ( ( context.localUtil.CToN( cgiGet( "GXH_vCORGANISATIONVATNUMBER"), ".", ",") != Convert.ToDecimal( AV11cOrganisationVATNumber )) )
+            if ( StringUtil.StrCmp(cgiGet( "GXH_vCORGANISATIONVATNUMBER"), AV11cOrganisationVATNumber) != 0 )
             {
                GRID1_nFirstRecordOnPage = 0;
             }
@@ -1520,9 +1518,9 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         Form.Caption = StringUtil.Format( "Selection List %1", "Organisation", "", "", "", "", "", "", "", "");
+         Form.Caption = StringUtil.Format( context.GetMessage( "GXSPC_SelectionList", ""), context.GetMessage( "Organisation", ""), "", "", "", "", "", "", "", "");
          AssignProp("", false, "FORM", "Caption", Form.Caption, true);
-         AV14ADVANCED_LABEL_TEMPLATE = "%1 <strong>%2</strong>";
+         AV14ADVANCED_LABEL_TEMPLATE = context.GetMessage( "%1 <strong>%2</strong>", "");
       }
 
       private void E20042( )
@@ -1608,7 +1606,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492719504386", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016452291", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1623,8 +1621,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gx0030.js", "?202492719504386", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gx0030.js", "?2024101016452291", false, true);
          /* End function include_jscripts */
       }
 
@@ -1760,7 +1758,7 @@ namespace GeneXus.Programs {
             ROClassString = "DescriptionAttribute";
             edtOrganisationKvkNumber_Link = "javascript:gx.popup.gxReturn(["+"'"+GXUtil.EncodeJSConstant( A11OrganisationId.ToString())+"'"+"]);";
             AssignProp("", false, edtOrganisationKvkNumber_Internalname, "Link", edtOrganisationKvkNumber_Link, !bGXsfl_84_Refreshing);
-            Grid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationKvkNumber_Internalname,(string)A12OrganisationKvkNumber,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)edtOrganisationKvkNumber_Link,(string)"",(string)"",(string)"",(string)edtOrganisationKvkNumber_Jsonclick,(short)0,(string)"DescriptionAttribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)84,(short)0,(short)-1,(short)-1,(bool)true,(string)"KvkNumber",(string)"start",(bool)true,(string)""});
+            Grid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationKvkNumber_Internalname,(string)A12OrganisationKvkNumber,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)edtOrganisationKvkNumber_Link,(string)"",(string)"",(string)"",(string)edtOrganisationKvkNumber_Jsonclick,(short)0,(string)"DescriptionAttribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)8,(short)0,(short)0,(short)84,(short)0,(short)-1,(short)-1,(bool)true,(string)"KvkNumber",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( Grid1Container.GetWrapped() == 1 )
             {
@@ -1776,11 +1774,11 @@ namespace GeneXus.Programs {
             /* Subfile cell */
             if ( Grid1Container.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            Grid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationVATNumber_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A18OrganisationVATNumber), 8, 0, ".", "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A18OrganisationVATNumber), "ZZZZZZZ9")),(string)" dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationVATNumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn OptionalColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)8,(short)0,(short)0,(short)84,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            Grid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationVATNumber_Internalname,(string)A18OrganisationVATNumber,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationVATNumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn OptionalColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)14,(short)0,(short)0,(short)84,(short)0,(short)-1,(short)-1,(bool)true,(string)"VATNumber",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes042( ) ;
             Grid1Container.AddRow(Grid1Row);
             nGXsfl_84_idx = ((subGrid1_Islastpage==1)&&(nGXsfl_84_idx+1>subGrid1_fnc_Recordsperpage( )) ? 1 : nGXsfl_84_idx+1);
@@ -1868,16 +1866,16 @@ namespace GeneXus.Programs {
             context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Id") ;
+            context.SendWebValue( context.GetMessage( "Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"DescriptionAttribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Kvk Number") ;
+            context.SendWebValue( context.GetMessage( "Kvk Number", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Phone") ;
+            context.SendWebValue( context.GetMessage( "Phone", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "VATNumber") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.SendWebValue( context.GetMessage( "VATNumber", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
             Grid1Container.AddObjectProperty("GridName", "Grid1");
@@ -1916,7 +1914,7 @@ namespace GeneXus.Programs {
             Grid1Column.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( A17OrganisationPhone)));
             Grid1Container.AddColumnProperties(Grid1Column);
             Grid1Column = GXWebColumn.GetNew(isAjaxCallMode( ));
-            Grid1Column.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.LTrim( StringUtil.NToC( (decimal)(A18OrganisationVATNumber), 8, 0, ".", ""))));
+            Grid1Column.AddObjectProperty("Value", GXUtil.ValueEncode( A18OrganisationVATNumber));
             Grid1Container.AddColumnProperties(Grid1Column);
             Grid1Container.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid1_Selectedindex), 4, 0, ".", "")));
             Grid1Container.AddObjectProperty("Allowselection", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid1_Allowselection), 1, 0, ".", "")));
@@ -2023,7 +2021,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Selection List Organisation";
+         Form.Caption = context.GetMessage( "Selection List Organisation", "");
          subGrid1_Rows = 10;
          if ( context.isSpaRequest( ) )
          {
@@ -2038,7 +2036,7 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER","pic":"ZZZZZZZ9"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
          setEventMetadata("'TOGGLE'","""{"handler":"E18041","iparms":[{"av":"divAdvancedcontainer_Class","ctrl":"ADVANCEDCONTAINER","prop":"Class"},{"ctrl":"BTNTOGGLE","prop":"Class"}]""");
          setEventMetadata("'TOGGLE'",""","oparms":[{"av":"divAdvancedcontainer_Class","ctrl":"ADVANCEDCONTAINER","prop":"Class"},{"ctrl":"BTNTOGGLE","prop":"Class"}]}""");
          setEventMetadata("LBLORGANISATIONIDFILTER.CLICK","""{"handler":"E11041","iparms":[{"av":"divOrganisationidfiltercontainer_Class","ctrl":"ORGANISATIONIDFILTERCONTAINER","prop":"Class"}]""");
@@ -2057,10 +2055,10 @@ namespace GeneXus.Programs {
          setEventMetadata("LBLORGANISATIONTYPEIDFILTER.CLICK",""","oparms":[{"av":"divOrganisationtypeidfiltercontainer_Class","ctrl":"ORGANISATIONTYPEIDFILTERCONTAINER","prop":"Class"},{"av":"edtavCorganisationtypeid_Visible","ctrl":"vCORGANISATIONTYPEID","prop":"Visible"}]}""");
          setEventMetadata("ENTER","""{"handler":"E21042","iparms":[{"av":"dynOrganisationId"},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV13pOrganisationId","fld":"vPORGANISATIONID"}]}""");
-         setEventMetadata("GRID1_FIRSTPAGE","""{"handler":"subgrid1_firstpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER","pic":"ZZZZZZZ9"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
-         setEventMetadata("GRID1_PREVPAGE","""{"handler":"subgrid1_previouspage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER","pic":"ZZZZZZZ9"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
-         setEventMetadata("GRID1_NEXTPAGE","""{"handler":"subgrid1_nextpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER","pic":"ZZZZZZZ9"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
-         setEventMetadata("GRID1_LASTPAGE","""{"handler":"subgrid1_lastpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER","pic":"ZZZZZZZ9"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
+         setEventMetadata("GRID1_FIRSTPAGE","""{"handler":"subgrid1_firstpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
+         setEventMetadata("GRID1_PREVPAGE","""{"handler":"subgrid1_previouspage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
+         setEventMetadata("GRID1_NEXTPAGE","""{"handler":"subgrid1_nextpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
+         setEventMetadata("GRID1_LASTPAGE","""{"handler":"subgrid1_lastpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV7cOrganisationKvkNumber","fld":"vCORGANISATIONKVKNUMBER"},{"av":"AV8cOrganisationName","fld":"vCORGANISATIONNAME"},{"av":"AV9cOrganisationEmail","fld":"vCORGANISATIONEMAIL"},{"av":"AV10cOrganisationPhone","fld":"vCORGANISATIONPHONE"},{"av":"AV11cOrganisationVATNumber","fld":"vCORGANISATIONVATNUMBER"},{"av":"AV12cOrganisationTypeId","fld":"vCORGANISATIONTYPEID"},{"av":"dynavCorganisationid"},{"av":"AV6cOrganisationId","fld":"vCORGANISATIONID"}]}""");
          setEventMetadata("VALIDV_CORGANISATIONID","""{"handler":"Validv_Corganisationid","iparms":[]}""");
          setEventMetadata("VALIDV_CORGANISATIONEMAIL","""{"handler":"Validv_Corganisationemail","iparms":[]}""");
          setEventMetadata("VALIDV_CORGANISATIONTYPEID","""{"handler":"Validv_Corganisationtypeid","iparms":[]}""");
@@ -2087,6 +2085,7 @@ namespace GeneXus.Programs {
          AV8cOrganisationName = "";
          AV9cOrganisationEmail = "";
          AV10cOrganisationPhone = "";
+         AV11cOrganisationVATNumber = "";
          AV12cOrganisationTypeId = Guid.Empty;
          sDynURL = "";
          FormProcess = "";
@@ -2118,6 +2117,7 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          A12OrganisationKvkNumber = "";
          A17OrganisationPhone = "";
+         A18OrganisationVATNumber = "";
          gxdynajaxctrlcodr = new GeneXus.Utils.GxStringCollection();
          gxdynajaxctrldescr = new GeneXus.Utils.GxStringCollection();
          gxwrpcisep = "";
@@ -2135,7 +2135,7 @@ namespace GeneXus.Programs {
          H00044_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
          H00044_A16OrganisationEmail = new string[] {""} ;
          H00044_A13OrganisationName = new string[] {""} ;
-         H00044_A18OrganisationVATNumber = new int[1] ;
+         H00044_A18OrganisationVATNumber = new string[] {""} ;
          H00044_A17OrganisationPhone = new string[] {""} ;
          H00044_A12OrganisationKvkNumber = new string[] {""} ;
          H00044_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -2203,7 +2203,6 @@ namespace GeneXus.Programs {
       private int nRC_GXsfl_84 ;
       private int subGrid1_Rows ;
       private int nGXsfl_84_idx=1 ;
-      private int AV11cOrganisationVATNumber ;
       private int edtavCorganisationkvknumber_Visible ;
       private int edtavCorganisationkvknumber_Enabled ;
       private int edtavCorganisationname_Visible ;
@@ -2212,11 +2211,10 @@ namespace GeneXus.Programs {
       private int edtavCorganisationemail_Enabled ;
       private int edtavCorganisationphone_Visible ;
       private int edtavCorganisationphone_Enabled ;
-      private int edtavCorganisationvatnumber_Enabled ;
       private int edtavCorganisationvatnumber_Visible ;
+      private int edtavCorganisationvatnumber_Enabled ;
       private int edtavCorganisationtypeid_Visible ;
       private int edtavCorganisationtypeid_Enabled ;
-      private int A18OrganisationVATNumber ;
       private int gxdynajaxindex ;
       private int subGrid1_Islastpage ;
       private int GXPagingFrom2 ;
@@ -2340,8 +2338,10 @@ namespace GeneXus.Programs {
       private string AV7cOrganisationKvkNumber ;
       private string AV8cOrganisationName ;
       private string AV9cOrganisationEmail ;
+      private string AV11cOrganisationVATNumber ;
       private string AV15Linkselection_GXI ;
       private string A12OrganisationKvkNumber ;
+      private string A18OrganisationVATNumber ;
       private string lV7cOrganisationKvkNumber ;
       private string lV8cOrganisationName ;
       private string lV9cOrganisationEmail ;
@@ -2371,7 +2371,7 @@ namespace GeneXus.Programs {
       private Guid[] H00044_A19OrganisationTypeId ;
       private string[] H00044_A16OrganisationEmail ;
       private string[] H00044_A13OrganisationName ;
-      private int[] H00044_A18OrganisationVATNumber ;
+      private string[] H00044_A18OrganisationVATNumber ;
       private string[] H00044_A17OrganisationPhone ;
       private string[] H00044_A12OrganisationKvkNumber ;
       private Guid[] H00044_A11OrganisationId ;
@@ -2394,13 +2394,13 @@ namespace GeneXus.Programs {
                                              string AV8cOrganisationName ,
                                              string AV9cOrganisationEmail ,
                                              string AV10cOrganisationPhone ,
-                                             int AV11cOrganisationVATNumber ,
+                                             string AV11cOrganisationVATNumber ,
                                              Guid AV12cOrganisationTypeId ,
                                              string A12OrganisationKvkNumber ,
                                              string A13OrganisationName ,
                                              string A16OrganisationEmail ,
                                              string A17OrganisationPhone ,
-                                             int A18OrganisationVATNumber ,
+                                             string A18OrganisationVATNumber ,
                                              Guid A19OrganisationTypeId ,
                                              Guid AV6cOrganisationId )
       {
@@ -2447,9 +2447,9 @@ namespace GeneXus.Programs {
          {
             GXv_int1[4] = 1;
          }
-         if ( ! (0==AV11cOrganisationVATNumber) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11cOrganisationVATNumber)) )
          {
-            AddWhere(sWhereString, "(OrganisationVATNumber >= :AV11cOrganisationVATNumber)");
+            AddWhere(sWhereString, "(OrganisationVATNumber >= ( :AV11cOrganisationVATNumber))");
          }
          else
          {
@@ -2475,13 +2475,13 @@ namespace GeneXus.Programs {
                                              string AV8cOrganisationName ,
                                              string AV9cOrganisationEmail ,
                                              string AV10cOrganisationPhone ,
-                                             int AV11cOrganisationVATNumber ,
+                                             string AV11cOrganisationVATNumber ,
                                              Guid AV12cOrganisationTypeId ,
                                              string A12OrganisationKvkNumber ,
                                              string A13OrganisationName ,
                                              string A16OrganisationEmail ,
                                              string A17OrganisationPhone ,
-                                             int A18OrganisationVATNumber ,
+                                             string A18OrganisationVATNumber ,
                                              Guid A19OrganisationTypeId ,
                                              Guid AV6cOrganisationId )
       {
@@ -2523,9 +2523,9 @@ namespace GeneXus.Programs {
          {
             GXv_int3[4] = 1;
          }
-         if ( ! (0==AV11cOrganisationVATNumber) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11cOrganisationVATNumber)) )
          {
-            AddWhere(sWhereString, "(OrganisationVATNumber >= :AV11cOrganisationVATNumber)");
+            AddWhere(sWhereString, "(OrganisationVATNumber >= ( :AV11cOrganisationVATNumber))");
          }
          else
          {
@@ -2552,9 +2552,9 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 2 :
-                     return conditional_H00044(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (int)dynConstraints[4] , (Guid)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (Guid)dynConstraints[11] , (Guid)dynConstraints[12] );
+                     return conditional_H00044(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (Guid)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (Guid)dynConstraints[11] , (Guid)dynConstraints[12] );
                case 3 :
-                     return conditional_H00045(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (int)dynConstraints[4] , (Guid)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (Guid)dynConstraints[11] , (Guid)dynConstraints[12] );
+                     return conditional_H00045(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (Guid)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (Guid)dynConstraints[11] , (Guid)dynConstraints[12] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -2596,11 +2596,11 @@ namespace GeneXus.Programs {
           Object[] prmH00044;
           prmH00044 = new Object[] {
           new ParDef("AV6cOrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV7cOrganisationKvkNumber",GXType.VarChar,40,0) ,
+          new ParDef("lV7cOrganisationKvkNumber",GXType.VarChar,8,0) ,
           new ParDef("lV8cOrganisationName",GXType.VarChar,100,0) ,
           new ParDef("lV9cOrganisationEmail",GXType.VarChar,100,0) ,
           new ParDef("lV10cOrganisationPhone",GXType.Char,20,0) ,
-          new ParDef("AV11cOrganisationVATNumber",GXType.Int32,8,0) ,
+          new ParDef("AV11cOrganisationVATNumber",GXType.VarChar,14,0) ,
           new ParDef("AV12cOrganisationTypeId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("GXPagingFrom2",GXType.Int32,9,0) ,
           new ParDef("GXPagingTo2",GXType.Int32,9,0) ,
@@ -2609,11 +2609,11 @@ namespace GeneXus.Programs {
           Object[] prmH00045;
           prmH00045 = new Object[] {
           new ParDef("AV6cOrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV7cOrganisationKvkNumber",GXType.VarChar,40,0) ,
+          new ParDef("lV7cOrganisationKvkNumber",GXType.VarChar,8,0) ,
           new ParDef("lV8cOrganisationName",GXType.VarChar,100,0) ,
           new ParDef("lV9cOrganisationEmail",GXType.VarChar,100,0) ,
           new ParDef("lV10cOrganisationPhone",GXType.Char,20,0) ,
-          new ParDef("AV11cOrganisationVATNumber",GXType.Int32,8,0) ,
+          new ParDef("AV11cOrganisationVATNumber",GXType.VarChar,14,0) ,
           new ParDef("AV12cOrganisationTypeId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
@@ -2646,7 +2646,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((int[]) buf[3])[0] = rslt.getInt(4);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 ((string[]) buf[4])[0] = rslt.getString(5, 20);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);

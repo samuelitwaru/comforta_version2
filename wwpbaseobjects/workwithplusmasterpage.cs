@@ -159,11 +159,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_hidden_field( context, "WWPUTILITIES_MPAGE_Allowcolumnsrestore", StringUtil.BoolToStr( Wwputilities_Allowcolumnsrestore));
          GxWebStd.gx_hidden_field( context, "WWPUTILITIES_MPAGE_Pagbarincludegoto", StringUtil.BoolToStr( Wwputilities_Pagbarincludegoto));
          GxWebStd.gx_hidden_field( context, "WWPUTILITIES_MPAGE_Comboloadtype", StringUtil.RTrim( Wwputilities_Comboloadtype));
-         GxWebStd.gx_hidden_field( context, "FORM_MPAGE_Caption", StringUtil.RTrim( (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Caption));
+         GxWebStd.gx_hidden_field( context, "WWPDATEPICKER_MPAGE_Minyear", StringUtil.LTrim( StringUtil.NToC( (decimal)(Wwpdatepicker_Minyear), 9, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "WWPDATEPICKER_MPAGE_Maxyear", StringUtil.LTrim( StringUtil.NToC( (decimal)(Wwpdatepicker_Maxyear), 9, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "vNOTIFICATIONINFO_MPAGE_Message", AV11NotificationInfo.gxTpr_Message);
          GxWebStd.gx_hidden_field( context, "DDC_NOTIFICATIONSWC_MPAGE_Icon", StringUtil.RTrim( Ddc_notificationswc_Icon));
          GxWebStd.gx_hidden_field( context, "DDC_NOTIFICATIONSWC_MPAGE_Icon", StringUtil.RTrim( Ddc_notificationswc_Icon));
-         GxWebStd.gx_hidden_field( context, "FORM_MPAGE_Caption", StringUtil.RTrim( (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Caption));
       }
 
       protected void RenderHtmlCloseForm392( )
@@ -184,7 +184,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -213,7 +213,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/daterangepicker.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DatePicker/DatePickerRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20249271949890", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2024101016435183", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -229,7 +229,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return "Master Page" ;
+         return context.GetMessage( "Master Page", "") ;
       }
 
       protected void WB390( )
@@ -297,7 +297,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "Header Image", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "Header Image", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Static Bitmap Variable */
             ClassString = "Attribute" + " " + ((StringUtil.StrCmp(imgavHeaderimage_gximage, "")==0) ? "" : "GX_Image_"+imgavHeaderimage_gximage+"_Class");
             StyleString = "";
@@ -309,7 +309,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblShowmenu_Internalname, "<i class=\"fa fa-bars ImageMenuIcon\"></i>", "", "", lblShowmenu_Jsonclick, "'"+""+"'"+",true,"+"'"+"e11391_client"+"'", "", "TextBlock", 7, "", 1, 1, 0, 1, "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
+            GxWebStd.gx_label_ctrl( context, lblShowmenu_Internalname, context.GetMessage( "<i class=\"fa fa-bars ImageMenuIcon\"></i>", ""), "", "", lblShowmenu_Jsonclick, "'"+""+"'"+",true,"+"'"+"e11391_client"+"'", "", "TextBlock", 7, "", 1, 1, 0, 1, "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -352,23 +352,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellTableContentMaster CellTableContentWithFooter", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "page-content MaterialStyle", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellTitleMaster", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divTabletitle_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktitle_Internalname, lblTextblocktitle_Caption, "", "", lblTextblocktitle_Jsonclick, "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "TextBlockTitleMaster", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -420,20 +403,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 MasterFooterCellVM page-content", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divTablefooter_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "justify-content:flex-end;", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockfooter_Internalname, lblTextblockfooter_Caption, "", "", lblTextblockfooter_Jsonclick, "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "FooterText", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* User Defined Control */
             ucUcmessage.SetProperty("StopOnError", Ucmessage_Stoponerror);
@@ -471,6 +440,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* User Defined Control */
+            ucWwpdatepicker.SetProperty("MinYear", Wwpdatepicker_Minyear);
+            ucWwpdatepicker.SetProperty("MaxYear", Wwpdatepicker_Maxyear);
             ucWwpdatepicker.Render(context, "wwp.datepicker", Wwpdatepicker_Internalname, "WWPDATEPICKER_MPAGEContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -484,9 +455,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 60,'',true,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',true,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavPickerdummyvariable_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavPickerdummyvariable_Internalname, context.localUtil.Format(AV31PickerDummyVariable, "99/99/99"), context.localUtil.Format( AV31PickerDummyVariable, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'MDY',0,12,'eng',false,0);"+";gx.evt.onblur(this,60);\"", "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "", "", "", edtavPickerdummyvariable_Jsonclick, 0, "Invisible", "", "", "", "", 1, 1, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
+            GxWebStd.gx_single_line_edit( context, edtavPickerdummyvariable_Internalname, context.localUtil.Format(AV31PickerDummyVariable, "99/99/99"), context.localUtil.Format( AV31PickerDummyVariable, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,49);\"", "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "", "", "", edtavPickerdummyvariable_Jsonclick, 0, "Invisible", "", "", "", "", 1, 1, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
             GxWebStd.gx_bitmap( context, edtavPickerdummyvariable_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(1==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
             context.WriteHtmlTextNl( "</div>") ;
             /* Div Control */
@@ -494,16 +465,16 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
-               GxWebStd.gx_hidden_field( context, "MPW0062"+"", StringUtil.RTrim( WebComp_Wwpaux_wc_Component));
+               GxWebStd.gx_hidden_field( context, "MPW0051"+"", StringUtil.RTrim( WebComp_Wwpaux_wc_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
-               context.WriteHtmlText( " id=\""+"gxHTMLWrpMPW0062"+""+"\""+"") ;
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpMPW0051"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
                if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
                {
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWwpaux_wc), StringUtil.Lower( WebComp_Wwpaux_wc_Component)) != 0 )
                   {
-                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0062"+"");
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0051"+"");
                   }
                   WebComp_Wwpaux_wc.componentdraw();
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWwpaux_wc), StringUtil.Lower( WebComp_Wwpaux_wc_Component)) != 0 )
@@ -619,19 +590,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
                            /* Execute user event: Onmessage_gx1 */
                            E16392 ();
                         }
-                        else if ( StringUtil.StrCmp(sEvt, "REFRESH_MPAGE") == 0 )
-                        {
-                           context.wbHandled = 1;
-                           dynload_actions( ) ;
-                           /* Execute user event: Refresh */
-                           E17392 ();
-                        }
                         else if ( StringUtil.StrCmp(sEvt, "LOAD_MPAGE") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: Load */
-                           E18392 ();
+                           E17392 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "ENTER_MPAGE") == 0 )
                         {
@@ -669,9 +633,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
                      sEvtType = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-2));
                      sEvt = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-6));
                      nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
-                     if ( nCmpId == 62 )
+                     if ( nCmpId == 51 )
                      {
-                        OldWwpaux_wc = cgiGet( "MPW0062");
+                        OldWwpaux_wc = cgiGet( "MPW0051");
                         if ( ( StringUtil.Len( OldWwpaux_wc) == 0 ) || ( StringUtil.StrCmp(OldWwpaux_wc, WebComp_Wwpaux_wc_Component) != 0 ) )
                         {
                            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", OldWwpaux_wc, new Object[] {context} );
@@ -681,7 +645,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                         }
                         if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
                         {
-                           WebComp_Wwpaux_wc.componentprocess("MPW0062", "", sEvt);
+                           WebComp_Wwpaux_wc.componentprocess("MPW0051", "", sEvt);
                         }
                         WebComp_Wwpaux_wc_Component = OldWwpaux_wc;
                      }
@@ -783,8 +747,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          clear_multi_value_controls( ) ;
          if ( ShowMPWhenPopUp( ) || ! context.isPopUpObject( ) )
          {
-            /* Execute user event: Refresh */
-            E17392 ();
             if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
             {
                if ( 1 != 0 )
@@ -802,7 +764,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E18392 ();
+            E17392 ();
             WB390( ) ;
             if ( context.isSpaRequest( ) )
             {
@@ -838,16 +800,16 @@ namespace GeneXus.Programs.wwpbaseobjects {
             ajax_req_read_hidden_sdt(cgiGet( "vNOTIFICATIONINFO_MPAGE"), AV11NotificationInfo);
             /* Read saved values. */
             Ddc_changelanguage_Caption = cgiGet( "DDC_CHANGELANGUAGE_MPAGE_Caption");
-            Ddc_changelanguage_Componentwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_CHANGELANGUAGE_MPAGE_Componentwidth"), ".", ","), 18, MidpointRounding.ToEven));
+            Ddc_changelanguage_Componentwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_CHANGELANGUAGE_MPAGE_Componentwidth"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Ddc_notificationswc_Icontype = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Icontype");
             Ddc_notificationswc_Icon = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Icon");
             Ddc_notificationswc_Caption = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Caption");
             Ddc_notificationswc_Cls = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Cls");
             Ddc_adminag_Icon = cgiGet( "DDC_ADMINAG_MPAGE_Icon");
             Ddc_adminag_Cls = cgiGet( "DDC_ADMINAG_MPAGE_Cls");
-            Ddc_adminag_Componentwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_ADMINAG_MPAGE_Componentwidth"), ".", ","), 18, MidpointRounding.ToEven));
+            Ddc_adminag_Componentwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_ADMINAG_MPAGE_Componentwidth"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Ucmenu_Sidebarmainclass = cgiGet( "UCMENU_MPAGE_Sidebarmainclass");
-            Ucmenu_Scrollwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "UCMENU_MPAGE_Scrollwidth"), ".", ","), 18, MidpointRounding.ToEven));
+            Ucmenu_Scrollwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "UCMENU_MPAGE_Scrollwidth"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Ucmenu_Scrollalwaysvisible = StringUtil.StrToBool( cgiGet( "UCMENU_MPAGE_Scrollalwaysvisible"));
             Ucmenu_Hidescrollincompactmenu = StringUtil.StrToBool( cgiGet( "UCMENU_MPAGE_Hidescrollincompactmenu"));
             Ucmessage_Stoponerror = StringUtil.StrToBool( cgiGet( "UCMESSAGE_MPAGE_Stoponerror"));
@@ -861,13 +823,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
             Wwputilities_Allowcolumnsrestore = StringUtil.StrToBool( cgiGet( "WWPUTILITIES_MPAGE_Allowcolumnsrestore"));
             Wwputilities_Pagbarincludegoto = StringUtil.StrToBool( cgiGet( "WWPUTILITIES_MPAGE_Pagbarincludegoto"));
             Wwputilities_Comboloadtype = cgiGet( "WWPUTILITIES_MPAGE_Comboloadtype");
+            Wwpdatepicker_Minyear = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPDATEPICKER_MPAGE_Minyear"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Wwpdatepicker_Maxyear = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPDATEPICKER_MPAGE_Maxyear"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Ddc_notificationswc_Icon = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Icon");
-            (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Caption = cgiGet( "FORM_MPAGE_Caption");
             /* Read variables values. */
             AV33HeaderImage = cgiGet( imgavHeaderimage_Internalname);
-            if ( context.localUtil.VCDate( cgiGet( edtavPickerdummyvariable_Internalname), 1) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavPickerdummyvariable_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"Picker Dummy Variable"}), 1, "vPICKERDUMMYVARIABLE_MPAGE");
+               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Picker Dummy Variable", "")}), 1, "vPICKERDUMMYVARIABLE_MPAGE");
                GX_FocusControl = edtavPickerdummyvariable_Internalname;
                AssignAttri("", true, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
@@ -876,7 +839,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
             else
             {
-               AV31PickerDummyVariable = context.localUtil.CToD( cgiGet( edtavPickerdummyvariable_Internalname), 1);
+               AV31PickerDummyVariable = context.localUtil.CToD( cgiGet( edtavPickerdummyvariable_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
                AssignAttri("", true, "AV31PickerDummyVariable", context.localUtil.Format(AV31PickerDummyVariable, "99/99/99"));
             }
             /* Read subfile selected row values. */
@@ -957,10 +920,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignAttri("", true, "AV24RolesDescriptions", AV24RolesDescriptions);
             AV43GXV1 = (int)(AV43GXV1+1);
          }
-         if ( StringUtil.StrCmp(AV25WebSession.Get("ClientInformationSaved"), "Y") != 0 )
+         if ( StringUtil.StrCmp(AV25WebSession.Get(context.GetMessage( "ClientInformationSaved", "")), context.GetMessage( "Y", "")) != 0 )
          {
             new GeneXus.Programs.wwpbaseobjects.notifications.web.wwp_registerwebclient(context ).execute(  new GeneXus.Core.genexus.client.SdtClientInformation(context).gxTpr_Id,  (short)(context.GetBrowserType( )),  context.GetBrowserVersion( ),  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )) ;
-            AV25WebSession.Set("ClientInformationSaved", "Y");
+            AV25WebSession.Set(context.GetMessage( "ClientInformationSaved", ""), context.GetMessage( "Y", ""));
          }
          /* Execute user subroutine: 'LOADNOTIFICATIONS' */
          S112 ();
@@ -976,10 +939,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
             this.executeExternalObjectMethod("", true, "gx.core.ds", "setOption", new Object[] {(string)"font-size",AV34SDT_OrganisationSetting.gxTpr_Organisationsettingfontsize}, false);
             this.executeExternalObjectMethod("", true, "WWPActions", "EmpoweredGrids_Refresh", new Object[] {}, false);
          }
-         GXt_char4 = "";
-         new prc_getuserfootercaption(context ).execute( out  GXt_char4) ;
-         lblTextblockfooter_Caption = GXt_char4;
-         AssignProp("", true, lblTextblockfooter_Internalname, "Caption", lblTextblockfooter_Caption, true);
          Ddc_changelanguage_Caption = context.GetLanguage( );
          ucDdc_changelanguage.SendProperty(context, "", true, Ddc_changelanguage_Internalname, "Caption", Ddc_changelanguage_Caption);
       }
@@ -1003,12 +962,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
          {
             WebComp_Wwpaux_wc.setjustcreated();
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"MPW0062",(string)""});
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"MPW0051",(string)""});
             WebComp_Wwpaux_wc.componentbind(new Object[] {});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
          {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0062"+"");
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0051"+"");
             WebComp_Wwpaux_wc.componentdraw();
             context.httpAjaxContext.ajax_rspEndCmp();
          }
@@ -1034,12 +993,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
          {
             WebComp_Wwpaux_wc.setjustcreated();
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"MPW0062",(string)""});
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"MPW0051",(string)""});
             WebComp_Wwpaux_wc.componentbind(new Object[] {});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
          {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0062"+"");
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0051"+"");
             WebComp_Wwpaux_wc.componentdraw();
             context.httpAjaxContext.ajax_rspEndCmp();
          }
@@ -1065,12 +1024,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
          {
             WebComp_Wwpaux_wc.setjustcreated();
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"MPW0062",(string)""});
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"MPW0051",(string)""});
             WebComp_Wwpaux_wc.componentbind(new Object[] {});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
          {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0062"+"");
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpMPW0051"+"");
             WebComp_Wwpaux_wc.componentdraw();
             context.httpAjaxContext.ajax_rspEndCmp();
          }
@@ -1105,15 +1064,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if (returnInSub) return;
       }
 
-      protected void E17392( )
-      {
-         /* Refresh Routine */
-         returnInSub = false;
-         lblTextblocktitle_Caption = (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Caption;
-         AssignProp("", true, lblTextblocktitle_Internalname, "Caption", lblTextblocktitle_Caption, true);
-         /*  Sending Event outputs  */
-      }
-
       protected void S112( )
       {
          /* 'LOADNOTIFICATIONS' Routine */
@@ -1134,7 +1084,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
       }
 
-      protected void E18392( )
+      protected void E17392( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1197,7 +1147,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202492719491998", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20241010164406", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1212,7 +1162,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20249271949202", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20241010164409", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1259,12 +1209,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Ddc_adminag_Internalname = "DDC_ADMINAG_MPAGE";
          divTableuserrole_Internalname = "TABLEUSERROLE_MPAGE";
          divTableheader_Internalname = "TABLEHEADER_MPAGE";
-         lblTextblocktitle_Internalname = "TEXTBLOCKTITLE_MPAGE";
-         divTabletitle_Internalname = "TABLETITLE_MPAGE";
          divTablecontent_Internalname = "TABLECONTENT_MPAGE";
          Ucmenu_Internalname = "UCMENU_MPAGE";
-         lblTextblockfooter_Internalname = "TEXTBLOCKFOOTER_MPAGE";
-         divTablefooter_Internalname = "TABLEFOOTER_MPAGE";
          Ucmessage_Internalname = "UCMESSAGE_MPAGE";
          Uctooltip_Internalname = "UCTOOLTIP_MPAGE";
          Wwputilities_Internalname = "WWPUTILITIES_MPAGE";
@@ -1285,11 +1231,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          init_default_properties( ) ;
          edtavPickerdummyvariable_Jsonclick = "";
-         lblTextblockfooter_Caption = "Footer";
-         lblTextblocktitle_Caption = " Title";
          Ddc_adminag_Caption = "";
          imgavHeaderimage_gximage = "";
          divLayoutmaintable_Class = "Table";
+         Wwpdatepicker_Maxyear = 2030;
+         Wwpdatepicker_Minyear = 1900;
          Wwputilities_Comboloadtype = "InfiniteScrolling";
          Wwputilities_Pagbarincludegoto = Convert.ToBoolean( -1);
          Wwputilities_Allowcolumnsrestore = Convert.ToBoolean( -1);
@@ -1313,7 +1259,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Ddc_notificationswc_Icon = "far fa-bell";
          Ddc_notificationswc_Icontype = "FontIcon";
          Ddc_changelanguage_Componentwidth = 160;
-         Ddc_changelanguage_Caption = "Change Language";
+         Ddc_changelanguage_Caption = context.GetMessage( "Change Language", "");
          Contentholder.setDataArea(getDataAreaObject());
          if ( context.isSpaRequest( ) )
          {
@@ -1328,8 +1274,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH_MPAGE","""{"handler":"Refresh","iparms":[{"ctrl":"FORM_MPAGE","prop":"Caption"}]""");
-         setEventMetadata("REFRESH_MPAGE",""","oparms":[{"av":"lblTextblocktitle_Caption","ctrl":"TEXTBLOCKTITLE_MPAGE","prop":"Caption"}]}""");
+         setEventMetadata("REFRESH_MPAGE","""{"handler":"Refresh","iparms":[]}""");
          setEventMetadata("DDC_CHANGELANGUAGE_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E12392","iparms":[]""");
          setEventMetadata("DDC_CHANGELANGUAGE_MPAGE.ONLOADCOMPONENT_MPAGE",""","oparms":[{"ctrl":"WWPAUX_WC_MPAGE"}]}""");
          setEventMetadata("DDC_NOTIFICATIONSWC_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E13392","iparms":[]""");
@@ -1369,9 +1314,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          ucDdc_changelanguage = new GXUserControl();
          ucDdc_notificationswc = new GXUserControl();
          ucDdc_adminag = new GXUserControl();
-         lblTextblocktitle_Jsonclick = "";
          ucUcmenu = new GXUserControl();
-         lblTextblockfooter_Jsonclick = "";
          ucUcmessage = new GXUserControl();
          ucUctooltip = new GXUserControl();
          ucWwputilities = new GXUserControl();
@@ -1402,7 +1345,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV28Httprequest = new GxHttpRequest( context);
          AV15WWP_DesignSystemSettings = new GeneXus.Programs.wwpbaseobjects.SdtWWP_DesignSystemSettings(context);
          GXt_SdtWWP_DesignSystemSettings3 = new GeneXus.Programs.wwpbaseobjects.SdtWWP_DesignSystemSettings(context);
-         GXt_char4 = "";
          AV13WWP_WebNotification = new GeneXus.Programs.wwpbaseobjects.notifications.web.SdtWWP_WebNotification(context);
          AV14WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          GXEncryptionTmp = "";
@@ -1437,6 +1379,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private int Ddc_changelanguage_Componentwidth ;
       private int Ddc_adminag_Componentwidth ;
       private int Ucmenu_Scrollwidth ;
+      private int Wwpdatepicker_Minyear ;
+      private int Wwpdatepicker_Maxyear ;
       private int AV43GXV1 ;
       private int idxLst ;
       private string Ddc_notificationswc_Icon ;
@@ -1470,15 +1414,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string Ddc_adminag_Caption ;
       private string Ddc_adminag_Internalname ;
       private string divTablecontent_Internalname ;
-      private string divTabletitle_Internalname ;
-      private string lblTextblocktitle_Internalname ;
-      private string lblTextblocktitle_Caption ;
-      private string lblTextblocktitle_Jsonclick ;
       private string Ucmenu_Internalname ;
-      private string divTablefooter_Internalname ;
-      private string lblTextblockfooter_Internalname ;
-      private string lblTextblockfooter_Caption ;
-      private string lblTextblockfooter_Jsonclick ;
       private string Ucmessage_Internalname ;
       private string Uctooltip_Internalname ;
       private string Wwputilities_Internalname ;
@@ -1497,7 +1433,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string GX_FocusControl ;
       private string imgImagelogo_gximage ;
       private string imgImagelogo_Internalname ;
-      private string GXt_char4 ;
       private string GXEncryptionTmp ;
       private string sDynURL ;
       private DateTime AV31PickerDummyVariable ;
