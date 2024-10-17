@@ -92,7 +92,7 @@ namespace GeneXus.Programs {
          AV13GAMUser.gxTpr_Firstname = AV10GivenName;
          AV13GAMUser.gxTpr_Lastname = AV11LastName;
          AV13GAMUser.gxTpr_Email = AV8Email;
-         AV13GAMUser.gxTpr_Password = "user123";
+         AV13GAMUser.gxTpr_Password = Guid.NewGuid( ).ToString();
          AV13GAMUser.gxTpr_Authenticationtypename = "local";
          AV13GAMUser.gxTpr_Namespace = "Comforta";
          AV13GAMUser.save();

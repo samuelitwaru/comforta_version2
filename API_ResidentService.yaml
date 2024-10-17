@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241017020512"
+  version: "20241017075225"
 servers:
-  - url: https://comforta.yukon.software/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -167,7 +167,7 @@ paths:
         404:
           description: "Not found"
 
-  /pages:
+  /toolbox/pages:
     get:
       tags:
         - API_ResidentService  
@@ -202,7 +202,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 

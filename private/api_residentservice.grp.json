@@ -65,8 +65,8 @@
 "Implementation":"Prc_SendNotification"
 },
 {
-"PathRegexp":"pages",
-"Path":"pages",
+"PathRegexp":"toolbox/pages",
+"Path":"toolbox/pages",
 "Name":"getpagesinformation",
 "Bodystyle":"Wrapped",
 "VariableAlias": [],

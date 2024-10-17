@@ -266,7 +266,7 @@ namespace GeneXus.Programs {
          {
             InitLocation();
          }
-         restLocation.ResourceName = "/pages";
+         restLocation.ResourceName = "/toolbox/pages";
          restCliGetPagesInformation.Location = restLocation;
          restCliGetPagesInformation.HttpMethod = "GET";
          restCliGetPagesInformation.AddQueryVar("Trn_pageid", (Guid)(aP0_Trn_PageId));

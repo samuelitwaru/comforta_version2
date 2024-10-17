@@ -147,6 +147,15 @@ namespace GeneXus.Programs {
          }
       }
 
+      protected void E16012( )
+      {
+         /* Getpagesinformation_After Routine */
+         returnInSub = false;
+         if ( AV25SDT_PageCollection.FromJSonString(AV17result, null) )
+         {
+         }
+      }
+
       public void gxep_loginwithqrcode( string aP0_secretKey ,
                                         out SdtSDT_LoginResidentResponse aP1_loginResult )
       {
@@ -300,6 +309,13 @@ namespace GeneXus.Programs {
          initialize();
          /* GetPagesInformation Constructor */
          new prc_pagesapi(context ).execute(  AV24Trn_PageId, out  AV17result) ;
+         /* Execute user event: Getpagesinformation.After */
+         E16012 ();
+         if ( returnInSub )
+         {
+            aP1_result=this.AV17result;
+            return;
+         }
          /* Execute user event: After */
          E11012 ();
          if ( returnInSub )
@@ -323,6 +339,7 @@ namespace GeneXus.Programs {
          AV22SDT_Resident = new SdtSDT_Resident(context);
          AV23SDT_Organisation = new SdtSDT_Organisation(context);
          AV18SDT_Location = new SdtSDT_Location(context);
+         AV25SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          /* GeneXus formulas. */
       }
 
@@ -348,6 +365,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Resident AV22SDT_Resident ;
       protected SdtSDT_Organisation AV23SDT_Organisation ;
       protected SdtSDT_Location AV18SDT_Location ;
+      protected GXBaseCollection<SdtSDT_Page> AV25SDT_PageCollection ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_Resident aP1_SDT_Resident ;
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
