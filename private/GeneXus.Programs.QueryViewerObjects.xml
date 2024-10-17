@@ -51,4 +51,19 @@
   <Object name="DP_Country" id="18" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="DP_Country" xmlns="qv">
     <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
   </Object>
+  <Object name="Trn_Page_DataProvider" id="19" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="Trn_Page_DataProvider" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
+  <Object name="Trn_Tile_DataProvider" id="20" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="Trn_Tile_DataProvider" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
+  <Object name="Trn_Col_DataProvider" id="21" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="Trn_Col_DataProvider" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
+  <Object name="Trn_Row_DataProvider" id="22" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="Trn_Row_DataProvider" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
+  <Object name="DP_LocationDynamicForm" id="23" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="DP_LocationDynamicForm" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
 </Objects>

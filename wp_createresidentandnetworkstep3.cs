@@ -660,18 +660,18 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 ExtendedComboCell", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell ExtendedComboCell", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divTablesplittednetworkcompanyphonecode_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-3 MergeLabelCell", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
             /* Text block */
             GxWebStd.gx_label_ctrl( context, lblTextblockcombo_networkcompanyphonecode_Internalname, context.GetMessage( "Phone", ""), "", "", lblTextblockcombo_networkcompanyphonecode_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateResidentAndNetworkStep3.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
             wb_table1_39_6S2( true) ;
          }
          else
@@ -838,7 +838,7 @@ namespace GeneXus.Programs {
             {
                GridsContainer.AddObjectProperty("GRIDS_nEOF", GRIDS_nEOF);
                GridsContainer.AddObjectProperty("GRIDS_nFirstRecordOnPage", GRIDS_nFirstRecordOnPage);
-               AV45GXV1 = nGXsfl_85_idx;
+               AV46GXV1 = nGXsfl_85_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+sPrefix+"GridsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid(sPrefix+"_"+"Grids", GridsContainer, subGrids_Internalname);
@@ -928,7 +928,7 @@ namespace GeneXus.Programs {
                {
                   GridsContainer.AddObjectProperty("GRIDS_nEOF", GRIDS_nEOF);
                   GridsContainer.AddObjectProperty("GRIDS_nFirstRecordOnPage", GRIDS_nFirstRecordOnPage);
-                  AV45GXV1 = nGXsfl_85_idx;
+                  AV46GXV1 = nGXsfl_85_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+sPrefix+"GridsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid(sPrefix+"_"+"Grids", GridsContainer, subGrids_Internalname);
@@ -1095,6 +1095,54 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "VNETWORKCOMPANYEMAIL.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6S0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E146S2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "VNETWORKCOMPANYKVKNUMBER.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6S0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E156S2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "VNETWORKCOMPANYZIPCODE.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6S0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E166S2 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -1152,10 +1200,10 @@ namespace GeneXus.Programs {
                               nGXsfl_85_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_85_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_85_idx), 4, 0), 4, "0");
                               SubsflControlProps_852( ) ;
-                              AV45GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
-                              if ( ( AV13SDT_NetworkCompanys.Count >= AV45GXV1 ) && ( AV45GXV1 > 0 ) )
+                              AV46GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
+                              if ( ( AV13SDT_NetworkCompanys.Count >= AV46GXV1 ) && ( AV46GXV1 > 0 ) )
                               {
-                                 AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1));
+                                 AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1));
                                  AV12UDelete = cgiGet( edtavUdelete_Internalname);
                                  AssignAttri(sPrefix, false, edtavUdelete_Internalname, AV12UDelete);
                               }
@@ -1174,7 +1222,7 @@ namespace GeneXus.Programs {
                                           GX_FocusControl = edtavSdt_networkcompanys__networkcompanyid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Start */
-                                          E146S2 ();
+                                          E176S2 ();
                                        }
                                     }
                                  }
@@ -1189,7 +1237,7 @@ namespace GeneXus.Programs {
                                           GX_FocusControl = edtavSdt_networkcompanys__networkcompanyid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Grids.Load */
-                                          E156S2 ();
+                                          E186S2 ();
                                        }
                                     }
                                  }
@@ -1203,7 +1251,7 @@ namespace GeneXus.Programs {
                                           dynload_actions( ) ;
                                           GX_FocusControl = edtavSdt_networkcompanys__networkcompanyid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
-                                          E166S2 ();
+                                          E196S2 ();
                                        }
                                     }
                                     /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1449,14 +1497,14 @@ namespace GeneXus.Programs {
          {
             SubsflControlProps_852( ) ;
             /* Execute user event: Grids.Load */
-            E156S2 ();
+            E186S2 ();
             if ( ( subGrids_Islastpage == 0 ) && ( GRIDS_nCurrentRecord > 0 ) && ( GRIDS_nGridOutOfScope == 0 ) && ( nGXsfl_85_idx == 1 ) )
             {
                GRIDS_nCurrentRecord = 0;
                GRIDS_nGridOutOfScope = 1;
                subgrids_firstpage( ) ;
                /* Execute user event: Grids.Load */
-               E156S2 ();
+               E186S2 ();
             }
             wbEnd = 85;
             WB6S0( ) ;
@@ -1626,7 +1674,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E146S2 ();
+         E176S2 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -1656,10 +1704,10 @@ namespace GeneXus.Programs {
                nGXsfl_85_fel_idx = ((subGrids_Islastpage==1)&&(nGXsfl_85_fel_idx+1>subGrids_fnc_Recordsperpage( )) ? 1 : nGXsfl_85_fel_idx+1);
                sGXsfl_85_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_85_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_852( ) ;
-               AV45GXV1 = (int)(nGXsfl_85_fel_idx+GRIDS_nFirstRecordOnPage);
-               if ( ( AV13SDT_NetworkCompanys.Count >= AV45GXV1 ) && ( AV45GXV1 > 0 ) )
+               AV46GXV1 = (int)(nGXsfl_85_fel_idx+GRIDS_nFirstRecordOnPage);
+               if ( ( AV13SDT_NetworkCompanys.Count >= AV46GXV1 ) && ( AV46GXV1 > 0 ) )
                {
-                  AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1));
+                  AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1));
                   AV12UDelete = cgiGet( edtavUdelete_Internalname);
                }
             }
@@ -1727,11 +1775,11 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E146S2 ();
+         E176S2 ();
          if (returnInSub) return;
       }
 
-      protected void E146S2( )
+      protected void E176S2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1774,16 +1822,23 @@ namespace GeneXus.Programs {
          ucCombo_networkcompanycountry.SendProperty(context, sPrefix, false, Combo_networkcompanycountry_Internalname, "SelectedValue_set", Combo_networkcompanycountry_Selectedvalue_set);
          AV19NetworkCompanyCountry = AV39defaultCountry;
          AssignAttri(sPrefix, false, "AV19NetworkCompanyCountry", AV19NetworkCompanyCountry);
+         AV45defaultCountryPhoneCode = "+31";
+         AV41NetworkCompanyPhoneCode = "+31";
+         AssignAttri(sPrefix, false, "AV41NetworkCompanyPhoneCode", AV41NetworkCompanyPhoneCode);
+         Combo_networkcompanyphonecode_Selectedtext_set = AV45defaultCountryPhoneCode;
+         ucCombo_networkcompanyphonecode.SendProperty(context, sPrefix, false, Combo_networkcompanyphonecode_Internalname, "SelectedText_set", Combo_networkcompanyphonecode_Selectedtext_set);
+         Combo_networkcompanyphonecode_Selectedvalue_set = AV45defaultCountryPhoneCode;
+         ucCombo_networkcompanyphonecode.SendProperty(context, sPrefix, false, Combo_networkcompanyphonecode_Internalname, "SelectedValue_set", Combo_networkcompanyphonecode_Selectedvalue_set);
       }
 
-      private void E156S2( )
+      private void E186S2( )
       {
          /* Grids_Load Routine */
          returnInSub = false;
-         AV45GXV1 = 1;
-         while ( AV45GXV1 <= AV13SDT_NetworkCompanys.Count )
+         AV46GXV1 = 1;
+         while ( AV46GXV1 <= AV13SDT_NetworkCompanys.Count )
          {
-            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1));
+            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1));
             AV12UDelete = "<i class=\"fa fa-times\"></i>";
             AssignAttri(sPrefix, false, edtavUdelete_Internalname, AV12UDelete);
             /* Load Method */
@@ -1802,7 +1857,7 @@ namespace GeneXus.Programs {
             {
                DoAjaxLoad(85, GridsRow);
             }
-            AV45GXV1 = (int)(AV45GXV1+1);
+            AV46GXV1 = (int)(AV46GXV1+1);
          }
          /*  Sending Event outputs  */
       }
@@ -1816,10 +1871,10 @@ namespace GeneXus.Programs {
 
       protected void E116S2( )
       {
-         AV45GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
-         if ( ( AV45GXV1 > 0 ) && ( AV13SDT_NetworkCompanys.Count >= AV45GXV1 ) )
+         AV46GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
+         if ( ( AV46GXV1 > 0 ) && ( AV13SDT_NetworkCompanys.Count >= AV46GXV1 ) )
          {
-            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1));
+            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1));
          }
          /* Enter Routine */
          returnInSub = false;
@@ -1862,10 +1917,10 @@ namespace GeneXus.Programs {
 
       protected void E126S2( )
       {
-         AV45GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
-         if ( ( AV45GXV1 > 0 ) && ( AV13SDT_NetworkCompanys.Count >= AV45GXV1 ) )
+         AV46GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
+         if ( ( AV46GXV1 > 0 ) && ( AV13SDT_NetworkCompanys.Count >= AV46GXV1 ) )
          {
-            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1));
+            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1));
          }
          /* 'WizardPrevious' Routine */
          returnInSub = false;
@@ -1889,10 +1944,10 @@ namespace GeneXus.Programs {
 
       protected void E136S2( )
       {
-         AV45GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
-         if ( ( AV45GXV1 > 0 ) && ( AV13SDT_NetworkCompanys.Count >= AV45GXV1 ) )
+         AV46GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
+         if ( ( AV46GXV1 > 0 ) && ( AV13SDT_NetworkCompanys.Count >= AV46GXV1 ) )
          {
-            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1));
+            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1));
          }
          /* 'DoUInsert' Routine */
          returnInSub = false;
@@ -1902,16 +1957,16 @@ namespace GeneXus.Programs {
          if ( AV24CheckRequiredFieldsResult && ! AV10HasValidationErrors )
          {
             AV26isAlreadyAdded = false;
-            AV59GXV15 = 1;
-            while ( AV59GXV15 <= AV13SDT_NetworkCompanys.Count )
+            AV60GXV15 = 1;
+            while ( AV60GXV15 <= AV13SDT_NetworkCompanys.Count )
             {
-               AV25SDT_NetworkCompany = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV59GXV15));
+               AV25SDT_NetworkCompany = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV60GXV15));
                if ( StringUtil.StrCmp(AV25SDT_NetworkCompany.gxTpr_Networkcompanykvknumber, AV16NetworkCompanyKvkNumber) == 0 )
                {
                   AV26isAlreadyAdded = true;
                   if (true) break;
                }
-               AV59GXV15 = (int)(AV59GXV15+1);
+               AV60GXV15 = (int)(AV60GXV15+1);
             }
             if ( AV26isAlreadyAdded )
             {
@@ -2049,23 +2104,23 @@ namespace GeneXus.Programs {
          AV29Trn_Resident.gxTpr_Residentphone = AV11WizardData.gxTpr_Step1.gxTpr_Residentphone;
          AV29Trn_Resident.gxTpr_Residentsalutation = AV11WizardData.gxTpr_Step1.gxTpr_Residentsalutation;
          AV29Trn_Resident.gxTpr_Residenttypeid = AV11WizardData.gxTpr_Step1.gxTpr_Residenttypeid;
-         AV60GXV16 = 1;
-         while ( AV60GXV16 <= AV11WizardData.gxTpr_Step2.gxTpr_Sdt_networkindividuals.Count )
+         AV61GXV16 = 1;
+         while ( AV61GXV16 <= AV11WizardData.gxTpr_Step2.gxTpr_Sdt_networkindividuals.Count )
          {
-            AV28SDT_NetworkIndividual = ((SdtSDT_NetworkIndividual)AV11WizardData.gxTpr_Step2.gxTpr_Sdt_networkindividuals.Item(AV60GXV16));
+            AV28SDT_NetworkIndividual = ((SdtSDT_NetworkIndividual)AV11WizardData.gxTpr_Step2.gxTpr_Sdt_networkindividuals.Item(AV61GXV16));
             AV30NetworkIndividual = new SdtTrn_Resident_NetworkIndividual(context);
             AV30NetworkIndividual.gxTpr_Networkindividualid = AV28SDT_NetworkIndividual.gxTpr_Networkindividualid;
             AV29Trn_Resident.gxTpr_Networkindividual.Add(AV30NetworkIndividual, 0);
-            AV60GXV16 = (int)(AV60GXV16+1);
+            AV61GXV16 = (int)(AV61GXV16+1);
          }
-         AV61GXV17 = 1;
-         while ( AV61GXV17 <= AV11WizardData.gxTpr_Step3.gxTpr_Sdt_networkcompanys.Count )
+         AV62GXV17 = 1;
+         while ( AV62GXV17 <= AV11WizardData.gxTpr_Step3.gxTpr_Sdt_networkcompanys.Count )
          {
-            AV25SDT_NetworkCompany = ((SdtSDT_NetworkCompany)AV11WizardData.gxTpr_Step3.gxTpr_Sdt_networkcompanys.Item(AV61GXV17));
+            AV25SDT_NetworkCompany = ((SdtSDT_NetworkCompany)AV11WizardData.gxTpr_Step3.gxTpr_Sdt_networkcompanys.Item(AV62GXV17));
             AV31NetworkCompany = new SdtTrn_Resident_NetworkCompany(context);
             AV31NetworkCompany.gxTpr_Networkcompanyid = AV25SDT_NetworkCompany.gxTpr_Networkcompanyid;
             AV29Trn_Resident.gxTpr_Networkcompany.Add(AV31NetworkCompany, 0);
-            AV61GXV17 = (int)(AV61GXV17+1);
+            AV62GXV17 = (int)(AV62GXV17+1);
          }
          if ( AV29Trn_Resident.Insert() )
          {
@@ -2147,13 +2202,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBONETWORKCOMPANYCOUNTRY' Routine */
          returnInSub = false;
-         AV63GXV19 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem4 = AV62GXV18;
+         AV64GXV19 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem4 = AV63GXV18;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem4) ;
-         AV62GXV18 = GXt_objcol_SdtSDT_Country_SDT_CountryItem4;
-         while ( AV63GXV19 <= AV62GXV18.Count )
+         AV63GXV18 = GXt_objcol_SdtSDT_Country_SDT_CountryItem4;
+         while ( AV64GXV19 <= AV63GXV18.Count )
          {
-            AV38NetworkCompanyCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV62GXV18.Item(AV63GXV19));
+            AV38NetworkCompanyCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV63GXV18.Item(AV64GXV19));
             AV37Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV37Combo_DataItem.gxTpr_Id = AV38NetworkCompanyCountry_DPItem.gxTpr_Countryname;
             AV33ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -2161,7 +2216,7 @@ namespace GeneXus.Programs {
             AV33ComboTitles.Add(AV38NetworkCompanyCountry_DPItem.gxTpr_Countryflag, 0);
             AV37Combo_DataItem.gxTpr_Title = AV33ComboTitles.ToJSonString(false);
             AV34NetworkCompanyCountry_Data.Add(AV37Combo_DataItem, 0);
-            AV63GXV19 = (int)(AV63GXV19+1);
+            AV64GXV19 = (int)(AV64GXV19+1);
          }
          AV34NetworkCompanyCountry_Data.Sort("Title");
          Combo_networkcompanycountry_Selectedvalue_set = AV19NetworkCompanyCountry;
@@ -2172,13 +2227,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBONETWORKCOMPANYPHONECODE' Routine */
          returnInSub = false;
-         AV65GXV21 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem4 = AV64GXV20;
+         AV66GXV21 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem4 = AV65GXV20;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem4) ;
-         AV64GXV20 = GXt_objcol_SdtSDT_Country_SDT_CountryItem4;
-         while ( AV65GXV21 <= AV64GXV20.Count )
+         AV65GXV20 = GXt_objcol_SdtSDT_Country_SDT_CountryItem4;
+         while ( AV66GXV21 <= AV65GXV20.Count )
          {
-            AV44NetworkCompanyPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV64GXV20.Item(AV65GXV21));
+            AV44NetworkCompanyPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV65GXV20.Item(AV66GXV21));
             AV37Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV37Combo_DataItem.gxTpr_Id = AV44NetworkCompanyPhoneCode_DPItem.gxTpr_Countrydialcode;
             AV33ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -2186,19 +2241,19 @@ namespace GeneXus.Programs {
             AV33ComboTitles.Add(AV44NetworkCompanyPhoneCode_DPItem.gxTpr_Countryflag, 0);
             AV37Combo_DataItem.gxTpr_Title = AV33ComboTitles.ToJSonString(false);
             AV43NetworkCompanyPhoneCode_Data.Add(AV37Combo_DataItem, 0);
-            AV65GXV21 = (int)(AV65GXV21+1);
+            AV66GXV21 = (int)(AV66GXV21+1);
          }
          AV43NetworkCompanyPhoneCode_Data.Sort("Title");
          Combo_networkcompanyphonecode_Selectedvalue_set = AV41NetworkCompanyPhoneCode;
          ucCombo_networkcompanyphonecode.SendProperty(context, sPrefix, false, Combo_networkcompanyphonecode_Internalname, "SelectedValue_set", Combo_networkcompanyphonecode_Selectedvalue_set);
       }
 
-      protected void E166S2( )
+      protected void E196S2( )
       {
-         AV45GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
-         if ( ( AV45GXV1 > 0 ) && ( AV13SDT_NetworkCompanys.Count >= AV45GXV1 ) )
+         AV46GXV1 = (int)(nGXsfl_85_idx+GRIDS_nFirstRecordOnPage);
+         if ( ( AV46GXV1 > 0 ) && ( AV13SDT_NetworkCompanys.Count >= AV46GXV1 ) )
          {
-            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1));
+            AV13SDT_NetworkCompanys.CurrentItem = ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1));
          }
          /* Udelete_Click Routine */
          returnInSub = false;
@@ -2223,6 +2278,45 @@ namespace GeneXus.Programs {
          SubsflControlProps_852( ) ;
       }
 
+      protected void E146S2( )
+      {
+         /* Networkcompanyemail_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! GxRegex.IsMatch(AV17NetworkCompanyEmail,context.GetMessage( "^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$", "")) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Email is incorrect", ""),  "error",  edtavNetworkcompanyemail_Internalname,  "true",  ""));
+            AV24CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV24CheckRequiredFieldsResult", AV24CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E156S2( )
+      {
+         /* Networkcompanykvknumber_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( StringUtil.Len( AV16NetworkCompanyKvkNumber) != 9 )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "BSN is 9 digits long", ""),  "error",  edtavNetworkcompanykvknumber_Internalname,  "true",  ""));
+            AV24CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV24CheckRequiredFieldsResult", AV24CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E166S2( )
+      {
+         /* Networkcompanyzipcode_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! GxRegex.IsMatch(AV21NetworkCompanyZipCode,context.GetMessage( "^\\d{4} [a-zA-Z]{2}$", "")) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Zip Code is incorrect", ""),  "error",  edtavNetworkcompanyzipcode_Internalname,  "true",  ""));
+            AV24CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV24CheckRequiredFieldsResult", AV24CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
       protected void S172( )
       {
          /* 'CLEARFORMVALUES' Routine */
@@ -2235,6 +2329,8 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV17NetworkCompanyEmail", AV17NetworkCompanyEmail);
          AV18NetworkCompanyPhone = "";
          AssignAttri(sPrefix, false, "AV18NetworkCompanyPhone", AV18NetworkCompanyPhone);
+         AV42NetworkCompanyPhoneNumber = "";
+         AssignAttri(sPrefix, false, "AV42NetworkCompanyPhoneNumber", AV42NetworkCompanyPhoneNumber);
          AV19NetworkCompanyCountry = "";
          AssignAttri(sPrefix, false, "AV19NetworkCompanyCountry", AV19NetworkCompanyCountry);
          AV20NetworkCompanyCity = "";
@@ -2268,10 +2364,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavNetworkcompanyphonenumber_Internalname, context.GetMessage( "Network Company Phone Number", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavNetworkcompanyphonenumber_Internalname, context.GetMessage( "Network Company Phone Number", ""), "gx-form-item AttributePhoneNumberLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 45,'" + sPrefix + "',false,'" + sGXsfl_85_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavNetworkcompanyphonenumber_Internalname, AV42NetworkCompanyPhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV42NetworkCompanyPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,45);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNetworkcompanyphonenumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNetworkcompanyphonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep3.htm");
+            GxWebStd.gx_single_line_edit( context, edtavNetworkcompanyphonenumber_Internalname, AV42NetworkCompanyPhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV42NetworkCompanyPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,45);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNetworkcompanyphonenumber_Jsonclick, 0, "AttributePhoneNumber", "", "", "", "", 1, edtavNetworkcompanyphonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep3.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
@@ -2530,7 +2626,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016434129", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101617502250", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2546,7 +2642,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep3.js", "?2024101016434130", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep3.js", "?2024101617502250", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2667,7 +2763,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyid_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyid.ToString(),((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyid.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)85,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"",(bool)false,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyid_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyid.ToString(),((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyid.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyid_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)85,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2676,7 +2772,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 87,'" + sPrefix + "',false,'" + sGXsfl_85_idx + "',85)\"";
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanykvknumber_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanykvknumber,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,87);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanykvknumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanykvknumber_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)8,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanykvknumber_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanykvknumber,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,87);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanykvknumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanykvknumber_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)8,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2685,7 +2781,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 88,'" + sPrefix + "',false,'" + sGXsfl_85_idx + "',85)\"";
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyname_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyname,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,88);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyname_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanyname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyname_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyname,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,88);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyname_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanyname_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2694,7 +2790,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 89,'" + sPrefix + "',false,'" + sGXsfl_85_idx + "',85)\"";
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyemail_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyemail,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,89);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyemail_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanyemail_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyemail_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyemail,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,89);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyemail_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanyemail_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2702,7 +2798,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyphonecode_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyphonecode,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyphonecode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyphonecode_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyphonecode_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyphonecode,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyphonecode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyphonecode_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2710,7 +2806,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyphonenumber_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyphonenumber,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyphonenumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyphonenumber_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)9,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyphonenumber_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyphonenumber,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyphonenumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyphonenumber_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)9,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2719,7 +2815,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 92,'" + sPrefix + "',false,'" + sGXsfl_85_idx + "',85)\"";
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyphone_Internalname,StringUtil.RTrim( ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyphone),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,92);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyphone_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanyphone_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyphone_Internalname,StringUtil.RTrim( ((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyphone),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,92);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyphone_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanyphone_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2728,7 +2824,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 93,'" + sPrefix + "',false,'" + sGXsfl_85_idx + "',85)\"";
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanycountry_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanycountry,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,93);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanycountry_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanycountry_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanycountry_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanycountry,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,93);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanycountry_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanycountry_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2736,7 +2832,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanycity_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanycity,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanycity_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanycity_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanycity_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanycity,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanycity_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanycity_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2744,7 +2840,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyzipcode_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyzipcode,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyzipcode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyzipcode_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyzipcode_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyzipcode,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyzipcode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyzipcode_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2752,7 +2848,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyaddressline1_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyaddressline1,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyaddressline1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyaddressline1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyaddressline1_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyaddressline1,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyaddressline1_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyaddressline1_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2760,7 +2856,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyaddressline2_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyaddressline2,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyaddressline2_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyaddressline2_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyaddressline2_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyaddressline2,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyaddressline2_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_networkcompanys__networkcompanyaddressline2_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -2769,7 +2865,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 98,'" + sPrefix + "',false,'" + sGXsfl_85_idx + "',85)\"";
             ROClassString = "Attribute";
-            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyfulladdress_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV45GXV1)).gxTpr_Networkcompanyfulladdress,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,98);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyfulladdress_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanyfulladdress_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)1024,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_networkcompanys__networkcompanyfulladdress_Internalname,((SdtSDT_NetworkCompany)AV13SDT_NetworkCompanys.Item(AV46GXV1)).gxTpr_Networkcompanyfulladdress,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,98);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_networkcompanys__networkcompanyfulladdress_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavSdt_networkcompanys__networkcompanyfulladdress_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)1024,(short)0,(short)0,(short)85,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridsContainer.GetWrapped() == 1 )
             {
@@ -3108,16 +3204,22 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDS_nFirstRecordOnPage"},{"av":"GRIDS_nEOF"},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]}""");
-         setEventMetadata("GRIDS.LOAD","""{"handler":"E156S2","iparms":[]""");
+         setEventMetadata("GRIDS.LOAD","""{"handler":"E186S2","iparms":[]""");
          setEventMetadata("GRIDS.LOAD",""","oparms":[{"av":"AV12UDelete","fld":"vUDELETE"}]}""");
          setEventMetadata("ENTER","""{"handler":"E116S2","iparms":[{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV41NetworkCompanyPhoneCode","fld":"vNETWORKCOMPANYPHONECODE"},{"av":"AV42NetworkCompanyPhoneNumber","fld":"vNETWORKCOMPANYPHONENUMBER"},{"av":"AV22NetworkCompanyAddressLine1","fld":"vNETWORKCOMPANYADDRESSLINE1"},{"av":"AV23NetworkCompanyAddressLine2","fld":"vNETWORKCOMPANYADDRESSLINE2"},{"av":"AV21NetworkCompanyZipCode","fld":"vNETWORKCOMPANYZIPCODE"},{"av":"AV20NetworkCompanyCity","fld":"vNETWORKCOMPANYCITY"},{"av":"AV19NetworkCompanyCountry","fld":"vNETWORKCOMPANYCOUNTRY"},{"av":"AV14NetworkCompanyId","fld":"vNETWORKCOMPANYID"},{"av":"AV15NetworkCompanyName","fld":"vNETWORKCOMPANYNAME"},{"av":"AV16NetworkCompanyKvkNumber","fld":"vNETWORKCOMPANYKVKNUMBER"},{"av":"AV17NetworkCompanyEmail","fld":"vNETWORKCOMPANYEMAIL"},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"AV29Trn_Resident","fld":"vTRN_RESIDENT"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"Combo_networkcompanycountry_Ddointernalname","ctrl":"COMBO_NETWORKCOMPANYCOUNTRY","prop":"DDOInternalName"},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"}]""");
-         setEventMetadata("ENTER",""","oparms":[{"av":"AV18NetworkCompanyPhone","fld":"vNETWORKCOMPANYPHONE"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV29Trn_Resident","fld":"vTRN_RESIDENT"},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16NetworkCompanyKvkNumber","fld":"vNETWORKCOMPANYKVKNUMBER"},{"av":"AV15NetworkCompanyName","fld":"vNETWORKCOMPANYNAME"},{"av":"AV17NetworkCompanyEmail","fld":"vNETWORKCOMPANYEMAIL"},{"av":"AV19NetworkCompanyCountry","fld":"vNETWORKCOMPANYCOUNTRY"},{"av":"AV20NetworkCompanyCity","fld":"vNETWORKCOMPANYCITY"},{"av":"AV21NetworkCompanyZipCode","fld":"vNETWORKCOMPANYZIPCODE"},{"av":"AV22NetworkCompanyAddressLine1","fld":"vNETWORKCOMPANYADDRESSLINE1"},{"av":"AV23NetworkCompanyAddressLine2","fld":"vNETWORKCOMPANYADDRESSLINE2"}]}""");
+         setEventMetadata("ENTER",""","oparms":[{"av":"AV18NetworkCompanyPhone","fld":"vNETWORKCOMPANYPHONE"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV29Trn_Resident","fld":"vTRN_RESIDENT"},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16NetworkCompanyKvkNumber","fld":"vNETWORKCOMPANYKVKNUMBER"},{"av":"AV15NetworkCompanyName","fld":"vNETWORKCOMPANYNAME"},{"av":"AV17NetworkCompanyEmail","fld":"vNETWORKCOMPANYEMAIL"},{"av":"AV42NetworkCompanyPhoneNumber","fld":"vNETWORKCOMPANYPHONENUMBER"},{"av":"AV19NetworkCompanyCountry","fld":"vNETWORKCOMPANYCOUNTRY"},{"av":"AV20NetworkCompanyCity","fld":"vNETWORKCOMPANYCITY"},{"av":"AV21NetworkCompanyZipCode","fld":"vNETWORKCOMPANYZIPCODE"},{"av":"AV22NetworkCompanyAddressLine1","fld":"vNETWORKCOMPANYADDRESSLINE1"},{"av":"AV23NetworkCompanyAddressLine2","fld":"vNETWORKCOMPANYADDRESSLINE2"}]}""");
          setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E126S2","iparms":[{"av":"AV41NetworkCompanyPhoneCode","fld":"vNETWORKCOMPANYPHONECODE"},{"av":"AV42NetworkCompanyPhoneNumber","fld":"vNETWORKCOMPANYPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV22NetworkCompanyAddressLine1","fld":"vNETWORKCOMPANYADDRESSLINE1"},{"av":"AV23NetworkCompanyAddressLine2","fld":"vNETWORKCOMPANYADDRESSLINE2"},{"av":"AV21NetworkCompanyZipCode","fld":"vNETWORKCOMPANYZIPCODE"},{"av":"AV20NetworkCompanyCity","fld":"vNETWORKCOMPANYCITY"},{"av":"AV19NetworkCompanyCountry","fld":"vNETWORKCOMPANYCOUNTRY"},{"av":"AV14NetworkCompanyId","fld":"vNETWORKCOMPANYID"},{"av":"AV15NetworkCompanyName","fld":"vNETWORKCOMPANYNAME"},{"av":"AV16NetworkCompanyKvkNumber","fld":"vNETWORKCOMPANYKVKNUMBER"},{"av":"AV17NetworkCompanyEmail","fld":"vNETWORKCOMPANYEMAIL"},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85}]""");
          setEventMetadata("'WIZARDPREVIOUS'",""","oparms":[{"av":"AV18NetworkCompanyPhone","fld":"vNETWORKCOMPANYPHONE"},{"av":"AV11WizardData","fld":"vWIZARDDATA"}]}""");
          setEventMetadata("'DOUINSERT'","""{"handler":"E136S2","iparms":[{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"AV16NetworkCompanyKvkNumber","fld":"vNETWORKCOMPANYKVKNUMBER"},{"av":"AV15NetworkCompanyName","fld":"vNETWORKCOMPANYNAME"},{"av":"AV17NetworkCompanyEmail","fld":"vNETWORKCOMPANYEMAIL"},{"av":"AV41NetworkCompanyPhoneCode","fld":"vNETWORKCOMPANYPHONECODE"},{"av":"AV42NetworkCompanyPhoneNumber","fld":"vNETWORKCOMPANYPHONENUMBER"},{"av":"AV19NetworkCompanyCountry","fld":"vNETWORKCOMPANYCOUNTRY"},{"av":"AV20NetworkCompanyCity","fld":"vNETWORKCOMPANYCITY"},{"av":"AV21NetworkCompanyZipCode","fld":"vNETWORKCOMPANYZIPCODE"},{"av":"AV22NetworkCompanyAddressLine1","fld":"vNETWORKCOMPANYADDRESSLINE1"},{"av":"AV23NetworkCompanyAddressLine2","fld":"vNETWORKCOMPANYADDRESSLINE2"},{"av":"Combo_networkcompanycountry_Ddointernalname","ctrl":"COMBO_NETWORKCOMPANYCOUNTRY","prop":"DDOInternalName"},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"}]""");
-         setEventMetadata("'DOUINSERT'",""","oparms":[{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16NetworkCompanyKvkNumber","fld":"vNETWORKCOMPANYKVKNUMBER"},{"av":"AV15NetworkCompanyName","fld":"vNETWORKCOMPANYNAME"},{"av":"AV17NetworkCompanyEmail","fld":"vNETWORKCOMPANYEMAIL"},{"av":"AV18NetworkCompanyPhone","fld":"vNETWORKCOMPANYPHONE"},{"av":"AV19NetworkCompanyCountry","fld":"vNETWORKCOMPANYCOUNTRY"},{"av":"AV20NetworkCompanyCity","fld":"vNETWORKCOMPANYCITY"},{"av":"AV21NetworkCompanyZipCode","fld":"vNETWORKCOMPANYZIPCODE"},{"av":"AV22NetworkCompanyAddressLine1","fld":"vNETWORKCOMPANYADDRESSLINE1"},{"av":"AV23NetworkCompanyAddressLine2","fld":"vNETWORKCOMPANYADDRESSLINE2"}]}""");
-         setEventMetadata("VUDELETE.CLICK","""{"handler":"E166S2","iparms":[{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
+         setEventMetadata("'DOUINSERT'",""","oparms":[{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16NetworkCompanyKvkNumber","fld":"vNETWORKCOMPANYKVKNUMBER"},{"av":"AV15NetworkCompanyName","fld":"vNETWORKCOMPANYNAME"},{"av":"AV17NetworkCompanyEmail","fld":"vNETWORKCOMPANYEMAIL"},{"av":"AV18NetworkCompanyPhone","fld":"vNETWORKCOMPANYPHONE"},{"av":"AV42NetworkCompanyPhoneNumber","fld":"vNETWORKCOMPANYPHONENUMBER"},{"av":"AV19NetworkCompanyCountry","fld":"vNETWORKCOMPANYCOUNTRY"},{"av":"AV20NetworkCompanyCity","fld":"vNETWORKCOMPANYCITY"},{"av":"AV21NetworkCompanyZipCode","fld":"vNETWORKCOMPANYZIPCODE"},{"av":"AV22NetworkCompanyAddressLine1","fld":"vNETWORKCOMPANYADDRESSLINE1"},{"av":"AV23NetworkCompanyAddressLine2","fld":"vNETWORKCOMPANYADDRESSLINE2"}]}""");
+         setEventMetadata("VUDELETE.CLICK","""{"handler":"E196S2","iparms":[{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
          setEventMetadata("VUDELETE.CLICK",""","oparms":[{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85}]}""");
+         setEventMetadata("VNETWORKCOMPANYEMAIL.CONTROLVALUECHANGED","""{"handler":"E146S2","iparms":[{"av":"AV17NetworkCompanyEmail","fld":"vNETWORKCOMPANYEMAIL"}]""");
+         setEventMetadata("VNETWORKCOMPANYEMAIL.CONTROLVALUECHANGED",""","oparms":[{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VNETWORKCOMPANYKVKNUMBER.CONTROLVALUECHANGED","""{"handler":"E156S2","iparms":[{"av":"AV16NetworkCompanyKvkNumber","fld":"vNETWORKCOMPANYKVKNUMBER"}]""");
+         setEventMetadata("VNETWORKCOMPANYKVKNUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VNETWORKCOMPANYZIPCODE.CONTROLVALUECHANGED","""{"handler":"E166S2","iparms":[{"av":"AV21NetworkCompanyZipCode","fld":"vNETWORKCOMPANYZIPCODE"}]""");
+         setEventMetadata("VNETWORKCOMPANYZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV24CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("GRIDS_FIRSTPAGE","""{"handler":"subgrids_firstpage","iparms":[{"av":"GRIDS_nFirstRecordOnPage"},{"av":"GRIDS_nEOF"},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"sPrefix"}]}""");
          setEventMetadata("GRIDS_PREVPAGE","""{"handler":"subgrids_previouspage","iparms":[{"av":"GRIDS_nFirstRecordOnPage"},{"av":"GRIDS_nEOF"},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"sPrefix"}]}""");
          setEventMetadata("GRIDS_NEXTPAGE","""{"handler":"subgrids_nextpage","iparms":[{"av":"GRIDS_nFirstRecordOnPage"},{"av":"GRIDS_nEOF"},{"av":"AV13SDT_NetworkCompanys","fld":"vSDT_NETWORKCOMPANYS","grid":85},{"av":"nGXsfl_85_idx","ctrl":"GRID","prop":"GridCurrRow","grid":85},{"av":"nRC_GXsfl_85","ctrl":"GRIDS","prop":"GridRC","grid":85},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"sPrefix"}]}""");
@@ -3199,6 +3301,9 @@ namespace GeneXus.Programs {
          AV39defaultCountry = "";
          Combo_networkcompanycountry_Selectedtext_set = "";
          Combo_networkcompanycountry_Selectedvalue_set = "";
+         AV45defaultCountryPhoneCode = "";
+         Combo_networkcompanyphonecode_Selectedtext_set = "";
+         Combo_networkcompanyphonecode_Selectedvalue_set = "";
          GridsRow = new GXWebRow();
          AV5WebSession = context.GetSession();
          AV25SDT_NetworkCompany = new SdtSDT_NetworkCompany(context);
@@ -3209,14 +3314,13 @@ namespace GeneXus.Programs {
          AV30NetworkIndividual = new SdtTrn_Resident_NetworkIndividual(context);
          AV31NetworkCompany = new SdtTrn_Resident_NetworkCompany(context);
          AV32ErrorMessages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
-         AV62GXV18 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV63GXV18 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV38NetworkCompanyCountry_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV37Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV33ComboTitles = new GxSimpleCollection<string>();
-         AV64GXV20 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV65GXV20 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          GXt_objcol_SdtSDT_Country_SDT_CountryItem4 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV44NetworkCompanyPhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
-         Combo_networkcompanyphonecode_Selectedvalue_set = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          sCtrlAV6WebSessionKey = "";
@@ -3292,7 +3396,7 @@ namespace GeneXus.Programs {
       private int edtavNetworkcompanyaddressline2_Enabled ;
       private int edtavNetworkcompanyzipcode_Enabled ;
       private int edtavNetworkcompanycity_Enabled ;
-      private int AV45GXV1 ;
+      private int AV46GXV1 ;
       private int edtavNetworkcompanyphonecode_Visible ;
       private int edtavNetworkcompanycountry_Visible ;
       private int edtavNetworkcompanyid_Visible ;
@@ -3301,11 +3405,11 @@ namespace GeneXus.Programs {
       private int GRIDS_nGridOutOfScope ;
       private int nGXsfl_85_fel_idx=1 ;
       private int nGXsfl_85_bak_idx=1 ;
-      private int AV59GXV15 ;
-      private int AV60GXV16 ;
-      private int AV61GXV17 ;
-      private int AV63GXV19 ;
-      private int AV65GXV21 ;
+      private int AV60GXV15 ;
+      private int AV61GXV16 ;
+      private int AV62GXV17 ;
+      private int AV64GXV19 ;
+      private int AV66GXV21 ;
       private int edtavNetworkcompanyphonenumber_Enabled ;
       private int idxLst ;
       private int subGrids_Backcolor ;
@@ -3419,8 +3523,9 @@ namespace GeneXus.Programs {
       private string Grids_empowerer_Gridinternalname ;
       private string Combo_networkcompanycountry_Selectedtext_set ;
       private string Combo_networkcompanycountry_Selectedvalue_set ;
-      private string GXt_char2 ;
+      private string Combo_networkcompanyphonecode_Selectedtext_set ;
       private string Combo_networkcompanyphonecode_Selectedvalue_set ;
+      private string GXt_char2 ;
       private string tblTablemergednetworkcompanyphonecode_Internalname ;
       private string Combo_networkcompanyphonecode_Caption ;
       private string Combo_networkcompanyphonecode_Cls ;
@@ -3477,6 +3582,7 @@ namespace GeneXus.Programs {
       private string AV19NetworkCompanyCountry ;
       private string AV42NetworkCompanyPhoneNumber ;
       private string AV39defaultCountry ;
+      private string AV45defaultCountryPhoneCode ;
       private Guid AV14NetworkCompanyId ;
       private Guid GXt_guid3 ;
       private GXWebGrid GridsContainer ;
@@ -3505,11 +3611,11 @@ namespace GeneXus.Programs {
       private SdtTrn_Resident_NetworkIndividual AV30NetworkIndividual ;
       private SdtTrn_Resident_NetworkCompany AV31NetworkCompany ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV32ErrorMessages ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV62GXV18 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV63GXV18 ;
       private SdtSDT_Country_SDT_CountryItem AV38NetworkCompanyCountry_DPItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV37Combo_DataItem ;
       private GxSimpleCollection<string> AV33ComboTitles ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV64GXV20 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV65GXV20 ;
       private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem4 ;
       private SdtSDT_Country_SDT_CountryItem AV44NetworkCompanyPhoneCode_DPItem ;
       private msglist BackMsgLst ;

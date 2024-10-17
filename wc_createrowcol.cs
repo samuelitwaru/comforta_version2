@@ -433,53 +433,41 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Control Group */
+            GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_WC_CreateRowCol.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "CellMarginTop10", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-lg-9", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divTableattributes_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell DscTop", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_colname_Internalname+"\"", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_colname_Internalname, context.GetMessage( "Trn_Col Name", ""), " AttributeLabel", 1, true, "");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 20,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_colname_Internalname, AV15Trn_ColName, StringUtil.RTrim( context.localUtil.Format( AV15Trn_ColName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,20);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_colname_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_colname_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WC_CreateRowCol.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell DscTop", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+dynavTrn_tileid_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, dynavTrn_tileid_Internalname, context.GetMessage( "Trn_Tile Id", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, dynavTrn_tileid_Internalname, context.GetMessage( "Trn_Tile Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'" + sPrefix + "',false,'',0)\"";
             /* ComboBox */
-            GxWebStd.gx_combobox_ctrl1( context, dynavTrn_tileid, dynavTrn_tileid_Internalname, AV20Trn_TileId.ToString(), 1, dynavTrn_tileid_Jsonclick, 0, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "guid", "", 1, dynavTrn_tileid.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,24);\"", "", true, 0, "HLP_WC_CreateRowCol.htm");
+            GxWebStd.gx_combobox_ctrl1( context, dynavTrn_tileid, dynavTrn_tileid_Internalname, AV20Trn_TileId.ToString(), 1, dynavTrn_tileid_Jsonclick, 0, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "guid", "", 1, dynavTrn_tileid.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,21);\"", "", true, 0, "HLP_WC_CreateRowCol.htm");
             dynavTrn_tileid.CurrentValue = AV20Trn_TileId.ToString();
             AssignProp(sPrefix, false, dynavTrn_tileid_Internalname, "Values", (string)(dynavTrn_tileid.ToJavascriptSource()), true);
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WC_CreateRowCol.htm");
@@ -491,6 +479,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            context.WriteHtmlText( "</fieldset>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -503,8 +492,11 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 32,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_colid_Internalname, AV14Trn_ColId.ToString(), AV14Trn_ColId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,32);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_colid_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_colid_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_WC_CreateRowCol.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_colid_Internalname, AV14Trn_ColId.ToString(), AV14Trn_ColId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_colid_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_colid_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_WC_CreateRowCol.htm");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 30,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_colname_Internalname, AV15Trn_ColName, StringUtil.RTrim( context.localUtil.Format( AV15Trn_ColName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,30);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_colname_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_colname_Visible, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WC_CreateRowCol.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -672,7 +664,7 @@ namespace GeneXus.Programs {
                                  if ( ! wbErr )
                                  {
                                     dynload_actions( ) ;
-                                    GX_FocusControl = edtavTrn_colname_Internalname;
+                                    GX_FocusControl = dynavTrn_tileid_Internalname;
                                     AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                  }
                               }
@@ -785,7 +777,7 @@ namespace GeneXus.Programs {
             }
             if ( ! context.isAjaxRequest( ) )
             {
-               GX_FocusControl = edtavTrn_colname_Internalname;
+               GX_FocusControl = dynavTrn_tileid_Internalname;
                AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
             }
             nDonePA = 1;
@@ -965,8 +957,6 @@ namespace GeneXus.Programs {
             /* Read saved values. */
             wcpOA319Trn_RowId = StringUtil.StrToGuid( cgiGet( sPrefix+"wcpOA319Trn_RowId"));
             /* Read variables values. */
-            AV15Trn_ColName = cgiGet( edtavTrn_colname_Internalname);
-            AssignAttri(sPrefix, false, "AV15Trn_ColName", AV15Trn_ColName);
             dynavTrn_tileid.CurrentValue = cgiGet( dynavTrn_tileid_Internalname);
             AV20Trn_TileId = StringUtil.StrToGuid( cgiGet( dynavTrn_tileid_Internalname));
             AssignAttri(sPrefix, false, "AV20Trn_TileId", AV20Trn_TileId.ToString());
@@ -990,6 +980,8 @@ namespace GeneXus.Programs {
                   wbErr = true;
                }
             }
+            AV15Trn_ColName = cgiGet( edtavTrn_colname_Internalname);
+            AssignAttri(sPrefix, false, "AV15Trn_ColName", AV15Trn_ColName);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -1019,6 +1011,8 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
          edtavTrn_colid_Visible = 0;
          AssignProp(sPrefix, false, edtavTrn_colid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavTrn_colid_Visible), 5, 0), true);
+         edtavTrn_colname_Visible = 0;
+         AssignProp(sPrefix, false, edtavTrn_colname_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavTrn_colname_Visible), 5, 0), true);
       }
 
       public void GXEnter( )
@@ -1287,7 +1281,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016433515", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410161843618", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1303,7 +1297,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_createrowcol.js", "?2024101016433515", false, true);
+         context.AddJavascriptSource("wc_createrowcol.js", "?202410161843618", false, true);
          /* End function include_jscripts */
       }
 
@@ -1328,13 +1322,14 @@ namespace GeneXus.Programs {
 
       protected void init_default_properties( )
       {
-         edtavTrn_colname_Internalname = sPrefix+"vTRN_COLNAME";
          dynavTrn_tileid_Internalname = sPrefix+"vTRN_TILEID";
          bttBtnenter_Internalname = sPrefix+"BTNENTER";
          divTableattributes_Internalname = sPrefix+"TABLEATTRIBUTES";
          divTablecontent_Internalname = sPrefix+"TABLECONTENT";
+         grpUnnamedgroup1_Internalname = sPrefix+"UNNAMEDGROUP1";
          divTablemain_Internalname = sPrefix+"TABLEMAIN";
          edtavTrn_colid_Internalname = sPrefix+"vTRN_COLID";
+         edtavTrn_colname_Internalname = sPrefix+"vTRN_COLNAME";
          divHtml_bottomauxiliarcontrols_Internalname = sPrefix+"HTML_BOTTOMAUXILIARCONTROLS";
          divLayoutmaintable_Internalname = sPrefix+"LAYOUTMAINTABLE";
          Form.Internalname = sPrefix+"FORM";
@@ -1354,12 +1349,12 @@ namespace GeneXus.Programs {
             }
          }
          init_default_properties( ) ;
+         edtavTrn_colname_Jsonclick = "";
+         edtavTrn_colname_Visible = 1;
          edtavTrn_colid_Jsonclick = "";
          edtavTrn_colid_Visible = 1;
          dynavTrn_tileid_Jsonclick = "";
          dynavTrn_tileid.Enabled = 1;
-         edtavTrn_colname_Jsonclick = "";
-         edtavTrn_colname_Enabled = 1;
          divLayoutmaintable_Class = "Table TableTransactionTemplate";
          context.GX_msglist.DisplayMode = 1;
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -1411,10 +1406,10 @@ namespace GeneXus.Programs {
          ClassString = "";
          StyleString = "";
          TempTags = "";
-         AV15Trn_ColName = "";
          AV20Trn_TileId = Guid.Empty;
          bttBtnenter_Jsonclick = "";
          AV14Trn_ColId = Guid.Empty;
+         AV15Trn_ColName = "";
          Form = new GXWebForm();
          sXEvt = "";
          sEvt = "";
@@ -1469,8 +1464,8 @@ namespace GeneXus.Programs {
       private short nDoneStart ;
       private short nDonePA ;
       private short nGXWrapped ;
-      private int edtavTrn_colname_Enabled ;
       private int edtavTrn_colid_Visible ;
+      private int edtavTrn_colname_Visible ;
       private int gxdynajaxindex ;
       private int AV21GXV1 ;
       private int idxLst ;
@@ -1490,18 +1485,19 @@ namespace GeneXus.Programs {
       private string divTablemain_Internalname ;
       private string ClassString ;
       private string StyleString ;
+      private string grpUnnamedgroup1_Internalname ;
       private string divTablecontent_Internalname ;
       private string divTableattributes_Internalname ;
-      private string edtavTrn_colname_Internalname ;
-      private string TempTags ;
-      private string edtavTrn_colname_Jsonclick ;
       private string dynavTrn_tileid_Internalname ;
+      private string TempTags ;
       private string dynavTrn_tileid_Jsonclick ;
       private string bttBtnenter_Internalname ;
       private string bttBtnenter_Jsonclick ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
       private string edtavTrn_colid_Internalname ;
       private string edtavTrn_colid_Jsonclick ;
+      private string edtavTrn_colname_Internalname ;
+      private string edtavTrn_colname_Jsonclick ;
       private string sXEvt ;
       private string sEvt ;
       private string EvtGridId ;

@@ -32,6 +32,8 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtSDT_Tile_Tilename = "";
 
+			gxTv_SdtSDT_Tile_Tileicon = "";
+
 			gxTv_SdtSDT_Tile_Tilecolor = "";
 
 			gxTv_SdtSDT_Tile_Tilebgimageurl = "";
@@ -77,7 +79,7 @@ namespace GeneXus.Programs
 			AddObjectProperty("TileName", gxTpr_Tilename, false);
 
 
-			AddObjectProperty("TileWidth", gxTpr_Tilewidth, false);
+			AddObjectProperty("TileIcon", gxTpr_Tileicon, false);
 
 
 			AddObjectProperty("TileColor", gxTpr_Tilecolor, false);
@@ -98,9 +100,6 @@ namespace GeneXus.Programs
 			AddObjectProperty("ProductServiceImage", gxTpr_Productserviceimage, false);
 			AddObjectProperty("ProductServiceImage_GXI", gxTpr_Productserviceimage_gxi, false);
 
-
-
-			AddObjectProperty("ColId", gxTpr_Colid, false);
 
 
 			AddObjectProperty("ToPageId", gxTpr_Topageid, false);
@@ -154,16 +153,16 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="TileWidth")]
-		[XmlElement(ElementName="TileWidth")]
-		public short gxTpr_Tilewidth
+		[SoapElement(ElementName="TileIcon")]
+		[XmlElement(ElementName="TileIcon")]
+		public string gxTpr_Tileicon
 		{
 			get {
-				return gxTv_SdtSDT_Tile_Tilewidth; 
+				return gxTv_SdtSDT_Tile_Tileicon; 
 			}
 			set {
-				gxTv_SdtSDT_Tile_Tilewidth = value;
-				SetDirty("Tilewidth");
+				gxTv_SdtSDT_Tile_Tileicon = value;
+				SetDirty("Tileicon");
 			}
 		}
 
@@ -278,22 +277,6 @@ namespace GeneXus.Programs
 				SetDirty("Productserviceimage_gxi");
 			}
 		}
-
-		[SoapElement(ElementName="ColId")]
-		[XmlElement(ElementName="ColId")]
-		public Guid gxTpr_Colid
-		{
-			get {
-				return gxTv_SdtSDT_Tile_Colid; 
-			}
-			set {
-				gxTv_SdtSDT_Tile_Colid = value;
-				SetDirty("Colid");
-			}
-		}
-
-
-
 
 		[SoapElement(ElementName="ToPageId")]
 		[XmlElement(ElementName="ToPageId")]
@@ -417,14 +400,13 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtSDT_Tile_Tilename = "";
-
+			gxTv_SdtSDT_Tile_Tileicon = "";
 			gxTv_SdtSDT_Tile_Tilecolor = "";
 			gxTv_SdtSDT_Tile_Tilebgimageurl = "";
 
 			gxTv_SdtSDT_Tile_Productservicename = "";
 			gxTv_SdtSDT_Tile_Productservicedescription = "";
 			gxTv_SdtSDT_Tile_Productserviceimage = "";gxTv_SdtSDT_Tile_Productserviceimage_gxi = "";
-
 
 			gxTv_SdtSDT_Tile_Topagename = "";
 
@@ -448,7 +430,7 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtSDT_Tile_Tilename;
 		 
 
-		protected short gxTv_SdtSDT_Tile_Tilewidth;
+		protected string gxTv_SdtSDT_Tile_Tileicon;
 		 
 
 		protected string gxTv_SdtSDT_Tile_Tilecolor;
@@ -467,9 +449,6 @@ namespace GeneXus.Programs
 		 
 		protected string gxTv_SdtSDT_Tile_Productserviceimage_gxi;
 		protected string gxTv_SdtSDT_Tile_Productserviceimage;
-		 
-
-		protected Guid gxTv_SdtSDT_Tile_Colid;
 		 
 
 		protected Guid gxTv_SdtSDT_Tile_Topageid;
@@ -526,15 +505,15 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="TileWidth", Order=2)]
-		public short gxTpr_Tilewidth
+		[DataMember(Name="TileIcon", Order=2)]
+		public  string gxTpr_Tileicon
 		{
 			get { 
-				return sdt.gxTpr_Tilewidth;
+				return sdt.gxTpr_Tileicon;
 
 			}
 			set { 
-				sdt.gxTpr_Tilewidth = value;
+				 sdt.gxTpr_Tileicon = value;
 			}
 		}
 
@@ -611,19 +590,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ColId", Order=9)]
-		public Guid gxTpr_Colid
-		{
-			get { 
-				return sdt.gxTpr_Colid;
-
-			}
-			set { 
-				sdt.gxTpr_Colid = value;
-			}
-		}
-
-		[DataMember(Name="ToPageId", Order=10)]
+		[DataMember(Name="ToPageId", Order=9)]
 		public Guid gxTpr_Topageid
 		{
 			get { 
@@ -635,7 +602,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ToPageName", Order=11)]
+		[DataMember(Name="ToPageName", Order=10)]
 		public  string gxTpr_Topagename
 		{
 			get { 
@@ -647,7 +614,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ToPage", Order=12, EmitDefaultValue=false)]
+		[DataMember(Name="ToPage", Order=11, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtSDT_Page_RESTInterface gxTpr_Topage
 		{
 			get { 
@@ -662,7 +629,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Attribute", Order=13, EmitDefaultValue=false)]
+		[DataMember(Name="Attribute", Order=12, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtSDT_Tile_AttributeItem_RESTInterface> gxTpr_Attribute
 		{
 			get {

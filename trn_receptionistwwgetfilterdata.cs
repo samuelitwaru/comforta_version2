@@ -192,10 +192,10 @@ namespace GeneXus.Programs {
          {
             AV36GridState.FromXml(AV34Session.Get("Trn_ReceptionistWWGridState"), null, "", "");
          }
-         AV51GXV1 = 1;
-         while ( AV51GXV1 <= AV36GridState.gxTpr_Filtervalues.Count )
+         AV52GXV1 = 1;
+         while ( AV52GXV1 <= AV36GridState.gxTpr_Filtervalues.Count )
          {
-            AV37GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV36GridState.gxTpr_Filtervalues.Item(AV51GXV1));
+            AV37GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV36GridState.gxTpr_Filtervalues.Item(AV52GXV1));
             if ( StringUtil.StrCmp(AV37GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV45FilterFullText = AV37GridStateFilterValue.gxTpr_Value;
@@ -232,7 +232,11 @@ namespace GeneXus.Programs {
             {
                AV20TFReceptionistPhone_Sel = AV37GridStateFilterValue.gxTpr_Value;
             }
-            AV51GXV1 = (int)(AV51GXV1+1);
+            else if ( StringUtil.StrCmp(AV37GridStateFilterValue.gxTpr_Name, "TFRECEPTIONISTISACTIVE_SEL") == 0 )
+            {
+               AV51TFReceptionistIsActive_Sel = (short)(Math.Round(NumberUtil.Val( AV37GridStateFilterValue.gxTpr_Value, "."), 18, MidpointRounding.ToEven));
+            }
+            AV52GXV1 = (int)(AV52GXV1+1);
          }
       }
 
@@ -242,46 +246,51 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV11TFReceptionistGivenName = AV23SearchTxt;
          AV12TFReceptionistGivenName_Sel = "";
-         AV53Trn_receptionistwwds_1_filterfulltext = AV45FilterFullText;
-         AV54Trn_receptionistwwds_2_tfreceptionistgivenname = AV11TFReceptionistGivenName;
-         AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel = AV12TFReceptionistGivenName_Sel;
-         AV56Trn_receptionistwwds_4_tfreceptionistlastname = AV13TFReceptionistLastName;
-         AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel = AV14TFReceptionistLastName_Sel;
-         AV58Trn_receptionistwwds_6_tfreceptionistemail = AV17TFReceptionistEmail;
-         AV59Trn_receptionistwwds_7_tfreceptionistemail_sel = AV18TFReceptionistEmail_Sel;
-         AV60Trn_receptionistwwds_8_tfreceptionistphone = AV19TFReceptionistPhone;
-         AV61Trn_receptionistwwds_9_tfreceptionistphone_sel = AV20TFReceptionistPhone_Sel;
+         AV54Trn_receptionistwwds_1_filterfulltext = AV45FilterFullText;
+         AV55Trn_receptionistwwds_2_tfreceptionistgivenname = AV11TFReceptionistGivenName;
+         AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel = AV12TFReceptionistGivenName_Sel;
+         AV57Trn_receptionistwwds_4_tfreceptionistlastname = AV13TFReceptionistLastName;
+         AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel = AV14TFReceptionistLastName_Sel;
+         AV59Trn_receptionistwwds_6_tfreceptionistemail = AV17TFReceptionistEmail;
+         AV60Trn_receptionistwwds_7_tfreceptionistemail_sel = AV18TFReceptionistEmail_Sel;
+         AV61Trn_receptionistwwds_8_tfreceptionistphone = AV19TFReceptionistPhone;
+         AV62Trn_receptionistwwds_9_tfreceptionistphone_sel = AV20TFReceptionistPhone_Sel;
+         AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel = AV51TFReceptionistIsActive_Sel;
          pr_default.dynParam(0, new Object[]{ new Object[]{
-                                              AV53Trn_receptionistwwds_1_filterfulltext ,
-                                              AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
-                                              AV54Trn_receptionistwwds_2_tfreceptionistgivenname ,
-                                              AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
-                                              AV56Trn_receptionistwwds_4_tfreceptionistlastname ,
-                                              AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ,
-                                              AV58Trn_receptionistwwds_6_tfreceptionistemail ,
-                                              AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ,
-                                              AV60Trn_receptionistwwds_8_tfreceptionistphone ,
+                                              AV54Trn_receptionistwwds_1_filterfulltext ,
+                                              AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
+                                              AV55Trn_receptionistwwds_2_tfreceptionistgivenname ,
+                                              AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
+                                              AV57Trn_receptionistwwds_4_tfreceptionistlastname ,
+                                              AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ,
+                                              AV59Trn_receptionistwwds_6_tfreceptionistemail ,
+                                              AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ,
+                                              AV61Trn_receptionistwwds_8_tfreceptionistphone ,
+                                              AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ,
                                               A90ReceptionistGivenName ,
                                               A91ReceptionistLastName ,
                                               A93ReceptionistEmail ,
-                                              A94ReceptionistPhone } ,
+                                              A94ReceptionistPhone ,
+                                              A398ReceptionistIsActive } ,
                                               new int[]{
+                                              TypeConstants.SHORT, TypeConstants.BOOLEAN
                                               }
          });
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV54Trn_receptionistwwds_2_tfreceptionistgivenname = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_2_tfreceptionistgivenname), "%", "");
-         lV56Trn_receptionistwwds_4_tfreceptionistlastname = StringUtil.Concat( StringUtil.RTrim( AV56Trn_receptionistwwds_4_tfreceptionistlastname), "%", "");
-         lV58Trn_receptionistwwds_6_tfreceptionistemail = StringUtil.Concat( StringUtil.RTrim( AV58Trn_receptionistwwds_6_tfreceptionistemail), "%", "");
-         lV60Trn_receptionistwwds_8_tfreceptionistphone = StringUtil.PadR( StringUtil.RTrim( AV60Trn_receptionistwwds_8_tfreceptionistphone), 20, "%");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV55Trn_receptionistwwds_2_tfreceptionistgivenname = StringUtil.Concat( StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname), "%", "");
+         lV57Trn_receptionistwwds_4_tfreceptionistlastname = StringUtil.Concat( StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname), "%", "");
+         lV59Trn_receptionistwwds_6_tfreceptionistemail = StringUtil.Concat( StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail), "%", "");
+         lV61Trn_receptionistwwds_8_tfreceptionistphone = StringUtil.PadR( StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone), 20, "%");
          /* Using cursor P006M2 */
-         pr_default.execute(0, new Object[] {lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_2_tfreceptionistgivenname, AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, lV56Trn_receptionistwwds_4_tfreceptionistlastname, AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, lV58Trn_receptionistwwds_6_tfreceptionistemail, AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, lV60Trn_receptionistwwds_8_tfreceptionistphone, AV61Trn_receptionistwwds_9_tfreceptionistphone_sel});
+         pr_default.execute(0, new Object[] {lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV55Trn_receptionistwwds_2_tfreceptionistgivenname, AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, lV57Trn_receptionistwwds_4_tfreceptionistlastname, AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, lV59Trn_receptionistwwds_6_tfreceptionistemail, AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, lV61Trn_receptionistwwds_8_tfreceptionistphone, AV62Trn_receptionistwwds_9_tfreceptionistphone_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK6M2 = false;
             A90ReceptionistGivenName = P006M2_A90ReceptionistGivenName[0];
+            A398ReceptionistIsActive = P006M2_A398ReceptionistIsActive[0];
             A94ReceptionistPhone = P006M2_A94ReceptionistPhone[0];
             A93ReceptionistEmail = P006M2_A93ReceptionistEmail[0];
             A91ReceptionistLastName = P006M2_A91ReceptionistLastName[0];
@@ -329,46 +338,51 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV13TFReceptionistLastName = AV23SearchTxt;
          AV14TFReceptionistLastName_Sel = "";
-         AV53Trn_receptionistwwds_1_filterfulltext = AV45FilterFullText;
-         AV54Trn_receptionistwwds_2_tfreceptionistgivenname = AV11TFReceptionistGivenName;
-         AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel = AV12TFReceptionistGivenName_Sel;
-         AV56Trn_receptionistwwds_4_tfreceptionistlastname = AV13TFReceptionistLastName;
-         AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel = AV14TFReceptionistLastName_Sel;
-         AV58Trn_receptionistwwds_6_tfreceptionistemail = AV17TFReceptionistEmail;
-         AV59Trn_receptionistwwds_7_tfreceptionistemail_sel = AV18TFReceptionistEmail_Sel;
-         AV60Trn_receptionistwwds_8_tfreceptionistphone = AV19TFReceptionistPhone;
-         AV61Trn_receptionistwwds_9_tfreceptionistphone_sel = AV20TFReceptionistPhone_Sel;
+         AV54Trn_receptionistwwds_1_filterfulltext = AV45FilterFullText;
+         AV55Trn_receptionistwwds_2_tfreceptionistgivenname = AV11TFReceptionistGivenName;
+         AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel = AV12TFReceptionistGivenName_Sel;
+         AV57Trn_receptionistwwds_4_tfreceptionistlastname = AV13TFReceptionistLastName;
+         AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel = AV14TFReceptionistLastName_Sel;
+         AV59Trn_receptionistwwds_6_tfreceptionistemail = AV17TFReceptionistEmail;
+         AV60Trn_receptionistwwds_7_tfreceptionistemail_sel = AV18TFReceptionistEmail_Sel;
+         AV61Trn_receptionistwwds_8_tfreceptionistphone = AV19TFReceptionistPhone;
+         AV62Trn_receptionistwwds_9_tfreceptionistphone_sel = AV20TFReceptionistPhone_Sel;
+         AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel = AV51TFReceptionistIsActive_Sel;
          pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              AV53Trn_receptionistwwds_1_filterfulltext ,
-                                              AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
-                                              AV54Trn_receptionistwwds_2_tfreceptionistgivenname ,
-                                              AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
-                                              AV56Trn_receptionistwwds_4_tfreceptionistlastname ,
-                                              AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ,
-                                              AV58Trn_receptionistwwds_6_tfreceptionistemail ,
-                                              AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ,
-                                              AV60Trn_receptionistwwds_8_tfreceptionistphone ,
+                                              AV54Trn_receptionistwwds_1_filterfulltext ,
+                                              AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
+                                              AV55Trn_receptionistwwds_2_tfreceptionistgivenname ,
+                                              AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
+                                              AV57Trn_receptionistwwds_4_tfreceptionistlastname ,
+                                              AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ,
+                                              AV59Trn_receptionistwwds_6_tfreceptionistemail ,
+                                              AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ,
+                                              AV61Trn_receptionistwwds_8_tfreceptionistphone ,
+                                              AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ,
                                               A90ReceptionistGivenName ,
                                               A91ReceptionistLastName ,
                                               A93ReceptionistEmail ,
-                                              A94ReceptionistPhone } ,
+                                              A94ReceptionistPhone ,
+                                              A398ReceptionistIsActive } ,
                                               new int[]{
+                                              TypeConstants.SHORT, TypeConstants.BOOLEAN
                                               }
          });
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV54Trn_receptionistwwds_2_tfreceptionistgivenname = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_2_tfreceptionistgivenname), "%", "");
-         lV56Trn_receptionistwwds_4_tfreceptionistlastname = StringUtil.Concat( StringUtil.RTrim( AV56Trn_receptionistwwds_4_tfreceptionistlastname), "%", "");
-         lV58Trn_receptionistwwds_6_tfreceptionistemail = StringUtil.Concat( StringUtil.RTrim( AV58Trn_receptionistwwds_6_tfreceptionistemail), "%", "");
-         lV60Trn_receptionistwwds_8_tfreceptionistphone = StringUtil.PadR( StringUtil.RTrim( AV60Trn_receptionistwwds_8_tfreceptionistphone), 20, "%");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV55Trn_receptionistwwds_2_tfreceptionistgivenname = StringUtil.Concat( StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname), "%", "");
+         lV57Trn_receptionistwwds_4_tfreceptionistlastname = StringUtil.Concat( StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname), "%", "");
+         lV59Trn_receptionistwwds_6_tfreceptionistemail = StringUtil.Concat( StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail), "%", "");
+         lV61Trn_receptionistwwds_8_tfreceptionistphone = StringUtil.PadR( StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone), 20, "%");
          /* Using cursor P006M3 */
-         pr_default.execute(1, new Object[] {lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_2_tfreceptionistgivenname, AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, lV56Trn_receptionistwwds_4_tfreceptionistlastname, AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, lV58Trn_receptionistwwds_6_tfreceptionistemail, AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, lV60Trn_receptionistwwds_8_tfreceptionistphone, AV61Trn_receptionistwwds_9_tfreceptionistphone_sel});
+         pr_default.execute(1, new Object[] {lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV55Trn_receptionistwwds_2_tfreceptionistgivenname, AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, lV57Trn_receptionistwwds_4_tfreceptionistlastname, AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, lV59Trn_receptionistwwds_6_tfreceptionistemail, AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, lV61Trn_receptionistwwds_8_tfreceptionistphone, AV62Trn_receptionistwwds_9_tfreceptionistphone_sel});
          while ( (pr_default.getStatus(1) != 101) )
          {
             BRK6M4 = false;
             A91ReceptionistLastName = P006M3_A91ReceptionistLastName[0];
+            A398ReceptionistIsActive = P006M3_A398ReceptionistIsActive[0];
             A94ReceptionistPhone = P006M3_A94ReceptionistPhone[0];
             A93ReceptionistEmail = P006M3_A93ReceptionistEmail[0];
             A90ReceptionistGivenName = P006M3_A90ReceptionistGivenName[0];
@@ -416,46 +430,51 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV17TFReceptionistEmail = AV23SearchTxt;
          AV18TFReceptionistEmail_Sel = "";
-         AV53Trn_receptionistwwds_1_filterfulltext = AV45FilterFullText;
-         AV54Trn_receptionistwwds_2_tfreceptionistgivenname = AV11TFReceptionistGivenName;
-         AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel = AV12TFReceptionistGivenName_Sel;
-         AV56Trn_receptionistwwds_4_tfreceptionistlastname = AV13TFReceptionistLastName;
-         AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel = AV14TFReceptionistLastName_Sel;
-         AV58Trn_receptionistwwds_6_tfreceptionistemail = AV17TFReceptionistEmail;
-         AV59Trn_receptionistwwds_7_tfreceptionistemail_sel = AV18TFReceptionistEmail_Sel;
-         AV60Trn_receptionistwwds_8_tfreceptionistphone = AV19TFReceptionistPhone;
-         AV61Trn_receptionistwwds_9_tfreceptionistphone_sel = AV20TFReceptionistPhone_Sel;
+         AV54Trn_receptionistwwds_1_filterfulltext = AV45FilterFullText;
+         AV55Trn_receptionistwwds_2_tfreceptionistgivenname = AV11TFReceptionistGivenName;
+         AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel = AV12TFReceptionistGivenName_Sel;
+         AV57Trn_receptionistwwds_4_tfreceptionistlastname = AV13TFReceptionistLastName;
+         AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel = AV14TFReceptionistLastName_Sel;
+         AV59Trn_receptionistwwds_6_tfreceptionistemail = AV17TFReceptionistEmail;
+         AV60Trn_receptionistwwds_7_tfreceptionistemail_sel = AV18TFReceptionistEmail_Sel;
+         AV61Trn_receptionistwwds_8_tfreceptionistphone = AV19TFReceptionistPhone;
+         AV62Trn_receptionistwwds_9_tfreceptionistphone_sel = AV20TFReceptionistPhone_Sel;
+         AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel = AV51TFReceptionistIsActive_Sel;
          pr_default.dynParam(2, new Object[]{ new Object[]{
-                                              AV53Trn_receptionistwwds_1_filterfulltext ,
-                                              AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
-                                              AV54Trn_receptionistwwds_2_tfreceptionistgivenname ,
-                                              AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
-                                              AV56Trn_receptionistwwds_4_tfreceptionistlastname ,
-                                              AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ,
-                                              AV58Trn_receptionistwwds_6_tfreceptionistemail ,
-                                              AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ,
-                                              AV60Trn_receptionistwwds_8_tfreceptionistphone ,
+                                              AV54Trn_receptionistwwds_1_filterfulltext ,
+                                              AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
+                                              AV55Trn_receptionistwwds_2_tfreceptionistgivenname ,
+                                              AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
+                                              AV57Trn_receptionistwwds_4_tfreceptionistlastname ,
+                                              AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ,
+                                              AV59Trn_receptionistwwds_6_tfreceptionistemail ,
+                                              AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ,
+                                              AV61Trn_receptionistwwds_8_tfreceptionistphone ,
+                                              AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ,
                                               A90ReceptionistGivenName ,
                                               A91ReceptionistLastName ,
                                               A93ReceptionistEmail ,
-                                              A94ReceptionistPhone } ,
+                                              A94ReceptionistPhone ,
+                                              A398ReceptionistIsActive } ,
                                               new int[]{
+                                              TypeConstants.SHORT, TypeConstants.BOOLEAN
                                               }
          });
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV54Trn_receptionistwwds_2_tfreceptionistgivenname = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_2_tfreceptionistgivenname), "%", "");
-         lV56Trn_receptionistwwds_4_tfreceptionistlastname = StringUtil.Concat( StringUtil.RTrim( AV56Trn_receptionistwwds_4_tfreceptionistlastname), "%", "");
-         lV58Trn_receptionistwwds_6_tfreceptionistemail = StringUtil.Concat( StringUtil.RTrim( AV58Trn_receptionistwwds_6_tfreceptionistemail), "%", "");
-         lV60Trn_receptionistwwds_8_tfreceptionistphone = StringUtil.PadR( StringUtil.RTrim( AV60Trn_receptionistwwds_8_tfreceptionistphone), 20, "%");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV55Trn_receptionistwwds_2_tfreceptionistgivenname = StringUtil.Concat( StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname), "%", "");
+         lV57Trn_receptionistwwds_4_tfreceptionistlastname = StringUtil.Concat( StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname), "%", "");
+         lV59Trn_receptionistwwds_6_tfreceptionistemail = StringUtil.Concat( StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail), "%", "");
+         lV61Trn_receptionistwwds_8_tfreceptionistphone = StringUtil.PadR( StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone), 20, "%");
          /* Using cursor P006M4 */
-         pr_default.execute(2, new Object[] {lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_2_tfreceptionistgivenname, AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, lV56Trn_receptionistwwds_4_tfreceptionistlastname, AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, lV58Trn_receptionistwwds_6_tfreceptionistemail, AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, lV60Trn_receptionistwwds_8_tfreceptionistphone, AV61Trn_receptionistwwds_9_tfreceptionistphone_sel});
+         pr_default.execute(2, new Object[] {lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV55Trn_receptionistwwds_2_tfreceptionistgivenname, AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, lV57Trn_receptionistwwds_4_tfreceptionistlastname, AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, lV59Trn_receptionistwwds_6_tfreceptionistemail, AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, lV61Trn_receptionistwwds_8_tfreceptionistphone, AV62Trn_receptionistwwds_9_tfreceptionistphone_sel});
          while ( (pr_default.getStatus(2) != 101) )
          {
             BRK6M6 = false;
             A93ReceptionistEmail = P006M4_A93ReceptionistEmail[0];
+            A398ReceptionistIsActive = P006M4_A398ReceptionistIsActive[0];
             A94ReceptionistPhone = P006M4_A94ReceptionistPhone[0];
             A91ReceptionistLastName = P006M4_A91ReceptionistLastName[0];
             A90ReceptionistGivenName = P006M4_A90ReceptionistGivenName[0];
@@ -503,46 +522,51 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV19TFReceptionistPhone = AV23SearchTxt;
          AV20TFReceptionistPhone_Sel = "";
-         AV53Trn_receptionistwwds_1_filterfulltext = AV45FilterFullText;
-         AV54Trn_receptionistwwds_2_tfreceptionistgivenname = AV11TFReceptionistGivenName;
-         AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel = AV12TFReceptionistGivenName_Sel;
-         AV56Trn_receptionistwwds_4_tfreceptionistlastname = AV13TFReceptionistLastName;
-         AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel = AV14TFReceptionistLastName_Sel;
-         AV58Trn_receptionistwwds_6_tfreceptionistemail = AV17TFReceptionistEmail;
-         AV59Trn_receptionistwwds_7_tfreceptionistemail_sel = AV18TFReceptionistEmail_Sel;
-         AV60Trn_receptionistwwds_8_tfreceptionistphone = AV19TFReceptionistPhone;
-         AV61Trn_receptionistwwds_9_tfreceptionistphone_sel = AV20TFReceptionistPhone_Sel;
+         AV54Trn_receptionistwwds_1_filterfulltext = AV45FilterFullText;
+         AV55Trn_receptionistwwds_2_tfreceptionistgivenname = AV11TFReceptionistGivenName;
+         AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel = AV12TFReceptionistGivenName_Sel;
+         AV57Trn_receptionistwwds_4_tfreceptionistlastname = AV13TFReceptionistLastName;
+         AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel = AV14TFReceptionistLastName_Sel;
+         AV59Trn_receptionistwwds_6_tfreceptionistemail = AV17TFReceptionistEmail;
+         AV60Trn_receptionistwwds_7_tfreceptionistemail_sel = AV18TFReceptionistEmail_Sel;
+         AV61Trn_receptionistwwds_8_tfreceptionistphone = AV19TFReceptionistPhone;
+         AV62Trn_receptionistwwds_9_tfreceptionistphone_sel = AV20TFReceptionistPhone_Sel;
+         AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel = AV51TFReceptionistIsActive_Sel;
          pr_default.dynParam(3, new Object[]{ new Object[]{
-                                              AV53Trn_receptionistwwds_1_filterfulltext ,
-                                              AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
-                                              AV54Trn_receptionistwwds_2_tfreceptionistgivenname ,
-                                              AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
-                                              AV56Trn_receptionistwwds_4_tfreceptionistlastname ,
-                                              AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ,
-                                              AV58Trn_receptionistwwds_6_tfreceptionistemail ,
-                                              AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ,
-                                              AV60Trn_receptionistwwds_8_tfreceptionistphone ,
+                                              AV54Trn_receptionistwwds_1_filterfulltext ,
+                                              AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
+                                              AV55Trn_receptionistwwds_2_tfreceptionistgivenname ,
+                                              AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
+                                              AV57Trn_receptionistwwds_4_tfreceptionistlastname ,
+                                              AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ,
+                                              AV59Trn_receptionistwwds_6_tfreceptionistemail ,
+                                              AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ,
+                                              AV61Trn_receptionistwwds_8_tfreceptionistphone ,
+                                              AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ,
                                               A90ReceptionistGivenName ,
                                               A91ReceptionistLastName ,
                                               A93ReceptionistEmail ,
-                                              A94ReceptionistPhone } ,
+                                              A94ReceptionistPhone ,
+                                              A398ReceptionistIsActive } ,
                                               new int[]{
+                                              TypeConstants.SHORT, TypeConstants.BOOLEAN
                                               }
          });
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV53Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext), "%", "");
-         lV54Trn_receptionistwwds_2_tfreceptionistgivenname = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_2_tfreceptionistgivenname), "%", "");
-         lV56Trn_receptionistwwds_4_tfreceptionistlastname = StringUtil.Concat( StringUtil.RTrim( AV56Trn_receptionistwwds_4_tfreceptionistlastname), "%", "");
-         lV58Trn_receptionistwwds_6_tfreceptionistemail = StringUtil.Concat( StringUtil.RTrim( AV58Trn_receptionistwwds_6_tfreceptionistemail), "%", "");
-         lV60Trn_receptionistwwds_8_tfreceptionistphone = StringUtil.PadR( StringUtil.RTrim( AV60Trn_receptionistwwds_8_tfreceptionistphone), 20, "%");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV54Trn_receptionistwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext), "%", "");
+         lV55Trn_receptionistwwds_2_tfreceptionistgivenname = StringUtil.Concat( StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname), "%", "");
+         lV57Trn_receptionistwwds_4_tfreceptionistlastname = StringUtil.Concat( StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname), "%", "");
+         lV59Trn_receptionistwwds_6_tfreceptionistemail = StringUtil.Concat( StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail), "%", "");
+         lV61Trn_receptionistwwds_8_tfreceptionistphone = StringUtil.PadR( StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone), 20, "%");
          /* Using cursor P006M5 */
-         pr_default.execute(3, new Object[] {lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV53Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_2_tfreceptionistgivenname, AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, lV56Trn_receptionistwwds_4_tfreceptionistlastname, AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, lV58Trn_receptionistwwds_6_tfreceptionistemail, AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, lV60Trn_receptionistwwds_8_tfreceptionistphone, AV61Trn_receptionistwwds_9_tfreceptionistphone_sel});
+         pr_default.execute(3, new Object[] {lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV54Trn_receptionistwwds_1_filterfulltext, lV55Trn_receptionistwwds_2_tfreceptionistgivenname, AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, lV57Trn_receptionistwwds_4_tfreceptionistlastname, AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, lV59Trn_receptionistwwds_6_tfreceptionistemail, AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, lV61Trn_receptionistwwds_8_tfreceptionistphone, AV62Trn_receptionistwwds_9_tfreceptionistphone_sel});
          while ( (pr_default.getStatus(3) != 101) )
          {
             BRK6M8 = false;
             A94ReceptionistPhone = P006M5_A94ReceptionistPhone[0];
+            A398ReceptionistIsActive = P006M5_A398ReceptionistIsActive[0];
             A93ReceptionistEmail = P006M5_A93ReceptionistEmail[0];
             A91ReceptionistLastName = P006M5_A91ReceptionistLastName[0];
             A90ReceptionistGivenName = P006M5_A90ReceptionistGivenName[0];
@@ -616,25 +640,26 @@ namespace GeneXus.Programs {
          AV18TFReceptionistEmail_Sel = "";
          AV19TFReceptionistPhone = "";
          AV20TFReceptionistPhone_Sel = "";
-         AV53Trn_receptionistwwds_1_filterfulltext = "";
-         AV54Trn_receptionistwwds_2_tfreceptionistgivenname = "";
-         AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel = "";
-         AV56Trn_receptionistwwds_4_tfreceptionistlastname = "";
-         AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel = "";
-         AV58Trn_receptionistwwds_6_tfreceptionistemail = "";
-         AV59Trn_receptionistwwds_7_tfreceptionistemail_sel = "";
-         AV60Trn_receptionistwwds_8_tfreceptionistphone = "";
-         AV61Trn_receptionistwwds_9_tfreceptionistphone_sel = "";
-         lV53Trn_receptionistwwds_1_filterfulltext = "";
-         lV54Trn_receptionistwwds_2_tfreceptionistgivenname = "";
-         lV56Trn_receptionistwwds_4_tfreceptionistlastname = "";
-         lV58Trn_receptionistwwds_6_tfreceptionistemail = "";
-         lV60Trn_receptionistwwds_8_tfreceptionistphone = "";
+         AV54Trn_receptionistwwds_1_filterfulltext = "";
+         AV55Trn_receptionistwwds_2_tfreceptionistgivenname = "";
+         AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel = "";
+         AV57Trn_receptionistwwds_4_tfreceptionistlastname = "";
+         AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel = "";
+         AV59Trn_receptionistwwds_6_tfreceptionistemail = "";
+         AV60Trn_receptionistwwds_7_tfreceptionistemail_sel = "";
+         AV61Trn_receptionistwwds_8_tfreceptionistphone = "";
+         AV62Trn_receptionistwwds_9_tfreceptionistphone_sel = "";
+         lV54Trn_receptionistwwds_1_filterfulltext = "";
+         lV55Trn_receptionistwwds_2_tfreceptionistgivenname = "";
+         lV57Trn_receptionistwwds_4_tfreceptionistlastname = "";
+         lV59Trn_receptionistwwds_6_tfreceptionistemail = "";
+         lV61Trn_receptionistwwds_8_tfreceptionistphone = "";
          A90ReceptionistGivenName = "";
          A91ReceptionistLastName = "";
          A93ReceptionistEmail = "";
          A94ReceptionistPhone = "";
          P006M2_A90ReceptionistGivenName = new string[] {""} ;
+         P006M2_A398ReceptionistIsActive = new bool[] {false} ;
          P006M2_A94ReceptionistPhone = new string[] {""} ;
          P006M2_A93ReceptionistEmail = new string[] {""} ;
          P006M2_A91ReceptionistLastName = new string[] {""} ;
@@ -646,6 +671,7 @@ namespace GeneXus.Programs {
          A29LocationId = Guid.Empty;
          AV28Option = "";
          P006M3_A91ReceptionistLastName = new string[] {""} ;
+         P006M3_A398ReceptionistIsActive = new bool[] {false} ;
          P006M3_A94ReceptionistPhone = new string[] {""} ;
          P006M3_A93ReceptionistEmail = new string[] {""} ;
          P006M3_A90ReceptionistGivenName = new string[] {""} ;
@@ -653,6 +679,7 @@ namespace GeneXus.Programs {
          P006M3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006M3_A29LocationId = new Guid[] {Guid.Empty} ;
          P006M4_A93ReceptionistEmail = new string[] {""} ;
+         P006M4_A398ReceptionistIsActive = new bool[] {false} ;
          P006M4_A94ReceptionistPhone = new string[] {""} ;
          P006M4_A91ReceptionistLastName = new string[] {""} ;
          P006M4_A90ReceptionistGivenName = new string[] {""} ;
@@ -660,6 +687,7 @@ namespace GeneXus.Programs {
          P006M4_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006M4_A29LocationId = new Guid[] {Guid.Empty} ;
          P006M5_A94ReceptionistPhone = new string[] {""} ;
+         P006M5_A398ReceptionistIsActive = new bool[] {false} ;
          P006M5_A93ReceptionistEmail = new string[] {""} ;
          P006M5_A91ReceptionistLastName = new string[] {""} ;
          P006M5_A90ReceptionistGivenName = new string[] {""} ;
@@ -669,16 +697,16 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_receptionistwwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P006M2_A90ReceptionistGivenName, P006M2_A94ReceptionistPhone, P006M2_A93ReceptionistEmail, P006M2_A91ReceptionistLastName, P006M2_A89ReceptionistId, P006M2_A11OrganisationId, P006M2_A29LocationId
+               P006M2_A90ReceptionistGivenName, P006M2_A398ReceptionistIsActive, P006M2_A94ReceptionistPhone, P006M2_A93ReceptionistEmail, P006M2_A91ReceptionistLastName, P006M2_A89ReceptionistId, P006M2_A11OrganisationId, P006M2_A29LocationId
                }
                , new Object[] {
-               P006M3_A91ReceptionistLastName, P006M3_A94ReceptionistPhone, P006M3_A93ReceptionistEmail, P006M3_A90ReceptionistGivenName, P006M3_A89ReceptionistId, P006M3_A11OrganisationId, P006M3_A29LocationId
+               P006M3_A91ReceptionistLastName, P006M3_A398ReceptionistIsActive, P006M3_A94ReceptionistPhone, P006M3_A93ReceptionistEmail, P006M3_A90ReceptionistGivenName, P006M3_A89ReceptionistId, P006M3_A11OrganisationId, P006M3_A29LocationId
                }
                , new Object[] {
-               P006M4_A93ReceptionistEmail, P006M4_A94ReceptionistPhone, P006M4_A91ReceptionistLastName, P006M4_A90ReceptionistGivenName, P006M4_A89ReceptionistId, P006M4_A11OrganisationId, P006M4_A29LocationId
+               P006M4_A93ReceptionistEmail, P006M4_A398ReceptionistIsActive, P006M4_A94ReceptionistPhone, P006M4_A91ReceptionistLastName, P006M4_A90ReceptionistGivenName, P006M4_A89ReceptionistId, P006M4_A11OrganisationId, P006M4_A29LocationId
                }
                , new Object[] {
-               P006M5_A94ReceptionistPhone, P006M5_A93ReceptionistEmail, P006M5_A91ReceptionistLastName, P006M5_A90ReceptionistGivenName, P006M5_A89ReceptionistId, P006M5_A11OrganisationId, P006M5_A29LocationId
+               P006M5_A94ReceptionistPhone, P006M5_A398ReceptionistIsActive, P006M5_A93ReceptionistEmail, P006M5_A91ReceptionistLastName, P006M5_A90ReceptionistGivenName, P006M5_A89ReceptionistId, P006M5_A11OrganisationId, P006M5_A29LocationId
                }
             }
          );
@@ -688,15 +716,18 @@ namespace GeneXus.Programs {
       private short AV26MaxItems ;
       private short AV25PageIndex ;
       private short AV24SkipItems ;
-      private int AV51GXV1 ;
+      private short AV51TFReceptionistIsActive_Sel ;
+      private short AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ;
+      private int AV52GXV1 ;
       private long AV33count ;
       private string AV19TFReceptionistPhone ;
       private string AV20TFReceptionistPhone_Sel ;
-      private string AV60Trn_receptionistwwds_8_tfreceptionistphone ;
-      private string AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ;
-      private string lV60Trn_receptionistwwds_8_tfreceptionistphone ;
+      private string AV61Trn_receptionistwwds_8_tfreceptionistphone ;
+      private string AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ;
+      private string lV61Trn_receptionistwwds_8_tfreceptionistphone ;
       private string A94ReceptionistPhone ;
       private bool returnInSub ;
+      private bool A398ReceptionistIsActive ;
       private bool BRK6M2 ;
       private bool BRK6M4 ;
       private bool BRK6M6 ;
@@ -715,17 +746,17 @@ namespace GeneXus.Programs {
       private string AV14TFReceptionistLastName_Sel ;
       private string AV17TFReceptionistEmail ;
       private string AV18TFReceptionistEmail_Sel ;
-      private string AV53Trn_receptionistwwds_1_filterfulltext ;
-      private string AV54Trn_receptionistwwds_2_tfreceptionistgivenname ;
-      private string AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ;
-      private string AV56Trn_receptionistwwds_4_tfreceptionistlastname ;
-      private string AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ;
-      private string AV58Trn_receptionistwwds_6_tfreceptionistemail ;
-      private string AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ;
-      private string lV53Trn_receptionistwwds_1_filterfulltext ;
-      private string lV54Trn_receptionistwwds_2_tfreceptionistgivenname ;
-      private string lV56Trn_receptionistwwds_4_tfreceptionistlastname ;
-      private string lV58Trn_receptionistwwds_6_tfreceptionistemail ;
+      private string AV54Trn_receptionistwwds_1_filterfulltext ;
+      private string AV55Trn_receptionistwwds_2_tfreceptionistgivenname ;
+      private string AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ;
+      private string AV57Trn_receptionistwwds_4_tfreceptionistlastname ;
+      private string AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ;
+      private string AV59Trn_receptionistwwds_6_tfreceptionistemail ;
+      private string AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ;
+      private string lV54Trn_receptionistwwds_1_filterfulltext ;
+      private string lV55Trn_receptionistwwds_2_tfreceptionistgivenname ;
+      private string lV57Trn_receptionistwwds_4_tfreceptionistlastname ;
+      private string lV59Trn_receptionistwwds_6_tfreceptionistemail ;
       private string A90ReceptionistGivenName ;
       private string A91ReceptionistLastName ;
       private string A93ReceptionistEmail ;
@@ -744,6 +775,7 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV37GridStateFilterValue ;
       private IDataStoreProvider pr_default ;
       private string[] P006M2_A90ReceptionistGivenName ;
+      private bool[] P006M2_A398ReceptionistIsActive ;
       private string[] P006M2_A94ReceptionistPhone ;
       private string[] P006M2_A93ReceptionistEmail ;
       private string[] P006M2_A91ReceptionistLastName ;
@@ -751,6 +783,7 @@ namespace GeneXus.Programs {
       private Guid[] P006M2_A11OrganisationId ;
       private Guid[] P006M2_A29LocationId ;
       private string[] P006M3_A91ReceptionistLastName ;
+      private bool[] P006M3_A398ReceptionistIsActive ;
       private string[] P006M3_A94ReceptionistPhone ;
       private string[] P006M3_A93ReceptionistEmail ;
       private string[] P006M3_A90ReceptionistGivenName ;
@@ -758,6 +791,7 @@ namespace GeneXus.Programs {
       private Guid[] P006M3_A11OrganisationId ;
       private Guid[] P006M3_A29LocationId ;
       private string[] P006M4_A93ReceptionistEmail ;
+      private bool[] P006M4_A398ReceptionistIsActive ;
       private string[] P006M4_A94ReceptionistPhone ;
       private string[] P006M4_A91ReceptionistLastName ;
       private string[] P006M4_A90ReceptionistGivenName ;
@@ -765,6 +799,7 @@ namespace GeneXus.Programs {
       private Guid[] P006M4_A11OrganisationId ;
       private Guid[] P006M4_A29LocationId ;
       private string[] P006M5_A94ReceptionistPhone ;
+      private bool[] P006M5_A398ReceptionistIsActive ;
       private string[] P006M5_A93ReceptionistEmail ;
       private string[] P006M5_A91ReceptionistLastName ;
       private string[] P006M5_A90ReceptionistGivenName ;
@@ -779,28 +814,30 @@ namespace GeneXus.Programs {
    public class trn_receptionistwwgetfilterdata__default : DataStoreHelperBase, IDataStoreHelper
    {
       protected Object[] conditional_P006M2( IGxContext context ,
-                                             string AV53Trn_receptionistwwds_1_filterfulltext ,
-                                             string AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
-                                             string AV54Trn_receptionistwwds_2_tfreceptionistgivenname ,
-                                             string AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
-                                             string AV56Trn_receptionistwwds_4_tfreceptionistlastname ,
-                                             string AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ,
-                                             string AV58Trn_receptionistwwds_6_tfreceptionistemail ,
-                                             string AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ,
-                                             string AV60Trn_receptionistwwds_8_tfreceptionistphone ,
+                                             string AV54Trn_receptionistwwds_1_filterfulltext ,
+                                             string AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
+                                             string AV55Trn_receptionistwwds_2_tfreceptionistgivenname ,
+                                             string AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
+                                             string AV57Trn_receptionistwwds_4_tfreceptionistlastname ,
+                                             string AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ,
+                                             string AV59Trn_receptionistwwds_6_tfreceptionistemail ,
+                                             string AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ,
+                                             string AV61Trn_receptionistwwds_8_tfreceptionistphone ,
+                                             short AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ,
                                              string A90ReceptionistGivenName ,
                                              string A91ReceptionistLastName ,
                                              string A93ReceptionistEmail ,
-                                             string A94ReceptionistPhone )
+                                             string A94ReceptionistPhone ,
+                                             bool A398ReceptionistIsActive )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int1 = new short[12];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT ReceptionistGivenName, ReceptionistPhone, ReceptionistEmail, ReceptionistLastName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext)) )
+         scmdbuf = "SELECT ReceptionistGivenName, ReceptionistIsActive, ReceptionistPhone, ReceptionistEmail, ReceptionistLastName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV53Trn_receptionistwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV54Trn_receptionistwwds_1_filterfulltext))");
          }
          else
          {
@@ -809,85 +846,93 @@ namespace GeneXus.Programs {
             GXv_int1[2] = 1;
             GXv_int1[3] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistGivenName like :lV54Trn_receptionistwwds_2_tfreceptionistgivenname)");
+            AddWhere(sWhereString, "(ReceptionistGivenName like :lV55Trn_receptionistwwds_2_tfreceptionistgivenname)");
          }
          else
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ! ( StringUtil.StrCmp(AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ! ( StringUtil.StrCmp(AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistGivenName = ( :AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel))");
+            AddWhere(sWhereString, "(ReceptionistGivenName = ( :AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel))");
          }
          else
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistLastName like :lV56Trn_receptionistwwds_4_tfreceptionistlastname)");
+            AddWhere(sWhereString, "(ReceptionistLastName like :lV57Trn_receptionistwwds_4_tfreceptionistlastname)");
          }
          else
          {
             GXv_int1[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ! ( StringUtil.StrCmp(AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistLastName = ( :AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel))");
+            AddWhere(sWhereString, "(ReceptionistLastName = ( :AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel))");
          }
          else
          {
             GXv_int1[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistLastName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_6_tfreceptionistemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistEmail like :lV58Trn_receptionistwwds_6_tfreceptionistemail)");
+            AddWhere(sWhereString, "(ReceptionistEmail like :lV59Trn_receptionistwwds_6_tfreceptionistemail)");
          }
          else
          {
             GXv_int1[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ! ( StringUtil.StrCmp(AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ! ( StringUtil.StrCmp(AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistEmail = ( :AV59Trn_receptionistwwds_7_tfreceptionistemail_sel))");
+            AddWhere(sWhereString, "(ReceptionistEmail = ( :AV60Trn_receptionistwwds_7_tfreceptionistemail_sel))");
          }
          else
          {
             GXv_int1[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_8_tfreceptionistphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistPhone like :lV60Trn_receptionistwwds_8_tfreceptionistphone)");
+            AddWhere(sWhereString, "(ReceptionistPhone like :lV61Trn_receptionistwwds_8_tfreceptionistphone)");
          }
          else
          {
             GXv_int1[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ! ( StringUtil.StrCmp(AV61Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ! ( StringUtil.StrCmp(AV62Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistPhone = ( :AV61Trn_receptionistwwds_9_tfreceptionistphone_sel))");
+            AddWhere(sWhereString, "(ReceptionistPhone = ( :AV62Trn_receptionistwwds_9_tfreceptionistphone_sel))");
          }
          else
          {
             GXv_int1[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistPhone))=0))");
+         }
+         if ( AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel == 1 )
+         {
+            AddWhere(sWhereString, "(ReceptionistIsActive = TRUE)");
+         }
+         if ( AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel == 2 )
+         {
+            AddWhere(sWhereString, "(ReceptionistIsActive = FALSE)");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY ReceptionistGivenName";
@@ -897,28 +942,30 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P006M3( IGxContext context ,
-                                             string AV53Trn_receptionistwwds_1_filterfulltext ,
-                                             string AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
-                                             string AV54Trn_receptionistwwds_2_tfreceptionistgivenname ,
-                                             string AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
-                                             string AV56Trn_receptionistwwds_4_tfreceptionistlastname ,
-                                             string AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ,
-                                             string AV58Trn_receptionistwwds_6_tfreceptionistemail ,
-                                             string AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ,
-                                             string AV60Trn_receptionistwwds_8_tfreceptionistphone ,
+                                             string AV54Trn_receptionistwwds_1_filterfulltext ,
+                                             string AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
+                                             string AV55Trn_receptionistwwds_2_tfreceptionistgivenname ,
+                                             string AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
+                                             string AV57Trn_receptionistwwds_4_tfreceptionistlastname ,
+                                             string AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ,
+                                             string AV59Trn_receptionistwwds_6_tfreceptionistemail ,
+                                             string AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ,
+                                             string AV61Trn_receptionistwwds_8_tfreceptionistphone ,
+                                             short AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ,
                                              string A90ReceptionistGivenName ,
                                              string A91ReceptionistLastName ,
                                              string A93ReceptionistEmail ,
-                                             string A94ReceptionistPhone )
+                                             string A94ReceptionistPhone ,
+                                             bool A398ReceptionistIsActive )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int3 = new short[12];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT ReceptionistLastName, ReceptionistPhone, ReceptionistEmail, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext)) )
+         scmdbuf = "SELECT ReceptionistLastName, ReceptionistIsActive, ReceptionistPhone, ReceptionistEmail, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV53Trn_receptionistwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV54Trn_receptionistwwds_1_filterfulltext))");
          }
          else
          {
@@ -927,85 +974,93 @@ namespace GeneXus.Programs {
             GXv_int3[2] = 1;
             GXv_int3[3] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistGivenName like :lV54Trn_receptionistwwds_2_tfreceptionistgivenname)");
+            AddWhere(sWhereString, "(ReceptionistGivenName like :lV55Trn_receptionistwwds_2_tfreceptionistgivenname)");
          }
          else
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ! ( StringUtil.StrCmp(AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ! ( StringUtil.StrCmp(AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistGivenName = ( :AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel))");
+            AddWhere(sWhereString, "(ReceptionistGivenName = ( :AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel))");
          }
          else
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistLastName like :lV56Trn_receptionistwwds_4_tfreceptionistlastname)");
+            AddWhere(sWhereString, "(ReceptionistLastName like :lV57Trn_receptionistwwds_4_tfreceptionistlastname)");
          }
          else
          {
             GXv_int3[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ! ( StringUtil.StrCmp(AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistLastName = ( :AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel))");
+            AddWhere(sWhereString, "(ReceptionistLastName = ( :AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel))");
          }
          else
          {
             GXv_int3[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistLastName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_6_tfreceptionistemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistEmail like :lV58Trn_receptionistwwds_6_tfreceptionistemail)");
+            AddWhere(sWhereString, "(ReceptionistEmail like :lV59Trn_receptionistwwds_6_tfreceptionistemail)");
          }
          else
          {
             GXv_int3[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ! ( StringUtil.StrCmp(AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ! ( StringUtil.StrCmp(AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistEmail = ( :AV59Trn_receptionistwwds_7_tfreceptionistemail_sel))");
+            AddWhere(sWhereString, "(ReceptionistEmail = ( :AV60Trn_receptionistwwds_7_tfreceptionistemail_sel))");
          }
          else
          {
             GXv_int3[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_8_tfreceptionistphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistPhone like :lV60Trn_receptionistwwds_8_tfreceptionistphone)");
+            AddWhere(sWhereString, "(ReceptionistPhone like :lV61Trn_receptionistwwds_8_tfreceptionistphone)");
          }
          else
          {
             GXv_int3[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ! ( StringUtil.StrCmp(AV61Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ! ( StringUtil.StrCmp(AV62Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistPhone = ( :AV61Trn_receptionistwwds_9_tfreceptionistphone_sel))");
+            AddWhere(sWhereString, "(ReceptionistPhone = ( :AV62Trn_receptionistwwds_9_tfreceptionistphone_sel))");
          }
          else
          {
             GXv_int3[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistPhone))=0))");
+         }
+         if ( AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel == 1 )
+         {
+            AddWhere(sWhereString, "(ReceptionistIsActive = TRUE)");
+         }
+         if ( AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel == 2 )
+         {
+            AddWhere(sWhereString, "(ReceptionistIsActive = FALSE)");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY ReceptionistLastName";
@@ -1015,28 +1070,30 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P006M4( IGxContext context ,
-                                             string AV53Trn_receptionistwwds_1_filterfulltext ,
-                                             string AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
-                                             string AV54Trn_receptionistwwds_2_tfreceptionistgivenname ,
-                                             string AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
-                                             string AV56Trn_receptionistwwds_4_tfreceptionistlastname ,
-                                             string AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ,
-                                             string AV58Trn_receptionistwwds_6_tfreceptionistemail ,
-                                             string AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ,
-                                             string AV60Trn_receptionistwwds_8_tfreceptionistphone ,
+                                             string AV54Trn_receptionistwwds_1_filterfulltext ,
+                                             string AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
+                                             string AV55Trn_receptionistwwds_2_tfreceptionistgivenname ,
+                                             string AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
+                                             string AV57Trn_receptionistwwds_4_tfreceptionistlastname ,
+                                             string AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ,
+                                             string AV59Trn_receptionistwwds_6_tfreceptionistemail ,
+                                             string AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ,
+                                             string AV61Trn_receptionistwwds_8_tfreceptionistphone ,
+                                             short AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ,
                                              string A90ReceptionistGivenName ,
                                              string A91ReceptionistLastName ,
                                              string A93ReceptionistEmail ,
-                                             string A94ReceptionistPhone )
+                                             string A94ReceptionistPhone ,
+                                             bool A398ReceptionistIsActive )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int5 = new short[12];
          Object[] GXv_Object6 = new Object[2];
-         scmdbuf = "SELECT ReceptionistEmail, ReceptionistPhone, ReceptionistLastName, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext)) )
+         scmdbuf = "SELECT ReceptionistEmail, ReceptionistIsActive, ReceptionistPhone, ReceptionistLastName, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV53Trn_receptionistwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV54Trn_receptionistwwds_1_filterfulltext))");
          }
          else
          {
@@ -1045,85 +1102,93 @@ namespace GeneXus.Programs {
             GXv_int5[2] = 1;
             GXv_int5[3] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistGivenName like :lV54Trn_receptionistwwds_2_tfreceptionistgivenname)");
+            AddWhere(sWhereString, "(ReceptionistGivenName like :lV55Trn_receptionistwwds_2_tfreceptionistgivenname)");
          }
          else
          {
             GXv_int5[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ! ( StringUtil.StrCmp(AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ! ( StringUtil.StrCmp(AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistGivenName = ( :AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel))");
+            AddWhere(sWhereString, "(ReceptionistGivenName = ( :AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel))");
          }
          else
          {
             GXv_int5[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistLastName like :lV56Trn_receptionistwwds_4_tfreceptionistlastname)");
+            AddWhere(sWhereString, "(ReceptionistLastName like :lV57Trn_receptionistwwds_4_tfreceptionistlastname)");
          }
          else
          {
             GXv_int5[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ! ( StringUtil.StrCmp(AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistLastName = ( :AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel))");
+            AddWhere(sWhereString, "(ReceptionistLastName = ( :AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel))");
          }
          else
          {
             GXv_int5[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistLastName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_6_tfreceptionistemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistEmail like :lV58Trn_receptionistwwds_6_tfreceptionistemail)");
+            AddWhere(sWhereString, "(ReceptionistEmail like :lV59Trn_receptionistwwds_6_tfreceptionistemail)");
          }
          else
          {
             GXv_int5[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ! ( StringUtil.StrCmp(AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ! ( StringUtil.StrCmp(AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistEmail = ( :AV59Trn_receptionistwwds_7_tfreceptionistemail_sel))");
+            AddWhere(sWhereString, "(ReceptionistEmail = ( :AV60Trn_receptionistwwds_7_tfreceptionistemail_sel))");
          }
          else
          {
             GXv_int5[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_8_tfreceptionistphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistPhone like :lV60Trn_receptionistwwds_8_tfreceptionistphone)");
+            AddWhere(sWhereString, "(ReceptionistPhone like :lV61Trn_receptionistwwds_8_tfreceptionistphone)");
          }
          else
          {
             GXv_int5[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ! ( StringUtil.StrCmp(AV61Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ! ( StringUtil.StrCmp(AV62Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistPhone = ( :AV61Trn_receptionistwwds_9_tfreceptionistphone_sel))");
+            AddWhere(sWhereString, "(ReceptionistPhone = ( :AV62Trn_receptionistwwds_9_tfreceptionistphone_sel))");
          }
          else
          {
             GXv_int5[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistPhone))=0))");
+         }
+         if ( AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel == 1 )
+         {
+            AddWhere(sWhereString, "(ReceptionistIsActive = TRUE)");
+         }
+         if ( AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel == 2 )
+         {
+            AddWhere(sWhereString, "(ReceptionistIsActive = FALSE)");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY ReceptionistEmail";
@@ -1133,28 +1198,30 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P006M5( IGxContext context ,
-                                             string AV53Trn_receptionistwwds_1_filterfulltext ,
-                                             string AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
-                                             string AV54Trn_receptionistwwds_2_tfreceptionistgivenname ,
-                                             string AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
-                                             string AV56Trn_receptionistwwds_4_tfreceptionistlastname ,
-                                             string AV59Trn_receptionistwwds_7_tfreceptionistemail_sel ,
-                                             string AV58Trn_receptionistwwds_6_tfreceptionistemail ,
-                                             string AV61Trn_receptionistwwds_9_tfreceptionistphone_sel ,
-                                             string AV60Trn_receptionistwwds_8_tfreceptionistphone ,
+                                             string AV54Trn_receptionistwwds_1_filterfulltext ,
+                                             string AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel ,
+                                             string AV55Trn_receptionistwwds_2_tfreceptionistgivenname ,
+                                             string AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel ,
+                                             string AV57Trn_receptionistwwds_4_tfreceptionistlastname ,
+                                             string AV60Trn_receptionistwwds_7_tfreceptionistemail_sel ,
+                                             string AV59Trn_receptionistwwds_6_tfreceptionistemail ,
+                                             string AV62Trn_receptionistwwds_9_tfreceptionistphone_sel ,
+                                             string AV61Trn_receptionistwwds_8_tfreceptionistphone ,
+                                             short AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel ,
                                              string A90ReceptionistGivenName ,
                                              string A91ReceptionistLastName ,
                                              string A93ReceptionistEmail ,
-                                             string A94ReceptionistPhone )
+                                             string A94ReceptionistPhone ,
+                                             bool A398ReceptionistIsActive )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int7 = new short[12];
          Object[] GXv_Object8 = new Object[2];
-         scmdbuf = "SELECT ReceptionistPhone, ReceptionistEmail, ReceptionistLastName, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_receptionistwwds_1_filterfulltext)) )
+         scmdbuf = "SELECT ReceptionistPhone, ReceptionistIsActive, ReceptionistEmail, ReceptionistLastName, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV53Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV53Trn_receptionistwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV54Trn_receptionistwwds_1_filterfulltext))");
          }
          else
          {
@@ -1163,85 +1230,93 @@ namespace GeneXus.Programs {
             GXv_int7[2] = 1;
             GXv_int7[3] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistGivenName like :lV54Trn_receptionistwwds_2_tfreceptionistgivenname)");
+            AddWhere(sWhereString, "(ReceptionistGivenName like :lV55Trn_receptionistwwds_2_tfreceptionistgivenname)");
          }
          else
          {
             GXv_int7[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ! ( StringUtil.StrCmp(AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ! ( StringUtil.StrCmp(AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistGivenName = ( :AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel))");
+            AddWhere(sWhereString, "(ReceptionistGivenName = ( :AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel))");
          }
          else
          {
             GXv_int7[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistLastName like :lV56Trn_receptionistwwds_4_tfreceptionistlastname)");
+            AddWhere(sWhereString, "(ReceptionistLastName like :lV57Trn_receptionistwwds_4_tfreceptionistlastname)");
          }
          else
          {
             GXv_int7[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ! ( StringUtil.StrCmp(AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistLastName = ( :AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel))");
+            AddWhere(sWhereString, "(ReceptionistLastName = ( :AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel))");
          }
          else
          {
             GXv_int7[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistLastName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_6_tfreceptionistemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistEmail like :lV58Trn_receptionistwwds_6_tfreceptionistemail)");
+            AddWhere(sWhereString, "(ReceptionistEmail like :lV59Trn_receptionistwwds_6_tfreceptionistemail)");
          }
          else
          {
             GXv_int7[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ! ( StringUtil.StrCmp(AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ! ( StringUtil.StrCmp(AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistEmail = ( :AV59Trn_receptionistwwds_7_tfreceptionistemail_sel))");
+            AddWhere(sWhereString, "(ReceptionistEmail = ( :AV60Trn_receptionistwwds_7_tfreceptionistemail_sel))");
          }
          else
          {
             GXv_int7[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_receptionistwwds_7_tfreceptionistemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_8_tfreceptionistphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone)) ) )
          {
-            AddWhere(sWhereString, "(ReceptionistPhone like :lV60Trn_receptionistwwds_8_tfreceptionistphone)");
+            AddWhere(sWhereString, "(ReceptionistPhone like :lV61Trn_receptionistwwds_8_tfreceptionistphone)");
          }
          else
          {
             GXv_int7[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ! ( StringUtil.StrCmp(AV61Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ! ( StringUtil.StrCmp(AV62Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(ReceptionistPhone = ( :AV61Trn_receptionistwwds_9_tfreceptionistphone_sel))");
+            AddWhere(sWhereString, "(ReceptionistPhone = ( :AV62Trn_receptionistwwds_9_tfreceptionistphone_sel))");
          }
          else
          {
             GXv_int7[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_receptionistwwds_9_tfreceptionistphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ReceptionistPhone))=0))");
+         }
+         if ( AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel == 1 )
+         {
+            AddWhere(sWhereString, "(ReceptionistIsActive = TRUE)");
+         }
+         if ( AV63Trn_receptionistwwds_10_tfreceptionistisactive_sel == 2 )
+         {
+            AddWhere(sWhereString, "(ReceptionistIsActive = FALSE)");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY ReceptionistPhone";
@@ -1257,13 +1332,13 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_P006M2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] );
+                     return conditional_P006M2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (short)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (bool)dynConstraints[14] );
                case 1 :
-                     return conditional_P006M3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] );
+                     return conditional_P006M3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (short)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (bool)dynConstraints[14] );
                case 2 :
-                     return conditional_P006M4(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] );
+                     return conditional_P006M4(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (short)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (bool)dynConstraints[14] );
                case 3 :
-                     return conditional_P006M5(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] );
+                     return conditional_P006M5(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (short)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (bool)dynConstraints[14] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -1286,63 +1361,63 @@ namespace GeneXus.Programs {
        {
           Object[] prmP006M2;
           prmP006M2 = new Object[] {
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV54Trn_receptionistwwds_2_tfreceptionistgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV56Trn_receptionistwwds_4_tfreceptionistlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_receptionistwwds_6_tfreceptionistemail",GXType.VarChar,100,0) ,
-          new ParDef("AV59Trn_receptionistwwds_7_tfreceptionistemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV60Trn_receptionistwwds_8_tfreceptionistphone",GXType.Char,20,0) ,
-          new ParDef("AV61Trn_receptionistwwds_9_tfreceptionistphone_sel",GXType.Char,20,0)
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV55Trn_receptionistwwds_2_tfreceptionistgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV57Trn_receptionistwwds_4_tfreceptionistlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV59Trn_receptionistwwds_6_tfreceptionistemail",GXType.VarChar,100,0) ,
+          new ParDef("AV60Trn_receptionistwwds_7_tfreceptionistemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV61Trn_receptionistwwds_8_tfreceptionistphone",GXType.Char,20,0) ,
+          new ParDef("AV62Trn_receptionistwwds_9_tfreceptionistphone_sel",GXType.Char,20,0)
           };
           Object[] prmP006M3;
           prmP006M3 = new Object[] {
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV54Trn_receptionistwwds_2_tfreceptionistgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV56Trn_receptionistwwds_4_tfreceptionistlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_receptionistwwds_6_tfreceptionistemail",GXType.VarChar,100,0) ,
-          new ParDef("AV59Trn_receptionistwwds_7_tfreceptionistemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV60Trn_receptionistwwds_8_tfreceptionistphone",GXType.Char,20,0) ,
-          new ParDef("AV61Trn_receptionistwwds_9_tfreceptionistphone_sel",GXType.Char,20,0)
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV55Trn_receptionistwwds_2_tfreceptionistgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV57Trn_receptionistwwds_4_tfreceptionistlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV59Trn_receptionistwwds_6_tfreceptionistemail",GXType.VarChar,100,0) ,
+          new ParDef("AV60Trn_receptionistwwds_7_tfreceptionistemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV61Trn_receptionistwwds_8_tfreceptionistphone",GXType.Char,20,0) ,
+          new ParDef("AV62Trn_receptionistwwds_9_tfreceptionistphone_sel",GXType.Char,20,0)
           };
           Object[] prmP006M4;
           prmP006M4 = new Object[] {
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV54Trn_receptionistwwds_2_tfreceptionistgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV56Trn_receptionistwwds_4_tfreceptionistlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_receptionistwwds_6_tfreceptionistemail",GXType.VarChar,100,0) ,
-          new ParDef("AV59Trn_receptionistwwds_7_tfreceptionistemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV60Trn_receptionistwwds_8_tfreceptionistphone",GXType.Char,20,0) ,
-          new ParDef("AV61Trn_receptionistwwds_9_tfreceptionistphone_sel",GXType.Char,20,0)
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV55Trn_receptionistwwds_2_tfreceptionistgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV57Trn_receptionistwwds_4_tfreceptionistlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV59Trn_receptionistwwds_6_tfreceptionistemail",GXType.VarChar,100,0) ,
+          new ParDef("AV60Trn_receptionistwwds_7_tfreceptionistemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV61Trn_receptionistwwds_8_tfreceptionistphone",GXType.Char,20,0) ,
+          new ParDef("AV62Trn_receptionistwwds_9_tfreceptionistphone_sel",GXType.Char,20,0)
           };
           Object[] prmP006M5;
           prmP006M5 = new Object[] {
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV53Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV54Trn_receptionistwwds_2_tfreceptionistgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV55Trn_receptionistwwds_3_tfreceptionistgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV56Trn_receptionistwwds_4_tfreceptionistlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV57Trn_receptionistwwds_5_tfreceptionistlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_receptionistwwds_6_tfreceptionistemail",GXType.VarChar,100,0) ,
-          new ParDef("AV59Trn_receptionistwwds_7_tfreceptionistemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV60Trn_receptionistwwds_8_tfreceptionistphone",GXType.Char,20,0) ,
-          new ParDef("AV61Trn_receptionistwwds_9_tfreceptionistphone_sel",GXType.Char,20,0)
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV54Trn_receptionistwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV55Trn_receptionistwwds_2_tfreceptionistgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV57Trn_receptionistwwds_4_tfreceptionistlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV59Trn_receptionistwwds_6_tfreceptionistemail",GXType.VarChar,100,0) ,
+          new ParDef("AV60Trn_receptionistwwds_7_tfreceptionistemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV61Trn_receptionistwwds_8_tfreceptionistphone",GXType.Char,20,0) ,
+          new ParDef("AV62Trn_receptionistwwds_9_tfreceptionistphone_sel",GXType.Char,20,0)
           };
           def= new CursorDef[] {
               new CursorDef("P006M2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006M2,100, GxCacheFrequency.OFF ,true,false )
@@ -1361,39 +1436,43 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((string[]) buf[1])[0] = rslt.getString(2, 20);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((bool[]) buf[1])[0] = rslt.getBool(2);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((Guid[]) buf[5])[0] = rslt.getGuid(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(8);
                 return;
              case 1 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((string[]) buf[1])[0] = rslt.getString(2, 20);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((bool[]) buf[1])[0] = rslt.getBool(2);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((Guid[]) buf[5])[0] = rslt.getGuid(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(8);
                 return;
              case 2 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((string[]) buf[1])[0] = rslt.getString(2, 20);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((bool[]) buf[1])[0] = rslt.getBool(2);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((Guid[]) buf[5])[0] = rslt.getGuid(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(8);
                 return;
              case 3 :
                 ((string[]) buf[0])[0] = rslt.getString(1, 20);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((bool[]) buf[1])[0] = rslt.getBool(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((Guid[]) buf[5])[0] = rslt.getGuid(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(8);
                 return;
        }
     }

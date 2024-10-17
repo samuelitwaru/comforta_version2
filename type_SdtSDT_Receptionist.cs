@@ -103,6 +103,9 @@ namespace GeneXus.Programs
 			AddObjectProperty("ReceptionistStatus", gxTpr_Receptioniststatus, false);
 
 
+			AddObjectProperty("ReceptionistIsActive", gxTpr_Receptionistisactive, false);
+
+
 			AddObjectProperty("ReceptionistGAMGUID", gxTpr_Receptionistgamguid, false);
 
 			return;
@@ -271,6 +274,22 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="ReceptionistIsActive")]
+		[XmlElement(ElementName="ReceptionistIsActive")]
+		public bool gxTpr_Receptionistisactive
+		{
+			get {
+				return gxTv_SdtSDT_Receptionist_Receptionistisactive; 
+			}
+			set {
+				gxTv_SdtSDT_Receptionist_Receptionistisactive = value;
+				SetDirty("Receptionistisactive");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="ReceptionistGAMGUID")]
 		[XmlElement(ElementName="ReceptionistGAMGUID")]
 		public string gxTpr_Receptionistgamguid
@@ -314,6 +333,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Receptionist_Receptionistphonecode = "";
 			gxTv_SdtSDT_Receptionist_Receptionistphonenumber = "";
 			gxTv_SdtSDT_Receptionist_Receptioniststatus = "";
+
 			gxTv_SdtSDT_Receptionist_Receptionistgamguid = "";
 			return  ;
 		}
@@ -352,6 +372,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Receptionist_Receptioniststatus;
+		 
+
+		protected bool gxTv_SdtSDT_Receptionist_Receptionistisactive;
 		 
 
 		protected string gxTv_SdtSDT_Receptionist_Receptionistgamguid;
@@ -494,7 +517,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistGAMGUID", Order=10)]
+		[DataMember(Name="ReceptionistIsActive", Order=10)]
+		public bool gxTpr_Receptionistisactive
+		{
+			get { 
+				return sdt.gxTpr_Receptionistisactive;
+
+			}
+			set { 
+				sdt.gxTpr_Receptionistisactive = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistGAMGUID", Order=11)]
 		public  string gxTpr_Receptionistgamguid
 		{
 			get { 

@@ -341,56 +341,48 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+         /* Control Group */
+         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Row.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "CellMarginTop10", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-lg-9", "start", "top", "", "", "div");
-         /* User Defined Control */
-         ucDvpanel_tableattributes.SetProperty("Width", Dvpanel_tableattributes_Width);
-         ucDvpanel_tableattributes.SetProperty("AutoWidth", Dvpanel_tableattributes_Autowidth);
-         ucDvpanel_tableattributes.SetProperty("AutoHeight", Dvpanel_tableattributes_Autoheight);
-         ucDvpanel_tableattributes.SetProperty("Cls", Dvpanel_tableattributes_Cls);
-         ucDvpanel_tableattributes.SetProperty("Title", Dvpanel_tableattributes_Title);
-         ucDvpanel_tableattributes.SetProperty("Collapsible", Dvpanel_tableattributes_Collapsible);
-         ucDvpanel_tableattributes.SetProperty("Collapsed", Dvpanel_tableattributes_Collapsed);
-         ucDvpanel_tableattributes.SetProperty("ShowCollapseIcon", Dvpanel_tableattributes_Showcollapseicon);
-         ucDvpanel_tableattributes.SetProperty("IconPosition", Dvpanel_tableattributes_Iconposition);
-         ucDvpanel_tableattributes.SetProperty("AutoScroll", Dvpanel_tableattributes_Autoscroll);
-         ucDvpanel_tableattributes.Render(context, "dvelop.gxbootstrap.panel_al", Dvpanel_tableattributes_Internalname, "DVPANEL_TABLEATTRIBUTESContainer");
-         context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"DVPANEL_TABLEATTRIBUTESContainer"+"TableAttributes"+"\" style=\"display:none;\">") ;
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, divTableattributes_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell DscTop", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_RowId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_RowId_Internalname, context.GetMessage( "Id", ""), " AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtTrn_RowId_Internalname, context.GetMessage( "Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 22,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtTrn_RowId_Internalname, A319Trn_RowId.ToString(), A319Trn_RowId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,22);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_RowId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_RowId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Row.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtTrn_RowId_Internalname, A319Trn_RowId.ToString(), A319Trn_RowId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,21);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_RowId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_RowId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Row.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell DscTop ExtendedComboCell", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell ExtendedComboCell", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, divTablesplittedtrn_pageid_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 MergeLabelCell", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
          /* Text block */
          GxWebStd.gx_label_ctrl( context, lblTextblocktrn_pageid_Internalname, context.GetMessage( "Trn_Page", ""), "", "", lblTextblocktrn_pageid_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Row.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
          /* User Defined Control */
          ucCombo_trn_pageid.SetProperty("Caption", Combo_trn_pageid_Caption);
          ucCombo_trn_pageid.SetProperty("Cls", Combo_trn_pageid_Cls);
@@ -419,13 +411,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell DscTop", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_RowName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_RowName_Internalname, context.GetMessage( "Name", ""), " AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtTrn_RowName_Internalname, context.GetMessage( "Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 37,'',false,'',0)\"";
          GxWebStd.gx_single_line_edit( context, edtTrn_RowName_Internalname, A320Trn_RowName, StringUtil.RTrim( context.localUtil.Format( A320Trn_RowName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_RowName_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_RowName_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "Name", "start", true, "", "HLP_Trn_Row.htm");
@@ -434,10 +426,10 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
-         context.WriteHtmlText( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
+         context.WriteHtmlText( "</fieldset>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -540,6 +532,7 @@ namespace GeneXus.Programs {
                AV7Trn_RowId = StringUtil.StrToGuid( cgiGet( "vTRN_ROWID"));
                Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AV13Insert_Trn_PageId = StringUtil.StrToGuid( cgiGet( "vINSERT_TRN_PAGEID"));
+               A318Trn_PageName = cgiGet( "TRN_PAGENAME");
                AV23Pgmname = cgiGet( "vPGMNAME");
                Combo_trn_pageid_Objectcall = cgiGet( "COMBO_TRN_PAGEID_Objectcall");
                Combo_trn_pageid_Class = cgiGet( "COMBO_TRN_PAGEID_Class");
@@ -582,23 +575,6 @@ namespace GeneXus.Programs {
                Combo_trn_pageid_Multiplevaluesseparator = cgiGet( "COMBO_TRN_PAGEID_Multiplevaluesseparator");
                Combo_trn_pageid_Addnewoptiontext = cgiGet( "COMBO_TRN_PAGEID_Addnewoptiontext");
                Combo_trn_pageid_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_TRN_PAGEID_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               Dvpanel_tableattributes_Objectcall = cgiGet( "DVPANEL_TABLEATTRIBUTES_Objectcall");
-               Dvpanel_tableattributes_Class = cgiGet( "DVPANEL_TABLEATTRIBUTES_Class");
-               Dvpanel_tableattributes_Enabled = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Enabled"));
-               Dvpanel_tableattributes_Width = cgiGet( "DVPANEL_TABLEATTRIBUTES_Width");
-               Dvpanel_tableattributes_Height = cgiGet( "DVPANEL_TABLEATTRIBUTES_Height");
-               Dvpanel_tableattributes_Autowidth = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Autowidth"));
-               Dvpanel_tableattributes_Autoheight = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Autoheight"));
-               Dvpanel_tableattributes_Cls = cgiGet( "DVPANEL_TABLEATTRIBUTES_Cls");
-               Dvpanel_tableattributes_Showheader = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Showheader"));
-               Dvpanel_tableattributes_Title = cgiGet( "DVPANEL_TABLEATTRIBUTES_Title");
-               Dvpanel_tableattributes_Collapsible = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Collapsible"));
-               Dvpanel_tableattributes_Collapsed = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Collapsed"));
-               Dvpanel_tableattributes_Showcollapseicon = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Showcollapseicon"));
-               Dvpanel_tableattributes_Iconposition = cgiGet( "DVPANEL_TABLEATTRIBUTES_Iconposition");
-               Dvpanel_tableattributes_Autoscroll = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Autoscroll"));
-               Dvpanel_tableattributes_Visible = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Visible"));
-               Dvpanel_tableattributes_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DVPANEL_TABLEATTRIBUTES_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtTrn_RowId_Internalname), "") == 0 )
                {
@@ -1033,6 +1009,7 @@ namespace GeneXus.Programs {
             Z319Trn_RowId = A319Trn_RowId;
             Z320Trn_RowName = A320Trn_RowName;
             Z310Trn_PageId = A310Trn_PageId;
+            Z318Trn_PageName = A318Trn_PageName;
          }
       }
 
@@ -1110,6 +1087,10 @@ namespace GeneXus.Programs {
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
+            /* Using cursor T00184 */
+            pr_default.execute(2, new Object[] {A310Trn_PageId});
+            A318Trn_PageName = T00184_A318Trn_PageName[0];
+            pr_default.close(2);
          }
       }
 
@@ -1122,6 +1103,7 @@ namespace GeneXus.Programs {
             RcdFound70 = 1;
             A320Trn_RowName = T00185_A320Trn_RowName[0];
             AssignAttri("", false, "A320Trn_RowName", A320Trn_RowName);
+            A318Trn_PageName = T00185_A318Trn_PageName[0];
             A310Trn_PageId = T00185_A310Trn_PageId[0];
             AssignAttri("", false, "A310Trn_PageId", A310Trn_PageId.ToString());
             ZM1870( -12) ;
@@ -1148,6 +1130,7 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtTrn_PageId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
+         A318Trn_PageName = T00184_A318Trn_PageName[0];
          pr_default.close(2);
       }
 
@@ -1171,8 +1154,10 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtTrn_PageId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
+         A318Trn_PageName = T00186_A318Trn_PageName[0];
          GxWebStd.set_html_headers( context, 0, "", "");
          AddString( "[[") ;
+         AddString( "\""+GXUtil.EncodeJSConstant( A318Trn_PageName)+"\"") ;
          AddString( "]") ;
          if ( (pr_default.getStatus(4) == 101) )
          {
@@ -1634,17 +1619,24 @@ namespace GeneXus.Programs {
       protected void OnDeleteControls1870( )
       {
          standaloneModal( ) ;
-         /* No delete mode formulas found. */
          if ( AnyError == 0 )
          {
+            /* Delete mode formulas */
             /* Using cursor T001813 */
-            pr_default.execute(11, new Object[] {A319Trn_RowId});
-            if ( (pr_default.getStatus(11) != 101) )
+            pr_default.execute(11, new Object[] {A310Trn_PageId});
+            A318Trn_PageName = T001813_A318Trn_PageName[0];
+            pr_default.close(11);
+         }
+         if ( AnyError == 0 )
+         {
+            /* Using cursor T001814 */
+            pr_default.execute(12, new Object[] {A319Trn_RowId});
+            if ( (pr_default.getStatus(12) != 101) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Col", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
-            pr_default.close(11);
+            pr_default.close(12);
          }
       }
 
@@ -1684,13 +1676,13 @@ namespace GeneXus.Programs {
       public void ScanStart1870( )
       {
          /* Scan By routine */
-         /* Using cursor T001814 */
-         pr_default.execute(12);
+         /* Using cursor T001815 */
+         pr_default.execute(13);
          RcdFound70 = 0;
-         if ( (pr_default.getStatus(12) != 101) )
+         if ( (pr_default.getStatus(13) != 101) )
          {
             RcdFound70 = 1;
-            A319Trn_RowId = T001814_A319Trn_RowId[0];
+            A319Trn_RowId = T001815_A319Trn_RowId[0];
             AssignAttri("", false, "A319Trn_RowId", A319Trn_RowId.ToString());
          }
          /* Load Subordinate Levels */
@@ -1699,19 +1691,19 @@ namespace GeneXus.Programs {
       protected void ScanNext1870( )
       {
          /* Scan next routine */
-         pr_default.readNext(12);
+         pr_default.readNext(13);
          RcdFound70 = 0;
-         if ( (pr_default.getStatus(12) != 101) )
+         if ( (pr_default.getStatus(13) != 101) )
          {
             RcdFound70 = 1;
-            A319Trn_RowId = T001814_A319Trn_RowId[0];
+            A319Trn_RowId = T001815_A319Trn_RowId[0];
             AssignAttri("", false, "A319Trn_RowId", A319Trn_RowId.ToString());
          }
       }
 
       protected void ScanEnd1870( )
       {
-         pr_default.close(12);
+         pr_default.close(13);
       }
 
       protected void AfterConfirm1870( )
@@ -1806,9 +1798,6 @@ namespace GeneXus.Programs {
          }
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
@@ -1900,6 +1889,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vTRN_ROWID", GetSecureSignedToken( "", AV7Trn_RowId, context));
          GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vINSERT_TRN_PAGEID", AV13Insert_Trn_PageId.ToString());
+         GxWebStd.gx_hidden_field( context, "TRN_PAGENAME", A318Trn_PageName);
          GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV23Pgmname));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_PAGEID_Objectcall", StringUtil.RTrim( Combo_trn_pageid_Objectcall));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_PAGEID_Cls", StringUtil.RTrim( Combo_trn_pageid_Cls));
@@ -1910,18 +1900,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_PAGEID_Datalistproc", StringUtil.RTrim( Combo_trn_pageid_Datalistproc));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_PAGEID_Datalistprocparametersprefix", StringUtil.RTrim( Combo_trn_pageid_Datalistprocparametersprefix));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_PAGEID_Emptyitem", StringUtil.BoolToStr( Combo_trn_pageid_Emptyitem));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Objectcall", StringUtil.RTrim( Dvpanel_tableattributes_Objectcall));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Enabled", StringUtil.BoolToStr( Dvpanel_tableattributes_Enabled));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Width", StringUtil.RTrim( Dvpanel_tableattributes_Width));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Autowidth", StringUtil.BoolToStr( Dvpanel_tableattributes_Autowidth));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Autoheight", StringUtil.BoolToStr( Dvpanel_tableattributes_Autoheight));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Cls", StringUtil.RTrim( Dvpanel_tableattributes_Cls));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Title", StringUtil.RTrim( Dvpanel_tableattributes_Title));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Collapsible", StringUtil.BoolToStr( Dvpanel_tableattributes_Collapsible));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Collapsed", StringUtil.BoolToStr( Dvpanel_tableattributes_Collapsed));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Showcollapseicon", StringUtil.BoolToStr( Dvpanel_tableattributes_Showcollapseicon));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Iconposition", StringUtil.RTrim( Dvpanel_tableattributes_Iconposition));
-         GxWebStd.gx_hidden_field( context, "DVPANEL_TABLEATTRIBUTES_Autoscroll", StringUtil.BoolToStr( Dvpanel_tableattributes_Autoscroll));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -2011,6 +1989,8 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "A310Trn_PageId", A310Trn_PageId.ToString());
          A320Trn_RowName = "";
          AssignAttri("", false, "A320Trn_RowName", A320Trn_RowName);
+         A318Trn_PageName = "";
+         AssignAttri("", false, "A318Trn_PageName", A318Trn_PageName);
          Z320Trn_RowName = "";
          Z310Trn_PageId = Guid.Empty;
       }
@@ -2039,7 +2019,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016434851", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410161843913", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2055,10 +2035,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_row.js", "?2024101016434853", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
+         context.AddJavascriptSource("trn_row.js", "?202410161843915", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2074,8 +2051,8 @@ namespace GeneXus.Programs {
          divTablesplittedtrn_pageid_Internalname = "TABLESPLITTEDTRN_PAGEID";
          edtTrn_RowName_Internalname = "TRN_ROWNAME";
          divTableattributes_Internalname = "TABLEATTRIBUTES";
-         Dvpanel_tableattributes_Internalname = "DVPANEL_TABLEATTRIBUTES";
          divTablecontent_Internalname = "TABLECONTENT";
+         grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
          bttBtntrn_enter_Internalname = "BTNTRN_ENTER";
          bttBtntrn_cancel_Internalname = "BTNTRN_CANCEL";
          bttBtntrn_delete_Internalname = "BTNTRN_DELETE";
@@ -2121,16 +2098,6 @@ namespace GeneXus.Programs {
          Combo_trn_pageid_Enabled = Convert.ToBoolean( -1);
          edtTrn_RowId_Jsonclick = "";
          edtTrn_RowId_Enabled = 1;
-         Dvpanel_tableattributes_Autoscroll = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Iconposition = "Right";
-         Dvpanel_tableattributes_Showcollapseicon = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Collapsed = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Title = context.GetMessage( "WWP_TemplateDataPanelTitle", "");
-         Dvpanel_tableattributes_Cls = "PanelWithBorder Panel_BaseColor";
-         Dvpanel_tableattributes_Autoheight = Convert.ToBoolean( -1);
-         Dvpanel_tableattributes_Autowidth = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Width = "100%";
          divLayoutmaintable_Class = "Table";
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
@@ -2171,17 +2138,19 @@ namespace GeneXus.Programs {
 
       public void Valid_Trn_pageid( )
       {
-         /* Using cursor T001815 */
-         pr_default.execute(13, new Object[] {A310Trn_PageId});
-         if ( (pr_default.getStatus(13) == 101) )
+         /* Using cursor T001813 */
+         pr_default.execute(11, new Object[] {A310Trn_PageId});
+         if ( (pr_default.getStatus(11) == 101) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Page", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_PAGEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_PageId_Internalname;
          }
-         pr_default.close(13);
+         A318Trn_PageName = T001813_A318Trn_PageName[0];
+         pr_default.close(11);
          dynload_actions( ) ;
          /*  Sending validation outputs */
+         AssignAttri("", false, "A318Trn_PageName", A318Trn_PageName);
       }
 
       public override bool SupportAjaxEvent( )
@@ -2197,7 +2166,8 @@ namespace GeneXus.Programs {
          setEventMetadata("COMBO_TRN_PAGEID.ONOPTIONCLICKED","""{"handler":"E12182","iparms":[{"av":"Combo_trn_pageid_Selectedvalue_get","ctrl":"COMBO_TRN_PAGEID","prop":"SelectedValue_get"}]""");
          setEventMetadata("COMBO_TRN_PAGEID.ONOPTIONCLICKED",""","oparms":[{"av":"AV20ComboTrn_PageId","fld":"vCOMBOTRN_PAGEID"}]}""");
          setEventMetadata("VALID_TRN_ROWID","""{"handler":"Valid_Trn_rowid","iparms":[]}""");
-         setEventMetadata("VALID_TRN_PAGEID","""{"handler":"Valid_Trn_pageid","iparms":[{"av":"A310Trn_PageId","fld":"TRN_PAGEID"}]}""");
+         setEventMetadata("VALID_TRN_PAGEID","""{"handler":"Valid_Trn_pageid","iparms":[{"av":"A310Trn_PageId","fld":"TRN_PAGEID"},{"av":"A318Trn_PageName","fld":"TRN_PAGENAME"}]""");
+         setEventMetadata("VALID_TRN_PAGEID",""","oparms":[{"av":"A318Trn_PageName","fld":"TRN_PAGENAME"}]}""");
          setEventMetadata("VALIDV_COMBOTRN_PAGEID","""{"handler":"Validv_Combotrn_pageid","iparms":[]}""");
          return  ;
       }
@@ -2214,7 +2184,7 @@ namespace GeneXus.Programs {
       protected override void CloseCursors( )
       {
          pr_default.close(1);
-         pr_default.close(13);
+         pr_default.close(11);
       }
 
       public override void initialize( )
@@ -2238,7 +2208,6 @@ namespace GeneXus.Programs {
          GX_FocusControl = "";
          ClassString = "";
          StyleString = "";
-         ucDvpanel_tableattributes = new GXUserControl();
          TempTags = "";
          A319Trn_RowId = Guid.Empty;
          lblTextblocktrn_pageid_Jsonclick = "";
@@ -2251,6 +2220,7 @@ namespace GeneXus.Programs {
          bttBtntrn_delete_Jsonclick = "";
          AV20ComboTrn_PageId = Guid.Empty;
          AV13Insert_Trn_PageId = Guid.Empty;
+         A318Trn_PageName = "";
          AV23Pgmname = "";
          Combo_trn_pageid_Objectcall = "";
          Combo_trn_pageid_Class = "";
@@ -2277,9 +2247,6 @@ namespace GeneXus.Programs {
          Combo_trn_pageid_Selectalltext = "";
          Combo_trn_pageid_Multiplevaluesseparator = "";
          Combo_trn_pageid_Addnewoptiontext = "";
-         Dvpanel_tableattributes_Objectcall = "";
-         Dvpanel_tableattributes_Class = "";
-         Dvpanel_tableattributes_Height = "";
          forbiddenHiddens = new GXProperties();
          hsh = "";
          sMode70 = "";
@@ -2300,11 +2267,13 @@ namespace GeneXus.Programs {
          AV17ComboSelectedValue = "";
          AV18ComboSelectedText = "";
          GXt_char2 = "";
+         Z318Trn_PageName = "";
+         T00184_A318Trn_PageName = new string[] {""} ;
          T00185_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          T00185_A320Trn_RowName = new string[] {""} ;
+         T00185_A318Trn_PageName = new string[] {""} ;
          T00185_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         T00184_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         T00186_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         T00186_A318Trn_PageName = new string[] {""} ;
          T00187_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          T00183_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          T00183_A320Trn_RowName = new string[] {""} ;
@@ -2314,14 +2283,14 @@ namespace GeneXus.Programs {
          T00182_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          T00182_A320Trn_RowName = new string[] {""} ;
          T00182_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         T001813_A328Trn_ColId = new Guid[] {Guid.Empty} ;
-         T001814_A319Trn_RowId = new Guid[] {Guid.Empty} ;
+         T001813_A318Trn_PageName = new string[] {""} ;
+         T001814_A328Trn_ColId = new Guid[] {Guid.Empty} ;
+         T001815_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXEncryptionTmp = "";
          i320Trn_RowName = "";
-         T001815_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_row__gam(),
             new Object[][] {
             }
@@ -2335,13 +2304,13 @@ namespace GeneXus.Programs {
                T00183_A319Trn_RowId, T00183_A320Trn_RowName, T00183_A310Trn_PageId
                }
                , new Object[] {
-               T00184_A310Trn_PageId
+               T00184_A318Trn_PageName
                }
                , new Object[] {
-               T00185_A319Trn_RowId, T00185_A320Trn_RowName, T00185_A310Trn_PageId
+               T00185_A319Trn_RowId, T00185_A320Trn_RowName, T00185_A318Trn_PageName, T00185_A310Trn_PageId
                }
                , new Object[] {
-               T00186_A310Trn_PageId
+               T00186_A318Trn_PageName
                }
                , new Object[] {
                T00187_A319Trn_RowId
@@ -2359,13 +2328,13 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               T001813_A328Trn_ColId
+               T001813_A318Trn_PageName
                }
                , new Object[] {
-               T001814_A319Trn_RowId
+               T001814_A328Trn_ColId
                }
                , new Object[] {
-               T001815_A310Trn_PageId
+               T001815_A319Trn_RowId
                }
             }
          );
@@ -2396,7 +2365,6 @@ namespace GeneXus.Programs {
       private int edtavCombotrn_pageid_Enabled ;
       private int Combo_trn_pageid_Datalistupdateminimumcharacters ;
       private int Combo_trn_pageid_Gxcontroltype ;
-      private int Dvpanel_tableattributes_Gxcontroltype ;
       private int AV24GXV1 ;
       private int idxLst ;
       private string sPrefix ;
@@ -2416,12 +2384,8 @@ namespace GeneXus.Programs {
       private string divTablemain_Internalname ;
       private string ClassString ;
       private string StyleString ;
+      private string grpUnnamedgroup1_Internalname ;
       private string divTablecontent_Internalname ;
-      private string Dvpanel_tableattributes_Width ;
-      private string Dvpanel_tableattributes_Cls ;
-      private string Dvpanel_tableattributes_Title ;
-      private string Dvpanel_tableattributes_Iconposition ;
-      private string Dvpanel_tableattributes_Internalname ;
       private string divTableattributes_Internalname ;
       private string TempTags ;
       private string edtTrn_RowId_Jsonclick ;
@@ -2473,9 +2437,6 @@ namespace GeneXus.Programs {
       private string Combo_trn_pageid_Selectalltext ;
       private string Combo_trn_pageid_Multiplevaluesseparator ;
       private string Combo_trn_pageid_Addnewoptiontext ;
-      private string Dvpanel_tableattributes_Objectcall ;
-      private string Dvpanel_tableattributes_Class ;
-      private string Dvpanel_tableattributes_Height ;
       private string hsh ;
       private string sMode70 ;
       private string sEvt ;
@@ -2492,12 +2453,6 @@ namespace GeneXus.Programs {
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbErr ;
-      private bool Dvpanel_tableattributes_Autowidth ;
-      private bool Dvpanel_tableattributes_Autoheight ;
-      private bool Dvpanel_tableattributes_Collapsible ;
-      private bool Dvpanel_tableattributes_Collapsed ;
-      private bool Dvpanel_tableattributes_Showcollapseicon ;
-      private bool Dvpanel_tableattributes_Autoscroll ;
       private bool Combo_trn_pageid_Emptyitem ;
       private bool Combo_trn_pageid_Enabled ;
       private bool Combo_trn_pageid_Visible ;
@@ -2507,15 +2462,14 @@ namespace GeneXus.Programs {
       private bool Combo_trn_pageid_Includeonlyselectedoption ;
       private bool Combo_trn_pageid_Includeselectalloption ;
       private bool Combo_trn_pageid_Includeaddnewoption ;
-      private bool Dvpanel_tableattributes_Enabled ;
-      private bool Dvpanel_tableattributes_Showheader ;
-      private bool Dvpanel_tableattributes_Visible ;
       private bool returnInSub ;
       private string AV19Combo_DataJson ;
       private string Z320Trn_RowName ;
       private string A320Trn_RowName ;
+      private string A318Trn_PageName ;
       private string AV17ComboSelectedValue ;
       private string AV18ComboSelectedText ;
+      private string Z318Trn_PageName ;
       private string i320Trn_RowName ;
       private Guid wcpOAV7Trn_RowId ;
       private Guid Z319Trn_RowId ;
@@ -2528,7 +2482,6 @@ namespace GeneXus.Programs {
       private Guid AV13Insert_Trn_PageId ;
       private IGxSession AV12WebSession ;
       private GXProperties forbiddenHiddens ;
-      private GXUserControl ucDvpanel_tableattributes ;
       private GXUserControl ucCombo_trn_pageid ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
@@ -2542,11 +2495,12 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV11TrnContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute AV14TrnContextAtt ;
       private IDataStoreProvider pr_default ;
+      private string[] T00184_A318Trn_PageName ;
       private Guid[] T00185_A319Trn_RowId ;
       private string[] T00185_A320Trn_RowName ;
+      private string[] T00185_A318Trn_PageName ;
       private Guid[] T00185_A310Trn_PageId ;
-      private Guid[] T00184_A310Trn_PageId ;
-      private Guid[] T00186_A310Trn_PageId ;
+      private string[] T00186_A318Trn_PageName ;
       private Guid[] T00187_A319Trn_RowId ;
       private Guid[] T00183_A319Trn_RowId ;
       private string[] T00183_A320Trn_RowName ;
@@ -2556,9 +2510,9 @@ namespace GeneXus.Programs {
       private Guid[] T00182_A319Trn_RowId ;
       private string[] T00182_A320Trn_RowName ;
       private Guid[] T00182_A310Trn_PageId ;
-      private Guid[] T001813_A328Trn_ColId ;
-      private Guid[] T001814_A319Trn_RowId ;
-      private Guid[] T001815_A310Trn_PageId ;
+      private string[] T001813_A318Trn_PageName ;
+      private Guid[] T001814_A328Trn_ColId ;
+      private Guid[] T001815_A319Trn_RowId ;
       private IDataStoreProvider pr_gam ;
    }
 
@@ -2672,30 +2626,30 @@ namespace GeneXus.Programs {
         };
         Object[] prmT001813;
         prmT001813 = new Object[] {
-        new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0)
+        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT001814;
         prmT001814 = new Object[] {
+        new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT001815;
         prmT001815 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
         def= new CursorDef[] {
             new CursorDef("T00182", "SELECT Trn_RowId, Trn_RowName, Trn_PageId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId  FOR UPDATE OF Trn_Row NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT00182,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T00183", "SELECT Trn_RowId, Trn_RowName, Trn_PageId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00183,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T00184", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00184,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T00185", "SELECT TM1.Trn_RowId, TM1.Trn_RowName, TM1.Trn_PageId FROM Trn_Row TM1 WHERE TM1.Trn_RowId = :Trn_RowId ORDER BY TM1.Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00185,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T00186", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00186,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T00184", "SELECT Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00184,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T00185", "SELECT TM1.Trn_RowId, TM1.Trn_RowName, T2.Trn_PageName, TM1.Trn_PageId FROM (Trn_Row TM1 INNER JOIN Trn_Page T2 ON T2.Trn_PageId = TM1.Trn_PageId) WHERE TM1.Trn_RowId = :Trn_RowId ORDER BY TM1.Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00185,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T00186", "SELECT Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00186,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T00187", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00187,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T00188", "SELECT Trn_RowId FROM Trn_Row WHERE ( Trn_RowId > :Trn_RowId) ORDER BY Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00188,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("T00189", "SELECT Trn_RowId FROM Trn_Row WHERE ( Trn_RowId < :Trn_RowId) ORDER BY Trn_RowId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT00189,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T001810", "SAVEPOINT gxupdate;INSERT INTO Trn_Row(Trn_RowId, Trn_RowName, Trn_PageId) VALUES(:Trn_RowId, :Trn_RowName, :Trn_PageId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001810)
+           ,new CursorDef("T001810", "SAVEPOINT gxupdate;INSERT INTO Trn_Row(Trn_RowId, Trn_RowName, Trn_PageId) VALUES(:Trn_RowId, :Trn_RowName, :Trn_PageId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT001810)
            ,new CursorDef("T001811", "SAVEPOINT gxupdate;UPDATE Trn_Row SET Trn_RowName=:Trn_RowName, Trn_PageId=:Trn_PageId  WHERE Trn_RowId = :Trn_RowId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001811)
            ,new CursorDef("T001812", "SAVEPOINT gxupdate;DELETE FROM Trn_Row  WHERE Trn_RowId = :Trn_RowId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001812)
-           ,new CursorDef("T001813", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001813,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T001814", "SELECT Trn_RowId FROM Trn_Row ORDER BY Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001814,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T001815", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001815,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T001813", "SELECT Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001813,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T001814", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001814,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("T001815", "SELECT Trn_RowId FROM Trn_Row ORDER BY Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001815,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2717,15 +2671,16 @@ namespace GeneXus.Programs {
               ((Guid[]) buf[2])[0] = rslt.getGuid(3);
               return;
            case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              ((string[]) buf[0])[0] = rslt.getVarchar(1);
               return;
            case 3 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
               return;
            case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              ((string[]) buf[0])[0] = rslt.getVarchar(1);
               return;
            case 5 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2737,7 +2692,7 @@ namespace GeneXus.Programs {
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               return;
            case 11 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              ((string[]) buf[0])[0] = rslt.getVarchar(1);
               return;
            case 12 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);

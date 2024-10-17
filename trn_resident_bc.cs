@@ -812,7 +812,7 @@ namespace GeneXus.Programs {
                         /* Start of After( update) rules */
                         if ( IsUpd( )  )
                         {
-                           new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName, out  AV36GAMErrorResponse) ;
+                           new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  "Resident", out  AV36GAMErrorResponse) ;
                         }
                         /* End of After( update) rules */
                         if ( AnyError == 0 )

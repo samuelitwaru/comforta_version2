@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241010143404"
+  version: "20241017020512"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: https://comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -167,6 +167,34 @@ paths:
         404:
           description: "Not found"
 
+  /pages:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetPagesInformation"
+      summary: "Get Pages Information"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Trn_Pageid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
 components:
   securitySchemes:
     oAuthGXGAM:
@@ -174,7 +202,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: https://comforta.yukon.software/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -209,6 +237,7 @@ components:
           type: "string"
         message:
           type: "string"
+
   
     SDT_LoginResidentResponse:
       properties:

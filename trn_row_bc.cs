@@ -152,12 +152,14 @@ namespace GeneXus.Programs {
          }
          if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
          {
+            Z318Trn_PageName = A318Trn_PageName;
          }
          if ( GX_JID == -7 )
          {
             Z319Trn_RowId = A319Trn_RowId;
             Z320Trn_RowName = A320Trn_RowName;
             Z310Trn_PageId = A310Trn_PageId;
+            Z318Trn_PageName = A318Trn_PageName;
          }
       }
 
@@ -186,6 +188,7 @@ namespace GeneXus.Programs {
          {
             RcdFound70 = 1;
             A320Trn_RowName = BC00185_A320Trn_RowName[0];
+            A318Trn_PageName = BC00185_A318Trn_PageName[0];
             A310Trn_PageId = BC00185_A310Trn_PageId[0];
             ZM1870( -7) ;
          }
@@ -207,6 +210,7 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Page", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_PAGEID");
             AnyError = 1;
          }
+         A318Trn_PageName = BC00184_A318Trn_PageName[0];
          pr_default.close(2);
       }
 
@@ -480,17 +484,24 @@ namespace GeneXus.Programs {
       protected void OnDeleteControls1870( )
       {
          standaloneModal( ) ;
-         /* No delete mode formulas found. */
          if ( AnyError == 0 )
          {
+            /* Delete mode formulas */
             /* Using cursor BC001810 */
-            pr_default.execute(8, new Object[] {A319Trn_RowId});
-            if ( (pr_default.getStatus(8) != 101) )
+            pr_default.execute(8, new Object[] {A310Trn_PageId});
+            A318Trn_PageName = BC001810_A318Trn_PageName[0];
+            pr_default.close(8);
+         }
+         if ( AnyError == 0 )
+         {
+            /* Using cursor BC001811 */
+            pr_default.execute(9, new Object[] {A319Trn_RowId});
+            if ( (pr_default.getStatus(9) != 101) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Col", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
-            pr_default.close(8);
+            pr_default.close(9);
          }
       }
 
@@ -523,15 +534,16 @@ namespace GeneXus.Programs {
       public void ScanKeyStart1870( )
       {
          /* Scan By routine */
-         /* Using cursor BC001811 */
-         pr_default.execute(9, new Object[] {A319Trn_RowId});
+         /* Using cursor BC001812 */
+         pr_default.execute(10, new Object[] {A319Trn_RowId});
          RcdFound70 = 0;
-         if ( (pr_default.getStatus(9) != 101) )
+         if ( (pr_default.getStatus(10) != 101) )
          {
             RcdFound70 = 1;
-            A319Trn_RowId = BC001811_A319Trn_RowId[0];
-            A320Trn_RowName = BC001811_A320Trn_RowName[0];
-            A310Trn_PageId = BC001811_A310Trn_PageId[0];
+            A319Trn_RowId = BC001812_A319Trn_RowId[0];
+            A320Trn_RowName = BC001812_A320Trn_RowName[0];
+            A318Trn_PageName = BC001812_A318Trn_PageName[0];
+            A310Trn_PageId = BC001812_A310Trn_PageId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -539,7 +551,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext1870( )
       {
          /* Scan next routine */
-         pr_default.readNext(9);
+         pr_default.readNext(10);
          RcdFound70 = 0;
          ScanKeyLoad1870( ) ;
       }
@@ -548,19 +560,20 @@ namespace GeneXus.Programs {
       {
          sMode70 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(9) != 101) )
+         if ( (pr_default.getStatus(10) != 101) )
          {
             RcdFound70 = 1;
-            A319Trn_RowId = BC001811_A319Trn_RowId[0];
-            A320Trn_RowName = BC001811_A320Trn_RowName[0];
-            A310Trn_PageId = BC001811_A310Trn_PageId[0];
+            A319Trn_RowId = BC001812_A319Trn_RowId[0];
+            A320Trn_RowName = BC001812_A320Trn_RowName[0];
+            A318Trn_PageName = BC001812_A318Trn_PageName[0];
+            A310Trn_PageId = BC001812_A310Trn_PageId[0];
          }
          Gx_mode = sMode70;
       }
 
       protected void ScanKeyEnd1870( )
       {
-         pr_default.close(9);
+         pr_default.close(10);
       }
 
       protected void AfterConfirm1870( )
@@ -615,6 +628,7 @@ namespace GeneXus.Programs {
       {
          A320Trn_RowName = "";
          A310Trn_PageId = Guid.Empty;
+         A318Trn_PageName = "";
          Z320Trn_RowName = "";
          Z310Trn_PageId = Guid.Empty;
       }
@@ -655,10 +669,12 @@ namespace GeneXus.Programs {
          obj70.gxTpr_Mode = Gx_mode;
          obj70.gxTpr_Trn_rowname = A320Trn_RowName;
          obj70.gxTpr_Trn_pageid = A310Trn_PageId;
+         obj70.gxTpr_Trn_pagename = A318Trn_PageName;
          obj70.gxTpr_Trn_rowid = A319Trn_RowId;
          obj70.gxTpr_Trn_rowid_Z = Z319Trn_RowId;
-         obj70.gxTpr_Trn_pageid_Z = Z310Trn_PageId;
          obj70.gxTpr_Trn_rowname_Z = Z320Trn_RowName;
+         obj70.gxTpr_Trn_pageid_Z = Z310Trn_PageId;
+         obj70.gxTpr_Trn_pagename_Z = Z318Trn_PageName;
          obj70.gxTpr_Mode = Gx_mode;
          return  ;
       }
@@ -675,10 +691,12 @@ namespace GeneXus.Programs {
          Gx_mode = obj70.gxTpr_Mode;
          A320Trn_RowName = obj70.gxTpr_Trn_rowname;
          A310Trn_PageId = obj70.gxTpr_Trn_pageid;
+         A318Trn_PageName = obj70.gxTpr_Trn_pagename;
          A319Trn_RowId = obj70.gxTpr_Trn_rowid;
          Z319Trn_RowId = obj70.gxTpr_Trn_rowid_Z;
-         Z310Trn_PageId = obj70.gxTpr_Trn_pageid_Z;
          Z320Trn_RowName = obj70.gxTpr_Trn_rowname_Z;
+         Z310Trn_PageId = obj70.gxTpr_Trn_pageid_Z;
+         Z318Trn_PageName = obj70.gxTpr_Trn_pagename_Z;
          Gx_mode = obj70.gxTpr_Mode;
          return  ;
       }
@@ -1105,6 +1123,7 @@ namespace GeneXus.Programs {
       protected override void CloseCursors( )
       {
          pr_default.close(1);
+         pr_default.close(8);
       }
 
       public override void initialize( )
@@ -1124,10 +1143,13 @@ namespace GeneXus.Programs {
          A320Trn_RowName = "";
          Z310Trn_PageId = Guid.Empty;
          A310Trn_PageId = Guid.Empty;
+         Z318Trn_PageName = "";
+         A318Trn_PageName = "";
          BC00185_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          BC00185_A320Trn_RowName = new string[] {""} ;
+         BC00185_A318Trn_PageName = new string[] {""} ;
          BC00185_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         BC00184_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         BC00184_A318Trn_PageName = new string[] {""} ;
          BC00186_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          BC00183_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          BC00183_A320Trn_RowName = new string[] {""} ;
@@ -1136,10 +1158,12 @@ namespace GeneXus.Programs {
          BC00182_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          BC00182_A320Trn_RowName = new string[] {""} ;
          BC00182_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         BC001810_A328Trn_ColId = new Guid[] {Guid.Empty} ;
-         BC001811_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         BC001811_A320Trn_RowName = new string[] {""} ;
-         BC001811_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         BC001810_A318Trn_PageName = new string[] {""} ;
+         BC001811_A328Trn_ColId = new Guid[] {Guid.Empty} ;
+         BC001812_A319Trn_RowId = new Guid[] {Guid.Empty} ;
+         BC001812_A320Trn_RowName = new string[] {""} ;
+         BC001812_A318Trn_PageName = new string[] {""} ;
+         BC001812_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          i320Trn_RowName = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1156,10 +1180,10 @@ namespace GeneXus.Programs {
                BC00183_A319Trn_RowId, BC00183_A320Trn_RowName, BC00183_A310Trn_PageId
                }
                , new Object[] {
-               BC00184_A310Trn_PageId
+               BC00184_A318Trn_PageName
                }
                , new Object[] {
-               BC00185_A319Trn_RowId, BC00185_A320Trn_RowName, BC00185_A310Trn_PageId
+               BC00185_A319Trn_RowId, BC00185_A320Trn_RowName, BC00185_A318Trn_PageName, BC00185_A310Trn_PageId
                }
                , new Object[] {
                BC00186_A319Trn_RowId
@@ -1171,10 +1195,13 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC001810_A328Trn_ColId
+               BC001810_A318Trn_PageName
                }
                , new Object[] {
-               BC001811_A319Trn_RowId, BC001811_A320Trn_RowName, BC001811_A310Trn_PageId
+               BC001811_A328Trn_ColId
+               }
+               , new Object[] {
+               BC001812_A319Trn_RowId, BC001812_A320Trn_RowName, BC001812_A318Trn_PageName, BC001812_A310Trn_PageId
                }
             }
          );
@@ -1201,6 +1228,8 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private string Z320Trn_RowName ;
       private string A320Trn_RowName ;
+      private string Z318Trn_PageName ;
+      private string A318Trn_PageName ;
       private string i320Trn_RowName ;
       private Guid Z319Trn_RowId ;
       private Guid A319Trn_RowId ;
@@ -1216,8 +1245,9 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] BC00185_A319Trn_RowId ;
       private string[] BC00185_A320Trn_RowName ;
+      private string[] BC00185_A318Trn_PageName ;
       private Guid[] BC00185_A310Trn_PageId ;
-      private Guid[] BC00184_A310Trn_PageId ;
+      private string[] BC00184_A318Trn_PageName ;
       private Guid[] BC00186_A319Trn_RowId ;
       private Guid[] BC00183_A319Trn_RowId ;
       private string[] BC00183_A320Trn_RowName ;
@@ -1225,10 +1255,12 @@ namespace GeneXus.Programs {
       private Guid[] BC00182_A319Trn_RowId ;
       private string[] BC00182_A320Trn_RowName ;
       private Guid[] BC00182_A310Trn_PageId ;
-      private Guid[] BC001810_A328Trn_ColId ;
-      private Guid[] BC001811_A319Trn_RowId ;
-      private string[] BC001811_A320Trn_RowName ;
-      private Guid[] BC001811_A310Trn_PageId ;
+      private string[] BC001810_A318Trn_PageName ;
+      private Guid[] BC001811_A328Trn_ColId ;
+      private Guid[] BC001812_A319Trn_RowId ;
+      private string[] BC001812_A320Trn_RowName ;
+      private string[] BC001812_A318Trn_PageName ;
+      private Guid[] BC001812_A310Trn_PageId ;
       private SdtTrn_Row bcTrn_Row ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1283,6 +1315,7 @@ namespace GeneXus.Programs {
        ,new UpdateCursor(def[7])
        ,new ForEachCursor(def[8])
        ,new ForEachCursor(def[9])
+       ,new ForEachCursor(def[10])
      };
   }
 
@@ -1329,23 +1362,28 @@ namespace GeneXus.Programs {
         };
         Object[] prmBC001810;
         prmBC001810 = new Object[] {
-        new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0)
+        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC001811;
         prmBC001811 = new Object[] {
         new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0)
         };
+        Object[] prmBC001812;
+        prmBC001812 = new Object[] {
+        new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0)
+        };
         def= new CursorDef[] {
             new CursorDef("BC00182", "SELECT Trn_RowId, Trn_RowName, Trn_PageId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId  FOR UPDATE OF Trn_Row",true, GxErrorMask.GX_NOMASK, false, this,prmBC00182,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00183", "SELECT Trn_RowId, Trn_RowName, Trn_PageId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00183,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00184", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00184,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00185", "SELECT TM1.Trn_RowId, TM1.Trn_RowName, TM1.Trn_PageId FROM Trn_Row TM1 WHERE TM1.Trn_RowId = :Trn_RowId ORDER BY TM1.Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00185,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00184", "SELECT Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00184,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00185", "SELECT TM1.Trn_RowId, TM1.Trn_RowName, T2.Trn_PageName, TM1.Trn_PageId FROM (Trn_Row TM1 INNER JOIN Trn_Page T2 ON T2.Trn_PageId = TM1.Trn_PageId) WHERE TM1.Trn_RowId = :Trn_RowId ORDER BY TM1.Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00185,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00186", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00186,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00187", "SAVEPOINT gxupdate;INSERT INTO Trn_Row(Trn_RowId, Trn_RowName, Trn_PageId) VALUES(:Trn_RowId, :Trn_RowName, :Trn_PageId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00187)
+           ,new CursorDef("BC00187", "SAVEPOINT gxupdate;INSERT INTO Trn_Row(Trn_RowId, Trn_RowName, Trn_PageId) VALUES(:Trn_RowId, :Trn_RowName, :Trn_PageId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00187)
            ,new CursorDef("BC00188", "SAVEPOINT gxupdate;UPDATE Trn_Row SET Trn_RowName=:Trn_RowName, Trn_PageId=:Trn_PageId  WHERE Trn_RowId = :Trn_RowId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00188)
            ,new CursorDef("BC00189", "SAVEPOINT gxupdate;DELETE FROM Trn_Row  WHERE Trn_RowId = :Trn_RowId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00189)
-           ,new CursorDef("BC001810", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001810,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC001811", "SELECT TM1.Trn_RowId, TM1.Trn_RowName, TM1.Trn_PageId FROM Trn_Row TM1 WHERE TM1.Trn_RowId = :Trn_RowId ORDER BY TM1.Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001811,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC001810", "SELECT Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001810,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC001811", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001811,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("BC001812", "SELECT TM1.Trn_RowId, TM1.Trn_RowName, T2.Trn_PageName, TM1.Trn_PageId FROM (Trn_Row TM1 INNER JOIN Trn_Page T2 ON T2.Trn_PageId = TM1.Trn_PageId) WHERE TM1.Trn_RowId = :Trn_RowId ORDER BY TM1.Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001812,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1367,23 +1405,28 @@ namespace GeneXus.Programs {
               ((Guid[]) buf[2])[0] = rslt.getGuid(3);
               return;
            case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              ((string[]) buf[0])[0] = rslt.getVarchar(1);
               return;
            case 3 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
               return;
            case 4 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               return;
            case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              ((string[]) buf[0])[0] = rslt.getVarchar(1);
               return;
            case 9 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              return;
+           case 10 :
+              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
               return;
      }
   }

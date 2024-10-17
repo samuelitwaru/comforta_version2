@@ -68,6 +68,9 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Sg_tilecolor_Z");
          state.Add("gxTpr_Sg_tilebgimageurl_Z");
          state.Add("gxTpr_Childtileorder_Z");
+         state.Add("gxTpr_Sg_tilewidth_N");
+         state.Add("gxTpr_Sg_tilecolor_N");
+         state.Add("gxTpr_Sg_tilebgimageurl_N");
          return state ;
       }
 
@@ -90,6 +93,9 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_Z = sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_Z ;
          gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_Z = sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_Z ;
          gxTv_SdtTrn_Tile_ChildTile_Childtileorder_Z = sdt.gxTv_SdtTrn_Tile_ChildTile_Childtileorder_Z ;
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N = sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N ;
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N = sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N ;
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N = sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N ;
          return  ;
       }
 
@@ -111,8 +117,11 @@ namespace GeneXus.Programs {
          AddObjectProperty("SG_TileId", gxTv_SdtTrn_Tile_ChildTile_Sg_tileid, false, includeNonInitialized);
          AddObjectProperty("SG_TileName", gxTv_SdtTrn_Tile_ChildTile_Sg_tilename, false, includeNonInitialized);
          AddObjectProperty("SG_TileWidth", gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth, false, includeNonInitialized);
+         AddObjectProperty("SG_TileWidth_N", gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N, false, includeNonInitialized);
          AddObjectProperty("SG_TileColor", gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor, false, includeNonInitialized);
+         AddObjectProperty("SG_TileColor_N", gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N, false, includeNonInitialized);
          AddObjectProperty("SG_TileBGImageUrl", gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl, false, includeNonInitialized);
+         AddObjectProperty("SG_TileBGImageUrl_N", gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N, false, includeNonInitialized);
          AddObjectProperty("ChildTileOrder", gxTv_SdtTrn_Tile_ChildTile_Childtileorder, false, includeNonInitialized);
          if ( includeState )
          {
@@ -125,6 +134,9 @@ namespace GeneXus.Programs {
             AddObjectProperty("SG_TileColor_Z", gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_Z, false, includeNonInitialized);
             AddObjectProperty("SG_TileBGImageUrl_Z", gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_Z, false, includeNonInitialized);
             AddObjectProperty("ChildTileOrder_Z", gxTv_SdtTrn_Tile_ChildTile_Childtileorder_Z, false, includeNonInitialized);
+            AddObjectProperty("SG_TileWidth_N", gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N, false, includeNonInitialized);
+            AddObjectProperty("SG_TileColor_N", gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N, false, includeNonInitialized);
+            AddObjectProperty("SG_TileBGImageUrl_N", gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -143,16 +155,19 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("SG_TileWidth") )
          {
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N = (short)(sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth = sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth ;
          }
          if ( sdt.IsDirty("SG_TileColor") )
          {
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N = (short)(sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor = sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor ;
          }
          if ( sdt.IsDirty("SG_TileBGImageUrl") )
          {
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N = (short)(sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl = sdt.gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl ;
          }
@@ -207,12 +222,26 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth = value;
             gxTv_SdtTrn_Tile_ChildTile_Modified = 1;
             SetDirty("Sg_tilewidth");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_SetNull( )
+      {
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N = 1;
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth = 0;
+         SetDirty("Sg_tilewidth");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_IsNull( )
+      {
+         return (gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N==1) ;
       }
 
       [  SoapElement( ElementName = "SG_TileColor" )]
@@ -224,12 +253,26 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor = value;
             gxTv_SdtTrn_Tile_ChildTile_Modified = 1;
             SetDirty("Sg_tilecolor");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_SetNull( )
+      {
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N = 1;
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor = "";
+         SetDirty("Sg_tilecolor");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_IsNull( )
+      {
+         return (gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N==1) ;
       }
 
       [  SoapElement( ElementName = "SG_TileBGImageUrl" )]
@@ -241,12 +284,26 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl = value;
             gxTv_SdtTrn_Tile_ChildTile_Modified = 1;
             SetDirty("Sg_tilebgimageurl");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_SetNull( )
+      {
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N = 1;
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl = "";
+         SetDirty("Sg_tilebgimageurl");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_IsNull( )
+      {
+         return (gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N==1) ;
       }
 
       [  SoapElement( ElementName = "ChildTileOrder" )]
@@ -525,6 +582,93 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "SG_TileWidth_N" )]
+      [  XmlElement( ElementName = "SG_TileWidth_N"   )]
+      public short gxTpr_Sg_tilewidth_N
+      {
+         get {
+            return gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N = value;
+            gxTv_SdtTrn_Tile_ChildTile_Modified = 1;
+            SetDirty("Sg_tilewidth_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N_SetNull( )
+      {
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N = 0;
+         SetDirty("Sg_tilewidth_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "SG_TileColor_N" )]
+      [  XmlElement( ElementName = "SG_TileColor_N"   )]
+      public short gxTpr_Sg_tilecolor_N
+      {
+         get {
+            return gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N = value;
+            gxTv_SdtTrn_Tile_ChildTile_Modified = 1;
+            SetDirty("Sg_tilecolor_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N_SetNull( )
+      {
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N = 0;
+         SetDirty("Sg_tilecolor_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "SG_TileBGImageUrl_N" )]
+      [  XmlElement( ElementName = "SG_TileBGImageUrl_N"   )]
+      public short gxTpr_Sg_tilebgimageurl_N
+      {
+         get {
+            return gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N = value;
+            gxTv_SdtTrn_Tile_ChildTile_Modified = 1;
+            SetDirty("Sg_tilebgimageurl_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N_SetNull( )
+      {
+         gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N = 0;
+         SetDirty("Sg_tilebgimageurl_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -566,6 +710,9 @@ namespace GeneXus.Programs {
       private short gxTv_SdtTrn_Tile_ChildTile_Initialized ;
       private short gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_Z ;
       private short gxTv_SdtTrn_Tile_ChildTile_Childtileorder_Z ;
+      private short gxTv_SdtTrn_Tile_ChildTile_Sg_tilewidth_N ;
+      private short gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_N ;
+      private short gxTv_SdtTrn_Tile_ChildTile_Sg_tilebgimageurl_N ;
       private string gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor ;
       private string gxTv_SdtTrn_Tile_ChildTile_Mode ;
       private string gxTv_SdtTrn_Tile_ChildTile_Sg_tilecolor_Z ;

@@ -62,7 +62,7 @@ namespace GeneXus.Programs {
          restLocation = new GxLocation();
          restLocation.Host = "localhost";
          restLocation.Port = 8082;
-         restLocation.BaseUrl = "staging.comforta.yukon.software/api";
+         restLocation.BaseUrl = "Comforta_version2DevelopmentNETPostgreSQL/api";
          gxProperties = new GxObjectProperties();
       }
 
@@ -258,6 +258,33 @@ namespace GeneXus.Programs {
          /* SendNotification Constructor */
       }
 
+      public void gxep_getpagesinformation( Guid aP0_Trn_PageId ,
+                                            out string aP1_result )
+      {
+         restCliGetPagesInformation = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/pages";
+         restCliGetPagesInformation.Location = restLocation;
+         restCliGetPagesInformation.HttpMethod = "GET";
+         restCliGetPagesInformation.AddQueryVar("Trn_pageid", (Guid)(aP0_Trn_PageId));
+         restCliGetPagesInformation.RestExecute();
+         if ( restCliGetPagesInformation.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetPagesInformation.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetPagesInformation.ErrorMessage;
+            gxProperties.StatusCode = restCliGetPagesInformation.StatusCode;
+            aP1_result = "";
+         }
+         else
+         {
+            aP1_result = restCliGetPagesInformation.GetBodyString("result");
+         }
+         /* GetPagesInformation Constructor */
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -278,6 +305,8 @@ namespace GeneXus.Programs {
          aP6_result = "";
          restCliSendNotification = new GXRestAPIClient();
          aP2_result = "";
+         restCliGetPagesInformation = new GXRestAPIClient();
+         aP1_result = "";
          /* GeneXus formulas. */
       }
 
@@ -288,6 +317,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetLocationInformation ;
       protected GXRestAPIClient restCliRegisterDevice ;
       protected GXRestAPIClient restCliSendNotification ;
+      protected GXRestAPIClient restCliGetPagesInformation ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
       protected IGxDataStore dsGAM ;
@@ -298,6 +328,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Location aP1_SDT_Location ;
       protected string aP6_result ;
       protected string aP2_result ;
+      protected string aP1_result ;
    }
 
 }

@@ -21,6 +21,7 @@ namespace GeneXus.Programs {
       private static Hashtable domainMap;
       static gxdomainproductservicecategory ()
       {
+         domain["Location"] = "Location";
          domain[" AGB Supplier"] = "AGB Supplier";
          domain["General Supplier"] = "General Supplier";
       }
@@ -52,6 +53,7 @@ namespace GeneXus.Programs {
          if(domainMap == null)
          {
             domainMap = new Hashtable();
+            domainMap["Location"] = "Location";
             domainMap["AGBSupplier"] = " AGB Supplier";
             domainMap["GeneralSupplier"] = "General Supplier";
          }

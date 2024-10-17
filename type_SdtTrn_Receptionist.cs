@@ -82,6 +82,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Receptionistphone_Z");
          state.Add("gxTpr_Receptionistphonenumber_Z");
          state.Add("gxTpr_Receptionistgamguid_Z");
+         state.Add("gxTpr_Receptionistisactive_Z");
          return state ;
       }
 
@@ -100,6 +101,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Receptionist_Receptionistphone = sdt.gxTv_SdtTrn_Receptionist_Receptionistphone ;
          gxTv_SdtTrn_Receptionist_Receptionistphonenumber = sdt.gxTv_SdtTrn_Receptionist_Receptionistphonenumber ;
          gxTv_SdtTrn_Receptionist_Receptionistgamguid = sdt.gxTv_SdtTrn_Receptionist_Receptionistgamguid ;
+         gxTv_SdtTrn_Receptionist_Receptionistisactive = sdt.gxTv_SdtTrn_Receptionist_Receptionistisactive ;
          gxTv_SdtTrn_Receptionist_Mode = sdt.gxTv_SdtTrn_Receptionist_Mode ;
          gxTv_SdtTrn_Receptionist_Initialized = sdt.gxTv_SdtTrn_Receptionist_Initialized ;
          gxTv_SdtTrn_Receptionist_Receptionistid_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistid_Z ;
@@ -113,6 +115,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Receptionist_Receptionistphone_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistphone_Z ;
          gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z ;
          gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z ;
+         gxTv_SdtTrn_Receptionist_Receptionistisactive_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistisactive_Z ;
          return  ;
       }
 
@@ -142,6 +145,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("ReceptionistPhone", gxTv_SdtTrn_Receptionist_Receptionistphone, false, includeNonInitialized);
          AddObjectProperty("ReceptionistPhoneNumber", gxTv_SdtTrn_Receptionist_Receptionistphonenumber, false, includeNonInitialized);
          AddObjectProperty("ReceptionistGAMGUID", gxTv_SdtTrn_Receptionist_Receptionistgamguid, false, includeNonInitialized);
+         AddObjectProperty("ReceptionistIsActive", gxTv_SdtTrn_Receptionist_Receptionistisactive, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_Receptionist_Mode, false, includeNonInitialized);
@@ -157,6 +161,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("ReceptionistPhone_Z", gxTv_SdtTrn_Receptionist_Receptionistphone_Z, false, includeNonInitialized);
             AddObjectProperty("ReceptionistPhoneNumber_Z", gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z, false, includeNonInitialized);
             AddObjectProperty("ReceptionistGAMGUID_Z", gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z, false, includeNonInitialized);
+            AddObjectProperty("ReceptionistIsActive_Z", gxTv_SdtTrn_Receptionist_Receptionistisactive_Z, false, includeNonInitialized);
          }
          return  ;
       }
@@ -218,6 +223,11 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Receptionist_Receptionistgamguid = sdt.gxTv_SdtTrn_Receptionist_Receptionistgamguid ;
          }
+         if ( sdt.IsDirty("ReceptionistIsActive") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Receptionist_Receptionistisactive = sdt.gxTv_SdtTrn_Receptionist_Receptionistisactive ;
+         }
          return  ;
       }
 
@@ -245,6 +255,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Receptionist_Receptionistphone_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z_SetNull( );
+               this.gxTv_SdtTrn_Receptionist_Receptionistisactive_Z_SetNull( );
             }
             gxTv_SdtTrn_Receptionist_Receptionistid = value;
             SetDirty("Receptionistid");
@@ -276,6 +287,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Receptionist_Receptionistphone_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z_SetNull( );
+               this.gxTv_SdtTrn_Receptionist_Receptionistisactive_Z_SetNull( );
             }
             gxTv_SdtTrn_Receptionist_Organisationid = value;
             SetDirty("Organisationid");
@@ -307,6 +319,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Receptionist_Receptionistphone_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z_SetNull( );
+               this.gxTv_SdtTrn_Receptionist_Receptionistisactive_Z_SetNull( );
             }
             gxTv_SdtTrn_Receptionist_Locationid = value;
             SetDirty("Locationid");
@@ -438,6 +451,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Receptionist_Receptionistgamguid = value;
             SetDirty("Receptionistgamguid");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "ReceptionistIsActive" )]
+      [  XmlElement( ElementName = "ReceptionistIsActive"   )]
+      public bool gxTpr_Receptionistisactive
+      {
+         get {
+            return gxTv_SdtTrn_Receptionist_Receptionistisactive ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Receptionist_Receptionistisactive = value;
+            SetDirty("Receptionistisactive");
          }
 
       }
@@ -806,6 +835,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ReceptionistIsActive_Z" )]
+      [  XmlElement( ElementName = "ReceptionistIsActive_Z"   )]
+      public bool gxTpr_Receptionistisactive_Z
+      {
+         get {
+            return gxTv_SdtTrn_Receptionist_Receptionistisactive_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Receptionist_Receptionistisactive_Z = value;
+            SetDirty("Receptionistisactive_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Receptionist_Receptionistisactive_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Receptionist_Receptionistisactive_Z = false;
+         SetDirty("Receptionistisactive_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Receptionist_Receptionistisactive_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -867,6 +924,8 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Receptionist_Mode ;
       private string gxTv_SdtTrn_Receptionist_Receptionistinitials_Z ;
       private string gxTv_SdtTrn_Receptionist_Receptionistphone_Z ;
+      private bool gxTv_SdtTrn_Receptionist_Receptionistisactive ;
+      private bool gxTv_SdtTrn_Receptionist_Receptionistisactive_Z ;
       private string gxTv_SdtTrn_Receptionist_Receptionistgivenname ;
       private string gxTv_SdtTrn_Receptionist_Receptionistlastname ;
       private string gxTv_SdtTrn_Receptionist_Receptionistemail ;
@@ -1053,6 +1112,20 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "ReceptionistIsActive" , Order = 11 )]
+      [GxSeudo()]
+      public bool gxTpr_Receptionistisactive
+      {
+         get {
+            return sdt.gxTpr_Receptionistisactive ;
+         }
+
+         set {
+            sdt.gxTpr_Receptionistisactive = value;
+         }
+
+      }
+
       public SdtTrn_Receptionist sdt
       {
          get {
@@ -1074,7 +1147,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 11 )]
+      [DataMember( Name = "gx_md5_hash", Order = 12 )]
       public string Hash
       {
          get {

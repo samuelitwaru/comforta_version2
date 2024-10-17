@@ -63,4 +63,14 @@
 "VariableAlias": [],
 "ServiceMethod":"gxep_sendnotification",
 "Implementation":"Prc_SendNotification"
+},
+{
+"PathRegexp":"pages",
+"Path":"pages",
+"Name":"getpagesinformation",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getpagesinformation",
+"Implementation":"Prc_PagesAPI",
+"Verb":"GET"
 }]}

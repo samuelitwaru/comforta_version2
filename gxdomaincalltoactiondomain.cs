@@ -21,10 +21,10 @@ namespace GeneXus.Programs {
       private static Hashtable domainMap;
       static gxdomaincalltoactiondomain ()
       {
-         domain["Call"] = "Call";
+         domain["Phone"] = "Phone";
          domain["Email"] = "Email";
          domain["Form"] = "Form";
-         domain["SiteLink"] = "Site Link";
+         domain["SiteUrl"] = "Url";
       }
 
       public static string getDescription( IGxContext context ,
@@ -54,10 +54,10 @@ namespace GeneXus.Programs {
          if(domainMap == null)
          {
             domainMap = new Hashtable();
-            domainMap["Call"] = "Call";
+            domainMap["Phone"] = "Phone";
             domainMap["Email"] = "Email";
             domainMap["Form"] = "Form";
-            domainMap["SiteLink"] = "SiteLink";
+            domainMap["SiteUrl"] = "SiteUrl";
          }
          return (string)domainMap[key] ;
       }

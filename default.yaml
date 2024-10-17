@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241010143404"
+  version: "20241017020512"
 servers:
-  - url: https://staging.comforta.yukon.software//rest
+  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
   /Trn_AmenityWWGetFilterData:
     post:
@@ -26,6 +26,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_AmenityWWGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /Trn_CallToActionLoadDVCombo:
+    post:
+      tags:
+        - Trn_CallToActionLoadDVCombo
+      operationId: "Trn_CallToActionLoadDVCombo"
+      summary: "Trn_Call To Action Load DVCombo"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_CallToActionLoadDVComboInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_CallToActionLoadDVComboOutput"
         404:
           description: "Not found"
   /Trn_ColLoadDVCombo:
@@ -986,6 +1009,29 @@ paths:
                 $ref: "#/components/schemas/WorkWithPlus.WWP_ParameterWWGetFilterDataOutput"
         404:
           description: "Not found"
+  /WP_LocationDynamicFormGetFilterData:
+    post:
+      tags:
+        - WP_LocationDynamicFormGetFilterData
+      operationId: "WP_LocationDynamicFormGetFilterData"
+      summary: "WP_Location Dynamic Form Get Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WP_LocationDynamicFormGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WP_LocationDynamicFormGetFilterDataOutput"
+        404:
+          description: "Not found"
   /WWPBaseObjects/Discussions/WWP_GetUsersForDiscussionMentions:
     post:
       tags:
@@ -1159,7 +1205,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
   schemas:
@@ -1170,6 +1216,14 @@ components:
         OptionsDescJson:
           type: "string"
         OptionIndexesJson:
+          type: "string"
+    Trn_CallToActionLoadDVComboOutput:
+      properties:
+        SelectedValue:
+          type: "string"
+        SelectedText:
+          type: "string"
+        Combo_DataJson:
           type: "string"
     Trn_ColLoadDVComboOutput:
       properties:
@@ -1280,11 +1334,10 @@ components:
       properties:
         SelectedValue:
           type: "string"
-        Combo_Data:
-          description: "DVB_SDTCombo Data"
-          type: array
-          items:
-            $ref: "#/components/schemas/WWPBaseObjects.DVB_SDTComboData_Item"
+        SelectedText:
+          type: "string"
+        Combo_DataJson:
+          type: "string"
     Trn_ProductServiceWWGetFilterDataOutput:
       properties:
         OptionsJson:
@@ -1500,6 +1553,14 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
+    WP_LocationDynamicFormGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
     WWPBaseObjects.Discussions.WWP_GetUsersForDiscussionMentionsOutput:
       properties:
         OptionsJson:
@@ -1511,6 +1572,19 @@ components:
         SearchTxtParms:
           type: "string"
         SearchTxtTo:
+          type: "string"
+    Trn_CallToActionLoadDVComboInput:  
+      properties:
+        ComboName:
+          type: "string"
+        TrnMode:
+          type: "string"
+        IsDynamicCall:
+          type: "boolean"
+        CallToActionId:
+          type: "string"
+          format: "uuid"
+        SearchTxtParms:
           type: "string"
     Trn_ColLoadDVComboInput:  
       properties:
@@ -1641,6 +1715,8 @@ components:
           type: "string"
         TrnMode:
           type: "string"
+        IsDynamicCall:
+          type: "boolean"
         ProductServiceId:
           type: "string"
           format: "uuid"
@@ -1650,6 +1726,11 @@ components:
         OrganisationId:
           type: "string"
           format: "uuid"
+        Cond_OrganisationId:
+          type: "string"
+          format: "uuid"
+        SearchTxtParms:
+          type: "string"
     Trn_ProductServiceWWGetFilterDataInput:  
       properties:
         DDOName:
@@ -1799,6 +1880,12 @@ components:
         Trn_TileId:
           type: "string"
           format: "uuid"
+        Cond_LocationId:
+          type: "string"
+          format: "uuid"
+        Cond_OrganisationId:
+          type: "string"
+          format: "uuid"
         SearchTxtParms:
           type: "string"
     Trn_TileWWGetFilterDataInput:  
@@ -1909,10 +1996,30 @@ components:
           type: "string"
         SearchTxtTo:
           type: "string"
+    WP_LocationDynamicFormGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
     WWPBaseObjects.Discussions.WWP_GetUsersForDiscussionMentionsInput:  
       properties:
         SearchTxt:
           type: "string"
+    SDT_Col:
+      properties:
+        ColId:
+          description: "Col Id"
+          type: "string"
+          format: "uuid"
+        ColName:
+          description: "Col Name"
+          type: "string"
+        Tile:
+          description: "SDT_Tile"
+          $ref: "#/components/schemas/SDT_Tile"
     SDT_Location:
       properties:
         LocationId:
@@ -2014,6 +2121,20 @@ components:
         OrganisationTypeName:
           description: "Organisation Type Name"
           type: "string"
+    SDT_Page:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        Row:
+          description: "SDT_Row"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Row"
     SDT_Resident:
       properties:
         ResidentId:
@@ -2076,6 +2197,79 @@ components:
         MedicalIndicationName:
           description: "Medical Indication Name"
           type: "string"
+    SDT_Row:
+      properties:
+        RowId:
+          description: "Row Id"
+          type: "string"
+          format: "uuid"
+        RowName:
+          description: "Row Name"
+          type: "string"
+        Col:
+          description: "SDT_Col"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Col"
+    SDT_Tile:
+      properties:
+        TileId:
+          description: "Tile Id"
+          type: "string"
+          format: "uuid"
+        TileName:
+          description: "Tile Name"
+          type: "string"
+        TileIcon:
+          description: "Trn_Tile Icon"
+          type: "string"
+        TileColor:
+          description: "Trn_Tile Color"
+          type: "string"
+        TileBGImageUrl:
+          description: "Tile BGImage Url"
+          type: "string"
+        ProductServiceId:
+          description: "Product Service Id"
+          type: "string"
+          format: "uuid"
+        ProductServiceName:
+          description: "Product Service Name"
+          type: "string"
+        ProductServiceDescription:
+          description: "Product Service Description"
+          type: "string"
+        ProductServiceImage:
+          description: "Product Service Image"
+          type: "string"
+        ToPageId:
+          description: "SG_To Page Id"
+          type: "string"
+          format: "uuid"
+        ToPageName:
+          description: "SG_To Page Name"
+          type: "string"
+        ToPage:
+          description: "SDT_Page"
+          $ref: "#/components/schemas/SDT_Page"
+        Attribute:
+          type: array
+          items:
+            description: AttributeItem
+            $ref: "#/components/schemas/SDT_Tile.Attribute_AttributeItem"
+    SDT_Tile.Attribute_AttributeItem:
+      properties:
+        AttributeId:
+          description: "Attribute Id"
+          type: "string"
+          format: "uuid"
+        AttributeName:
+          description: "Attribute Name"
+          type: "string"
+        AttrbuteValue:
+          description: "Attrbute Value"
+          type: "string"
+      x-gx-level: "SDT_Tile"
     WorkWithPlus.DynamicForms.WWP_FormInstance:
       properties:
         WWPFormInstanceId:

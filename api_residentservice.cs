@@ -55,6 +55,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getpagesinformation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          return GAMSecurityLevel.SecurityLow ;
       }
 
@@ -289,6 +293,23 @@ namespace GeneXus.Programs {
          aP2_result=this.AV17result;
       }
 
+      public void gxep_getpagesinformation( Guid aP0_Trn_PageId ,
+                                            out string aP1_result )
+      {
+         this.AV24Trn_PageId = aP0_Trn_PageId;
+         initialize();
+         /* GetPagesInformation Constructor */
+         new prc_pagesapi(context ).execute(  AV24Trn_PageId, out  AV17result) ;
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP1_result=this.AV17result;
+            return;
+         }
+         aP1_result=this.AV17result;
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -319,6 +340,7 @@ namespace GeneXus.Programs {
       protected string AV13message ;
       protected Guid AV16organisationId ;
       protected Guid AV12locationId ;
+      protected Guid AV24Trn_PageId ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
       protected SdtSDT_LoginResidentResponse AV20SDT_LoginResidentResponse ;
@@ -332,6 +354,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Location aP1_SDT_Location ;
       protected string aP6_result ;
       protected string aP2_result ;
+      protected string aP1_result ;
    }
 
 }

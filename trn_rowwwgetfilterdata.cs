@@ -358,7 +358,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_rowwwds_3_tftrn_rowname_sel)) && ! ( StringUtil.StrCmp(AV40Trn_rowwwds_3_tftrn_rowname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_rowwwds_3_tftrn_rowname_sel)) && ! ( StringUtil.StrCmp(AV40Trn_rowwwds_3_tftrn_rowname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_RowName = ( :AV40Trn_rowwwds_3_tftrn_rowname_sel))");
          }
@@ -366,7 +366,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV40Trn_rowwwds_3_tftrn_rowname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV40Trn_rowwwds_3_tftrn_rowname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_RowName))=0))");
          }

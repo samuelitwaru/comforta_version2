@@ -81,9 +81,6 @@ namespace GeneXus.Programs
 			AddObjectProperty("ReceptionistPhone", gxTpr_Receptionistphone, false);
 
 
-			AddObjectProperty("RecentLinksOptions", gxTpr_Recentlinksoptions, false);
-
-
 			AddObjectProperty("ReceptionistId", gxTpr_Receptionistid, false);
 
 
@@ -160,22 +157,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone = value;
 				SetDirty("Receptionistphone");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="RecentLinksOptions")]
-		[XmlElement(ElementName="RecentLinksOptions")]
-		public short gxTpr_Recentlinksoptions
-		{
-			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Recentlinksoptions; 
-			}
-			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Recentlinksoptions = value;
-				SetDirty("Recentlinksoptions");
 			}
 		}
 
@@ -308,7 +289,6 @@ namespace GeneXus.Programs
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonenumber = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone = "";
 
-
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistgivenname = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistlastname = "";
 
@@ -333,9 +313,6 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone;
-		 
-
-		protected short gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Recentlinksoptions;
 		 
 
 		protected Guid gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistid;
@@ -414,19 +391,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="RecentLinksOptions", Order=4)]
-		public short gxTpr_Recentlinksoptions
-		{
-			get { 
-				return sdt.gxTpr_Recentlinksoptions;
-
-			}
-			set { 
-				sdt.gxTpr_Recentlinksoptions = value;
-			}
-		}
-
-		[DataMember(Name="ReceptionistId", Order=5)]
+		[DataMember(Name="ReceptionistId", Order=4)]
 		public Guid gxTpr_Receptionistid
 		{
 			get { 
@@ -438,7 +403,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistGivenName", Order=6)]
+		[DataMember(Name="ReceptionistGivenName", Order=5)]
 		public  string gxTpr_Receptionistgivenname
 		{
 			get { 
@@ -450,7 +415,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistLastName", Order=7)]
+		[DataMember(Name="ReceptionistLastName", Order=6)]
 		public  string gxTpr_Receptionistlastname
 		{
 			get { 
@@ -462,7 +427,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="SDT_Receptionists", Order=8, EmitDefaultValue=false)]
+		[DataMember(Name="SDT_Receptionists", Order=7, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Receptionists_SDT_ReceptionistsItem_RESTInterface> gxTpr_Sdt_receptionists
 		{
 			get { 

@@ -620,18 +620,18 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell ExtendedComboCell", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell ExtendedComboCell", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divTablesplittedresidentphonecode_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-3 MergeLabelCell", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
             /* Text block */
             GxWebStd.gx_label_ctrl( context, lblTextblockcombo_residentphonecode_Internalname, context.GetMessage( "Phone", ""), "", "", lblTextblockcombo_residentphonecode_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateResidentAndNetworkStep1.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
             wb_table1_57_6Q2( true) ;
          }
          else
@@ -1039,6 +1039,54 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTEMAIL.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6Q0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E156Q2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTBSNNUMBER.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6Q0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E166Q2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTZIPCODE.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6Q0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E176Q2 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -1052,7 +1100,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E156Q2 ();
+                                    E186Q2 ();
                                  }
                               }
                               /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1430,7 +1478,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E156Q2 ();
+            E186Q2 ();
             WB6Q0( ) ;
          }
       }
@@ -1528,6 +1576,13 @@ namespace GeneXus.Programs {
          ucCombo_residentcountry.SendProperty(context, sPrefix, false, Combo_residentcountry_Internalname, "SelectedValue_set", Combo_residentcountry_Selectedvalue_set);
          AV26ResidentCountry = AV38defaultCountry;
          AssignAttri(sPrefix, false, "AV26ResidentCountry", AV26ResidentCountry);
+         AV43defaultCountryPhoneCode = "+31";
+         AV39ResidentPhoneCode = "+31";
+         AssignAttri(sPrefix, false, "AV39ResidentPhoneCode", AV39ResidentPhoneCode);
+         Combo_residentphonecode_Selectedtext_set = AV43defaultCountryPhoneCode;
+         ucCombo_residentphonecode.SendProperty(context, sPrefix, false, Combo_residentphonecode_Internalname, "SelectedText_set", Combo_residentphonecode_Selectedtext_set);
+         Combo_residentphonecode_Selectedvalue_set = AV43defaultCountryPhoneCode;
+         ucCombo_residentphonecode.SendProperty(context, sPrefix, false, Combo_residentphonecode_Internalname, "SelectedValue_set", Combo_residentphonecode_Selectedvalue_set);
       }
 
       protected void E126Q2( )
@@ -1750,13 +1805,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBORESIDENTCOUNTRY' Routine */
          returnInSub = false;
-         AV44GXV2 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV43GXV1;
+         AV45GXV2 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV44GXV1;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV43GXV1 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV44GXV2 <= AV43GXV1.Count )
+         AV44GXV1 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV45GXV2 <= AV44GXV1.Count )
          {
-            AV37ResidentCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV43GXV1.Item(AV44GXV2));
+            AV37ResidentCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV44GXV1.Item(AV45GXV2));
             AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV36Combo_DataItem.gxTpr_Id = AV37ResidentCountry_DPItem.gxTpr_Countryname;
             AV32ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1764,7 +1819,7 @@ namespace GeneXus.Programs {
             AV32ComboTitles.Add(AV37ResidentCountry_DPItem.gxTpr_Countryflag, 0);
             AV36Combo_DataItem.gxTpr_Title = AV32ComboTitles.ToJSonString(false);
             AV33ResidentCountry_Data.Add(AV36Combo_DataItem, 0);
-            AV44GXV2 = (int)(AV44GXV2+1);
+            AV45GXV2 = (int)(AV45GXV2+1);
          }
          AV33ResidentCountry_Data.Sort("Title");
          Combo_residentcountry_Selectedvalue_set = AV26ResidentCountry;
@@ -1775,13 +1830,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBORESIDENTPHONECODE' Routine */
          returnInSub = false;
-         AV46GXV4 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV45GXV3;
+         AV47GXV4 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV46GXV3;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV45GXV3 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV46GXV4 <= AV45GXV3.Count )
+         AV46GXV3 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV47GXV4 <= AV46GXV3.Count )
          {
-            AV42ResidentPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV45GXV3.Item(AV46GXV4));
+            AV42ResidentPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV46GXV3.Item(AV47GXV4));
             AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV36Combo_DataItem.gxTpr_Id = AV42ResidentPhoneCode_DPItem.gxTpr_Countrydialcode;
             AV32ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1789,18 +1844,57 @@ namespace GeneXus.Programs {
             AV32ComboTitles.Add(AV42ResidentPhoneCode_DPItem.gxTpr_Countryflag, 0);
             AV36Combo_DataItem.gxTpr_Title = AV32ComboTitles.ToJSonString(false);
             AV41ResidentPhoneCode_Data.Add(AV36Combo_DataItem, 0);
-            AV46GXV4 = (int)(AV46GXV4+1);
+            AV47GXV4 = (int)(AV47GXV4+1);
          }
          AV41ResidentPhoneCode_Data.Sort("Title");
          Combo_residentphonecode_Selectedvalue_set = AV39ResidentPhoneCode;
          ucCombo_residentphonecode.SendProperty(context, sPrefix, false, Combo_residentphonecode_Internalname, "SelectedValue_set", Combo_residentphonecode_Selectedvalue_set);
       }
 
+      protected void E156Q2( )
+      {
+         /* Residentemail_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! GxRegex.IsMatch(AV18ResidentEmail,context.GetMessage( "^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$", "")) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Email is incorrect", ""),  "error",  edtavResidentemail_Internalname,  "true",  ""));
+            AV31CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV31CheckRequiredFieldsResult", AV31CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E166Q2( )
+      {
+         /* Residentbsnnumber_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( StringUtil.Len( AV12ResidentBsnNumber) != 9 )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "BSN is 9 digits long", ""),  "error",  edtavResidentbsnnumber_Internalname,  "true",  ""));
+            AV31CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV31CheckRequiredFieldsResult", AV31CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E176Q2( )
+      {
+         /* Residentzipcode_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! GxRegex.IsMatch(AV28ResidentZipCode,context.GetMessage( "^\\d{4} [a-zA-Z]{2}$", "")) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Zip Code is incorrect", ""),  "error",  edtavResidentzipcode_Internalname,  "true",  ""));
+            AV31CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV31CheckRequiredFieldsResult", AV31CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E156Q2( )
+      protected void E186Q2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1823,14 +1917,14 @@ namespace GeneXus.Programs {
             ucCombo_residentphonecode.SetProperty("DropDownOptionsData", AV41ResidentPhoneCode_Data);
             ucCombo_residentphonecode.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_residentphonecode_Internalname, sPrefix+"COMBO_RESIDENTPHONECODEContainer");
             context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "<td class='DataContentCell'>") ;
+            context.WriteHtmlText( "<td>") ;
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavResidentphonenumber_Internalname, context.GetMessage( "Resident Phone Number", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavResidentphonenumber_Internalname, context.GetMessage( "Resident Phone Number", ""), "gx-form-item AttributePhoneNumberLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 63,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavResidentphonenumber_Internalname, AV40ResidentPhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV40ResidentPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,63);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavResidentphonenumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavResidentphonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep1.htm");
+            GxWebStd.gx_single_line_edit( context, edtavResidentphonenumber_Internalname, AV40ResidentPhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV40ResidentPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,63);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavResidentphonenumber_Jsonclick, 0, "AttributePhoneNumber", "", "", "", "", 1, edtavResidentphonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep1.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
@@ -2090,7 +2184,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016414378", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101617493264", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2106,7 +2200,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?2024101016414378", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?2024101617493265", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2300,6 +2394,12 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"E136Q2","iparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV14ResidentGivenName","fld":"vRESIDENTGIVENNAME"},{"av":"AV15ResidentLastName","fld":"vRESIDENTLASTNAME"},{"av":"cmbavResidentgender"},{"av":"AV16ResidentGender","fld":"vRESIDENTGENDER"},{"av":"AV18ResidentEmail","fld":"vRESIDENTEMAIL"},{"av":"AV12ResidentBsnNumber","fld":"vRESIDENTBSNNUMBER"},{"av":"dynavResidenttypeid"},{"av":"AV23ResidentTypeId","fld":"vRESIDENTTYPEID"},{"av":"AV29ResidentAddressLine1","fld":"vRESIDENTADDRESSLINE1"},{"av":"AV28ResidentZipCode","fld":"vRESIDENTZIPCODE"},{"av":"AV27ResidentCity","fld":"vRESIDENTCITY"},{"av":"AV26ResidentCountry","fld":"vRESIDENTCOUNTRY"},{"av":"Combo_residentcountry_Ddointernalname","ctrl":"COMBO_RESIDENTCOUNTRY","prop":"DDOInternalName"},{"av":"AV39ResidentPhoneCode","fld":"vRESIDENTPHONECODE"},{"av":"AV40ResidentPhoneNumber","fld":"vRESIDENTPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV30ResidentAddressLine2","fld":"vRESIDENTADDRESSLINE2"},{"av":"AV21ResidentId","fld":"vRESIDENTID"},{"av":"cmbavResidentsalutation"},{"av":"AV13ResidentSalutation","fld":"vRESIDENTSALUTATION"},{"av":"AV17ResidentBirthDate","fld":"vRESIDENTBIRTHDATE"},{"av":"AV24ResidentTypeName","fld":"vRESIDENTTYPENAME"},{"av":"dynavMedicalindicationid"},{"av":"AV25MedicalIndicationId","fld":"vMEDICALINDICATIONID"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV19ResidentPhone","fld":"vRESIDENTPHONE"}]}""");
          setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E146Q2","iparms":[]}""");
+         setEventMetadata("VRESIDENTEMAIL.CONTROLVALUECHANGED","""{"handler":"E156Q2","iparms":[{"av":"AV18ResidentEmail","fld":"vRESIDENTEMAIL"}]""");
+         setEventMetadata("VRESIDENTEMAIL.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VRESIDENTBSNNUMBER.CONTROLVALUECHANGED","""{"handler":"E166Q2","iparms":[{"av":"AV12ResidentBsnNumber","fld":"vRESIDENTBSNNUMBER"}]""");
+         setEventMetadata("VRESIDENTBSNNUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VRESIDENTZIPCODE.CONTROLVALUECHANGED","""{"handler":"E176Q2","iparms":[{"av":"AV28ResidentZipCode","fld":"vRESIDENTZIPCODE"}]""");
+         setEventMetadata("VRESIDENTZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VALIDV_RESIDENTSALUTATION","""{"handler":"Validv_Residentsalutation","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTGENDER","""{"handler":"Validv_Residentgender","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTEMAIL","""{"handler":"Validv_Residentemail","iparms":[]}""");
@@ -2386,18 +2486,20 @@ namespace GeneXus.Programs {
          AV38defaultCountry = "";
          Combo_residentcountry_Selectedtext_set = "";
          Combo_residentcountry_Selectedvalue_set = "";
+         AV43defaultCountryPhoneCode = "";
+         Combo_residentphonecode_Selectedtext_set = "";
+         Combo_residentphonecode_Selectedvalue_set = "";
          AV11WizardData = new SdtWP_CreateResidentAndNetworkData(context);
          AV5WebSession = context.GetSession();
          AV40ResidentPhoneNumber = "";
          GXt_char2 = "";
-         AV43GXV1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV44GXV1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV37ResidentCountry_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV32ComboTitles = new GxSimpleCollection<string>();
-         AV45GXV3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV46GXV3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV42ResidentPhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
-         Combo_residentphonecode_Selectedvalue_set = "";
          sStyleString = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -2458,8 +2560,8 @@ namespace GeneXus.Programs {
       private int edtavResidentphone_Visible ;
       private int edtavResidenttypename_Visible ;
       private int gxdynajaxindex ;
-      private int AV44GXV2 ;
-      private int AV46GXV4 ;
+      private int AV45GXV2 ;
+      private int AV47GXV4 ;
       private int edtavResidentphonenumber_Enabled ;
       private int idxLst ;
       private string Combo_residentcountry_Ddointernalname ;
@@ -2556,8 +2658,9 @@ namespace GeneXus.Programs {
       private string Combo_residentphonecode_Internalname ;
       private string Combo_residentcountry_Selectedtext_set ;
       private string Combo_residentcountry_Selectedvalue_set ;
-      private string GXt_char2 ;
+      private string Combo_residentphonecode_Selectedtext_set ;
       private string Combo_residentphonecode_Selectedvalue_set ;
+      private string GXt_char2 ;
       private string sStyleString ;
       private string tblTablemergedresidentphonecode_Internalname ;
       private string Combo_residentphonecode_Caption ;
@@ -2599,6 +2702,7 @@ namespace GeneXus.Programs {
       private string AV26ResidentCountry ;
       private string AV24ResidentTypeName ;
       private string AV38defaultCountry ;
+      private string AV43defaultCountryPhoneCode ;
       private string AV40ResidentPhoneNumber ;
       private Guid AV23ResidentTypeId ;
       private Guid AV25MedicalIndicationId ;
@@ -2631,11 +2735,11 @@ namespace GeneXus.Programs {
       private string[] H006Q5_A97ResidentTypeName ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
       private SdtWP_CreateResidentAndNetworkData AV11WizardData ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV43GXV1 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV44GXV1 ;
       private SdtSDT_Country_SDT_CountryItem AV37ResidentCountry_DPItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV36Combo_DataItem ;
       private GxSimpleCollection<string> AV32ComboTitles ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV45GXV3 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV46GXV3 ;
       private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem3 ;
       private SdtSDT_Country_SDT_CountryItem AV42ResidentPhoneCode_DPItem ;
       private msglist BackMsgLst ;
