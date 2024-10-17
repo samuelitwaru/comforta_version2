@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241017075225"
+  version: "20241017091238"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -189,8 +189,9 @@ paths:
           content:
             application/json:
               schema:
-                type: "string"
-
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_Page"  
 
         404:
           description: "Not found"
@@ -413,5 +414,119 @@ components:
           type: "string"
 
 
+
+    SDT_Page:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        Row:
+          description: "SDT_Row"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Row"
+
+
+
+    SDT_Col:
+      properties:
+        ColId:
+          description: "Col Id"
+          type: "string"
+          format: "uuid"
+        ColName:
+          description: "Col Name"
+          type: "string"
+        Tile:
+          description: "SDT_Tile"
+          $ref: "#/components/schemas/SDT_Tile"
+
+
+
+    SDT_Row:
+      properties:
+        RowId:
+          description: "Row Id"
+          type: "string"
+          format: "uuid"
+        RowName:
+          description: "Row Name"
+          type: "string"
+        Col:
+          description: "SDT_Col"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Col"
+
+
+
+    SDT_Tile:
+      properties:
+        TileId:
+          description: "Tile Id"
+          type: "string"
+          format: "uuid"
+        TileName:
+          description: "Tile Name"
+          type: "string"
+        TileIcon:
+          description: "Trn_Tile Icon"
+          type: "string"
+        TileColor:
+          description: "Trn_Tile Color"
+          type: "string"
+        TileBGImageUrl:
+          description: "Tile BGImage Url"
+          type: "string"
+        ProductServiceId:
+          description: "Product Service Id"
+          type: "string"
+          format: "uuid"
+        ProductServiceName:
+          description: "Product Service Name"
+          type: "string"
+        ProductServiceDescription:
+          description: "Product Service Description"
+          type: "string"
+        ProductServiceImage:
+          description: "Product Service Image"
+          type: "string"
+        ToPageId:
+          description: "SG_To Page Id"
+          type: "string"
+          format: "uuid"
+        ToPageName:
+          description: "SG_To Page Name"
+          type: "string"
+        ToPage:
+          description: "SDT_Page"
+          $ref: "#/components/schemas/SDT_Page"
+
+        Attribute:
+          type: array
+          items:
+            description: AttributeItem
+            $ref: "#/components/schemas/SDT_Tile.Attribute_AttributeItem"
+
+
+    SDT_Tile.Attribute_AttributeItem:
+      properties:
+        AttributeId:
+          description: "Attribute Id"
+          type: "string"
+          format: "uuid"
+        AttributeName:
+          description: "Attribute Name"
+          type: "string"
+        AttrbuteValue:
+          description: "Attrbute Value"
+          type: "string"
+
+
+      x-gx-level: "SDT_Tile"
 
  

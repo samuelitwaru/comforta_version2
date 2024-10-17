@@ -259,7 +259,7 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_getpagesinformation( Guid aP0_Trn_PageId ,
-                                            out string aP1_result )
+                                            out GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection )
       {
          restCliGetPagesInformation = new GXRestAPIClient();
          if ( restLocation == null )
@@ -276,11 +276,11 @@ namespace GeneXus.Programs {
             gxProperties.ErrorCode = restCliGetPagesInformation.ErrorCode;
             gxProperties.ErrorMessage = restCliGetPagesInformation.ErrorMessage;
             gxProperties.StatusCode = restCliGetPagesInformation.StatusCode;
-            aP1_result = "";
+            aP1_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
          }
          else
          {
-            aP1_result = restCliGetPagesInformation.GetBodyString("result");
+            aP1_SDT_PageCollection = restCliGetPagesInformation.GetBodySdtCollection<SdtSDT_Page>("SDT_PageCollection");
          }
          /* GetPagesInformation Constructor */
       }
@@ -306,7 +306,7 @@ namespace GeneXus.Programs {
          restCliSendNotification = new GXRestAPIClient();
          aP2_result = "";
          restCliGetPagesInformation = new GXRestAPIClient();
-         aP1_result = "";
+         aP1_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
          /* GeneXus formulas. */
       }
 
@@ -328,7 +328,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Location aP1_SDT_Location ;
       protected string aP6_result ;
       protected string aP2_result ;
-      protected string aP1_result ;
+      protected GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection ;
    }
 
 }

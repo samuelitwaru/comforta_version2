@@ -303,9 +303,10 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_getpagesinformation( Guid aP0_Trn_PageId ,
-                                            out string aP1_result )
+                                            out GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection )
       {
          this.AV24Trn_PageId = aP0_Trn_PageId;
+         AV25SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          initialize();
          /* GetPagesInformation Constructor */
          new prc_pagesapi(context ).execute(  AV24Trn_PageId, out  AV17result) ;
@@ -313,17 +314,17 @@ namespace GeneXus.Programs {
          E16012 ();
          if ( returnInSub )
          {
-            aP1_result=this.AV17result;
+            aP1_SDT_PageCollection=this.AV25SDT_PageCollection;
             return;
          }
          /* Execute user event: After */
          E11012 ();
          if ( returnInSub )
          {
-            aP1_result=this.AV17result;
+            aP1_SDT_PageCollection=this.AV25SDT_PageCollection;
             return;
          }
-         aP1_result=this.AV17result;
+         aP1_SDT_PageCollection=this.AV25SDT_PageCollection;
       }
 
       public override void cleanup( )
@@ -372,7 +373,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Location aP1_SDT_Location ;
       protected string aP6_result ;
       protected string aP2_result ;
-      protected string aP1_result ;
+      protected GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection ;
    }
 
 }
