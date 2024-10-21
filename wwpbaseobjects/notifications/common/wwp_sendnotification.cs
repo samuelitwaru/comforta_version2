@@ -186,7 +186,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A112WWPUserExtendedId)) && A132WWPSubscriptionSubscribed )
                   {
                      AV8WWPUserExtendedId = A112WWPUserExtendedId;
-                     new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.StartsWith( AV23WWPNotificationDefinitionName, "Discussion")) ;
+                     new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.StartsWith( AV23WWPNotificationDefinitionName, context.GetMessage( "Discussion", ""))) ;
                   }
                   else
                   {
@@ -207,7 +207,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                         }
                         if ( AV12IncludeNotificationToUser )
                         {
-                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.StartsWith( AV23WWPNotificationDefinitionName, "Discussion")) ;
+                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.StartsWith( AV23WWPNotificationDefinitionName, context.GetMessage( "Discussion", ""))) ;
                         }
                         AV32GXV2 = (int)(AV32GXV2+1);
                      }

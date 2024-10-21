@@ -53,7 +53,7 @@ namespace GeneXus.Programs {
             dyncall( GetNextPar( )) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_17") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_15") == 0 )
          {
             A319Trn_RowId = StringUtil.StrToGuid( GetPar( "Trn_RowId"));
             AssignAttri("", false, "A319Trn_RowId", A319Trn_RowId.ToString());
@@ -63,20 +63,20 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_17( A319Trn_RowId) ;
+            gxLoad_15( A319Trn_RowId) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_18") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_16") == 0 )
          {
-            A264Trn_TileId = StringUtil.StrToGuid( GetPar( "Trn_TileId"));
-            AssignAttri("", false, "A264Trn_TileId", A264Trn_TileId.ToString());
+            A407TileId = StringUtil.StrToGuid( GetPar( "TileId"));
+            AssignAttri("", false, "A407TileId", A407TileId.ToString());
             setAjaxCallMode();
             if ( ! IsValidAjaxCall( true) )
             {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_18( A264Trn_TileId) ;
+            gxLoad_16( A407TileId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -438,46 +438,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell ExtendedComboCell", "start", "top", "", "", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, divTablesplittedtrn_tileid_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
-         /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTextblocktrn_tileid_Internalname, context.GetMessage( "Tile", ""), "", "", lblTextblocktrn_tileid_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Col.htm");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
-         /* User Defined Control */
-         ucCombo_trn_tileid.SetProperty("Caption", Combo_trn_tileid_Caption);
-         ucCombo_trn_tileid.SetProperty("Cls", Combo_trn_tileid_Cls);
-         ucCombo_trn_tileid.SetProperty("DataListProc", Combo_trn_tileid_Datalistproc);
-         ucCombo_trn_tileid.SetProperty("DataListProcParametersPrefix", Combo_trn_tileid_Datalistprocparametersprefix);
-         ucCombo_trn_tileid.SetProperty("EmptyItem", Combo_trn_tileid_Emptyitem);
-         ucCombo_trn_tileid.SetProperty("DropDownOptionsTitleSettingsIcons", AV16DDO_TitleSettingsIcons);
-         ucCombo_trn_tileid.SetProperty("DropDownOptionsData", AV24Trn_TileId_Data);
-         ucCombo_trn_tileid.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_trn_tileid_Internalname, "COMBO_TRN_TILEIDContainer");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 Invisible", "start", "top", "", "", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-         /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_TileId_Internalname, context.GetMessage( "Trn_Tile Id", ""), "col-sm-3 AttributeLabel", 0, true, "");
-         /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtTrn_TileId_Internalname, A264Trn_TileId.ToString(), A264Trn_TileId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_TileId_Jsonclick, 0, "Attribute", "", "", "", "", edtTrn_TileId_Visible, edtTrn_TileId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Col.htm");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -493,21 +453,21 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 42,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Col.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Col.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 57,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 46,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Col.htm");
@@ -527,14 +487,8 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, divSectionattribute_trn_rowid_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 62,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtavCombotrn_rowid_Internalname, AV20ComboTrn_RowId.ToString(), AV20ComboTrn_RowId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,62);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombotrn_rowid_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombotrn_rowid_Visible, edtavCombotrn_rowid_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_Trn_Col.htm");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, divSectionattribute_trn_tileid_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
-         /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtavCombotrn_tileid_Internalname, AV25ComboTrn_TileId.ToString(), AV25ComboTrn_TileId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombotrn_tileid_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombotrn_tileid_Visible, edtavCombotrn_tileid_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_Trn_Col.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtavCombotrn_rowid_Internalname, AV20ComboTrn_RowId.ToString(), AV20ComboTrn_RowId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,51);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombotrn_rowid_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombotrn_rowid_Visible, edtavCombotrn_rowid_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_Trn_Col.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -580,22 +534,23 @@ namespace GeneXus.Programs {
                /* Read saved SDTs. */
                ajax_req_read_hidden_sdt(cgiGet( "vDDO_TITLESETTINGSICONS"), AV16DDO_TitleSettingsIcons);
                ajax_req_read_hidden_sdt(cgiGet( "vTRN_ROWID_DATA"), AV15Trn_RowId_Data);
-               ajax_req_read_hidden_sdt(cgiGet( "vTRN_TILEID_DATA"), AV24Trn_TileId_Data);
                /* Read saved values. */
                Z328Trn_ColId = StringUtil.StrToGuid( cgiGet( "Z328Trn_ColId"));
                Z327Trn_ColName = cgiGet( "Z327Trn_ColName");
                Z319Trn_RowId = StringUtil.StrToGuid( cgiGet( "Z319Trn_RowId"));
-               Z264Trn_TileId = StringUtil.StrToGuid( cgiGet( "Z264Trn_TileId"));
+               Z407TileId = StringUtil.StrToGuid( cgiGet( "Z407TileId"));
+               A407TileId = StringUtil.StrToGuid( cgiGet( "Z407TileId"));
                IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
                N319Trn_RowId = StringUtil.StrToGuid( cgiGet( "N319Trn_RowId"));
-               N264Trn_TileId = StringUtil.StrToGuid( cgiGet( "N264Trn_TileId"));
+               N407TileId = StringUtil.StrToGuid( cgiGet( "N407TileId"));
                AV7Trn_ColId = StringUtil.StrToGuid( cgiGet( "vTRN_COLID"));
                Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AV13Insert_Trn_RowId = StringUtil.StrToGuid( cgiGet( "vINSERT_TRN_ROWID"));
-               AV23Insert_Trn_TileId = StringUtil.StrToGuid( cgiGet( "vINSERT_TRN_TILEID"));
-               AV26Pgmname = cgiGet( "vPGMNAME");
+               AV26Insert_TileId = StringUtil.StrToGuid( cgiGet( "vINSERT_TILEID"));
+               A407TileId = StringUtil.StrToGuid( cgiGet( "TILEID"));
+               AV27Pgmname = cgiGet( "vPGMNAME");
                Combo_trn_rowid_Objectcall = cgiGet( "COMBO_TRN_ROWID_Objectcall");
                Combo_trn_rowid_Class = cgiGet( "COMBO_TRN_ROWID_Class");
                Combo_trn_rowid_Icontype = cgiGet( "COMBO_TRN_ROWID_Icontype");
@@ -637,47 +592,6 @@ namespace GeneXus.Programs {
                Combo_trn_rowid_Multiplevaluesseparator = cgiGet( "COMBO_TRN_ROWID_Multiplevaluesseparator");
                Combo_trn_rowid_Addnewoptiontext = cgiGet( "COMBO_TRN_ROWID_Addnewoptiontext");
                Combo_trn_rowid_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_TRN_ROWID_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               Combo_trn_tileid_Objectcall = cgiGet( "COMBO_TRN_TILEID_Objectcall");
-               Combo_trn_tileid_Class = cgiGet( "COMBO_TRN_TILEID_Class");
-               Combo_trn_tileid_Icontype = cgiGet( "COMBO_TRN_TILEID_Icontype");
-               Combo_trn_tileid_Icon = cgiGet( "COMBO_TRN_TILEID_Icon");
-               Combo_trn_tileid_Caption = cgiGet( "COMBO_TRN_TILEID_Caption");
-               Combo_trn_tileid_Tooltip = cgiGet( "COMBO_TRN_TILEID_Tooltip");
-               Combo_trn_tileid_Cls = cgiGet( "COMBO_TRN_TILEID_Cls");
-               Combo_trn_tileid_Selectedvalue_set = cgiGet( "COMBO_TRN_TILEID_Selectedvalue_set");
-               Combo_trn_tileid_Selectedvalue_get = cgiGet( "COMBO_TRN_TILEID_Selectedvalue_get");
-               Combo_trn_tileid_Selectedtext_set = cgiGet( "COMBO_TRN_TILEID_Selectedtext_set");
-               Combo_trn_tileid_Selectedtext_get = cgiGet( "COMBO_TRN_TILEID_Selectedtext_get");
-               Combo_trn_tileid_Gamoauthtoken = cgiGet( "COMBO_TRN_TILEID_Gamoauthtoken");
-               Combo_trn_tileid_Ddointernalname = cgiGet( "COMBO_TRN_TILEID_Ddointernalname");
-               Combo_trn_tileid_Titlecontrolalign = cgiGet( "COMBO_TRN_TILEID_Titlecontrolalign");
-               Combo_trn_tileid_Dropdownoptionstype = cgiGet( "COMBO_TRN_TILEID_Dropdownoptionstype");
-               Combo_trn_tileid_Enabled = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Enabled"));
-               Combo_trn_tileid_Visible = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Visible"));
-               Combo_trn_tileid_Titlecontrolidtoreplace = cgiGet( "COMBO_TRN_TILEID_Titlecontrolidtoreplace");
-               Combo_trn_tileid_Datalisttype = cgiGet( "COMBO_TRN_TILEID_Datalisttype");
-               Combo_trn_tileid_Allowmultipleselection = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Allowmultipleselection"));
-               Combo_trn_tileid_Datalistfixedvalues = cgiGet( "COMBO_TRN_TILEID_Datalistfixedvalues");
-               Combo_trn_tileid_Isgriditem = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Isgriditem"));
-               Combo_trn_tileid_Hasdescription = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Hasdescription"));
-               Combo_trn_tileid_Datalistproc = cgiGet( "COMBO_TRN_TILEID_Datalistproc");
-               Combo_trn_tileid_Datalistprocparametersprefix = cgiGet( "COMBO_TRN_TILEID_Datalistprocparametersprefix");
-               Combo_trn_tileid_Remoteservicesparameters = cgiGet( "COMBO_TRN_TILEID_Remoteservicesparameters");
-               Combo_trn_tileid_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_TRN_TILEID_Datalistupdateminimumcharacters"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               Combo_trn_tileid_Includeonlyselectedoption = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Includeonlyselectedoption"));
-               Combo_trn_tileid_Includeselectalloption = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Includeselectalloption"));
-               Combo_trn_tileid_Emptyitem = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Emptyitem"));
-               Combo_trn_tileid_Includeaddnewoption = StringUtil.StrToBool( cgiGet( "COMBO_TRN_TILEID_Includeaddnewoption"));
-               Combo_trn_tileid_Htmltemplate = cgiGet( "COMBO_TRN_TILEID_Htmltemplate");
-               Combo_trn_tileid_Multiplevaluestype = cgiGet( "COMBO_TRN_TILEID_Multiplevaluestype");
-               Combo_trn_tileid_Loadingdata = cgiGet( "COMBO_TRN_TILEID_Loadingdata");
-               Combo_trn_tileid_Noresultsfound = cgiGet( "COMBO_TRN_TILEID_Noresultsfound");
-               Combo_trn_tileid_Emptyitemtext = cgiGet( "COMBO_TRN_TILEID_Emptyitemtext");
-               Combo_trn_tileid_Onlyselectedvalues = cgiGet( "COMBO_TRN_TILEID_Onlyselectedvalues");
-               Combo_trn_tileid_Selectalltext = cgiGet( "COMBO_TRN_TILEID_Selectalltext");
-               Combo_trn_tileid_Multiplevaluesseparator = cgiGet( "COMBO_TRN_TILEID_Multiplevaluesseparator");
-               Combo_trn_tileid_Addnewoptiontext = cgiGet( "COMBO_TRN_TILEID_Addnewoptiontext");
-               Combo_trn_tileid_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_TRN_TILEID_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtTrn_ColId_Internalname), "") == 0 )
                {
@@ -723,31 +637,8 @@ namespace GeneXus.Programs {
                }
                A327Trn_ColName = cgiGet( edtTrn_ColName_Internalname);
                AssignAttri("", false, "A327Trn_ColName", A327Trn_ColName);
-               if ( StringUtil.StrCmp(cgiGet( edtTrn_TileId_Internalname), "") == 0 )
-               {
-                  A264Trn_TileId = Guid.Empty;
-                  AssignAttri("", false, "A264Trn_TileId", A264Trn_TileId.ToString());
-               }
-               else
-               {
-                  try
-                  {
-                     A264Trn_TileId = StringUtil.StrToGuid( cgiGet( edtTrn_TileId_Internalname));
-                     AssignAttri("", false, "A264Trn_TileId", A264Trn_TileId.ToString());
-                  }
-                  catch ( Exception  )
-                  {
-                     GX_msglist.addItem(context.GetMessage( "GXM_invalidguid", ""), 1, "TRN_TILEID");
-                     AnyError = 1;
-                     GX_FocusControl = edtTrn_TileId_Internalname;
-                     AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
-                     wbErr = true;
-                  }
-               }
                AV20ComboTrn_RowId = StringUtil.StrToGuid( cgiGet( edtavCombotrn_rowid_Internalname));
                AssignAttri("", false, "AV20ComboTrn_RowId", AV20ComboTrn_RowId.ToString());
-               AV25ComboTrn_TileId = StringUtil.StrToGuid( cgiGet( edtavCombotrn_tileid_Internalname));
-               AssignAttri("", false, "AV25ComboTrn_TileId", AV25ComboTrn_TileId.ToString());
                /* Read subfile selected row values. */
                /* Read hidden variables. */
                GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -877,13 +768,6 @@ namespace GeneXus.Programs {
                            /* Execute user event: Combo_trn_rowid.Onoptionclicked */
                            E12192 ();
                         }
-                        else if ( StringUtil.StrCmp(sEvt, "COMBO_TRN_TILEID.ONOPTIONCLICKED") == 0 )
-                        {
-                           context.wbHandled = 1;
-                           dynload_actions( ) ;
-                           /* Execute user event: Combo_trn_tileid.Onoptionclicked */
-                           E13192 ();
-                        }
                         else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                         {
                            context.wbHandled = 1;
@@ -896,7 +780,7 @@ namespace GeneXus.Programs {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: After Trn */
-                           E14192 ();
+                           E13192 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                         {
@@ -927,7 +811,7 @@ namespace GeneXus.Programs {
                GX_msglist.addItem(endTrnMsgTxt, endTrnMsgCod, 0, "", true);
             }
             /* Execute user event: After Trn */
-            E14192 ();
+            E13192 ();
             trnEnded = 0;
             standaloneNotModal( ) ;
             standaloneModal( ) ;
@@ -968,7 +852,6 @@ namespace GeneXus.Programs {
             DisableAttributes1972( ) ;
          }
          AssignProp("", false, edtavCombotrn_rowid_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCombotrn_rowid_Enabled), 5, 0), true);
-         AssignProp("", false, edtavCombotrn_tileid_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCombotrn_tileid_Enabled), 5, 0), true);
       }
 
       protected void set_caption( )
@@ -1023,14 +906,6 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.getwwptitlesettingsicons(context ).execute( out  GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1) ;
          AV16DDO_TitleSettingsIcons = GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1;
          AV21GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).get(out  AV22GAMErrors);
-         Combo_trn_tileid_Gamoauthtoken = AV21GAMSession.gxTpr_Token;
-         ucCombo_trn_tileid.SendProperty(context, "", false, Combo_trn_tileid_Internalname, "GAMOAuthToken", Combo_trn_tileid_Gamoauthtoken);
-         edtTrn_TileId_Visible = 0;
-         AssignProp("", false, edtTrn_TileId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtTrn_TileId_Visible), 5, 0), true);
-         AV25ComboTrn_TileId = Guid.Empty;
-         AssignAttri("", false, "AV25ComboTrn_TileId", AV25ComboTrn_TileId.ToString());
-         edtavCombotrn_tileid_Visible = 0;
-         AssignProp("", false, edtavCombotrn_tileid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavCombotrn_tileid_Visible), 5, 0), true);
          Combo_trn_rowid_Gamoauthtoken = AV21GAMSession.gxTpr_Token;
          ucCombo_trn_rowid.SendProperty(context, "", false, Combo_trn_rowid_Internalname, "GAMOAuthToken", Combo_trn_rowid_Gamoauthtoken);
          edtTrn_RowId_Visible = 0;
@@ -1046,21 +921,14 @@ namespace GeneXus.Programs {
             returnInSub = true;
             if (true) return;
          }
-         /* Execute user subroutine: 'LOADCOMBOTRN_TILEID' */
-         S122 ();
-         if ( returnInSub )
-         {
-            returnInSub = true;
-            if (true) return;
-         }
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV26Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV27Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV27GXV1 = 1;
-            AssignAttri("", false, "AV27GXV1", StringUtil.LTrimStr( (decimal)(AV27GXV1), 8, 0));
-            while ( AV27GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
+            AV28GXV1 = 1;
+            AssignAttri("", false, "AV28GXV1", StringUtil.LTrimStr( (decimal)(AV28GXV1), 8, 0));
+            while ( AV28GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
             {
-               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV27GXV1));
+               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV28GXV1));
                if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "Trn_RowId") == 0 )
                {
                   AV13Insert_Trn_RowId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
@@ -1083,35 +951,18 @@ namespace GeneXus.Programs {
                      ucCombo_trn_rowid.SendProperty(context, "", false, Combo_trn_rowid_Internalname, "Enabled", StringUtil.BoolToStr( Combo_trn_rowid_Enabled));
                   }
                }
-               else if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "Trn_TileId") == 0 )
+               else if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "TileId") == 0 )
                {
-                  AV23Insert_Trn_TileId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
-                  AssignAttri("", false, "AV23Insert_Trn_TileId", AV23Insert_Trn_TileId.ToString());
-                  if ( ! (Guid.Empty==AV23Insert_Trn_TileId) )
-                  {
-                     AV25ComboTrn_TileId = AV23Insert_Trn_TileId;
-                     AssignAttri("", false, "AV25ComboTrn_TileId", AV25ComboTrn_TileId.ToString());
-                     Combo_trn_tileid_Selectedvalue_set = StringUtil.Trim( AV25ComboTrn_TileId.ToString());
-                     ucCombo_trn_tileid.SendProperty(context, "", false, Combo_trn_tileid_Internalname, "SelectedValue_set", Combo_trn_tileid_Selectedvalue_set);
-                     GXt_char2 = AV19Combo_DataJson;
-                     new trn_colloaddvcombo(context ).execute(  "Trn_TileId",  "GET",  false,  AV7Trn_ColId,  AV14TrnContextAtt.gxTpr_Attributevalue, out  AV17ComboSelectedValue, out  AV18ComboSelectedText, out  GXt_char2) ;
-                     AssignAttri("", false, "AV17ComboSelectedValue", AV17ComboSelectedValue);
-                     AssignAttri("", false, "AV18ComboSelectedText", AV18ComboSelectedText);
-                     AV19Combo_DataJson = GXt_char2;
-                     AssignAttri("", false, "AV19Combo_DataJson", AV19Combo_DataJson);
-                     Combo_trn_tileid_Selectedtext_set = AV18ComboSelectedText;
-                     ucCombo_trn_tileid.SendProperty(context, "", false, Combo_trn_tileid_Internalname, "SelectedText_set", Combo_trn_tileid_Selectedtext_set);
-                     Combo_trn_tileid_Enabled = false;
-                     ucCombo_trn_tileid.SendProperty(context, "", false, Combo_trn_tileid_Internalname, "Enabled", StringUtil.BoolToStr( Combo_trn_tileid_Enabled));
-                  }
+                  AV26Insert_TileId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
+                  AssignAttri("", false, "AV26Insert_TileId", AV26Insert_TileId.ToString());
                }
-               AV27GXV1 = (int)(AV27GXV1+1);
-               AssignAttri("", false, "AV27GXV1", StringUtil.LTrimStr( (decimal)(AV27GXV1), 8, 0));
+               AV28GXV1 = (int)(AV28GXV1+1);
+               AssignAttri("", false, "AV28GXV1", StringUtil.LTrimStr( (decimal)(AV28GXV1), 8, 0));
             }
          }
       }
 
-      protected void E14192( )
+      protected void E13192( )
       {
          /* After Trn Routine */
          returnInSub = false;
@@ -1128,15 +979,6 @@ namespace GeneXus.Programs {
          if (true) return;
       }
 
-      protected void E13192( )
-      {
-         /* Combo_trn_tileid_Onoptionclicked Routine */
-         returnInSub = false;
-         AV25ComboTrn_TileId = StringUtil.StrToGuid( Combo_trn_tileid_Selectedvalue_get);
-         AssignAttri("", false, "AV25ComboTrn_TileId", AV25ComboTrn_TileId.ToString());
-         /*  Sending Event outputs  */
-      }
-
       protected void E12192( )
       {
          /* Combo_trn_rowid_Onoptionclicked Routine */
@@ -1144,29 +986,6 @@ namespace GeneXus.Programs {
          AV20ComboTrn_RowId = StringUtil.StrToGuid( Combo_trn_rowid_Selectedvalue_get);
          AssignAttri("", false, "AV20ComboTrn_RowId", AV20ComboTrn_RowId.ToString());
          /*  Sending Event outputs  */
-      }
-
-      protected void S122( )
-      {
-         /* 'LOADCOMBOTRN_TILEID' Routine */
-         returnInSub = false;
-         GXt_char2 = AV19Combo_DataJson;
-         new trn_colloaddvcombo(context ).execute(  "Trn_TileId",  Gx_mode,  false,  AV7Trn_ColId,  "", out  AV17ComboSelectedValue, out  AV18ComboSelectedText, out  GXt_char2) ;
-         AssignAttri("", false, "AV17ComboSelectedValue", AV17ComboSelectedValue);
-         AssignAttri("", false, "AV18ComboSelectedText", AV18ComboSelectedText);
-         AV19Combo_DataJson = GXt_char2;
-         AssignAttri("", false, "AV19Combo_DataJson", AV19Combo_DataJson);
-         Combo_trn_tileid_Selectedvalue_set = AV17ComboSelectedValue;
-         ucCombo_trn_tileid.SendProperty(context, "", false, Combo_trn_tileid_Internalname, "SelectedValue_set", Combo_trn_tileid_Selectedvalue_set);
-         Combo_trn_tileid_Selectedtext_set = AV18ComboSelectedText;
-         ucCombo_trn_tileid.SendProperty(context, "", false, Combo_trn_tileid_Internalname, "SelectedText_set", Combo_trn_tileid_Selectedtext_set);
-         AV25ComboTrn_TileId = StringUtil.StrToGuid( AV17ComboSelectedValue);
-         AssignAttri("", false, "AV25ComboTrn_TileId", AV25ComboTrn_TileId.ToString());
-         if ( ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) )
-         {
-            Combo_trn_tileid_Enabled = false;
-            ucCombo_trn_tileid.SendProperty(context, "", false, Combo_trn_tileid_Internalname, "Enabled", StringUtil.BoolToStr( Combo_trn_tileid_Enabled));
-         }
       }
 
       protected void S112( )
@@ -1194,27 +1013,27 @@ namespace GeneXus.Programs {
 
       protected void ZM1972( short GX_JID )
       {
-         if ( ( GX_JID == 16 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
                Z327Trn_ColName = T00193_A327Trn_ColName[0];
                Z319Trn_RowId = T00193_A319Trn_RowId[0];
-               Z264Trn_TileId = T00193_A264Trn_TileId[0];
+               Z407TileId = T00193_A407TileId[0];
             }
             else
             {
                Z327Trn_ColName = A327Trn_ColName;
                Z319Trn_RowId = A319Trn_RowId;
-               Z264Trn_TileId = A264Trn_TileId;
+               Z407TileId = A407TileId;
             }
          }
-         if ( GX_JID == -16 )
+         if ( GX_JID == -14 )
          {
             Z328Trn_ColId = A328Trn_ColId;
             Z327Trn_ColName = A327Trn_ColName;
             Z319Trn_RowId = A319Trn_RowId;
-            Z264Trn_TileId = A264Trn_TileId;
+            Z407TileId = A407TileId;
          }
       }
 
@@ -1222,8 +1041,8 @@ namespace GeneXus.Programs {
       {
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
-         AV26Pgmname = "Trn_Col";
-         AssignAttri("", false, "AV26Pgmname", AV26Pgmname);
+         AV27Pgmname = "Trn_Col";
+         AssignAttri("", false, "AV27Pgmname", AV27Pgmname);
          bttBtntrn_delete_Enabled = 0;
          AssignProp("", false, bttBtntrn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtntrn_delete_Enabled), 5, 0), true);
          if ( ! (Guid.Empty==AV7Trn_ColId) )
@@ -1251,22 +1070,17 @@ namespace GeneXus.Programs {
             edtTrn_RowId_Enabled = 1;
             AssignProp("", false, edtTrn_RowId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_RowId_Enabled), 5, 0), true);
          }
-         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV23Insert_Trn_TileId) )
-         {
-            edtTrn_TileId_Enabled = 0;
-            AssignProp("", false, edtTrn_TileId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_TileId_Enabled), 5, 0), true);
-         }
-         else
-         {
-            edtTrn_TileId_Enabled = 1;
-            AssignProp("", false, edtTrn_TileId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_TileId_Enabled), 5, 0), true);
-         }
       }
 
       protected void standaloneModal( )
       {
          A327Trn_ColName = Guid.NewGuid( ).ToString();
          AssignAttri("", false, "A327Trn_ColName", A327Trn_ColName);
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV26Insert_TileId) )
+         {
+            A407TileId = AV26Insert_TileId;
+            AssignAttri("", false, "A407TileId", A407TileId.ToString());
+         }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV13Insert_Trn_RowId) )
          {
             A319Trn_RowId = AV13Insert_Trn_RowId;
@@ -1276,16 +1090,6 @@ namespace GeneXus.Programs {
          {
             A319Trn_RowId = AV20ComboTrn_RowId;
             AssignAttri("", false, "A319Trn_RowId", A319Trn_RowId.ToString());
-         }
-         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV23Insert_Trn_TileId) )
-         {
-            A264Trn_TileId = AV23Insert_Trn_TileId;
-            AssignAttri("", false, "A264Trn_TileId", A264Trn_TileId.ToString());
-         }
-         else
-         {
-            A264Trn_TileId = AV25ComboTrn_TileId;
-            AssignAttri("", false, "A264Trn_TileId", A264Trn_TileId.ToString());
          }
          if ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 )
          {
@@ -1326,9 +1130,8 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A327Trn_ColName", A327Trn_ColName);
             A319Trn_RowId = T00196_A319Trn_RowId[0];
             AssignAttri("", false, "A319Trn_RowId", A319Trn_RowId.ToString());
-            A264Trn_TileId = T00196_A264Trn_TileId[0];
-            AssignAttri("", false, "A264Trn_TileId", A264Trn_TileId.ToString());
-            ZM1972( -16) ;
+            A407TileId = T00196_A407TileId[0];
+            ZM1972( -14) ;
          }
          pr_default.close(4);
          OnLoadActions1972( ) ;
@@ -1354,13 +1157,11 @@ namespace GeneXus.Programs {
          }
          pr_default.close(2);
          /* Using cursor T00195 */
-         pr_default.execute(3, new Object[] {A264Trn_TileId});
+         pr_default.execute(3, new Object[] {A407TileId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Tile", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_TILEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Tile", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TILEID");
             AnyError = 1;
-            GX_FocusControl = edtTrn_TileId_Internalname;
-            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          pr_default.close(3);
       }
@@ -1375,7 +1176,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_17( Guid A319Trn_RowId )
+      protected void gxLoad_15( Guid A319Trn_RowId )
       {
          /* Using cursor T00197 */
          pr_default.execute(5, new Object[] {A319Trn_RowId});
@@ -1398,16 +1199,14 @@ namespace GeneXus.Programs {
          pr_default.close(5);
       }
 
-      protected void gxLoad_18( Guid A264Trn_TileId )
+      protected void gxLoad_16( Guid A407TileId )
       {
          /* Using cursor T00198 */
-         pr_default.execute(6, new Object[] {A264Trn_TileId});
+         pr_default.execute(6, new Object[] {A407TileId});
          if ( (pr_default.getStatus(6) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Tile", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_TILEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Tile", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TILEID");
             AnyError = 1;
-            GX_FocusControl = edtTrn_TileId_Internalname;
-            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          GxWebStd.set_html_headers( context, 0, "", "");
          AddString( "[[") ;
@@ -1442,7 +1241,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A328Trn_ColId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1972( 16) ;
+            ZM1972( 14) ;
             RcdFound72 = 1;
             A328Trn_ColId = T00193_A328Trn_ColId[0];
             AssignAttri("", false, "A328Trn_ColId", A328Trn_ColId.ToString());
@@ -1450,8 +1249,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A327Trn_ColName", A327Trn_ColName);
             A319Trn_RowId = T00193_A319Trn_RowId[0];
             AssignAttri("", false, "A319Trn_RowId", A319Trn_RowId.ToString());
-            A264Trn_TileId = T00193_A264Trn_TileId[0];
-            AssignAttri("", false, "A264Trn_TileId", A264Trn_TileId.ToString());
+            A407TileId = T00193_A407TileId[0];
             Z328Trn_ColId = A328Trn_ColId;
             sMode72 = Gx_mode;
             Gx_mode = "DSP";
@@ -1656,11 +1454,11 @@ namespace GeneXus.Programs {
             pr_default.execute(0, new Object[] {A328Trn_ColId});
             if ( (pr_default.getStatus(0) == 103) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Col1"}), "RecordIsLocked", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Col"}), "RecordIsLocked", 1, "");
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z327Trn_ColName, T00192_A327Trn_ColName[0]) != 0 ) || ( Z319Trn_RowId != T00192_A319Trn_RowId[0] ) || ( Z264Trn_TileId != T00192_A264Trn_TileId[0] ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z327Trn_ColName, T00192_A327Trn_ColName[0]) != 0 ) || ( Z319Trn_RowId != T00192_A319Trn_RowId[0] ) || ( Z407TileId != T00192_A407TileId[0] ) )
             {
                if ( StringUtil.StrCmp(Z327Trn_ColName, T00192_A327Trn_ColName[0]) != 0 )
                {
@@ -1674,13 +1472,13 @@ namespace GeneXus.Programs {
                   GXUtil.WriteLogRaw("Old: ",Z319Trn_RowId);
                   GXUtil.WriteLogRaw("Current: ",T00192_A319Trn_RowId[0]);
                }
-               if ( Z264Trn_TileId != T00192_A264Trn_TileId[0] )
+               if ( Z407TileId != T00192_A407TileId[0] )
                {
-                  GXUtil.WriteLog("trn_col:[seudo value changed for attri]"+"Trn_TileId");
-                  GXUtil.WriteLogRaw("Old: ",Z264Trn_TileId);
-                  GXUtil.WriteLogRaw("Current: ",T00192_A264Trn_TileId[0]);
+                  GXUtil.WriteLog("trn_col:[seudo value changed for attri]"+"TileId");
+                  GXUtil.WriteLogRaw("Old: ",Z407TileId);
+                  GXUtil.WriteLogRaw("Current: ",T00192_A407TileId[0]);
                }
-               GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Col1"}), "RecordWasChanged", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Col"}), "RecordWasChanged", 1, "");
                AnyError = 1;
                return  ;
             }
@@ -1713,9 +1511,9 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T001912 */
-                     pr_default.execute(10, new Object[] {A328Trn_ColId, A327Trn_ColName, A319Trn_RowId, A264Trn_TileId});
+                     pr_default.execute(10, new Object[] {A328Trn_ColId, A327Trn_ColName, A319Trn_RowId, A407TileId});
                      pr_default.close(10);
-                     pr_default.SmartCacheProvider.SetUpdated("Trn_Col1");
+                     pr_default.SmartCacheProvider.SetUpdated("Trn_Col");
                      if ( (pr_default.getStatus(10) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
@@ -1778,12 +1576,12 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T001913 */
-                     pr_default.execute(11, new Object[] {A327Trn_ColName, A319Trn_RowId, A264Trn_TileId, A328Trn_ColId});
+                     pr_default.execute(11, new Object[] {A327Trn_ColName, A319Trn_RowId, A407TileId, A328Trn_ColId});
                      pr_default.close(11);
-                     pr_default.SmartCacheProvider.SetUpdated("Trn_Col1");
+                     pr_default.SmartCacheProvider.SetUpdated("Trn_Col");
                      if ( (pr_default.getStatus(11) == 103) )
                      {
-                        GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Col1"}), "RecordIsLocked", 1, "");
+                        GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Col"}), "RecordIsLocked", 1, "");
                         AnyError = 1;
                      }
                      DeferredUpdate1972( ) ;
@@ -1845,7 +1643,7 @@ namespace GeneXus.Programs {
                   /* Using cursor T001914 */
                   pr_default.execute(12, new Object[] {A328Trn_ColId});
                   pr_default.close(12);
-                  pr_default.SmartCacheProvider.SetUpdated("Trn_Col1");
+                  pr_default.SmartCacheProvider.SetUpdated("Trn_Col");
                   if ( AnyError == 0 )
                   {
                      /* Start of After( delete) rules */
@@ -1987,12 +1785,8 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtTrn_RowId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_RowId_Enabled), 5, 0), true);
          edtTrn_ColName_Enabled = 0;
          AssignProp("", false, edtTrn_ColName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_ColName_Enabled), 5, 0), true);
-         edtTrn_TileId_Enabled = 0;
-         AssignProp("", false, edtTrn_TileId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_TileId_Enabled), 5, 0), true);
          edtavCombotrn_rowid_Enabled = 0;
          AssignProp("", false, edtavCombotrn_rowid_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCombotrn_rowid_Enabled), 5, 0), true);
-         edtavCombotrn_tileid_Enabled = 0;
-         AssignProp("", false, edtavCombotrn_tileid_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavCombotrn_tileid_Enabled), 5, 0), true);
       }
 
       protected void send_integrity_lvl_hashes1972( )
@@ -2043,9 +1837,6 @@ namespace GeneXus.Programs {
          {
             enableOutput();
          }
-         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2103,13 +1894,13 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z328Trn_ColId", Z328Trn_ColId.ToString());
          GxWebStd.gx_hidden_field( context, "Z327Trn_ColName", Z327Trn_ColName);
          GxWebStd.gx_hidden_field( context, "Z319Trn_RowId", Z319Trn_RowId.ToString());
-         GxWebStd.gx_hidden_field( context, "Z264Trn_TileId", Z264Trn_TileId.ToString());
+         GxWebStd.gx_hidden_field( context, "Z407TileId", Z407TileId.ToString());
          GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_Mode", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "N319Trn_RowId", A319Trn_RowId.ToString());
-         GxWebStd.gx_hidden_field( context, "N264Trn_TileId", A264Trn_TileId.ToString());
+         GxWebStd.gx_hidden_field( context, "N407TileId", A407TileId.ToString());
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vDDO_TITLESETTINGSICONS", AV16DDO_TitleSettingsIcons);
@@ -2126,14 +1917,6 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTRN_ROWID_DATA", AV15Trn_RowId_Data);
          }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vTRN_TILEID_DATA", AV24Trn_TileId_Data);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTRN_TILEID_DATA", AV24Trn_TileId_Data);
-         }
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          if ( context.isAjaxRequest( ) )
@@ -2149,8 +1932,9 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vTRN_COLID", GetSecureSignedToken( "", AV7Trn_ColId, context));
          GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vINSERT_TRN_ROWID", AV13Insert_Trn_RowId.ToString());
-         GxWebStd.gx_hidden_field( context, "vINSERT_TRN_TILEID", AV23Insert_Trn_TileId.ToString());
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV26Pgmname));
+         GxWebStd.gx_hidden_field( context, "vINSERT_TILEID", AV26Insert_TileId.ToString());
+         GxWebStd.gx_hidden_field( context, "TILEID", A407TileId.ToString());
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV27Pgmname));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_ROWID_Objectcall", StringUtil.RTrim( Combo_trn_rowid_Objectcall));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_ROWID_Cls", StringUtil.RTrim( Combo_trn_rowid_Cls));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_ROWID_Selectedvalue_set", StringUtil.RTrim( Combo_trn_rowid_Selectedvalue_set));
@@ -2160,15 +1944,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_ROWID_Datalistproc", StringUtil.RTrim( Combo_trn_rowid_Datalistproc));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_ROWID_Datalistprocparametersprefix", StringUtil.RTrim( Combo_trn_rowid_Datalistprocparametersprefix));
          GxWebStd.gx_hidden_field( context, "COMBO_TRN_ROWID_Emptyitem", StringUtil.BoolToStr( Combo_trn_rowid_Emptyitem));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Objectcall", StringUtil.RTrim( Combo_trn_tileid_Objectcall));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Cls", StringUtil.RTrim( Combo_trn_tileid_Cls));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Selectedvalue_set", StringUtil.RTrim( Combo_trn_tileid_Selectedvalue_set));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Selectedtext_set", StringUtil.RTrim( Combo_trn_tileid_Selectedtext_set));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Gamoauthtoken", StringUtil.RTrim( Combo_trn_tileid_Gamoauthtoken));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Enabled", StringUtil.BoolToStr( Combo_trn_tileid_Enabled));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Datalistproc", StringUtil.RTrim( Combo_trn_tileid_Datalistproc));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Datalistprocparametersprefix", StringUtil.RTrim( Combo_trn_tileid_Datalistprocparametersprefix));
-         GxWebStd.gx_hidden_field( context, "COMBO_TRN_TILEID_Emptyitem", StringUtil.BoolToStr( Combo_trn_tileid_Emptyitem));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -2256,13 +2031,13 @@ namespace GeneXus.Programs {
       {
          A319Trn_RowId = Guid.Empty;
          AssignAttri("", false, "A319Trn_RowId", A319Trn_RowId.ToString());
-         A264Trn_TileId = Guid.Empty;
-         AssignAttri("", false, "A264Trn_TileId", A264Trn_TileId.ToString());
+         A407TileId = Guid.Empty;
+         AssignAttri("", false, "A407TileId", A407TileId.ToString());
          A327Trn_ColName = "";
          AssignAttri("", false, "A327Trn_ColName", A327Trn_ColName);
          Z327Trn_ColName = "";
          Z319Trn_RowId = Guid.Empty;
-         Z264Trn_TileId = Guid.Empty;
+         Z407TileId = Guid.Empty;
       }
 
       protected void InitAll1972( )
@@ -2289,7 +2064,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410161844381", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021972892", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2305,10 +2080,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_col.js", "?202410161844383", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("trn_col.js", "?20241021972894", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2323,10 +2095,6 @@ namespace GeneXus.Programs {
          edtTrn_RowId_Internalname = "TRN_ROWID";
          divTablesplittedtrn_rowid_Internalname = "TABLESPLITTEDTRN_ROWID";
          edtTrn_ColName_Internalname = "TRN_COLNAME";
-         lblTextblocktrn_tileid_Internalname = "TEXTBLOCKTRN_TILEID";
-         Combo_trn_tileid_Internalname = "COMBO_TRN_TILEID";
-         edtTrn_TileId_Internalname = "TRN_TILEID";
-         divTablesplittedtrn_tileid_Internalname = "TABLESPLITTEDTRN_TILEID";
          divTableattributes_Internalname = "TABLEATTRIBUTES";
          divTablecontent_Internalname = "TABLECONTENT";
          grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
@@ -2336,8 +2104,6 @@ namespace GeneXus.Programs {
          divTablemain_Internalname = "TABLEMAIN";
          edtavCombotrn_rowid_Internalname = "vCOMBOTRN_ROWID";
          divSectionattribute_trn_rowid_Internalname = "SECTIONATTRIBUTE_TRN_ROWID";
-         edtavCombotrn_tileid_Internalname = "vCOMBOTRN_TILEID";
-         divSectionattribute_trn_tileid_Internalname = "SECTIONATTRIBUTE_TRN_TILEID";
          divHtml_bottomauxiliarcontrols_Internalname = "HTML_BOTTOMAUXILIARCONTROLS";
          divLayoutmaintable_Internalname = "LAYOUTMAINTABLE";
          Form.Internalname = "FORM";
@@ -2356,9 +2122,6 @@ namespace GeneXus.Programs {
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
          Form.Caption = context.GetMessage( "Trn_Col", "");
-         edtavCombotrn_tileid_Jsonclick = "";
-         edtavCombotrn_tileid_Enabled = 0;
-         edtavCombotrn_tileid_Visible = 1;
          edtavCombotrn_rowid_Jsonclick = "";
          edtavCombotrn_rowid_Enabled = 0;
          edtavCombotrn_rowid_Visible = 1;
@@ -2367,15 +2130,6 @@ namespace GeneXus.Programs {
          bttBtntrn_cancel_Visible = 1;
          bttBtntrn_enter_Enabled = 1;
          bttBtntrn_enter_Visible = 1;
-         edtTrn_TileId_Jsonclick = "";
-         edtTrn_TileId_Enabled = 1;
-         edtTrn_TileId_Visible = 1;
-         Combo_trn_tileid_Emptyitem = Convert.ToBoolean( 0);
-         Combo_trn_tileid_Datalistprocparametersprefix = " \"ComboName\": \"Trn_TileId\", \"TrnMode\": \"INS\", \"IsDynamicCall\": true, \"Trn_ColId\": \"00000000-0000-0000-0000-000000000000\"";
-         Combo_trn_tileid_Datalistproc = "Trn_ColLoadDVCombo";
-         Combo_trn_tileid_Cls = "ExtendedCombo Attribute";
-         Combo_trn_tileid_Caption = "";
-         Combo_trn_tileid_Enabled = Convert.ToBoolean( -1);
          edtTrn_ColName_Jsonclick = "";
          edtTrn_ColName_Enabled = 1;
          edtTrn_RowId_Jsonclick = "";
@@ -2442,21 +2196,6 @@ namespace GeneXus.Programs {
          /*  Sending validation outputs */
       }
 
-      public void Valid_Trn_tileid( )
-      {
-         /* Using cursor T001917 */
-         pr_default.execute(15, new Object[] {A264Trn_TileId});
-         if ( (pr_default.getStatus(15) == 101) )
-         {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Tile", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_TILEID");
-            AnyError = 1;
-            GX_FocusControl = edtTrn_TileId_Internalname;
-         }
-         pr_default.close(15);
-         dynload_actions( ) ;
-         /*  Sending validation outputs */
-      }
-
       public override bool SupportAjaxEvent( )
       {
          return true ;
@@ -2466,16 +2205,12 @@ namespace GeneXus.Programs {
       {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7Trn_ColId","fld":"vTRN_COLID","hsh":true}]}""");
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7Trn_ColId","fld":"vTRN_COLID","hsh":true}]}""");
-         setEventMetadata("AFTER TRN","""{"handler":"E14192","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
-         setEventMetadata("COMBO_TRN_TILEID.ONOPTIONCLICKED","""{"handler":"E13192","iparms":[{"av":"Combo_trn_tileid_Selectedvalue_get","ctrl":"COMBO_TRN_TILEID","prop":"SelectedValue_get"}]""");
-         setEventMetadata("COMBO_TRN_TILEID.ONOPTIONCLICKED",""","oparms":[{"av":"AV25ComboTrn_TileId","fld":"vCOMBOTRN_TILEID"}]}""");
+         setEventMetadata("AFTER TRN","""{"handler":"E13192","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
          setEventMetadata("COMBO_TRN_ROWID.ONOPTIONCLICKED","""{"handler":"E12192","iparms":[{"av":"Combo_trn_rowid_Selectedvalue_get","ctrl":"COMBO_TRN_ROWID","prop":"SelectedValue_get"}]""");
          setEventMetadata("COMBO_TRN_ROWID.ONOPTIONCLICKED",""","oparms":[{"av":"AV20ComboTrn_RowId","fld":"vCOMBOTRN_ROWID"}]}""");
          setEventMetadata("VALID_TRN_COLID","""{"handler":"Valid_Trn_colid","iparms":[]}""");
          setEventMetadata("VALID_TRN_ROWID","""{"handler":"Valid_Trn_rowid","iparms":[{"av":"A319Trn_RowId","fld":"TRN_ROWID"}]}""");
-         setEventMetadata("VALID_TRN_TILEID","""{"handler":"Valid_Trn_tileid","iparms":[{"av":"A264Trn_TileId","fld":"TRN_TILEID"}]}""");
          setEventMetadata("VALIDV_COMBOTRN_ROWID","""{"handler":"Validv_Combotrn_rowid","iparms":[]}""");
-         setEventMetadata("VALIDV_COMBOTRN_TILEID","""{"handler":"Validv_Combotrn_tileid","iparms":[]}""");
          return  ;
       }
 
@@ -2492,7 +2227,6 @@ namespace GeneXus.Programs {
       {
          pr_default.close(1);
          pr_default.close(14);
-         pr_default.close(15);
       }
 
       public override void initialize( )
@@ -2503,15 +2237,14 @@ namespace GeneXus.Programs {
          Z328Trn_ColId = Guid.Empty;
          Z327Trn_ColName = "";
          Z319Trn_RowId = Guid.Empty;
-         Z264Trn_TileId = Guid.Empty;
+         Z407TileId = Guid.Empty;
          N319Trn_RowId = Guid.Empty;
-         N264Trn_TileId = Guid.Empty;
-         Combo_trn_tileid_Selectedvalue_get = "";
+         N407TileId = Guid.Empty;
          Combo_trn_rowid_Selectedvalue_get = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          A319Trn_RowId = Guid.Empty;
-         A264Trn_TileId = Guid.Empty;
+         A407TileId = Guid.Empty;
          GXKey = "";
          GXDecQS = "";
          PreviousTooltip = "";
@@ -2527,17 +2260,13 @@ namespace GeneXus.Programs {
          AV16DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV15Trn_RowId_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          A327Trn_ColName = "";
-         lblTextblocktrn_tileid_Jsonclick = "";
-         ucCombo_trn_tileid = new GXUserControl();
-         AV24Trn_TileId_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          bttBtntrn_enter_Jsonclick = "";
          bttBtntrn_cancel_Jsonclick = "";
          bttBtntrn_delete_Jsonclick = "";
          AV20ComboTrn_RowId = Guid.Empty;
-         AV25ComboTrn_TileId = Guid.Empty;
          AV13Insert_Trn_RowId = Guid.Empty;
-         AV23Insert_Trn_TileId = Guid.Empty;
-         AV26Pgmname = "";
+         AV26Insert_TileId = Guid.Empty;
+         AV27Pgmname = "";
          Combo_trn_rowid_Objectcall = "";
          Combo_trn_rowid_Class = "";
          Combo_trn_rowid_Icontype = "";
@@ -2563,31 +2292,6 @@ namespace GeneXus.Programs {
          Combo_trn_rowid_Selectalltext = "";
          Combo_trn_rowid_Multiplevaluesseparator = "";
          Combo_trn_rowid_Addnewoptiontext = "";
-         Combo_trn_tileid_Objectcall = "";
-         Combo_trn_tileid_Class = "";
-         Combo_trn_tileid_Icontype = "";
-         Combo_trn_tileid_Icon = "";
-         Combo_trn_tileid_Tooltip = "";
-         Combo_trn_tileid_Selectedvalue_set = "";
-         Combo_trn_tileid_Selectedtext_set = "";
-         Combo_trn_tileid_Selectedtext_get = "";
-         Combo_trn_tileid_Gamoauthtoken = "";
-         Combo_trn_tileid_Ddointernalname = "";
-         Combo_trn_tileid_Titlecontrolalign = "";
-         Combo_trn_tileid_Dropdownoptionstype = "";
-         Combo_trn_tileid_Titlecontrolidtoreplace = "";
-         Combo_trn_tileid_Datalisttype = "";
-         Combo_trn_tileid_Datalistfixedvalues = "";
-         Combo_trn_tileid_Remoteservicesparameters = "";
-         Combo_trn_tileid_Htmltemplate = "";
-         Combo_trn_tileid_Multiplevaluestype = "";
-         Combo_trn_tileid_Loadingdata = "";
-         Combo_trn_tileid_Noresultsfound = "";
-         Combo_trn_tileid_Emptyitemtext = "";
-         Combo_trn_tileid_Onlyselectedvalues = "";
-         Combo_trn_tileid_Selectalltext = "";
-         Combo_trn_tileid_Multiplevaluesseparator = "";
-         Combo_trn_tileid_Addnewoptiontext = "";
          forbiddenHiddens = new GXProperties();
          hsh = "";
          sMode72 = "";
@@ -2611,22 +2315,22 @@ namespace GeneXus.Programs {
          T00196_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          T00196_A327Trn_ColName = new string[] {""} ;
          T00196_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         T00196_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         T00196_A407TileId = new Guid[] {Guid.Empty} ;
          T00194_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         T00195_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         T00195_A407TileId = new Guid[] {Guid.Empty} ;
          T00197_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         T00198_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         T00198_A407TileId = new Guid[] {Guid.Empty} ;
          T00199_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          T00193_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          T00193_A327Trn_ColName = new string[] {""} ;
          T00193_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         T00193_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         T00193_A407TileId = new Guid[] {Guid.Empty} ;
          T001910_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          T001911_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          T00192_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          T00192_A327Trn_ColName = new string[] {""} ;
          T00192_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         T00192_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         T00192_A407TileId = new Guid[] {Guid.Empty} ;
          T001915_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          sDynURL = "";
          FormProcess = "";
@@ -2634,7 +2338,6 @@ namespace GeneXus.Programs {
          GXEncryptionTmp = "";
          i327Trn_ColName = "";
          T001916_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         T001917_A264Trn_TileId = new Guid[] {Guid.Empty} ;
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_col__gam(),
             new Object[][] {
             }
@@ -2642,25 +2345,25 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_col__default(),
             new Object[][] {
                 new Object[] {
-               T00192_A328Trn_ColId, T00192_A327Trn_ColName, T00192_A319Trn_RowId, T00192_A264Trn_TileId
+               T00192_A328Trn_ColId, T00192_A327Trn_ColName, T00192_A319Trn_RowId, T00192_A407TileId
                }
                , new Object[] {
-               T00193_A328Trn_ColId, T00193_A327Trn_ColName, T00193_A319Trn_RowId, T00193_A264Trn_TileId
+               T00193_A328Trn_ColId, T00193_A327Trn_ColName, T00193_A319Trn_RowId, T00193_A407TileId
                }
                , new Object[] {
                T00194_A319Trn_RowId
                }
                , new Object[] {
-               T00195_A264Trn_TileId
+               T00195_A407TileId
                }
                , new Object[] {
-               T00196_A328Trn_ColId, T00196_A327Trn_ColName, T00196_A319Trn_RowId, T00196_A264Trn_TileId
+               T00196_A328Trn_ColId, T00196_A327Trn_ColName, T00196_A319Trn_RowId, T00196_A407TileId
                }
                , new Object[] {
                T00197_A319Trn_RowId
                }
                , new Object[] {
-               T00198_A264Trn_TileId
+               T00198_A407TileId
                }
                , new Object[] {
                T00199_A328Trn_ColId
@@ -2683,14 +2386,11 @@ namespace GeneXus.Programs {
                , new Object[] {
                T001916_A319Trn_RowId
                }
-               , new Object[] {
-               T001917_A264Trn_TileId
-               }
             }
          );
          Z328Trn_ColId = Guid.NewGuid( );
          A328Trn_ColId = Guid.NewGuid( );
-         AV26Pgmname = "Trn_Col";
+         AV27Pgmname = "Trn_Col";
       }
 
       private short GxWebError ;
@@ -2706,8 +2406,6 @@ namespace GeneXus.Programs {
       private int edtTrn_RowId_Visible ;
       private int edtTrn_RowId_Enabled ;
       private int edtTrn_ColName_Enabled ;
-      private int edtTrn_TileId_Visible ;
-      private int edtTrn_TileId_Enabled ;
       private int bttBtntrn_enter_Visible ;
       private int bttBtntrn_enter_Enabled ;
       private int bttBtntrn_cancel_Visible ;
@@ -2715,17 +2413,12 @@ namespace GeneXus.Programs {
       private int bttBtntrn_delete_Enabled ;
       private int edtavCombotrn_rowid_Visible ;
       private int edtavCombotrn_rowid_Enabled ;
-      private int edtavCombotrn_tileid_Visible ;
-      private int edtavCombotrn_tileid_Enabled ;
       private int Combo_trn_rowid_Datalistupdateminimumcharacters ;
       private int Combo_trn_rowid_Gxcontroltype ;
-      private int Combo_trn_tileid_Datalistupdateminimumcharacters ;
-      private int Combo_trn_tileid_Gxcontroltype ;
-      private int AV27GXV1 ;
+      private int AV28GXV1 ;
       private int idxLst ;
       private string sPrefix ;
       private string wcpOGx_mode ;
-      private string Combo_trn_tileid_Selectedvalue_get ;
       private string Combo_trn_rowid_Selectedvalue_get ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -2758,16 +2451,6 @@ namespace GeneXus.Programs {
       private string edtTrn_RowId_Jsonclick ;
       private string edtTrn_ColName_Internalname ;
       private string edtTrn_ColName_Jsonclick ;
-      private string divTablesplittedtrn_tileid_Internalname ;
-      private string lblTextblocktrn_tileid_Internalname ;
-      private string lblTextblocktrn_tileid_Jsonclick ;
-      private string Combo_trn_tileid_Caption ;
-      private string Combo_trn_tileid_Cls ;
-      private string Combo_trn_tileid_Datalistproc ;
-      private string Combo_trn_tileid_Datalistprocparametersprefix ;
-      private string Combo_trn_tileid_Internalname ;
-      private string edtTrn_TileId_Internalname ;
-      private string edtTrn_TileId_Jsonclick ;
       private string bttBtntrn_enter_Internalname ;
       private string bttBtntrn_enter_Jsonclick ;
       private string bttBtntrn_cancel_Internalname ;
@@ -2778,10 +2461,7 @@ namespace GeneXus.Programs {
       private string divSectionattribute_trn_rowid_Internalname ;
       private string edtavCombotrn_rowid_Internalname ;
       private string edtavCombotrn_rowid_Jsonclick ;
-      private string divSectionattribute_trn_tileid_Internalname ;
-      private string edtavCombotrn_tileid_Internalname ;
-      private string edtavCombotrn_tileid_Jsonclick ;
-      private string AV26Pgmname ;
+      private string AV27Pgmname ;
       private string Combo_trn_rowid_Objectcall ;
       private string Combo_trn_rowid_Class ;
       private string Combo_trn_rowid_Icontype ;
@@ -2807,31 +2487,6 @@ namespace GeneXus.Programs {
       private string Combo_trn_rowid_Selectalltext ;
       private string Combo_trn_rowid_Multiplevaluesseparator ;
       private string Combo_trn_rowid_Addnewoptiontext ;
-      private string Combo_trn_tileid_Objectcall ;
-      private string Combo_trn_tileid_Class ;
-      private string Combo_trn_tileid_Icontype ;
-      private string Combo_trn_tileid_Icon ;
-      private string Combo_trn_tileid_Tooltip ;
-      private string Combo_trn_tileid_Selectedvalue_set ;
-      private string Combo_trn_tileid_Selectedtext_set ;
-      private string Combo_trn_tileid_Selectedtext_get ;
-      private string Combo_trn_tileid_Gamoauthtoken ;
-      private string Combo_trn_tileid_Ddointernalname ;
-      private string Combo_trn_tileid_Titlecontrolalign ;
-      private string Combo_trn_tileid_Dropdownoptionstype ;
-      private string Combo_trn_tileid_Titlecontrolidtoreplace ;
-      private string Combo_trn_tileid_Datalisttype ;
-      private string Combo_trn_tileid_Datalistfixedvalues ;
-      private string Combo_trn_tileid_Remoteservicesparameters ;
-      private string Combo_trn_tileid_Htmltemplate ;
-      private string Combo_trn_tileid_Multiplevaluestype ;
-      private string Combo_trn_tileid_Loadingdata ;
-      private string Combo_trn_tileid_Noresultsfound ;
-      private string Combo_trn_tileid_Emptyitemtext ;
-      private string Combo_trn_tileid_Onlyselectedvalues ;
-      private string Combo_trn_tileid_Selectalltext ;
-      private string Combo_trn_tileid_Multiplevaluesseparator ;
-      private string Combo_trn_tileid_Addnewoptiontext ;
       private string hsh ;
       private string sMode72 ;
       private string sEvt ;
@@ -2849,7 +2504,6 @@ namespace GeneXus.Programs {
       private bool toggleJsOutput ;
       private bool wbErr ;
       private bool Combo_trn_rowid_Emptyitem ;
-      private bool Combo_trn_tileid_Emptyitem ;
       private bool Combo_trn_rowid_Enabled ;
       private bool Combo_trn_rowid_Visible ;
       private bool Combo_trn_rowid_Allowmultipleselection ;
@@ -2858,14 +2512,6 @@ namespace GeneXus.Programs {
       private bool Combo_trn_rowid_Includeonlyselectedoption ;
       private bool Combo_trn_rowid_Includeselectalloption ;
       private bool Combo_trn_rowid_Includeaddnewoption ;
-      private bool Combo_trn_tileid_Enabled ;
-      private bool Combo_trn_tileid_Visible ;
-      private bool Combo_trn_tileid_Allowmultipleselection ;
-      private bool Combo_trn_tileid_Isgriditem ;
-      private bool Combo_trn_tileid_Hasdescription ;
-      private bool Combo_trn_tileid_Includeonlyselectedoption ;
-      private bool Combo_trn_tileid_Includeselectalloption ;
-      private bool Combo_trn_tileid_Includeaddnewoption ;
       private bool returnInSub ;
       private string AV19Combo_DataJson ;
       private string Z327Trn_ColName ;
@@ -2876,27 +2522,24 @@ namespace GeneXus.Programs {
       private Guid wcpOAV7Trn_ColId ;
       private Guid Z328Trn_ColId ;
       private Guid Z319Trn_RowId ;
-      private Guid Z264Trn_TileId ;
+      private Guid Z407TileId ;
       private Guid N319Trn_RowId ;
-      private Guid N264Trn_TileId ;
+      private Guid N407TileId ;
       private Guid A319Trn_RowId ;
-      private Guid A264Trn_TileId ;
+      private Guid A407TileId ;
       private Guid AV7Trn_ColId ;
       private Guid A328Trn_ColId ;
       private Guid AV20ComboTrn_RowId ;
-      private Guid AV25ComboTrn_TileId ;
       private Guid AV13Insert_Trn_RowId ;
-      private Guid AV23Insert_Trn_TileId ;
+      private Guid AV26Insert_TileId ;
       private IGxSession AV12WebSession ;
       private GXProperties forbiddenHiddens ;
       private GXUserControl ucCombo_trn_rowid ;
-      private GXUserControl ucCombo_trn_tileid ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV16DDO_TitleSettingsIcons ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV15Trn_RowId_Data ;
-      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV24Trn_TileId_Data ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
       private GeneXus.Programs.genexussecurity.SdtGAMSession AV21GAMSession ;
@@ -2907,25 +2550,24 @@ namespace GeneXus.Programs {
       private Guid[] T00196_A328Trn_ColId ;
       private string[] T00196_A327Trn_ColName ;
       private Guid[] T00196_A319Trn_RowId ;
-      private Guid[] T00196_A264Trn_TileId ;
+      private Guid[] T00196_A407TileId ;
       private Guid[] T00194_A319Trn_RowId ;
-      private Guid[] T00195_A264Trn_TileId ;
+      private Guid[] T00195_A407TileId ;
       private Guid[] T00197_A319Trn_RowId ;
-      private Guid[] T00198_A264Trn_TileId ;
+      private Guid[] T00198_A407TileId ;
       private Guid[] T00199_A328Trn_ColId ;
       private Guid[] T00193_A328Trn_ColId ;
       private string[] T00193_A327Trn_ColName ;
       private Guid[] T00193_A319Trn_RowId ;
-      private Guid[] T00193_A264Trn_TileId ;
+      private Guid[] T00193_A407TileId ;
       private Guid[] T001910_A328Trn_ColId ;
       private Guid[] T001911_A328Trn_ColId ;
       private Guid[] T00192_A328Trn_ColId ;
       private string[] T00192_A327Trn_ColName ;
       private Guid[] T00192_A319Trn_RowId ;
-      private Guid[] T00192_A264Trn_TileId ;
+      private Guid[] T00192_A407TileId ;
       private Guid[] T001915_A328Trn_ColId ;
       private Guid[] T001916_A319Trn_RowId ;
-      private Guid[] T001917_A264Trn_TileId ;
       private IDataStoreProvider pr_gam ;
    }
 
@@ -2982,7 +2624,6 @@ namespace GeneXus.Programs {
        ,new UpdateCursor(def[12])
        ,new ForEachCursor(def[13])
        ,new ForEachCursor(def[14])
-       ,new ForEachCursor(def[15])
      };
   }
 
@@ -3005,7 +2646,7 @@ namespace GeneXus.Programs {
         };
         Object[] prmT00195;
         prmT00195 = new Object[] {
-        new ParDef("Trn_TileId",GXType.UniqueIdentifier,36,0)
+        new ParDef("TileId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT00196;
         prmT00196 = new Object[] {
@@ -3017,7 +2658,7 @@ namespace GeneXus.Programs {
         };
         Object[] prmT00198;
         prmT00198 = new Object[] {
-        new ParDef("Trn_TileId",GXType.UniqueIdentifier,36,0)
+        new ParDef("TileId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT00199;
         prmT00199 = new Object[] {
@@ -3036,13 +2677,13 @@ namespace GeneXus.Programs {
         new ParDef("Trn_ColId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("Trn_ColName",GXType.VarChar,100,0) ,
         new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_TileId",GXType.UniqueIdentifier,36,0)
+        new ParDef("TileId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT001913;
         prmT001913 = new Object[] {
         new ParDef("Trn_ColName",GXType.VarChar,100,0) ,
         new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_TileId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("TileId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("Trn_ColId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT001914;
@@ -3056,27 +2697,22 @@ namespace GeneXus.Programs {
         prmT001916 = new Object[] {
         new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0)
         };
-        Object[] prmT001917;
-        prmT001917 = new Object[] {
-        new ParDef("Trn_TileId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("T00192", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId  FOR UPDATE OF Trn_Col1 NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT00192,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T00193", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00193,1, GxCacheFrequency.OFF ,true,false )
+            new CursorDef("T00192", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, TileId FROM Trn_Col WHERE Trn_ColId = :Trn_ColId  FOR UPDATE OF Trn_Col NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT00192,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T00193", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, TileId FROM Trn_Col WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00193,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T00194", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00194,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T00195", "SELECT Trn_TileId FROM Trn_Tile WHERE Trn_TileId = :Trn_TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00195,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T00196", "SELECT TM1.Trn_ColId, TM1.Trn_ColName, TM1.Trn_RowId, TM1.Trn_TileId FROM Trn_Col1 TM1 WHERE TM1.Trn_ColId = :Trn_ColId ORDER BY TM1.Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00196,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T00195", "SELECT TileId FROM Trn_Tile WHERE TileId = :TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00195,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T00196", "SELECT TM1.Trn_ColId, TM1.Trn_ColName, TM1.Trn_RowId, TM1.TileId FROM Trn_Col TM1 WHERE TM1.Trn_ColId = :Trn_ColId ORDER BY TM1.Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00196,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T00197", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00197,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T00198", "SELECT Trn_TileId FROM Trn_Tile WHERE Trn_TileId = :Trn_TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00198,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T00199", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00199,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T001910", "SELECT Trn_ColId FROM Trn_Col1 WHERE ( Trn_ColId > :Trn_ColId) ORDER BY Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001910,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T001911", "SELECT Trn_ColId FROM Trn_Col1 WHERE ( Trn_ColId < :Trn_ColId) ORDER BY Trn_ColId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT001911,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T001912", "SAVEPOINT gxupdate;INSERT INTO Trn_Col1(Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId) VALUES(:Trn_ColId, :Trn_ColName, :Trn_RowId, :Trn_TileId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001912)
-           ,new CursorDef("T001913", "SAVEPOINT gxupdate;UPDATE Trn_Col1 SET Trn_ColName=:Trn_ColName, Trn_RowId=:Trn_RowId, Trn_TileId=:Trn_TileId  WHERE Trn_ColId = :Trn_ColId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001913)
-           ,new CursorDef("T001914", "SAVEPOINT gxupdate;DELETE FROM Trn_Col1  WHERE Trn_ColId = :Trn_ColId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001914)
-           ,new CursorDef("T001915", "SELECT Trn_ColId FROM Trn_Col1 ORDER BY Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001915,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T00198", "SELECT TileId FROM Trn_Tile WHERE TileId = :TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00198,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T00199", "SELECT Trn_ColId FROM Trn_Col WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00199,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T001910", "SELECT Trn_ColId FROM Trn_Col WHERE ( Trn_ColId > :Trn_ColId) ORDER BY Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001910,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("T001911", "SELECT Trn_ColId FROM Trn_Col WHERE ( Trn_ColId < :Trn_ColId) ORDER BY Trn_ColId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT001911,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("T001912", "SAVEPOINT gxupdate;INSERT INTO Trn_Col(Trn_ColId, Trn_ColName, Trn_RowId, TileId) VALUES(:Trn_ColId, :Trn_ColName, :Trn_RowId, :TileId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001912)
+           ,new CursorDef("T001913", "SAVEPOINT gxupdate;UPDATE Trn_Col SET Trn_ColName=:Trn_ColName, Trn_RowId=:Trn_RowId, TileId=:TileId  WHERE Trn_ColId = :Trn_ColId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001913)
+           ,new CursorDef("T001914", "SAVEPOINT gxupdate;DELETE FROM Trn_Col  WHERE Trn_ColId = :Trn_ColId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001914)
+           ,new CursorDef("T001915", "SELECT Trn_ColId FROM Trn_Col ORDER BY Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001915,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T001916", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001916,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T001917", "SELECT Trn_TileId FROM Trn_Tile WHERE Trn_TileId = :Trn_TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001917,1, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -3130,9 +2766,6 @@ namespace GeneXus.Programs {
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               return;
            case 14 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 15 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               return;
      }

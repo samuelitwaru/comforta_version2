@@ -1205,7 +1205,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016444750", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021991759", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1221,7 +1221,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_colview.js", "?2024101016444750", false, true);
+         context.AddJavascriptSource("trn_colview.js", "?20241021991759", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1498,8 +1498,8 @@ namespace GeneXus.Programs {
           new ParDef("AV10Trn_ColId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H005T2", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_ColId = :AV10Trn_ColId ORDER BY Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005T2,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("H005T3", "SELECT Trn_ColId, Trn_ColName FROM Trn_Col1 WHERE Trn_ColId = :AV10Trn_ColId ORDER BY Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005T3,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("H005T2", "SELECT Trn_ColId FROM Trn_Col WHERE Trn_ColId = :AV10Trn_ColId ORDER BY Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005T2,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("H005T3", "SELECT Trn_ColId, Trn_ColName FROM Trn_Col WHERE Trn_ColId = :AV10Trn_ColId ORDER BY Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005T3,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }

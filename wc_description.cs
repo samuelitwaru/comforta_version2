@@ -224,7 +224,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WC_Description") ;
+            context.SendWebValue( context.GetMessage( "WC_Description", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -388,7 +388,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WC_Description" ;
+         return context.GetMessage( "WC_Description", "") ;
       }
 
       protected void WB6V0( )
@@ -426,7 +426,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavDescription_Internalname, "Description", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavDescription_Internalname, context.GetMessage( "Description", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Multiple line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 10,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Attribute";
@@ -464,7 +464,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WC_Description", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WC_Description", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1037,7 +1037,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202492818141169", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021934023", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1055,7 +1055,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_description.js", "?202492818141169", false, true);
+            context.AddJavascriptSource("wc_description.js", "?20241021934023", false, true);
          }
          /* End function include_jscripts */
       }

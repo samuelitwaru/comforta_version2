@@ -1,12 +1,413 @@
-function UC_AppToolBox(n){var t,r,u,f,i;this.setSDT_Tile=function(n){this.SDT_Tile=n};this.getSDT_Tile=function(){return this.SDT_Tile};this.setSDT_Page=function(n){this.SDT_Page=n};this.getSDT_Page=function(){return this.SDT_Page};this.setBC_Trn_TemplateCollection=function(n){this.BC_Trn_TemplateCollection=n};this.getBC_Trn_TemplateCollection=function(){return this.BC_Trn_TemplateCollection};this.setBC_Trn_ThemeCollection=function(n){this.BC_Trn_ThemeCollection=n};this.getBC_Trn_ThemeCollection=function(){return this.BC_Trn_ThemeCollection};t='<link rel="stylesheet" href="/Resources/UCGrapes/new-design/styles.css" /><link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/><script>\tfunction createBootstrapPage(pageData) {        let htmlString = \'\';        pageData.Row.forEach(row => {            htmlString += \'<div class="row p-2">\';                        row.Col.forEach(col => {                htmlString += `                   <div class="col px-2" data-gjs-selectable="false" style="min-height: 100px;">                   <button class="btn btn-primary btn-block" style="width: 100%; min-height: 100px;"                    onclick="window.location.href=\'${col.Tile.ToPageId}\'">                   ${col.Tile.TileName}                   <\/button>                   <\/div>                `;            });\t\t\t            htmlString += \'<\/div>\';        });\t        return htmlString;    }\tfunction createLayout(TileJson){\t\t\t\t\tconst small = `\t\t\t\t<div class="grid small" data-gjs-selectable="false" data-gjs-draggable="false"><\/div>\t\t\t`\t\tconst medium = `\t\t\t\t<div class="grid medium" data-gjs-selectable="false" data-gjs-draggable="false"><\/div>\t\t\t`\t\tconst large = `\t\t\t\t<div class="grid large" data-gjs-selectable="false" data-gjs-draggable="false"><\/div>\t\t\t`\t\tlet layout = `\t\t\t<div class="parent" data-gjs-selectable="false" data-gjs-droppable="false">\t\t\t`\t\tfor (let i = 0; i < TileJson.ChildTile.length; i++){\t\t\tvar childTile = TileJson.ChildTile[i]\t\t\tswitch (childTile.SG_TileWidth) {\t\t\t\tcase 1:\t\t\t\tlayout += small\t\t\t\tbreak;\t\t\t\tcase 2:\t\t\t\tlayout += medium\t\t\t\tbreak;\t\t\t\tcase 3:\t\t\t\tlayout += large\t\t\t\tbreak;\t\t\t\tdefault:\t\t\t\tlayout += large\t\t\t}\t\t\t}\t\tlayout += \'<\/div>\'\t\treturn layout\t}\tfunction loadScript(url, callback) {\t\tconst script = document.createElement(\'script\');\t\tscript.type = \'text/javascript\';\t\tscript.src = url;\t\t\t// Execute callback when the script is loaded\t\tscript.onload = function() {\t\t\tif (callback) {\t\t\t\tcallback();\t\t\t}\t\t};\t\t\t// Handle error in loading the script\t\tscript.onerror = function() {\t\t\tconsole.error(\'Failed to load script:\', url);\t\t};\t\t\tdocument.body.appendChild(script);\t}<\/script><div id=\'body\'><div class="navbar">  <h1>The APP toolbox builder<\/h1><\/div><div class="container">  <div class="sidebar-left">    <h3>TEMPLATES<\/h3>    <div class="template" id="gjs-templates"><\/div>  <\/div>  <div class="main-content">    <div class="toolbar">      <div class="toolbar-item" id="themes-button">        <i class="fas fa-palette"><\/i>        <span>Themes<\/span>        <div class="dropdown" id="themes-dropdown">              <div class="dropdown-content" id="theme-dropdown"><\/div>        <\/div>      <\/div>      <div class="toolbar-item">        <i class="fas fa-image"><\/i>        <span>Media<\/span>      <\/div>      <div class="toolbar-item">        <i class="fas fa-code-merge"><\/i>        <span>Mapping<\/span>      <\/div>      <div class="toolbar-item">        <i class="fas fa-upload"><\/i>        <span>Publish<\/span>      <\/div>    <\/div>    <div class="mobile-frame">      <div class="header">        <span id="current-time"><\/span>        <script>          function updateTime() {            const now = new Date();            let hours = now.getHours();            const minutes = now.getMinutes().toString().padStart(2, "0");            const ampm = hours >= 12 ? "PM" : "AM";            hours = hours % 12;            hours = hours ? hours : 12; // the hour \'0\' should be \'12\'            const timeString = `${hours}:${minutes} ${ampm}`;            document.getElementById(              "current-time"            ).textContent = timeString;\t\t\t          }          updateTime();\t\t  setInterval(updateTime, 10000); // Update the time every minute                  <\/script>        <span class="icons">          <i class="fas fa-signal"><\/i>          <i class="fas fa-wifi"><\/i>          <i class="fas fa-battery-full"><\/i>        <\/span>      <\/div>      <div id="gjs">\t  \t<style>\t\t\t.parent {\t\t\t\tdisplay: flex;\t\t\t\tflex-wrap: wrap;\t\t\t\tgap: 5px; /* Adds spacing between child elements */\t\t\t\tpadding: 5px;\t\t\t\theight: 100%;\t\t\t\tborder: 1.5px solid red;\t\t\t\t\t\t\t}\t\t\t.grid {\t\t\t\tmin-height: 100px;\t\t\t\tbackground-color: transparent; \t\t\t\theight: 100px; \t\t\t\tborder-radius: 5px; \t\t\t\tborder: 1.5px dashed #d6d3d3;\t\t\t}\t\t\t.small {\t\t\t\tflex: 0 1 calc(33.33%);  /* -10px accounts for 2x 5px gutter */\t\t\t}\t\t\t\t\t\t/* Medium div takes 50% of the parent width */\t\t\t.medium {\t\t\t\tflex: 0 1 calc(50%);\t\t\t}\t\t\t\t\t\t/* Large div takes 100% of the parent width */\t\t\t.large {\t\t\t\tflex: 0 1 100%;\t\t\t}\t\t<\/style>\t  <\/div>    <\/div>  <\/div>  <div class="sidebar-right">    <div class="tab-container" role="tablist">      <button        class="tab active"        role="tab"        aria-selected="true"        aria-controls="tools"        id="tools-tab"        data-target="tools"      >        Tools      <\/button>      <button        class="tab"        role="tab"        aria-selected="false"        aria-controls="properties"        id="properties-tab"        data-target="properties"      >        Properties      <\/button>    <\/div>    <div      id="tools"      class="tab-content active"      role="tabpanel"      aria-labelledby="tools-tab"    >      <div class="blocks" id="blocks"><\/div>    <\/div>    <div      id="properties"      class="tab-content"      role="tabpanel"      aria-labelledby="properties-tab"      hidden    >    <div class="properties" id="properties-panel"><\/div>      <!-- <div class="properties">        <h4>Traits<\/h4>        <div class="properties" id="properties-panel"><\/div>        <h4>Style<\/h4>        <div class="styles" id="styles-panel"><\/div>      <\/div> -->    <\/div>  <\/div><\/div><\/div><script src="/Resources/UCGrapes/new-design/plugin.js"><\/script>';r={};Mustache.parse(t);u=0;this.show=function(){f=n(this.getContainerControl());u=0;this.setHtml(Mustache.render(t,this,r));this.renderChildContainers();n(this.getContainerControl()).find("[data-event='OnSave']").on("save",this.onOnSaveHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});this.Start()};this.Scripts=[];this.Start=function(){function r(){const t=document.querySelector(".mobile-frame"),i=t.querySelector(".header"),r=document.getElementById("gjs"),u=t.clientHeight-i.clientHeight;r.style.height=`${u}px`;n.refresh()}function i(n){s.forEach(t=>{const i=t.dataset.target===n;t.classList.toggle("active",i);t.setAttribute("aria-selected",i)});h.forEach(t=>{const i=t.id===n;t.classList.toggle("active",i);t.hidden=!i});localStorage.setItem("activeTab",n)}function i(n){const t=document.querySelectorAll(".tab"),i=document.querySelectorAll(".tab-content");t.forEach(t=>{const i=t.dataset.target===n;t.classList.toggle("active",i);t.setAttribute("aria-selected",i)});i.forEach(t=>{const i=t.id===n;t.classList.toggle("active",i);t.hidden=!i});localStorage.setItem("activeTab",n)}console.log(this.SDT_Page);let f=createBootstrapPage(this.SDT_Page);const e=this.BC_Trn_ThemeCollection.map(n=>{let t={name:n.Trn_ThemeName,fontFamily:n.Trn_ThemeFontFamily,colors:{}};return n.Color.forEach(n=>{t.colors[n.ColorName]=n.ColorCode}),t}),a=this,n=grapesjs.init({container:"#gjs",fromElement:!0,height:"100%",width:"auto",plugins:["app-builder-plugin"],blockManager:{appendTo:"#blocks",custom:!0},traitManager:{appendTo:"#properties-panel",custom:!0},canvas:{styles:["https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css","https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",]},dragMode:"normal",panels:{defaults:[]},sidebarManager:!1,modal:!1,commands:!1,storageManager:!1});n.addComponents(f);this.BC_Trn_TemplateCollection.forEach(t=>{n.BlockManager.add(t.Trn_TemplateId,{label:t.Trn_TemplateName,category:"Templates",content:t.Trn_TemplateContent,media:t.Trn_TemplateMedia})});n.on("load",()=>{const t=document.getElementById("gjs-templates");t.innerHTML="";this.BC_Trn_TemplateCollection.forEach((i,r)=>{const u=document.createElement("div");u.className="template-wrapper";const e=document.createElement("div");e.className="template-block-number";e.textContent=r+1;const f=document.createElement("div");f.className="template-block";f.innerHTML=`
-							<div>${i.Trn_TemplateMedia}</div>
-							`;f.querySelector("img").addEventListener("dragstart",n=>{n.preventDefault()});u.addEventListener("click",()=>{n.addComponents(i.Trn_TemplateContent)});u.appendChild(e);u.appendChild(f);t.appendChild(u)})});r();window.addEventListener("resize",r);const o=document.querySelector(".tab-container"),s=document.querySelectorAll(".tab"),h=document.querySelectorAll(".tab-content");o.addEventListener("click",n=>{const t=n.target.closest(".tab");t&&i(t.dataset.target)});const c=localStorage.getItem("activeTab")||"tools";i(c);const u=document.getElementById("themes-button"),t=document.getElementById("themes-dropdown");u.addEventListener("click",function(n){n.stopPropagation();t.style.display=t.style.display==="block"?"none":"block"});window.addEventListener("click",function(n){n.preventDefault();u.contains(n.target)||t.contains(n.target)||(t.style.display="none")});const l=document.getElementById("theme-dropdown");e.forEach(n=>{const t=document.createElement("div");t.classList.add("theme-option");t.style.border=`1px solid ${n.colors.primaryColor}`;t.onclick=function(){setTheme(n,t)};const i=document.createElement("h3");i.textContent=n.name;i.style.color=n.colors.primaryColor;const r=document.createElement("div");r.classList.add("color-palette");const u=[n.colors.primaryColor,n.colors.secondaryColor,n.colors.backgroundColor,n.colors.textColor,n.colors.buttonBgColor,n.colors.accentColor,];u.forEach((n,t)=>{const i=document.createElement("div");i.classList.add("color-swatch");i.style.backgroundColor=n;i.title=["primary","secondary","background","text","button","accent"][t]+" color";r.appendChild(i)});t.appendChild(i);t.appendChild(r);l.appendChild(t)});n.on("component:selected",()=>{i("properties")})};this.CreateLayout=function(n){const r=`
+function UC_AppToolBox($) {
+	 this.setSDT_Tile = function(value) {
+			this.SDT_Tile = value;
+		}
+
+		this.getSDT_Tile = function() {
+			return this.SDT_Tile;
+		} 
+	 this.setSDT_Page = function(value) {
+			this.SDT_Page = value;
+		}
+
+		this.getSDT_Page = function() {
+			return this.SDT_Page;
+		} 
+	 this.setBC_Trn_TemplateCollection = function(value) {
+			this.BC_Trn_TemplateCollection = value;
+		}
+
+		this.getBC_Trn_TemplateCollection = function() {
+			return this.BC_Trn_TemplateCollection;
+		} 
+	 this.setBC_Trn_ThemeCollection = function(value) {
+			this.BC_Trn_ThemeCollection = value;
+		}
+
+		this.getBC_Trn_ThemeCollection = function() {
+			return this.BC_Trn_ThemeCollection;
+		} 
+	  
+
+	var template = '<link rel=\"stylesheet\" href=\"/Resources/UCGrapes/new-design/styles.css\" /><link  rel=\"stylesheet\"  href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"/><script>	function createBootstrapPage(pageData) {        let htmlString = \'\';        pageData.Row.forEach(row => {            htmlString += \'<div class=\"row p-2\">\';                        row.Col.forEach(col => {                htmlString += `                   <div class=\"col px-2\" data-gjs-selectable=\"false\" style=\"min-height: 100px;\">                   <button class=\"btn btn-primary btn-block\" style=\"width: 100%; min-height: 100px;\"                    onclick=\"window.location.href=\'${col.Tile.ToPageId}\'\">                   ${col.Tile.TileName}                   </button>                   </div>                `;            });			            htmlString += \'</div>\';        });	        return htmlString;    }	function createLayout(TileJson){					const small = `				<div class=\"grid small\" data-gjs-selectable=\"false\" data-gjs-draggable=\"false\"></div>			`		const medium = `				<div class=\"grid medium\" data-gjs-selectable=\"false\" data-gjs-draggable=\"false\"></div>			`		const large = `				<div class=\"grid large\" data-gjs-selectable=\"false\" data-gjs-draggable=\"false\"></div>			`		let layout = `			<div class=\"parent\" data-gjs-selectable=\"false\" data-gjs-droppable=\"false\">			`		for (let i = 0; i < TileJson.ChildTile.length; i++){			var childTile = TileJson.ChildTile[i]			switch (childTile.SG_TileWidth) {				case 1:				layout += small				break;				case 2:				layout += medium				break;				case 3:				layout += large				break;				default:				layout += large			}			}		layout += \'</div>\'		return layout	}	function loadScript(url, callback) {		const script = document.createElement(\'script\');		script.type = \'text/javascript\';		script.src = url;			// Execute callback when the script is loaded		script.onload = function() {			if (callback) {				callback();			}		};			// Handle error in loading the script		script.onerror = function() {			console.error(\'Failed to load script:\', url);		};			document.body.appendChild(script);	}</script><div id=\'body\'><div class=\"navbar\">  <h1>The APP toolbox builder</h1></div><div class=\"container\">  <div class=\"sidebar-left\">    <h3>TEMPLATES</h3>    <div class=\"template\" id=\"gjs-templates\"></div>  </div>  <div class=\"main-content\">    <div class=\"toolbar\">      <div class=\"toolbar-item\" id=\"themes-button\">        <i class=\"fas fa-palette\"></i>        <span>Themes</span>        <div class=\"dropdown\" id=\"themes-dropdown\">              <div class=\"dropdown-content\" id=\"theme-dropdown\"></div>        </div>      </div>      <div class=\"toolbar-item\">        <i class=\"fas fa-image\"></i>        <span>Media</span>      </div>      <div class=\"toolbar-item\">        <i class=\"fas fa-code-merge\"></i>        <span>Mapping</span>      </div>      <div class=\"toolbar-item\">        <i class=\"fas fa-upload\"></i>        <span>Publish</span>      </div>    </div>    <div class=\"mobile-frame\">      <div class=\"header\">        <span id=\"current-time\"></span>        <script>          function updateTime() {            const now = new Date();            let hours = now.getHours();            const minutes = now.getMinutes().toString().padStart(2, \"0\");            const ampm = hours >= 12 ? \"PM\" : \"AM\";            hours = hours % 12;            hours = hours ? hours : 12; // the hour \'0\' should be \'12\'            const timeString = `${hours}:${minutes} ${ampm}`;            document.getElementById(              \"current-time\"            ).textContent = timeString;			          }          updateTime();		  setInterval(updateTime, 10000); // Update the time every minute                  </script>        <span class=\"icons\">          <i class=\"fas fa-signal\"></i>          <i class=\"fas fa-wifi\"></i>          <i class=\"fas fa-battery-full\"></i>        </span>      </div>      <div id=\"gjs\">	  	<style>			.parent {				display: flex;				flex-wrap: wrap;				gap: 5px; /* Adds spacing between child elements */				padding: 5px;				height: 100%;				border: 1.5px solid red;							}			.grid {				min-height: 100px;				background-color: transparent; 				height: 100px; 				border-radius: 5px; 				border: 1.5px dashed #d6d3d3;			}			.small {				flex: 0 1 calc(33.33%);  /* -10px accounts for 2x 5px gutter */			}						/* Medium div takes 50% of the parent width */			.medium {				flex: 0 1 calc(50%);			}						/* Large div takes 100% of the parent width */			.large {				flex: 0 1 100%;			}		</style>	  </div>    </div>  </div>  <div class=\"sidebar-right\">    <div class=\"tab-container\" role=\"tablist\">      <button        class=\"tab active\"        role=\"tab\"        aria-selected=\"true\"        aria-controls=\"tools\"        id=\"tools-tab\"        data-target=\"tools\"      >        Tools      </button>      <button        class=\"tab\"        role=\"tab\"        aria-selected=\"false\"        aria-controls=\"properties\"        id=\"properties-tab\"        data-target=\"properties\"      >        Properties      </button>    </div>    <div      id=\"tools\"      class=\"tab-content active\"      role=\"tabpanel\"      aria-labelledby=\"tools-tab\"    >      <div class=\"blocks\" id=\"blocks\"></div>    </div>    <div      id=\"properties\"      class=\"tab-content\"      role=\"tabpanel\"      aria-labelledby=\"properties-tab\"      hidden    >    <div class=\"properties\" id=\"properties-panel\"></div>      <!-- <div class=\"properties\">        <h4>Traits</h4>        <div class=\"properties\" id=\"properties-panel\"></div>        <h4>Style</h4>        <div class=\"styles\" id=\"styles-panel\"></div>      </div> -->    </div>  </div></div></div><script src=\"/Resources/UCGrapes/new-design/plugin.js\"></script>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnOnSave = 0; 
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnOnSave = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			$(this.getContainerControl())
+				.find("[data-event='OnSave']")
+				.on('save', this.onOnSaveHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+			this.Start(); 
+	}
+
+	this.Scripts = [];
+
+		this.Start = function() {
+
+				
+					console.log(this.SDT_Page)
+					
+					let layout = createBootstrapPage(this.SDT_Page)
+					
+					
+					//let layout = createLayout(this.SDT_Tile)
+					const themes = this.BC_Trn_ThemeCollection.map(theme => {
+						let res = {
+							name: theme.Trn_ThemeName, 
+							fontFamily: theme.Trn_ThemeFontFamily,
+							colors: {}
+						}
+						theme.Color.forEach(color => {
+							res.colors[color.ColorName] = color.ColorCode	
+						})
+						return res
+					})
+				
+				
+					
+			  		const UC = this
+					
+					const editor = grapesjs.init({
+						container: "#gjs",
+						fromElement: true,
+						height: "100%",
+						width: "auto",
+						plugins: ["app-builder-plugin"],
+						blockManager: {
+							appendTo: "#blocks",
+							custom: true,
+						},
+						traitManager: {
+							appendTo: "#properties-panel",
+							custom: true,
+						},
+						// styleManager: {
+						//   appendTo: "#styles-panel",
+						// },
+						canvas: {
+							styles: [
+							"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css",
+							"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
+							],
+						},
+						dragMode: "normal",
+						panels: { defaults: [] },
+						sidebarManager: false,
+						modal: false,
+						commands: false,
+						storageManager: false,
+			      	});
+				
+					editor.addComponents(layout);
+				
+					// Add blocks to BlockManager
+					this.BC_Trn_TemplateCollection.forEach((template) => {
+						editor.BlockManager.add(template.Trn_TemplateId, {
+							label: template.Trn_TemplateName,
+							category: "Templates",
+							content: template.Trn_TemplateContent, // Only the block content will be added to the canvas
+							media: template.Trn_TemplateMedia, // Media preview used for the sidebar
+						});
+					});
+				
+					
+				
+					// Load templates into the sidebar on editor load
+					editor.on("load", () => {
+						const templatesDiv = document.getElementById("gjs-templates");
+						templatesDiv.innerHTML = "";
+						
+						
+						this.BC_Trn_TemplateCollection.forEach((template, index) => {
+							const blockElement = document.createElement("div");
+							blockElement.className = "template-wrapper"; // Wrapper class for each template block
+							
+							// Create the number element
+							const numberElement = document.createElement("div");
+							numberElement.className = "template-block-number";
+							numberElement.textContent = index + 1; // Set the number
+							
+							const templateBlock = document.createElement("div");
+							templateBlock.className = "template-block";
+							templateBlock.innerHTML = `
+							<div>${template.Trn_TemplateMedia}</div>
+							`;
+							
+							templateBlock
+							.querySelector("img")
+							.addEventListener("dragstart", (e) => {
+								e.preventDefault(); // Prevent the image from being dragged
+							});
+							
+							blockElement.addEventListener("click", () => {
+								// Add the block content (HTML) to the canvas when clicked
+								editor.addComponents(template.Trn_TemplateContent);
+							});
+							
+							// Append number and template block to the wrapper
+							blockElement.appendChild(numberElement);
+							blockElement.appendChild(templateBlock);
+							templatesDiv.appendChild(blockElement);
+						});
+					});
+					// Update editor height based on available space
+					function updateEditorHeight() {
+						const mobileFrame = document.querySelector(".mobile-frame");
+						const header = mobileFrame.querySelector(".header");
+						const gjs = document.getElementById("gjs");
+					
+						const remainingHeight = mobileFrame.clientHeight - header.clientHeight;
+						gjs.style.height = `${remainingHeight}px`;
+						editor.refresh();
+					}
+
+					// Call the function initially and on window resize
+					updateEditorHeight();
+					window.addEventListener("resize", updateEditorHeight);
+
+			  		// Handle tab switching
+					
+					const tabContainer = document.querySelector(".tab-container");
+					const tabs = document.querySelectorAll(".tab");
+					const tabContents = document.querySelectorAll(".tab-content");
+					
+					function setActiveTab(targetId) {
+						tabs.forEach((tab) => {
+							const selected = tab.dataset.target === targetId;
+							tab.classList.toggle("active", selected);
+							tab.setAttribute("aria-selected", selected);
+						});
+						
+						tabContents.forEach((content) => {
+							const isActive = content.id === targetId;
+							content.classList.toggle("active", isActive);
+							content.hidden = !isActive;
+						});
+						
+						// Save active tab to localStorage
+						localStorage.setItem("activeTab", targetId);
+					}
+					
+					tabContainer.addEventListener("click", (event) => {
+						const tab = event.target.closest(".tab");
+						if (tab) {
+							setActiveTab(tab.dataset.target);
+						}
+					});
+					
+					// Restore active tab from localStorage
+					const activeTab = localStorage.getItem("activeTab") || "tools";
+					setActiveTab(activeTab);
+					
+					const themesButton = document.getElementById("themes-button");
+					const themesDropdown = document.getElementById("themes-dropdown");
+					
+					themesButton.addEventListener("click", function (event) {
+						event.stopPropagation();
+						themesDropdown.style.display =
+						themesDropdown.style.display === "block" ? "none" : "block";
+					});
+					
+					window.addEventListener("click", function (event) {
+						event.preventDefault();
+						if (
+						!themesButton.contains(event.target) &&
+						!themesDropdown.contains(event.target)
+						) {
+							themesDropdown.style.display = "none";
+						}
+					});
+				
+					// list the available themes
+					const themeDropdown = document.getElementById("theme-dropdown");
+					
+					
+					// Loop through each theme and generate the HTML for theme options
+					themes.forEach((theme) => {
+						// Create theme option div
+						const themeOption = document.createElement("div");
+						themeOption.classList.add("theme-option");
+						themeOption.style.border = `1px solid ${theme.colors.primaryColor}`; 
+						themeOption.onclick = function() { setTheme(theme, themeOption); };
+						
+						// Create theme title (h3)
+						const themeTitle = document.createElement("h3");
+						themeTitle.textContent = theme.name;
+						themeTitle.style.color = theme.colors.primaryColor; 
+						
+						// Create color palette div
+						const colorPalette = document.createElement("div");
+						colorPalette.classList.add("color-palette");
+						
+						
+						// Create color swatches for each of the theme's 6 colors
+						const colors = [
+							theme.colors.primaryColor,
+							theme.colors.secondaryColor,
+							theme.colors.backgroundColor,
+							theme.colors.textColor,
+							theme.colors.buttonBgColor,
+							theme.colors.accentColor,
+						];
+						
+						colors.forEach((color, index) => {
+							const swatch = document.createElement("div");
+							swatch.classList.add("color-swatch");
+							swatch.style.backgroundColor = color;
+							swatch.title = ["primary", "secondary", "background", "text", "button", "accent"][index] + " color";
+							colorPalette.appendChild(swatch);
+						});
+					
+						
+						
+						// Append title and color palette to the theme option
+						themeOption.appendChild(themeTitle);
+						themeOption.appendChild(colorPalette);			
+						
+						// Append the theme option to the dropdown
+						themeDropdown.appendChild(themeOption);
+					});
+
+					// Show properties in Properties tab
+					editor.on("component:selected", (model) => {
+						setActiveTab("properties");
+					});
+					
+					function setActiveTab(targetId) {
+						const tabs = document.querySelectorAll(".tab");
+						const tabContents = document.querySelectorAll(".tab-content");
+						
+						tabs.forEach((tab) => {
+							const selected = tab.dataset.target === targetId;
+							tab.classList.toggle("active", selected);
+							tab.setAttribute("aria-selected", selected);
+						});
+						
+						tabContents.forEach((content) => {
+							const isActive = content.id === targetId;
+							content.classList.toggle("active", isActive);
+							content.hidden = !isActive;
+						});
+						
+						// Save active tab to localStorage
+						localStorage.setItem("activeTab", targetId);
+					} 
+				
+			//		editor.on('block:drag:stop', (block) => {
+			//			const selectedComponent = editor.getSelected(); // Get the dropped component
+			//		
+			//			if (selectedComponent) {
+			//				const parentComponent = selectedComponent.parent(); // Get the parent container
+			//				
+			//				// If the component has a parent (which means it's inside a container)
+			//				if (parentComponent) {
+			//					// Get classes from the parent component
+			//					const parentClasses = parentComponent.getClasses();
+			//					
+			//					// Add the parent's classes to the selected component
+			//					selectedComponent.addClass(parentClasses);
+			//					
+			//					// Remove the parent container
+			//					parentComponent.remove(); // Remove the container (parent)
+			//					
+			//					// The component will keep the transferred classes from the parent
+			//					editor.addComponents(selectedComponent.toHTML()); // Add the dropped component
+			//				}
+			//			}
+			//			editor.runCommand('core:open-code')
+			//		});
+			//  
+				
+		}
+		this.CreateLayout = function(TileJson ) {
+
+					// this function generates a layout based on the tile loaded
+					const small = `
 							<div class="grid-item" style="flex: 1 1 100%; background-color: transparent; height: 100px; border-radius: 5px; border: 1.5px dashed #d6d3d3;" data-gjs-draggable="false"></div>
-						`,u=`
+						`
+					const medium = `
 							<div class="grid-item" style="flex: 1 1 49%; background-color: transparent; height: 100px; border-radius: 5px; border: 1.5px dashed #d6d3d3;" data-gjs-draggable="false"></div>
-						`,i=`
+						`
+					const large = `
 							<div class="grid-item" style="flex: 1 1 49%; background-color: transparent; height: 100px; border-radius: 5px; border: 1.5px dashed #d6d3d3;" data-gjs-draggable="false"></div>
-						`;let t=`
+						`
+					let layout = `
 						<div class="custom-template" style="display: flex; flex-direction: column; gap: 10px; padding: 10px; border: 1.5px dashed #d6d3d3;" data-gjs-droppable="false" data-gjs-draggable="false">
 							<div class="header" style="background-color: transparent; height: 100px; border-radius: 5px; border: 1.5px dashed #d6d3d3;" data-gjs-draggable="false"></div>
-						`;for(let e=0;e<n.ChildTile.length;e++){var f=n.ChildTile[e];switch(f.SG_TileWidth){case 1:t+=r;break;case 2:t+=u;break;case 3:t+=i;break;default:t+=i}}this.Layout=t};this.onOnSaveHandler=function(t){if(t){var i=t.currentTarget;t.preventDefault();this.SDT_TileCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.SDT_PageCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.BC_Trn_TemplateCollectionCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.BC_Trn_ThemeCollectionCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1}this.OnSave&&this.OnSave()};this.autoToggleVisibility=!0;i={};this.renderChildContainers=function(){f.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(t,r){var e=n(r),f=e.attr("data-slot"),u;u=i[f];u||(u=this.getChildContainer(f),i[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+						`
+					for (let i = 0; i < TileJson.ChildTile.length; i++){
+						var childTile = TileJson.ChildTile[i]
+						switch (childTile.SG_TileWidth) {
+							case 1:
+							layout += small
+							break;
+							case 2:
+							layout += medium
+							break;
+							case 3:
+							layout += large
+							break;
+							default:
+							layout += large
+						}	
+					}
+					this.Layout = layout
+				
+		}
+
+
+		this.onOnSaveHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 this.SDT_TileCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.SDT_PageCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.BC_Trn_TemplateCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.BC_Trn_ThemeCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 
+			}
+
+			if (this.OnSave) {
+				this.OnSave();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}

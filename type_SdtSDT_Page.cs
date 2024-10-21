@@ -64,6 +64,10 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("PageName", gxTpr_Pagename, false);
 
+			if (gxTv_SdtSDT_Page_Theme != null)
+			{
+				AddObjectProperty("Theme", gxTv_SdtSDT_Page_Theme, false);
+			}
 			if (gxTv_SdtSDT_Page_Row != null)
 			{
 				AddObjectProperty("Row", gxTv_SdtSDT_Page_Row, false);
@@ -104,6 +108,38 @@ namespace GeneXus.Programs
 		}
 
 
+
+		[SoapElement(ElementName="Theme")]
+		[XmlElement(ElementName="Theme")]
+		public GeneXus.Programs.SdtSDT_Theme gxTpr_Theme
+		{
+			get {
+				if ( gxTv_SdtSDT_Page_Theme == null )
+				{
+					gxTv_SdtSDT_Page_Theme = new GeneXus.Programs.SdtSDT_Theme(context);
+				}
+				return gxTv_SdtSDT_Page_Theme; 
+			}
+			set {
+				gxTv_SdtSDT_Page_Theme = value;
+				SetDirty("Theme");
+			}
+		}
+		public void gxTv_SdtSDT_Page_Theme_SetNull()
+		{
+			gxTv_SdtSDT_Page_Theme_N = true;
+			gxTv_SdtSDT_Page_Theme = null;
+		}
+
+		public bool gxTv_SdtSDT_Page_Theme_IsNull()
+		{
+			return gxTv_SdtSDT_Page_Theme == null;
+		}
+		public bool ShouldSerializegxTpr_Theme_Json()
+		{
+			return gxTv_SdtSDT_Page_Theme != null;
+
+		}
 
 
 		[SoapElement(ElementName="Row" )]
@@ -181,6 +217,9 @@ namespace GeneXus.Programs
 		{
 			gxTv_SdtSDT_Page_Pagename = "";
 
+			gxTv_SdtSDT_Page_Theme_N = true;
+
+
 			gxTv_SdtSDT_Page_Row_N = true;
 
 			return  ;
@@ -196,6 +235,10 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Page_Pagename;
+		 
+
+		protected GeneXus.Programs.SdtSDT_Theme gxTv_SdtSDT_Page_Theme = null;
+		protected bool gxTv_SdtSDT_Page_Theme_N;
 		 
 		protected bool gxTv_SdtSDT_Page_Row_N;
 		protected GXBaseCollection<GeneXus.Programs.SdtSDT_Row> gxTv_SdtSDT_Page_Row = null;  
@@ -241,7 +284,22 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Row", Order=2, EmitDefaultValue=false)]
+		[DataMember(Name="Theme", Order=2, EmitDefaultValue=false)]
+		public GeneXus.Programs.SdtSDT_Theme_RESTInterface gxTpr_Theme
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Theme_Json())
+					return new GeneXus.Programs.SdtSDT_Theme_RESTInterface(sdt.gxTpr_Theme);
+				else
+					return null;
+
+			}
+			set { 
+				sdt.gxTpr_Theme = value.sdt;
+			}
+		}
+
+		[DataMember(Name="Row", Order=3, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Row_RESTInterface> gxTpr_Row
 		{
 			get { 

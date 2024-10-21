@@ -1393,7 +1393,7 @@ namespace GeneXus.Programs {
             pr_default.execute(9, new Object[] {A310Trn_PageId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Tile", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Tile", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);
@@ -1774,7 +1774,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410161843276", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021972092", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1790,7 +1790,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_page.js", "?202410161843276", false, true);
+         context.AddJavascriptSource("trn_page.js", "?20241021972092", false, true);
          /* End function include_jscripts */
       }
 
@@ -1943,7 +1943,7 @@ namespace GeneXus.Programs {
          T00177_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          T00172_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          T00172_A318Trn_PageName = new string[] {""} ;
-         T001711_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         T001711_A407TileId = new Guid[] {Guid.Empty} ;
          T001712_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          T001713_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          sDynURL = "";
@@ -1981,7 +1981,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               T001711_A264Trn_TileId
+               T001711_A407TileId
                }
                , new Object[] {
                T001712_A319Trn_RowId
@@ -2086,7 +2086,7 @@ namespace GeneXus.Programs {
       private Guid[] T00177_A310Trn_PageId ;
       private Guid[] T00172_A310Trn_PageId ;
       private string[] T00172_A318Trn_PageName ;
-      private Guid[] T001711_A264Trn_TileId ;
+      private Guid[] T001711_A407TileId ;
       private Guid[] T001712_A319Trn_RowId ;
       private Guid[] T001713_A310Trn_PageId ;
       private IDataStoreProvider pr_gam ;
@@ -2209,7 +2209,7 @@ namespace GeneXus.Programs {
            ,new CursorDef("T00178", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName) VALUES(:Trn_PageId, :Trn_PageName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT00178)
            ,new CursorDef("T00179", "SAVEPOINT gxupdate;UPDATE Trn_Page SET Trn_PageName=:Trn_PageName  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT00179)
            ,new CursorDef("T001710", "SAVEPOINT gxupdate;DELETE FROM Trn_Page  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001710)
-           ,new CursorDef("T001711", "SELECT Trn_TileId FROM Trn_Tile WHERE SG_ToPageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001711,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("T001711", "SELECT TileId FROM Trn_Tile WHERE SG_ToPageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001711,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("T001712", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001712,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("T001713", "SELECT Trn_PageId FROM Trn_Page ORDER BY Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001713,100, GxCacheFrequency.OFF ,true,false )
         };

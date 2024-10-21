@@ -654,7 +654,7 @@ class EditorManager {
 }
 
 class ToolBoxManager {
-  constructor(editorManager, themes, templates) {
+  constructor(editorManager, themes, templates, mapping) {
     console.log(themes)
     console.log(themesData)
     this.editorManager = editorManager;
@@ -663,7 +663,7 @@ class ToolBoxManager {
     this.icons = iconsData;
     this.currentTheme = null;
     this.templates = templates;
-    this.mappingsItems = mappingData;
+    this.mappingsItems = mapping;
     
     this.loadTheme();
     this.listThemesInSelectField();

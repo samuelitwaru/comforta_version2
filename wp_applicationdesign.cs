@@ -295,6 +295,14 @@ namespace GeneXus.Programs {
          }
          if ( context.isAjaxRequest( ) )
          {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vSDT_PAGECOLLECTION", AV15SDT_PageCollection);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vSDT_PAGECOLLECTION", AV15SDT_PageCollection);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vBC_TRN_TEMPLATECOLLECTION", AV10BC_Trn_TemplateCollection);
          }
          else
@@ -410,6 +418,7 @@ namespace GeneXus.Programs {
             /* User Defined Control */
             ucApptoolbox1.SetProperty("SDT_Tile", AV9BC_Trn_Tile);
             ucApptoolbox1.SetProperty("SDT_Page", AV14SDT_Page);
+            ucApptoolbox1.SetProperty("SDT_PageCollection", AV15SDT_PageCollection);
             ucApptoolbox1.SetProperty("BC_Trn_TemplateCollection", AV10BC_Trn_TemplateCollection);
             ucApptoolbox1.SetProperty("BC_Trn_ThemeCollection", AV13BC_Trn_ThemeCollection);
             ucApptoolbox1.Render(context, "uc_apptoolbox2", Apptoolbox1_Internalname, "APPTOOLBOX1Container");
@@ -688,6 +697,7 @@ namespace GeneXus.Programs {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( "vBC_TRN_TILE"), AV9BC_Trn_Tile);
             ajax_req_read_hidden_sdt(cgiGet( "vSDT_PAGE"), AV14SDT_Page);
+            ajax_req_read_hidden_sdt(cgiGet( "vSDT_PAGECOLLECTION"), AV15SDT_PageCollection);
             ajax_req_read_hidden_sdt(cgiGet( "vBC_TRN_TEMPLATECOLLECTION"), AV10BC_Trn_TemplateCollection);
             ajax_req_read_hidden_sdt(cgiGet( "vBC_TRN_THEMECOLLECTION"), AV13BC_Trn_ThemeCollection);
             /* Read saved values. */
@@ -713,7 +723,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         Form.Headerrawhtml = Form.Headerrawhtml+context.GetMessage( "<link rel=\"stylesheet\" href=\"Resources/UCGrapes/grapes.min.css\">", "")+context.GetMessage( "<script src=\"Resources/UCGrapes/grapes.min.js\"></script>", "");
+         Form.Headerrawhtml = Form.Headerrawhtml+"<link rel=\"stylesheet\" href=\"Resources/UCGrapes/new-design/grapes/grapes.css\">"+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes/new-design/css/styles.css\" />"+"<script src=\"Resources/UCGrapes/new-design/grapes/grapes.js\"></script>";
          /* Using cursor H00472 */
          pr_default.execute(0, new Object[] {AV16Trn_PageId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -730,11 +740,11 @@ namespace GeneXus.Programs {
          pr_default.execute(1);
          while ( (pr_default.getStatus(1) != 101) )
          {
-            A265Trn_TileName = H00473_A265Trn_TileName[0];
-            A264Trn_TileId = H00473_A264Trn_TileId[0];
-            if ( StringUtil.StrCmp(A265Trn_TileName, context.GetMessage( "Home", "")) == 0 )
+            A400TileName = H00473_A400TileName[0];
+            A407TileId = H00473_A407TileId[0];
+            if ( StringUtil.StrCmp(A400TileName, context.GetMessage( "Home", "")) == 0 )
             {
-               AV9BC_Trn_Tile.Load(A264Trn_TileId);
+               AV9BC_Trn_Tile.Load(A407TileId);
             }
             pr_default.readNext(1);
          }
@@ -761,6 +771,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(3);
          }
          pr_default.close(3);
+         AV15SDT_PageCollection.FromJSonString(new prc_pagesapi(context).executeUdp(  Guid.Empty), null);
       }
 
       protected void nextLoad( )
@@ -815,7 +826,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101617241283", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102198479", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -833,7 +844,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?2024101617241283", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?2024102198479", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBox2Render.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -901,6 +912,7 @@ namespace GeneXus.Programs {
          GXEncryptionTmp = "";
          AV9BC_Trn_Tile = new SdtTrn_Tile(context);
          AV14SDT_Page = new SdtSDT_Page(context);
+         AV15SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          AV10BC_Trn_TemplateCollection = new GXBCCollection<SdtTrn_Template>( context, "Trn_Template", "Comforta_version2");
          AV13BC_Trn_ThemeCollection = new GXBCCollection<SdtTrn_Theme>( context, "Trn_Theme", "Comforta_version2");
          GX_FocusControl = "";
@@ -918,11 +930,10 @@ namespace GeneXus.Programs {
          H00472_A318Trn_PageName = new string[] {""} ;
          A310Trn_PageId = Guid.Empty;
          A318Trn_PageName = "";
-         AV15SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
-         H00473_A265Trn_TileName = new string[] {""} ;
-         H00473_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         A265Trn_TileName = "";
-         A264Trn_TileId = Guid.Empty;
+         H00473_A400TileName = new string[] {""} ;
+         H00473_A407TileId = new Guid[] {Guid.Empty} ;
+         A400TileName = "";
+         A407TileId = Guid.Empty;
          H00474_A278Trn_TemplateId = new Guid[] {Guid.Empty} ;
          A278Trn_TemplateId = Guid.Empty;
          AV11BC_Trn_Template = new SdtTrn_Template(context);
@@ -937,7 +948,7 @@ namespace GeneXus.Programs {
                H00472_A310Trn_PageId, H00472_A318Trn_PageName
                }
                , new Object[] {
-               H00473_A265Trn_TileName, H00473_A264Trn_TileId
+               H00473_A400TileName, H00473_A407TileId
                }
                , new Object[] {
                H00474_A278Trn_TemplateId
@@ -993,11 +1004,11 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private string A318Trn_PageName ;
-      private string A265Trn_TileName ;
+      private string A400TileName ;
       private Guid AV16Trn_PageId ;
       private Guid wcpOAV16Trn_PageId ;
       private Guid A310Trn_PageId ;
-      private Guid A264Trn_TileId ;
+      private Guid A407TileId ;
       private Guid A278Trn_TemplateId ;
       private Guid A247Trn_ThemeId ;
       private GXUserControl ucApptoolbox1 ;
@@ -1006,14 +1017,14 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private SdtTrn_Tile AV9BC_Trn_Tile ;
       private SdtSDT_Page AV14SDT_Page ;
+      private GXBaseCollection<SdtSDT_Page> AV15SDT_PageCollection ;
       private GXBCCollection<SdtTrn_Template> AV10BC_Trn_TemplateCollection ;
       private GXBCCollection<SdtTrn_Theme> AV13BC_Trn_ThemeCollection ;
       private IDataStoreProvider pr_default ;
       private Guid[] H00472_A310Trn_PageId ;
       private string[] H00472_A318Trn_PageName ;
-      private GXBaseCollection<SdtSDT_Page> AV15SDT_PageCollection ;
-      private string[] H00473_A265Trn_TileName ;
-      private Guid[] H00473_A264Trn_TileId ;
+      private string[] H00473_A400TileName ;
+      private Guid[] H00473_A407TileId ;
       private Guid[] H00474_A278Trn_TemplateId ;
       private SdtTrn_Template AV11BC_Trn_Template ;
       private Guid[] H00475_A247Trn_ThemeId ;
@@ -1055,7 +1066,7 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("H00472", "SELECT Trn_PageId, Trn_PageName FROM Trn_Page WHERE Trn_PageId = :AV16Trn_PageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00472,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("H00473", "SELECT Trn_TileName, Trn_TileId FROM Trn_Tile ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00473", "SELECT TileName, TileId FROM Trn_Tile ORDER BY TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00474", "SELECT Trn_TemplateId FROM Trn_Template ORDER BY Trn_TemplateId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00475", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
           };

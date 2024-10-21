@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241017091237"
+  version: "20241021061038"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -118,29 +118,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_LocationWWGetFilterDataOutput"
-        404:
-          description: "Not found"
-  /Trn_ManagerLoadDVCombo:
-    post:
-      tags:
-        - Trn_ManagerLoadDVCombo
-      operationId: "Trn_ManagerLoadDVCombo"
-      summary: "Trn_Manager Load DVCombo"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_ManagerLoadDVComboInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_ManagerLoadDVComboOutput"
         404:
           description: "Not found"
   /Trn_ManagerWWGetFilterData:
@@ -917,29 +894,6 @@ paths:
                 $ref: "#/components/schemas/WorkWithPlus.DynamicForms.WWP_FormInstanceWWGetFilterDataOutput"
         404:
           description: "Not found"
-  /WorkWithPlus/DynamicForms/WWP_FormInstanceWWGetFilterDataOld:
-    post:
-      tags:
-        - WorkWithPlus.DynamicForms
-      operationId: "WorkWithPlus.DynamicForms.WWP_FormInstanceWWGetFilterDataOld"
-      summary: "WWP_Form Instance WWGet Filter Data Old"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WorkWithPlus.DynamicForms.WWP_FormInstanceWWGetFilterDataOldInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WorkWithPlus.DynamicForms.WWP_FormInstanceWWGetFilterDataOldOutput"
-        404:
-          description: "Not found"
   /WorkWithPlus/DynamicForms/WWP_FormWWGetFilterData:
     post:
       tags:
@@ -961,29 +915,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkWithPlus.DynamicForms.WWP_FormWWGetFilterDataOutput"
-        404:
-          description: "Not found"
-  /WorkWithPlus/DynamicForms/WWP_FormWWGetFilterDataOld:
-    post:
-      tags:
-        - WorkWithPlus.DynamicForms
-      operationId: "WorkWithPlus.DynamicForms.WWP_FormWWGetFilterDataOld"
-      summary: "WWP_Form WWGet Filter Data Old"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WorkWithPlus.DynamicForms.WWP_FormWWGetFilterDataOldInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WorkWithPlus.DynamicForms.WWP_FormWWGetFilterDataOldOutput"
         404:
           description: "Not found"
   /WorkWithPlus/WWP_ParameterWWGetFilterData:
@@ -1030,6 +961,98 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WP_LocationDynamicFormGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /WP_OrganisationLocalAGBSuppliersWCGetFilterData:
+    post:
+      tags:
+        - WP_OrganisationLocalAGBSuppliersWCGetFilterData
+      operationId: "WP_OrganisationLocalAGBSuppliersWCGetFilterData"
+      summary: "WP_Organisation Local AGBSuppliers WCGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WP_OrganisationLocalAGBSuppliersWCGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WP_OrganisationLocalAGBSuppliersWCGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /WP_OrganisationLocalGenSuppliersWCGetFilterData:
+    post:
+      tags:
+        - WP_OrganisationLocalGenSuppliersWCGetFilterData
+      operationId: "WP_OrganisationLocalGenSuppliersWCGetFilterData"
+      summary: "WP_Organisation Local Gen Suppliers WCGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WP_OrganisationLocalGenSuppliersWCGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WP_OrganisationLocalGenSuppliersWCGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /WP_OrganisationNationalAGBSuppliersWCGetFilterData:
+    post:
+      tags:
+        - WP_OrganisationNationalAGBSuppliersWCGetFilterData
+      operationId: "WP_OrganisationNationalAGBSuppliersWCGetFilterData"
+      summary: "WP_Organisation National AGBSuppliers WCGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WP_OrganisationNationalAGBSuppliersWCGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WP_OrganisationNationalAGBSuppliersWCGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /WP_OrganisationNationalGenSuppliersWCGetFilterData:
+    post:
+      tags:
+        - WP_OrganisationNationalGenSuppliersWCGetFilterData
+      operationId: "WP_OrganisationNationalGenSuppliersWCGetFilterData"
+      summary: "WP_Organisation National Gen Suppliers WCGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WP_OrganisationNationalGenSuppliersWCGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WP_OrganisationNationalGenSuppliersWCGetFilterDataOutput"
         404:
           description: "Not found"
   /WWPBaseObjects/Discussions/WWP_GetUsersForDiscussionMentions:
@@ -1248,14 +1271,6 @@ components:
         OptionsDescJson:
           type: "string"
         OptionIndexesJson:
-          type: "string"
-    Trn_ManagerLoadDVComboOutput:
-      properties:
-        SelectedValue:
-          type: "string"
-        SelectedText:
-          type: "string"
-        Combo_DataJson:
           type: "string"
     Trn_ManagerWWGetFilterDataOutput:
       properties:
@@ -1521,23 +1536,7 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
-    WorkWithPlus.DynamicForms.WWP_FormInstanceWWGetFilterDataOldOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
     WorkWithPlus.DynamicForms.WWP_FormWWGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
-    WorkWithPlus.DynamicForms.WWP_FormWWGetFilterDataOldOutput:
       properties:
         OptionsJson:
           type: "string"
@@ -1554,6 +1553,38 @@ components:
         OptionIndexesJson:
           type: "string"
     WP_LocationDynamicFormGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
+    WP_OrganisationLocalAGBSuppliersWCGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
+    WP_OrganisationLocalGenSuppliersWCGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
+    WP_OrganisationNationalAGBSuppliersWCGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
+    WP_OrganisationNationalGenSuppliersWCGetFilterDataOutput:
       properties:
         OptionsJson:
           type: "string"
@@ -1614,22 +1645,6 @@ components:
         SearchTxtParms:
           type: "string"
         SearchTxtTo:
-          type: "string"
-    Trn_ManagerLoadDVComboInput:  
-      properties:
-        ComboName:
-          type: "string"
-        TrnMode:
-          type: "string"
-        IsDynamicCall:
-          type: "boolean"
-        ManagerId:
-          type: "string"
-          format: "uuid"
-        OrganisationId:
-          type: "string"
-          format: "uuid"
-        SearchTxtParms:
           type: "string"
     Trn_ManagerWWGetFilterDataInput:  
       properties:
@@ -1724,9 +1739,6 @@ components:
           type: "string"
           format: "uuid"
         OrganisationId:
-          type: "string"
-          format: "uuid"
-        Cond_OrganisationId:
           type: "string"
           format: "uuid"
         SearchTxtParms:
@@ -1877,7 +1889,7 @@ components:
           type: "string"
         IsDynamicCall:
           type: "boolean"
-        Trn_TileId:
+        TileId:
           type: "string"
           format: "uuid"
         Cond_LocationId:
@@ -1964,23 +1976,7 @@ components:
           type: "string"
         SearchTxtTo:
           type: "string"
-    WorkWithPlus.DynamicForms.WWP_FormInstanceWWGetFilterDataOldInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
     WorkWithPlus.DynamicForms.WWP_FormWWGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
-    WorkWithPlus.DynamicForms.WWP_FormWWGetFilterDataOldInput:  
       properties:
         DDOName:
           type: "string"
@@ -1997,6 +1993,38 @@ components:
         SearchTxtTo:
           type: "string"
     WP_LocationDynamicFormGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    WP_OrganisationLocalAGBSuppliersWCGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    WP_OrganisationLocalGenSuppliersWCGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    WP_OrganisationNationalAGBSuppliersWCGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    WP_OrganisationNationalGenSuppliersWCGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"
@@ -2130,6 +2158,9 @@ components:
         PageName:
           description: "Page Name"
           type: "string"
+        Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
         Row:
           description: "SDT_Row"
           type: array
@@ -2211,6 +2242,22 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_Col"
+    SDT_Theme:
+      properties:
+        Trn_ThemeId:
+          description: "Trn_Theme Id"
+          type: "string"
+          format: "uuid"
+        Trn_ThemeName:
+          description: "Trn_Theme Name"
+          type: "string"
+        Trn_ThemeFontFamily:
+          description: "Trn_Theme Font Family"
+          type: "string"
+        Trn_ThemeFontSize:
+          description: "Trn_Theme Font Size"
+          type: "integer"
+          format: "int32"
     SDT_Tile:
       properties:
         TileId:
@@ -2221,13 +2268,22 @@ components:
           description: "Tile Name"
           type: "string"
         TileIcon:
-          description: "Trn_Tile Icon"
+          description: "Tile Icon"
           type: "string"
-        TileColor:
-          description: "Trn_Tile Color"
+        TileBGColor:
+          description: "Tile BGColor"
           type: "string"
         TileBGImageUrl:
           description: "Tile BGImage Url"
+          type: "string"
+        TileTextColor:
+          description: "Tile Text Color"
+          type: "string"
+        TileTextAlignment:
+          description: "Tile Text Alignment"
+          type: "string"
+        TileIconAlignment:
+          description: "Tile Icon Alignment"
           type: "string"
         ProductServiceId:
           description: "Product Service Id"
@@ -2252,24 +2308,6 @@ components:
         ToPage:
           description: "SDT_Page"
           $ref: "#/components/schemas/SDT_Page"
-        Attribute:
-          type: array
-          items:
-            description: AttributeItem
-            $ref: "#/components/schemas/SDT_Tile.Attribute_AttributeItem"
-    SDT_Tile.Attribute_AttributeItem:
-      properties:
-        AttributeId:
-          description: "Attribute Id"
-          type: "string"
-          format: "uuid"
-        AttributeName:
-          description: "Attribute Name"
-          type: "string"
-        AttrbuteValue:
-          description: "Attrbute Value"
-          type: "string"
-      x-gx-level: "SDT_Tile"
     WorkWithPlus.DynamicForms.WWP_FormInstance:
       properties:
         WWPFormInstanceId:

@@ -33,12 +33,6 @@
   <Object name="DP_GetDashboardItems" id="11" type="DataProvider" IntegratedSecurityLevel="SecurityLow" xmlns="qv">
     <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
   </Object>
-  <Object name="SuppliersAgb" id="12" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="SuppliersAgb" xmlns="qv">
-    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
-  </Object>
-  <Object name="DP_SupplierGeneral" id="13" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="DP_SupplierGeneral" xmlns="qv">
-    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
-  </Object>
   <Object name="WorkWithPlus.WWP_Calendar_GetEvents" id="14" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="WWP_Calendar_GetEvents1" xmlns="qv">
     <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
   </Object>

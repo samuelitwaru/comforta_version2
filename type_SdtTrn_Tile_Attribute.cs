@@ -49,7 +49,7 @@ namespace GeneXus.Programs {
          metadata.Set("BT", "Trn_TileAttribute");
          metadata.Set("PK", "[ \"AttributeId\" ]");
          metadata.Set("PKAssigned", "[ \"AttributeId\" ]");
-         metadata.Set("FKList", "[ { \"FK\":[ \"Trn_TileId\" ],\"FKMap\":[  ] } ]");
+         metadata.Set("FKList", "[ { \"FK\":[ \"TileId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");

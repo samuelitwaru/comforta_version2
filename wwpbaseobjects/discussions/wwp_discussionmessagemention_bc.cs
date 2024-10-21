@@ -172,7 +172,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(2, new Object[] {A200WWPDiscussionMessageId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_DiscussionMessage'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_DiscussionMessage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
             AnyError = 1;
          }
          A203WWPDiscussionMessageDate = BC000S4_A203WWPDiscussionMessageDate[0];
@@ -181,7 +181,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(3, new Object[] {A201WWPDiscussionMentionUserId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'Discussion Message Mention User'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Mention User", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
             AnyError = 1;
          }
          A202WWPDiscussionMentionUserName = BC000S5_A202WWPDiscussionMentionUserName[0];
@@ -675,7 +675,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(8, new Object[] {A200WWPDiscussionMessageId});
             if ( (pr_default.getStatus(8) == 101) )
             {
-               GX_msglist.addItem("No matching 'WWP_DiscussionMessage'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_DiscussionMessage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
                AnyError = 1;
             }
             A203WWPDiscussionMessageDate = BC000S10_A203WWPDiscussionMessageDate[0];
@@ -684,7 +684,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(9, new Object[] {A201WWPDiscussionMentionUserId});
             if ( (pr_default.getStatus(9) == 101) )
             {
-               GX_msglist.addItem("No matching 'Discussion Message Mention User'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Mention User", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
                AnyError = 1;
             }
             A202WWPDiscussionMentionUserName = BC000S11_A202WWPDiscussionMentionUserName[0];
@@ -723,7 +723,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(8, new Object[] {A200WWPDiscussionMessageId});
             if ( (pr_default.getStatus(8) == 101) )
             {
-               GX_msglist.addItem("No matching 'WWP_DiscussionMessage'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_DiscussionMessage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
                AnyError = 1;
             }
             A203WWPDiscussionMessageDate = BC000S10_A203WWPDiscussionMessageDate[0];
@@ -732,7 +732,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(9, new Object[] {A201WWPDiscussionMentionUserId});
             if ( (pr_default.getStatus(9) == 101) )
             {
-               GX_msglist.addItem("No matching 'Discussion Message Mention User'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Mention User", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
                AnyError = 1;
             }
             A202WWPDiscussionMentionUserName = BC000S11_A202WWPDiscussionMentionUserName[0];

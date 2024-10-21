@@ -121,7 +121,6 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  ">>>>>>>>>>>>>>>>"+AV13Trn_PageId.ToString()) ;
          pr_default.dynParam(0, new Object[]{ new Object[]{
                                               AV13Trn_PageId ,
                                               A310Trn_PageId } ,
@@ -153,19 +152,39 @@ namespace GeneXus.Programs {
                {
                   A328Trn_ColId = P007W4_A328Trn_ColId[0];
                   A327Trn_ColName = P007W4_A327Trn_ColName[0];
-                  A264Trn_TileId = P007W4_A264Trn_TileId[0];
-                  A265Trn_TileName = P007W4_A265Trn_TileName[0];
+                  A407TileId = P007W4_A407TileId[0];
+                  A400TileName = P007W4_A400TileName[0];
+                  A402TileBGColor = P007W4_A402TileBGColor[0];
+                  n402TileBGColor = P007W4_n402TileBGColor[0];
+                  A403TileBGImageUrl = P007W4_A403TileBGImageUrl[0];
+                  n403TileBGImageUrl = P007W4_n403TileBGImageUrl[0];
+                  A404TileTextColor = P007W4_A404TileTextColor[0];
+                  A405TileTextAlignment = P007W4_A405TileTextAlignment[0];
+                  A406TileIconAlignment = P007W4_A406TileIconAlignment[0];
                   A329SG_ToPageId = P007W4_A329SG_ToPageId[0];
                   A330SG_ToPageName = P007W4_A330SG_ToPageName[0];
-                  A265Trn_TileName = P007W4_A265Trn_TileName[0];
+                  A400TileName = P007W4_A400TileName[0];
+                  A402TileBGColor = P007W4_A402TileBGColor[0];
+                  n402TileBGColor = P007W4_n402TileBGColor[0];
+                  A403TileBGImageUrl = P007W4_A403TileBGImageUrl[0];
+                  n403TileBGImageUrl = P007W4_n403TileBGImageUrl[0];
+                  A404TileTextColor = P007W4_A404TileTextColor[0];
+                  A405TileTextAlignment = P007W4_A405TileTextAlignment[0];
+                  A406TileIconAlignment = P007W4_A406TileIconAlignment[0];
                   A329SG_ToPageId = P007W4_A329SG_ToPageId[0];
                   A330SG_ToPageName = P007W4_A330SG_ToPageName[0];
                   AV11SDT_Col = new SdtSDT_Col(context);
                   AV12SDT_Tile = new SdtSDT_Tile(context);
                   AV11SDT_Col.gxTpr_Colid = A328Trn_ColId;
                   AV11SDT_Col.gxTpr_Colname = A327Trn_ColName;
-                  AV12SDT_Tile.gxTpr_Tileid = A264Trn_TileId;
-                  AV12SDT_Tile.gxTpr_Tilename = A265Trn_TileName;
+                  AV12SDT_Tile.gxTpr_Tileid = A407TileId;
+                  AV12SDT_Tile.gxTpr_Tilename = A400TileName;
+                  AV12SDT_Tile.gxTpr_Tilebgcolor = A402TileBGColor;
+                  AV12SDT_Tile.gxTpr_Tilebgimageurl = A403TileBGImageUrl;
+                  AV12SDT_Tile.gxTpr_Tiletextcolor = A404TileTextColor;
+                  AV12SDT_Tile.gxTpr_Tiletextalignment = A405TileTextAlignment;
+                  AV12SDT_Tile.gxTpr_Tileiconalignment = A406TileIconAlignment;
+                  AV12SDT_Tile.gxTpr_Tilename = A400TileName;
                   AV12SDT_Tile.gxTpr_Topageid = A329SG_ToPageId;
                   AV12SDT_Tile.gxTpr_Topagename = A330SG_ToPageName;
                   AV11SDT_Col.gxTpr_Tile = AV12SDT_Tile;
@@ -180,7 +199,6 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         new prc_logtofile(context ).execute(  ">>>>>>>"+AV9SDT_PageCollection.ToJSonString(false)) ;
          if ( AV9SDT_PageCollection.Count == 0 )
          {
             AV14response = "No pages found";
@@ -219,14 +237,26 @@ namespace GeneXus.Programs {
          P007W4_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          P007W4_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          P007W4_A327Trn_ColName = new string[] {""} ;
-         P007W4_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         P007W4_A265Trn_TileName = new string[] {""} ;
+         P007W4_A407TileId = new Guid[] {Guid.Empty} ;
+         P007W4_A400TileName = new string[] {""} ;
+         P007W4_A402TileBGColor = new string[] {""} ;
+         P007W4_n402TileBGColor = new bool[] {false} ;
+         P007W4_A403TileBGImageUrl = new string[] {""} ;
+         P007W4_n403TileBGImageUrl = new bool[] {false} ;
+         P007W4_A404TileTextColor = new string[] {""} ;
+         P007W4_A405TileTextAlignment = new string[] {""} ;
+         P007W4_A406TileIconAlignment = new string[] {""} ;
          P007W4_A329SG_ToPageId = new Guid[] {Guid.Empty} ;
          P007W4_A330SG_ToPageName = new string[] {""} ;
          A328Trn_ColId = Guid.Empty;
          A327Trn_ColName = "";
-         A264Trn_TileId = Guid.Empty;
-         A265Trn_TileName = "";
+         A407TileId = Guid.Empty;
+         A400TileName = "";
+         A402TileBGColor = "";
+         A403TileBGImageUrl = "";
+         A404TileTextColor = "";
+         A405TileTextAlignment = "";
+         A406TileIconAlignment = "";
          A329SG_ToPageId = Guid.Empty;
          A330SG_ToPageName = "";
          AV11SDT_Col = new SdtSDT_Col(context);
@@ -241,24 +271,32 @@ namespace GeneXus.Programs {
                P007W3_A310Trn_PageId, P007W3_A319Trn_RowId, P007W3_A320Trn_RowName
                }
                , new Object[] {
-               P007W4_A319Trn_RowId, P007W4_A328Trn_ColId, P007W4_A327Trn_ColName, P007W4_A264Trn_TileId, P007W4_A265Trn_TileName, P007W4_A329SG_ToPageId, P007W4_A330SG_ToPageName
+               P007W4_A319Trn_RowId, P007W4_A328Trn_ColId, P007W4_A327Trn_ColName, P007W4_A407TileId, P007W4_A400TileName, P007W4_A402TileBGColor, P007W4_n402TileBGColor, P007W4_A403TileBGImageUrl, P007W4_n403TileBGImageUrl, P007W4_A404TileTextColor,
+               P007W4_A405TileTextAlignment, P007W4_A406TileIconAlignment, P007W4_A329SG_ToPageId, P007W4_A330SG_ToPageName
                }
             }
          );
          /* GeneXus formulas. */
       }
 
+      private string A402TileBGColor ;
+      private string A404TileTextColor ;
+      private string A405TileTextAlignment ;
+      private string A406TileIconAlignment ;
+      private bool n402TileBGColor ;
+      private bool n403TileBGImageUrl ;
       private string AV14response ;
       private string A318Trn_PageName ;
       private string A320Trn_RowName ;
       private string A327Trn_ColName ;
-      private string A265Trn_TileName ;
+      private string A400TileName ;
+      private string A403TileBGImageUrl ;
       private string A330SG_ToPageName ;
       private Guid AV13Trn_PageId ;
       private Guid A310Trn_PageId ;
       private Guid A319Trn_RowId ;
       private Guid A328Trn_ColId ;
-      private Guid A264Trn_TileId ;
+      private Guid A407TileId ;
       private Guid A329SG_ToPageId ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -273,8 +311,15 @@ namespace GeneXus.Programs {
       private Guid[] P007W4_A319Trn_RowId ;
       private Guid[] P007W4_A328Trn_ColId ;
       private string[] P007W4_A327Trn_ColName ;
-      private Guid[] P007W4_A264Trn_TileId ;
-      private string[] P007W4_A265Trn_TileName ;
+      private Guid[] P007W4_A407TileId ;
+      private string[] P007W4_A400TileName ;
+      private string[] P007W4_A402TileBGColor ;
+      private bool[] P007W4_n402TileBGColor ;
+      private string[] P007W4_A403TileBGImageUrl ;
+      private bool[] P007W4_n403TileBGImageUrl ;
+      private string[] P007W4_A404TileTextColor ;
+      private string[] P007W4_A405TileTextAlignment ;
+      private string[] P007W4_A406TileIconAlignment ;
       private Guid[] P007W4_A329SG_ToPageId ;
       private string[] P007W4_A330SG_ToPageName ;
       private SdtSDT_Col AV11SDT_Col ;
@@ -351,7 +396,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("P007W2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007W2,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P007W3", "SELECT Trn_PageId, Trn_RowId, Trn_RowName FROM Trn_Row WHERE Trn_PageId = :Trn_PageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007W3,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P007W4", "SELECT T1.Trn_RowId, T1.Trn_ColId, T1.Trn_ColName, T1.Trn_TileId, T2.Trn_TileName, T2.SG_ToPageId AS SG_ToPageId, T3.Trn_PageName AS SG_ToPageName FROM ((Trn_Col1 T1 INNER JOIN Trn_Tile T2 ON T2.Trn_TileId = T1.Trn_TileId) INNER JOIN Trn_Page T3 ON T3.Trn_PageId = T2.SG_ToPageId) WHERE T1.Trn_RowId = :Trn_RowId ORDER BY T1.Trn_RowId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007W4,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P007W4", "SELECT T1.Trn_RowId, T1.Trn_ColId, T1.Trn_ColName, T1.TileId, T2.TileName, T2.TileBGColor, T2.TileBGImageUrl, T2.TileTextColor, T2.TileTextAlignment, T2.TileIconAlignment, T2.SG_ToPageId AS SG_ToPageId, T3.Trn_PageName AS SG_ToPageName FROM ((Trn_Col T1 INNER JOIN Trn_Tile T2 ON T2.TileId = T1.TileId) INNER JOIN Trn_Page T3 ON T3.Trn_PageId = T2.SG_ToPageId) WHERE T1.Trn_RowId = :Trn_RowId ORDER BY T1.Trn_RowId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007W4,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -377,8 +422,15 @@ namespace GeneXus.Programs {
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((Guid[]) buf[5])[0] = rslt.getGuid(6);
-                ((string[]) buf[6])[0] = rslt.getVarchar(7);
+                ((string[]) buf[5])[0] = rslt.getString(6, 20);
+                ((bool[]) buf[6])[0] = rslt.wasNull(6);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((bool[]) buf[8])[0] = rslt.wasNull(7);
+                ((string[]) buf[9])[0] = rslt.getString(8, 20);
+                ((string[]) buf[10])[0] = rslt.getString(9, 20);
+                ((string[]) buf[11])[0] = rslt.getString(10, 20);
+                ((Guid[]) buf[12])[0] = rslt.getGuid(11);
+                ((string[]) buf[13])[0] = rslt.getVarchar(12);
                 return;
        }
     }

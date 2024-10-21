@@ -92,7 +92,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          returnInSub = false;
          AV23ExistGAMEvent = false;
          AV21GAMEventSubscriptionFilter.gxTpr_Event = AV12GAMEvents;
-         AV21GAMEventSubscriptionFilter.gxTpr_Descripction = "GAM Sync";
+         AV21GAMEventSubscriptionFilter.gxTpr_Descripction = context.GetMessage( "GAM Sync", "");
          AV18GAMEventSubscriptionCollection = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).geteventsubscriptions(AV21GAMEventSubscriptionFilter, out  AV11GAMErrorCollection);
          if ( AV18GAMEventSubscriptionCollection.Count > 0 )
          {
@@ -110,7 +110,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( ! AV23ExistGAMEvent )
          {
             AV13GAMEventSubscription = new GeneXus.Programs.genexussecurity.SdtGAMEventSubscription(context);
-            AV13GAMEventSubscription.gxTpr_Description = "GAM Sync";
+            AV13GAMEventSubscription.gxTpr_Description = context.GetMessage( "GAM Sync", "");
             AV13GAMEventSubscription.gxTpr_Event = AV12GAMEvents;
             /* User Code */
              AV9FileName = "wwpbaseobjects.awwp_synchandler.dll";

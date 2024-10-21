@@ -72,6 +72,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Trn_themeid_Z");
          state.Add("gxTpr_Trn_themename_Z");
          state.Add("gxTpr_Trn_themefontfamily_Z");
+         state.Add("gxTpr_Trn_themefontsize_Z");
          return state ;
       }
 
@@ -82,6 +83,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Theme_Trn_themeid = sdt.gxTv_SdtTrn_Theme_Trn_themeid ;
          gxTv_SdtTrn_Theme_Trn_themename = sdt.gxTv_SdtTrn_Theme_Trn_themename ;
          gxTv_SdtTrn_Theme_Trn_themefontfamily = sdt.gxTv_SdtTrn_Theme_Trn_themefontfamily ;
+         gxTv_SdtTrn_Theme_Trn_themefontsize = sdt.gxTv_SdtTrn_Theme_Trn_themefontsize ;
          gxTv_SdtTrn_Theme_Icon = sdt.gxTv_SdtTrn_Theme_Icon ;
          gxTv_SdtTrn_Theme_Color = sdt.gxTv_SdtTrn_Theme_Color ;
          gxTv_SdtTrn_Theme_Mode = sdt.gxTv_SdtTrn_Theme_Mode ;
@@ -89,6 +91,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Theme_Trn_themeid_Z = sdt.gxTv_SdtTrn_Theme_Trn_themeid_Z ;
          gxTv_SdtTrn_Theme_Trn_themename_Z = sdt.gxTv_SdtTrn_Theme_Trn_themename_Z ;
          gxTv_SdtTrn_Theme_Trn_themefontfamily_Z = sdt.gxTv_SdtTrn_Theme_Trn_themefontfamily_Z ;
+         gxTv_SdtTrn_Theme_Trn_themefontsize_Z = sdt.gxTv_SdtTrn_Theme_Trn_themefontsize_Z ;
          return  ;
       }
 
@@ -110,6 +113,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("Trn_ThemeId", gxTv_SdtTrn_Theme_Trn_themeid, false, includeNonInitialized);
          AddObjectProperty("Trn_ThemeName", gxTv_SdtTrn_Theme_Trn_themename, false, includeNonInitialized);
          AddObjectProperty("Trn_ThemeFontFamily", gxTv_SdtTrn_Theme_Trn_themefontfamily, false, includeNonInitialized);
+         AddObjectProperty("Trn_ThemeFontSize", gxTv_SdtTrn_Theme_Trn_themefontsize, false, includeNonInitialized);
          if ( gxTv_SdtTrn_Theme_Icon != null )
          {
             AddObjectProperty("Icon", gxTv_SdtTrn_Theme_Icon, includeState, includeNonInitialized);
@@ -125,6 +129,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("Trn_ThemeId_Z", gxTv_SdtTrn_Theme_Trn_themeid_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeName_Z", gxTv_SdtTrn_Theme_Trn_themename_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeFontFamily_Z", gxTv_SdtTrn_Theme_Trn_themefontfamily_Z, false, includeNonInitialized);
+            AddObjectProperty("Trn_ThemeFontSize_Z", gxTv_SdtTrn_Theme_Trn_themefontsize_Z, false, includeNonInitialized);
          }
          return  ;
       }
@@ -145,6 +150,11 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_Theme_Trn_themefontfamily = sdt.gxTv_SdtTrn_Theme_Trn_themefontfamily ;
+         }
+         if ( sdt.IsDirty("Trn_ThemeFontSize") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Trn_themefontsize = sdt.gxTv_SdtTrn_Theme_Trn_themefontsize ;
          }
          if ( gxTv_SdtTrn_Theme_Icon != null )
          {
@@ -217,6 +227,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Theme_Trn_themeid_Z_SetNull( );
                this.gxTv_SdtTrn_Theme_Trn_themename_Z_SetNull( );
                this.gxTv_SdtTrn_Theme_Trn_themefontfamily_Z_SetNull( );
+               this.gxTv_SdtTrn_Theme_Trn_themefontsize_Z_SetNull( );
                if ( gxTv_SdtTrn_Theme_Icon != null )
                {
                   GXBCLevelCollection<SdtTrn_Theme_Icon> collectionIcon = gxTv_SdtTrn_Theme_Icon;
@@ -278,6 +289,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Theme_Trn_themefontfamily = value;
             SetDirty("Trn_themefontfamily");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "Trn_ThemeFontSize" )]
+      [  XmlElement( ElementName = "Trn_ThemeFontSize"   )]
+      public short gxTpr_Trn_themefontsize
+      {
+         get {
+            return gxTv_SdtTrn_Theme_Trn_themefontsize ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Trn_themefontsize = value;
+            SetDirty("Trn_themefontsize");
          }
 
       }
@@ -542,6 +569,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "Trn_ThemeFontSize_Z" )]
+      [  XmlElement( ElementName = "Trn_ThemeFontSize_Z"   )]
+      public short gxTpr_Trn_themefontsize_Z
+      {
+         get {
+            return gxTv_SdtTrn_Theme_Trn_themefontsize_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Trn_themefontsize_Z = value;
+            SetDirty("Trn_themefontsize_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Theme_Trn_themefontsize_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Theme_Trn_themefontsize_Z = 0;
+         SetDirty("Trn_themefontsize_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Theme_Trn_themefontsize_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -581,7 +636,9 @@ namespace GeneXus.Programs {
       }
 
       private short sdtIsNull ;
+      private short gxTv_SdtTrn_Theme_Trn_themefontsize ;
       private short gxTv_SdtTrn_Theme_Initialized ;
+      private short gxTv_SdtTrn_Theme_Trn_themefontsize_Z ;
       private string gxTv_SdtTrn_Theme_Mode ;
       private string gxTv_SdtTrn_Theme_Trn_themename ;
       private string gxTv_SdtTrn_Theme_Trn_themefontfamily ;
@@ -647,7 +704,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "Icon" , Order = 3 )]
+      [DataMember( Name = "Trn_ThemeFontSize" , Order = 3 )]
+      [GxSeudo()]
+      public Nullable<short> gxTpr_Trn_themefontsize
+      {
+         get {
+            return sdt.gxTpr_Trn_themefontsize ;
+         }
+
+         set {
+            sdt.gxTpr_Trn_themefontsize = (short)(value.HasValue ? value.Value : 0);
+         }
+
+      }
+
+      [DataMember( Name = "Icon" , Order = 4 )]
       public GxGenericCollection<SdtTrn_Theme_Icon_RESTInterface> gxTpr_Icon
       {
          get {
@@ -660,7 +731,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "Color" , Order = 4 )]
+      [DataMember( Name = "Color" , Order = 5 )]
       public GxGenericCollection<SdtTrn_Theme_Color_RESTInterface> gxTpr_Color
       {
          get {
@@ -694,7 +765,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 5 )]
+      [DataMember( Name = "gx_md5_hash", Order = 6 )]
       public string Hash
       {
          get {

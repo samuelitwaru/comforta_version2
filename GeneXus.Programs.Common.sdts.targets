@@ -32,9 +32,8 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionists_SDT_ReceptionistsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Resident.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Row.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Tile.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_Tile_AttributeItem.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSuppliers_SuppliersItem.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWPConfFormattingVariable.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWP_Calendar_Events_Item.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWP_Calendar_Events_Item_ActionsItem.cs" />

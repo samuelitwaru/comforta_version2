@@ -123,21 +123,21 @@ namespace GeneXus.Programs {
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV8WWPContext) ;
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV26Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV27Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV27GXV1 = 1;
-            while ( AV27GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
+            AV28GXV1 = 1;
+            while ( AV28GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
             {
-               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV27GXV1));
+               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV28GXV1));
                if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "Trn_RowId") == 0 )
                {
                   AV13Insert_Trn_RowId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
                }
-               else if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "Trn_TileId") == 0 )
+               else if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "TileId") == 0 )
                {
-                  AV23Insert_Trn_TileId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
+                  AV26Insert_TileId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV27GXV1 = (int)(AV27GXV1+1);
+               AV28GXV1 = (int)(AV28GXV1+1);
             }
          }
       }
@@ -154,7 +154,7 @@ namespace GeneXus.Programs {
          {
             Z327Trn_ColName = A327Trn_ColName;
             Z319Trn_RowId = A319Trn_RowId;
-            Z264Trn_TileId = A264Trn_TileId;
+            Z407TileId = A407TileId;
          }
          if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
@@ -167,13 +167,13 @@ namespace GeneXus.Programs {
             Z328Trn_ColId = A328Trn_ColId;
             Z327Trn_ColName = A327Trn_ColName;
             Z319Trn_RowId = A319Trn_RowId;
-            Z264Trn_TileId = A264Trn_TileId;
+            Z407TileId = A407TileId;
          }
       }
 
       protected void standaloneNotModal( )
       {
-         AV26Pgmname = "Trn_Col_BC";
+         AV27Pgmname = "Trn_Col_BC";
       }
 
       protected void standaloneModal( )
@@ -197,7 +197,7 @@ namespace GeneXus.Programs {
             RcdFound72 = 1;
             A327Trn_ColName = BC00196_A327Trn_ColName[0];
             A319Trn_RowId = BC00196_A319Trn_RowId[0];
-            A264Trn_TileId = BC00196_A264Trn_TileId[0];
+            A407TileId = BC00196_A407TileId[0];
             ZM1972( -8) ;
          }
          pr_default.close(4);
@@ -220,10 +220,10 @@ namespace GeneXus.Programs {
          }
          pr_default.close(2);
          /* Using cursor BC00195 */
-         pr_default.execute(3, new Object[] {A264Trn_TileId});
+         pr_default.execute(3, new Object[] {A407TileId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Tile", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_TILEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Tile", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TILEID");
             AnyError = 1;
          }
          pr_default.close(3);
@@ -265,7 +265,7 @@ namespace GeneXus.Programs {
             A328Trn_ColId = BC00193_A328Trn_ColId[0];
             A327Trn_ColName = BC00193_A327Trn_ColName[0];
             A319Trn_RowId = BC00193_A319Trn_RowId[0];
-            A264Trn_TileId = BC00193_A264Trn_TileId[0];
+            A407TileId = BC00193_A407TileId[0];
             Z328Trn_ColId = A328Trn_ColId;
             sMode72 = Gx_mode;
             Gx_mode = "DSP";
@@ -327,13 +327,13 @@ namespace GeneXus.Programs {
             pr_default.execute(0, new Object[] {A328Trn_ColId});
             if ( (pr_default.getStatus(0) == 103) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Col1"}), "RecordIsLocked", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Col"}), "RecordIsLocked", 1, "");
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z327Trn_ColName, BC00192_A327Trn_ColName[0]) != 0 ) || ( Z319Trn_RowId != BC00192_A319Trn_RowId[0] ) || ( Z264Trn_TileId != BC00192_A264Trn_TileId[0] ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z327Trn_ColName, BC00192_A327Trn_ColName[0]) != 0 ) || ( Z319Trn_RowId != BC00192_A319Trn_RowId[0] ) || ( Z407TileId != BC00192_A407TileId[0] ) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Col1"}), "RecordWasChanged", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Col"}), "RecordWasChanged", 1, "");
                AnyError = 1;
                return  ;
             }
@@ -360,9 +360,9 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00198 */
-                     pr_default.execute(6, new Object[] {A328Trn_ColId, A327Trn_ColName, A319Trn_RowId, A264Trn_TileId});
+                     pr_default.execute(6, new Object[] {A328Trn_ColId, A327Trn_ColName, A319Trn_RowId, A407TileId});
                      pr_default.close(6);
-                     pr_default.SmartCacheProvider.SetUpdated("Trn_Col1");
+                     pr_default.SmartCacheProvider.SetUpdated("Trn_Col");
                      if ( (pr_default.getStatus(6) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
@@ -415,12 +415,12 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00199 */
-                     pr_default.execute(7, new Object[] {A327Trn_ColName, A319Trn_RowId, A264Trn_TileId, A328Trn_ColId});
+                     pr_default.execute(7, new Object[] {A327Trn_ColName, A319Trn_RowId, A407TileId, A328Trn_ColId});
                      pr_default.close(7);
-                     pr_default.SmartCacheProvider.SetUpdated("Trn_Col1");
+                     pr_default.SmartCacheProvider.SetUpdated("Trn_Col");
                      if ( (pr_default.getStatus(7) == 103) )
                      {
-                        GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Col1"}), "RecordIsLocked", 1, "");
+                        GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Col"}), "RecordIsLocked", 1, "");
                         AnyError = 1;
                      }
                      DeferredUpdate1972( ) ;
@@ -473,7 +473,7 @@ namespace GeneXus.Programs {
                   /* Using cursor BC001910 */
                   pr_default.execute(8, new Object[] {A328Trn_ColId});
                   pr_default.close(8);
-                  pr_default.SmartCacheProvider.SetUpdated("Trn_Col1");
+                  pr_default.SmartCacheProvider.SetUpdated("Trn_Col");
                   if ( AnyError == 0 )
                   {
                      /* Start of After( delete) rules */
@@ -542,7 +542,7 @@ namespace GeneXus.Programs {
             A328Trn_ColId = BC001911_A328Trn_ColId[0];
             A327Trn_ColName = BC001911_A327Trn_ColName[0];
             A319Trn_RowId = BC001911_A319Trn_RowId[0];
-            A264Trn_TileId = BC001911_A264Trn_TileId[0];
+            A407TileId = BC001911_A407TileId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -565,7 +565,7 @@ namespace GeneXus.Programs {
             A328Trn_ColId = BC001911_A328Trn_ColId[0];
             A327Trn_ColName = BC001911_A327Trn_ColName[0];
             A319Trn_RowId = BC001911_A319Trn_RowId[0];
-            A264Trn_TileId = BC001911_A264Trn_TileId[0];
+            A407TileId = BC001911_A407TileId[0];
          }
          Gx_mode = sMode72;
       }
@@ -627,10 +627,10 @@ namespace GeneXus.Programs {
       {
          A327Trn_ColName = "";
          A319Trn_RowId = Guid.Empty;
-         A264Trn_TileId = Guid.Empty;
+         A407TileId = Guid.Empty;
          Z327Trn_ColName = "";
          Z319Trn_RowId = Guid.Empty;
-         Z264Trn_TileId = Guid.Empty;
+         Z407TileId = Guid.Empty;
       }
 
       protected void InitAll1972( )
@@ -669,12 +669,12 @@ namespace GeneXus.Programs {
          obj72.gxTpr_Mode = Gx_mode;
          obj72.gxTpr_Trn_colname = A327Trn_ColName;
          obj72.gxTpr_Trn_rowid = A319Trn_RowId;
-         obj72.gxTpr_Trn_tileid = A264Trn_TileId;
+         obj72.gxTpr_Tileid = A407TileId;
          obj72.gxTpr_Trn_colid = A328Trn_ColId;
          obj72.gxTpr_Trn_colid_Z = Z328Trn_ColId;
          obj72.gxTpr_Trn_rowid_Z = Z319Trn_RowId;
          obj72.gxTpr_Trn_colname_Z = Z327Trn_ColName;
-         obj72.gxTpr_Trn_tileid_Z = Z264Trn_TileId;
+         obj72.gxTpr_Tileid_Z = Z407TileId;
          obj72.gxTpr_Mode = Gx_mode;
          return  ;
       }
@@ -691,12 +691,12 @@ namespace GeneXus.Programs {
          Gx_mode = obj72.gxTpr_Mode;
          A327Trn_ColName = obj72.gxTpr_Trn_colname;
          A319Trn_RowId = obj72.gxTpr_Trn_rowid;
-         A264Trn_TileId = obj72.gxTpr_Trn_tileid;
+         A407TileId = obj72.gxTpr_Tileid;
          A328Trn_ColId = obj72.gxTpr_Trn_colid;
          Z328Trn_ColId = obj72.gxTpr_Trn_colid_Z;
          Z319Trn_RowId = obj72.gxTpr_Trn_rowid_Z;
          Z327Trn_ColName = obj72.gxTpr_Trn_colname_Z;
-         Z264Trn_TileId = obj72.gxTpr_Trn_tileid_Z;
+         Z407TileId = obj72.gxTpr_Tileid_Z;
          Gx_mode = obj72.gxTpr_Mode;
          return  ;
       }
@@ -1135,36 +1135,36 @@ namespace GeneXus.Programs {
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
-         AV26Pgmname = "";
+         AV27Pgmname = "";
          AV14TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV13Insert_Trn_RowId = Guid.Empty;
-         AV23Insert_Trn_TileId = Guid.Empty;
+         AV26Insert_TileId = Guid.Empty;
          Z327Trn_ColName = "";
          A327Trn_ColName = "";
          Z319Trn_RowId = Guid.Empty;
          A319Trn_RowId = Guid.Empty;
-         Z264Trn_TileId = Guid.Empty;
-         A264Trn_TileId = Guid.Empty;
+         Z407TileId = Guid.Empty;
+         A407TileId = Guid.Empty;
          BC00196_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          BC00196_A327Trn_ColName = new string[] {""} ;
          BC00196_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         BC00196_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         BC00196_A407TileId = new Guid[] {Guid.Empty} ;
          BC00194_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         BC00195_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         BC00195_A407TileId = new Guid[] {Guid.Empty} ;
          BC00197_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          BC00193_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          BC00193_A327Trn_ColName = new string[] {""} ;
          BC00193_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         BC00193_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         BC00193_A407TileId = new Guid[] {Guid.Empty} ;
          sMode72 = "";
          BC00192_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          BC00192_A327Trn_ColName = new string[] {""} ;
          BC00192_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         BC00192_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         BC00192_A407TileId = new Guid[] {Guid.Empty} ;
          BC001911_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          BC001911_A327Trn_ColName = new string[] {""} ;
          BC001911_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         BC001911_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         BC001911_A407TileId = new Guid[] {Guid.Empty} ;
          i327Trn_ColName = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1175,19 +1175,19 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_col_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC00192_A328Trn_ColId, BC00192_A327Trn_ColName, BC00192_A319Trn_RowId, BC00192_A264Trn_TileId
+               BC00192_A328Trn_ColId, BC00192_A327Trn_ColName, BC00192_A319Trn_RowId, BC00192_A407TileId
                }
                , new Object[] {
-               BC00193_A328Trn_ColId, BC00193_A327Trn_ColName, BC00193_A319Trn_RowId, BC00193_A264Trn_TileId
+               BC00193_A328Trn_ColId, BC00193_A327Trn_ColName, BC00193_A319Trn_RowId, BC00193_A407TileId
                }
                , new Object[] {
                BC00194_A319Trn_RowId
                }
                , new Object[] {
-               BC00195_A264Trn_TileId
+               BC00195_A407TileId
                }
                , new Object[] {
-               BC00196_A328Trn_ColId, BC00196_A327Trn_ColName, BC00196_A319Trn_RowId, BC00196_A264Trn_TileId
+               BC00196_A328Trn_ColId, BC00196_A327Trn_ColName, BC00196_A319Trn_RowId, BC00196_A407TileId
                }
                , new Object[] {
                BC00197_A328Trn_ColId
@@ -1199,13 +1199,13 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC001911_A328Trn_ColId, BC001911_A327Trn_ColName, BC001911_A319Trn_RowId, BC001911_A264Trn_TileId
+               BC001911_A328Trn_ColId, BC001911_A327Trn_ColName, BC001911_A319Trn_RowId, BC001911_A407TileId
                }
             }
          );
          Z328Trn_ColId = Guid.NewGuid( );
          A328Trn_ColId = Guid.NewGuid( );
-         AV26Pgmname = "Trn_Col_BC";
+         AV27Pgmname = "Trn_Col_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1217,11 +1217,11 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound72 ;
       private int trnEnded ;
-      private int AV27GXV1 ;
+      private int AV28GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV26Pgmname ;
+      private string AV27Pgmname ;
       private string sMode72 ;
       private bool returnInSub ;
       private string Z327Trn_ColName ;
@@ -1230,11 +1230,11 @@ namespace GeneXus.Programs {
       private Guid Z328Trn_ColId ;
       private Guid A328Trn_ColId ;
       private Guid AV13Insert_Trn_RowId ;
-      private Guid AV23Insert_Trn_TileId ;
+      private Guid AV26Insert_TileId ;
       private Guid Z319Trn_RowId ;
       private Guid A319Trn_RowId ;
-      private Guid Z264Trn_TileId ;
-      private Guid A264Trn_TileId ;
+      private Guid Z407TileId ;
+      private Guid A407TileId ;
       private IGxSession AV12WebSession ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -1245,22 +1245,22 @@ namespace GeneXus.Programs {
       private Guid[] BC00196_A328Trn_ColId ;
       private string[] BC00196_A327Trn_ColName ;
       private Guid[] BC00196_A319Trn_RowId ;
-      private Guid[] BC00196_A264Trn_TileId ;
+      private Guid[] BC00196_A407TileId ;
       private Guid[] BC00194_A319Trn_RowId ;
-      private Guid[] BC00195_A264Trn_TileId ;
+      private Guid[] BC00195_A407TileId ;
       private Guid[] BC00197_A328Trn_ColId ;
       private Guid[] BC00193_A328Trn_ColId ;
       private string[] BC00193_A327Trn_ColName ;
       private Guid[] BC00193_A319Trn_RowId ;
-      private Guid[] BC00193_A264Trn_TileId ;
+      private Guid[] BC00193_A407TileId ;
       private Guid[] BC00192_A328Trn_ColId ;
       private string[] BC00192_A327Trn_ColName ;
       private Guid[] BC00192_A319Trn_RowId ;
-      private Guid[] BC00192_A264Trn_TileId ;
+      private Guid[] BC00192_A407TileId ;
       private Guid[] BC001911_A328Trn_ColId ;
       private string[] BC001911_A327Trn_ColName ;
       private Guid[] BC001911_A319Trn_RowId ;
-      private Guid[] BC001911_A264Trn_TileId ;
+      private Guid[] BC001911_A407TileId ;
       private SdtTrn_Col bcTrn_Col ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1337,7 +1337,7 @@ namespace GeneXus.Programs {
         };
         Object[] prmBC00195;
         prmBC00195 = new Object[] {
-        new ParDef("Trn_TileId",GXType.UniqueIdentifier,36,0)
+        new ParDef("TileId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00196;
         prmBC00196 = new Object[] {
@@ -1352,13 +1352,13 @@ namespace GeneXus.Programs {
         new ParDef("Trn_ColId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("Trn_ColName",GXType.VarChar,100,0) ,
         new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_TileId",GXType.UniqueIdentifier,36,0)
+        new ParDef("TileId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00199;
         prmBC00199 = new Object[] {
         new ParDef("Trn_ColName",GXType.VarChar,100,0) ,
         new ParDef("Trn_RowId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_TileId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("TileId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("Trn_ColId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC001910;
@@ -1370,16 +1370,16 @@ namespace GeneXus.Programs {
         new ParDef("Trn_ColId",GXType.UniqueIdentifier,36,0)
         };
         def= new CursorDef[] {
-            new CursorDef("BC00192", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId  FOR UPDATE OF Trn_Col1",true, GxErrorMask.GX_NOMASK, false, this,prmBC00192,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00193", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00193,1, GxCacheFrequency.OFF ,true,false )
+            new CursorDef("BC00192", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, TileId FROM Trn_Col WHERE Trn_ColId = :Trn_ColId  FOR UPDATE OF Trn_Col",true, GxErrorMask.GX_NOMASK, false, this,prmBC00192,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00193", "SELECT Trn_ColId, Trn_ColName, Trn_RowId, TileId FROM Trn_Col WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00193,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00194", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00194,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00195", "SELECT Trn_TileId FROM Trn_Tile WHERE Trn_TileId = :Trn_TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00195,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00196", "SELECT TM1.Trn_ColId, TM1.Trn_ColName, TM1.Trn_RowId, TM1.Trn_TileId FROM Trn_Col1 TM1 WHERE TM1.Trn_ColId = :Trn_ColId ORDER BY TM1.Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00196,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00197", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00197,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00198", "SAVEPOINT gxupdate;INSERT INTO Trn_Col1(Trn_ColId, Trn_ColName, Trn_RowId, Trn_TileId) VALUES(:Trn_ColId, :Trn_ColName, :Trn_RowId, :Trn_TileId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00198)
-           ,new CursorDef("BC00199", "SAVEPOINT gxupdate;UPDATE Trn_Col1 SET Trn_ColName=:Trn_ColName, Trn_RowId=:Trn_RowId, Trn_TileId=:Trn_TileId  WHERE Trn_ColId = :Trn_ColId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00199)
-           ,new CursorDef("BC001910", "SAVEPOINT gxupdate;DELETE FROM Trn_Col1  WHERE Trn_ColId = :Trn_ColId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001910)
-           ,new CursorDef("BC001911", "SELECT TM1.Trn_ColId, TM1.Trn_ColName, TM1.Trn_RowId, TM1.Trn_TileId FROM Trn_Col1 TM1 WHERE TM1.Trn_ColId = :Trn_ColId ORDER BY TM1.Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001911,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00195", "SELECT TileId FROM Trn_Tile WHERE TileId = :TileId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00195,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00196", "SELECT TM1.Trn_ColId, TM1.Trn_ColName, TM1.Trn_RowId, TM1.TileId FROM Trn_Col TM1 WHERE TM1.Trn_ColId = :Trn_ColId ORDER BY TM1.Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00196,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00197", "SELECT Trn_ColId FROM Trn_Col WHERE Trn_ColId = :Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00197,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00198", "SAVEPOINT gxupdate;INSERT INTO Trn_Col(Trn_ColId, Trn_ColName, Trn_RowId, TileId) VALUES(:Trn_ColId, :Trn_ColName, :Trn_RowId, :TileId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00198)
+           ,new CursorDef("BC00199", "SAVEPOINT gxupdate;UPDATE Trn_Col SET Trn_ColName=:Trn_ColName, Trn_RowId=:Trn_RowId, TileId=:TileId  WHERE Trn_ColId = :Trn_ColId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00199)
+           ,new CursorDef("BC001910", "SAVEPOINT gxupdate;DELETE FROM Trn_Col  WHERE Trn_ColId = :Trn_ColId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001910)
+           ,new CursorDef("BC001911", "SELECT TM1.Trn_ColId, TM1.Trn_ColName, TM1.Trn_RowId, TM1.TileId FROM Trn_Col TM1 WHERE TM1.Trn_ColId = :Trn_ColId ORDER BY TM1.Trn_ColId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001911,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }

@@ -450,7 +450,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+dynavTrn_tileid_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, dynavTrn_tileid_Internalname, context.GetMessage( "Trn_Tile Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, dynavTrn_tileid_Internalname, context.GetMessage( "Tile Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'" + sPrefix + "',false,'',0)\"";
@@ -842,8 +842,8 @@ namespace GeneXus.Programs {
          pr_default.execute(0);
          while ( (pr_default.getStatus(0) != 101) )
          {
-            gxdynajaxctrlcodr.Add(H005S2_A264Trn_TileId[0].ToString());
-            gxdynajaxctrldescr.Add(H005S2_A265Trn_TileName[0]);
+            gxdynajaxctrlcodr.Add(H005S2_A407TileId[0].ToString());
+            gxdynajaxctrldescr.Add(H005S2_A400TileName[0]);
             pr_default.readNext(0);
          }
          pr_default.close(0);
@@ -864,7 +864,7 @@ namespace GeneXus.Programs {
             pr_default.execute(1);
             while ( (pr_default.getStatus(1) != 101) )
             {
-               dynavTrn_tileid.addItem(H005S3_A264Trn_TileId[0].ToString(), H005S3_A265Trn_TileName[0], 0);
+               dynavTrn_tileid.addItem(H005S3_A407TileId[0].ToString(), H005S3_A400TileName[0], 0);
                pr_default.readNext(1);
             }
             pr_default.close(1);
@@ -1033,7 +1033,7 @@ namespace GeneXus.Programs {
          AV19BC_Trn_Col = new SdtTrn_Col(context);
          AV19BC_Trn_Col.gxTpr_Trn_colname = AV15Trn_ColName;
          AV19BC_Trn_Col.gxTpr_Trn_rowid = A319Trn_RowId;
-         AV19BC_Trn_Col.gxTpr_Trn_tileid = AV20Trn_TileId;
+         AV19BC_Trn_Col.gxTpr_Tileid = AV20Trn_TileId;
          new prc_logtofile(context ).execute(  AV19BC_Trn_Col.ToJSonString(true, true)) ;
          AV19BC_Trn_Col.Save();
          if ( AV19BC_Trn_Col.Success() )
@@ -1281,7 +1281,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410161843618", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021972618", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1297,7 +1297,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_createrowcol.js", "?202410161843618", false, true);
+         context.AddJavascriptSource("wc_createrowcol.js", "?20241021972618", false, true);
          /* End function include_jscripts */
       }
 
@@ -1310,7 +1310,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3);
          while ( (pr_default.getStatus(3) != 101) )
          {
-            dynavTrn_tileid.addItem(H005S5_A264Trn_TileId[0].ToString(), H005S5_A265Trn_TileName[0], 0);
+            dynavTrn_tileid.addItem(H005S5_A407TileId[0].ToString(), H005S5_A400TileName[0], 0);
             pr_default.readNext(3);
          }
          pr_default.close(3);
@@ -1420,18 +1420,18 @@ namespace GeneXus.Programs {
          gxdynajaxctrlcodr = new GeneXus.Utils.GxStringCollection();
          gxdynajaxctrldescr = new GeneXus.Utils.GxStringCollection();
          gxwrpcisep = "";
-         H005S2_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         H005S2_A265Trn_TileName = new string[] {""} ;
-         H005S3_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         H005S3_A265Trn_TileName = new string[] {""} ;
+         H005S2_A407TileId = new Guid[] {Guid.Empty} ;
+         H005S2_A400TileName = new string[] {""} ;
+         H005S3_A407TileId = new Guid[] {Guid.Empty} ;
+         H005S3_A400TileName = new string[] {""} ;
          H005S4_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          AV19BC_Trn_Col = new SdtTrn_Col(context);
          AV8Message = new GeneXus.Utils.SdtMessages_Message(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          sCtrlA319Trn_RowId = "";
-         H005S5_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         H005S5_A265Trn_TileName = new string[] {""} ;
+         H005S5_A407TileId = new Guid[] {Guid.Empty} ;
+         H005S5_A400TileName = new string[] {""} ;
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wc_createrowcol__gam(),
             new Object[][] {
             }
@@ -1439,16 +1439,16 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wc_createrowcol__default(),
             new Object[][] {
                 new Object[] {
-               H005S2_A264Trn_TileId, H005S2_A265Trn_TileName
+               H005S2_A407TileId, H005S2_A400TileName
                }
                , new Object[] {
-               H005S3_A264Trn_TileId, H005S3_A265Trn_TileName
+               H005S3_A407TileId, H005S3_A400TileName
                }
                , new Object[] {
                H005S4_A319Trn_RowId
                }
                , new Object[] {
-               H005S5_A264Trn_TileId, H005S5_A265Trn_TileName
+               H005S5_A407TileId, H005S5_A400TileName
                }
             }
          );
@@ -1526,17 +1526,17 @@ namespace GeneXus.Programs {
       private GXCombobox dynavTrn_tileid ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV16MessageCollection ;
       private IDataStoreProvider pr_default ;
-      private Guid[] H005S2_A264Trn_TileId ;
-      private string[] H005S2_A265Trn_TileName ;
-      private Guid[] H005S3_A264Trn_TileId ;
-      private string[] H005S3_A265Trn_TileName ;
+      private Guid[] H005S2_A407TileId ;
+      private string[] H005S2_A400TileName ;
+      private Guid[] H005S3_A407TileId ;
+      private string[] H005S3_A400TileName ;
       private Guid[] H005S4_A319Trn_RowId ;
       private SdtTrn_Col AV19BC_Trn_Col ;
       private GeneXus.Utils.SdtMessages_Message AV8Message ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
-      private Guid[] H005S5_A264Trn_TileId ;
-      private string[] H005S5_A265Trn_TileName ;
+      private Guid[] H005S5_A407TileId ;
+      private string[] H005S5_A400TileName ;
       private IDataStoreProvider pr_gam ;
    }
 
@@ -1604,10 +1604,10 @@ namespace GeneXus.Programs {
         prmH005S5 = new Object[] {
         };
         def= new CursorDef[] {
-            new CursorDef("H005S2", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S2,0, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("H005S3", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S3,0, GxCacheFrequency.OFF ,true,false )
+            new CursorDef("H005S2", "SELECT TileId, TileName FROM Trn_Tile ORDER BY TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S2,0, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("H005S3", "SELECT TileId, TileName FROM Trn_Tile ORDER BY TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S3,0, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("H005S4", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_RowId = :Trn_RowId ORDER BY Trn_RowId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S4,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("H005S5", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile ORDER BY Trn_TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S5,0, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("H005S5", "SELECT TileId, TileName FROM Trn_Tile ORDER BY TileName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005S5,0, GxCacheFrequency.OFF ,true,false )
         };
      }
   }

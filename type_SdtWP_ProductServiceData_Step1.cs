@@ -30,6 +30,8 @@ namespace GeneXus.Programs
 		public SdtWP_ProductServiceData_Step1( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtWP_ProductServiceData_Step1_Productserviceclass = "";
+
 			gxTv_SdtWP_ProductServiceData_Step1_Productservicegroup = "";
 
 			gxTv_SdtWP_ProductServiceData_Step1_Productservicedescription = "";
@@ -69,6 +71,9 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
+			AddObjectProperty("ProductServiceClass", gxTpr_Productserviceclass, false);
+
+
 			AddObjectProperty("ProductServiceGroup", gxTpr_Productservicegroup, false);
 
 
@@ -100,6 +105,22 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Properties
+
+		[SoapElement(ElementName="ProductServiceClass")]
+		[XmlElement(ElementName="ProductServiceClass")]
+		public string gxTpr_Productserviceclass
+		{
+			get {
+				return gxTv_SdtWP_ProductServiceData_Step1_Productserviceclass; 
+			}
+			set {
+				gxTv_SdtWP_ProductServiceData_Step1_Productserviceclass = value;
+				SetDirty("Productserviceclass");
+			}
+		}
+
+
+
 
 		[SoapElement(ElementName="ProductServiceGroup")]
 		[XmlElement(ElementName="ProductServiceGroup")]
@@ -265,6 +286,7 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
+			gxTv_SdtWP_ProductServiceData_Step1_Productserviceclass = "";
 			gxTv_SdtWP_ProductServiceData_Step1_Productservicegroup = "";
 			gxTv_SdtWP_ProductServiceData_Step1_Productservicedescription = "";
 
@@ -282,6 +304,9 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Declaration
+
+		protected string gxTv_SdtWP_ProductServiceData_Step1_Productserviceclass;
+		 
 
 		protected string gxTv_SdtWP_ProductServiceData_Step1_Productservicegroup;
 		 
@@ -327,7 +352,19 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="ProductServiceGroup", Order=0)]
+		[DataMember(Name="ProductServiceClass", Order=0)]
+		public  string gxTpr_Productserviceclass
+		{
+			get { 
+				return sdt.gxTpr_Productserviceclass;
+
+			}
+			set { 
+				 sdt.gxTpr_Productserviceclass = value;
+			}
+		}
+
+		[DataMember(Name="ProductServiceGroup", Order=1)]
 		public  string gxTpr_Productservicegroup
 		{
 			get { 
@@ -339,7 +376,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceDescription", Order=1)]
+		[DataMember(Name="ProductServiceDescription", Order=2)]
 		public  string gxTpr_Productservicedescription
 		{
 			get { 
@@ -351,7 +388,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="SupplierGenId", Order=2)]
+		[DataMember(Name="SupplierGenId", Order=3)]
 		public Guid gxTpr_Suppliergenid
 		{
 			get { 
@@ -363,7 +400,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="SupplierAgbId", Order=3)]
+		[DataMember(Name="SupplierAgbId", Order=4)]
 		public Guid gxTpr_Supplieragbid
 		{
 			get { 
@@ -375,7 +412,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceId", Order=4)]
+		[DataMember(Name="ProductServiceId", Order=5)]
 		public Guid gxTpr_Productserviceid
 		{
 			get { 
@@ -387,7 +424,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceName", Order=5)]
+		[DataMember(Name="ProductServiceName", Order=6)]
 		public  string gxTpr_Productservicename
 		{
 			get { 
@@ -399,7 +436,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceTileName", Order=6)]
+		[DataMember(Name="ProductServiceTileName", Order=7)]
 		public  string gxTpr_Productservicetilename
 		{
 			get { 
@@ -411,7 +448,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceImageVar", Order=7)]
+		[DataMember(Name="ProductServiceImageVar", Order=8)]
 		public  string gxTpr_Productserviceimagevar
 		{
 			get { 
@@ -423,7 +460,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="FileName", Order=8)]
+		[DataMember(Name="FileName", Order=9)]
 		public  string gxTpr_Filename
 		{
 			get { 

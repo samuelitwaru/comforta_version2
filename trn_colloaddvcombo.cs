@@ -144,16 +144,6 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(AV17ComboName, "Trn_TileId") == 0 )
-         {
-            /* Execute user subroutine: 'LOADCOMBOITEMS_TRN_TILEID' */
-            S121 ();
-            if ( returnInSub )
-            {
-               cleanup();
-               if (true) return;
-            }
-         }
          cleanup();
       }
 
@@ -234,83 +224,6 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S121( )
-      {
-         /* 'LOADCOMBOITEMS_TRN_TILEID' Routine */
-         returnInSub = false;
-         if ( AV19IsDynamicCall )
-         {
-            GXPagingFrom5 = AV12SkipItems;
-            GXPagingTo5 = AV11MaxItems;
-            pr_default.dynParam(3, new Object[]{ new Object[]{
-                                                 AV14SearchTxt ,
-                                                 A265Trn_TileName } ,
-                                                 new int[]{
-                                                 }
-            });
-            lV14SearchTxt = StringUtil.Concat( StringUtil.RTrim( AV14SearchTxt), "%", "");
-            /* Using cursor P00745 */
-            pr_default.execute(3, new Object[] {lV14SearchTxt, GXPagingFrom5, GXPagingTo5, GXPagingTo5});
-            while ( (pr_default.getStatus(3) != 101) )
-            {
-               A265Trn_TileName = P00745_A265Trn_TileName[0];
-               A264Trn_TileId = P00745_A264Trn_TileId[0];
-               AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
-               AV16Combo_DataItem.gxTpr_Id = StringUtil.Trim( A264Trn_TileId.ToString());
-               AV16Combo_DataItem.gxTpr_Title = A265Trn_TileName;
-               AV15Combo_Data.Add(AV16Combo_DataItem, 0);
-               if ( AV15Combo_Data.Count > AV11MaxItems )
-               {
-                  /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                  if (true) break;
-               }
-               pr_default.readNext(3);
-            }
-            pr_default.close(3);
-            AV24Combo_DataJson = AV15Combo_Data.ToJSonString(false);
-         }
-         else
-         {
-            if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
-            {
-               if ( StringUtil.StrCmp(AV18TrnMode, "GET") != 0 )
-               {
-                  /* Using cursor P00746 */
-                  pr_default.execute(4, new Object[] {AV20Trn_ColId});
-                  while ( (pr_default.getStatus(4) != 101) )
-                  {
-                     A328Trn_ColId = P00746_A328Trn_ColId[0];
-                     A264Trn_TileId = P00746_A264Trn_TileId[0];
-                     A265Trn_TileName = P00746_A265Trn_TileName[0];
-                     A265Trn_TileName = P00746_A265Trn_TileName[0];
-                     AV22SelectedValue = ((Guid.Empty==A264Trn_TileId) ? "" : StringUtil.Trim( A264Trn_TileId.ToString()));
-                     AV23SelectedText = A265Trn_TileName;
-                     /* Exiting from a For First loop. */
-                     if (true) break;
-                  }
-                  pr_default.close(4);
-               }
-               else
-               {
-                  AV29Trn_TileId = StringUtil.StrToGuid( AV14SearchTxt);
-                  /* Using cursor P00747 */
-                  pr_default.execute(5, new Object[] {AV29Trn_TileId});
-                  while ( (pr_default.getStatus(5) != 101) )
-                  {
-                     A264Trn_TileId = P00747_A264Trn_TileId[0];
-                     A265Trn_TileName = P00747_A265Trn_TileName[0];
-                     AV23SelectedText = A265Trn_TileName;
-                     /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                     if (true) break;
-                     /* Exiting from a For First loop. */
-                     if (true) break;
-                  }
-                  pr_default.close(5);
-               }
-            }
-         }
-      }
-
       public override void cleanup( )
       {
          CloseCursors();
@@ -342,16 +255,6 @@ namespace GeneXus.Programs {
          AV28Trn_RowId = Guid.Empty;
          P00744_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          P00744_A320Trn_RowName = new string[] {""} ;
-         A265Trn_TileName = "";
-         P00745_A265Trn_TileName = new string[] {""} ;
-         P00745_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         A264Trn_TileId = Guid.Empty;
-         P00746_A328Trn_ColId = new Guid[] {Guid.Empty} ;
-         P00746_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         P00746_A265Trn_TileName = new string[] {""} ;
-         AV29Trn_TileId = Guid.Empty;
-         P00747_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         P00747_A265Trn_TileName = new string[] {""} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_colloaddvcombo__default(),
             new Object[][] {
                 new Object[] {
@@ -363,15 +266,6 @@ namespace GeneXus.Programs {
                , new Object[] {
                P00744_A319Trn_RowId, P00744_A320Trn_RowName
                }
-               , new Object[] {
-               P00745_A265Trn_TileName, P00745_A264Trn_TileId
-               }
-               , new Object[] {
-               P00746_A328Trn_ColId, P00746_A264Trn_TileId, P00746_A265Trn_TileName
-               }
-               , new Object[] {
-               P00747_A264Trn_TileId, P00747_A265Trn_TileName
-               }
             }
          );
          /* GeneXus formulas. */
@@ -382,8 +276,6 @@ namespace GeneXus.Programs {
       private int AV11MaxItems ;
       private int GXPagingFrom2 ;
       private int GXPagingTo2 ;
-      private int GXPagingFrom5 ;
-      private int GXPagingTo5 ;
       private string AV18TrnMode ;
       private bool AV19IsDynamicCall ;
       private bool returnInSub ;
@@ -395,13 +287,10 @@ namespace GeneXus.Programs {
       private string AV14SearchTxt ;
       private string lV14SearchTxt ;
       private string A320Trn_RowName ;
-      private string A265Trn_TileName ;
       private Guid AV20Trn_ColId ;
       private Guid A319Trn_RowId ;
       private Guid A328Trn_ColId ;
       private Guid AV28Trn_RowId ;
-      private Guid A264Trn_TileId ;
-      private Guid AV29Trn_TileId ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV9WWPContext ;
@@ -415,13 +304,6 @@ namespace GeneXus.Programs {
       private string[] P00743_A320Trn_RowName ;
       private Guid[] P00744_A319Trn_RowId ;
       private string[] P00744_A320Trn_RowName ;
-      private string[] P00745_A265Trn_TileName ;
-      private Guid[] P00745_A264Trn_TileId ;
-      private Guid[] P00746_A328Trn_ColId ;
-      private Guid[] P00746_A264Trn_TileId ;
-      private string[] P00746_A265Trn_TileName ;
-      private Guid[] P00747_A264Trn_TileId ;
-      private string[] P00747_A265Trn_TileName ;
       private string aP5_SelectedValue ;
       private string aP6_SelectedText ;
       private string aP7_Combo_DataJson ;
@@ -458,35 +340,6 @@ namespace GeneXus.Programs {
          return GXv_Object2 ;
       }
 
-      protected Object[] conditional_P00745( IGxContext context ,
-                                             string AV14SearchTxt ,
-                                             string A265Trn_TileName )
-      {
-         System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
-         string scmdbuf;
-         short[] GXv_int3 = new short[4];
-         Object[] GXv_Object4 = new Object[2];
-         string sSelectString;
-         string sFromString;
-         string sOrderString;
-         sSelectString = " Trn_TileName, Trn_TileId";
-         sFromString = " FROM Trn_Tile";
-         sOrderString = "";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14SearchTxt)) )
-         {
-            AddWhere(sWhereString, "(Trn_TileName like '%' || :lV14SearchTxt)");
-         }
-         else
-         {
-            GXv_int3[0] = 1;
-         }
-         sOrderString += " ORDER BY Trn_TileName, Trn_TileId";
-         scmdbuf = "SELECT " + sSelectString + sFromString + sWhereString + sOrderString + "" + " OFFSET " + ":GXPagingFrom5" + " LIMIT CASE WHEN " + ":GXPagingTo5" + " > 0 THEN " + ":GXPagingTo5" + " ELSE 1e9 END";
-         GXv_Object4[0] = scmdbuf;
-         GXv_Object4[1] = GXv_int3;
-         return GXv_Object4 ;
-      }
-
       public override Object [] getDynamicStatement( int cursor ,
                                                      IGxContext context ,
                                                      Object [] dynConstraints )
@@ -495,8 +348,6 @@ namespace GeneXus.Programs {
          {
                case 0 :
                      return conditional_P00742(context, (string)dynConstraints[0] , (string)dynConstraints[1] );
-               case 3 :
-                     return conditional_P00745(context, (string)dynConstraints[0] , (string)dynConstraints[1] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -508,9 +359,6 @@ namespace GeneXus.Programs {
           new ForEachCursor(def[0])
          ,new ForEachCursor(def[1])
          ,new ForEachCursor(def[2])
-         ,new ForEachCursor(def[3])
-         ,new ForEachCursor(def[4])
-         ,new ForEachCursor(def[5])
        };
     }
 
@@ -527,14 +375,6 @@ namespace GeneXus.Programs {
           prmP00744 = new Object[] {
           new ParDef("AV28Trn_RowId",GXType.UniqueIdentifier,36,0)
           };
-          Object[] prmP00746;
-          prmP00746 = new Object[] {
-          new ParDef("AV20Trn_ColId",GXType.UniqueIdentifier,36,0)
-          };
-          Object[] prmP00747;
-          prmP00747 = new Object[] {
-          new ParDef("AV29Trn_TileId",GXType.UniqueIdentifier,36,0)
-          };
           Object[] prmP00742;
           prmP00742 = new Object[] {
           new ParDef("lV14SearchTxt",GXType.VarChar,40,0) ,
@@ -542,20 +382,10 @@ namespace GeneXus.Programs {
           new ParDef("GXPagingTo2",GXType.Int32,9,0) ,
           new ParDef("GXPagingTo2",GXType.Int32,9,0)
           };
-          Object[] prmP00745;
-          prmP00745 = new Object[] {
-          new ParDef("lV14SearchTxt",GXType.VarChar,40,0) ,
-          new ParDef("GXPagingFrom5",GXType.Int32,9,0) ,
-          new ParDef("GXPagingTo5",GXType.Int32,9,0) ,
-          new ParDef("GXPagingTo5",GXType.Int32,9,0)
-          };
           def= new CursorDef[] {
               new CursorDef("P00742", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00742,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00743", "SELECT T1.Trn_ColId, T1.Trn_RowId, T2.Trn_RowName FROM (Trn_Col1 T1 INNER JOIN Trn_Row T2 ON T2.Trn_RowId = T1.Trn_RowId) WHERE T1.Trn_ColId = :AV20Trn_ColId ORDER BY T1.Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00743,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00743", "SELECT T1.Trn_ColId, T1.Trn_RowId, T2.Trn_RowName FROM (Trn_Col T1 INNER JOIN Trn_Row T2 ON T2.Trn_RowId = T1.Trn_RowId) WHERE T1.Trn_ColId = :AV20Trn_ColId ORDER BY T1.Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00743,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P00744", "SELECT Trn_RowId, Trn_RowName FROM Trn_Row WHERE Trn_RowId = :AV28Trn_RowId ORDER BY Trn_RowId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00744,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00745", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00745,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00746", "SELECT T1.Trn_ColId, T1.Trn_TileId, T2.Trn_TileName FROM (Trn_Col1 T1 INNER JOIN Trn_Tile T2 ON T2.Trn_TileId = T1.Trn_TileId) WHERE T1.Trn_ColId = :AV20Trn_ColId ORDER BY T1.Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00746,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00747", "SELECT Trn_TileId, Trn_TileName FROM Trn_Tile WHERE Trn_TileId = :AV29Trn_TileId ORDER BY Trn_TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00747,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -576,19 +406,6 @@ namespace GeneXus.Programs {
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 return;
              case 2 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                return;
-             case 3 :
-                ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                return;
-             case 4 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                return;
-             case 5 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;

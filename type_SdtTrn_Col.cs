@@ -54,10 +54,10 @@ namespace GeneXus.Programs {
       {
          GXProperties metadata = new GXProperties();
          metadata.Set("Name", "Trn_Col");
-         metadata.Set("BT", "Trn_Col1");
+         metadata.Set("BT", "Trn_Col");
          metadata.Set("PK", "[ \"Trn_ColId\" ]");
          metadata.Set("PKAssigned", "[ \"Trn_ColId\" ]");
-         metadata.Set("FKList", "[ { \"FK\":[ \"Trn_RowId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"Trn_TileId\" ],\"FKMap\":[  ] } ]");
+         metadata.Set("FKList", "[ { \"FK\":[ \"TileId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"Trn_RowId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");
@@ -72,7 +72,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Trn_colid_Z");
          state.Add("gxTpr_Trn_rowid_Z");
          state.Add("gxTpr_Trn_colname_Z");
-         state.Add("gxTpr_Trn_tileid_Z");
+         state.Add("gxTpr_Tileid_Z");
          return state ;
       }
 
@@ -83,13 +83,13 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Col_Trn_colid = sdt.gxTv_SdtTrn_Col_Trn_colid ;
          gxTv_SdtTrn_Col_Trn_rowid = sdt.gxTv_SdtTrn_Col_Trn_rowid ;
          gxTv_SdtTrn_Col_Trn_colname = sdt.gxTv_SdtTrn_Col_Trn_colname ;
-         gxTv_SdtTrn_Col_Trn_tileid = sdt.gxTv_SdtTrn_Col_Trn_tileid ;
+         gxTv_SdtTrn_Col_Tileid = sdt.gxTv_SdtTrn_Col_Tileid ;
          gxTv_SdtTrn_Col_Mode = sdt.gxTv_SdtTrn_Col_Mode ;
          gxTv_SdtTrn_Col_Initialized = sdt.gxTv_SdtTrn_Col_Initialized ;
          gxTv_SdtTrn_Col_Trn_colid_Z = sdt.gxTv_SdtTrn_Col_Trn_colid_Z ;
          gxTv_SdtTrn_Col_Trn_rowid_Z = sdt.gxTv_SdtTrn_Col_Trn_rowid_Z ;
          gxTv_SdtTrn_Col_Trn_colname_Z = sdt.gxTv_SdtTrn_Col_Trn_colname_Z ;
-         gxTv_SdtTrn_Col_Trn_tileid_Z = sdt.gxTv_SdtTrn_Col_Trn_tileid_Z ;
+         gxTv_SdtTrn_Col_Tileid_Z = sdt.gxTv_SdtTrn_Col_Tileid_Z ;
          return  ;
       }
 
@@ -111,7 +111,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("Trn_ColId", gxTv_SdtTrn_Col_Trn_colid, false, includeNonInitialized);
          AddObjectProperty("Trn_RowId", gxTv_SdtTrn_Col_Trn_rowid, false, includeNonInitialized);
          AddObjectProperty("Trn_ColName", gxTv_SdtTrn_Col_Trn_colname, false, includeNonInitialized);
-         AddObjectProperty("Trn_TileId", gxTv_SdtTrn_Col_Trn_tileid, false, includeNonInitialized);
+         AddObjectProperty("TileId", gxTv_SdtTrn_Col_Tileid, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_Col_Mode, false, includeNonInitialized);
@@ -119,7 +119,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("Trn_ColId_Z", gxTv_SdtTrn_Col_Trn_colid_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_RowId_Z", gxTv_SdtTrn_Col_Trn_rowid_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ColName_Z", gxTv_SdtTrn_Col_Trn_colname_Z, false, includeNonInitialized);
-            AddObjectProperty("Trn_TileId_Z", gxTv_SdtTrn_Col_Trn_tileid_Z, false, includeNonInitialized);
+            AddObjectProperty("TileId_Z", gxTv_SdtTrn_Col_Tileid_Z, false, includeNonInitialized);
          }
          return  ;
       }
@@ -141,10 +141,10 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Col_Trn_colname = sdt.gxTv_SdtTrn_Col_Trn_colname ;
          }
-         if ( sdt.IsDirty("Trn_TileId") )
+         if ( sdt.IsDirty("TileId") )
          {
             sdtIsNull = 0;
-            gxTv_SdtTrn_Col_Trn_tileid = sdt.gxTv_SdtTrn_Col_Trn_tileid ;
+            gxTv_SdtTrn_Col_Tileid = sdt.gxTv_SdtTrn_Col_Tileid ;
          }
          return  ;
       }
@@ -165,7 +165,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Col_Trn_colid_Z_SetNull( );
                this.gxTv_SdtTrn_Col_Trn_rowid_Z_SetNull( );
                this.gxTv_SdtTrn_Col_Trn_colname_Z_SetNull( );
-               this.gxTv_SdtTrn_Col_Trn_tileid_Z_SetNull( );
+               this.gxTv_SdtTrn_Col_Tileid_Z_SetNull( );
             }
             gxTv_SdtTrn_Col_Trn_colid = value;
             SetDirty("Trn_colid");
@@ -205,18 +205,18 @@ namespace GeneXus.Programs {
 
       }
 
-      [  SoapElement( ElementName = "Trn_TileId" )]
-      [  XmlElement( ElementName = "Trn_TileId"   )]
-      public Guid gxTpr_Trn_tileid
+      [  SoapElement( ElementName = "TileId" )]
+      [  XmlElement( ElementName = "TileId"   )]
+      public Guid gxTpr_Tileid
       {
          get {
-            return gxTv_SdtTrn_Col_Trn_tileid ;
+            return gxTv_SdtTrn_Col_Tileid ;
          }
 
          set {
             sdtIsNull = 0;
-            gxTv_SdtTrn_Col_Trn_tileid = value;
-            SetDirty("Trn_tileid");
+            gxTv_SdtTrn_Col_Tileid = value;
+            SetDirty("Tileid");
          }
 
       }
@@ -361,30 +361,30 @@ namespace GeneXus.Programs {
          return false ;
       }
 
-      [  SoapElement( ElementName = "Trn_TileId_Z" )]
-      [  XmlElement( ElementName = "Trn_TileId_Z"   )]
-      public Guid gxTpr_Trn_tileid_Z
+      [  SoapElement( ElementName = "TileId_Z" )]
+      [  XmlElement( ElementName = "TileId_Z"   )]
+      public Guid gxTpr_Tileid_Z
       {
          get {
-            return gxTv_SdtTrn_Col_Trn_tileid_Z ;
+            return gxTv_SdtTrn_Col_Tileid_Z ;
          }
 
          set {
             sdtIsNull = 0;
-            gxTv_SdtTrn_Col_Trn_tileid_Z = value;
-            SetDirty("Trn_tileid_Z");
+            gxTv_SdtTrn_Col_Tileid_Z = value;
+            SetDirty("Tileid_Z");
          }
 
       }
 
-      public void gxTv_SdtTrn_Col_Trn_tileid_Z_SetNull( )
+      public void gxTv_SdtTrn_Col_Tileid_Z_SetNull( )
       {
-         gxTv_SdtTrn_Col_Trn_tileid_Z = Guid.Empty;
-         SetDirty("Trn_tileid_Z");
+         gxTv_SdtTrn_Col_Tileid_Z = Guid.Empty;
+         SetDirty("Tileid_Z");
          return  ;
       }
 
-      public bool gxTv_SdtTrn_Col_Trn_tileid_Z_IsNull( )
+      public bool gxTv_SdtTrn_Col_Tileid_Z_IsNull( )
       {
          return false ;
       }
@@ -409,12 +409,12 @@ namespace GeneXus.Programs {
          sdtIsNull = 1;
          gxTv_SdtTrn_Col_Trn_rowid = Guid.Empty;
          gxTv_SdtTrn_Col_Trn_colname = "";
-         gxTv_SdtTrn_Col_Trn_tileid = Guid.Empty;
+         gxTv_SdtTrn_Col_Tileid = Guid.Empty;
          gxTv_SdtTrn_Col_Mode = "";
          gxTv_SdtTrn_Col_Trn_colid_Z = Guid.Empty;
          gxTv_SdtTrn_Col_Trn_rowid_Z = Guid.Empty;
          gxTv_SdtTrn_Col_Trn_colname_Z = "";
-         gxTv_SdtTrn_Col_Trn_tileid_Z = Guid.Empty;
+         gxTv_SdtTrn_Col_Tileid_Z = Guid.Empty;
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_col", "GeneXus.Programs.trn_col_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -436,10 +436,10 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Col_Trn_colname_Z ;
       private Guid gxTv_SdtTrn_Col_Trn_colid ;
       private Guid gxTv_SdtTrn_Col_Trn_rowid ;
-      private Guid gxTv_SdtTrn_Col_Trn_tileid ;
+      private Guid gxTv_SdtTrn_Col_Tileid ;
       private Guid gxTv_SdtTrn_Col_Trn_colid_Z ;
       private Guid gxTv_SdtTrn_Col_Trn_rowid_Z ;
-      private Guid gxTv_SdtTrn_Col_Trn_tileid_Z ;
+      private Guid gxTv_SdtTrn_Col_Tileid_Z ;
    }
 
    [DataContract(Name = @"Trn_Col", Namespace = "Comforta_version2")]
@@ -496,16 +496,16 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "Trn_TileId" , Order = 3 )]
+      [DataMember( Name = "TileId" , Order = 3 )]
       [GxSeudo()]
-      public Guid gxTpr_Trn_tileid
+      public Guid gxTpr_Tileid
       {
          get {
-            return sdt.gxTpr_Trn_tileid ;
+            return sdt.gxTpr_Tileid ;
          }
 
          set {
-            sdt.gxTpr_Trn_tileid = value;
+            sdt.gxTpr_Tileid = value;
          }
 
       }

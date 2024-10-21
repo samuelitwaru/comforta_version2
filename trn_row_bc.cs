@@ -1382,7 +1382,7 @@ namespace GeneXus.Programs {
            ,new CursorDef("BC00188", "SAVEPOINT gxupdate;UPDATE Trn_Row SET Trn_RowName=:Trn_RowName, Trn_PageId=:Trn_PageId  WHERE Trn_RowId = :Trn_RowId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00188)
            ,new CursorDef("BC00189", "SAVEPOINT gxupdate;DELETE FROM Trn_Row  WHERE Trn_RowId = :Trn_RowId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00189)
            ,new CursorDef("BC001810", "SELECT Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001810,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001811", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001811,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("BC001811", "SELECT Trn_ColId FROM Trn_Col WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001811,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("BC001812", "SELECT TM1.Trn_RowId, TM1.Trn_RowName, T2.Trn_PageName, TM1.Trn_PageId FROM (Trn_Row TM1 INNER JOIN Trn_Page T2 ON T2.Trn_PageId = TM1.Trn_PageId) WHERE TM1.Trn_RowId = :Trn_RowId ORDER BY TM1.Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001812,100, GxCacheFrequency.OFF ,true,false )
         };
      }

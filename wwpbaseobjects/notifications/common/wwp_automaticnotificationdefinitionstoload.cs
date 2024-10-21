@@ -101,7 +101,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -113,7 +113,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -125,7 +125,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -137,7 +137,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -149,7 +149,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -161,7 +161,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -173,7 +173,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -185,7 +185,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -197,7 +197,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -209,7 +209,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -221,7 +221,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -233,7 +233,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -245,7 +245,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -257,7 +257,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -269,7 +269,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -281,7 +281,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -293,7 +293,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -305,7 +305,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -317,7 +317,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -329,7 +329,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -341,7 +341,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -353,7 +353,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -365,7 +365,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -377,7 +377,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -389,7 +389,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -401,7 +401,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -413,7 +413,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -425,7 +425,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -437,7 +437,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -449,7 +449,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -461,7 +461,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -473,7 +473,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -485,7 +485,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -497,7 +497,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -509,7 +509,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -521,7 +521,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -533,7 +533,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -545,7 +545,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -557,7 +557,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -569,7 +569,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -581,7 +581,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -593,7 +593,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -605,7 +605,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = true;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when discussion messages are created";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when discussion messages are created", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
          Gxm2wwp_notificationdefinition = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_NotificationDefinition(context);
          Gxm3rootcol.Add(Gxm2wwp_notificationdefinition, 0);
@@ -617,7 +617,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionallowusersubscription = false;
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionicon = "";
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiontitle = "";
-         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = "Get notified when you are mentioned in a discussion";
+         Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitiondescription = context.GetMessage( "Get notified when you are mentioned in a discussion", "");
          Gxm2wwp_notificationdefinition.gxTpr_Wwpnotificationdefinitionsecfuncionality = "";
       }
 

@@ -5970,7 +5970,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241016185174", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021951992", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -5986,7 +5986,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_addelement.js", "?20241016185176", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_addelement.js", "?20241021951995", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);

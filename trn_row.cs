@@ -2019,7 +2019,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410161843913", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021972612", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2035,7 +2035,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_row.js", "?202410161843915", false, true);
+         context.AddJavascriptSource("trn_row.js", "?20241021972614", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2648,7 +2648,7 @@ namespace GeneXus.Programs {
            ,new CursorDef("T001811", "SAVEPOINT gxupdate;UPDATE Trn_Row SET Trn_RowName=:Trn_RowName, Trn_PageId=:Trn_PageId  WHERE Trn_RowId = :Trn_RowId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001811)
            ,new CursorDef("T001812", "SAVEPOINT gxupdate;DELETE FROM Trn_Row  WHERE Trn_RowId = :Trn_RowId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001812)
            ,new CursorDef("T001813", "SELECT Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001813,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T001814", "SELECT Trn_ColId FROM Trn_Col1 WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001814,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("T001814", "SELECT Trn_ColId FROM Trn_Col WHERE Trn_RowId = :Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001814,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("T001815", "SELECT Trn_RowId FROM Trn_Row ORDER BY Trn_RowId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001815,100, GxCacheFrequency.OFF ,true,false )
         };
      }

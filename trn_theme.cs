@@ -796,6 +796,8 @@ namespace GeneXus.Programs {
                Z247Trn_ThemeId = StringUtil.StrToGuid( cgiGet( "Z247Trn_ThemeId"));
                Z248Trn_ThemeName = cgiGet( "Z248Trn_ThemeName");
                Z260Trn_ThemeFontFamily = cgiGet( "Z260Trn_ThemeFontFamily");
+               Z399Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z399Trn_ThemeFontSize"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               A399Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z399Trn_ThemeFontSize"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
@@ -803,6 +805,7 @@ namespace GeneXus.Programs {
                nRC_GXsfl_46 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_46"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AV7Trn_ThemeId = StringUtil.StrToGuid( cgiGet( "vTRN_THEMEID"));
                Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               A399Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( "TRN_THEMEFONTSIZE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtTrn_ThemeId_Internalname), "") == 0 )
                {
@@ -835,6 +838,7 @@ namespace GeneXus.Programs {
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Theme");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
+               forbiddenHiddens.Add("Trn_ThemeFontSize", context.localUtil.Format( (decimal)(A399Trn_ThemeFontSize), "ZZZ9"));
                hsh = cgiGet( "hsh");
                if ( ( ! ( ( A247Trn_ThemeId != Z247Trn_ThemeId ) ) || ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) ) && ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
                {
@@ -1341,11 +1345,13 @@ namespace GeneXus.Programs {
             {
                Z248Trn_ThemeName = T000W7_A248Trn_ThemeName[0];
                Z260Trn_ThemeFontFamily = T000W7_A260Trn_ThemeFontFamily[0];
+               Z399Trn_ThemeFontSize = T000W7_A399Trn_ThemeFontSize[0];
             }
             else
             {
                Z248Trn_ThemeName = A248Trn_ThemeName;
                Z260Trn_ThemeFontFamily = A260Trn_ThemeFontFamily;
+               Z399Trn_ThemeFontSize = A399Trn_ThemeFontSize;
             }
          }
          if ( GX_JID == -9 )
@@ -1353,6 +1359,7 @@ namespace GeneXus.Programs {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z248Trn_ThemeName = A248Trn_ThemeName;
             Z260Trn_ThemeFontFamily = A260Trn_ThemeFontFamily;
+            Z399Trn_ThemeFontSize = A399Trn_ThemeFontSize;
          }
       }
 
@@ -1420,6 +1427,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A248Trn_ThemeName", A248Trn_ThemeName);
             A260Trn_ThemeFontFamily = T000W8_A260Trn_ThemeFontFamily[0];
             AssignAttri("", false, "A260Trn_ThemeFontFamily", A260Trn_ThemeFontFamily);
+            A399Trn_ThemeFontSize = T000W8_A399Trn_ThemeFontSize[0];
             ZM0W46( -9) ;
          }
          pr_default.close(6);
@@ -1474,6 +1482,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A248Trn_ThemeName", A248Trn_ThemeName);
             A260Trn_ThemeFontFamily = T000W7_A260Trn_ThemeFontFamily[0];
             AssignAttri("", false, "A260Trn_ThemeFontFamily", A260Trn_ThemeFontFamily);
+            A399Trn_ThemeFontSize = T000W7_A399Trn_ThemeFontSize[0];
             Z247Trn_ThemeId = A247Trn_ThemeId;
             sMode46 = Gx_mode;
             Gx_mode = "DSP";
@@ -1682,7 +1691,7 @@ namespace GeneXus.Programs {
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(4) == 101) || ( StringUtil.StrCmp(Z248Trn_ThemeName, T000W6_A248Trn_ThemeName[0]) != 0 ) || ( StringUtil.StrCmp(Z260Trn_ThemeFontFamily, T000W6_A260Trn_ThemeFontFamily[0]) != 0 ) )
+            if ( (pr_default.getStatus(4) == 101) || ( StringUtil.StrCmp(Z248Trn_ThemeName, T000W6_A248Trn_ThemeName[0]) != 0 ) || ( StringUtil.StrCmp(Z260Trn_ThemeFontFamily, T000W6_A260Trn_ThemeFontFamily[0]) != 0 ) || ( Z399Trn_ThemeFontSize != T000W6_A399Trn_ThemeFontSize[0] ) )
             {
                if ( StringUtil.StrCmp(Z248Trn_ThemeName, T000W6_A248Trn_ThemeName[0]) != 0 )
                {
@@ -1695,6 +1704,12 @@ namespace GeneXus.Programs {
                   GXUtil.WriteLog("trn_theme:[seudo value changed for attri]"+"Trn_ThemeFontFamily");
                   GXUtil.WriteLogRaw("Old: ",Z260Trn_ThemeFontFamily);
                   GXUtil.WriteLogRaw("Current: ",T000W6_A260Trn_ThemeFontFamily[0]);
+               }
+               if ( Z399Trn_ThemeFontSize != T000W6_A399Trn_ThemeFontSize[0] )
+               {
+                  GXUtil.WriteLog("trn_theme:[seudo value changed for attri]"+"Trn_ThemeFontSize");
+                  GXUtil.WriteLogRaw("Old: ",Z399Trn_ThemeFontSize);
+                  GXUtil.WriteLogRaw("Current: ",T000W6_A399Trn_ThemeFontSize[0]);
                }
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Theme"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -1729,7 +1744,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T000W12 */
-                     pr_default.execute(10, new Object[] {A247Trn_ThemeId, A248Trn_ThemeName, A260Trn_ThemeFontFamily});
+                     pr_default.execute(10, new Object[] {A247Trn_ThemeId, A248Trn_ThemeName, A260Trn_ThemeFontFamily, A399Trn_ThemeFontSize});
                      pr_default.close(10);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Theme");
                      if ( (pr_default.getStatus(10) == 1) )
@@ -1798,7 +1813,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T000W13 */
-                     pr_default.execute(11, new Object[] {A248Trn_ThemeName, A260Trn_ThemeFontFamily, A247Trn_ThemeId});
+                     pr_default.execute(11, new Object[] {A248Trn_ThemeName, A260Trn_ThemeFontFamily, A399Trn_ThemeFontSize, A247Trn_ThemeId});
                      pr_default.close(11);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Theme");
                      if ( (pr_default.getStatus(11) == 103) )
@@ -3515,6 +3530,7 @@ namespace GeneXus.Programs {
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Theme");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
+         forbiddenHiddens.Add("Trn_ThemeFontSize", context.localUtil.Format( (decimal)(A399Trn_ThemeFontSize), "ZZZ9"));
          GxWebStd.gx_hidden_field( context, "hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
          GXUtil.WriteLogInfo("trn_theme:[ SendSecurityCheck value for]"+forbiddenHiddens.ToJSonString());
       }
@@ -3527,6 +3543,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z247Trn_ThemeId", Z247Trn_ThemeId.ToString());
          GxWebStd.gx_hidden_field( context, "Z248Trn_ThemeName", Z248Trn_ThemeName);
          GxWebStd.gx_hidden_field( context, "Z260Trn_ThemeFontFamily", Z260Trn_ThemeFontFamily);
+         GxWebStd.gx_hidden_field( context, "Z399Trn_ThemeFontSize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z399Trn_ThemeFontSize), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
@@ -3547,6 +3564,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "vTRN_THEMEID", AV7Trn_ThemeId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vTRN_THEMEID", GetSecureSignedToken( "", AV7Trn_ThemeId, context));
          GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "TRN_THEMEFONTSIZE", StringUtil.LTrim( StringUtil.NToC( (decimal)(A399Trn_ThemeFontSize), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -3636,8 +3654,11 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "A248Trn_ThemeName", A248Trn_ThemeName);
          A260Trn_ThemeFontFamily = "";
          AssignAttri("", false, "A260Trn_ThemeFontFamily", A260Trn_ThemeFontFamily);
+         A399Trn_ThemeFontSize = 0;
+         AssignAttri("", false, "A399Trn_ThemeFontSize", StringUtil.LTrimStr( (decimal)(A399Trn_ThemeFontSize), 4, 0));
          Z248Trn_ThemeName = "";
          Z260Trn_ThemeFontFamily = "";
+         Z399Trn_ThemeFontSize = 0;
       }
 
       protected void InitAll0W46( )
@@ -3697,7 +3718,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410101643648", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021971383", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3713,7 +3734,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_theme.js", "?202410101643648", false, true);
+         context.AddJavascriptSource("trn_theme.js", "?20241021971384", false, true);
          /* End function include_jscripts */
       }
 
@@ -3955,7 +3976,7 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7Trn_ThemeId","fld":"vTRN_THEMEID","hsh":true}]}""");
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7Trn_ThemeId","fld":"vTRN_THEMEID","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7Trn_ThemeId","fld":"vTRN_THEMEID","hsh":true},{"av":"A399Trn_ThemeFontSize","fld":"TRN_THEMEFONTSIZE","pic":"ZZZ9"}]}""");
          setEventMetadata("AFTER TRN","""{"handler":"E120W2","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
          setEventMetadata("VALID_TRN_THEMEID","""{"handler":"Valid_Trn_themeid","iparms":[]}""");
          setEventMetadata("VALID_ICONID","""{"handler":"Valid_Iconid","iparms":[]}""");
@@ -4038,15 +4059,18 @@ namespace GeneXus.Programs {
          T000W8_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W8_A248Trn_ThemeName = new string[] {""} ;
          T000W8_A260Trn_ThemeFontFamily = new string[] {""} ;
+         T000W8_A399Trn_ThemeFontSize = new short[1] ;
          T000W9_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W7_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W7_A248Trn_ThemeName = new string[] {""} ;
          T000W7_A260Trn_ThemeFontFamily = new string[] {""} ;
+         T000W7_A399Trn_ThemeFontSize = new short[1] ;
          T000W10_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W11_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W6_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W6_A248Trn_ThemeName = new string[] {""} ;
          T000W6_A260Trn_ThemeFontFamily = new string[] {""} ;
+         T000W6_A399Trn_ThemeFontSize = new short[1] ;
          T000W15_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          Z263IconSVG = "";
          T000W16_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
@@ -4111,13 +4135,13 @@ namespace GeneXus.Programs {
                T000W5_A247Trn_ThemeId, T000W5_A261IconId, T000W5_A262IconName, T000W5_A263IconSVG
                }
                , new Object[] {
-               T000W6_A247Trn_ThemeId, T000W6_A248Trn_ThemeName, T000W6_A260Trn_ThemeFontFamily
+               T000W6_A247Trn_ThemeId, T000W6_A248Trn_ThemeName, T000W6_A260Trn_ThemeFontFamily, T000W6_A399Trn_ThemeFontSize
                }
                , new Object[] {
-               T000W7_A247Trn_ThemeId, T000W7_A248Trn_ThemeName, T000W7_A260Trn_ThemeFontFamily
+               T000W7_A247Trn_ThemeId, T000W7_A248Trn_ThemeName, T000W7_A260Trn_ThemeFontFamily, T000W7_A399Trn_ThemeFontSize
                }
                , new Object[] {
-               T000W8_A247Trn_ThemeId, T000W8_A248Trn_ThemeName, T000W8_A260Trn_ThemeFontFamily
+               T000W8_A247Trn_ThemeId, T000W8_A248Trn_ThemeName, T000W8_A260Trn_ThemeFontFamily, T000W8_A399Trn_ThemeFontSize
                }
                , new Object[] {
                T000W9_A247Trn_ThemeId
@@ -4177,6 +4201,7 @@ namespace GeneXus.Programs {
          A247Trn_ThemeId = Guid.NewGuid( );
       }
 
+      private short Z399Trn_ThemeFontSize ;
       private short nRcdDeleted_49 ;
       private short nRcdExists_49 ;
       private short nIsMod_49 ;
@@ -4195,6 +4220,7 @@ namespace GeneXus.Programs {
       private short nBlankRcdCount47 ;
       private short RcdFound47 ;
       private short nBlankRcdUsr47 ;
+      private short A399Trn_ThemeFontSize ;
       private short RcdFound46 ;
       private short nIsDirty_49 ;
       private short nIsDirty_47 ;
@@ -4363,15 +4389,18 @@ namespace GeneXus.Programs {
       private Guid[] T000W8_A247Trn_ThemeId ;
       private string[] T000W8_A248Trn_ThemeName ;
       private string[] T000W8_A260Trn_ThemeFontFamily ;
+      private short[] T000W8_A399Trn_ThemeFontSize ;
       private Guid[] T000W9_A247Trn_ThemeId ;
       private Guid[] T000W7_A247Trn_ThemeId ;
       private string[] T000W7_A248Trn_ThemeName ;
       private string[] T000W7_A260Trn_ThemeFontFamily ;
+      private short[] T000W7_A399Trn_ThemeFontSize ;
       private Guid[] T000W10_A247Trn_ThemeId ;
       private Guid[] T000W11_A247Trn_ThemeId ;
       private Guid[] T000W6_A247Trn_ThemeId ;
       private string[] T000W6_A248Trn_ThemeName ;
       private string[] T000W6_A260Trn_ThemeFontFamily ;
+      private short[] T000W6_A399Trn_ThemeFontSize ;
       private Guid[] T000W15_A247Trn_ThemeId ;
       private Guid[] T000W16_A247Trn_ThemeId ;
       private Guid[] T000W16_A261IconId ;
@@ -4528,12 +4557,14 @@ namespace GeneXus.Programs {
         prmT000W12 = new Object[] {
         new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
-        new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0)
+        new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
+        new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0)
         };
         Object[] prmT000W13;
         prmT000W13 = new Object[] {
         new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
         new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
+        new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0) ,
         new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000W14;
@@ -4614,14 +4645,14 @@ namespace GeneXus.Programs {
            ,new CursorDef("T000W3", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W3,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T000W4", "SELECT Trn_ThemeId, IconId, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId  FOR UPDATE OF Trn_ThemeIcon NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000W4,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T000W5", "SELECT Trn_ThemeId, IconId, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000W6", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId  FOR UPDATE OF Trn_Theme NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000W6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000W7", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W7,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000W8", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W8,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T000W6", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId  FOR UPDATE OF Trn_Theme NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000W6,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T000W7", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W7,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T000W8", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily, TM1.Trn_ThemeFontSize FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W8,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T000W9", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W9,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T000W10", "SELECT Trn_ThemeId FROM Trn_Theme WHERE ( Trn_ThemeId > :Trn_ThemeId) ORDER BY Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W10,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("T000W11", "SELECT Trn_ThemeId FROM Trn_Theme WHERE ( Trn_ThemeId < :Trn_ThemeId) ORDER BY Trn_ThemeId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W11,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000W12", "SAVEPOINT gxupdate;INSERT INTO Trn_Theme(Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily) VALUES(:Trn_ThemeId, :Trn_ThemeName, :Trn_ThemeFontFamily);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000W12)
-           ,new CursorDef("T000W13", "SAVEPOINT gxupdate;UPDATE Trn_Theme SET Trn_ThemeName=:Trn_ThemeName, Trn_ThemeFontFamily=:Trn_ThemeFontFamily  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W13)
+           ,new CursorDef("T000W12", "SAVEPOINT gxupdate;INSERT INTO Trn_Theme(Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize) VALUES(:Trn_ThemeId, :Trn_ThemeName, :Trn_ThemeFontFamily, :Trn_ThemeFontSize);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000W12)
+           ,new CursorDef("T000W13", "SAVEPOINT gxupdate;UPDATE Trn_Theme SET Trn_ThemeName=:Trn_ThemeName, Trn_ThemeFontFamily=:Trn_ThemeFontFamily, Trn_ThemeFontSize=:Trn_ThemeFontSize  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W13)
            ,new CursorDef("T000W14", "SAVEPOINT gxupdate;DELETE FROM Trn_Theme  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W14)
            ,new CursorDef("T000W15", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W15,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("T000W16", "SELECT Trn_ThemeId, IconId, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId and IconId = :IconId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W16,11, GxCacheFrequency.OFF ,true,false )
@@ -4674,16 +4705,19 @@ namespace GeneXus.Programs {
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
               ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((short[]) buf[3])[0] = rslt.getShort(4);
               return;
            case 5 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
               ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((short[]) buf[3])[0] = rslt.getShort(4);
               return;
            case 6 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
               ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((short[]) buf[3])[0] = rslt.getShort(4);
               return;
            case 7 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);

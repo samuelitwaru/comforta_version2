@@ -30,6 +30,8 @@ namespace GeneXus.Programs.wwpbaseobjects
 		public SdtWWPContext( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtWWPContext_Userid = "";
+
 			gxTv_SdtWWPContext_Username = "";
 
 		}
@@ -64,6 +66,12 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 			AddObjectProperty("UserName", gxTpr_Username, false);
 
+
+			AddObjectProperty("OrganisationId", gxTpr_Organisationid, false);
+
+
+			AddObjectProperty("LocationId", gxTpr_Locationid, false);
+
 			return;
 		}
 		#endregion
@@ -72,7 +80,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		[SoapElement(ElementName="UserId")]
 		[XmlElement(ElementName="UserId")]
-		public short gxTpr_Userid
+		public string gxTpr_Userid
 		{
 			get {
 				return gxTv_SdtWWPContext_Userid; 
@@ -101,6 +109,38 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 
 
+
+		[SoapElement(ElementName="OrganisationId")]
+		[XmlElement(ElementName="OrganisationId")]
+		public Guid gxTpr_Organisationid
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationid; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationid = value;
+				SetDirty("Organisationid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationId")]
+		[XmlElement(ElementName="LocationId")]
+		public Guid gxTpr_Locationid
+		{
+			get {
+				return gxTv_SdtWWPContext_Locationid; 
+			}
+			set {
+				gxTv_SdtWWPContext_Locationid = value;
+				SetDirty("Locationid");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -122,7 +162,10 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		public void initialize( )
 		{
+			gxTv_SdtWWPContext_Userid = "";
 			gxTv_SdtWWPContext_Username = "";
+
+
 			return  ;
 		}
 
@@ -132,10 +175,16 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		#region Declaration
 
-		protected short gxTv_SdtWWPContext_Userid;
+		protected string gxTv_SdtWWPContext_Userid;
 		 
 
 		protected string gxTv_SdtWWPContext_Username;
+		 
+
+		protected Guid gxTv_SdtWWPContext_Organisationid;
+		 
+
+		protected Guid gxTv_SdtWWPContext_Locationid;
 		 
 
 
@@ -156,14 +205,14 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		#region Rest Properties
 		[DataMember(Name="UserId", Order=0)]
-		public short gxTpr_Userid
+		public  string gxTpr_Userid
 		{
 			get { 
 				return sdt.gxTpr_Userid;
 
 			}
 			set { 
-				sdt.gxTpr_Userid = value;
+				 sdt.gxTpr_Userid = value;
 			}
 		}
 
@@ -176,6 +225,30 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 			set { 
 				 sdt.gxTpr_Username = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationId", Order=2)]
+		public Guid gxTpr_Organisationid
+		{
+			get { 
+				return sdt.gxTpr_Organisationid;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationid = value;
+			}
+		}
+
+		[DataMember(Name="LocationId", Order=3)]
+		public Guid gxTpr_Locationid
+		{
+			get { 
+				return sdt.gxTpr_Locationid;
+
+			}
+			set { 
+				sdt.gxTpr_Locationid = value;
 			}
 		}
 

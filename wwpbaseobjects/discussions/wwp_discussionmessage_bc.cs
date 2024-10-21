@@ -212,7 +212,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             if ( ! ( (0==A199WWPDiscussionMessageThreadId) ) )
             {
-               GX_msglist.addItem("No matching 'Discussion Message Thread'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGETHREADID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Thread", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGETHREADID");
                AnyError = 1;
             }
          }
@@ -221,7 +221,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(2, new Object[] {A112WWPUserExtendedId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
             AnyError = 1;
          }
          A40000WWPUserExtendedPhoto_GXI = BC000R4_A40000WWPUserExtendedPhoto_GXI[0];
@@ -232,7 +232,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(3, new Object[] {A125WWPEntityId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_Entity'.", "ForeignKeyNotFound", 1, "WWPENTITYID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Entity", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPENTITYID");
             AnyError = 1;
          }
          A126WWPEntityName = BC000R5_A126WWPEntityName[0];
@@ -541,7 +541,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(13, new Object[] {A200WWPDiscussionMessageId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessage"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessage", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -549,7 +549,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(14, new Object[] {A200WWPDiscussionMessageId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessageMention"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessageMention", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);

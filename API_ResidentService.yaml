@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241017091238"
+  version: "20241021061038"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -424,6 +424,9 @@ components:
         PageName:
           description: "Page Name"
           type: "string"
+        Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
         Row:
           description: "SDT_Row"
           type: array
@@ -464,6 +467,25 @@ components:
 
 
 
+    SDT_Theme:
+      properties:
+        Trn_ThemeId:
+          description: "Trn_Theme Id"
+          type: "string"
+          format: "uuid"
+        Trn_ThemeName:
+          description: "Trn_Theme Name"
+          type: "string"
+        Trn_ThemeFontFamily:
+          description: "Trn_Theme Font Family"
+          type: "string"
+        Trn_ThemeFontSize:
+          description: "Trn_Theme Font Size"
+          type: "integer"
+          format: "int32"
+
+
+
     SDT_Tile:
       properties:
         TileId:
@@ -474,13 +496,22 @@ components:
           description: "Tile Name"
           type: "string"
         TileIcon:
-          description: "Trn_Tile Icon"
+          description: "Tile Icon"
           type: "string"
-        TileColor:
-          description: "Trn_Tile Color"
+        TileBGColor:
+          description: "Tile BGColor"
           type: "string"
         TileBGImageUrl:
           description: "Tile BGImage Url"
+          type: "string"
+        TileTextColor:
+          description: "Tile Text Color"
+          type: "string"
+        TileTextAlignment:
+          description: "Tile Text Alignment"
+          type: "string"
+        TileIconAlignment:
+          description: "Tile Icon Alignment"
           type: "string"
         ProductServiceId:
           description: "Product Service Id"
@@ -506,27 +537,6 @@ components:
           description: "SDT_Page"
           $ref: "#/components/schemas/SDT_Page"
 
-        Attribute:
-          type: array
-          items:
-            description: AttributeItem
-            $ref: "#/components/schemas/SDT_Tile.Attribute_AttributeItem"
 
-
-    SDT_Tile.Attribute_AttributeItem:
-      properties:
-        AttributeId:
-          description: "Attribute Id"
-          type: "string"
-          format: "uuid"
-        AttributeName:
-          description: "Attribute Name"
-          type: "string"
-        AttrbuteValue:
-          description: "Attrbute Value"
-          type: "string"
-
-
-      x-gx-level: "SDT_Tile"
 
  

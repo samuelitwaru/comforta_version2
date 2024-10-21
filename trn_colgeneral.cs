@@ -478,23 +478,6 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_TileName_Internalname+"\"", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtTrn_TileName_Internalname, context.GetMessage( "Tile", ""), "col-sm-4 AttributeLabel", 1, true, "");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtTrn_TileName_Internalname, A265Trn_TileName, StringUtil.RTrim( context.localUtil.Format( A265Trn_TileName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", edtTrn_TileName_Link, "", "", "", edtTrn_TileName_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_TileName_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "Name", "start", true, "", "HLP_Trn_ColGeneral.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -506,14 +489,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnupdate_Internalname, "", context.GetMessage( "GXM_update", ""), bttBtnupdate_Jsonclick, 5, context.GetMessage( "GXM_update", ""), "", StyleString, ClassString, bttBtnupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ColGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtndelete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtndelete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtndelete_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DODELETE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ColGeneral.htm");
@@ -888,17 +871,12 @@ namespace GeneXus.Programs {
             while ( (pr_default.getStatus(0) != 101) )
             {
                A319Trn_RowId = H005V2_A319Trn_RowId[0];
-               A264Trn_TileId = H005V2_A264Trn_TileId[0];
-               A265Trn_TileName = H005V2_A265Trn_TileName[0];
-               AssignAttri(sPrefix, false, "A265Trn_TileName", A265Trn_TileName);
                A327Trn_ColName = H005V2_A327Trn_ColName[0];
                AssignAttri(sPrefix, false, "A327Trn_ColName", A327Trn_ColName);
                A320Trn_RowName = H005V2_A320Trn_RowName[0];
                AssignAttri(sPrefix, false, "A320Trn_RowName", A320Trn_RowName);
                A320Trn_RowName = H005V2_A320Trn_RowName[0];
                AssignAttri(sPrefix, false, "A320Trn_RowName", A320Trn_RowName);
-               A265Trn_TileName = H005V2_A265Trn_TileName[0];
-               AssignAttri(sPrefix, false, "A265Trn_TileName", A265Trn_TileName);
                /* Execute user event: Load */
                E125V2 ();
                /* Exiting from a For First loop. */
@@ -926,8 +904,6 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, edtTrn_RowName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_RowName_Enabled), 5, 0), true);
          edtTrn_ColName_Enabled = 0;
          AssignProp(sPrefix, false, edtTrn_ColName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_ColName_Enabled), 5, 0), true);
-         edtTrn_TileName_Enabled = 0;
-         AssignProp(sPrefix, false, edtTrn_TileName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_TileName_Enabled), 5, 0), true);
          fix_multi_value_controls( ) ;
       }
 
@@ -953,8 +929,6 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "A320Trn_RowName", A320Trn_RowName);
             A327Trn_ColName = cgiGet( edtTrn_ColName_Internalname);
             AssignAttri(sPrefix, false, "A327Trn_ColName", A327Trn_ColName);
-            A265Trn_TileName = cgiGet( edtTrn_TileName_Internalname);
-            AssignAttri(sPrefix, false, "A265Trn_TileName", A265Trn_TileName);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -1014,23 +988,6 @@ namespace GeneXus.Programs {
             GXEncryptionTmp = "trn_rowview.aspx"+UrlEncode(A319Trn_RowId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
             edtTrn_RowName_Link = formatLink("trn_rowview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             AssignProp(sPrefix, false, edtTrn_RowName_Internalname, "Link", edtTrn_RowName_Link, true);
-         }
-         GXt_boolean1 = AV14TempBoolean;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_tileview_Execute", out  GXt_boolean1) ;
-         AV14TempBoolean = GXt_boolean1;
-         if ( AV14TempBoolean )
-         {
-            if ( StringUtil.Len( sPrefix) == 0 )
-            {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-               }
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-            GXEncryptionTmp = "trn_tileview.aspx"+UrlEncode(A264Trn_TileId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
-            edtTrn_TileName_Link = formatLink("trn_tileview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
-            AssignProp(sPrefix, false, edtTrn_TileName_Internalname, "Link", edtTrn_TileName_Link, true);
          }
          GXt_boolean1 = AV12IsAuthorized_Update;
          new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_col_Update", out  GXt_boolean1) ;
@@ -1321,7 +1278,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410161843933", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021973322", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1337,7 +1294,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_colgeneral.js", "?202410161843933", false, true);
+         context.AddJavascriptSource("trn_colgeneral.js", "?20241021973323", false, true);
          /* End function include_jscripts */
       }
 
@@ -1351,7 +1308,6 @@ namespace GeneXus.Programs {
          edtTrn_ColId_Internalname = sPrefix+"TRN_COLID";
          edtTrn_RowName_Internalname = sPrefix+"TRN_ROWNAME";
          edtTrn_ColName_Internalname = sPrefix+"TRN_COLNAME";
-         edtTrn_TileName_Internalname = sPrefix+"TRN_TILENAME";
          divTransactiondetail_tableattributes_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLEATTRIBUTES";
          bttBtnupdate_Internalname = sPrefix+"BTNUPDATE";
          bttBtndelete_Internalname = sPrefix+"BTNDELETE";
@@ -1376,9 +1332,6 @@ namespace GeneXus.Programs {
          init_default_properties( ) ;
          bttBtndelete_Visible = 1;
          bttBtnupdate_Visible = 1;
-         edtTrn_TileName_Jsonclick = "";
-         edtTrn_TileName_Link = "";
-         edtTrn_TileName_Enabled = 0;
          edtTrn_ColName_Jsonclick = "";
          edtTrn_ColName_Enabled = 0;
          edtTrn_RowName_Jsonclick = "";
@@ -1436,7 +1389,6 @@ namespace GeneXus.Programs {
          TempTags = "";
          A320Trn_RowName = "";
          A327Trn_ColName = "";
-         A265Trn_TileName = "";
          ClassString = "";
          StyleString = "";
          bttBtnupdate_Jsonclick = "";
@@ -1450,12 +1402,9 @@ namespace GeneXus.Programs {
          GXDecQS = "";
          H005V2_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          H005V2_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         H005V2_A264Trn_TileId = new Guid[] {Guid.Empty} ;
-         H005V2_A265Trn_TileName = new string[] {""} ;
          H005V2_A327Trn_ColName = new string[] {""} ;
          H005V2_A320Trn_RowName = new string[] {""} ;
          A319Trn_RowId = Guid.Empty;
-         A264Trn_TileId = Guid.Empty;
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV8TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV11HTTPRequest = new GxHttpRequest( context);
@@ -1466,7 +1415,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_colgeneral__default(),
             new Object[][] {
                 new Object[] {
-               H005V2_A328Trn_ColId, H005V2_A319Trn_RowId, H005V2_A264Trn_TileId, H005V2_A265Trn_TileName, H005V2_A327Trn_ColName, H005V2_A320Trn_RowName
+               H005V2_A328Trn_ColId, H005V2_A319Trn_RowId, H005V2_A327Trn_ColName, H005V2_A320Trn_RowName
                }
             }
          );
@@ -1488,7 +1437,6 @@ namespace GeneXus.Programs {
       private int edtTrn_ColId_Enabled ;
       private int edtTrn_RowName_Enabled ;
       private int edtTrn_ColName_Enabled ;
-      private int edtTrn_TileName_Enabled ;
       private int bttBtnupdate_Visible ;
       private int bttBtndelete_Visible ;
       private int idxLst ;
@@ -1515,9 +1463,6 @@ namespace GeneXus.Programs {
       private string edtTrn_RowName_Jsonclick ;
       private string edtTrn_ColName_Internalname ;
       private string edtTrn_ColName_Jsonclick ;
-      private string edtTrn_TileName_Internalname ;
-      private string edtTrn_TileName_Link ;
-      private string edtTrn_TileName_Jsonclick ;
       private string ClassString ;
       private string StyleString ;
       private string bttBtnupdate_Internalname ;
@@ -1544,11 +1489,9 @@ namespace GeneXus.Programs {
       private bool GXt_boolean1 ;
       private string A320Trn_RowName ;
       private string A327Trn_ColName ;
-      private string A265Trn_TileName ;
       private Guid A328Trn_ColId ;
       private Guid wcpOA328Trn_ColId ;
       private Guid A319Trn_RowId ;
-      private Guid A264Trn_TileId ;
       private GXWebForm Form ;
       private GxHttpRequest AV11HTTPRequest ;
       private IGxSession AV10Session ;
@@ -1557,8 +1500,6 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] H005V2_A328Trn_ColId ;
       private Guid[] H005V2_A319Trn_RowId ;
-      private Guid[] H005V2_A264Trn_TileId ;
-      private string[] H005V2_A265Trn_TileName ;
       private string[] H005V2_A327Trn_ColName ;
       private string[] H005V2_A320Trn_RowName ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
@@ -1587,7 +1528,7 @@ namespace GeneXus.Programs {
           new ParDef("Trn_ColId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H005V2", "SELECT T1.Trn_ColId, T1.Trn_RowId, T1.Trn_TileId, T3.Trn_TileName, T1.Trn_ColName, T2.Trn_RowName FROM ((Trn_Col1 T1 INNER JOIN Trn_Row T2 ON T2.Trn_RowId = T1.Trn_RowId) INNER JOIN Trn_Tile T3 ON T3.Trn_TileId = T1.Trn_TileId) WHERE T1.Trn_ColId = :Trn_ColId ORDER BY T1.Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005V2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H005V2", "SELECT T1.Trn_ColId, T1.Trn_RowId, T1.Trn_ColName, T2.Trn_RowName FROM (Trn_Col T1 INNER JOIN Trn_Row T2 ON T2.Trn_RowId = T1.Trn_RowId) WHERE T1.Trn_ColId = :Trn_ColId ORDER BY T1.Trn_ColId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005V2,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -1601,10 +1542,8 @@ namespace GeneXus.Programs {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 return;
        }
     }

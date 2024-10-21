@@ -56,7 +56,6 @@ namespace GeneXus.Programs {
          metadata.Set("Name", "Trn_Organisation");
          metadata.Set("BT", "Trn_Organisation");
          metadata.Set("PK", "[ \"OrganisationId\" ]");
-         metadata.Set("PKAssigned", "[ \"OrganisationId\" ]");
          metadata.Set("FKList", "[ { \"FK\":[ \"OrganisationTypeId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
@@ -84,6 +83,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Organisationaddressline2_Z");
          state.Add("gxTpr_Organisationtypeid_Z");
          state.Add("gxTpr_Organisationtypename_Z");
+         state.Add("gxTpr_Organisationid_N");
          return state ;
       }
 
@@ -123,6 +123,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Organisation_Organisationaddressline2_Z = sdt.gxTv_SdtTrn_Organisation_Organisationaddressline2_Z ;
          gxTv_SdtTrn_Organisation_Organisationtypeid_Z = sdt.gxTv_SdtTrn_Organisation_Organisationtypeid_Z ;
          gxTv_SdtTrn_Organisation_Organisationtypename_Z = sdt.gxTv_SdtTrn_Organisation_Organisationtypename_Z ;
+         gxTv_SdtTrn_Organisation_Organisationid_N = sdt.gxTv_SdtTrn_Organisation_Organisationid_N ;
          return  ;
       }
 
@@ -142,6 +143,7 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("OrganisationId", gxTv_SdtTrn_Organisation_Organisationid, false, includeNonInitialized);
+         AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_Organisation_Organisationid_N, false, includeNonInitialized);
          AddObjectProperty("OrganisationName", gxTv_SdtTrn_Organisation_Organisationname, false, includeNonInitialized);
          AddObjectProperty("OrganisationKvkNumber", gxTv_SdtTrn_Organisation_Organisationkvknumber, false, includeNonInitialized);
          AddObjectProperty("OrganisationEmail", gxTv_SdtTrn_Organisation_Organisationemail, false, includeNonInitialized);
@@ -175,6 +177,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("OrganisationAddressLine2_Z", gxTv_SdtTrn_Organisation_Organisationaddressline2_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationTypeId_Z", gxTv_SdtTrn_Organisation_Organisationtypeid_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationTypeName_Z", gxTv_SdtTrn_Organisation_Organisationtypename_Z, false, includeNonInitialized);
+            AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_Organisation_Organisationid_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -994,6 +997,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "OrganisationId_N" )]
+      [  XmlElement( ElementName = "OrganisationId_N"   )]
+      public short gxTpr_Organisationid_N
+      {
+         get {
+            return gxTv_SdtTrn_Organisation_Organisationid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Organisation_Organisationid_N = value;
+            SetDirty("Organisationid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Organisation_Organisationid_N_SetNull( )
+      {
+         gxTv_SdtTrn_Organisation_Organisationid_N = 0;
+         SetDirty("Organisationid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Organisation_Organisationid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -1058,6 +1089,7 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_Organisation_Initialized ;
+      private short gxTv_SdtTrn_Organisation_Organisationid_N ;
       private string gxTv_SdtTrn_Organisation_Organisationphone ;
       private string gxTv_SdtTrn_Organisation_Mode ;
       private string gxTv_SdtTrn_Organisation_Organisationphone_Z ;

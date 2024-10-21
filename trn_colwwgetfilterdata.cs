@@ -341,7 +341,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[3];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT Trn_ColName, Trn_ColId FROM Trn_Col1";
+         scmdbuf = "SELECT Trn_ColName, Trn_ColId FROM Trn_Col";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_colwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( Trn_ColName like '%' || :lV38Trn_colwwds_1_filterfulltext))");

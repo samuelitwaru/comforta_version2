@@ -4,7 +4,7 @@
     <Parameter name="ReturnValue" accessor="out" collection="true">
       <Field name="Trn_Tile" description="Tile">
         <Fields>
-          <Field name="Trn_TileId" description="Trn_Tile Id">
+          <Field name="TileId" description="Tile Id">
             <Properties>
               <Property>
                 <Name>Type</Name>
@@ -12,7 +12,7 @@
               </Property>
             </Properties>
           </Field>
-          <Field name="Trn_TileName" description="Trn_Tile Name">
+          <Field name="TileName" description="Tile Name">
             <Properties>
               <Property>
                 <Name>Type</Name>
@@ -24,19 +24,7 @@
               </Property>
             </Properties>
           </Field>
-          <Field name="Trn_TileIcon" description="Trn_Tile Icon">
-            <Properties>
-              <Property>
-                <Name>Type</Name>
-                <Value>LongVarChar</Value>
-              </Property>
-              <Property>
-                <Name>Length</Name>
-                <Value>2097152</Value>
-              </Property>
-            </Properties>
-          </Field>
-          <Field name="Trn_TileColor" description="Trn_Tile Color">
+          <Field name="TileIcon" description="Tile Icon">
             <Properties>
               <Property>
                 <Name>Type</Name>
@@ -48,7 +36,19 @@
               </Property>
             </Properties>
           </Field>
-          <Field name="Trn_TileBGImageUrl" description="Trn_Tile BGImage Url">
+          <Field name="TileBGColor" description="Tile BGColor">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Character</Value>
+              </Property>
+              <Property>
+                <Name>Length</Name>
+                <Value>20</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="TileBGImageUrl" description="Tile BGImage Url">
             <Properties>
               <Property>
                 <Name>Type</Name>
@@ -57,6 +57,42 @@
               <Property>
                 <Name>Length</Name>
                 <Value>1000</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="TileTextColor" description="Tile Text Color">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Character</Value>
+              </Property>
+              <Property>
+                <Name>Length</Name>
+                <Value>20</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="TileTextAlignment" description="Tile Text Alignment">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Character</Value>
+              </Property>
+              <Property>
+                <Name>Length</Name>
+                <Value>20</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="TileIconAlignment" description="Tile Icon Alignment">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Character</Value>
+              </Property>
+              <Property>
+                <Name>Length</Name>
+                <Value>20</Value>
               </Property>
             </Properties>
           </Field>

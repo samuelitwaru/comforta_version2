@@ -455,7 +455,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A310Trn_PageId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Tile", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Tile", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);
@@ -1094,7 +1094,7 @@ namespace GeneXus.Programs {
          sMode68 = "";
          BC00172_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          BC00172_A318Trn_PageName = new string[] {""} ;
-         BC00179_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         BC00179_A407TileId = new Guid[] {Guid.Empty} ;
          BC001710_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          BC001711_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          BC001711_A318Trn_PageName = new string[] {""} ;
@@ -1125,7 +1125,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC00179_A264Trn_TileId
+               BC00179_A407TileId
                }
                , new Object[] {
                BC001710_A319Trn_RowId
@@ -1170,7 +1170,7 @@ namespace GeneXus.Programs {
       private string[] BC00173_A318Trn_PageName ;
       private Guid[] BC00172_A310Trn_PageId ;
       private string[] BC00172_A318Trn_PageName ;
-      private Guid[] BC00179_A264Trn_TileId ;
+      private Guid[] BC00179_A407TileId ;
       private Guid[] BC001710_A319Trn_RowId ;
       private Guid[] BC001711_A310Trn_PageId ;
       private string[] BC001711_A318Trn_PageName ;
@@ -1286,7 +1286,7 @@ namespace GeneXus.Programs {
            ,new CursorDef("BC00176", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName) VALUES(:Trn_PageId, :Trn_PageName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00176)
            ,new CursorDef("BC00177", "SAVEPOINT gxupdate;UPDATE Trn_Page SET Trn_PageName=:Trn_PageName  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00177)
            ,new CursorDef("BC00178", "SAVEPOINT gxupdate;DELETE FROM Trn_Page  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00178)
-           ,new CursorDef("BC00179", "SELECT Trn_TileId FROM Trn_Tile WHERE SG_ToPageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00179,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("BC00179", "SELECT TileId FROM Trn_Tile WHERE SG_ToPageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00179,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("BC001710", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001710,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("BC001711", "SELECT TM1.Trn_PageId, TM1.Trn_PageName FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001711,100, GxCacheFrequency.OFF ,true,false )
         };

@@ -1,16 +1,17 @@
 /* 1 - Global Styles ******************************************/
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+}*/
 
-body {
+#toolbox-body {
   background-color: #6a747f;
   font-family: Arial, sans-serif;
   height: 100%;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /*2 - Navbar Styles ********************************************/
@@ -67,7 +68,7 @@ body {
   margin-right: 10px; /* Adjust space between icon and text */
 }
 /* Container, siderars and main content */
-.container {
+.toolbox-container {
   display: flex;
   overflow: hidden;
   top: 64px;

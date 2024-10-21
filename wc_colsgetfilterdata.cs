@@ -120,9 +120,9 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(StringUtil.Upper( AV29DDOName), "DDO_TRN_TILENAME") == 0 )
+         else if ( StringUtil.StrCmp(StringUtil.Upper( AV29DDOName), "DDO_TILENAME") == 0 )
          {
-            /* Execute user subroutine: 'LOADTRN_TILENAMEOPTIONS' */
+            /* Execute user subroutine: 'LOADTILENAMEOPTIONS' */
             S131 ();
             if ( returnInSub )
             {
@@ -148,10 +148,10 @@ namespace GeneXus.Programs {
          {
             AV26GridState.FromXml(AV24Session.Get("WC_ColsGridState"), null, "", "");
          }
-         AV38GXV1 = 1;
-         while ( AV38GXV1 <= AV26GridState.gxTpr_Filtervalues.Count )
+         AV40GXV1 = 1;
+         while ( AV40GXV1 <= AV26GridState.gxTpr_Filtervalues.Count )
          {
-            AV27GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV26GridState.gxTpr_Filtervalues.Item(AV38GXV1));
+            AV27GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV26GridState.gxTpr_Filtervalues.Item(AV40GXV1));
             if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTRN_COLNAME") == 0 )
             {
                AV11TFTrn_ColName = AV27GridStateFilterValue.gxTpr_Value;
@@ -160,19 +160,19 @@ namespace GeneXus.Programs {
             {
                AV12TFTrn_ColName_Sel = AV27GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTRN_TILENAME") == 0 )
+            else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTILENAME") == 0 )
             {
-               AV36TFTrn_TileName = AV27GridStateFilterValue.gxTpr_Value;
+               AV38TFTileName = AV27GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTRN_TILENAME_SEL") == 0 )
+            else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTILENAME_SEL") == 0 )
             {
-               AV37TFTrn_TileName_Sel = AV27GridStateFilterValue.gxTpr_Value;
+               AV39TFTileName_Sel = AV27GridStateFilterValue.gxTpr_Value;
             }
             else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "PARM_&TRN_ROWID") == 0 )
             {
                AV35Trn_RowId = StringUtil.StrToGuid( AV27GridStateFilterValue.gxTpr_Value);
             }
-            AV38GXV1 = (int)(AV38GXV1+1);
+            AV40GXV1 = (int)(AV40GXV1+1);
          }
       }
 
@@ -182,37 +182,37 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV11TFTrn_ColName = AV13SearchTxt;
          AV12TFTrn_ColName_Sel = "";
-         AV40Wc_colsds_1_trn_rowid = AV35Trn_RowId;
-         AV41Wc_colsds_2_tftrn_colname = AV11TFTrn_ColName;
-         AV42Wc_colsds_3_tftrn_colname_sel = AV12TFTrn_ColName_Sel;
-         AV43Wc_colsds_4_tftrn_tilename = AV36TFTrn_TileName;
-         AV44Wc_colsds_5_tftrn_tilename_sel = AV37TFTrn_TileName_Sel;
+         AV42Wc_colsds_1_trn_rowid = AV35Trn_RowId;
+         AV43Wc_colsds_2_tftrn_colname = AV11TFTrn_ColName;
+         AV44Wc_colsds_3_tftrn_colname_sel = AV12TFTrn_ColName_Sel;
+         AV45Wc_colsds_4_tftilename = AV38TFTileName;
+         AV46Wc_colsds_5_tftilename_sel = AV39TFTileName_Sel;
          pr_default.dynParam(0, new Object[]{ new Object[]{
-                                              AV42Wc_colsds_3_tftrn_colname_sel ,
-                                              AV41Wc_colsds_2_tftrn_colname ,
-                                              AV44Wc_colsds_5_tftrn_tilename_sel ,
-                                              AV43Wc_colsds_4_tftrn_tilename ,
+                                              AV44Wc_colsds_3_tftrn_colname_sel ,
+                                              AV43Wc_colsds_2_tftrn_colname ,
+                                              AV46Wc_colsds_5_tftilename_sel ,
+                                              AV45Wc_colsds_4_tftilename ,
                                               A327Trn_ColName ,
-                                              A265Trn_TileName ,
+                                              A400TileName ,
                                               A319Trn_RowId ,
                                               AV35Trn_RowId ,
-                                              AV40Wc_colsds_1_trn_rowid } ,
+                                              AV42Wc_colsds_1_trn_rowid } ,
                                               new int[]{
                                               }
          });
-         lV41Wc_colsds_2_tftrn_colname = StringUtil.Concat( StringUtil.RTrim( AV41Wc_colsds_2_tftrn_colname), "%", "");
-         lV43Wc_colsds_4_tftrn_tilename = StringUtil.Concat( StringUtil.RTrim( AV43Wc_colsds_4_tftrn_tilename), "%", "");
+         lV43Wc_colsds_2_tftrn_colname = StringUtil.Concat( StringUtil.RTrim( AV43Wc_colsds_2_tftrn_colname), "%", "");
+         lV45Wc_colsds_4_tftilename = StringUtil.Concat( StringUtil.RTrim( AV45Wc_colsds_4_tftilename), "%", "");
          /* Using cursor P00702 */
-         pr_default.execute(0, new Object[] {AV40Wc_colsds_1_trn_rowid, AV35Trn_RowId, lV41Wc_colsds_2_tftrn_colname, AV42Wc_colsds_3_tftrn_colname_sel, lV43Wc_colsds_4_tftrn_tilename, AV44Wc_colsds_5_tftrn_tilename_sel});
+         pr_default.execute(0, new Object[] {AV42Wc_colsds_1_trn_rowid, AV35Trn_RowId, lV43Wc_colsds_2_tftrn_colname, AV44Wc_colsds_3_tftrn_colname_sel, lV45Wc_colsds_4_tftilename, AV46Wc_colsds_5_tftilename_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK702 = false;
-            A264Trn_TileId = P00702_A264Trn_TileId[0];
+            A407TileId = P00702_A407TileId[0];
             A319Trn_RowId = P00702_A319Trn_RowId[0];
             A327Trn_ColName = P00702_A327Trn_ColName[0];
-            A265Trn_TileName = P00702_A265Trn_TileName[0];
+            A400TileName = P00702_A400TileName[0];
             A328Trn_ColId = P00702_A328Trn_ColId[0];
-            A265Trn_TileName = P00702_A265Trn_TileName[0];
+            A400TileName = P00702_A400TileName[0];
             AV23count = 0;
             while ( (pr_default.getStatus(0) != 101) && ( P00702_A319Trn_RowId[0] == A319Trn_RowId ) && ( StringUtil.StrCmp(P00702_A327Trn_ColName[0], A327Trn_ColName) == 0 ) )
             {
@@ -248,46 +248,46 @@ namespace GeneXus.Programs {
 
       protected void S131( )
       {
-         /* 'LOADTRN_TILENAMEOPTIONS' Routine */
+         /* 'LOADTILENAMEOPTIONS' Routine */
          returnInSub = false;
-         AV36TFTrn_TileName = AV13SearchTxt;
-         AV37TFTrn_TileName_Sel = "";
-         AV40Wc_colsds_1_trn_rowid = AV35Trn_RowId;
-         AV41Wc_colsds_2_tftrn_colname = AV11TFTrn_ColName;
-         AV42Wc_colsds_3_tftrn_colname_sel = AV12TFTrn_ColName_Sel;
-         AV43Wc_colsds_4_tftrn_tilename = AV36TFTrn_TileName;
-         AV44Wc_colsds_5_tftrn_tilename_sel = AV37TFTrn_TileName_Sel;
+         AV38TFTileName = AV13SearchTxt;
+         AV39TFTileName_Sel = "";
+         AV42Wc_colsds_1_trn_rowid = AV35Trn_RowId;
+         AV43Wc_colsds_2_tftrn_colname = AV11TFTrn_ColName;
+         AV44Wc_colsds_3_tftrn_colname_sel = AV12TFTrn_ColName_Sel;
+         AV45Wc_colsds_4_tftilename = AV38TFTileName;
+         AV46Wc_colsds_5_tftilename_sel = AV39TFTileName_Sel;
          pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              AV42Wc_colsds_3_tftrn_colname_sel ,
-                                              AV41Wc_colsds_2_tftrn_colname ,
-                                              AV44Wc_colsds_5_tftrn_tilename_sel ,
-                                              AV43Wc_colsds_4_tftrn_tilename ,
+                                              AV44Wc_colsds_3_tftrn_colname_sel ,
+                                              AV43Wc_colsds_2_tftrn_colname ,
+                                              AV46Wc_colsds_5_tftilename_sel ,
+                                              AV45Wc_colsds_4_tftilename ,
                                               A327Trn_ColName ,
-                                              A265Trn_TileName ,
+                                              A400TileName ,
                                               A319Trn_RowId ,
                                               AV35Trn_RowId ,
-                                              AV40Wc_colsds_1_trn_rowid } ,
+                                              AV42Wc_colsds_1_trn_rowid } ,
                                               new int[]{
                                               }
          });
-         lV41Wc_colsds_2_tftrn_colname = StringUtil.Concat( StringUtil.RTrim( AV41Wc_colsds_2_tftrn_colname), "%", "");
-         lV43Wc_colsds_4_tftrn_tilename = StringUtil.Concat( StringUtil.RTrim( AV43Wc_colsds_4_tftrn_tilename), "%", "");
+         lV43Wc_colsds_2_tftrn_colname = StringUtil.Concat( StringUtil.RTrim( AV43Wc_colsds_2_tftrn_colname), "%", "");
+         lV45Wc_colsds_4_tftilename = StringUtil.Concat( StringUtil.RTrim( AV45Wc_colsds_4_tftilename), "%", "");
          /* Using cursor P00703 */
-         pr_default.execute(1, new Object[] {AV40Wc_colsds_1_trn_rowid, AV35Trn_RowId, lV41Wc_colsds_2_tftrn_colname, AV42Wc_colsds_3_tftrn_colname_sel, lV43Wc_colsds_4_tftrn_tilename, AV44Wc_colsds_5_tftrn_tilename_sel});
+         pr_default.execute(1, new Object[] {AV42Wc_colsds_1_trn_rowid, AV35Trn_RowId, lV43Wc_colsds_2_tftrn_colname, AV44Wc_colsds_3_tftrn_colname_sel, lV45Wc_colsds_4_tftilename, AV46Wc_colsds_5_tftilename_sel});
          while ( (pr_default.getStatus(1) != 101) )
          {
             BRK704 = false;
-            A264Trn_TileId = P00703_A264Trn_TileId[0];
+            A407TileId = P00703_A407TileId[0];
             A319Trn_RowId = P00703_A319Trn_RowId[0];
-            A265Trn_TileName = P00703_A265Trn_TileName[0];
+            A400TileName = P00703_A400TileName[0];
             A327Trn_ColName = P00703_A327Trn_ColName[0];
             A328Trn_ColId = P00703_A328Trn_ColId[0];
-            A265Trn_TileName = P00703_A265Trn_TileName[0];
+            A400TileName = P00703_A400TileName[0];
             AV23count = 0;
-            while ( (pr_default.getStatus(1) != 101) && ( P00703_A319Trn_RowId[0] == A319Trn_RowId ) && ( StringUtil.StrCmp(P00703_A265Trn_TileName[0], A265Trn_TileName) == 0 ) )
+            while ( (pr_default.getStatus(1) != 101) && ( P00703_A319Trn_RowId[0] == A319Trn_RowId ) && ( StringUtil.StrCmp(P00703_A400TileName[0], A400TileName) == 0 ) )
             {
                BRK704 = false;
-               A264Trn_TileId = P00703_A264Trn_TileId[0];
+               A407TileId = P00703_A407TileId[0];
                A328Trn_ColId = P00703_A328Trn_ColId[0];
                AV23count = (long)(AV23count+1);
                BRK704 = true;
@@ -295,7 +295,7 @@ namespace GeneXus.Programs {
             }
             if ( (0==AV14SkipItems) )
             {
-               AV18Option = (String.IsNullOrEmpty(StringUtil.RTrim( A265Trn_TileName)) ? "<#Empty#>" : A265Trn_TileName);
+               AV18Option = (String.IsNullOrEmpty(StringUtil.RTrim( A400TileName)) ? "<#Empty#>" : A400TileName);
                AV19Options.Add(AV18Option, 0);
                AV22OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV23count), "Z,ZZZ,ZZZ,ZZ9")), 0);
                if ( AV19Options.Count == 10 )
@@ -342,39 +342,39 @@ namespace GeneXus.Programs {
          AV27GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
          AV11TFTrn_ColName = "";
          AV12TFTrn_ColName_Sel = "";
-         AV36TFTrn_TileName = "";
-         AV37TFTrn_TileName_Sel = "";
+         AV38TFTileName = "";
+         AV39TFTileName_Sel = "";
          AV35Trn_RowId = Guid.Empty;
-         AV40Wc_colsds_1_trn_rowid = Guid.Empty;
-         AV41Wc_colsds_2_tftrn_colname = "";
-         AV42Wc_colsds_3_tftrn_colname_sel = "";
-         AV43Wc_colsds_4_tftrn_tilename = "";
-         AV44Wc_colsds_5_tftrn_tilename_sel = "";
-         lV41Wc_colsds_2_tftrn_colname = "";
-         lV43Wc_colsds_4_tftrn_tilename = "";
+         AV42Wc_colsds_1_trn_rowid = Guid.Empty;
+         AV43Wc_colsds_2_tftrn_colname = "";
+         AV44Wc_colsds_3_tftrn_colname_sel = "";
+         AV45Wc_colsds_4_tftilename = "";
+         AV46Wc_colsds_5_tftilename_sel = "";
+         lV43Wc_colsds_2_tftrn_colname = "";
+         lV45Wc_colsds_4_tftilename = "";
          A327Trn_ColName = "";
-         A265Trn_TileName = "";
+         A400TileName = "";
          A319Trn_RowId = Guid.Empty;
-         P00702_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         P00702_A407TileId = new Guid[] {Guid.Empty} ;
          P00702_A319Trn_RowId = new Guid[] {Guid.Empty} ;
          P00702_A327Trn_ColName = new string[] {""} ;
-         P00702_A265Trn_TileName = new string[] {""} ;
+         P00702_A400TileName = new string[] {""} ;
          P00702_A328Trn_ColId = new Guid[] {Guid.Empty} ;
-         A264Trn_TileId = Guid.Empty;
+         A407TileId = Guid.Empty;
          A328Trn_ColId = Guid.Empty;
          AV18Option = "";
-         P00703_A264Trn_TileId = new Guid[] {Guid.Empty} ;
+         P00703_A407TileId = new Guid[] {Guid.Empty} ;
          P00703_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         P00703_A265Trn_TileName = new string[] {""} ;
+         P00703_A400TileName = new string[] {""} ;
          P00703_A327Trn_ColName = new string[] {""} ;
          P00703_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wc_colsgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P00702_A264Trn_TileId, P00702_A319Trn_RowId, P00702_A327Trn_ColName, P00702_A265Trn_TileName, P00702_A328Trn_ColId
+               P00702_A407TileId, P00702_A319Trn_RowId, P00702_A327Trn_ColName, P00702_A400TileName, P00702_A328Trn_ColId
                }
                , new Object[] {
-               P00703_A264Trn_TileId, P00703_A319Trn_RowId, P00703_A265Trn_TileName, P00703_A327Trn_ColName, P00703_A328Trn_ColId
+               P00703_A407TileId, P00703_A319Trn_RowId, P00703_A400TileName, P00703_A327Trn_ColName, P00703_A328Trn_ColId
                }
             }
          );
@@ -384,7 +384,7 @@ namespace GeneXus.Programs {
       private short AV16MaxItems ;
       private short AV15PageIndex ;
       private short AV14SkipItems ;
-      private int AV38GXV1 ;
+      private int AV40GXV1 ;
       private long AV23count ;
       private bool returnInSub ;
       private bool BRK702 ;
@@ -398,21 +398,21 @@ namespace GeneXus.Programs {
       private string AV13SearchTxt ;
       private string AV11TFTrn_ColName ;
       private string AV12TFTrn_ColName_Sel ;
-      private string AV36TFTrn_TileName ;
-      private string AV37TFTrn_TileName_Sel ;
-      private string AV41Wc_colsds_2_tftrn_colname ;
-      private string AV42Wc_colsds_3_tftrn_colname_sel ;
-      private string AV43Wc_colsds_4_tftrn_tilename ;
-      private string AV44Wc_colsds_5_tftrn_tilename_sel ;
-      private string lV41Wc_colsds_2_tftrn_colname ;
-      private string lV43Wc_colsds_4_tftrn_tilename ;
+      private string AV38TFTileName ;
+      private string AV39TFTileName_Sel ;
+      private string AV43Wc_colsds_2_tftrn_colname ;
+      private string AV44Wc_colsds_3_tftrn_colname_sel ;
+      private string AV45Wc_colsds_4_tftilename ;
+      private string AV46Wc_colsds_5_tftilename_sel ;
+      private string lV43Wc_colsds_2_tftrn_colname ;
+      private string lV45Wc_colsds_4_tftilename ;
       private string A327Trn_ColName ;
-      private string A265Trn_TileName ;
+      private string A400TileName ;
       private string AV18Option ;
       private Guid AV35Trn_RowId ;
-      private Guid AV40Wc_colsds_1_trn_rowid ;
+      private Guid AV42Wc_colsds_1_trn_rowid ;
       private Guid A319Trn_RowId ;
-      private Guid A264Trn_TileId ;
+      private Guid A407TileId ;
       private Guid A328Trn_ColId ;
       private IGxSession AV24Session ;
       private IGxDataStore dsGAM ;
@@ -424,14 +424,14 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV26GridState ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV27GridStateFilterValue ;
       private IDataStoreProvider pr_default ;
-      private Guid[] P00702_A264Trn_TileId ;
+      private Guid[] P00702_A407TileId ;
       private Guid[] P00702_A319Trn_RowId ;
       private string[] P00702_A327Trn_ColName ;
-      private string[] P00702_A265Trn_TileName ;
+      private string[] P00702_A400TileName ;
       private Guid[] P00702_A328Trn_ColId ;
-      private Guid[] P00703_A264Trn_TileId ;
+      private Guid[] P00703_A407TileId ;
       private Guid[] P00703_A319Trn_RowId ;
-      private string[] P00703_A265Trn_TileName ;
+      private string[] P00703_A400TileName ;
       private string[] P00703_A327Trn_ColName ;
       private Guid[] P00703_A328Trn_ColId ;
       private string aP3_OptionsJson ;
@@ -442,62 +442,62 @@ namespace GeneXus.Programs {
    public class wc_colsgetfilterdata__default : DataStoreHelperBase, IDataStoreHelper
    {
       protected Object[] conditional_P00702( IGxContext context ,
-                                             string AV42Wc_colsds_3_tftrn_colname_sel ,
-                                             string AV41Wc_colsds_2_tftrn_colname ,
-                                             string AV44Wc_colsds_5_tftrn_tilename_sel ,
-                                             string AV43Wc_colsds_4_tftrn_tilename ,
+                                             string AV44Wc_colsds_3_tftrn_colname_sel ,
+                                             string AV43Wc_colsds_2_tftrn_colname ,
+                                             string AV46Wc_colsds_5_tftilename_sel ,
+                                             string AV45Wc_colsds_4_tftilename ,
                                              string A327Trn_ColName ,
-                                             string A265Trn_TileName ,
+                                             string A400TileName ,
                                              Guid A319Trn_RowId ,
                                              Guid AV35Trn_RowId ,
-                                             Guid AV40Wc_colsds_1_trn_rowid )
+                                             Guid AV42Wc_colsds_1_trn_rowid )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int1 = new short[6];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT T1.Trn_TileId, T1.Trn_RowId, T1.Trn_ColName, T2.Trn_TileName, T1.Trn_ColId FROM (Trn_Col1 T1 INNER JOIN Trn_Tile T2 ON T2.Trn_TileId = T1.Trn_TileId)";
-         AddWhere(sWhereString, "(T1.Trn_RowId = :AV40Wc_colsds_1_trn_rowid)");
+         scmdbuf = "SELECT T1.TileId, T1.Trn_RowId, T1.Trn_ColName, T2.TileName, T1.Trn_ColId FROM (Trn_Col T1 INNER JOIN Trn_Tile T2 ON T2.TileId = T1.TileId)";
+         AddWhere(sWhereString, "(T1.Trn_RowId = :AV42Wc_colsds_1_trn_rowid)");
          AddWhere(sWhereString, "(T1.Trn_RowId = :AV35Trn_RowId)");
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Wc_colsds_2_tftrn_colname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_3_tftrn_colname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Wc_colsds_2_tftrn_colname)) ) )
          {
-            AddWhere(sWhereString, "(T1.Trn_ColName like :lV41Wc_colsds_2_tftrn_colname)");
+            AddWhere(sWhereString, "(T1.Trn_ColName like :lV43Wc_colsds_2_tftrn_colname)");
          }
          else
          {
             GXv_int1[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ! ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_3_tftrn_colname_sel)) && ! ( StringUtil.StrCmp(AV44Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.Trn_ColName = ( :AV42Wc_colsds_3_tftrn_colname_sel))");
+            AddWhere(sWhereString, "(T1.Trn_ColName = ( :AV44Wc_colsds_3_tftrn_colname_sel))");
          }
          else
          {
             GXv_int1[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV44Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.Trn_ColName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_5_tftrn_tilename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Wc_colsds_4_tftrn_tilename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Wc_colsds_5_tftilename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Wc_colsds_4_tftilename)) ) )
          {
-            AddWhere(sWhereString, "(T2.Trn_TileName like :lV43Wc_colsds_4_tftrn_tilename)");
+            AddWhere(sWhereString, "(T2.TileName like :lV45Wc_colsds_4_tftilename)");
          }
          else
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_5_tftrn_tilename_sel)) && ! ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Wc_colsds_5_tftilename_sel)) && ! ( StringUtil.StrCmp(AV46Wc_colsds_5_tftilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.Trn_TileName = ( :AV44Wc_colsds_5_tftrn_tilename_sel))");
+            AddWhere(sWhereString, "(T2.TileName = ( :AV46Wc_colsds_5_tftilename_sel))");
          }
          else
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV46Wc_colsds_5_tftilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.Trn_TileName))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.TileName))=0))");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY T1.Trn_RowId, T1.Trn_ColName";
@@ -507,65 +507,65 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P00703( IGxContext context ,
-                                             string AV42Wc_colsds_3_tftrn_colname_sel ,
-                                             string AV41Wc_colsds_2_tftrn_colname ,
-                                             string AV44Wc_colsds_5_tftrn_tilename_sel ,
-                                             string AV43Wc_colsds_4_tftrn_tilename ,
+                                             string AV44Wc_colsds_3_tftrn_colname_sel ,
+                                             string AV43Wc_colsds_2_tftrn_colname ,
+                                             string AV46Wc_colsds_5_tftilename_sel ,
+                                             string AV45Wc_colsds_4_tftilename ,
                                              string A327Trn_ColName ,
-                                             string A265Trn_TileName ,
+                                             string A400TileName ,
                                              Guid A319Trn_RowId ,
                                              Guid AV35Trn_RowId ,
-                                             Guid AV40Wc_colsds_1_trn_rowid )
+                                             Guid AV42Wc_colsds_1_trn_rowid )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int3 = new short[6];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT T1.Trn_TileId, T1.Trn_RowId, T2.Trn_TileName, T1.Trn_ColName, T1.Trn_ColId FROM (Trn_Col1 T1 INNER JOIN Trn_Tile T2 ON T2.Trn_TileId = T1.Trn_TileId)";
-         AddWhere(sWhereString, "(T1.Trn_RowId = :AV40Wc_colsds_1_trn_rowid)");
+         scmdbuf = "SELECT T1.TileId, T1.Trn_RowId, T2.TileName, T1.Trn_ColName, T1.Trn_ColId FROM (Trn_Col T1 INNER JOIN Trn_Tile T2 ON T2.TileId = T1.TileId)";
+         AddWhere(sWhereString, "(T1.Trn_RowId = :AV42Wc_colsds_1_trn_rowid)");
          AddWhere(sWhereString, "(T1.Trn_RowId = :AV35Trn_RowId)");
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Wc_colsds_2_tftrn_colname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_3_tftrn_colname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Wc_colsds_2_tftrn_colname)) ) )
          {
-            AddWhere(sWhereString, "(T1.Trn_ColName like :lV41Wc_colsds_2_tftrn_colname)");
+            AddWhere(sWhereString, "(T1.Trn_ColName like :lV43Wc_colsds_2_tftrn_colname)");
          }
          else
          {
             GXv_int3[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Wc_colsds_3_tftrn_colname_sel)) && ! ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_3_tftrn_colname_sel)) && ! ( StringUtil.StrCmp(AV44Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.Trn_ColName = ( :AV42Wc_colsds_3_tftrn_colname_sel))");
+            AddWhere(sWhereString, "(T1.Trn_ColName = ( :AV44Wc_colsds_3_tftrn_colname_sel))");
          }
          else
          {
             GXv_int3[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV44Wc_colsds_3_tftrn_colname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.Trn_ColName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_5_tftrn_tilename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Wc_colsds_4_tftrn_tilename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Wc_colsds_5_tftilename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Wc_colsds_4_tftilename)) ) )
          {
-            AddWhere(sWhereString, "(T2.Trn_TileName like :lV43Wc_colsds_4_tftrn_tilename)");
+            AddWhere(sWhereString, "(T2.TileName like :lV45Wc_colsds_4_tftilename)");
          }
          else
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Wc_colsds_5_tftrn_tilename_sel)) && ! ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Wc_colsds_5_tftilename_sel)) && ! ( StringUtil.StrCmp(AV46Wc_colsds_5_tftilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.Trn_TileName = ( :AV44Wc_colsds_5_tftrn_tilename_sel))");
+            AddWhere(sWhereString, "(T2.TileName = ( :AV46Wc_colsds_5_tftilename_sel))");
          }
          else
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Wc_colsds_5_tftrn_tilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV46Wc_colsds_5_tftilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.Trn_TileName))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.TileName))=0))");
          }
          scmdbuf += sWhereString;
-         scmdbuf += " ORDER BY T1.Trn_RowId, T2.Trn_TileName";
+         scmdbuf += " ORDER BY T1.Trn_RowId, T2.TileName";
          GXv_Object4[0] = scmdbuf;
          GXv_Object4[1] = GXv_int3;
          return GXv_Object4 ;
@@ -601,21 +601,21 @@ namespace GeneXus.Programs {
        {
           Object[] prmP00702;
           prmP00702 = new Object[] {
-          new ParDef("AV40Wc_colsds_1_trn_rowid",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV42Wc_colsds_1_trn_rowid",GXType.UniqueIdentifier,36,0) ,
           new ParDef("AV35Trn_RowId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV41Wc_colsds_2_tftrn_colname",GXType.VarChar,100,0) ,
-          new ParDef("AV42Wc_colsds_3_tftrn_colname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV43Wc_colsds_4_tftrn_tilename",GXType.VarChar,100,0) ,
-          new ParDef("AV44Wc_colsds_5_tftrn_tilename_sel",GXType.VarChar,100,0)
+          new ParDef("lV43Wc_colsds_2_tftrn_colname",GXType.VarChar,100,0) ,
+          new ParDef("AV44Wc_colsds_3_tftrn_colname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV45Wc_colsds_4_tftilename",GXType.VarChar,100,0) ,
+          new ParDef("AV46Wc_colsds_5_tftilename_sel",GXType.VarChar,100,0)
           };
           Object[] prmP00703;
           prmP00703 = new Object[] {
-          new ParDef("AV40Wc_colsds_1_trn_rowid",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV42Wc_colsds_1_trn_rowid",GXType.UniqueIdentifier,36,0) ,
           new ParDef("AV35Trn_RowId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV41Wc_colsds_2_tftrn_colname",GXType.VarChar,100,0) ,
-          new ParDef("AV42Wc_colsds_3_tftrn_colname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV43Wc_colsds_4_tftrn_tilename",GXType.VarChar,100,0) ,
-          new ParDef("AV44Wc_colsds_5_tftrn_tilename_sel",GXType.VarChar,100,0)
+          new ParDef("lV43Wc_colsds_2_tftrn_colname",GXType.VarChar,100,0) ,
+          new ParDef("AV44Wc_colsds_3_tftrn_colname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV45Wc_colsds_4_tftilename",GXType.VarChar,100,0) ,
+          new ParDef("AV46Wc_colsds_5_tftilename_sel",GXType.VarChar,100,0)
           };
           def= new CursorDef[] {
               new CursorDef("P00702", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00702,100, GxCacheFrequency.OFF ,true,false )

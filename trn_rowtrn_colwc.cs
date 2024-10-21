@@ -1013,7 +1013,6 @@ namespace GeneXus.Programs {
                               SubsflControlProps_352( ) ;
                               A328Trn_ColId = StringUtil.StrToGuid( cgiGet( edtTrn_ColId_Internalname));
                               A327Trn_ColName = cgiGet( edtTrn_ColName_Internalname);
-                              A264Trn_TileId = StringUtil.StrToGuid( cgiGet( edtTrn_TileId_Internalname));
                               AV28Display = cgiGet( edtavDisplay_Internalname);
                               AssignAttri(sPrefix, false, edtavDisplay_Internalname, AV28Display);
                               AV30Update = cgiGet( edtavUpdate_Internalname);
@@ -1371,7 +1370,6 @@ namespace GeneXus.Programs {
             {
                A319Trn_RowId = H00632_A319Trn_RowId[0];
                AssignAttri(sPrefix, false, "A319Trn_RowId", A319Trn_RowId.ToString());
-               A264Trn_TileId = H00632_A264Trn_TileId[0];
                A327Trn_ColName = H00632_A327Trn_ColName[0];
                A328Trn_ColId = H00632_A328Trn_ColId[0];
                /* Execute user event: Grid.Load */
@@ -1558,7 +1556,6 @@ namespace GeneXus.Programs {
          edtavDelete_Enabled = 0;
          edtTrn_ColId_Enabled = 0;
          edtTrn_ColName_Enabled = 0;
-         edtTrn_TileId_Enabled = 0;
          edtTrn_RowId_Enabled = 0;
          AssignProp(sPrefix, false, edtTrn_RowId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_RowId_Enabled), 5, 0), true);
          fix_multi_value_controls( ) ;
@@ -2390,7 +2387,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024101016433495", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021972527", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2406,7 +2403,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_rowtrn_colwc.js", "?2024101016433495", false, true);
+         context.AddJavascriptSource("trn_rowtrn_colwc.js", "?20241021972528", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2425,7 +2422,6 @@ namespace GeneXus.Programs {
       {
          edtTrn_ColId_Internalname = sPrefix+"TRN_COLID_"+sGXsfl_35_idx;
          edtTrn_ColName_Internalname = sPrefix+"TRN_COLNAME_"+sGXsfl_35_idx;
-         edtTrn_TileId_Internalname = sPrefix+"TRN_TILEID_"+sGXsfl_35_idx;
          edtavDisplay_Internalname = sPrefix+"vDISPLAY_"+sGXsfl_35_idx;
          edtavUpdate_Internalname = sPrefix+"vUPDATE_"+sGXsfl_35_idx;
          edtavDelete_Internalname = sPrefix+"vDELETE_"+sGXsfl_35_idx;
@@ -2435,7 +2431,6 @@ namespace GeneXus.Programs {
       {
          edtTrn_ColId_Internalname = sPrefix+"TRN_COLID_"+sGXsfl_35_fel_idx;
          edtTrn_ColName_Internalname = sPrefix+"TRN_COLNAME_"+sGXsfl_35_fel_idx;
-         edtTrn_TileId_Internalname = sPrefix+"TRN_TILEID_"+sGXsfl_35_fel_idx;
          edtavDisplay_Internalname = sPrefix+"vDISPLAY_"+sGXsfl_35_fel_idx;
          edtavUpdate_Internalname = sPrefix+"vUPDATE_"+sGXsfl_35_fel_idx;
          edtavDelete_Internalname = sPrefix+"vDELETE_"+sGXsfl_35_fel_idx;
@@ -2524,38 +2519,30 @@ namespace GeneXus.Programs {
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
-            }
-            /* Single line edit */
-            ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTrn_TileId_Internalname,A264Trn_TileId.ToString(),A264Trn_TileId.ToString(),(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTrn_TileId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)35,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
-            /* Subfile cell */
-            if ( GridContainer.GetWrapped() == 1 )
-            {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavDisplay_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'" + sPrefix + "',false,'" + sGXsfl_35_idx + "',35)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'" + sPrefix + "',false,'" + sGXsfl_35_idx + "',35)\"";
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDisplay_Internalname,StringUtil.RTrim( AV28Display),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,39);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)edtavDisplay_Link,(string)"",context.GetMessage( "GXM_display", ""),(string)"",(string)edtavDisplay_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(int)edtavDisplay_Visible,(int)edtavDisplay_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDisplay_Internalname,StringUtil.RTrim( AV28Display),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,38);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)edtavDisplay_Link,(string)"",context.GetMessage( "GXM_display", ""),(string)"",(string)edtavDisplay_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(int)edtavDisplay_Visible,(int)edtavDisplay_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavUpdate_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'" + sPrefix + "',false,'" + sGXsfl_35_idx + "',35)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'" + sPrefix + "',false,'" + sGXsfl_35_idx + "',35)\"";
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUpdate_Internalname,StringUtil.RTrim( AV30Update),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,40);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)edtavUpdate_Link,(string)"",context.GetMessage( "GXM_update", ""),(string)"",(string)edtavUpdate_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(int)edtavUpdate_Visible,(int)edtavUpdate_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUpdate_Internalname,StringUtil.RTrim( AV30Update),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,39);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)edtavUpdate_Link,(string)"",context.GetMessage( "GXM_update", ""),(string)"",(string)edtavUpdate_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(int)edtavUpdate_Visible,(int)edtavUpdate_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtavDelete_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 41,'" + sPrefix + "',false,'" + sGXsfl_35_idx + "',35)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'" + sPrefix + "',false,'" + sGXsfl_35_idx + "',35)\"";
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDelete_Internalname,StringUtil.RTrim( AV32Delete),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,41);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)edtavDelete_Link,(string)"",context.GetMessage( "GX_BtnDelete", ""),(string)"",(string)edtavDelete_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(int)edtavDelete_Visible,(int)edtavDelete_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDelete_Internalname,StringUtil.RTrim( AV32Delete),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,40);\"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)edtavDelete_Link,(string)"",context.GetMessage( "GX_BtnDelete", ""),(string)"",(string)edtavDelete_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(int)edtavDelete_Visible,(int)edtavDelete_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes632( ) ;
             GridContainer.AddRow(GridRow);
             nGXsfl_35_idx = ((subGrid_Islastpage==1)&&(nGXsfl_35_idx+1>subGrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_35_idx+1);
@@ -2613,9 +2600,6 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Name", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Trn_Tile Id", "")) ;
-            context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtavDisplay_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
@@ -2654,9 +2638,6 @@ namespace GeneXus.Programs {
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A327Trn_ColName));
             GridColumn.AddObjectProperty("Link", StringUtil.RTrim( edtTrn_ColName_Link));
-            GridContainer.AddColumnProperties(GridColumn);
-            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A264Trn_TileId.ToString()));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( AV28Display)));
@@ -2698,7 +2679,6 @@ namespace GeneXus.Programs {
          divTableheader_Internalname = sPrefix+"TABLEHEADER";
          edtTrn_ColId_Internalname = sPrefix+"TRN_COLID";
          edtTrn_ColName_Internalname = sPrefix+"TRN_COLNAME";
-         edtTrn_TileId_Internalname = sPrefix+"TRN_TILEID";
          edtavDisplay_Internalname = sPrefix+"vDISPLAY";
          edtavUpdate_Internalname = sPrefix+"vUPDATE";
          edtavDelete_Internalname = sPrefix+"vDELETE";
@@ -2740,7 +2720,6 @@ namespace GeneXus.Programs {
          edtavDisplay_Jsonclick = "";
          edtavDisplay_Link = "";
          edtavDisplay_Enabled = 0;
-         edtTrn_TileId_Jsonclick = "";
          edtTrn_ColName_Jsonclick = "";
          edtTrn_ColName_Link = "";
          edtTrn_ColId_Jsonclick = "";
@@ -2750,7 +2729,6 @@ namespace GeneXus.Programs {
          edtavUpdate_Visible = -1;
          edtavDisplay_Visible = -1;
          edtTrn_RowId_Enabled = 0;
-         edtTrn_TileId_Enabled = 0;
          edtTrn_ColName_Enabled = 0;
          edtTrn_ColId_Enabled = 0;
          subGrid_Sortable = 0;
@@ -2761,8 +2739,8 @@ namespace GeneXus.Programs {
          bttBtninsert_Visible = 1;
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Ddo_grid_Includesortasc = "T";
-         Ddo_grid_Columnssortvalues = "2|1|3";
-         Ddo_grid_Columnids = "0:Trn_ColId|1:Trn_ColName|2:Trn_TileId";
+         Ddo_grid_Columnssortvalues = "2|1";
+         Ddo_grid_Columnids = "0:Trn_ColId|1:Trn_ColName";
          Ddo_grid_Gridinternalname = "";
          Gridpaginationbar_Rowsperpagecaption = "WWP_PagingRowsPerPage";
          Gridpaginationbar_Emptygridcaption = "WWP_PagingEmptyGridCaption";
@@ -2874,14 +2852,12 @@ namespace GeneXus.Programs {
          sEvtType = "";
          A328Trn_ColId = Guid.Empty;
          A327Trn_ColName = "";
-         A264Trn_TileId = Guid.Empty;
          AV28Display = "";
          AV30Update = "";
          AV32Delete = "";
          GXDecQS = "";
          lV16FilterFullText = "";
          H00632_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         H00632_A264Trn_TileId = new Guid[] {Guid.Empty} ;
          H00632_A327Trn_ColName = new string[] {""} ;
          H00632_A328Trn_ColId = new Guid[] {Guid.Empty} ;
          H00633_AGRID_nRecordCount = new long[1] ;
@@ -2905,7 +2881,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_rowtrn_colwc__default(),
             new Object[][] {
                 new Object[] {
-               H00632_A319Trn_RowId, H00632_A264Trn_TileId, H00632_A327Trn_ColName, H00632_A328Trn_ColId
+               H00632_A319Trn_RowId, H00632_A327Trn_ColName, H00632_A328Trn_ColId
                }
                , new Object[] {
                H00633_AGRID_nRecordCount
@@ -2957,7 +2933,6 @@ namespace GeneXus.Programs {
       private int GXPagingTo2 ;
       private int edtTrn_ColId_Enabled ;
       private int edtTrn_ColName_Enabled ;
-      private int edtTrn_TileId_Enabled ;
       private int edtTrn_RowId_Enabled ;
       private int AV23PageToGo ;
       private int edtavDisplay_Visible ;
@@ -3049,7 +3024,6 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string edtTrn_ColId_Internalname ;
       private string edtTrn_ColName_Internalname ;
-      private string edtTrn_TileId_Internalname ;
       private string AV28Display ;
       private string AV30Update ;
       private string AV32Delete ;
@@ -3066,7 +3040,6 @@ namespace GeneXus.Programs {
       private string ROClassString ;
       private string edtTrn_ColId_Jsonclick ;
       private string edtTrn_ColName_Jsonclick ;
-      private string edtTrn_TileId_Jsonclick ;
       private string edtavDisplay_Jsonclick ;
       private string edtavUpdate_Jsonclick ;
       private string edtavDelete_Jsonclick ;
@@ -3102,7 +3075,6 @@ namespace GeneXus.Programs {
       private Guid wcpOAV8Trn_RowId ;
       private Guid A319Trn_RowId ;
       private Guid A328Trn_ColId ;
-      private Guid A264Trn_TileId ;
       private IGxSession AV17Session ;
       private GXWebGrid GridContainer ;
       private GXWebRow GridRow ;
@@ -3120,7 +3092,6 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV12GridState ;
       private IDataStoreProvider pr_default ;
       private Guid[] H00632_A319Trn_RowId ;
-      private Guid[] H00632_A264Trn_TileId ;
       private string[] H00632_A327Trn_ColName ;
       private Guid[] H00632_A328Trn_ColId ;
       private long[] H00633_AGRID_nRecordCount ;
@@ -3151,8 +3122,8 @@ namespace GeneXus.Programs {
          string sSelectString;
          string sFromString;
          string sOrderString;
-         sSelectString = " Trn_RowId, Trn_TileId, Trn_ColName, Trn_ColId";
-         sFromString = " FROM Trn_Col1";
+         sSelectString = " Trn_RowId, Trn_ColName, Trn_ColId";
+         sFromString = " FROM Trn_Col";
          sOrderString = "";
          AddWhere(sWhereString, "(Trn_RowId = :AV8Trn_RowId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
@@ -3179,14 +3150,6 @@ namespace GeneXus.Programs {
          {
             sOrderString += " ORDER BY Trn_RowId DESC, Trn_ColId DESC";
          }
-         else if ( ( AV14OrderedBy == 3 ) && ! AV15OrderedDsc )
-         {
-            sOrderString += " ORDER BY Trn_RowId, Trn_TileId, Trn_ColId";
-         }
-         else if ( ( AV14OrderedBy == 3 ) && ( AV15OrderedDsc ) )
-         {
-            sOrderString += " ORDER BY Trn_RowId DESC, Trn_TileId DESC, Trn_ColId";
-         }
          else if ( true )
          {
             sOrderString += " ORDER BY Trn_ColId";
@@ -3209,7 +3172,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int7 = new short[2];
          Object[] GXv_Object8 = new Object[2];
-         scmdbuf = "SELECT COUNT(*) FROM Trn_Col1";
+         scmdbuf = "SELECT COUNT(*) FROM Trn_Col";
          AddWhere(sWhereString, "(Trn_RowId = :AV8Trn_RowId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
@@ -3233,14 +3196,6 @@ namespace GeneXus.Programs {
             scmdbuf += "";
          }
          else if ( ( AV14OrderedBy == 2 ) && ( AV15OrderedDsc ) )
-         {
-            scmdbuf += "";
-         }
-         else if ( ( AV14OrderedBy == 3 ) && ! AV15OrderedDsc )
-         {
-            scmdbuf += "";
-         }
-         else if ( ( AV14OrderedBy == 3 ) && ( AV15OrderedDsc ) )
          {
             scmdbuf += "";
          }
@@ -3309,9 +3264,8 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 return;
              case 1 :
                 ((long[]) buf[0])[0] = rslt.getLong(1);

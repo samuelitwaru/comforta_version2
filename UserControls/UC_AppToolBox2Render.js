@@ -1,1 +1,194 @@
-function UC_AppToolBox2(n){var t,r,u,f,i;this.setSDT_Tile=function(n){this.SDT_Tile=n};this.getSDT_Tile=function(){return this.SDT_Tile};this.setSDT_Page=function(n){this.SDT_Page=n};this.getSDT_Page=function(){return this.SDT_Page};this.setBC_Trn_TemplateCollection=function(n){this.BC_Trn_TemplateCollection=n};this.getBC_Trn_TemplateCollection=function(){return this.BC_Trn_TemplateCollection};this.setBC_Trn_ThemeCollection=function(n){this.BC_Trn_ThemeCollection=n};this.getBC_Trn_ThemeCollection=function(){return this.BC_Trn_ThemeCollection};t='<link rel="stylesheet" href="/Resources/UCGrapes/new-design/css/styles.css" /><link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/><script>\tfunction createBootstrapPage(pageData) {        let htmlString = \'\';        pageData.Row.forEach(row => {            htmlString += \'<div class="row p-2">\';                        row.Col.forEach(col => {                htmlString += `                   <div class="col px-2" data-gjs-selectable="false" style="min-height: 100px;">                   <button class="btn btn-primary btn-block" style="width: 100%; min-height: 100px;"                    onclick="window.location.href=\'${col.Tile.ToPageId}\'">                   ${col.Tile.TileName}                   <\/button>                   <\/div>                `;            });\t\t\t            htmlString += \'<\/div>\';        });\t        return htmlString;    }\tfunction createLayout(TileJson){\t\t\t\t\tconst small = `\t\t\t\t<div class="grid small" data-gjs-selectable="false" data-gjs-draggable="false"><\/div>\t\t\t`\t\tconst medium = `\t\t\t\t<div class="grid medium" data-gjs-selectable="false" data-gjs-draggable="false"><\/div>\t\t\t`\t\tconst large = `\t\t\t\t<div class="grid large" data-gjs-selectable="false" data-gjs-draggable="false"><\/div>\t\t\t`\t\tlet layout = `\t\t\t<div class="parent" data-gjs-selectable="false" data-gjs-droppable="false">\t\t\t`\t\tfor (let i = 0; i < TileJson.ChildTile.length; i++){\t\t\tvar childTile = TileJson.ChildTile[i]\t\t\tswitch (childTile.SG_TileWidth) {\t\t\t\tcase 1:\t\t\t\tlayout += small\t\t\t\tbreak;\t\t\t\tcase 2:\t\t\t\tlayout += medium\t\t\t\tbreak;\t\t\t\tcase 3:\t\t\t\tlayout += large\t\t\t\tbreak;\t\t\t\tdefault:\t\t\t\tlayout += large\t\t\t}\t\t\t}\t\tlayout += \'<\/div>\'\t\treturn layout\t}\tfunction loadScript(url, callback) {\t\tconst script = document.createElement(\'script\');\t\tscript.type = \'text/javascript\';\t\tscript.src = url;\t\t\t// Execute callback when the script is loaded\t\tscript.onload = function() {\t\t\tif (callback) {\t\t\t\tcallback();\t\t\t}\t\t};\t\t\t// Handle error in loading the script\t\tscript.onerror = function() {\t\t\tconsole.error(\'Failed to load script:\', url);\t\t};\t\t\tdocument.body.appendChild(script);\t}<\/script><div id="body">    <div class="navbar">      <h3>The App toolbox builder<\/h3>      <div class="navbar-buttons">        <button id="open-mapping" class="btn btn-outline">          <svg xmlns="http://www.w3.org/2000/svg" width="18.818" height="16" viewBox="0 0 18.818 18">            <path id="Path_993" data-name="Path 993" d="M19.545,5a3.283,3.283,0,0,0-3.273,3.273A3.228,3.228,0,0,0,16.784,10l-2.541,3.177H10.427a3.273,3.273,0,1,0,0,1.636h3.816L16.784,18a3.229,3.229,0,0,0-.511,1.732,3.273,3.273,0,1,0,3.273-3.273,3.207,3.207,0,0,0-1.563.419L15.685,14l2.3-2.873a3.207,3.207,0,0,0,1.563.419,3.273,3.273,0,0,0,0-6.545Zm0,1.636a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,6.636ZM7.273,12.364A1.636,1.636,0,1,1,5.636,14,1.623,1.623,0,0,1,7.273,12.364Zm12.273,5.727a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,18.091Z" transform="translate(-4 -5)" fill="#5068a8"/>          <\/svg>                    Tree        <\/button>        <button id="publish" class="btn btn-primary">          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 18">            <path id="Path_958" data-name="Path 958" d="M13.5,3.594l-.519.507L7.925,9.263l1.038,1.06,3.814-3.9V18.644h1.444V6.429l3.814,3.9,1.038-1.06L14.019,4.1ZM7,20.119v1.475H20V20.119Z" transform="translate(-7 -3.594)" fill="#fff"/>          <\/svg>                    Publish        <\/button>      <\/div>    <\/div>    <div class="container">      <div class="main-content">        <div class="mobile-frame">          <div class="header">            <span id="current-time"><\/span>            <span class="icons">              <i class="fas fa-signal"><\/i>              <i class="fas fa-wifi"><\/i>              <i class="fas fa-battery"><\/i>            <\/span>          <\/div>          <div id="gjs"><\/div>        <\/div>      <\/div>      <div class="sidebar sidebar-right">        <div id="tools-section">          <div class="tabs">              <button id="pages-button" class="tab-button active" data-tab="pages">Pages<\/button>              <button id="templates-button" class="tab-button" data-tab="templates">Templates<\/button>          <\/div>          <div class="tab-content active-tab" id="pages-content">            <div class="sidebar-section theme-section">              <select class="form-control" name="theme" id="theme-select"><\/select>              <div class="color-palette" id="theme-color-palette">                              <\/div>                <div class="bg-section">                <button class="add-image">                    <span class="plus"><i class="fa fa-plus"><\/i><\/span>                    <span class="icon"><i class="fa fa-image"><\/i><\/span>                <\/button>                <div class="percentage-wrapper">                    <input type="text" class="percentage-input" value="100" min="0" max="100">                    <span class="percentage-sign">%<\/span>                <\/div>              <\/div>                        <\/div>              <div class="sidebar-section title-section">              <input                type="text"                class="form-control"                id="tile-title"                placeholder="Enter title"              />              <div class="title-style">                <div class="text-color-palette" id="text-color-palette">                  <div class="color-box"><\/div>                  <div class="color-box"><\/div>                <\/div>                  <div class="text-alignment">                  <div class="align-item">                    <input type="radio" id="align-left" name="alignment" value="left" />                    <label for="align-left" class="fas fa-align-left"><\/label>                  <\/div>                                  <div class="align-item">                    <input type="radio" id="align-center" name="alignment" value="center" />                    <label for="align-center" class="fas fa-align-center"><\/label>                  <\/div><!--                                   <div class="align-item">                    <input type="radio" id="align-right" name="alignment" value="right" />                    <label for="align-right" class="fas fa-align-right"><\/label>                  <\/div> -->                <\/div>                              <\/div>            <\/div>              <div class="sidebar-section services-section">              <select class="form-control" name="theme" id="theme-select">                <option value="" selected>Services<\/option>                <option value="">General<\/option>                <option value="">Health<\/option>                <option value="">Living<\/option>              <\/select>              <div id="icons-list" class="icons-list">                              <\/div>              <div class="title-style">                <div class="text-color-palette" id="icon-color-palette">                  <div class="color-box"><\/div>                  <div class="color-box"><\/div>                <\/div>              <\/div>            <\/div>          <\/div>          <div class="tab-content" id="templates-content">            <div class="sidebar-section" id="page-templates"><\/div>          <\/div>        <\/div>        <div id="mapping-section" style="display: none;">          <h3>MAPPING<\/h3>          <div id="tree-container" class="tree">            <h4>Home (Page Name)<\/h4>          <\/div>        <\/div>      <\/div>    <\/div>    <script src="/Resources/UCGrapes/new-design/grapes/grapes.js"><\/script>    <script src="/Resources/UCGrapes/new-design/js/data.js"><\/script>    <script src="/Resources/UCGrapes/new-design/js/toolbox.js"><\/script><\/div>';r={};Mustache.parse(t);u=0;this.show=function(){f=n(this.getContainerControl());u=0;this.setHtml(Mustache.render(t,this,r));this.renderChildContainers();n(this.getContainerControl()).find("[data-event='OnSave']").on("save",this.onOnSaveHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});this.Start()};this.Scripts=[];this.Start=function(){console.log(this.BC_Trn_TemplateCollection);const t=this.BC_Trn_TemplateCollection.map(n=>({id:n.Trn_TemplateId,label:n.Trn_TemplateName,media:n.Trn_TemplateMedia,content:n.Trn_TemplateContent.split(",").map(n=>parseInt(n))})),i=this.BC_Trn_ThemeCollection.map(n=>{let t={name:n.Trn_ThemeName,fontFamily:n.Trn_ThemeFontFamily,colors:{}};return n.Color.forEach(n=>{t.colors[n.ColorName]=n.ColorCode}),t}),r=grapesjs.init({container:"#gjs",fromElement:!0,height:"100%",width:"auto",storageManager:{type:"local",options:{local:{key:`gjsProject-${1}`}}},canvas:{styles:["https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css","https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css","https://fonts.googleapis.com/css2?family=Lora&family=Merriweather&family=Poppins:wght@400;500&family=Roboto:wght@400;500&display=swap","/Resources/UCGrapes/new-design/css/toolbox.css",]},baseCss:" ",dragMode:"normal",panels:{defaults:[]},sidebarManager:!1,storageManager:!1,modal:!1,commands:!1,hoverable:!1,highlightable:!1});window.addEventListener("click",function(n){n.preventDefault()});new Clock;const n=new EditorManager(r);n.init();new ToolBoxManager(n,i,t).init()};this.onOnSaveHandler=function(t){if(t){var i=t.currentTarget;t.preventDefault();this.SDT_TileCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.SDT_PageCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.BC_Trn_TemplateCollectionCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.BC_Trn_ThemeCollectionCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1}this.OnSave&&this.OnSave()};this.autoToggleVisibility=!0;i={};this.renderChildContainers=function(){f.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(t,r){var e=n(r),f=e.attr("data-slot"),u;u=i[f];u||(u=this.getChildContainer(f),i[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function UC_AppToolBox2($) {
+	 this.setSDT_Tile = function(value) {
+			this.SDT_Tile = value;
+		}
+
+		this.getSDT_Tile = function() {
+			return this.SDT_Tile;
+		} 
+	 this.setSDT_Page = function(value) {
+			this.SDT_Page = value;
+		}
+
+		this.getSDT_Page = function() {
+			return this.SDT_Page;
+		} 
+	 this.setSDT_PageCollection = function(value) {
+			this.SDT_PageCollection = value;
+		}
+
+		this.getSDT_PageCollection = function() {
+			return this.SDT_PageCollection;
+		} 
+	 this.setBC_Trn_TemplateCollection = function(value) {
+			this.BC_Trn_TemplateCollection = value;
+		}
+
+		this.getBC_Trn_TemplateCollection = function() {
+			return this.BC_Trn_TemplateCollection;
+		} 
+	 this.setBC_Trn_ThemeCollection = function(value) {
+			this.BC_Trn_ThemeCollection = value;
+		}
+
+		this.getBC_Trn_ThemeCollection = function() {
+			return this.BC_Trn_ThemeCollection;
+		} 
+	  
+
+	var template = '<link  rel=\"stylesheet\"  href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"/><script src=\"/Resources/UCGrapes/new-design/js/toolbox-utils.js\"></script><div id=\"toolbox-body\">    <div class=\"navbar\">      <h3>The App toolbox builder</h3>      <div class=\"navbar-buttons\">        <button id=\"open-mapping\" class=\"btn btn-outline\">          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18.818\" height=\"16\" viewBox=\"0 0 18.818 18\">            <path id=\"Path_993\" data-name=\"Path 993\" d=\"M19.545,5a3.283,3.283,0,0,0-3.273,3.273A3.228,3.228,0,0,0,16.784,10l-2.541,3.177H10.427a3.273,3.273,0,1,0,0,1.636h3.816L16.784,18a3.229,3.229,0,0,0-.511,1.732,3.273,3.273,0,1,0,3.273-3.273,3.207,3.207,0,0,0-1.563.419L15.685,14l2.3-2.873a3.207,3.207,0,0,0,1.563.419,3.273,3.273,0,0,0,0-6.545Zm0,1.636a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,6.636ZM7.273,12.364A1.636,1.636,0,1,1,5.636,14,1.623,1.623,0,0,1,7.273,12.364Zm12.273,5.727a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,18.091Z\" transform=\"translate(-4 -5)\" fill=\"#5068a8\"/>          </svg>                    Tree        </button>        <button id=\"publish\" class=\"btn btn-primary\">          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"13\" height=\"16\" viewBox=\"0 0 13 18\">            <path id=\"Path_958\" data-name=\"Path 958\" d=\"M13.5,3.594l-.519.507L7.925,9.263l1.038,1.06,3.814-3.9V18.644h1.444V6.429l3.814,3.9,1.038-1.06L14.019,4.1ZM7,20.119v1.475H20V20.119Z\" transform=\"translate(-7 -3.594)\" fill=\"#fff\"/>          </svg>                    Publish        </button>      </div>    </div>    <div class=\"toolbox-container\">      <div class=\"main-content\">        <div class=\"mobile-frame\">          <div class=\"header\">            <span id=\"current-time\"></span>            <span class=\"icons\">              <i class=\"fas fa-signal\"></i>              <i class=\"fas fa-wifi\"></i>              <i class=\"fas fa-battery\"></i>            </span>          </div>          <div id=\"gjs\"></div>        </div>      </div>      <div class=\"sidebar sidebar-right\">        <div id=\"tools-section\">          <div class=\"tabs\">              <button id=\"pages-button\" class=\"tab-button active\" data-tab=\"pages\">Pages</button>              <button id=\"templates-button\" class=\"tab-button\" data-tab=\"templates\">Templates</button>          </div>          <div class=\"tab-content active-tab\" id=\"pages-content\">            <div class=\"sidebar-section theme-section\">              <select class=\"form-control\" name=\"theme\" id=\"theme-select\"></select>              <div class=\"color-palette\" id=\"theme-color-palette\">                              </div>                <div class=\"bg-section\">                <button class=\"add-image\">                    <span class=\"plus\"><i class=\"fa fa-plus\"></i></span>                    <span class=\"icon\"><i class=\"fa fa-image\"></i></span>                </button>                <div class=\"percentage-wrapper\">                    <input type=\"text\" class=\"percentage-input\" value=\"100\" min=\"0\" max=\"100\">                    <span class=\"percentage-sign\">%</span>                </div>              </div>                        </div>              <div class=\"sidebar-section title-section\">              <input                type=\"text\"                class=\"form-control\"                id=\"tile-title\"                placeholder=\"Enter title\"              />              <div class=\"title-style\">                <div class=\"text-color-palette\" id=\"text-color-palette\">                  <div class=\"color-box\"></div>                  <div class=\"color-box\"></div>                </div>                  <div class=\"text-alignment\">                  <div class=\"align-item\">                    <input type=\"radio\" id=\"align-left\" name=\"alignment\" value=\"left\" />                    <label for=\"align-left\" class=\"fas fa-align-left\"></label>                  </div>                                  <div class=\"align-item\">                    <input type=\"radio\" id=\"align-center\" name=\"alignment\" value=\"center\" />                    <label for=\"align-center\" class=\"fas fa-align-center\"></label>                  </div><!--                                   <div class=\"align-item\">                    <input type=\"radio\" id=\"align-right\" name=\"alignment\" value=\"right\" />                    <label for=\"align-right\" class=\"fas fa-align-right\"></label>                  </div> -->                </div>                              </div>            </div>              <div class=\"sidebar-section services-section\">              <select class=\"form-control\" name=\"theme\" id=\"theme-select\">                <option value=\"\" selected>Services</option>                <option value=\"\">General</option>                <option value=\"\">Health</option>                <option value=\"\">Living</option>              </select>              <div id=\"icons-list\" class=\"icons-list\">                              </div>              <div class=\"title-style\">                <div class=\"text-color-palette\" id=\"icon-color-palette\">                  <div class=\"color-box\"></div>                  <div class=\"color-box\"></div>                </div>              </div>            </div>          </div>          <div class=\"tab-content\" id=\"templates-content\">            <div class=\"sidebar-section\" id=\"page-templates\"></div>          </div>        </div>        <div id=\"mapping-section\" style=\"display: none;\">          <h3>MAPPING</h3>          <div id=\"tree-container\" class=\"tree\">            <h4>Home (Page Name)</h4>          </div>        </div>      </div>    </div>    <script src=\"/Resources/UCGrapes/new-design/grapes/grapes.js\"></script>    <script src=\"/Resources/UCGrapes/new-design/js/data.js\"></script>    <script src=\"/Resources/UCGrapes/new-design/js/toolbox.js\"></script></div>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnOnSave = 0; 
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnOnSave = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			$(this.getContainerControl())
+				.find("[data-event='OnSave']")
+				.on('save', this.onOnSaveHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+			this.Start(); 
+	}
+
+	this.Scripts = [];
+
+		this.Start = function() {
+
+					const mapping = nestPages(this.SDT_PageCollection)
+					console.log(mapping)
+					const templates = this.BC_Trn_TemplateCollection.map(temp => {
+						let res = {
+							id: temp.Trn_TemplateId,
+							label: temp.Trn_TemplateName, 
+							media: temp.Trn_TemplateMedia,
+							content: temp.Trn_TemplateContent.split(',').map(i=>parseInt(i))
+						}
+						
+						return res
+					})
+					const themes = this.BC_Trn_ThemeCollection.map(theme => {
+						let res = {
+							name: theme.Trn_ThemeName, 
+							fontFamily: theme.Trn_ThemeFontFamily,
+							colors: {}
+						}
+						theme.Color.forEach(color => {
+							res.colors[color.ColorName] = color.ColorCode	
+						})
+						return res
+					})
+					
+					//const templates = []
+				
+					const projectId = 1;
+					// Initialize the Grapes.js editor
+					const editor = grapesjs.init({
+						container: "#gjs",
+						fromElement: true,
+						height: "100%",
+						width: "auto",
+						// storageManager: { type: "local", autosave: false },
+						storageManager: {
+							type: 'local',
+							options: {
+								local: { key: `gjsProject-${projectId}` }
+							}
+						},
+						// plugins: ["app-builder-plugins"],
+						// blockManager: {
+						//   appendTo: "#blocks",
+						//   custom: true,
+						// },
+						// traitManager: {
+						//   appendTo: "#traits",
+						// },
+						// styleManager: {
+						//   appendTo: "#styles",
+						//   custom: true,
+						//   sectors: [],
+						// },
+						canvas: {
+							styles: [
+							"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css",
+							"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
+							"https://fonts.googleapis.com/css2?family=Lora&family=Merriweather&family=Poppins:wght@400;500&family=Roboto:wght@400;500&display=swap",
+							"/Resources/UCGrapes/new-design/css/toolbox.css",
+							],
+						},
+						baseCss: " ",
+						dragMode: "normal",
+						panels: { defaults: [] },
+						sidebarManager: false,
+						storageManager: false,
+						modal: false,
+						commands: false,
+						hoverable: false,
+						highlightable: false,
+					});
+				
+					window.addEventListener("click", function (event) {
+						event.preventDefault();
+					});
+					
+					new Clock();
+					const editorManager = new EditorManager(editor);
+					editorManager.init();
+					new ToolBoxManager(editorManager, themes, templates, mapping).init();
+				
+				
+		}
+
+
+		this.onOnSaveHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 this.SDT_TileCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.SDT_PageCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.SDT_PageCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.BC_Trn_TemplateCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.BC_Trn_ThemeCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 
+			}
+
+			if (this.OnSave) {
+				this.OnSave();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}

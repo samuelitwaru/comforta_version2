@@ -32,7 +32,7 @@
               </Property>
             </Properties>
           </Field>
-          <Field name="Trn_TileId" description="Trn_Tile Id">
+          <Field name="TileId" description="Tile Id">
             <Properties>
               <Property>
                 <Name>Type</Name>

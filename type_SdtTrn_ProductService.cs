@@ -77,6 +77,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Organisationid_Z");
          state.Add("gxTpr_Productservicename_Z");
          state.Add("gxTpr_Productservicetilename_Z");
+         state.Add("gxTpr_Productserviceclass_Z");
          state.Add("gxTpr_Productservicegroup_Z");
          state.Add("gxTpr_Suppliergenid_Z");
          state.Add("gxTpr_Suppliergencompanyname_Z");
@@ -101,6 +102,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_ProductService_Productservicename = sdt.gxTv_SdtTrn_ProductService_Productservicename ;
          gxTv_SdtTrn_ProductService_Productservicetilename = sdt.gxTv_SdtTrn_ProductService_Productservicetilename ;
          gxTv_SdtTrn_ProductService_Productservicedescription = sdt.gxTv_SdtTrn_ProductService_Productservicedescription ;
+         gxTv_SdtTrn_ProductService_Productserviceclass = sdt.gxTv_SdtTrn_ProductService_Productserviceclass ;
          gxTv_SdtTrn_ProductService_Productserviceimage = sdt.gxTv_SdtTrn_ProductService_Productserviceimage ;
          gxTv_SdtTrn_ProductService_Productserviceimage_gxi = sdt.gxTv_SdtTrn_ProductService_Productserviceimage_gxi ;
          gxTv_SdtTrn_ProductService_Productservicegroup = sdt.gxTv_SdtTrn_ProductService_Productservicegroup ;
@@ -115,6 +117,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_ProductService_Organisationid_Z = sdt.gxTv_SdtTrn_ProductService_Organisationid_Z ;
          gxTv_SdtTrn_ProductService_Productservicename_Z = sdt.gxTv_SdtTrn_ProductService_Productservicename_Z ;
          gxTv_SdtTrn_ProductService_Productservicetilename_Z = sdt.gxTv_SdtTrn_ProductService_Productservicetilename_Z ;
+         gxTv_SdtTrn_ProductService_Productserviceclass_Z = sdt.gxTv_SdtTrn_ProductService_Productserviceclass_Z ;
          gxTv_SdtTrn_ProductService_Productservicegroup_Z = sdt.gxTv_SdtTrn_ProductService_Productservicegroup_Z ;
          gxTv_SdtTrn_ProductService_Suppliergenid_Z = sdt.gxTv_SdtTrn_ProductService_Suppliergenid_Z ;
          gxTv_SdtTrn_ProductService_Suppliergencompanyname_Z = sdt.gxTv_SdtTrn_ProductService_Suppliergencompanyname_Z ;
@@ -153,6 +156,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("ProductServiceName", gxTv_SdtTrn_ProductService_Productservicename, false, includeNonInitialized);
          AddObjectProperty("ProductServiceTileName", gxTv_SdtTrn_ProductService_Productservicetilename, false, includeNonInitialized);
          AddObjectProperty("ProductServiceDescription", gxTv_SdtTrn_ProductService_Productservicedescription, false, includeNonInitialized);
+         AddObjectProperty("ProductServiceClass", gxTv_SdtTrn_ProductService_Productserviceclass, false, includeNonInitialized);
          AddObjectProperty("ProductServiceImage", gxTv_SdtTrn_ProductService_Productserviceimage, false, includeNonInitialized);
          AddObjectProperty("ProductServiceGroup", gxTv_SdtTrn_ProductService_Productservicegroup, false, includeNonInitialized);
          AddObjectProperty("SupplierGenId", gxTv_SdtTrn_ProductService_Suppliergenid, false, includeNonInitialized);
@@ -171,6 +175,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_ProductService_Organisationid_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceName_Z", gxTv_SdtTrn_ProductService_Productservicename_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceTileName_Z", gxTv_SdtTrn_ProductService_Productservicetilename_Z, false, includeNonInitialized);
+            AddObjectProperty("ProductServiceClass_Z", gxTv_SdtTrn_ProductService_Productserviceclass_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceGroup_Z", gxTv_SdtTrn_ProductService_Productservicegroup_Z, false, includeNonInitialized);
             AddObjectProperty("SupplierGenId_Z", gxTv_SdtTrn_ProductService_Suppliergenid_Z, false, includeNonInitialized);
             AddObjectProperty("SupplierGenCompanyName_Z", gxTv_SdtTrn_ProductService_Suppliergencompanyname_Z, false, includeNonInitialized);
@@ -217,6 +222,11 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_ProductService_Productservicedescription = sdt.gxTv_SdtTrn_ProductService_Productservicedescription ;
+         }
+         if ( sdt.IsDirty("ProductServiceClass") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_ProductService_Productserviceclass = sdt.gxTv_SdtTrn_ProductService_Productserviceclass ;
          }
          if ( sdt.IsDirty("ProductServiceImage") )
          {
@@ -276,6 +286,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_ProductService_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicename_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicetilename_Z_SetNull( );
+               this.gxTv_SdtTrn_ProductService_Productserviceclass_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicegroup_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Suppliergenid_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Suppliergencompanyname_Z_SetNull( );
@@ -307,6 +318,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_ProductService_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicename_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicetilename_Z_SetNull( );
+               this.gxTv_SdtTrn_ProductService_Productserviceclass_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicegroup_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Suppliergenid_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Suppliergencompanyname_Z_SetNull( );
@@ -338,6 +350,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_ProductService_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicename_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicetilename_Z_SetNull( );
+               this.gxTv_SdtTrn_ProductService_Productserviceclass_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Productservicegroup_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Suppliergenid_Z_SetNull( );
                this.gxTv_SdtTrn_ProductService_Suppliergencompanyname_Z_SetNull( );
@@ -395,6 +408,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_ProductService_Productservicedescription = value;
             SetDirty("Productservicedescription");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "ProductServiceClass" )]
+      [  XmlElement( ElementName = "ProductServiceClass"   )]
+      public string gxTpr_Productserviceclass
+      {
+         get {
+            return gxTv_SdtTrn_ProductService_Productserviceclass ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_ProductService_Productserviceclass = value;
+            SetDirty("Productserviceclass");
          }
 
       }
@@ -736,6 +765,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ProductServiceClass_Z" )]
+      [  XmlElement( ElementName = "ProductServiceClass_Z"   )]
+      public string gxTpr_Productserviceclass_Z
+      {
+         get {
+            return gxTv_SdtTrn_ProductService_Productserviceclass_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_ProductService_Productserviceclass_Z = value;
+            SetDirty("Productserviceclass_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_ProductService_Productserviceclass_Z_SetNull( )
+      {
+         gxTv_SdtTrn_ProductService_Productserviceclass_Z = "";
+         SetDirty("Productserviceclass_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_ProductService_Productserviceclass_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "ProductServiceGroup_Z" )]
       [  XmlElement( ElementName = "ProductServiceGroup_Z"   )]
       public string gxTpr_Productservicegroup_Z
@@ -1067,6 +1124,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_ProductService_Productservicename = "";
          gxTv_SdtTrn_ProductService_Productservicetilename = "";
          gxTv_SdtTrn_ProductService_Productservicedescription = "";
+         gxTv_SdtTrn_ProductService_Productserviceclass = "";
          gxTv_SdtTrn_ProductService_Productserviceimage = "";
          gxTv_SdtTrn_ProductService_Productserviceimage_gxi = "";
          gxTv_SdtTrn_ProductService_Productservicegroup = "";
@@ -1080,6 +1138,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_ProductService_Organisationid_Z = Guid.Empty;
          gxTv_SdtTrn_ProductService_Productservicename_Z = "";
          gxTv_SdtTrn_ProductService_Productservicetilename_Z = "";
+         gxTv_SdtTrn_ProductService_Productserviceclass_Z = "";
          gxTv_SdtTrn_ProductService_Productservicegroup_Z = "";
          gxTv_SdtTrn_ProductService_Suppliergenid_Z = Guid.Empty;
          gxTv_SdtTrn_ProductService_Suppliergencompanyname_Z = "";
@@ -1112,11 +1171,13 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_ProductService_Productservicetilename_Z ;
       private string gxTv_SdtTrn_ProductService_Productservicedescription ;
       private string gxTv_SdtTrn_ProductService_Productservicename ;
+      private string gxTv_SdtTrn_ProductService_Productserviceclass ;
       private string gxTv_SdtTrn_ProductService_Productserviceimage_gxi ;
       private string gxTv_SdtTrn_ProductService_Productservicegroup ;
       private string gxTv_SdtTrn_ProductService_Suppliergencompanyname ;
       private string gxTv_SdtTrn_ProductService_Supplieragbname ;
       private string gxTv_SdtTrn_ProductService_Productservicename_Z ;
+      private string gxTv_SdtTrn_ProductService_Productserviceclass_Z ;
       private string gxTv_SdtTrn_ProductService_Productservicegroup_Z ;
       private string gxTv_SdtTrn_ProductService_Suppliergencompanyname_Z ;
       private string gxTv_SdtTrn_ProductService_Supplieragbname_Z ;
@@ -1229,7 +1290,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ProductServiceImage" , Order = 6 )]
+      [DataMember( Name = "ProductServiceClass" , Order = 6 )]
+      [GxSeudo()]
+      public string gxTpr_Productserviceclass
+      {
+         get {
+            return sdt.gxTpr_Productserviceclass ;
+         }
+
+         set {
+            sdt.gxTpr_Productserviceclass = value;
+         }
+
+      }
+
+      [DataMember( Name = "ProductServiceImage" , Order = 7 )]
       [GxUpload()]
       public string gxTpr_Productserviceimage
       {
@@ -1243,7 +1318,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ProductServiceGroup" , Order = 7 )]
+      [DataMember( Name = "ProductServiceGroup" , Order = 8 )]
       [GxSeudo()]
       public string gxTpr_Productservicegroup
       {
@@ -1257,7 +1332,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "SupplierGenId" , Order = 8 )]
+      [DataMember( Name = "SupplierGenId" , Order = 9 )]
       [GxSeudo()]
       public Guid gxTpr_Suppliergenid
       {
@@ -1271,7 +1346,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "SupplierGenCompanyName" , Order = 9 )]
+      [DataMember( Name = "SupplierGenCompanyName" , Order = 10 )]
       [GxSeudo()]
       public string gxTpr_Suppliergencompanyname
       {
@@ -1285,7 +1360,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "SupplierAgbId" , Order = 10 )]
+      [DataMember( Name = "SupplierAgbId" , Order = 11 )]
       [GxSeudo()]
       public Guid gxTpr_Supplieragbid
       {
@@ -1299,7 +1374,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "SupplierAgbName" , Order = 11 )]
+      [DataMember( Name = "SupplierAgbName" , Order = 12 )]
       [GxSeudo()]
       public string gxTpr_Supplieragbname
       {
@@ -1334,7 +1409,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 12 )]
+      [DataMember( Name = "gx_md5_hash", Order = 13 )]
       public string Hash
       {
          get {
