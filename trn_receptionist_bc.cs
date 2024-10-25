@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0C74( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0C74( 19) ;
+                  ZM0C74( 23) ;
                }
                CloseExtendedTableCursors0C74( ) ;
             }
@@ -140,6 +140,7 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV37Pgmname) ;
       }
 
       protected void S112( )
@@ -150,7 +151,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0C74( short GX_JID )
       {
-         if ( ( GX_JID == 18 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
          {
             Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
             Z92ReceptionistInitials = A92ReceptionistInitials;
@@ -162,10 +163,10 @@ namespace GeneXus.Programs {
             Z374ReceptionistPhoneNumber = A374ReceptionistPhoneNumber;
             Z398ReceptionistIsActive = A398ReceptionistIsActive;
          }
-         if ( ( GX_JID == 19 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -18 )
+         if ( GX_JID == -22 )
          {
             Z89ReceptionistId = A89ReceptionistId;
             Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
@@ -184,6 +185,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
+         AV37Pgmname = "Trn_Receptionist_BC";
       }
 
       protected void standaloneModal( )
@@ -216,7 +218,7 @@ namespace GeneXus.Programs {
             A373ReceptionistPhoneCode = BC000C5_A373ReceptionistPhoneCode[0];
             A374ReceptionistPhoneNumber = BC000C5_A374ReceptionistPhoneNumber[0];
             A398ReceptionistIsActive = BC000C5_A398ReceptionistIsActive[0];
-            ZM0C74( -18) ;
+            ZM0C74( -22) ;
          }
          pr_default.close(3);
          OnLoadActions0C74( ) ;
@@ -305,7 +307,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A89ReceptionistId, A11OrganisationId, A29LocationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0C74( 18) ;
+            ZM0C74( 22) ;
             RcdFound74 = 1;
             A89ReceptionistId = BC000C3_A89ReceptionistId[0];
             A95ReceptionistGAMGUID = BC000C3_A95ReceptionistGAMGUID[0];
@@ -674,16 +676,26 @@ namespace GeneXus.Programs {
       protected void BeforeUpdate0C74( )
       {
          /* Before Update Rules */
+         new loadaudittrn_receptionist(context ).execute(  "Y", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
       }
 
       protected void BeforeDelete0C74( )
       {
          /* Before Delete Rules */
+         new loadaudittrn_receptionist(context ).execute(  "Y", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
       }
 
       protected void BeforeComplete0C74( )
       {
          /* Before Complete Rules */
+         if ( IsIns( )  )
+         {
+            new loadaudittrn_receptionist(context ).execute(  "N", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
+         }
+         if ( IsUpd( )  )
+         {
+            new loadaudittrn_receptionist(context ).execute(  "N", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
+         }
       }
 
       protected void BeforeValidate0C74( )
@@ -711,6 +723,7 @@ namespace GeneXus.Programs {
 
       protected void InitializeNonKey0C74( )
       {
+         AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
          A95ReceptionistGAMGUID = "";
          A92ReceptionistInitials = "";
          AV14GAMErrorResponse = "";
@@ -868,7 +881,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -18) ;
+         ZM0C74( -22) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;
@@ -907,7 +920,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -18) ;
+         ZM0C74( -22) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;
@@ -1304,6 +1317,8 @@ namespace GeneXus.Programs {
          AV29WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV25TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV28WebSession = context.GetSession();
+         AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
+         AV37Pgmname = "";
          Z95ReceptionistGAMGUID = "";
          A95ReceptionistGAMGUID = "";
          Z92ReceptionistInitials = "";
@@ -1420,6 +1435,7 @@ namespace GeneXus.Programs {
          );
          Z89ReceptionistId = Guid.NewGuid( );
          A89ReceptionistId = Guid.NewGuid( );
+         AV37Pgmname = "Trn_Receptionist_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1434,6 +1450,7 @@ namespace GeneXus.Programs {
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
+      private string AV37Pgmname ;
       private string Z92ReceptionistInitials ;
       private string A92ReceptionistInitials ;
       private string Z94ReceptionistPhone ;
@@ -1470,6 +1487,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV29WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV25TrnContext ;
+      private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject AV36AuditingObject ;
       private IDataStoreProvider pr_default ;
       private Guid[] BC000C5_A89ReceptionistId ;
       private string[] BC000C5_A95ReceptionistGAMGUID ;

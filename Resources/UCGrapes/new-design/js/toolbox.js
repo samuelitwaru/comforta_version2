@@ -1,7 +1,3 @@
-window.addEventListener("click", function (event) {
-  event.preventDefault();
-});
-
 class EditorManager {
   constructor(editor) {
     this.editor = editor;
@@ -12,11 +8,56 @@ class EditorManager {
     this.currentResizer = null;
     this.initialX = null;
     this.initialWidth = null;
+    this.pageId = this.getCurrentPageId();
+    this.pageName = "Home";
+
+    this.toolsSection = new ToolBoxManager();
   }
 
   init() {
     this.editor.on("load", () => {
-      this.initialTemplate();
+      if (this.pageId === null) {
+        const existingFrame = this.editor
+          .getWrapper()
+          .find("#frame-container")[0];
+        if (!existingFrame) {
+          this.initialTemplate();
+        }
+      } else {
+        const projectData = localStorage.getItem(
+          `page-${this.getCurrentPageId()}`
+        );
+
+        if (projectData) {
+          try {
+            let parsedData = JSON.parse(projectData);
+
+            if (!parsedData.pages) {
+              parsedData = {
+                pages: [
+                  {
+                    component: parsedData,
+                    frames: [
+                      {
+                        component: parsedData,
+                      },
+                    ],
+                  },
+                ],
+              };
+            }
+
+            this.editor.loadProjectData(parsedData);
+          } catch (error) {
+            console.log("Error loading data:" + error);
+            const message = "Error loading data";
+            const status = "error";
+            this.toolsSection.displayAlertMessage(message, status);
+          }
+        } else {
+          this.initialTemplate();
+        }
+      }
 
       const wrapper = this.editor.getWrapper();
 
@@ -30,6 +71,7 @@ class EditorManager {
         this.templateComponent = this.editor.Components.getById(
           templateWrapper.id
         );
+
         if (!this.templateComponent) return;
 
         if (button.classList.contains("delete-button")) {
@@ -49,6 +91,9 @@ class EditorManager {
         },
       });
 
+
+      // call right click handler
+      this.rightClickEventHandler();
     });
 
     this.editor.on("component:selected", (component) => {
@@ -67,14 +112,13 @@ class EditorManager {
         document.querySelector(`#templates-button`).classList.remove("active");
         document.querySelector(`#pages-button`).classList.remove("active");
         document.querySelector(`#pages-button`).classList.add("active");
-        document.querySelector(`#mapping-section`).style.display = "none"
-        document.querySelector(`#tools-section`).style.display = "block"
-        
+        document.querySelector(`#mapping-section`).style.display = "none";
+        document.querySelector(`#tools-section`).style.display = "block";
+
         document
           .querySelector(`#templates-content`)
           .classList.remove("active-tab");
         document.querySelector(`#pages-content`).classList.add("active-tab");
-
       }
     });
 
@@ -102,16 +146,19 @@ class EditorManager {
     frameEl.contentDocument.addEventListener("mousedown", this.initResize);
     frameEl.contentDocument.addEventListener("mousemove", this.resize);
     frameEl.contentDocument.addEventListener("mouseup", this.stopResize);
+
+    //auto save page every 2 seconds
+    setInterval(() => {
+      this.saveCurrentPage();
+    }, 2000);
   }
 
   updateTileTitle(inputTitle) {
     if (this.selectedTemplateWrapper) {
-      const tileTitle = this.selectedTemplateWrapper.querySelector(
-        ".tile-title"
-      );
-
-      if (tileTitle) {
-        tileTitle.textContent = inputTitle;
+      const titleComponent = this.editor.getSelected().find(".tile-title")[0];
+      if (titleComponent) {
+        titleComponent.components(inputTitle);
+        this.editor.getSelected().addAttributes({"tile-title": inputTitle})
       }
     }
   }
@@ -122,6 +169,22 @@ class EditorManager {
 
   getSelectedComponent() {
     return this.selectedComponent;
+  }
+
+  setCurrentPageId(pageId) {
+    localStorage.setItem("pageId", pageId);
+  }
+
+  getCurrentPageId() {
+    return localStorage.getItem("pageId");
+  }
+
+  getCurrentPageName() {
+    return this.pageName;
+  }
+
+  setCurrentPageName(pageName) {
+    this.pageName = pageName;
   }
 
   addFreshTemplate(template) {
@@ -135,6 +198,7 @@ class EditorManager {
 
     this.editor.addComponents(`
       <div class="frame-container"
+           id="frame-container"
            data-gjs-type="template-wrapper"
            data-gjs-draggable="false"
            data-gjs-selectable="false"
@@ -154,11 +218,17 @@ class EditorManager {
         </div>
       </div>
       `);
+
+    
+      const message = 'Template added successfully';
+      const status = "success";
+      this.toolsSection.displayAlertMessage(message, status);
   }
 
   initialTemplate() {
     return this.editor.addComponents(`
       <div class="frame-container"
+           id="frame-container"
            data-gjs-type="template-wrapper"
            data-gjs-draggable="false"
            data-gjs-selectable="false"
@@ -402,7 +472,8 @@ class EditorManager {
                         data-gjs-droppable="false"
                         data-gjs-editable="false"
                         data-gjs-highlightable="false"
-                        data-gjs-hoverable="false">
+                        data-gjs-hoverable="false"
+                        >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         data-gjs-draggable="false"
                         data-gjs-selectable="false"
@@ -502,65 +573,117 @@ class EditorManager {
     this.initialX = e.clientX;
   }
 
+  // resize(e) {
+  //   if (!this.isResizing) return;
+
+  //   const templateWrapper = this.currentResizer.closest(".template-wrapper");
+  //   const containerRow = templateWrapper.parentElement;
+
+  //   if (!containerRow) return;
+
+  //   const templates = Array.from(containerRow.children).filter((child) => {
+  //     return child.classList.contains("template-wrapper");
+  //   });
+
+  //   // Stop resizing if there are three templates
+  //   if (templates.length === 3) {
+  //     this.stopResize();
+  //     return;
+  //   }
+
+  //   const currentIndex = templates.indexOf(templateWrapper);
+  //   const deltaX = e.clientX - this.initialX;
+  //   const containerWidth = containerRow.getBoundingClientRect().width;
+  //   const gap = parseFloat(getComputedStyle(containerRow).gap);
+  //   const availableWidth = containerWidth - gap;
+
+  //   let newWidthPercentage =
+  //     ((this.initialWidth + deltaX) / availableWidth) * 100;
+
+  //   const minWidth = 33.33;
+  //   const maxWidth = templates.length === 2 ? 7 : 100; // Adjust maximum width for two templates
+
+  //   // Adjust the new width percentage based on the min and max limits
+  //   if (newWidthPercentage < minWidth) {
+  //     newWidthPercentage = minWidth;
+  //   } else if (newWidthPercentage > maxWidth) {
+  //     newWidthPercentage = maxWidth;
+  //   }
+
+  //   templateWrapper.style.flex = `0 0 calc(${newWidthPercentage}% - 0.35rem)`;
+
+  //   // Automatically resize the other template if there are two templates
+  //   if (templates.length === 2) {
+  //     const otherTemplate = templates[currentIndex === 0 ? 1 : 0];
+  //     let otherNewWidthPercentage = 100 - newWidthPercentage;
+
+  //     // Ensure the other template's width also does not exceed 70%
+  //     if (otherNewWidthPercentage > 70) {
+  //       otherNewWidthPercentage = 68;
+  //     }
+
+  //     otherTemplate.style.flex = `0 0 calc(${otherNewWidthPercentage}% - 0.35rem)`;
+  //   }
+
+  //   // Recalculate the bounding rect (optional)
+  //   templateWrapper.getBoundingClientRect();
+  // }
   resize(e) {
     if (!this.isResizing) return;
-  
+
     const templateWrapper = this.currentResizer.closest(".template-wrapper");
     const containerRow = templateWrapper.parentElement;
-  
+
     if (!containerRow) return;
-  
+
     const templates = Array.from(containerRow.children).filter((child) => {
       return child.classList.contains("template-wrapper");
     });
-  
+
     // Stop resizing if there are three templates
     if (templates.length === 3) {
       this.stopResize();
       return;
     }
-  
+
     const currentIndex = templates.indexOf(templateWrapper);
     const deltaX = e.clientX - this.initialX;
     const containerWidth = containerRow.getBoundingClientRect().width;
     const gap = parseFloat(getComputedStyle(containerRow).gap);
     const availableWidth = containerWidth - gap;
-    console.log(availableWidth);
-    const step = 33.33;
-  
+    const step = 100;
+
     // Calculate the current width percentage
-    let newWidthPercentage =
-      ((this.initialWidth + deltaX) / availableWidth) * 100;
-  
-    // Snap to nearest step of 33.33%
-    newWidthPercentage = Math.round(newWidthPercentage / step) * step;
-  
+    let newWidth = ((this.initialWidth + deltaX) / availableWidth) * 100;
+
+    // Snap to nearest step of 100px
+    newWidth = Math.round(newWidth / step) * step;
+
     const minWidth = step;
     const maxWidth = templates.length === 2 ? step : 100; // Adjust maximum width for two templates
-  
-    if (newWidthPercentage < minWidth) {
-      newWidthPercentage = minWidth;
-    } else if (newWidthPercentage > maxWidth) {
-      newWidthPercentage = maxWidth;
+
+    if (newWidth < minWidth) {
+      newWidth = minWidth;
+    } else if (newWidth > maxWidth) {
+      newWidth = maxWidth;
     }
-  
-    templateWrapper.style.flex = `0 0 calc(${newWidthPercentage}% - 0.1rem)`;
-  
+
+    templateWrapper.style.flex = `0 0 ${newWidth}px`;
+
     if (templates.length === 2) {
       const otherTemplate = templates[currentIndex === 0 ? 1 : 0];
-      let otherNewWidthPercentage = 100 - newWidthPercentage;
-  
-      otherNewWidthPercentage = Math.round(otherNewWidthPercentage / step) * step;
-      if (otherNewWidthPercentage > 66.66) {
-        otherNewWidthPercentage = 66.66;
+      let otherNewWidth = 100 - newWidth;
+
+      otherNewWidth = Math.round(otherNewWidth / step) * step;
+      if (otherNewWidth > 200) {
+        otherNewWidth = 200;
       }
-  
-      otherTemplate.style.flex = `0 0 calc(${otherNewWidthPercentage}% - 0.1rem)`;
+
+      otherTemplate.style.flex = `0 0 calc(${otherNewWidth}px + 0.8rem)`;
     }
-  
+
     templateWrapper.getBoundingClientRect();
   }
-  
 
   stopResize() {
     this.isResizing = false;
@@ -571,17 +694,19 @@ class EditorManager {
 
     const templates = containerRow.components();
     let totalWidth = 0;
-
     templates.forEach((template) => {
       if (!template || !template.view || !template.view.el) return;
 
       const rightButton = template.view.el.querySelector(".add-button-right");
       if (!rightButton) return;
+      const rightButtonComponent = template.find(".add-button-right")[0];
 
       if (templates.length >= 3) {
         rightButton.setAttribute("disabled", "true");
+        rightButtonComponent.addStyle({ display: "none" });
       } else {
         rightButton.removeAttribute("disabled");
+        rightButtonComponent.addStyle({ display: "flex" });
       }
     });
   }
@@ -594,12 +719,13 @@ class EditorManager {
     const newTemplate = newComponents[0];
     if (!newTemplate) return;
 
-    containerRow.append(newTemplate);
+    const index = templateComponent.index();
+    containerRow.append(newTemplate, { at: index + 1 });
     const templates = containerRow.components();
 
     const equalWidth = 100 / templates.length;
     templates.forEach((template) => {
-      template.setStyle({
+      template.addStyle({
         flex: `0 0 calc(${equalWidth}% - 0.3.5rem)`,
       });
     });
@@ -625,7 +751,8 @@ class EditorManager {
       </div>
     `)[0];
 
-    containerColumn.append(newRow);
+    const index = currentRow.index();
+    containerColumn.append(newRow, { at: index + 1 });
   }
 
   deleteTemplate(templateComponent) {
@@ -645,34 +772,118 @@ class EditorManager {
     const newWidth = 100 / templates.length;
     templates.forEach((template) => {
       if (template && template.setStyle) {
-        template.setStyle({ width: `${newWidth}%` });
+        template.addStyle({ width: `${newWidth}%` });
       }
     });
 
     this.updateRightButtons(containerRow);
   }
+
+  saveCurrentPage() {
+    const localStorageKey = `page-${this.getCurrentPageId()}`;
+    try {
+      const data = this.editor.getProjectData();
+      localStorage.setItem(localStorageKey, JSON.stringify(data));
+    } catch (error) {
+      const message = "Failed to save current page";
+      const status = "succuss";
+      this.toolsSection.displayAlertMessage(message, status);
+    }
+  }
+
+  rightClickEventHandler() {
+    const iframe = document.querySelector("#gjs iframe");
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const contextMenu = document.getElementById("contextMenu"); 
+
+    document.addEventListener("click", (e) => {
+      if (e.target !== contextMenu) {
+        contextMenu.style.display = "none";
+      }
+    });
+
+    iframeDoc.addEventListener("click", (e) => {
+      if (e.target !== contextMenu) {
+        contextMenu.style.display = "none";
+      }
+    });
+
+    iframeDoc.addEventListener('contextmenu', (e) => {
+      const block = e.target.closest(".template-block");
+      if (block) {
+        e.preventDefault(); 
+    
+        const iframeRect = iframe.getBoundingClientRect();
+        const x = iframeRect.left + e.clientX;  
+        const y = iframeRect.top + e.clientY;   
+    
+        contextMenu.style.left = x + 'px';
+        contextMenu.style.top = y + 'px';
+        contextMenu.style.display = "block";
+        
+        window.currentBlock = block;
+        // const component = editor.getWrapper().find(`[data-gjs-type="default"]`).filter(comp => comp.getEl() === block)[0];
+        
+        // if (component.hasStyle) {
+        //   window.currentBlock = block;
+        // }
+    
+      } else {
+        contextMenu.style.display = 'none';  
+      }
+    });
+    
+    const deleteImage = document.getElementById('delete-bg-image');
+    deleteImage.addEventListener('click', () => {
+      const blockToDelete = window.currentBlock;
+      if (blockToDelete) {
+        console.log(blockToDelete); 
+        
+        const component = editor.getWrapper().find(`[data-gjs-type="default"]`).filter(comp => comp.getEl() === blockToDelete)[0];
+
+        if (component) {
+          component.setStyle({
+            "background-image": ""
+          });
+          console.log('Block deleted in GrapesJS:', component);
+        } else {
+          console.log('Component not found for the block.');
+        }
+
+        contextMenu.style.display = "none";
+        console.log('deleteImage clicked and block deleted');
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        contextMenu.style.display = "none";
+      }
+    });
+
+  }
 }
 
 class ToolBoxManager {
-  constructor(editorManager, themes, templates, mapping) {
-    console.log(themes)
-    console.log(themesData)
+  constructor(editorManager, themes, icons, templates, mapping, media) {
     this.editorManager = editorManager;
     this.themes = themes;
-    
-    this.icons = iconsData;
+    this.icons = icons;
     this.currentTheme = null;
     this.templates = templates;
     this.mappingsItems = mapping;
-    
+    this.selectedFile = null
+    this.media = media
+  }
+
+  init() {
     this.loadTheme();
     this.listThemesInSelectField();
     this.colorPalette();
     this.loadTiles();
     this.loadPageTemplates();
-  }
+    this.handleFileManager();
 
-  init() {
     const tabButtons = document.querySelectorAll(".tab-button");
     const tabContents = document.querySelectorAll(".tab-content");
     tabButtons.forEach((button) => {
@@ -694,9 +905,9 @@ class ToolBoxManager {
     const mappingButton = document.getElementById("open-mapping");
     const mappingSection = document.getElementById("mapping-section");
     const toolsSection = document.getElementById("tools-section");
+
     mappingButton.addEventListener("click", (e) => {
       e.preventDefault()
-      e.stopPropagation();
 
       toolsSection.style.display =
         toolsSection.style.display === "none" ? "block" : "none";
@@ -706,33 +917,78 @@ class ToolBoxManager {
 
       this.loadMappings();
     });
-    // alignment
 
+    // alignment
     const leftAlign = document.getElementById("align-left");
     const centerAlign = document.getElementById("align-center");
+    const rightAlign = document.getElementById("align-right");
 
     leftAlign.addEventListener("click", () => {
       if (this.editorManager.selectedTemplateWrapper) {
-        const templateBlock = this.editorManager.selectedTemplateWrapper.querySelector(
-          ".tile-title"
-        );
-        
+        const templateBlock = this.editorManager.editor
+          .getSelected()
+          .find(".tile-title")[0];
+
         if (templateBlock) {
-          templateBlock.style.display = "flex";
-          templateBlock.style.justifyContent = "flex-start";
+          templateBlock.setStyle({
+            display: "flex",
+            "justify-content": "flex-start",
+          });
+          this.setAttributeToSelected("tile-text-align", "left")
         }
       }
     });
 
     centerAlign.addEventListener("click", () => {
       if (this.editorManager.selectedTemplateWrapper) {
-        const templateBlock = this.editorManager.selectedTemplateWrapper.querySelector(
-          ".tile-title"
-        );
-        
+        const templateBlock = this.editorManager.editor
+          .getSelected()
+          .find(".tile-title")[0];
+
         if (templateBlock) {
-          templateBlock.style.display = "flex";
-          templateBlock.style.justifyContent = "center";
+          templateBlock.setStyle({
+            display: "flex",
+            "justify-content": "center",
+          });
+          this.setAttributeToSelected("tile-text-align", "center")
+        }
+      }
+    });
+
+    rightAlign.addEventListener("click", () => {
+      if (this.editorManager.selectedTemplateWrapper) {
+        const templateBlock = this.editorManager.editor
+          .getSelected()
+          .find(".tile-title")[0];
+
+        if (templateBlock) {
+          templateBlock.setStyle({
+            display: "flex",
+            "justify-content": "flex-end",
+          });
+          this.setAttributeToSelected("tile-text-align", "right")
+        }
+      }
+    });
+
+    // open modal
+
+    // apply opacity to a bg image of a selected tile
+    const imageOpacity = document.getElementById("bg-opacity");
+
+    imageOpacity.addEventListener("input", (event) => {
+      const value = event.target.value;
+
+      // add opacity to selected tile image
+      if (this.editorManager.selectedTemplateWrapper) {
+        const templateBlock = this.editorManager.editor
+          .getSelected()
+          .find(".template-block")[0];
+
+        if (templateBlock) {
+          templateBlock.addStyle({
+            opacity: value / 100,
+          });
         }
       }
     });
@@ -740,8 +996,8 @@ class ToolBoxManager {
 
   listThemesInSelectField() {
     const themeSelect = document.getElementById("theme-select");
+
     this.themes.forEach((theme) => {
-    
       const option = document.createElement("option");
       option.value = theme.name;
       option.textContent = theme.name;
@@ -750,7 +1006,20 @@ class ToolBoxManager {
     });
 
     themeSelect.addEventListener("change", (e) => {
-      this.setTheme(e.target.value);
+      const themeName = e.target.value;
+
+      if (this.setTheme(themeName)) {
+        this.themeColorPalette(this.currentTheme.colors);
+        localStorage.setItem("selectedTheme", themeName);
+
+        const message = "Theme applied successfully";
+        const status = "success";
+        this.displayAlertMessage(message, status);
+      } else {
+        const message = "Error applying theme. Please try again";
+        const status = "error";
+        this.displayAlertMessage(message, status);
+      }
     });
   }
 
@@ -762,10 +1031,19 @@ class ToolBoxManager {
   }
 
   setTheme(themeName) {
-    this.currentTheme = this.themes.find((theme) => theme.name === themeName);
+    const theme = this.themes.find((theme) => theme.name === themeName);
+
+    if (!theme) {
+      return false;
+    }
+
+    this.currentTheme = theme;
     this.applyTheme();
+
     this.themeColorPalette(this.currentTheme.colors);
     localStorage.setItem("selectedTheme", themeName);
+
+    return true;
   }
 
   applyTheme() {
@@ -793,15 +1071,15 @@ class ToolBoxManager {
     root.style.setProperty(
       "--button-text-color",
       this.currentTheme.colors.buttonTextColor
-    ); // New
+    );
     root.style.setProperty(
       "--card-bg-color",
       this.currentTheme.colors.cardBgColor
-    ); // New
+    );
     root.style.setProperty(
       "--card-text-color",
       this.currentTheme.colors.cardTextColor
-    ); // New
+    );
     root.style.setProperty(
       "--accent-color",
       this.currentTheme.colors.accentColor
@@ -833,15 +1111,15 @@ class ToolBoxManager {
     iframeDoc.body.style.setProperty(
       "--button-text-color",
       this.currentTheme.colors.buttonTextColor
-    ); // New
+    );
     iframeDoc.body.style.setProperty(
       "--card-bg-color",
       this.currentTheme.colors.cardBgColor
-    ); // New
+    );
     iframeDoc.body.style.setProperty(
       "--card-text-color",
       this.currentTheme.colors.cardTextColor
-    ); // New
+    );
     iframeDoc.body.style.setProperty(
       "--accent-color",
       this.currentTheme.colors.accentColor
@@ -856,9 +1134,9 @@ class ToolBoxManager {
     const colorPaletteContainer = document.getElementById(
       "theme-color-palette"
     );
-    colorPaletteContainer.innerHTML = ""; // Clear any existing content
+    colorPaletteContainer.innerHTML = "";
 
-    const colorEntries = Object.entries(colors); // Get an array of [key, value] pairs
+    const colorEntries = Object.entries(colors);
 
     colorEntries.forEach(([colorName, colorValue], index) => {
       // Create the HTML for each color
@@ -876,18 +1154,17 @@ class ToolBoxManager {
       colorBox.setAttribute("for", `color-${colorName}`);
       colorBox.style.backgroundColor = colorValue;
 
-      // Append radio and color box to the alignItem
       alignItem.appendChild(radioInput);
       alignItem.appendChild(colorBox);
 
-      // Append the alignItem to the color palette container
       colorPaletteContainer.appendChild(alignItem);
 
-      // Handle the click event to apply the color
       colorBox.onclick = () => {
         this.editorManager.selectedComponent.addStyle({
           "background-color": colorValue,
         });
+        this.setAttributeToSelected("tile-bgcolor", colorValue)
+
       };
     });
   }
@@ -923,14 +1200,23 @@ class ToolBoxManager {
       box.style.backgroundColor = colorValues[colorKey];
 
       box.onclick = () => {
-        const svgIcon = this.editorManager.selectedTemplateWrapper.querySelector(
-          ".tile-icon svg path"
-        );
+        if (this.editorManager.selectedTemplateWrapper) {
+          const svgIcon = this.editorManager.editor
+            .getSelected()
+            .find(".tile-icon path")[0];
 
-        if (svgIcon) {
-          svgIcon.setAttribute("fill", colorValues[colorKey]); // Use the correct color key
+          if (svgIcon) {
+            svgIcon.removeAttributes("fill");
+            svgIcon.addAttributes({ fill: colorValues[colorKey] }); // Use the correct color key
+          } else {
+            const message = "Svg icon not found. Try again";
+            const status = "error";
+            this.displayAlertMessage(message, status);
+          }
         } else {
-          console.log("SVG icon not found.");
+          const message = "No tile selected. Please select a tile";
+          const status = "error";
+          this.displayAlertMessage(message, status);
         }
       };
     });
@@ -949,35 +1235,38 @@ class ToolBoxManager {
 
       iconItem.onclick = () => {
         if (this.editorManager.selectedTemplateWrapper) {
-          // Find the .template-block inside the selected template wrapper
           const templateBlock = this.editorManager.selectedTemplateWrapper.querySelector(
             ".template-block"
           );
 
           if (templateBlock) {
-            // Insert the icon SVG into the tile-icon div
-            const tileIcon = templateBlock.querySelector(".tile-icon");
-            if (tileIcon) {
-              tileIcon.innerHTML = icon.svg;
+            const iconComponent = this.editorManager.editor
+              .getSelected()
+              .find(".tile-icon")[0];
+            if (iconComponent) {
+              iconComponent.components(icon.svg);
+              this.setAttributeToSelected("tile-icon", icon.svg)
             }
+            const titleComponent = this.editorManager.editor
+              .getSelected()
+              .find(".tile-title")[0];
+            if (titleComponent) {
+              titleComponent.components(icon.name);
 
-            // Insert the icon name into the tile-title span
-            const tileTitle = templateBlock.querySelector(".tile-title");
-            if (tileTitle) {
-              tileTitle.textContent = icon.name;
-            }
-
-            const sidebarInputTitle = document.getElementById("tile-title");
-            if (sidebarInputTitle) {
-              sidebarInputTitle.value = icon.name;
+              const sidebarInputTitle = document.getElementById("tile-title");
+              if (sidebarInputTitle) {
+                sidebarInputTitle.textContent = icon.name;
+              }
             }
           } else {
-            console.log(
-              "No .template-block found inside the selected template wrapper."
-            );
+            const message = "No tile selected. Please select a tile";
+            const status = "error";
+            this.displayAlertMessage(message, status);
           }
         } else {
-          console.log("No selected template wrapper found.");
+          const message = "No tile selected. Please select a tile";
+          const status = "error";
+          this.displayAlertMessage(message, status);
         }
       };
 
@@ -1007,17 +1296,29 @@ class ToolBoxManager {
         e.preventDefault();
       });
 
-      // Add the block content (HTML) to the canvas when clicked
       blockElement.addEventListener("click", () => {
-        const userConfirmed = confirm(
-          "When you continue, all the changes you have made will be cleared."
-        );
+        const popup = this.popupModal();
+        document.body.appendChild(popup);
+        popup.style.display = "flex";
 
-        if (userConfirmed) {
+        const closeButton = popup.querySelector(".close");
+        closeButton.onclick = () => {
+          popup.style.display = "none";
+          document.body.removeChild(popup);
+        };
+
+        const cancelBtn = popup.querySelector("#close-popup");
+        cancelBtn.onclick = () => {
+          popup.style.display = "none";
+          document.body.removeChild(popup);
+        };
+
+        const acceptBtn = popup.querySelector("#accept-popup");
+        acceptBtn.onclick = () => {
+          popup.style.display = "none";
+          document.body.removeChild(popup);
           this.editorManager.addFreshTemplate(template.content);
-        } else {
-          return;
-        }
+        };
       });
 
       // Append number and template block to the wrapper
@@ -1032,27 +1333,23 @@ class ToolBoxManager {
     this.clearMappings();
     treeContainer.appendChild(this.createTree(this.mappingsItems, true));
   }
+
   clearMappings() {
     const treeContainer = document.getElementById("tree-container");
     treeContainer.innerHTML = ""; // Clear previous mappings
   }
 
   createTree(data, isRoot = false) {
-    const pagesManager = this.editorManager.editor.Pages;
-
     const ul = document.createElement("ul");
     if (!isRoot) ul.style.display = "block";
 
     data.forEach((item, index) => {
-      pagesManager.add({
-        id: item.id,
-        name: item.name,
-      });
-
       const li = document.createElement("li");
       const span = document.createElement("span");
       span.textContent = item.name;
       li.appendChild(span);
+      li.className = this.checkActivePage(item.id) ? "selected-page" : "";
+      span.title = item.id;
 
       if (item.children && item.children.length > 0) {
         const childrenContainer = this.createTree(item.children); // Recursively create children
@@ -1072,17 +1369,433 @@ class ToolBoxManager {
         };
       } else {
         span.onclick = () => {
-          pagesManager.getSelected().id == item.id;
-          pagesManager.select(item.id);
-          console.log(
-            "Selected page " + item.name + " selected Id is " + item.id
-          );
+          this.editorManager.setCurrentPageName(item.name);
+          this.editorManager.setCurrentPageId(item.id);
+
+          const editor = this.editorManager.editor;
+
+          editor.DomComponents.clear();
+          this.editorManager.templateComponent = null;
+          editor.trigger("load");
+
+          document.querySelectorAll(".selected-page").forEach((el) => {
+            el.classList.remove("selected-page");
+          });
+
+          span.closest("li").classList.add("selected-page");
+          const mainPage = document.getElementById("current-page-title");
+          mainPage.textContent = this.updateActivePageName();
+
+          const message = `${item.name} Page loaded successfully`;
+          const status = "success";
+          this.displayAlertMessage(message, status);
         };
       }
       ul.appendChild(li);
     });
-    console.log(pagesManager.getAll());
     return ul;
+  }
+
+  checkActivePage(id) {
+    const pageId = localStorage.getItem("pageId");
+    if (pageId === id) {
+      return true;
+    }
+  }
+
+  updateActivePageName() {
+    return this.editorManager.getCurrentPageName();
+  }
+
+  openFileUploadModal() {
+    const modal = document.createElement("div");
+    modal.className = "modal";
+
+    const modalContent = document.createElement("div");
+    modalContent.className = "modal-content";
+
+    let fileListHtml = ``
+    this.media.forEach(file=>{
+      fileListHtml += `
+        <div class="file-list" id="fileList">
+          <div class="file-item valid">
+            <img src="${file.MediaUrl}" alt="File thumbnail" class="preview-image">
+            <div class="file-info"><div class="file-name">${file.MediaName}</div>
+            <div class="file-size">68 KB</div>
+          </div>
+        </div>
+      `
+    })
+
+    modalContent.innerHTML = `
+    <div class="modal-header">
+        <h2>Upload</h2>
+        <span class="close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+                <path id="Icon_material-close" data-name="Icon material-close" d="M28.5,9.615,26.385,7.5,18,15.885,9.615,7.5,7.5,9.615,15.885,18,7.5,26.385,9.615,28.5,18,20.115,26.385,28.5,28.5,26.385,20.115,18Z" transform="translate(-7.5 -7.5)" fill="#6a747f" opacity="0.54"/>
+            </svg>
+        </span>
+    </div>
+    <div class="upload-area" id="uploadArea">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40.999" height="28.865" viewBox="0 0 40.999 28.865">
+            <path id="Path_1040" data-name="Path 1040" d="M21.924,11.025a3.459,3.459,0,0,0-3.287,3.608,3.459,3.459,0,0,0,3.287,3.608,3.459,3.459,0,0,0,3.287-3.608A3.459,3.459,0,0,0,21.924,11.025ZM36.716,21.849l-11.5,14.432-8.218-9.02L8.044,39.89h41Z" transform="translate(-8.044 -11.025)" fill="#afadad"/>
+          </svg>
+        <p>Drag and drop or <a href="#" id="browseLink">browse</a></p>
+    </div>
+    <div class="file-list" id="fileList">${fileListHtml}</div>
+    <div class="modal-actions">
+        <button class="toolbox-btn toolbox-btn-outline" id="cancelBtn">Cancel</button>
+        <button class="toolbox-btn toolbox-btn-primary" id="saveBtn">Save</button>
+    </div>
+    `;
+
+    modal.appendChild(modalContent);
+
+    return modal;
+  }
+
+  handleFileManager() {
+    const openModal = document.getElementById("image-bg");
+    const fileInputField = document.createElement("input");
+    const modal = this.openFileUploadModal();
+
+    let selectedFile = null;
+    let allUploadedFiles = [];
+
+    openModal.addEventListener("click", (e) => {
+      e.preventDefault()
+      if (this.editorManager.editor.getSelected()) {
+        fileInputField.type = "file";
+        fileInputField.multiple = true;
+        fileInputField.accept = "image/jpeg, image/jpg, image/png"; // Only accept specific image types
+        fileInputField.id = "fileInput";
+        fileInputField.style.display = "none";
+
+        document.body.appendChild(modal);
+        document.body.appendChild(fileInputField);
+
+        modal.style.display = "flex";
+
+        const uploadArea = modal.querySelector("#uploadArea");
+        uploadArea.onclick = () => {
+          fileInputField.click();
+        };
+
+        fileInputField.onchange = (event) => {
+          // Filter only allowed image types
+          const newFiles = Array.from(event.target.files).filter((file) =>
+            ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
+          );
+          allUploadedFiles = [...allUploadedFiles, ...newFiles];
+
+          console.log(allUploadedFiles)
+
+          const fileList = modal.querySelector("#fileList");
+          fileList.innerHTML = "";
+
+          allUploadedFiles.forEach((file) => {
+            const fileItem = document.createElement("div");
+            fileItem.className = "file-item";
+
+            const img = document.createElement("img");
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              img.src = e.target.result;
+              console.log(file.size)
+              console.log(file.type)
+              this.uploadFile(e.target.result, file.name, file.size, file.type)
+            };
+            reader.readAsDataURL(file);
+            img.alt = "File thumbnail";
+            img.className = "preview-image";
+
+            const fileInfo = document.createElement("div");
+            fileInfo.className = "file-info";
+
+            const fileName = document.createElement("div");
+            fileName.className = "file-name";
+            fileName.textContent = file.name;
+
+            const fileSize = document.createElement("div");
+            fileSize.className = "file-size";
+            const formatFileSize = (bytes) => {
+              if (bytes < 1024) return `${bytes} B`;
+              if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+              if (bytes < 1024 * 1024 * 1024)
+                return `${Math.round(bytes / 1024 / 1024)} MB`;
+              return `${Math.round(bytes / 1024 / 1024 / 1024)} GB`;
+            };
+
+            fileSize.textContent = formatFileSize(file.size);
+
+            const statusIcon = document.createElement("span");
+            statusIcon.className = "status-icon";
+
+            // Check file size limit (2MB) and file type
+            const isValidSize = file.size <= 2 * 1024 * 1024;
+            const isValidType = [
+              "image/jpeg",
+              "image/jpg",
+              "image/png",
+            ].includes(file.type);
+
+            if (isValidSize && isValidType) {
+              fileItem.classList.add("valid");
+              statusIcon.innerHTML = "";
+              statusIcon.style.color = "green";
+            } else {
+              fileItem.classList.add("invalid");
+              statusIcon.innerHTML = "⚠";
+              statusIcon.style.color = "red";
+            }
+          });
+        };
+      } else {
+        const message = "Please select a tile to continue";
+        const status = "error";
+        this.displayAlertMessage(message, status);
+      }
+    });
+
+    const closeButton = modal.querySelector(".close");
+    closeButton.onclick = () => {
+      modal.style.display = "none";
+      document.body.removeChild(modal);
+      document.body.removeChild(fileInputField);
+    };
+
+    const cancelBtn = modal.querySelector("#cancelBtn");
+    cancelBtn.onclick = () => {
+      modal.style.display = "none";
+      document.body.removeChild(modal);
+      document.body.removeChild(fileInputField);
+    };
+
+    const saveBtn = modal.querySelector("#saveBtn");
+    saveBtn.onclick = () => {
+      if (this.selectedFile) {
+        const templateBlock = this.editorManager.editor
+            .getSelected()
+            .find(".template-block")[0];
+          templateBlock.addStyle({
+            "background-image": `url(${this.selectedFile.MediaUrl})`,
+            "background-image": `url(${`https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg`})`,
+            "background-size": "cover",
+            "background-position": "center",
+          });
+      }
+
+      modal.style.display = "none";
+      document.body.removeChild(modal);
+      document.body.removeChild(fileInputField);
+    };
+  }
+
+  uploadFile(fileData, fileName, fileSize, fileType){
+    let tbm = this
+    if (fileData) {
+      $.ajax({
+        url: 'http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/media/upload', // Replace with the actual API endpoint
+        type: 'POST', // POST request as specified in the YAML
+        
+        contentType: 'multipart/form-data', // Sending JSON as per the request body
+        data: JSON.stringify({
+          "MediaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "MediaName": fileName,
+          "MediaImageData": fileData,
+          "MediaSize": fileSize,
+          "MediaType": fileType,
+        }),
+        success: function(response) {
+            // Handle a successful response
+            console.log('Success:', response);
+            if (response.MediaId) {
+              tbm.displayMediaFile(response)
+            }
+        },
+        error: function(xhr, status, error) {
+            if(xhr.status === 404) {
+                console.error('Error 404: Not Found');
+            } else {
+                console.error('Error:', status, error);
+            }
+        }
+      });
+    } else {
+      alert('Please select a file!');
+    }
+  }
+
+  getMediaFiles(){
+    $.ajax({
+      url: 'http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/media/', // Replace with the actual API endpoint
+      type: 'GET',
+      success: function(response) {
+          // display media files
+          console.log(response)
+      },
+      error: function(xhr, status, error) {
+          if(xhr.status === 404) {
+              console.error('Error 404: Not Found');
+          } else {
+              console.error('Error:', status, error);
+          }
+      }
+    });
+  }
+
+  displayMediaFile(file){
+    const fileItem = document.createElement("div");
+    fileItem.className = "file-item";
+
+    const img = document.createElement("img");
+    img.src = 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg'
+    img.alt = "File thumbnail";
+    img.className = "preview-image";
+
+    const fileInfo = document.createElement("div");
+    fileInfo.className = "file-info";
+
+    const fileName = document.createElement("div");
+    fileName.className = "file-name";
+    fileName.textContent = file.MediaName;
+
+    const fileSize = document.createElement("div");
+    fileSize.className = "file-size";
+    const formatFileSize = (bytes) => {
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+      if (bytes < 1024 * 1024 * 1024)
+        return `${Math.round(bytes / 1024 / 1024)} MB`;
+      return `${Math.round(bytes / 1024 / 1024 / 1024)} GB`;
+    };
+
+    fileSize.textContent = formatFileSize(file.MediaSize);
+
+    const statusIcon = document.createElement("span");
+    statusIcon.className = "status-icon";
+
+    // Check file size limit (2MB) and file type
+    const isValidSize = file.MediaSize <= 2 * 1024 * 1024;
+    const isValidType = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+    ].includes(file.MediaType);
+    console.log(isValidSize)
+    console.log(isValidType)
+
+    if (isValidSize && isValidType) {
+      fileItem.classList.add("valid");
+      statusIcon.innerHTML = "";
+      statusIcon.style.color = "green";
+    } else {
+      fileItem.classList.add("invalid");
+      statusIcon.innerHTML = "⚠";
+      statusIcon.style.color = "red";
+    }
+
+    fileItem.onclick = () => {
+      if (fileItem.classList.contains("invalid")) {
+        return;
+      }
+
+      document.querySelector(".modal-actions").style.display = "flex";
+
+      document.querySelectorAll(".file-item").forEach((el) => {
+        el.classList.remove("selected");
+        const icon = el.querySelector(".status-icon");
+        if (icon) {
+          icon.innerHTML = el.classList.contains("invalid") ? "⚠" : "";
+        }
+      });
+
+      fileItem.classList.add("selected");
+      statusIcon.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13.423" viewBox="0 0 18 13.423">
+                  <path id="Icon_awesome-check" data-name="Icon awesome-check" d="M6.114,17.736l-5.85-5.85a.9.9,0,0,1,0-1.273L1.536,9.341a.9.9,0,0,1,1.273,0L6.75,13.282l8.441-8.441a.9.9,0,0,1,1.273,0l1.273,1.273a.9.9,0,0,1,0,1.273L7.386,17.736A.9.9,0,0,1,6.114,17.736Z" transform="translate(0 -4.577)" fill="#3a9341"/>
+                </svg>
+              `;
+      statusIcon.style.color = "green";
+      this.selectedFile = file;
+    };
+
+    fileInfo.appendChild(fileName);
+    fileInfo.appendChild(fileSize);
+
+    fileItem.appendChild(img);
+    fileItem.appendChild(fileInfo);
+    fileItem.appendChild(statusIcon);
+    fileList.appendChild(fileItem);
+  }
+
+  popupModal() {
+    const popup = document.createElement("div");
+    popup.className = "popup-modal";
+    popup.innerHTML = `
+      <div class="popup">
+        <div class="popup-header">
+          <span>Confirmation</span>
+          <button class="close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 21 21">
+                <path id="Icon_material-close" data-name="Icon material-close" d="M28.5,9.615,26.385,7.5,18,15.885,9.615,7.5,7.5,9.615,15.885,18,7.5,26.385,9.615,28.5,18,20.115,26.385,28.5,28.5,26.385,20.115,18Z" transform="translate(-7.5 -7.5)" fill="#6a747f" opacity="0.54"/>
+            </svg>
+          </button>
+        </div>
+        <hr>
+        <div class="popup-body">
+          When you continue, all the changes you have made will be cleared.
+        </div>
+        <div class="popup-footer">
+          <button id="accept-popup" class="toolbox-btn toolbox-btn-primary">OK</button>
+          <button id="close-popup" class="toolbox-btn toolbox-btn-outline">Cancel</button>
+        </div>
+      </div>
+    `;
+
+    return popup;
+  }
+  displayAlertMessage(message, status) {
+    const alertContainer = document.getElementById("alerts-container");
+
+    const alertId = Math.random().toString(10);
+
+    const alertBox = this.alertMessage(message, status, alertId);
+    alertBox.style.display = "flex";
+
+    const closeButton = alertBox.querySelector(".alert-close-btn");
+    closeButton.addEventListener("click", () => {
+      this.closeAlert(alertId);
+    });
+
+    setTimeout(() => this.closeAlert(alertId), 5000);
+    alertContainer.appendChild(alertBox);
+  }
+  alertMessage(message, status, alertId) {
+    const alertBox = document.createElement("div");
+    alertBox.id = alertId;
+    alertBox.classList = `alert ${status == "success" ? "success" : "error"}`;
+    alertBox.innerHTML = `
+      <div class="alert-header">
+        <strong>${status == "success" ? "Success" : "Error"}</strong>
+        <span class="alert-close-btn">✖</span>
+      </div> 
+      <p>${message}</p>
+    `;
+
+    return alertBox;
+  }
+
+  closeAlert(alertId) {
+    const alert = document.getElementById(alertId);
+    if (alert) {
+      alert.style.opacity = 0;
+      setTimeout(() => alert.remove(), 500);
+    }
+  }
+
+  setAttributeToSelected(attributeName, attributeValue){
+    this.editorManager.editor.getSelected().addAttributes({[attributeName]: attributeValue})
   }
 }
 
@@ -1110,5 +1823,3 @@ class Clock {
     document.getElementById("current-time").textContent = timeString;
   }
 }
-
-

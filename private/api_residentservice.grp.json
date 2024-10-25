@@ -73,4 +73,14 @@
 "ServiceMethod":"gxep_getpagesinformation",
 "Implementation":"Prc_PagesAPI",
 "Verb":"GET"
+},
+{
+"Verb":"POST",
+"PathRegexp":"media/upload",
+"Path":"media/upload",
+"Name":"uploadmedia",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_uploadmedia",
+"Implementation":"Prc_UploadMedia"
 }]}

@@ -50,6 +50,9 @@
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData_Step1.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData_Step2.cs" />
+ 	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtAuditingObject.cs" />
+ 	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtAuditingObject_RecordItem.cs" />
+ 	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtAuditingObject_RecordItem_AttributeItem.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtBlobData.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtDVB_SDTComboData_Item.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtDVB_SDTDropDownOptionsData_Item.cs" />

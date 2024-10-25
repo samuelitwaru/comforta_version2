@@ -1602,7 +1602,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021934581", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102518381299", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1618,7 +1618,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_htmleditor_wc.js", "?20241021934581", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_htmleditor_wc.js", "?2024102518381299", false, true);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          /* End function include_jscripts */

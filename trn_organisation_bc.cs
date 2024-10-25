@@ -576,7 +576,7 @@ namespace GeneXus.Programs {
             pr_default.execute(9, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Organisation Setting", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {""}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);
@@ -584,7 +584,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_SupplierAGB", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Organisation Setting", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -1426,8 +1426,8 @@ namespace GeneXus.Programs {
          BC00012_A343OrganisationAddressLine2 = new string[] {""} ;
          BC00012_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
          BC000110_A20OrganisationTypeName = new string[] {""} ;
-         BC000111_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
-         BC000112_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
+         BC000111_A415AuditId = new Guid[] {Guid.Empty} ;
+         BC000112_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          BC000113_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          BC000114_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000114_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -1487,10 +1487,10 @@ namespace GeneXus.Programs {
                BC000110_A20OrganisationTypeName
                }
                , new Object[] {
-               BC000111_A100OrganisationSettingid
+               BC000111_A415AuditId
                }
                , new Object[] {
-               BC000112_A49SupplierAgbId
+               BC000112_A100OrganisationSettingid
                }
                , new Object[] {
                BC000113_A42SupplierGenId
@@ -1617,8 +1617,8 @@ namespace GeneXus.Programs {
       private string[] BC00012_A343OrganisationAddressLine2 ;
       private Guid[] BC00012_A19OrganisationTypeId ;
       private string[] BC000110_A20OrganisationTypeName ;
-      private Guid[] BC000111_A100OrganisationSettingid ;
-      private Guid[] BC000112_A49SupplierAgbId ;
+      private Guid[] BC000111_A415AuditId ;
+      private Guid[] BC000112_A100OrganisationSettingid ;
       private Guid[] BC000113_A42SupplierGenId ;
       private Guid[] BC000114_A29LocationId ;
       private Guid[] BC000114_A11OrganisationId ;
@@ -1805,8 +1805,8 @@ namespace GeneXus.Programs {
            ,new CursorDef("BC00018", "SAVEPOINT gxupdate;UPDATE Trn_Organisation SET OrganisationPhone=:OrganisationPhone, OrganisationName=:OrganisationName, OrganisationKvkNumber=:OrganisationKvkNumber, OrganisationEmail=:OrganisationEmail, OrganisationPhoneCode=:OrganisationPhoneCode, OrganisationPhoneNumber=:OrganisationPhoneNumber, OrganisationVATNumber=:OrganisationVATNumber, OrganisationAddressCountry=:OrganisationAddressCountry, OrganisationAddressCity=:OrganisationAddressCity, OrganisationAddressZipCode=:OrganisationAddressZipCode, OrganisationAddressLine1=:OrganisationAddressLine1, OrganisationAddressLine2=:OrganisationAddressLine2, OrganisationTypeId=:OrganisationTypeId  WHERE OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00018)
            ,new CursorDef("BC00019", "SAVEPOINT gxupdate;DELETE FROM Trn_Organisation  WHERE OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00019)
            ,new CursorDef("BC000110", "SELECT OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000110,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000111", "SELECT OrganisationSettingid FROM Trn_OrganisationSetting WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000111,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000112", "SELECT SupplierAgbId FROM Trn_SupplierAGB WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000112,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("BC000111", "SELECT AuditId FROM Trn_Audit WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000111,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("BC000112", "SELECT OrganisationSettingid FROM Trn_OrganisationSetting WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000112,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("BC000113", "SELECT SupplierGenId FROM Trn_SupplierGen WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000113,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("BC000114", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000114,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("BC000115", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000115,1, GxCacheFrequency.OFF ,true,true )

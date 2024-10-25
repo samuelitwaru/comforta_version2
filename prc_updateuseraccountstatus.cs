@@ -59,7 +59,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV15UserRoles = AV8GAMUser.getroles(out  AV10GAMErrors);
+         AV8GAMUser.load( AV14UserGUID);
          if ( AV8GAMUser.checkrole("Organisation Manager") )
          {
             /* Using cursor P007Z2 */
@@ -81,7 +81,6 @@ namespace GeneXus.Programs {
          {
             if ( AV8GAMUser.checkrole("Receptionist") )
             {
-               new prc_logtofile(context ).execute(  context.GetMessage( "Receptionist is role", "")) ;
                /* Using cursor P007Z3 */
                pr_default.execute(1, new Object[] {AV8GAMUser.gxTpr_Email, AV8GAMUser.gxTpr_Guid});
                while ( (pr_default.getStatus(1) != 101) )
@@ -101,7 +100,6 @@ namespace GeneXus.Programs {
          }
          if ( AV13Trn_Manager.Success() || AV9Trn_Receptionist.Success() )
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "Commit is done", "")) ;
             context.CommitDataStores("prc_updateuseraccountstatus",pr_default);
          }
          cleanup();
@@ -119,8 +117,6 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV15UserRoles = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMRole>( context, "GeneXus.Programs.genexussecurity.SdtGAMRole", "GeneXus.Programs");
-         AV10GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV8GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          P007Z2_A25ManagerEmail = new string[] {""} ;
          P007Z2_A28ManagerGAMGUID = new string[] {""} ;
@@ -169,8 +165,6 @@ namespace GeneXus.Programs {
       private Guid A89ReceptionistId ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMRole> AV15UserRoles ;
-      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV10GAMErrors ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV8GAMUser ;
       private IDataStoreProvider pr_default ;
       private string[] P007Z2_A25ManagerEmail ;

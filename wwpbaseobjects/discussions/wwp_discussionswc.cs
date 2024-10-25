@@ -2214,7 +2214,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021971754", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102518415138", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2230,7 +2230,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?20241021971755", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?2024102518415140", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */

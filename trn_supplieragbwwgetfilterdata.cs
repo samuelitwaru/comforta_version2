@@ -290,7 +290,6 @@ namespace GeneXus.Programs {
                                               A57SupplierAgbEmail ,
                                               A11OrganisationId } ,
                                               new int[]{
-                                              TypeConstants.BOOLEAN
                                               }
          });
          lV68Trn_supplieragbwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext), "%", "");
@@ -304,14 +303,12 @@ namespace GeneXus.Programs {
          lV75Trn_supplieragbwwds_8_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV75Trn_supplieragbwwds_8_tfsupplieragbphone), 20, "%");
          lV77Trn_supplieragbwwds_10_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV77Trn_supplieragbwwds_10_tfsupplieragbemail), "%", "");
          /* Using cursor P006K2 */
-         pr_default.execute(0, new Object[] {lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
+         pr_default.execute(0, new Object[] {A11OrganisationId, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK6K2 = false;
             A283SupplierAgbTypeId = P006K2_A283SupplierAgbTypeId[0];
             A51SupplierAgbName = P006K2_A51SupplierAgbName[0];
-            A11OrganisationId = P006K2_A11OrganisationId[0];
-            n11OrganisationId = P006K2_n11OrganisationId[0];
             A57SupplierAgbEmail = P006K2_A57SupplierAgbEmail[0];
             A56SupplierAgbPhone = P006K2_A56SupplierAgbPhone[0];
             A55SupplierAgbContactName = P006K2_A55SupplierAgbContactName[0];
@@ -387,7 +384,6 @@ namespace GeneXus.Programs {
                                               A57SupplierAgbEmail ,
                                               A11OrganisationId } ,
                                               new int[]{
-                                              TypeConstants.BOOLEAN
                                               }
          });
          lV68Trn_supplieragbwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext), "%", "");
@@ -401,13 +397,11 @@ namespace GeneXus.Programs {
          lV75Trn_supplieragbwwds_8_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV75Trn_supplieragbwwds_8_tfsupplieragbphone), 20, "%");
          lV77Trn_supplieragbwwds_10_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV77Trn_supplieragbwwds_10_tfsupplieragbemail), "%", "");
          /* Using cursor P006K3 */
-         pr_default.execute(1, new Object[] {lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
+         pr_default.execute(1, new Object[] {A11OrganisationId, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
          while ( (pr_default.getStatus(1) != 101) )
          {
             BRK6K4 = false;
             A283SupplierAgbTypeId = P006K3_A283SupplierAgbTypeId[0];
-            A11OrganisationId = P006K3_A11OrganisationId[0];
-            n11OrganisationId = P006K3_n11OrganisationId[0];
             A57SupplierAgbEmail = P006K3_A57SupplierAgbEmail[0];
             A56SupplierAgbPhone = P006K3_A56SupplierAgbPhone[0];
             A55SupplierAgbContactName = P006K3_A55SupplierAgbContactName[0];
@@ -488,7 +482,6 @@ namespace GeneXus.Programs {
                                               A57SupplierAgbEmail ,
                                               A11OrganisationId } ,
                                               new int[]{
-                                              TypeConstants.BOOLEAN
                                               }
          });
          lV68Trn_supplieragbwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext), "%", "");
@@ -502,14 +495,12 @@ namespace GeneXus.Programs {
          lV75Trn_supplieragbwwds_8_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV75Trn_supplieragbwwds_8_tfsupplieragbphone), 20, "%");
          lV77Trn_supplieragbwwds_10_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV77Trn_supplieragbwwds_10_tfsupplieragbemail), "%", "");
          /* Using cursor P006K4 */
-         pr_default.execute(2, new Object[] {lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
+         pr_default.execute(2, new Object[] {A11OrganisationId, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
          while ( (pr_default.getStatus(2) != 101) )
          {
             BRK6K6 = false;
             A283SupplierAgbTypeId = P006K4_A283SupplierAgbTypeId[0];
             A55SupplierAgbContactName = P006K4_A55SupplierAgbContactName[0];
-            A11OrganisationId = P006K4_A11OrganisationId[0];
-            n11OrganisationId = P006K4_n11OrganisationId[0];
             A57SupplierAgbEmail = P006K4_A57SupplierAgbEmail[0];
             A56SupplierAgbPhone = P006K4_A56SupplierAgbPhone[0];
             A291SupplierAgbTypeName = P006K4_A291SupplierAgbTypeName[0];
@@ -585,7 +576,6 @@ namespace GeneXus.Programs {
                                               A57SupplierAgbEmail ,
                                               A11OrganisationId } ,
                                               new int[]{
-                                              TypeConstants.BOOLEAN
                                               }
          });
          lV68Trn_supplieragbwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext), "%", "");
@@ -599,14 +589,12 @@ namespace GeneXus.Programs {
          lV75Trn_supplieragbwwds_8_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV75Trn_supplieragbwwds_8_tfsupplieragbphone), 20, "%");
          lV77Trn_supplieragbwwds_10_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV77Trn_supplieragbwwds_10_tfsupplieragbemail), "%", "");
          /* Using cursor P006K5 */
-         pr_default.execute(3, new Object[] {lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
+         pr_default.execute(3, new Object[] {A11OrganisationId, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
          while ( (pr_default.getStatus(3) != 101) )
          {
             BRK6K8 = false;
             A283SupplierAgbTypeId = P006K5_A283SupplierAgbTypeId[0];
             A56SupplierAgbPhone = P006K5_A56SupplierAgbPhone[0];
-            A11OrganisationId = P006K5_A11OrganisationId[0];
-            n11OrganisationId = P006K5_n11OrganisationId[0];
             A57SupplierAgbEmail = P006K5_A57SupplierAgbEmail[0];
             A55SupplierAgbContactName = P006K5_A55SupplierAgbContactName[0];
             A291SupplierAgbTypeName = P006K5_A291SupplierAgbTypeName[0];
@@ -682,7 +670,6 @@ namespace GeneXus.Programs {
                                               A57SupplierAgbEmail ,
                                               A11OrganisationId } ,
                                               new int[]{
-                                              TypeConstants.BOOLEAN
                                               }
          });
          lV68Trn_supplieragbwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext), "%", "");
@@ -696,14 +683,12 @@ namespace GeneXus.Programs {
          lV75Trn_supplieragbwwds_8_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV75Trn_supplieragbwwds_8_tfsupplieragbphone), 20, "%");
          lV77Trn_supplieragbwwds_10_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV77Trn_supplieragbwwds_10_tfsupplieragbemail), "%", "");
          /* Using cursor P006K6 */
-         pr_default.execute(4, new Object[] {lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
+         pr_default.execute(4, new Object[] {A11OrganisationId, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV68Trn_supplieragbwwds_1_filterfulltext, lV69Trn_supplieragbwwds_2_tfsupplieragbname, AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, lV71Trn_supplieragbwwds_4_tfsupplieragbtypename, AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, lV73Trn_supplieragbwwds_6_tfsupplieragbcontactname, AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, lV75Trn_supplieragbwwds_8_tfsupplieragbphone, AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, lV77Trn_supplieragbwwds_10_tfsupplieragbemail, AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel});
          while ( (pr_default.getStatus(4) != 101) )
          {
             BRK6K10 = false;
             A283SupplierAgbTypeId = P006K6_A283SupplierAgbTypeId[0];
             A57SupplierAgbEmail = P006K6_A57SupplierAgbEmail[0];
-            A11OrganisationId = P006K6_A11OrganisationId[0];
-            n11OrganisationId = P006K6_n11OrganisationId[0];
             A56SupplierAgbPhone = P006K6_A56SupplierAgbPhone[0];
             A55SupplierAgbContactName = P006K6_A55SupplierAgbContactName[0];
             A291SupplierAgbTypeName = P006K6_A291SupplierAgbTypeName[0];
@@ -802,8 +787,6 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          P006K2_A283SupplierAgbTypeId = new Guid[] {Guid.Empty} ;
          P006K2_A51SupplierAgbName = new string[] {""} ;
-         P006K2_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P006K2_n11OrganisationId = new bool[] {false} ;
          P006K2_A57SupplierAgbEmail = new string[] {""} ;
          P006K2_A56SupplierAgbPhone = new string[] {""} ;
          P006K2_A55SupplierAgbContactName = new string[] {""} ;
@@ -813,8 +796,6 @@ namespace GeneXus.Programs {
          A49SupplierAgbId = Guid.Empty;
          AV30Option = "";
          P006K3_A283SupplierAgbTypeId = new Guid[] {Guid.Empty} ;
-         P006K3_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P006K3_n11OrganisationId = new bool[] {false} ;
          P006K3_A57SupplierAgbEmail = new string[] {""} ;
          P006K3_A56SupplierAgbPhone = new string[] {""} ;
          P006K3_A55SupplierAgbContactName = new string[] {""} ;
@@ -823,8 +804,6 @@ namespace GeneXus.Programs {
          P006K3_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
          P006K4_A283SupplierAgbTypeId = new Guid[] {Guid.Empty} ;
          P006K4_A55SupplierAgbContactName = new string[] {""} ;
-         P006K4_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P006K4_n11OrganisationId = new bool[] {false} ;
          P006K4_A57SupplierAgbEmail = new string[] {""} ;
          P006K4_A56SupplierAgbPhone = new string[] {""} ;
          P006K4_A291SupplierAgbTypeName = new string[] {""} ;
@@ -832,8 +811,6 @@ namespace GeneXus.Programs {
          P006K4_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
          P006K5_A283SupplierAgbTypeId = new Guid[] {Guid.Empty} ;
          P006K5_A56SupplierAgbPhone = new string[] {""} ;
-         P006K5_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P006K5_n11OrganisationId = new bool[] {false} ;
          P006K5_A57SupplierAgbEmail = new string[] {""} ;
          P006K5_A55SupplierAgbContactName = new string[] {""} ;
          P006K5_A291SupplierAgbTypeName = new string[] {""} ;
@@ -841,8 +818,6 @@ namespace GeneXus.Programs {
          P006K5_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
          P006K6_A283SupplierAgbTypeId = new Guid[] {Guid.Empty} ;
          P006K6_A57SupplierAgbEmail = new string[] {""} ;
-         P006K6_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P006K6_n11OrganisationId = new bool[] {false} ;
          P006K6_A56SupplierAgbPhone = new string[] {""} ;
          P006K6_A55SupplierAgbContactName = new string[] {""} ;
          P006K6_A291SupplierAgbTypeName = new string[] {""} ;
@@ -851,19 +826,19 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_supplieragbwwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P006K2_A283SupplierAgbTypeId, P006K2_A51SupplierAgbName, P006K2_A11OrganisationId, P006K2_n11OrganisationId, P006K2_A57SupplierAgbEmail, P006K2_A56SupplierAgbPhone, P006K2_A55SupplierAgbContactName, P006K2_A291SupplierAgbTypeName, P006K2_A49SupplierAgbId
+               P006K2_A283SupplierAgbTypeId, P006K2_A51SupplierAgbName, P006K2_A57SupplierAgbEmail, P006K2_A56SupplierAgbPhone, P006K2_A55SupplierAgbContactName, P006K2_A291SupplierAgbTypeName, P006K2_A49SupplierAgbId
                }
                , new Object[] {
-               P006K3_A283SupplierAgbTypeId, P006K3_A11OrganisationId, P006K3_n11OrganisationId, P006K3_A57SupplierAgbEmail, P006K3_A56SupplierAgbPhone, P006K3_A55SupplierAgbContactName, P006K3_A291SupplierAgbTypeName, P006K3_A51SupplierAgbName, P006K3_A49SupplierAgbId
+               P006K3_A283SupplierAgbTypeId, P006K3_A57SupplierAgbEmail, P006K3_A56SupplierAgbPhone, P006K3_A55SupplierAgbContactName, P006K3_A291SupplierAgbTypeName, P006K3_A51SupplierAgbName, P006K3_A49SupplierAgbId
                }
                , new Object[] {
-               P006K4_A283SupplierAgbTypeId, P006K4_A55SupplierAgbContactName, P006K4_A11OrganisationId, P006K4_n11OrganisationId, P006K4_A57SupplierAgbEmail, P006K4_A56SupplierAgbPhone, P006K4_A291SupplierAgbTypeName, P006K4_A51SupplierAgbName, P006K4_A49SupplierAgbId
+               P006K4_A283SupplierAgbTypeId, P006K4_A55SupplierAgbContactName, P006K4_A57SupplierAgbEmail, P006K4_A56SupplierAgbPhone, P006K4_A291SupplierAgbTypeName, P006K4_A51SupplierAgbName, P006K4_A49SupplierAgbId
                }
                , new Object[] {
-               P006K5_A283SupplierAgbTypeId, P006K5_A56SupplierAgbPhone, P006K5_A11OrganisationId, P006K5_n11OrganisationId, P006K5_A57SupplierAgbEmail, P006K5_A55SupplierAgbContactName, P006K5_A291SupplierAgbTypeName, P006K5_A51SupplierAgbName, P006K5_A49SupplierAgbId
+               P006K5_A283SupplierAgbTypeId, P006K5_A56SupplierAgbPhone, P006K5_A57SupplierAgbEmail, P006K5_A55SupplierAgbContactName, P006K5_A291SupplierAgbTypeName, P006K5_A51SupplierAgbName, P006K5_A49SupplierAgbId
                }
                , new Object[] {
-               P006K6_A283SupplierAgbTypeId, P006K6_A57SupplierAgbEmail, P006K6_A11OrganisationId, P006K6_n11OrganisationId, P006K6_A56SupplierAgbPhone, P006K6_A55SupplierAgbContactName, P006K6_A291SupplierAgbTypeName, P006K6_A51SupplierAgbName, P006K6_A49SupplierAgbId
+               P006K6_A283SupplierAgbTypeId, P006K6_A57SupplierAgbEmail, P006K6_A56SupplierAgbPhone, P006K6_A55SupplierAgbContactName, P006K6_A291SupplierAgbTypeName, P006K6_A51SupplierAgbName, P006K6_A49SupplierAgbId
                }
             }
          );
@@ -884,7 +859,6 @@ namespace GeneXus.Programs {
       private string A56SupplierAgbPhone ;
       private bool returnInSub ;
       private bool BRK6K2 ;
-      private bool n11OrganisationId ;
       private bool BRK6K4 ;
       private bool BRK6K6 ;
       private bool BRK6K8 ;
@@ -939,16 +913,12 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] P006K2_A283SupplierAgbTypeId ;
       private string[] P006K2_A51SupplierAgbName ;
-      private Guid[] P006K2_A11OrganisationId ;
-      private bool[] P006K2_n11OrganisationId ;
       private string[] P006K2_A57SupplierAgbEmail ;
       private string[] P006K2_A56SupplierAgbPhone ;
       private string[] P006K2_A55SupplierAgbContactName ;
       private string[] P006K2_A291SupplierAgbTypeName ;
       private Guid[] P006K2_A49SupplierAgbId ;
       private Guid[] P006K3_A283SupplierAgbTypeId ;
-      private Guid[] P006K3_A11OrganisationId ;
-      private bool[] P006K3_n11OrganisationId ;
       private string[] P006K3_A57SupplierAgbEmail ;
       private string[] P006K3_A56SupplierAgbPhone ;
       private string[] P006K3_A55SupplierAgbContactName ;
@@ -957,8 +927,6 @@ namespace GeneXus.Programs {
       private Guid[] P006K3_A49SupplierAgbId ;
       private Guid[] P006K4_A283SupplierAgbTypeId ;
       private string[] P006K4_A55SupplierAgbContactName ;
-      private Guid[] P006K4_A11OrganisationId ;
-      private bool[] P006K4_n11OrganisationId ;
       private string[] P006K4_A57SupplierAgbEmail ;
       private string[] P006K4_A56SupplierAgbPhone ;
       private string[] P006K4_A291SupplierAgbTypeName ;
@@ -966,8 +934,6 @@ namespace GeneXus.Programs {
       private Guid[] P006K4_A49SupplierAgbId ;
       private Guid[] P006K5_A283SupplierAgbTypeId ;
       private string[] P006K5_A56SupplierAgbPhone ;
-      private Guid[] P006K5_A11OrganisationId ;
-      private bool[] P006K5_n11OrganisationId ;
       private string[] P006K5_A57SupplierAgbEmail ;
       private string[] P006K5_A55SupplierAgbContactName ;
       private string[] P006K5_A291SupplierAgbTypeName ;
@@ -975,8 +941,6 @@ namespace GeneXus.Programs {
       private Guid[] P006K5_A49SupplierAgbId ;
       private Guid[] P006K6_A283SupplierAgbTypeId ;
       private string[] P006K6_A57SupplierAgbEmail ;
-      private Guid[] P006K6_A11OrganisationId ;
-      private bool[] P006K6_n11OrganisationId ;
       private string[] P006K6_A56SupplierAgbPhone ;
       private string[] P006K6_A55SupplierAgbContactName ;
       private string[] P006K6_A291SupplierAgbTypeName ;
@@ -1010,21 +974,21 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int1 = new short[15];
+         short[] GXv_int1 = new short[16];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbName, T1.OrganisationId, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
-         AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
+         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbName, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
+         AddWhere(sWhereString, "(:OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext))");
          }
          else
          {
-            GXv_int1[0] = 1;
             GXv_int1[1] = 1;
             GXv_int1[2] = 1;
             GXv_int1[3] = 1;
             GXv_int1[4] = 1;
+            GXv_int1[5] = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_supplieragbwwds_2_tfsupplieragbname)) ) )
          {
@@ -1032,7 +996,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[5] = 1;
+            GXv_int1[6] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1040,7 +1004,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[6] = 1;
+            GXv_int1[7] = 1;
          }
          if ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1052,7 +1016,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[7] = 1;
+            GXv_int1[8] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1060,7 +1024,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[8] = 1;
+            GXv_int1[9] = 1;
          }
          if ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1072,7 +1036,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[9] = 1;
+            GXv_int1[10] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1080,7 +1044,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[10] = 1;
+            GXv_int1[11] = 1;
          }
          if ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1092,7 +1056,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[11] = 1;
+            GXv_int1[12] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1100,7 +1064,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[12] = 1;
+            GXv_int1[13] = 1;
          }
          if ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1112,7 +1076,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[13] = 1;
+            GXv_int1[14] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1120,7 +1084,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[14] = 1;
+            GXv_int1[15] = 1;
          }
          if ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1154,21 +1118,21 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int3 = new short[15];
+         short[] GXv_int3 = new short[16];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.OrganisationId, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
-         AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
+         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
+         AddWhere(sWhereString, "(:OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext))");
          }
          else
          {
-            GXv_int3[0] = 1;
             GXv_int3[1] = 1;
             GXv_int3[2] = 1;
             GXv_int3[3] = 1;
             GXv_int3[4] = 1;
+            GXv_int3[5] = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_supplieragbwwds_2_tfsupplieragbname)) ) )
          {
@@ -1176,7 +1140,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[5] = 1;
+            GXv_int3[6] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1184,7 +1148,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[6] = 1;
+            GXv_int3[7] = 1;
          }
          if ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1196,7 +1160,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[7] = 1;
+            GXv_int3[8] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1204,7 +1168,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[8] = 1;
+            GXv_int3[9] = 1;
          }
          if ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1216,7 +1180,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[9] = 1;
+            GXv_int3[10] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1224,7 +1188,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[10] = 1;
+            GXv_int3[11] = 1;
          }
          if ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1236,7 +1200,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[11] = 1;
+            GXv_int3[12] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1244,7 +1208,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[12] = 1;
+            GXv_int3[13] = 1;
          }
          if ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1256,7 +1220,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[13] = 1;
+            GXv_int3[14] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1264,7 +1228,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[14] = 1;
+            GXv_int3[15] = 1;
          }
          if ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1298,21 +1262,21 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int5 = new short[15];
+         short[] GXv_int5 = new short[16];
          Object[] GXv_Object6 = new Object[2];
-         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbContactName, T1.OrganisationId, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
-         AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
+         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbContactName, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
+         AddWhere(sWhereString, "(:OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext))");
          }
          else
          {
-            GXv_int5[0] = 1;
             GXv_int5[1] = 1;
             GXv_int5[2] = 1;
             GXv_int5[3] = 1;
             GXv_int5[4] = 1;
+            GXv_int5[5] = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_supplieragbwwds_2_tfsupplieragbname)) ) )
          {
@@ -1320,7 +1284,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[5] = 1;
+            GXv_int5[6] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1328,7 +1292,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[6] = 1;
+            GXv_int5[7] = 1;
          }
          if ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1340,7 +1304,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[7] = 1;
+            GXv_int5[8] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1348,7 +1312,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[8] = 1;
+            GXv_int5[9] = 1;
          }
          if ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1360,7 +1324,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[9] = 1;
+            GXv_int5[10] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1368,7 +1332,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[10] = 1;
+            GXv_int5[11] = 1;
          }
          if ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1380,7 +1344,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[11] = 1;
+            GXv_int5[12] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1388,7 +1352,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[12] = 1;
+            GXv_int5[13] = 1;
          }
          if ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1400,7 +1364,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[13] = 1;
+            GXv_int5[14] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1408,7 +1372,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[14] = 1;
+            GXv_int5[15] = 1;
          }
          if ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1442,21 +1406,21 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int7 = new short[15];
+         short[] GXv_int7 = new short[16];
          Object[] GXv_Object8 = new Object[2];
-         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbPhone, T1.OrganisationId, T1.SupplierAgbEmail, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
-         AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
+         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbPhone, T1.SupplierAgbEmail, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
+         AddWhere(sWhereString, "(:OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext))");
          }
          else
          {
-            GXv_int7[0] = 1;
             GXv_int7[1] = 1;
             GXv_int7[2] = 1;
             GXv_int7[3] = 1;
             GXv_int7[4] = 1;
+            GXv_int7[5] = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_supplieragbwwds_2_tfsupplieragbname)) ) )
          {
@@ -1464,7 +1428,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[5] = 1;
+            GXv_int7[6] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1472,7 +1436,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[6] = 1;
+            GXv_int7[7] = 1;
          }
          if ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1484,7 +1448,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[7] = 1;
+            GXv_int7[8] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1492,7 +1456,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[8] = 1;
+            GXv_int7[9] = 1;
          }
          if ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1504,7 +1468,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[9] = 1;
+            GXv_int7[10] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1512,7 +1476,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[10] = 1;
+            GXv_int7[11] = 1;
          }
          if ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1524,7 +1488,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[11] = 1;
+            GXv_int7[12] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1532,7 +1496,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[12] = 1;
+            GXv_int7[13] = 1;
          }
          if ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1544,7 +1508,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[13] = 1;
+            GXv_int7[14] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1552,7 +1516,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[14] = 1;
+            GXv_int7[15] = 1;
          }
          if ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1586,21 +1550,21 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int9 = new short[15];
+         short[] GXv_int9 = new short[16];
          Object[] GXv_Object10 = new Object[2];
-         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbEmail, T1.OrganisationId, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
-         AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
+         scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
+         AddWhere(sWhereString, "(:OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_supplieragbwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV68Trn_supplieragbwwds_1_filterfulltext))");
          }
          else
          {
-            GXv_int9[0] = 1;
             GXv_int9[1] = 1;
             GXv_int9[2] = 1;
             GXv_int9[3] = 1;
             GXv_int9[4] = 1;
+            GXv_int9[5] = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_supplieragbwwds_2_tfsupplieragbname)) ) )
          {
@@ -1608,7 +1572,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[5] = 1;
+            GXv_int9[6] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1616,7 +1580,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[6] = 1;
+            GXv_int9[7] = 1;
          }
          if ( StringUtil.StrCmp(AV70Trn_supplieragbwwds_3_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1628,7 +1592,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[7] = 1;
+            GXv_int9[8] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1636,7 +1600,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[8] = 1;
+            GXv_int9[9] = 1;
          }
          if ( StringUtil.StrCmp(AV72Trn_supplieragbwwds_5_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1648,7 +1612,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[9] = 1;
+            GXv_int9[10] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1656,7 +1620,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[10] = 1;
+            GXv_int9[11] = 1;
          }
          if ( StringUtil.StrCmp(AV74Trn_supplieragbwwds_7_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1668,7 +1632,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[11] = 1;
+            GXv_int9[12] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1676,7 +1640,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[12] = 1;
+            GXv_int9[13] = 1;
          }
          if ( StringUtil.StrCmp(AV76Trn_supplieragbwwds_9_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1688,7 +1652,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[13] = 1;
+            GXv_int9[14] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
@@ -1696,7 +1660,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[14] = 1;
+            GXv_int9[15] = 1;
          }
          if ( StringUtil.StrCmp(AV78Trn_supplieragbwwds_11_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
@@ -1748,6 +1712,7 @@ namespace GeneXus.Programs {
        {
           Object[] prmP006K2;
           prmP006K2 = new Object[] {
+          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
@@ -1766,6 +1731,7 @@ namespace GeneXus.Programs {
           };
           Object[] prmP006K3;
           prmP006K3 = new Object[] {
+          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
@@ -1784,6 +1750,7 @@ namespace GeneXus.Programs {
           };
           Object[] prmP006K4;
           prmP006K4 = new Object[] {
+          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
@@ -1802,6 +1769,7 @@ namespace GeneXus.Programs {
           };
           Object[] prmP006K5;
           prmP006K5 = new Object[] {
+          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
@@ -1820,6 +1788,7 @@ namespace GeneXus.Programs {
           };
           Object[] prmP006K6;
           prmP006K6 = new Object[] {
+          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV68Trn_supplieragbwwds_1_filterfulltext",GXType.VarChar,100,0) ,
@@ -1855,57 +1824,47 @@ namespace GeneXus.Programs {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((bool[]) buf[3])[0] = rslt.wasNull(3);
-                ((string[]) buf[4])[0] = rslt.getVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getString(5, 20);
-                ((string[]) buf[6])[0] = rslt.getVarchar(6);
-                ((string[]) buf[7])[0] = rslt.getVarchar(7);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(8);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getVarchar(6);
+                ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((bool[]) buf[2])[0] = rslt.wasNull(2);
-                ((string[]) buf[3])[0] = rslt.getVarchar(3);
-                ((string[]) buf[4])[0] = rslt.getString(4, 20);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
-                ((string[]) buf[6])[0] = rslt.getVarchar(6);
-                ((string[]) buf[7])[0] = rslt.getVarchar(7);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(8);
+                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getVarchar(6);
+                ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((bool[]) buf[3])[0] = rslt.wasNull(3);
-                ((string[]) buf[4])[0] = rslt.getVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getString(5, 20);
-                ((string[]) buf[6])[0] = rslt.getVarchar(6);
-                ((string[]) buf[7])[0] = rslt.getVarchar(7);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(8);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getVarchar(6);
+                ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;
              case 3 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getString(2, 20);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((bool[]) buf[3])[0] = rslt.wasNull(3);
-                ((string[]) buf[4])[0] = rslt.getVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
-                ((string[]) buf[6])[0] = rslt.getVarchar(6);
-                ((string[]) buf[7])[0] = rslt.getVarchar(7);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(8);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getVarchar(6);
+                ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;
              case 4 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((bool[]) buf[3])[0] = rslt.wasNull(3);
-                ((string[]) buf[4])[0] = rslt.getString(4, 20);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
-                ((string[]) buf[6])[0] = rslt.getVarchar(6);
-                ((string[]) buf[7])[0] = rslt.getVarchar(7);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(8);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getVarchar(6);
+                ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;
        }
     }

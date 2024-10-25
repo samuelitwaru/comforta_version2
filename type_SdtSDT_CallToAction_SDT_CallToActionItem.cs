@@ -36,6 +36,10 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphone = "";
 
+			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonecode = "";
+
+			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonenumber = "";
+
 			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionurl = "";
 
 			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionemail = "";
@@ -98,6 +102,12 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("CallToActionPhone", gxTpr_Calltoactionphone, false);
+
+
+			AddObjectProperty("CallToActionPhoneCode", gxTpr_Calltoactionphonecode, false);
+
+
+			AddObjectProperty("CallToActionPhoneNumber", gxTpr_Calltoactionphonenumber, false);
 
 
 			AddObjectProperty("CallToActionUrl", gxTpr_Calltoactionurl, false);
@@ -282,6 +292,38 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphone = value;
 				SetDirty("Calltoactionphone");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="CallToActionPhoneCode")]
+		[XmlElement(ElementName="CallToActionPhoneCode")]
+		public string gxTpr_Calltoactionphonecode
+		{
+			get {
+				return gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonecode; 
+			}
+			set {
+				gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonecode = value;
+				SetDirty("Calltoactionphonecode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="CallToActionPhoneNumber")]
+		[XmlElement(ElementName="CallToActionPhoneNumber")]
+		public string gxTpr_Calltoactionphonenumber
+		{
+			get {
+				return gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonenumber; 
+			}
+			set {
+				gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonenumber = value;
+				SetDirty("Calltoactionphonenumber");
 			}
 		}
 
@@ -594,6 +636,8 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionname = "";
 			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactiontype = "";
 			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphone = "";
+			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonecode = "";
+			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonenumber = "";
 			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionurl = "";
 			gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionemail = "";
 
@@ -646,6 +690,12 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphone;
+		 
+
+		protected string gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonecode;
+		 
+
+		protected string gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionphonenumber;
 		 
 
 		protected string gxTv_SdtSDT_CallToAction_SDT_CallToActionItem_Calltoactionurl;
@@ -800,7 +850,31 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="CallToActionUrl", Order=7)]
+		[DataMember(Name="CallToActionPhoneCode", Order=7)]
+		public  string gxTpr_Calltoactionphonecode
+		{
+			get { 
+				return sdt.gxTpr_Calltoactionphonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Calltoactionphonecode = value;
+			}
+		}
+
+		[DataMember(Name="CallToActionPhoneNumber", Order=8)]
+		public  string gxTpr_Calltoactionphonenumber
+		{
+			get { 
+				return sdt.gxTpr_Calltoactionphonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Calltoactionphonenumber = value;
+			}
+		}
+
+		[DataMember(Name="CallToActionUrl", Order=9)]
 		public  string gxTpr_Calltoactionurl
 		{
 			get { 
@@ -812,7 +886,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="CallToActionEmail", Order=8)]
+		[DataMember(Name="CallToActionEmail", Order=10)]
 		public  string gxTpr_Calltoactionemail
 		{
 			get { 
@@ -824,7 +898,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="LocationDynamicFormId", Order=9)]
+		[DataMember(Name="LocationDynamicFormId", Order=11)]
 		public Guid gxTpr_Locationdynamicformid
 		{
 			get { 
@@ -836,7 +910,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormId", Order=10)]
+		[DataMember(Name="WWPFormId", Order=12)]
 		public short gxTpr_Wwpformid
 		{
 			get { 
@@ -848,7 +922,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormVersionNumber", Order=11)]
+		[DataMember(Name="WWPFormVersionNumber", Order=13)]
 		public short gxTpr_Wwpformversionnumber
 		{
 			get { 
@@ -860,7 +934,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormReferenceName", Order=12)]
+		[DataMember(Name="WWPFormReferenceName", Order=14)]
 		public  string gxTpr_Wwpformreferencename
 		{
 			get { 
@@ -872,7 +946,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormTitle", Order=13)]
+		[DataMember(Name="WWPFormTitle", Order=15)]
 		public  string gxTpr_Wwpformtitle
 		{
 			get { 
@@ -884,7 +958,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormDate", Order=14)]
+		[DataMember(Name="WWPFormDate", Order=16)]
 		public  string gxTpr_Wwpformdate
 		{
 			get { 
@@ -896,7 +970,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormIsWizard", Order=15)]
+		[DataMember(Name="WWPFormIsWizard", Order=17)]
 		public bool gxTpr_Wwpformiswizard
 		{
 			get { 
@@ -908,7 +982,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormResume", Order=16)]
+		[DataMember(Name="WWPFormResume", Order=18)]
 		public short gxTpr_Wwpformresume
 		{
 			get { 
@@ -920,7 +994,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormResumeMessage", Order=17)]
+		[DataMember(Name="WWPFormResumeMessage", Order=19)]
 		public  string gxTpr_Wwpformresumemessage
 		{
 			get { 
@@ -932,7 +1006,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormValidations", Order=18)]
+		[DataMember(Name="WWPFormValidations", Order=20)]
 		public  string gxTpr_Wwpformvalidations
 		{
 			get { 
@@ -944,7 +1018,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormInstantiated", Order=19)]
+		[DataMember(Name="WWPFormInstantiated", Order=21)]
 		public bool gxTpr_Wwpforminstantiated
 		{
 			get { 
@@ -956,7 +1030,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormLatestVersionNumber", Order=20)]
+		[DataMember(Name="WWPFormLatestVersionNumber", Order=22)]
 		public short gxTpr_Wwpformlatestversionnumber
 		{
 			get { 
@@ -968,7 +1042,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormType", Order=21)]
+		[DataMember(Name="WWPFormType", Order=23)]
 		public short gxTpr_Wwpformtype
 		{
 			get { 
@@ -980,7 +1054,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormSectionRefElements", Order=22)]
+		[DataMember(Name="WWPFormSectionRefElements", Order=24)]
 		public  string gxTpr_Wwpformsectionrefelements
 		{
 			get { 
@@ -992,7 +1066,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="WWPFormIsForDynamicValidations", Order=23)]
+		[DataMember(Name="WWPFormIsForDynamicValidations", Order=25)]
 		public bool gxTpr_Wwpformisfordynamicvalidations
 		{
 			get { 

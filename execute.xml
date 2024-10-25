@@ -249,12 +249,6 @@
   </Object>
   <Object>
     <ObjCls>13</ObjCls>
-    <ObjName>Trn_AmenityWW</ObjName>
-    <ObjDesc> Trn_Amenity</ObjDesc>
-    <ObjLink>trn_amenityww.aspx</ObjLink>
-  </Object>
-  <Object>
-    <ObjCls>13</ObjCls>
     <ObjName>Trn_SupplierGenWW</ObjName>
     <ObjDesc> General Suppliers</ObjDesc>
     <ObjLink>trn_suppliergenww.aspx</ObjLink>

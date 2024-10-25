@@ -59,6 +59,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_uploadmedia") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          return GAMSecurityLevel.SecurityLow ;
       }
 
@@ -152,6 +156,15 @@ namespace GeneXus.Programs {
          /* Getpagesinformation_After Routine */
          returnInSub = false;
          if ( AV25SDT_PageCollection.FromJSonString(AV17result, null) )
+         {
+         }
+      }
+
+      protected void E17012( )
+      {
+         /* Uploadmedia_After Routine */
+         returnInSub = false;
+         if ( AV32BC_Trn_Media.FromJSonString(AV17result, null) )
          {
          }
       }
@@ -327,6 +340,39 @@ namespace GeneXus.Programs {
          aP1_SDT_PageCollection=this.AV25SDT_PageCollection;
       }
 
+      public void gxep_uploadmedia( Guid aP0_MediaId ,
+                                    string aP1_MediaName ,
+                                    string aP2_MediaImageData ,
+                                    int aP3_MediaSize ,
+                                    string aP4_MediaType ,
+                                    out SdtTrn_Media aP5_BC_Trn_Media )
+      {
+         this.AV27MediaId = aP0_MediaId;
+         this.AV29MediaName = aP1_MediaName;
+         this.AV31MediaImageData = aP2_MediaImageData;
+         this.AV33MediaSize = aP3_MediaSize;
+         this.AV34MediaType = aP4_MediaType;
+         AV32BC_Trn_Media = new SdtTrn_Media(context);
+         initialize();
+         /* UploadMedia Constructor */
+         new prc_uploadmedia(context ).execute(  AV27MediaId,  AV29MediaName,  AV31MediaImageData,  AV33MediaSize,  AV34MediaType, out  AV17result) ;
+         /* Execute user event: Uploadmedia.After */
+         E17012 ();
+         if ( returnInSub )
+         {
+            aP5_BC_Trn_Media=this.AV32BC_Trn_Media;
+            return;
+         }
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP5_BC_Trn_Media=this.AV32BC_Trn_Media;
+            return;
+         }
+         aP5_BC_Trn_Media=this.AV32BC_Trn_Media;
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -341,24 +387,30 @@ namespace GeneXus.Programs {
          AV23SDT_Organisation = new SdtSDT_Organisation(context);
          AV18SDT_Location = new SdtSDT_Location(context);
          AV25SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
+         AV32BC_Trn_Media = new SdtTrn_Media(context);
          /* GeneXus formulas. */
       }
 
       protected short AV11DeviceType ;
+      protected int AV33MediaSize ;
       protected string Gx_restmethod ;
       protected string AV10DeviceToken ;
       protected string AV9DeviceID ;
+      protected string AV34MediaType ;
       protected bool returnInSub ;
       protected string AV17result ;
       protected string AV7secretKey ;
+      protected string AV31MediaImageData ;
       protected string AV8userId ;
       protected string AV14NotificationPlatform ;
       protected string AV15NotificationPlatformId ;
       protected string AV19title ;
       protected string AV13message ;
+      protected string AV29MediaName ;
       protected Guid AV16organisationId ;
       protected Guid AV12locationId ;
       protected Guid AV24Trn_PageId ;
+      protected Guid AV27MediaId ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
       protected SdtSDT_LoginResidentResponse AV20SDT_LoginResidentResponse ;
@@ -367,6 +419,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Organisation AV23SDT_Organisation ;
       protected SdtSDT_Location AV18SDT_Location ;
       protected GXBaseCollection<SdtSDT_Page> AV25SDT_PageCollection ;
+      protected SdtTrn_Media AV32BC_Trn_Media ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_Resident aP1_SDT_Resident ;
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
@@ -374,6 +427,7 @@ namespace GeneXus.Programs {
       protected string aP6_result ;
       protected string aP2_result ;
       protected GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection ;
+      protected SdtTrn_Media aP5_BC_Trn_Media ;
    }
 
 }

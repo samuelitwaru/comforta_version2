@@ -1725,7 +1725,7 @@ namespace GeneXus.Programs.workwithplus {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021964830", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410251841179", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1741,7 +1741,7 @@ namespace GeneXus.Programs.workwithplus {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("workwithplus/wwp_parameter.js", "?20241021964830", false, true);
+         context.AddJavascriptSource("workwithplus/wwp_parameter.js", "?2024102518411710", false, true);
          /* End function include_jscripts */
       }
 

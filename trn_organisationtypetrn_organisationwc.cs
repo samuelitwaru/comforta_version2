@@ -2415,7 +2415,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021945246", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102518393560", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2431,7 +2431,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_organisationtypetrn_organisationwc.js", "?20241021945246", false, true);
+         context.AddJavascriptSource("trn_organisationtypetrn_organisationwc.js", "?2024102518393560", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2539,11 +2539,11 @@ namespace GeneXus.Programs {
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+"display:none;"+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationId_Internalname,A11OrganisationId.ToString(),A11OrganisationId.ToString(),(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)35,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationId_Internalname,A11OrganisationId.ToString(),A11OrganisationId.ToString(),(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)35,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -2666,7 +2666,7 @@ namespace GeneXus.Programs {
                   }
                }
             }
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
@@ -2847,8 +2847,8 @@ namespace GeneXus.Programs {
          bttBtninsert_Visible = 1;
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Ddo_grid_Includesortasc = "T";
-         Ddo_grid_Columnssortvalues = "1|2|3|4|5";
-         Ddo_grid_Columnids = "1:OrganisationName|2:OrganisationKvkNumber|3:OrganisationEmail|4:OrganisationPhone|5:OrganisationVATNumber";
+         Ddo_grid_Columnssortvalues = "2|1|3|4|5|6";
+         Ddo_grid_Columnids = "0:OrganisationId|1:OrganisationName|2:OrganisationKvkNumber|3:OrganisationEmail|4:OrganisationPhone|5:OrganisationVATNumber";
          Ddo_grid_Gridinternalname = "";
          Gridpaginationbar_Rowsperpagecaption = "WWP_PagingRowsPerPage";
          Gridpaginationbar_Emptygridcaption = "WWP_PagingEmptyGridCaption";
@@ -3290,33 +3290,41 @@ namespace GeneXus.Programs {
          }
          else if ( ( AV14OrderedBy == 2 ) && ! AV15OrderedDsc )
          {
-            sOrderString += " ORDER BY OrganisationTypeId, OrganisationKvkNumber, OrganisationId";
+            sOrderString += " ORDER BY OrganisationTypeId, OrganisationId";
          }
          else if ( ( AV14OrderedBy == 2 ) && ( AV15OrderedDsc ) )
          {
-            sOrderString += " ORDER BY OrganisationTypeId DESC, OrganisationKvkNumber DESC, OrganisationId";
+            sOrderString += " ORDER BY OrganisationTypeId DESC, OrganisationId DESC";
          }
          else if ( ( AV14OrderedBy == 3 ) && ! AV15OrderedDsc )
          {
-            sOrderString += " ORDER BY OrganisationTypeId, OrganisationEmail, OrganisationId";
+            sOrderString += " ORDER BY OrganisationTypeId, OrganisationKvkNumber, OrganisationId";
          }
          else if ( ( AV14OrderedBy == 3 ) && ( AV15OrderedDsc ) )
          {
-            sOrderString += " ORDER BY OrganisationTypeId DESC, OrganisationEmail DESC, OrganisationId";
+            sOrderString += " ORDER BY OrganisationTypeId DESC, OrganisationKvkNumber DESC, OrganisationId";
          }
          else if ( ( AV14OrderedBy == 4 ) && ! AV15OrderedDsc )
          {
-            sOrderString += " ORDER BY OrganisationTypeId, OrganisationPhone, OrganisationId";
+            sOrderString += " ORDER BY OrganisationTypeId, OrganisationEmail, OrganisationId";
          }
          else if ( ( AV14OrderedBy == 4 ) && ( AV15OrderedDsc ) )
          {
-            sOrderString += " ORDER BY OrganisationTypeId DESC, OrganisationPhone DESC, OrganisationId";
+            sOrderString += " ORDER BY OrganisationTypeId DESC, OrganisationEmail DESC, OrganisationId";
          }
          else if ( ( AV14OrderedBy == 5 ) && ! AV15OrderedDsc )
          {
-            sOrderString += " ORDER BY OrganisationTypeId, OrganisationVATNumber, OrganisationId";
+            sOrderString += " ORDER BY OrganisationTypeId, OrganisationPhone, OrganisationId";
          }
          else if ( ( AV14OrderedBy == 5 ) && ( AV15OrderedDsc ) )
+         {
+            sOrderString += " ORDER BY OrganisationTypeId DESC, OrganisationPhone DESC, OrganisationId";
+         }
+         else if ( ( AV14OrderedBy == 6 ) && ! AV15OrderedDsc )
+         {
+            sOrderString += " ORDER BY OrganisationTypeId, OrganisationVATNumber, OrganisationId";
+         }
+         else if ( ( AV14OrderedBy == 6 ) && ( AV15OrderedDsc ) )
          {
             sOrderString += " ORDER BY OrganisationTypeId DESC, OrganisationVATNumber DESC, OrganisationId";
          }
@@ -3398,6 +3406,14 @@ namespace GeneXus.Programs {
             scmdbuf += "";
          }
          else if ( ( AV14OrderedBy == 5 ) && ( AV15OrderedDsc ) )
+         {
+            scmdbuf += "";
+         }
+         else if ( ( AV14OrderedBy == 6 ) && ! AV15OrderedDsc )
+         {
+            scmdbuf += "";
+         }
+         else if ( ( AV14OrderedBy == 6 ) && ( AV15OrderedDsc ) )
          {
             scmdbuf += "";
          }

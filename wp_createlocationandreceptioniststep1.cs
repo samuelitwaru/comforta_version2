@@ -918,38 +918,6 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VLOCATIONEMAIL.CONTROLVALUECHANGED") == 0 )
-                           {
-                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
-                              {
-                                 STRUP6T0( ) ;
-                              }
-                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
-                              {
-                                 context.wbHandled = 1;
-                                 if ( ! wbErr )
-                                 {
-                                    dynload_actions( ) ;
-                                    E156T2 ();
-                                 }
-                              }
-                           }
-                           else if ( StringUtil.StrCmp(sEvt, "VLOCATIONZIPCODE.CONTROLVALUECHANGED") == 0 )
-                           {
-                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
-                              {
-                                 STRUP6T0( ) ;
-                              }
-                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
-                              {
-                                 context.wbHandled = 1;
-                                 if ( ! wbErr )
-                                 {
-                                    dynload_actions( ) ;
-                                    E166T2 ();
-                                 }
-                              }
-                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -963,7 +931,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E176T2 ();
+                                    E156T2 ();
                                  }
                               }
                               /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1149,7 +1117,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E176T2 ();
+            E156T2 ();
             WB6T0( ) ;
          }
       }
@@ -1413,6 +1381,11 @@ namespace GeneXus.Programs {
             AV22CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV22CheckRequiredFieldsResult", AV22CheckRequiredFieldsResult);
          }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14LocationEmail)) && ! GxRegex.IsMatch(AV14LocationEmail,context.GetMessage( "^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$", "")) )
+         {
+            AV22CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV22CheckRequiredFieldsResult", AV22CheckRequiredFieldsResult);
+         }
       }
 
       protected void S132( )
@@ -1465,37 +1438,11 @@ namespace GeneXus.Programs {
          ucCombo_locationphonecode.SendProperty(context, sPrefix, false, Combo_locationphonecode_Internalname, "SelectedValue_set", Combo_locationphonecode_Selectedvalue_set);
       }
 
-      protected void E156T2( )
-      {
-         /* Locationemail_Controlvaluechanged Routine */
-         returnInSub = false;
-         if ( ! GxRegex.IsMatch(AV14LocationEmail,context.GetMessage( "^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$", "")) )
-         {
-            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Email is incorrect", ""),  "error",  edtavLocationemail_Internalname,  "true",  ""));
-            AV22CheckRequiredFieldsResult = false;
-            AssignAttri(sPrefix, false, "AV22CheckRequiredFieldsResult", AV22CheckRequiredFieldsResult);
-         }
-         /*  Sending Event outputs  */
-      }
-
-      protected void E166T2( )
-      {
-         /* Locationzipcode_Controlvaluechanged Routine */
-         returnInSub = false;
-         if ( ! GxRegex.IsMatch(AV18LocationZipCode,context.GetMessage( "^\\d{4} [a-zA-Z]{2}$", "")) )
-         {
-            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Zip Code is incorrect", ""),  "error",  edtavLocationzipcode_Internalname,  "true",  ""));
-            AV22CheckRequiredFieldsResult = false;
-            AssignAttri(sPrefix, false, "AV22CheckRequiredFieldsResult", AV22CheckRequiredFieldsResult);
-         }
-         /*  Sending Event outputs  */
-      }
-
       protected void nextLoad( )
       {
       }
 
-      protected void E176T2( )
+      protected void E156T2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1784,7 +1731,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021945018", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410251839334", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1800,7 +1747,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createlocationandreceptioniststep1.js", "?20241021945018", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptioniststep1.js", "?202410251839334", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1924,13 +1871,9 @@ namespace GeneXus.Programs {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV7GoingBack","fld":"vGOINGBACK"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"Btnwizardfirstprevious_Visible","ctrl":"BTNWIZARDFIRSTPREVIOUS","prop":"Visible"}]}""");
-         setEventMetadata("ENTER","""{"handler":"E136T2","iparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV13LocationName","fld":"vLOCATIONNAME"},{"av":"AV21LocationDescription","fld":"vLOCATIONDESCRIPTION"},{"av":"AV19LocationAddressLine1","fld":"vLOCATIONADDRESSLINE1"},{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"},{"av":"AV17LocationCity","fld":"vLOCATIONCITY"},{"av":"AV31LocationPhoneCode","fld":"vLOCATIONPHONECODE"},{"av":"AV34LocationPhoneNumber","fld":"vLOCATIONPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV20LocationAddressLine2","fld":"vLOCATIONADDRESSLINE2"},{"av":"AV16LocationCountry","fld":"vLOCATIONCOUNTRY"},{"av":"AV14LocationEmail","fld":"vLOCATIONEMAIL"}]""");
+         setEventMetadata("ENTER","""{"handler":"E136T2","iparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV13LocationName","fld":"vLOCATIONNAME"},{"av":"AV21LocationDescription","fld":"vLOCATIONDESCRIPTION"},{"av":"AV19LocationAddressLine1","fld":"vLOCATIONADDRESSLINE1"},{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"},{"av":"AV17LocationCity","fld":"vLOCATIONCITY"},{"av":"AV14LocationEmail","fld":"vLOCATIONEMAIL"},{"av":"AV31LocationPhoneCode","fld":"vLOCATIONPHONECODE"},{"av":"AV34LocationPhoneNumber","fld":"vLOCATIONPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV20LocationAddressLine2","fld":"vLOCATIONADDRESSLINE2"},{"av":"AV16LocationCountry","fld":"vLOCATIONCOUNTRY"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV12LocationId","fld":"vLOCATIONID"},{"av":"AV15LocationPhone","fld":"vLOCATIONPHONE"}]}""");
          setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E146T2","iparms":[]}""");
-         setEventMetadata("VLOCATIONEMAIL.CONTROLVALUECHANGED","""{"handler":"E156T2","iparms":[{"av":"AV14LocationEmail","fld":"vLOCATIONEMAIL"}]""");
-         setEventMetadata("VLOCATIONEMAIL.CONTROLVALUECHANGED",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
-         setEventMetadata("VLOCATIONZIPCODE.CONTROLVALUECHANGED","""{"handler":"E166T2","iparms":[{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"}]""");
-         setEventMetadata("VLOCATIONZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VALIDV_LOCATIONEMAIL","""{"handler":"Validv_Locationemail","iparms":[]}""");
          setEventMetadata("VALIDV_LOCATIONID","""{"handler":"Validv_Locationid","iparms":[]}""");
          return  ;

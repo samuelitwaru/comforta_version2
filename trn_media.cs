@@ -130,9 +130,9 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "Gx_mode", Gx_mode);
                if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
                {
-                  AV7Trn_MediaId = StringUtil.StrToGuid( GetPar( "Trn_MediaId"));
-                  AssignAttri("", false, "AV7Trn_MediaId", AV7Trn_MediaId.ToString());
-                  GxWebStd.gx_hidden_field( context, "gxhash_vTRN_MEDIAID", GetSecureSignedToken( "", AV7Trn_MediaId, context));
+                  AV13MediaId = StringUtil.StrToGuid( GetPar( "MediaId"));
+                  AssignAttri("", false, "AV13MediaId", AV13MediaId.ToString());
+                  GxWebStd.gx_hidden_field( context, "gxhash_vMEDIAID", GetSecureSignedToken( "", AV13MediaId, context));
                }
             }
             if ( toggleJsOutput )
@@ -172,7 +172,7 @@ namespace GeneXus.Programs {
          }
          if ( ! context.isAjaxRequest( ) )
          {
-            GX_FocusControl = edtTrn_MediaId_Internalname;
+            GX_FocusControl = edtMediaId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          wbErr = false;
@@ -202,10 +202,10 @@ namespace GeneXus.Programs {
       }
 
       public void execute( string aP0_Gx_mode ,
-                           Guid aP1_Trn_MediaId )
+                           Guid aP1_MediaId )
       {
          this.Gx_mode = aP0_Gx_mode;
-         this.AV7Trn_MediaId = aP1_Trn_MediaId;
+         this.AV13MediaId = aP1_MediaId;
          ExecuteImpl();
       }
 
@@ -343,14 +343,14 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_MediaId_Internalname+"\"", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_MediaId_Internalname, context.GetMessage( "Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtMediaId_Internalname, context.GetMessage( "Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtTrn_MediaId_Internalname, A252Trn_MediaId.ToString(), A252Trn_MediaId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,21);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_MediaId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_MediaId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Media.htm");
+         GxWebStd.gx_single_line_edit( context, edtMediaId_Internalname, A409MediaId.ToString(), A409MediaId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,21);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMediaId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMediaId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -360,14 +360,14 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_MediaName_Internalname+"\"", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_MediaName_Internalname, context.GetMessage( "Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtMediaName_Internalname, context.GetMessage( "Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtTrn_MediaName_Internalname, A253Trn_MediaName, StringUtil.RTrim( context.localUtil.Format( A253Trn_MediaName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_MediaName_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_MediaName_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "Name", "start", true, "", "HLP_Trn_Media.htm");
+         GxWebStd.gx_single_line_edit( context, edtMediaName_Internalname, A410MediaName, StringUtil.RTrim( context.localUtil.Format( A410MediaName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMediaName_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMediaName_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "Name", "start", true, "", "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -377,14 +377,71 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_MediaUrl_Internalname+"\"", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+imgMediaImage_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_MediaUrl_Internalname, context.GetMessage( "Url", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, "", context.GetMessage( "Image", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+         /* Static Bitmap Variable */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'',false,'',0)\"";
+         ClassString = "Attribute";
+         StyleString = "";
+         A411MediaImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage))&&String.IsNullOrEmpty(StringUtil.RTrim( A40000MediaImage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)));
+         sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? A40000MediaImage_GXI : context.PathToRelativeUrl( A411MediaImage));
+         GxWebStd.gx_bitmap( context, imgMediaImage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, imgMediaImage_Enabled, "", "", 0, -1, 0, "", 0, "", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\"", "", "", "", 0, A411MediaImage_IsBlob, true, context.GetImageSrcSet( sImgUrl), "HLP_Trn_Media.htm");
+         AssignProp("", false, imgMediaImage_Internalname, "URL", (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? A40000MediaImage_GXI : context.PathToRelativeUrl( A411MediaImage)), true);
+         AssignProp("", false, imgMediaImage_Internalname, "IsBlob", StringUtil.BoolToStr( A411MediaImage_IsBlob), true);
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaSize_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtMediaSize_Internalname, context.GetMessage( "Size", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtTrn_MediaUrl_Internalname, A254Trn_MediaUrl, StringUtil.RTrim( context.localUtil.Format( A254Trn_MediaUrl, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\"", "'"+""+"'"+",false,"+"'"+""+"'", A254Trn_MediaUrl, "_blank", "", "", edtTrn_MediaUrl_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_MediaUrl_Enabled, 0, "url", "", 80, "chr", 1, "row", 1000, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Url", "start", true, "", "HLP_Trn_Media.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtMediaSize_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A413MediaSize), 8, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtMediaSize_Enabled!=0) ? context.localUtil.Format( (decimal)(A413MediaSize), "ZZZZZZZ9") : context.localUtil.Format( (decimal)(A413MediaSize), "ZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMediaSize_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMediaSize_Enabled, 0, "text", "1", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_Media.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaType_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtMediaType_Internalname, context.GetMessage( "Type", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+         /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 41,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtMediaType_Internalname, StringUtil.RTrim( A414MediaType), StringUtil.RTrim( context.localUtil.Format( A414MediaType, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,41);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMediaType_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMediaType_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Media.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaUrl_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtMediaUrl_Internalname, context.GetMessage( "Url", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+         /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 46,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtMediaUrl_Internalname, A412MediaUrl, StringUtil.RTrim( context.localUtil.Format( A412MediaUrl, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,46);\"", "'"+""+"'"+",false,"+"'"+""+"'", A412MediaUrl, "_blank", "", "", edtMediaUrl_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMediaUrl_Enabled, 0, "url", "", 80, "chr", 1, "row", 1000, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Url", "start", true, "", "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -404,21 +461,21 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
@@ -469,48 +526,76 @@ namespace GeneXus.Programs {
             {
                /* Read saved SDTs. */
                /* Read saved values. */
-               Z252Trn_MediaId = StringUtil.StrToGuid( cgiGet( "Z252Trn_MediaId"));
-               Z253Trn_MediaName = cgiGet( "Z253Trn_MediaName");
-               Z254Trn_MediaUrl = cgiGet( "Z254Trn_MediaUrl");
+               Z409MediaId = StringUtil.StrToGuid( cgiGet( "Z409MediaId"));
+               Z410MediaName = cgiGet( "Z410MediaName");
+               Z413MediaSize = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z413MediaSize"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               Z414MediaType = cgiGet( "Z414MediaType");
+               Z412MediaUrl = cgiGet( "Z412MediaUrl");
                IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
-               AV7Trn_MediaId = StringUtil.StrToGuid( cgiGet( "vTRN_MEDIAID"));
+               AV13MediaId = StringUtil.StrToGuid( cgiGet( "vMEDIAID"));
                Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               A40000MediaImage_GXI = cgiGet( "MEDIAIMAGE_GXI");
+               n40000MediaImage_GXI = (String.IsNullOrEmpty(StringUtil.RTrim( A40000MediaImage_GXI))&&String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
                /* Read variables values. */
-               if ( StringUtil.StrCmp(cgiGet( edtTrn_MediaId_Internalname), "") == 0 )
+               if ( StringUtil.StrCmp(cgiGet( edtMediaId_Internalname), "") == 0 )
                {
-                  A252Trn_MediaId = Guid.Empty;
-                  AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+                  A409MediaId = Guid.Empty;
+                  AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
                }
                else
                {
                   try
                   {
-                     A252Trn_MediaId = StringUtil.StrToGuid( cgiGet( edtTrn_MediaId_Internalname));
-                     AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+                     A409MediaId = StringUtil.StrToGuid( cgiGet( edtMediaId_Internalname));
+                     AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
                   }
                   catch ( Exception  )
                   {
-                     GX_msglist.addItem(context.GetMessage( "GXM_invalidguid", ""), 1, "TRN_MEDIAID");
+                     GX_msglist.addItem(context.GetMessage( "GXM_invalidguid", ""), 1, "MEDIAID");
                      AnyError = 1;
-                     GX_FocusControl = edtTrn_MediaId_Internalname;
+                     GX_FocusControl = edtMediaId_Internalname;
                      AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                      wbErr = true;
                   }
                }
-               A253Trn_MediaName = cgiGet( edtTrn_MediaName_Internalname);
-               AssignAttri("", false, "A253Trn_MediaName", A253Trn_MediaName);
-               A254Trn_MediaUrl = cgiGet( edtTrn_MediaUrl_Internalname);
-               AssignAttri("", false, "A254Trn_MediaUrl", A254Trn_MediaUrl);
+               A410MediaName = cgiGet( edtMediaName_Internalname);
+               AssignAttri("", false, "A410MediaName", A410MediaName);
+               A411MediaImage = cgiGet( imgMediaImage_Internalname);
+               n411MediaImage = false;
+               AssignAttri("", false, "A411MediaImage", A411MediaImage);
+               n411MediaImage = (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
+               if ( ( ( context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 99999999 )) ) )
+               {
+                  GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "MEDIASIZE");
+                  AnyError = 1;
+                  GX_FocusControl = edtMediaSize_Internalname;
+                  AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+                  wbErr = true;
+                  A413MediaSize = 0;
+                  AssignAttri("", false, "A413MediaSize", StringUtil.LTrimStr( (decimal)(A413MediaSize), 8, 0));
+               }
+               else
+               {
+                  A413MediaSize = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+                  AssignAttri("", false, "A413MediaSize", StringUtil.LTrimStr( (decimal)(A413MediaSize), 8, 0));
+               }
+               A414MediaType = cgiGet( edtMediaType_Internalname);
+               AssignAttri("", false, "A414MediaType", A414MediaType);
+               A412MediaUrl = cgiGet( edtMediaUrl_Internalname);
+               AssignAttri("", false, "A412MediaUrl", A412MediaUrl);
                /* Read subfile selected row values. */
                /* Read hidden variables. */
+               getMultimediaValue(imgMediaImage_Internalname, ref  A411MediaImage, ref  A40000MediaImage_GXI);
+               n40000MediaImage_GXI = (String.IsNullOrEmpty(StringUtil.RTrim( A40000MediaImage_GXI))&&String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
+               n411MediaImage = (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
                GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Media");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
                hsh = cgiGet( "hsh");
-               if ( ( ! ( ( A252Trn_MediaId != Z252Trn_MediaId ) ) || ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) ) && ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
+               if ( ( ! ( ( A409MediaId != Z409MediaId ) ) || ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) ) && ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
                {
                   GXUtil.WriteLogError("trn_media:[ SecurityCheckFailed (403 Forbidden) value for]"+forbiddenHiddens.ToJSonString());
                   GxWebError = 1;
@@ -531,20 +616,20 @@ namespace GeneXus.Programs {
                {
                   Gx_mode = "DSP";
                   AssignAttri("", false, "Gx_mode", Gx_mode);
-                  A252Trn_MediaId = StringUtil.StrToGuid( GetPar( "Trn_MediaId"));
-                  AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+                  A409MediaId = StringUtil.StrToGuid( GetPar( "MediaId"));
+                  AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
                   getEqualNoModal( ) ;
-                  if ( ! (Guid.Empty==AV7Trn_MediaId) )
+                  if ( ! (Guid.Empty==AV13MediaId) )
                   {
-                     A252Trn_MediaId = AV7Trn_MediaId;
-                     AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+                     A409MediaId = AV13MediaId;
+                     AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
                   }
                   else
                   {
-                     if ( IsIns( )  && (Guid.Empty==A252Trn_MediaId) && ( Gx_BScreen == 0 ) )
+                     if ( IsIns( )  && (Guid.Empty==A409MediaId) && ( Gx_BScreen == 0 ) )
                      {
-                        A252Trn_MediaId = Guid.NewGuid( );
-                        AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+                        A409MediaId = Guid.NewGuid( );
+                        AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
                      }
                   }
                   Gx_mode = "DSP";
@@ -556,30 +641,30 @@ namespace GeneXus.Programs {
                {
                   if ( IsDsp( ) )
                   {
-                     sMode48 = Gx_mode;
+                     sMode83 = Gx_mode;
                      Gx_mode = "UPD";
                      AssignAttri("", false, "Gx_mode", Gx_mode);
-                     if ( ! (Guid.Empty==AV7Trn_MediaId) )
+                     if ( ! (Guid.Empty==AV13MediaId) )
                      {
-                        A252Trn_MediaId = AV7Trn_MediaId;
-                        AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+                        A409MediaId = AV13MediaId;
+                        AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
                      }
                      else
                      {
-                        if ( IsIns( )  && (Guid.Empty==A252Trn_MediaId) && ( Gx_BScreen == 0 ) )
+                        if ( IsIns( )  && (Guid.Empty==A409MediaId) && ( Gx_BScreen == 0 ) )
                         {
-                           A252Trn_MediaId = Guid.NewGuid( );
-                           AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+                           A409MediaId = Guid.NewGuid( );
+                           AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
                         }
                      }
-                     Gx_mode = sMode48;
+                     Gx_mode = sMode83;
                      AssignAttri("", false, "Gx_mode", Gx_mode);
                   }
                   standaloneModal( ) ;
                   if ( ! IsIns( ) )
                   {
                      getByPrimaryKey( ) ;
-                     if ( RcdFound48 == 1 )
+                     if ( RcdFound83 == 1 )
                      {
                         if ( IsDlt( ) )
                         {
@@ -594,9 +679,9 @@ namespace GeneXus.Programs {
                      }
                      else
                      {
-                        GX_msglist.addItem(context.GetMessage( "GXM_noinsert", ""), 1, "TRN_MEDIAID");
+                        GX_msglist.addItem(context.GetMessage( "GXM_noinsert", ""), 1, "MEDIAID");
                         AnyError = 1;
-                        GX_FocusControl = edtTrn_MediaId_Internalname;
+                        GX_FocusControl = edtMediaId_Internalname;
                         AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                      }
                   }
@@ -675,7 +760,7 @@ namespace GeneXus.Programs {
             if ( IsIns( )  )
             {
                /* Clear variables for new insertion. */
-               InitAll0X48( ) ;
+               InitAll0X83( ) ;
                standaloneNotModal( ) ;
                standaloneModal( ) ;
             }
@@ -706,7 +791,7 @@ namespace GeneXus.Programs {
                bttBtntrn_enter_Visible = 0;
                AssignProp("", false, bttBtntrn_enter_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtntrn_enter_Visible), 5, 0), true);
             }
-            DisableAttributes0X48( ) ;
+            DisableAttributes0X83( ) ;
          }
       }
 
@@ -727,17 +812,17 @@ namespace GeneXus.Programs {
 
       protected void CONFIRM_0X0( )
       {
-         BeforeValidate0X48( ) ;
+         BeforeValidate0X83( ) ;
          if ( AnyError == 0 )
          {
             if ( IsDlt( ) )
             {
-               OnDeleteControls0X48( ) ;
+               OnDeleteControls0X83( ) ;
             }
             else
             {
-               CheckExtendedTable0X48( ) ;
-               CloseExtendedTableCursors0X48( ) ;
+               CheckExtendedTable0X83( ) ;
+               CloseExtendedTableCursors0X83( ) ;
             }
          }
          if ( AnyError == 0 )
@@ -778,26 +863,34 @@ namespace GeneXus.Programs {
          if (true) return;
       }
 
-      protected void ZM0X48( short GX_JID )
+      protected void ZM0X83( short GX_JID )
       {
          if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
-               Z253Trn_MediaName = T000X3_A253Trn_MediaName[0];
-               Z254Trn_MediaUrl = T000X3_A254Trn_MediaUrl[0];
+               Z410MediaName = T000X3_A410MediaName[0];
+               Z413MediaSize = T000X3_A413MediaSize[0];
+               Z414MediaType = T000X3_A414MediaType[0];
+               Z412MediaUrl = T000X3_A412MediaUrl[0];
             }
             else
             {
-               Z253Trn_MediaName = A253Trn_MediaName;
-               Z254Trn_MediaUrl = A254Trn_MediaUrl;
+               Z410MediaName = A410MediaName;
+               Z413MediaSize = A413MediaSize;
+               Z414MediaType = A414MediaType;
+               Z412MediaUrl = A412MediaUrl;
             }
          }
          if ( GX_JID == -6 )
          {
-            Z252Trn_MediaId = A252Trn_MediaId;
-            Z253Trn_MediaName = A253Trn_MediaName;
-            Z254Trn_MediaUrl = A254Trn_MediaUrl;
+            Z409MediaId = A409MediaId;
+            Z410MediaName = A410MediaName;
+            Z411MediaImage = A411MediaImage;
+            Z40000MediaImage_GXI = A40000MediaImage_GXI;
+            Z413MediaSize = A413MediaSize;
+            Z414MediaType = A414MediaType;
+            Z412MediaUrl = A412MediaUrl;
          }
       }
 
@@ -807,20 +900,20 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          bttBtntrn_delete_Enabled = 0;
          AssignProp("", false, bttBtntrn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtntrn_delete_Enabled), 5, 0), true);
-         if ( ! (Guid.Empty==AV7Trn_MediaId) )
+         if ( ! (Guid.Empty==AV13MediaId) )
          {
-            edtTrn_MediaId_Enabled = 0;
-            AssignProp("", false, edtTrn_MediaId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_MediaId_Enabled), 5, 0), true);
+            edtMediaId_Enabled = 0;
+            AssignProp("", false, edtMediaId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMediaId_Enabled), 5, 0), true);
          }
          else
          {
-            edtTrn_MediaId_Enabled = 1;
-            AssignProp("", false, edtTrn_MediaId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_MediaId_Enabled), 5, 0), true);
+            edtMediaId_Enabled = 1;
+            AssignProp("", false, edtMediaId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMediaId_Enabled), 5, 0), true);
          }
-         if ( ! (Guid.Empty==AV7Trn_MediaId) )
+         if ( ! (Guid.Empty==AV13MediaId) )
          {
-            edtTrn_MediaId_Enabled = 0;
-            AssignProp("", false, edtTrn_MediaId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_MediaId_Enabled), 5, 0), true);
+            edtMediaId_Enabled = 0;
+            AssignProp("", false, edtMediaId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMediaId_Enabled), 5, 0), true);
          }
       }
 
@@ -836,17 +929,17 @@ namespace GeneXus.Programs {
             bttBtntrn_enter_Enabled = 1;
             AssignProp("", false, bttBtntrn_enter_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtntrn_enter_Enabled), 5, 0), true);
          }
-         if ( ! (Guid.Empty==AV7Trn_MediaId) )
+         if ( ! (Guid.Empty==AV13MediaId) )
          {
-            A252Trn_MediaId = AV7Trn_MediaId;
-            AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+            A409MediaId = AV13MediaId;
+            AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
          }
          else
          {
-            if ( IsIns( )  && (Guid.Empty==A252Trn_MediaId) && ( Gx_BScreen == 0 ) )
+            if ( IsIns( )  && (Guid.Empty==A409MediaId) && ( Gx_BScreen == 0 ) )
             {
-               A252Trn_MediaId = Guid.NewGuid( );
-               AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+               A409MediaId = Guid.NewGuid( );
+               AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
             }
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
@@ -854,42 +947,55 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void Load0X48( )
+      protected void Load0X83( )
       {
          /* Using cursor T000X4 */
-         pr_default.execute(2, new Object[] {A252Trn_MediaId});
+         pr_default.execute(2, new Object[] {A409MediaId});
          if ( (pr_default.getStatus(2) != 101) )
          {
-            RcdFound48 = 1;
-            A253Trn_MediaName = T000X4_A253Trn_MediaName[0];
-            AssignAttri("", false, "A253Trn_MediaName", A253Trn_MediaName);
-            A254Trn_MediaUrl = T000X4_A254Trn_MediaUrl[0];
-            AssignAttri("", false, "A254Trn_MediaUrl", A254Trn_MediaUrl);
-            ZM0X48( -6) ;
+            RcdFound83 = 1;
+            A410MediaName = T000X4_A410MediaName[0];
+            AssignAttri("", false, "A410MediaName", A410MediaName);
+            A40000MediaImage_GXI = T000X4_A40000MediaImage_GXI[0];
+            n40000MediaImage_GXI = T000X4_n40000MediaImage_GXI[0];
+            AssignProp("", false, imgMediaImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? A40000MediaImage_GXI : context.convertURL( context.PathToRelativeUrl( A411MediaImage))), true);
+            AssignProp("", false, imgMediaImage_Internalname, "SrcSet", context.GetImageSrcSet( A411MediaImage), true);
+            A413MediaSize = T000X4_A413MediaSize[0];
+            AssignAttri("", false, "A413MediaSize", StringUtil.LTrimStr( (decimal)(A413MediaSize), 8, 0));
+            A414MediaType = T000X4_A414MediaType[0];
+            AssignAttri("", false, "A414MediaType", A414MediaType);
+            A412MediaUrl = T000X4_A412MediaUrl[0];
+            AssignAttri("", false, "A412MediaUrl", A412MediaUrl);
+            A411MediaImage = T000X4_A411MediaImage[0];
+            n411MediaImage = T000X4_n411MediaImage[0];
+            AssignAttri("", false, "A411MediaImage", A411MediaImage);
+            AssignProp("", false, imgMediaImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? A40000MediaImage_GXI : context.convertURL( context.PathToRelativeUrl( A411MediaImage))), true);
+            AssignProp("", false, imgMediaImage_Internalname, "SrcSet", context.GetImageSrcSet( A411MediaImage), true);
+            ZM0X83( -6) ;
          }
          pr_default.close(2);
-         OnLoadActions0X48( ) ;
+         OnLoadActions0X83( ) ;
       }
 
-      protected void OnLoadActions0X48( )
+      protected void OnLoadActions0X83( )
       {
       }
 
-      protected void CheckExtendedTable0X48( )
+      protected void CheckExtendedTable0X83( )
       {
          Gx_BScreen = 1;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          standaloneModal( ) ;
-         if ( ! ( GxRegex.IsMatch(A254Trn_MediaUrl,"^((?:[a-zA-Z]+:(//)?)?((?:(?:[a-zA-Z]([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*)(?:\\.(?:([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*))*)|(?:(\\d{1,3}\\.){3}\\d{1,3}))(?::\\d+)?(?:/([a-zA-Z0-9$\\-_@.&+!*\"'(),=;: ]|%[0-9a-fA-F]{2})+)*/?(?:[#?](?:[a-zA-Z0-9$\\-_@.&+!*\"'(),=;: /]|%[0-9a-fA-F]{2})*)?)?\\s*$") ) )
+         if ( ! ( GxRegex.IsMatch(A412MediaUrl,"^((?:[a-zA-Z]+:(//)?)?((?:(?:[a-zA-Z]([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*)(?:\\.(?:([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*))*)|(?:(\\d{1,3}\\.){3}\\d{1,3}))(?::\\d+)?(?:/([a-zA-Z0-9$\\-_@.&+!*\"'(),=;: ]|%[0-9a-fA-F]{2})+)*/?(?:[#?](?:[a-zA-Z0-9$\\-_@.&+!*\"'(),=;: /]|%[0-9a-fA-F]{2})*)?)?\\s*$") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Trn_Media Url", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "TRN_MEDIAURL");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Media Url", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "MEDIAURL");
             AnyError = 1;
-            GX_FocusControl = edtTrn_MediaUrl_Internalname;
+            GX_FocusControl = edtMediaUrl_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
       }
 
-      protected void CloseExtendedTableCursors0X48( )
+      protected void CloseExtendedTableCursors0X83( )
       {
       }
 
@@ -897,17 +1003,17 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void GetKey0X48( )
+      protected void GetKey0X83( )
       {
          /* Using cursor T000X5 */
-         pr_default.execute(3, new Object[] {A252Trn_MediaId});
+         pr_default.execute(3, new Object[] {A409MediaId});
          if ( (pr_default.getStatus(3) != 101) )
          {
-            RcdFound48 = 1;
+            RcdFound83 = 1;
          }
          else
          {
-            RcdFound48 = 0;
+            RcdFound83 = 0;
          }
          pr_default.close(3);
       }
@@ -915,39 +1021,52 @@ namespace GeneXus.Programs {
       protected void getByPrimaryKey( )
       {
          /* Using cursor T000X3 */
-         pr_default.execute(1, new Object[] {A252Trn_MediaId});
+         pr_default.execute(1, new Object[] {A409MediaId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0X48( 6) ;
-            RcdFound48 = 1;
-            A252Trn_MediaId = T000X3_A252Trn_MediaId[0];
-            AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
-            A253Trn_MediaName = T000X3_A253Trn_MediaName[0];
-            AssignAttri("", false, "A253Trn_MediaName", A253Trn_MediaName);
-            A254Trn_MediaUrl = T000X3_A254Trn_MediaUrl[0];
-            AssignAttri("", false, "A254Trn_MediaUrl", A254Trn_MediaUrl);
-            Z252Trn_MediaId = A252Trn_MediaId;
-            sMode48 = Gx_mode;
+            ZM0X83( 6) ;
+            RcdFound83 = 1;
+            A409MediaId = T000X3_A409MediaId[0];
+            AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
+            A410MediaName = T000X3_A410MediaName[0];
+            AssignAttri("", false, "A410MediaName", A410MediaName);
+            A40000MediaImage_GXI = T000X3_A40000MediaImage_GXI[0];
+            n40000MediaImage_GXI = T000X3_n40000MediaImage_GXI[0];
+            AssignProp("", false, imgMediaImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? A40000MediaImage_GXI : context.convertURL( context.PathToRelativeUrl( A411MediaImage))), true);
+            AssignProp("", false, imgMediaImage_Internalname, "SrcSet", context.GetImageSrcSet( A411MediaImage), true);
+            A413MediaSize = T000X3_A413MediaSize[0];
+            AssignAttri("", false, "A413MediaSize", StringUtil.LTrimStr( (decimal)(A413MediaSize), 8, 0));
+            A414MediaType = T000X3_A414MediaType[0];
+            AssignAttri("", false, "A414MediaType", A414MediaType);
+            A412MediaUrl = T000X3_A412MediaUrl[0];
+            AssignAttri("", false, "A412MediaUrl", A412MediaUrl);
+            A411MediaImage = T000X3_A411MediaImage[0];
+            n411MediaImage = T000X3_n411MediaImage[0];
+            AssignAttri("", false, "A411MediaImage", A411MediaImage);
+            AssignProp("", false, imgMediaImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? A40000MediaImage_GXI : context.convertURL( context.PathToRelativeUrl( A411MediaImage))), true);
+            AssignProp("", false, imgMediaImage_Internalname, "SrcSet", context.GetImageSrcSet( A411MediaImage), true);
+            Z409MediaId = A409MediaId;
+            sMode83 = Gx_mode;
             Gx_mode = "DSP";
             AssignAttri("", false, "Gx_mode", Gx_mode);
-            Load0X48( ) ;
+            Load0X83( ) ;
             if ( AnyError == 1 )
             {
-               RcdFound48 = 0;
-               InitializeNonKey0X48( ) ;
+               RcdFound83 = 0;
+               InitializeNonKey0X83( ) ;
             }
-            Gx_mode = sMode48;
+            Gx_mode = sMode83;
             AssignAttri("", false, "Gx_mode", Gx_mode);
          }
          else
          {
-            RcdFound48 = 0;
-            InitializeNonKey0X48( ) ;
-            sMode48 = Gx_mode;
+            RcdFound83 = 0;
+            InitializeNonKey0X83( ) ;
+            sMode83 = Gx_mode;
             Gx_mode = "DSP";
             AssignAttri("", false, "Gx_mode", Gx_mode);
             standaloneModal( ) ;
-            Gx_mode = sMode48;
+            Gx_mode = sMode83;
             AssignAttri("", false, "Gx_mode", Gx_mode);
          }
          pr_default.close(1);
@@ -955,8 +1074,8 @@ namespace GeneXus.Programs {
 
       protected void getEqualNoModal( )
       {
-         GetKey0X48( ) ;
-         if ( RcdFound48 == 0 )
+         GetKey0X83( ) ;
+         if ( RcdFound83 == 0 )
          {
          }
          else
@@ -967,20 +1086,20 @@ namespace GeneXus.Programs {
 
       protected void move_next( )
       {
-         RcdFound48 = 0;
+         RcdFound83 = 0;
          /* Using cursor T000X6 */
-         pr_default.execute(4, new Object[] {A252Trn_MediaId});
+         pr_default.execute(4, new Object[] {A409MediaId});
          if ( (pr_default.getStatus(4) != 101) )
          {
-            while ( (pr_default.getStatus(4) != 101) && ( ( GuidUtil.Compare(T000X6_A252Trn_MediaId[0], A252Trn_MediaId, 0) < 0 ) ) )
+            while ( (pr_default.getStatus(4) != 101) && ( ( GuidUtil.Compare(T000X6_A409MediaId[0], A409MediaId, 0) < 0 ) ) )
             {
                pr_default.readNext(4);
             }
-            if ( (pr_default.getStatus(4) != 101) && ( ( GuidUtil.Compare(T000X6_A252Trn_MediaId[0], A252Trn_MediaId, 0) > 0 ) ) )
+            if ( (pr_default.getStatus(4) != 101) && ( ( GuidUtil.Compare(T000X6_A409MediaId[0], A409MediaId, 0) > 0 ) ) )
             {
-               A252Trn_MediaId = T000X6_A252Trn_MediaId[0];
-               AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
-               RcdFound48 = 1;
+               A409MediaId = T000X6_A409MediaId[0];
+               AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
+               RcdFound83 = 1;
             }
          }
          pr_default.close(4);
@@ -988,20 +1107,20 @@ namespace GeneXus.Programs {
 
       protected void move_previous( )
       {
-         RcdFound48 = 0;
+         RcdFound83 = 0;
          /* Using cursor T000X7 */
-         pr_default.execute(5, new Object[] {A252Trn_MediaId});
+         pr_default.execute(5, new Object[] {A409MediaId});
          if ( (pr_default.getStatus(5) != 101) )
          {
-            while ( (pr_default.getStatus(5) != 101) && ( ( GuidUtil.Compare(T000X7_A252Trn_MediaId[0], A252Trn_MediaId, 0) > 0 ) ) )
+            while ( (pr_default.getStatus(5) != 101) && ( ( GuidUtil.Compare(T000X7_A409MediaId[0], A409MediaId, 0) > 0 ) ) )
             {
                pr_default.readNext(5);
             }
-            if ( (pr_default.getStatus(5) != 101) && ( ( GuidUtil.Compare(T000X7_A252Trn_MediaId[0], A252Trn_MediaId, 0) < 0 ) ) )
+            if ( (pr_default.getStatus(5) != 101) && ( ( GuidUtil.Compare(T000X7_A409MediaId[0], A409MediaId, 0) < 0 ) ) )
             {
-               A252Trn_MediaId = T000X7_A252Trn_MediaId[0];
-               AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
-               RcdFound48 = 1;
+               A409MediaId = T000X7_A409MediaId[0];
+               AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
+               RcdFound83 = 1;
             }
          }
          pr_default.close(5);
@@ -1010,13 +1129,13 @@ namespace GeneXus.Programs {
       protected void btn_enter( )
       {
          nKeyPressed = 1;
-         GetKey0X48( ) ;
+         GetKey0X83( ) ;
          if ( IsIns( ) )
          {
             /* Insert record */
-            GX_FocusControl = edtTrn_MediaId_Internalname;
+            GX_FocusControl = edtMediaId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
-            Insert0X48( ) ;
+            Insert0X83( ) ;
             if ( AnyError == 1 )
             {
                GX_FocusControl = "";
@@ -1025,40 +1144,40 @@ namespace GeneXus.Programs {
          }
          else
          {
-            if ( RcdFound48 == 1 )
+            if ( RcdFound83 == 1 )
             {
-               if ( A252Trn_MediaId != Z252Trn_MediaId )
+               if ( A409MediaId != Z409MediaId )
                {
-                  A252Trn_MediaId = Z252Trn_MediaId;
-                  AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
-                  GX_msglist.addItem(context.GetMessage( "GXM_getbeforeupd", ""), "CandidateKeyNotFound", 1, "TRN_MEDIAID");
+                  A409MediaId = Z409MediaId;
+                  AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
+                  GX_msglist.addItem(context.GetMessage( "GXM_getbeforeupd", ""), "CandidateKeyNotFound", 1, "MEDIAID");
                   AnyError = 1;
-                  GX_FocusControl = edtTrn_MediaId_Internalname;
+                  GX_FocusControl = edtMediaId_Internalname;
                   AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                }
                else if ( IsDlt( ) )
                {
                   delete( ) ;
                   AfterTrn( ) ;
-                  GX_FocusControl = edtTrn_MediaId_Internalname;
+                  GX_FocusControl = edtMediaId_Internalname;
                   AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                }
                else
                {
                   /* Update record */
-                  Update0X48( ) ;
-                  GX_FocusControl = edtTrn_MediaId_Internalname;
+                  Update0X83( ) ;
+                  GX_FocusControl = edtMediaId_Internalname;
                   AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                }
             }
             else
             {
-               if ( A252Trn_MediaId != Z252Trn_MediaId )
+               if ( A409MediaId != Z409MediaId )
                {
                   /* Insert record */
-                  GX_FocusControl = edtTrn_MediaId_Internalname;
+                  GX_FocusControl = edtMediaId_Internalname;
                   AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
-                  Insert0X48( ) ;
+                  Insert0X83( ) ;
                   if ( AnyError == 1 )
                   {
                      GX_FocusControl = "";
@@ -1069,17 +1188,17 @@ namespace GeneXus.Programs {
                {
                   if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
                   {
-                     GX_msglist.addItem(context.GetMessage( "GXM_recdeleted", ""), 1, "TRN_MEDIAID");
+                     GX_msglist.addItem(context.GetMessage( "GXM_recdeleted", ""), 1, "MEDIAID");
                      AnyError = 1;
-                     GX_FocusControl = edtTrn_MediaId_Internalname;
+                     GX_FocusControl = edtMediaId_Internalname;
                      AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                   }
                   else
                   {
                      /* Insert record */
-                     GX_FocusControl = edtTrn_MediaId_Internalname;
+                     GX_FocusControl = edtMediaId_Internalname;
                      AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
-                     Insert0X48( ) ;
+                     Insert0X83( ) ;
                      if ( AnyError == 1 )
                      {
                         GX_FocusControl = "";
@@ -1101,20 +1220,20 @@ namespace GeneXus.Programs {
 
       protected void btn_delete( )
       {
-         if ( A252Trn_MediaId != Z252Trn_MediaId )
+         if ( A409MediaId != Z409MediaId )
          {
-            A252Trn_MediaId = Z252Trn_MediaId;
-            AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
-            GX_msglist.addItem(context.GetMessage( "GXM_getbeforedlt", ""), 1, "TRN_MEDIAID");
+            A409MediaId = Z409MediaId;
+            AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
+            GX_msglist.addItem(context.GetMessage( "GXM_getbeforedlt", ""), 1, "MEDIAID");
             AnyError = 1;
-            GX_FocusControl = edtTrn_MediaId_Internalname;
+            GX_FocusControl = edtMediaId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          else
          {
             delete( ) ;
             AfterTrn( ) ;
-            GX_FocusControl = edtTrn_MediaId_Internalname;
+            GX_FocusControl = edtMediaId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( AnyError != 0 )
@@ -1122,31 +1241,43 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void CheckOptimisticConcurrency0X48( )
+      protected void CheckOptimisticConcurrency0X83( )
       {
          if ( ! IsIns( ) )
          {
             /* Using cursor T000X2 */
-            pr_default.execute(0, new Object[] {A252Trn_MediaId});
+            pr_default.execute(0, new Object[] {A409MediaId});
             if ( (pr_default.getStatus(0) == 103) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Media"}), "RecordIsLocked", 1, "");
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z253Trn_MediaName, T000X2_A253Trn_MediaName[0]) != 0 ) || ( StringUtil.StrCmp(Z254Trn_MediaUrl, T000X2_A254Trn_MediaUrl[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z410MediaName, T000X2_A410MediaName[0]) != 0 ) || ( Z413MediaSize != T000X2_A413MediaSize[0] ) || ( StringUtil.StrCmp(Z414MediaType, T000X2_A414MediaType[0]) != 0 ) || ( StringUtil.StrCmp(Z412MediaUrl, T000X2_A412MediaUrl[0]) != 0 ) )
             {
-               if ( StringUtil.StrCmp(Z253Trn_MediaName, T000X2_A253Trn_MediaName[0]) != 0 )
+               if ( StringUtil.StrCmp(Z410MediaName, T000X2_A410MediaName[0]) != 0 )
                {
-                  GXUtil.WriteLog("trn_media:[seudo value changed for attri]"+"Trn_MediaName");
-                  GXUtil.WriteLogRaw("Old: ",Z253Trn_MediaName);
-                  GXUtil.WriteLogRaw("Current: ",T000X2_A253Trn_MediaName[0]);
+                  GXUtil.WriteLog("trn_media:[seudo value changed for attri]"+"MediaName");
+                  GXUtil.WriteLogRaw("Old: ",Z410MediaName);
+                  GXUtil.WriteLogRaw("Current: ",T000X2_A410MediaName[0]);
                }
-               if ( StringUtil.StrCmp(Z254Trn_MediaUrl, T000X2_A254Trn_MediaUrl[0]) != 0 )
+               if ( Z413MediaSize != T000X2_A413MediaSize[0] )
                {
-                  GXUtil.WriteLog("trn_media:[seudo value changed for attri]"+"Trn_MediaUrl");
-                  GXUtil.WriteLogRaw("Old: ",Z254Trn_MediaUrl);
-                  GXUtil.WriteLogRaw("Current: ",T000X2_A254Trn_MediaUrl[0]);
+                  GXUtil.WriteLog("trn_media:[seudo value changed for attri]"+"MediaSize");
+                  GXUtil.WriteLogRaw("Old: ",Z413MediaSize);
+                  GXUtil.WriteLogRaw("Current: ",T000X2_A413MediaSize[0]);
+               }
+               if ( StringUtil.StrCmp(Z414MediaType, T000X2_A414MediaType[0]) != 0 )
+               {
+                  GXUtil.WriteLog("trn_media:[seudo value changed for attri]"+"MediaType");
+                  GXUtil.WriteLogRaw("Old: ",Z414MediaType);
+                  GXUtil.WriteLogRaw("Current: ",T000X2_A414MediaType[0]);
+               }
+               if ( StringUtil.StrCmp(Z412MediaUrl, T000X2_A412MediaUrl[0]) != 0 )
+               {
+                  GXUtil.WriteLog("trn_media:[seudo value changed for attri]"+"MediaUrl");
+                  GXUtil.WriteLogRaw("Old: ",Z412MediaUrl);
+                  GXUtil.WriteLogRaw("Current: ",T000X2_A412MediaUrl[0]);
                }
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Media"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -1155,7 +1286,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void Insert0X48( )
+      protected void Insert0X83( )
       {
          if ( ! IsAuthorized("trn_media_Insert") )
          {
@@ -1163,25 +1294,25 @@ namespace GeneXus.Programs {
             AnyError = 1;
             return  ;
          }
-         BeforeValidate0X48( ) ;
+         BeforeValidate0X83( ) ;
          if ( AnyError == 0 )
          {
-            CheckExtendedTable0X48( ) ;
+            CheckExtendedTable0X83( ) ;
          }
          if ( AnyError == 0 )
          {
-            ZM0X48( 0) ;
-            CheckOptimisticConcurrency0X48( ) ;
+            ZM0X83( 0) ;
+            CheckOptimisticConcurrency0X83( ) ;
             if ( AnyError == 0 )
             {
-               AfterConfirm0X48( ) ;
+               AfterConfirm0X83( ) ;
                if ( AnyError == 0 )
                {
-                  BeforeInsert0X48( ) ;
+                  BeforeInsert0X83( ) ;
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T000X8 */
-                     pr_default.execute(6, new Object[] {A252Trn_MediaId, A253Trn_MediaName, A254Trn_MediaUrl});
+                     pr_default.execute(6, new Object[] {A409MediaId, A410MediaName, n411MediaImage, A411MediaImage, n40000MediaImage_GXI, A40000MediaImage_GXI, A413MediaSize, A414MediaType, A412MediaUrl});
                      pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                      if ( (pr_default.getStatus(6) == 1) )
@@ -1214,14 +1345,14 @@ namespace GeneXus.Programs {
             }
             else
             {
-               Load0X48( ) ;
+               Load0X83( ) ;
             }
-            EndLevel0X48( ) ;
+            EndLevel0X83( ) ;
          }
-         CloseExtendedTableCursors0X48( ) ;
+         CloseExtendedTableCursors0X83( ) ;
       }
 
-      protected void Update0X48( )
+      protected void Update0X83( )
       {
          if ( ! IsAuthorized("trn_media_Update") )
          {
@@ -1229,24 +1360,24 @@ namespace GeneXus.Programs {
             AnyError = 1;
             return  ;
          }
-         BeforeValidate0X48( ) ;
+         BeforeValidate0X83( ) ;
          if ( AnyError == 0 )
          {
-            CheckExtendedTable0X48( ) ;
+            CheckExtendedTable0X83( ) ;
          }
          if ( AnyError == 0 )
          {
-            CheckOptimisticConcurrency0X48( ) ;
+            CheckOptimisticConcurrency0X83( ) ;
             if ( AnyError == 0 )
             {
-               AfterConfirm0X48( ) ;
+               AfterConfirm0X83( ) ;
                if ( AnyError == 0 )
                {
-                  BeforeUpdate0X48( ) ;
+                  BeforeUpdate0X83( ) ;
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T000X9 */
-                     pr_default.execute(7, new Object[] {A253Trn_MediaName, A254Trn_MediaUrl, A252Trn_MediaId});
+                     pr_default.execute(7, new Object[] {A410MediaName, A413MediaSize, A414MediaType, A412MediaUrl, A409MediaId});
                      pr_default.close(7);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                      if ( (pr_default.getStatus(7) == 103) )
@@ -1254,7 +1385,7 @@ namespace GeneXus.Programs {
                         GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Media"}), "RecordIsLocked", 1, "");
                         AnyError = 1;
                      }
-                     DeferredUpdate0X48( ) ;
+                     DeferredUpdate0X83( ) ;
                      if ( AnyError == 0 )
                      {
                         /* Start of After( update) rules */
@@ -1278,13 +1409,20 @@ namespace GeneXus.Programs {
                   }
                }
             }
-            EndLevel0X48( ) ;
+            EndLevel0X83( ) ;
          }
-         CloseExtendedTableCursors0X48( ) ;
+         CloseExtendedTableCursors0X83( ) ;
       }
 
-      protected void DeferredUpdate0X48( )
+      protected void DeferredUpdate0X83( )
       {
+         if ( AnyError == 0 )
+         {
+            /* Using cursor T000X10 */
+            pr_default.execute(8, new Object[] {n411MediaImage, A411MediaImage, n40000MediaImage_GXI, A40000MediaImage_GXI, A409MediaId});
+            pr_default.close(8);
+            pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
+         }
       }
 
       protected void delete( )
@@ -1295,24 +1433,24 @@ namespace GeneXus.Programs {
             AnyError = 1;
             return  ;
          }
-         BeforeValidate0X48( ) ;
+         BeforeValidate0X83( ) ;
          if ( AnyError == 0 )
          {
-            CheckOptimisticConcurrency0X48( ) ;
+            CheckOptimisticConcurrency0X83( ) ;
          }
          if ( AnyError == 0 )
          {
-            OnDeleteControls0X48( ) ;
-            AfterConfirm0X48( ) ;
+            OnDeleteControls0X83( ) ;
+            AfterConfirm0X83( ) ;
             if ( AnyError == 0 )
             {
-               BeforeDelete0X48( ) ;
+               BeforeDelete0X83( ) ;
                if ( AnyError == 0 )
                {
                   /* No cascading delete specified. */
-                  /* Using cursor T000X10 */
-                  pr_default.execute(8, new Object[] {A252Trn_MediaId});
-                  pr_default.close(8);
+                  /* Using cursor T000X11 */
+                  pr_default.execute(9, new Object[] {A409MediaId});
+                  pr_default.close(9);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                   if ( AnyError == 0 )
                   {
@@ -1337,21 +1475,21 @@ namespace GeneXus.Programs {
                }
             }
          }
-         sMode48 = Gx_mode;
+         sMode83 = Gx_mode;
          Gx_mode = "DLT";
          AssignAttri("", false, "Gx_mode", Gx_mode);
-         EndLevel0X48( ) ;
-         Gx_mode = sMode48;
+         EndLevel0X83( ) ;
+         Gx_mode = sMode83;
          AssignAttri("", false, "Gx_mode", Gx_mode);
       }
 
-      protected void OnDeleteControls0X48( )
+      protected void OnDeleteControls0X83( )
       {
          standaloneModal( ) ;
          /* No delete mode formulas found. */
       }
 
-      protected void EndLevel0X48( )
+      protected void EndLevel0X83( )
       {
          if ( ! IsIns( ) )
          {
@@ -1359,7 +1497,7 @@ namespace GeneXus.Programs {
          }
          if ( AnyError == 0 )
          {
-            BeforeComplete0X48( ) ;
+            BeforeComplete0X83( ) ;
          }
          if ( AnyError == 0 )
          {
@@ -1384,80 +1522,86 @@ namespace GeneXus.Programs {
          }
       }
 
-      public void ScanStart0X48( )
+      public void ScanStart0X83( )
       {
          /* Scan By routine */
-         /* Using cursor T000X11 */
-         pr_default.execute(9);
-         RcdFound48 = 0;
-         if ( (pr_default.getStatus(9) != 101) )
+         /* Using cursor T000X12 */
+         pr_default.execute(10);
+         RcdFound83 = 0;
+         if ( (pr_default.getStatus(10) != 101) )
          {
-            RcdFound48 = 1;
-            A252Trn_MediaId = T000X11_A252Trn_MediaId[0];
-            AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+            RcdFound83 = 1;
+            A409MediaId = T000X12_A409MediaId[0];
+            AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
          }
          /* Load Subordinate Levels */
       }
 
-      protected void ScanNext0X48( )
+      protected void ScanNext0X83( )
       {
          /* Scan next routine */
-         pr_default.readNext(9);
-         RcdFound48 = 0;
-         if ( (pr_default.getStatus(9) != 101) )
+         pr_default.readNext(10);
+         RcdFound83 = 0;
+         if ( (pr_default.getStatus(10) != 101) )
          {
-            RcdFound48 = 1;
-            A252Trn_MediaId = T000X11_A252Trn_MediaId[0];
-            AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
+            RcdFound83 = 1;
+            A409MediaId = T000X12_A409MediaId[0];
+            AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
          }
       }
 
-      protected void ScanEnd0X48( )
+      protected void ScanEnd0X83( )
       {
-         pr_default.close(9);
+         pr_default.close(10);
       }
 
-      protected void AfterConfirm0X48( )
+      protected void AfterConfirm0X83( )
       {
          /* After Confirm Rules */
       }
 
-      protected void BeforeInsert0X48( )
+      protected void BeforeInsert0X83( )
       {
          /* Before Insert Rules */
       }
 
-      protected void BeforeUpdate0X48( )
+      protected void BeforeUpdate0X83( )
       {
          /* Before Update Rules */
       }
 
-      protected void BeforeDelete0X48( )
+      protected void BeforeDelete0X83( )
       {
          /* Before Delete Rules */
       }
 
-      protected void BeforeComplete0X48( )
+      protected void BeforeComplete0X83( )
       {
          /* Before Complete Rules */
       }
 
-      protected void BeforeValidate0X48( )
+      protected void BeforeValidate0X83( )
       {
          /* Before Validate Rules */
       }
 
-      protected void DisableAttributes0X48( )
+      protected void DisableAttributes0X83( )
       {
-         edtTrn_MediaId_Enabled = 0;
-         AssignProp("", false, edtTrn_MediaId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_MediaId_Enabled), 5, 0), true);
-         edtTrn_MediaName_Enabled = 0;
-         AssignProp("", false, edtTrn_MediaName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_MediaName_Enabled), 5, 0), true);
-         edtTrn_MediaUrl_Enabled = 0;
-         AssignProp("", false, edtTrn_MediaUrl_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_MediaUrl_Enabled), 5, 0), true);
+         edtMediaId_Enabled = 0;
+         AssignProp("", false, edtMediaId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMediaId_Enabled), 5, 0), true);
+         edtMediaName_Enabled = 0;
+         AssignProp("", false, edtMediaName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMediaName_Enabled), 5, 0), true);
+         imgMediaImage_Enabled = 0;
+         AssignProp("", false, imgMediaImage_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(imgMediaImage_Enabled), 5, 0), true);
+         edtMediaSize_Enabled = 0;
+         AssignProp("", false, edtMediaSize_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMediaSize_Enabled), 5, 0), true);
+         edtMediaType_Enabled = 0;
+         AssignProp("", false, edtMediaType_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMediaType_Enabled), 5, 0), true);
+         edtMediaUrl_Enabled = 0;
+         AssignProp("", false, edtMediaUrl_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMediaUrl_Enabled), 5, 0), true);
       }
 
-      protected void send_integrity_lvl_hashes0X48( )
+      protected void send_integrity_lvl_hashes0X83( )
       {
       }
 
@@ -1527,7 +1671,7 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         GXEncryptionTmp = "trn_media.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV7Trn_MediaId.ToString());
+         GXEncryptionTmp = "trn_media.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV13MediaId.ToString());
          context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("trn_media.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
@@ -1556,9 +1700,11 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "Z252Trn_MediaId", Z252Trn_MediaId.ToString());
-         GxWebStd.gx_hidden_field( context, "Z253Trn_MediaName", Z253Trn_MediaName);
-         GxWebStd.gx_hidden_field( context, "Z254Trn_MediaUrl", Z254Trn_MediaUrl);
+         GxWebStd.gx_hidden_field( context, "Z409MediaId", Z409MediaId.ToString());
+         GxWebStd.gx_hidden_field( context, "Z410MediaName", Z410MediaName);
+         GxWebStd.gx_hidden_field( context, "Z413MediaSize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z413MediaSize), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "Z414MediaType", StringUtil.RTrim( Z414MediaType));
+         GxWebStd.gx_hidden_field( context, "Z412MediaUrl", Z412MediaUrl);
          GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
@@ -1574,9 +1720,12 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTRNCONTEXT", AV11TrnContext);
          }
          GxWebStd.gx_hidden_field( context, "gxhash_vTRNCONTEXT", GetSecureSignedToken( "", AV11TrnContext, context));
-         GxWebStd.gx_hidden_field( context, "vTRN_MEDIAID", AV7Trn_MediaId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vTRN_MEDIAID", GetSecureSignedToken( "", AV7Trn_MediaId, context));
+         GxWebStd.gx_hidden_field( context, "vMEDIAID", AV13MediaId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vMEDIAID", GetSecureSignedToken( "", AV13MediaId, context));
          GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "MEDIAIMAGE_GXI", A40000MediaImage_GXI);
+         GXCCtlgxBlob = "MEDIAIMAGE" + "_gxBlob";
+         GxWebStd.gx_hidden_field( context, GXCCtlgxBlob, A411MediaImage);
       }
 
       public override void RenderHtmlCloseForm( )
@@ -1646,7 +1795,7 @@ namespace GeneXus.Programs {
       public override string GetSelfLink( )
       {
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         GXEncryptionTmp = "trn_media.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV7Trn_MediaId.ToString());
+         GXEncryptionTmp = "trn_media.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV13MediaId.ToString());
          return formatLink("trn_media.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
@@ -1660,21 +1809,37 @@ namespace GeneXus.Programs {
          return context.GetMessage( "Trn_Media", "") ;
       }
 
-      protected void InitializeNonKey0X48( )
+      protected void InitializeNonKey0X83( )
       {
-         A253Trn_MediaName = "";
-         AssignAttri("", false, "A253Trn_MediaName", A253Trn_MediaName);
-         A254Trn_MediaUrl = "";
-         AssignAttri("", false, "A254Trn_MediaUrl", A254Trn_MediaUrl);
-         Z253Trn_MediaName = "";
-         Z254Trn_MediaUrl = "";
+         A410MediaName = "";
+         AssignAttri("", false, "A410MediaName", A410MediaName);
+         A411MediaImage = "";
+         n411MediaImage = false;
+         AssignAttri("", false, "A411MediaImage", A411MediaImage);
+         AssignProp("", false, imgMediaImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? A40000MediaImage_GXI : context.convertURL( context.PathToRelativeUrl( A411MediaImage))), true);
+         AssignProp("", false, imgMediaImage_Internalname, "SrcSet", context.GetImageSrcSet( A411MediaImage), true);
+         n411MediaImage = (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
+         A40000MediaImage_GXI = "";
+         n40000MediaImage_GXI = false;
+         AssignProp("", false, imgMediaImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? A40000MediaImage_GXI : context.convertURL( context.PathToRelativeUrl( A411MediaImage))), true);
+         AssignProp("", false, imgMediaImage_Internalname, "SrcSet", context.GetImageSrcSet( A411MediaImage), true);
+         A413MediaSize = 0;
+         AssignAttri("", false, "A413MediaSize", StringUtil.LTrimStr( (decimal)(A413MediaSize), 8, 0));
+         A414MediaType = "";
+         AssignAttri("", false, "A414MediaType", A414MediaType);
+         A412MediaUrl = "";
+         AssignAttri("", false, "A412MediaUrl", A412MediaUrl);
+         Z410MediaName = "";
+         Z413MediaSize = 0;
+         Z414MediaType = "";
+         Z412MediaUrl = "";
       }
 
-      protected void InitAll0X48( )
+      protected void InitAll0X83( )
       {
-         A252Trn_MediaId = Guid.NewGuid( );
-         AssignAttri("", false, "A252Trn_MediaId", A252Trn_MediaId.ToString());
-         InitializeNonKey0X48( ) ;
+         A409MediaId = Guid.NewGuid( );
+         AssignAttri("", false, "A409MediaId", A409MediaId.ToString());
+         InitializeNonKey0X83( ) ;
       }
 
       protected void StandaloneModalInsert( )
@@ -1692,7 +1857,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021971499", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102518413517", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1708,15 +1873,18 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_media.js", "?2024102197150", false, true);
+         context.AddJavascriptSource("trn_media.js", "?2024102518413517", false, true);
          /* End function include_jscripts */
       }
 
       protected void init_default_properties( )
       {
-         edtTrn_MediaId_Internalname = "TRN_MEDIAID";
-         edtTrn_MediaName_Internalname = "TRN_MEDIANAME";
-         edtTrn_MediaUrl_Internalname = "TRN_MEDIAURL";
+         edtMediaId_Internalname = "MEDIAID";
+         edtMediaName_Internalname = "MEDIANAME";
+         imgMediaImage_Internalname = "MEDIAIMAGE";
+         edtMediaSize_Internalname = "MEDIASIZE";
+         edtMediaType_Internalname = "MEDIATYPE";
+         edtMediaUrl_Internalname = "MEDIAURL";
          divTableattributes_Internalname = "TABLEATTRIBUTES";
          divTablecontent_Internalname = "TABLECONTENT";
          grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
@@ -1746,12 +1914,17 @@ namespace GeneXus.Programs {
          bttBtntrn_cancel_Visible = 1;
          bttBtntrn_enter_Enabled = 1;
          bttBtntrn_enter_Visible = 1;
-         edtTrn_MediaUrl_Jsonclick = "";
-         edtTrn_MediaUrl_Enabled = 1;
-         edtTrn_MediaName_Jsonclick = "";
-         edtTrn_MediaName_Enabled = 1;
-         edtTrn_MediaId_Jsonclick = "";
-         edtTrn_MediaId_Enabled = 1;
+         edtMediaUrl_Jsonclick = "";
+         edtMediaUrl_Enabled = 1;
+         edtMediaType_Jsonclick = "";
+         edtMediaType_Enabled = 1;
+         edtMediaSize_Jsonclick = "";
+         edtMediaSize_Enabled = 1;
+         imgMediaImage_Enabled = 1;
+         edtMediaName_Jsonclick = "";
+         edtMediaName_Enabled = 1;
+         edtMediaId_Jsonclick = "";
+         edtMediaId_Enabled = 1;
          divLayoutmaintable_Class = "Table";
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
@@ -1797,11 +1970,11 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7Trn_MediaId","fld":"vTRN_MEDIAID","hsh":true}]}""");
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7Trn_MediaId","fld":"vTRN_MEDIAID","hsh":true}]}""");
+         setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV13MediaId","fld":"vMEDIAID","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV13MediaId","fld":"vMEDIAID","hsh":true}]}""");
          setEventMetadata("AFTER TRN","""{"handler":"E120X2","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
-         setEventMetadata("VALID_TRN_MEDIAID","""{"handler":"Valid_Trn_mediaid","iparms":[]}""");
-         setEventMetadata("VALID_TRN_MEDIAURL","""{"handler":"Valid_Trn_mediaurl","iparms":[]}""");
+         setEventMetadata("VALID_MEDIAID","""{"handler":"Valid_Mediaid","iparms":[]}""");
+         setEventMetadata("VALID_MEDIAURL","""{"handler":"Valid_Mediaurl","iparms":[]}""");
          return  ;
       }
 
@@ -1823,10 +1996,11 @@ namespace GeneXus.Programs {
       {
          sPrefix = "";
          wcpOGx_mode = "";
-         wcpOAV7Trn_MediaId = Guid.Empty;
-         Z252Trn_MediaId = Guid.Empty;
-         Z253Trn_MediaName = "";
-         Z254Trn_MediaUrl = "";
+         wcpOAV13MediaId = Guid.Empty;
+         Z409MediaId = Guid.Empty;
+         Z410MediaName = "";
+         Z414MediaType = "";
+         Z412MediaUrl = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          GXKey = "";
@@ -1838,15 +2012,19 @@ namespace GeneXus.Programs {
          ClassString = "";
          StyleString = "";
          TempTags = "";
-         A252Trn_MediaId = Guid.Empty;
-         A253Trn_MediaName = "";
-         A254Trn_MediaUrl = "";
+         A409MediaId = Guid.Empty;
+         A410MediaName = "";
+         A411MediaImage = "";
+         A40000MediaImage_GXI = "";
+         sImgUrl = "";
+         A414MediaType = "";
+         A412MediaUrl = "";
          bttBtntrn_enter_Jsonclick = "";
          bttBtntrn_cancel_Jsonclick = "";
          bttBtntrn_delete_Jsonclick = "";
          forbiddenHiddens = new GXProperties();
          hsh = "";
-         sMode48 = "";
+         sMode83 = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
@@ -1856,23 +2034,44 @@ namespace GeneXus.Programs {
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
-         T000X4_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
-         T000X4_A253Trn_MediaName = new string[] {""} ;
-         T000X4_A254Trn_MediaUrl = new string[] {""} ;
-         T000X5_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
-         T000X3_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
-         T000X3_A253Trn_MediaName = new string[] {""} ;
-         T000X3_A254Trn_MediaUrl = new string[] {""} ;
-         T000X6_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
-         T000X7_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
-         T000X2_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
-         T000X2_A253Trn_MediaName = new string[] {""} ;
-         T000X2_A254Trn_MediaUrl = new string[] {""} ;
-         T000X11_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
+         Z411MediaImage = "";
+         Z40000MediaImage_GXI = "";
+         T000X4_A409MediaId = new Guid[] {Guid.Empty} ;
+         T000X4_A410MediaName = new string[] {""} ;
+         T000X4_A40000MediaImage_GXI = new string[] {""} ;
+         T000X4_n40000MediaImage_GXI = new bool[] {false} ;
+         T000X4_A413MediaSize = new int[1] ;
+         T000X4_A414MediaType = new string[] {""} ;
+         T000X4_A412MediaUrl = new string[] {""} ;
+         T000X4_A411MediaImage = new string[] {""} ;
+         T000X4_n411MediaImage = new bool[] {false} ;
+         T000X5_A409MediaId = new Guid[] {Guid.Empty} ;
+         T000X3_A409MediaId = new Guid[] {Guid.Empty} ;
+         T000X3_A410MediaName = new string[] {""} ;
+         T000X3_A40000MediaImage_GXI = new string[] {""} ;
+         T000X3_n40000MediaImage_GXI = new bool[] {false} ;
+         T000X3_A413MediaSize = new int[1] ;
+         T000X3_A414MediaType = new string[] {""} ;
+         T000X3_A412MediaUrl = new string[] {""} ;
+         T000X3_A411MediaImage = new string[] {""} ;
+         T000X3_n411MediaImage = new bool[] {false} ;
+         T000X6_A409MediaId = new Guid[] {Guid.Empty} ;
+         T000X7_A409MediaId = new Guid[] {Guid.Empty} ;
+         T000X2_A409MediaId = new Guid[] {Guid.Empty} ;
+         T000X2_A410MediaName = new string[] {""} ;
+         T000X2_A40000MediaImage_GXI = new string[] {""} ;
+         T000X2_n40000MediaImage_GXI = new bool[] {false} ;
+         T000X2_A413MediaSize = new int[1] ;
+         T000X2_A414MediaType = new string[] {""} ;
+         T000X2_A412MediaUrl = new string[] {""} ;
+         T000X2_A411MediaImage = new string[] {""} ;
+         T000X2_n411MediaImage = new bool[] {false} ;
+         T000X12_A409MediaId = new Guid[] {Guid.Empty} ;
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXEncryptionTmp = "";
+         GXCCtlgxBlob = "";
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_media__gam(),
             new Object[][] {
             }
@@ -1880,36 +2079,38 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_media__default(),
             new Object[][] {
                 new Object[] {
-               T000X2_A252Trn_MediaId, T000X2_A253Trn_MediaName, T000X2_A254Trn_MediaUrl
+               T000X2_A409MediaId, T000X2_A410MediaName, T000X2_A40000MediaImage_GXI, T000X2_n40000MediaImage_GXI, T000X2_A413MediaSize, T000X2_A414MediaType, T000X2_A412MediaUrl, T000X2_A411MediaImage, T000X2_n411MediaImage
                }
                , new Object[] {
-               T000X3_A252Trn_MediaId, T000X3_A253Trn_MediaName, T000X3_A254Trn_MediaUrl
+               T000X3_A409MediaId, T000X3_A410MediaName, T000X3_A40000MediaImage_GXI, T000X3_n40000MediaImage_GXI, T000X3_A413MediaSize, T000X3_A414MediaType, T000X3_A412MediaUrl, T000X3_A411MediaImage, T000X3_n411MediaImage
                }
                , new Object[] {
-               T000X4_A252Trn_MediaId, T000X4_A253Trn_MediaName, T000X4_A254Trn_MediaUrl
+               T000X4_A409MediaId, T000X4_A410MediaName, T000X4_A40000MediaImage_GXI, T000X4_n40000MediaImage_GXI, T000X4_A413MediaSize, T000X4_A414MediaType, T000X4_A412MediaUrl, T000X4_A411MediaImage, T000X4_n411MediaImage
                }
                , new Object[] {
-               T000X5_A252Trn_MediaId
+               T000X5_A409MediaId
                }
                , new Object[] {
-               T000X6_A252Trn_MediaId
+               T000X6_A409MediaId
                }
                , new Object[] {
-               T000X7_A252Trn_MediaId
-               }
-               , new Object[] {
-               }
-               , new Object[] {
+               T000X7_A409MediaId
                }
                , new Object[] {
                }
                , new Object[] {
-               T000X11_A252Trn_MediaId
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               T000X12_A409MediaId
                }
             }
          );
-         Z252Trn_MediaId = Guid.NewGuid( );
-         A252Trn_MediaId = Guid.NewGuid( );
+         Z409MediaId = Guid.NewGuid( );
+         A409MediaId = Guid.NewGuid( );
       }
 
       private short GxWebError ;
@@ -1918,12 +2119,17 @@ namespace GeneXus.Programs {
       private short IsConfirmed ;
       private short nKeyPressed ;
       private short Gx_BScreen ;
-      private short RcdFound48 ;
+      private short RcdFound83 ;
       private short gxajaxcallmode ;
+      private int Z413MediaSize ;
       private int trnEnded ;
-      private int edtTrn_MediaId_Enabled ;
-      private int edtTrn_MediaName_Enabled ;
-      private int edtTrn_MediaUrl_Enabled ;
+      private int edtMediaId_Enabled ;
+      private int edtMediaName_Enabled ;
+      private int imgMediaImage_Enabled ;
+      private int A413MediaSize ;
+      private int edtMediaSize_Enabled ;
+      private int edtMediaType_Enabled ;
+      private int edtMediaUrl_Enabled ;
       private int bttBtntrn_enter_Visible ;
       private int bttBtntrn_enter_Enabled ;
       private int bttBtntrn_cancel_Visible ;
@@ -1932,6 +2138,7 @@ namespace GeneXus.Programs {
       private int idxLst ;
       private string sPrefix ;
       private string wcpOGx_mode ;
+      private string Z414MediaType ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string GXKey ;
@@ -1940,7 +2147,7 @@ namespace GeneXus.Programs {
       private string PreviousTooltip ;
       private string PreviousCaption ;
       private string GX_FocusControl ;
-      private string edtTrn_MediaId_Internalname ;
+      private string edtMediaId_Internalname ;
       private string divLayoutmaintable_Internalname ;
       private string divLayoutmaintable_Class ;
       private string divTablemain_Internalname ;
@@ -1950,11 +2157,18 @@ namespace GeneXus.Programs {
       private string divTablecontent_Internalname ;
       private string divTableattributes_Internalname ;
       private string TempTags ;
-      private string edtTrn_MediaId_Jsonclick ;
-      private string edtTrn_MediaName_Internalname ;
-      private string edtTrn_MediaName_Jsonclick ;
-      private string edtTrn_MediaUrl_Internalname ;
-      private string edtTrn_MediaUrl_Jsonclick ;
+      private string edtMediaId_Jsonclick ;
+      private string edtMediaName_Internalname ;
+      private string edtMediaName_Jsonclick ;
+      private string imgMediaImage_Internalname ;
+      private string sImgUrl ;
+      private string edtMediaSize_Internalname ;
+      private string edtMediaSize_Jsonclick ;
+      private string edtMediaType_Internalname ;
+      private string A414MediaType ;
+      private string edtMediaType_Jsonclick ;
+      private string edtMediaUrl_Internalname ;
+      private string edtMediaUrl_Jsonclick ;
       private string bttBtntrn_enter_Internalname ;
       private string bttBtntrn_enter_Jsonclick ;
       private string bttBtntrn_cancel_Internalname ;
@@ -1962,7 +2176,7 @@ namespace GeneXus.Programs {
       private string bttBtntrn_delete_Internalname ;
       private string bttBtntrn_delete_Jsonclick ;
       private string hsh ;
-      private string sMode48 ;
+      private string sMode83 ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
@@ -1973,18 +2187,26 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXEncryptionTmp ;
+      private string GXCCtlgxBlob ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbErr ;
+      private bool A411MediaImage_IsBlob ;
+      private bool n40000MediaImage_GXI ;
+      private bool n411MediaImage ;
       private bool returnInSub ;
-      private string Z253Trn_MediaName ;
-      private string Z254Trn_MediaUrl ;
-      private string A253Trn_MediaName ;
-      private string A254Trn_MediaUrl ;
-      private Guid wcpOAV7Trn_MediaId ;
-      private Guid Z252Trn_MediaId ;
-      private Guid AV7Trn_MediaId ;
-      private Guid A252Trn_MediaId ;
+      private string Z410MediaName ;
+      private string Z412MediaUrl ;
+      private string A410MediaName ;
+      private string A40000MediaImage_GXI ;
+      private string A412MediaUrl ;
+      private string Z40000MediaImage_GXI ;
+      private string A411MediaImage ;
+      private string Z411MediaImage ;
+      private Guid wcpOAV13MediaId ;
+      private Guid Z409MediaId ;
+      private Guid AV13MediaId ;
+      private Guid A409MediaId ;
       private IGxSession AV12WebSession ;
       private GXProperties forbiddenHiddens ;
       private GXWebForm Form ;
@@ -1993,19 +2215,37 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV11TrnContext ;
       private IDataStoreProvider pr_default ;
-      private Guid[] T000X4_A252Trn_MediaId ;
-      private string[] T000X4_A253Trn_MediaName ;
-      private string[] T000X4_A254Trn_MediaUrl ;
-      private Guid[] T000X5_A252Trn_MediaId ;
-      private Guid[] T000X3_A252Trn_MediaId ;
-      private string[] T000X3_A253Trn_MediaName ;
-      private string[] T000X3_A254Trn_MediaUrl ;
-      private Guid[] T000X6_A252Trn_MediaId ;
-      private Guid[] T000X7_A252Trn_MediaId ;
-      private Guid[] T000X2_A252Trn_MediaId ;
-      private string[] T000X2_A253Trn_MediaName ;
-      private string[] T000X2_A254Trn_MediaUrl ;
-      private Guid[] T000X11_A252Trn_MediaId ;
+      private Guid[] T000X4_A409MediaId ;
+      private string[] T000X4_A410MediaName ;
+      private string[] T000X4_A40000MediaImage_GXI ;
+      private bool[] T000X4_n40000MediaImage_GXI ;
+      private int[] T000X4_A413MediaSize ;
+      private string[] T000X4_A414MediaType ;
+      private string[] T000X4_A412MediaUrl ;
+      private string[] T000X4_A411MediaImage ;
+      private bool[] T000X4_n411MediaImage ;
+      private Guid[] T000X5_A409MediaId ;
+      private Guid[] T000X3_A409MediaId ;
+      private string[] T000X3_A410MediaName ;
+      private string[] T000X3_A40000MediaImage_GXI ;
+      private bool[] T000X3_n40000MediaImage_GXI ;
+      private int[] T000X3_A413MediaSize ;
+      private string[] T000X3_A414MediaType ;
+      private string[] T000X3_A412MediaUrl ;
+      private string[] T000X3_A411MediaImage ;
+      private bool[] T000X3_n411MediaImage ;
+      private Guid[] T000X6_A409MediaId ;
+      private Guid[] T000X7_A409MediaId ;
+      private Guid[] T000X2_A409MediaId ;
+      private string[] T000X2_A410MediaName ;
+      private string[] T000X2_A40000MediaImage_GXI ;
+      private bool[] T000X2_n40000MediaImage_GXI ;
+      private int[] T000X2_A413MediaSize ;
+      private string[] T000X2_A414MediaType ;
+      private string[] T000X2_A412MediaUrl ;
+      private string[] T000X2_A411MediaImage ;
+      private bool[] T000X2_n411MediaImage ;
+      private Guid[] T000X12_A409MediaId ;
       private IDataStoreProvider pr_gam ;
    }
 
@@ -2056,7 +2296,8 @@ namespace GeneXus.Programs {
        ,new UpdateCursor(def[6])
        ,new UpdateCursor(def[7])
        ,new UpdateCursor(def[8])
-       ,new ForEachCursor(def[9])
+       ,new UpdateCursor(def[9])
+       ,new ForEachCursor(def[10])
      };
   }
 
@@ -2067,58 +2308,71 @@ namespace GeneXus.Programs {
      {
         Object[] prmT000X2;
         prmT000X2 = new Object[] {
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0)
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000X3;
         prmT000X3 = new Object[] {
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0)
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000X4;
         prmT000X4 = new Object[] {
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0)
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000X5;
         prmT000X5 = new Object[] {
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0)
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000X6;
         prmT000X6 = new Object[] {
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0)
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000X7;
         prmT000X7 = new Object[] {
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0)
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000X8;
         prmT000X8 = new Object[] {
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_MediaName",GXType.VarChar,100,0) ,
-        new ParDef("Trn_MediaUrl",GXType.VarChar,1000,0)
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("MediaName",GXType.VarChar,100,0) ,
+        new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+        new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=2, Tbl="Trn_Media", Fld="MediaImage"} ,
+        new ParDef("MediaSize",GXType.Int32,8,0) ,
+        new ParDef("MediaType",GXType.Char,20,0) ,
+        new ParDef("MediaUrl",GXType.VarChar,1000,0)
         };
         Object[] prmT000X9;
         prmT000X9 = new Object[] {
-        new ParDef("Trn_MediaName",GXType.VarChar,100,0) ,
-        new ParDef("Trn_MediaUrl",GXType.VarChar,1000,0) ,
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0)
+        new ParDef("MediaName",GXType.VarChar,100,0) ,
+        new ParDef("MediaSize",GXType.Int32,8,0) ,
+        new ParDef("MediaType",GXType.Char,20,0) ,
+        new ParDef("MediaUrl",GXType.VarChar,1000,0) ,
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000X10;
         prmT000X10 = new Object[] {
-        new ParDef("Trn_MediaId",GXType.UniqueIdentifier,36,0)
+        new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+        new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=0, Tbl="Trn_Media", Fld="MediaImage"} ,
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmT000X11;
         prmT000X11 = new Object[] {
+        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+        };
+        Object[] prmT000X12;
+        prmT000X12 = new Object[] {
         };
         def= new CursorDef[] {
-            new CursorDef("T000X2", "SELECT Trn_MediaId, Trn_MediaName, Trn_MediaUrl FROM Trn_Media WHERE Trn_MediaId = :Trn_MediaId  FOR UPDATE OF Trn_Media NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000X2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000X3", "SELECT Trn_MediaId, Trn_MediaName, Trn_MediaUrl FROM Trn_Media WHERE Trn_MediaId = :Trn_MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000X4", "SELECT TM1.Trn_MediaId, TM1.Trn_MediaName, TM1.Trn_MediaUrl FROM Trn_Media TM1 WHERE TM1.Trn_MediaId = :Trn_MediaId ORDER BY TM1.Trn_MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000X5", "SELECT Trn_MediaId FROM Trn_Media WHERE Trn_MediaId = :Trn_MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000X6", "SELECT Trn_MediaId FROM Trn_Media WHERE ( Trn_MediaId > :Trn_MediaId) ORDER BY Trn_MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X6,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000X7", "SELECT Trn_MediaId FROM Trn_Media WHERE ( Trn_MediaId < :Trn_MediaId) ORDER BY Trn_MediaId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X7,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000X8", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(Trn_MediaId, Trn_MediaName, Trn_MediaUrl) VALUES(:Trn_MediaId, :Trn_MediaName, :Trn_MediaUrl);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000X8)
-           ,new CursorDef("T000X9", "SAVEPOINT gxupdate;UPDATE Trn_Media SET Trn_MediaName=:Trn_MediaName, Trn_MediaUrl=:Trn_MediaUrl  WHERE Trn_MediaId = :Trn_MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X9)
-           ,new CursorDef("T000X10", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE Trn_MediaId = :Trn_MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X10)
-           ,new CursorDef("T000X11", "SELECT Trn_MediaId FROM Trn_Media ORDER BY Trn_MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X11,100, GxCacheFrequency.OFF ,true,false )
+            new CursorDef("T000X2", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000X2,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T000X3", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X3,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T000X4", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X4,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T000X5", "SELECT MediaId FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X5,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("T000X6", "SELECT MediaId FROM Trn_Media WHERE ( MediaId > :MediaId) ORDER BY MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X6,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("T000X7", "SELECT MediaId FROM Trn_Media WHERE ( MediaId < :MediaId) ORDER BY MediaId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X7,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("T000X8", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaUrl) VALUES(:MediaId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaUrl);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000X8)
+           ,new CursorDef("T000X9", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaUrl=:MediaUrl  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X9)
+           ,new CursorDef("T000X10", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaImage=:MediaImage, MediaImage_GXI=:MediaImage_GXI  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X10)
+           ,new CursorDef("T000X11", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X11)
+           ,new CursorDef("T000X12", "SELECT MediaId FROM Trn_Media ORDER BY MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X12,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2132,17 +2386,35 @@ namespace GeneXus.Programs {
            case 0 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+              ((bool[]) buf[3])[0] = rslt.wasNull(3);
+              ((int[]) buf[4])[0] = rslt.getInt(4);
+              ((string[]) buf[5])[0] = rslt.getString(5, 20);
+              ((string[]) buf[6])[0] = rslt.getVarchar(6);
+              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+              ((bool[]) buf[8])[0] = rslt.wasNull(7);
               return;
            case 1 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+              ((bool[]) buf[3])[0] = rslt.wasNull(3);
+              ((int[]) buf[4])[0] = rslt.getInt(4);
+              ((string[]) buf[5])[0] = rslt.getString(5, 20);
+              ((string[]) buf[6])[0] = rslt.getVarchar(6);
+              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+              ((bool[]) buf[8])[0] = rslt.wasNull(7);
               return;
            case 2 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+              ((bool[]) buf[3])[0] = rslt.wasNull(3);
+              ((int[]) buf[4])[0] = rslt.getInt(4);
+              ((string[]) buf[5])[0] = rslt.getString(5, 20);
+              ((string[]) buf[6])[0] = rslt.getVarchar(6);
+              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+              ((bool[]) buf[8])[0] = rslt.wasNull(7);
               return;
            case 3 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2153,7 +2425,7 @@ namespace GeneXus.Programs {
            case 5 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               return;
-           case 9 :
+           case 10 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               return;
      }

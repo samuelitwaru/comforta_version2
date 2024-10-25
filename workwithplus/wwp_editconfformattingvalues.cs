@@ -1658,7 +1658,7 @@ namespace GeneXus.Programs.workwithplus {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021934166", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410251838890", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1674,7 +1674,7 @@ namespace GeneXus.Programs.workwithplus {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/wwp_editconfformattingvalues.js", "?20241021934167", false, true);
+         context.AddJavascriptSource("workwithplus/wwp_editconfformattingvalues.js", "?202410251838890", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/GridEmpowerer/GridEmpowererRender.js", "", false, true);
          /* End function include_jscripts */

@@ -1,3 +1,6 @@
+trn_preferredgensupplier
+trn_preferredagbsupplier
+trn_audit
 trn_calltoaction
 trn_locationdynamicform
 trn_device
@@ -37,15 +40,17 @@ trn_resident
 trn_productservice
 trn_supplieragb
 trn_suppliergen
-trn_amenity
 trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
-wp_organisationlocalagbsupplierswc
-wp_organisationnationalagbsupplierswc
-wp_organisationlocalgensupplierswc
-wp_organisationnationalgensupplierswc
+trn_tiletrn_colwc
+trn_mediageneral
+trn_mediaww
+trn_mediaview
+trn_auditgeneral
+trn_auditww
+trn_auditview
 wc_agbsupplierdetails
 wp_organisationagbsuppliers
 wc_generalsupplierdetails
@@ -67,7 +72,6 @@ trn_productservicetrn_tilewc
 wp_residentqrcode
 wp_locationresidents
 trn_locationtrn_receptionistwc
-trn_locationtrn_amenitywc
 wp_locationreceptionists
 wc_color
 wp_createlocationandreceptionist
@@ -90,7 +94,6 @@ trn_rowgeneral
 trn_rowww
 trn_rowview
 trn_tileww
-trn_tileww
 trn_tileview
 trn_colgeneral
 trn_colww
@@ -108,7 +111,6 @@ wc_changelanguage
 wp_calendaragenda
 wp_calendaragenda
 workwithplus\wwp_eventinfowc
-trn_amenitygeneral
 trn_productservicegeneral
 trn_productserviceview
 trn_productserviceww
@@ -131,8 +133,6 @@ trn_receptionistww
 trn_supplieragbww
 trn_supplieragbview
 trn_suppliergenww
-trn_amenityww
-trn_amenityview
 trn_locationww
 trn_templategeneral
 trn_templateww
@@ -156,9 +156,6 @@ trn_organisationsettingview
 trn_organisationtypeww
 trn_organisationww
 trn_organisationview
-trn_mediageneral
-trn_mediaww
-trn_mediaview
 trn_themecolorwc
 trn_themegeneral
 trn_themeww
@@ -277,10 +274,13 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
-wp_organisationlocalagbsupplierswcgetfilterdata
-wp_organisationnationalagbsupplierswcgetfilterdata
-wp_organisationlocalgensupplierswcgetfilterdata
-wp_organisationnationalgensupplierswcgetfilterdata
+trn_mediawwgetfilterdata
+wp_organisationgeneralsuppliersgetfilterdata
+wp_organisationagbsuppliersgetfilterdata
+trn_auditwwgetfilterdata
+trn_auditloaddvcombo
+aprc_savepage
+aprc_uploadmedia
 aprc_tiles
 wp_locationdynamicformgetfilterdata
 trn_calltoactionloaddvcombo
@@ -307,7 +307,6 @@ trn_supplieragbloaddvcombo
 trn_supplieragbwwgetfilterdata
 trn_suppliergenloaddvcombo
 trn_suppliergenwwgetfilterdata
-trn_amenitywwgetfilterdata
 trn_locationwwgetfilterdata
 trn_templatewwgetfilterdata
 trn_tileloaddvcombo
@@ -319,7 +318,6 @@ trn_organisationwwgetfilterdata
 trn_organisationloaddvcombo
 workwithplus\dynamicforms\wwp_forminstancewwgetfilterdata
 workwithplus\dynamicforms\wwp_formwwgetfilterdata
-trn_mediawwgetfilterdata
 trn_themewwgetfilterdata
 aprc_initializegamroles
 trn_managerwwgetfilterdata

@@ -1,23 +1,15 @@
-ALTER TABLE Trn_Organisation ALTER COLUMN OrganisationId DROP DEFAULT;
+DROP INDEX ITRN_SUPPLIERAGB2;
+ALTER TABLE Trn_SupplierAGB DROP CONSTRAINT ITRN_SUPPLIERAGB2;
+ALTER TABLE Trn_SupplierAGB DROP OrganisationId;
 
-ALTER TABLE Trn_SupplierGen ADD OrganisationId CHAR(36) DEFAULT '00000000-0000-0000-0000-000000000000';
-UPDATE Trn_SupplierGen SET OrganisationId=T.OrganisationId FROM Trn_ProductService T WHERE Trn_SupplierGen.SupplierGenId= T.SupplierGenId;
-ALTER TABLE Trn_SupplierGen ALTER COLUMN OrganisationId DROP DEFAULT;
-INSERT INTO Trn_OrganisationType (OrganisationTypeId, OrganisationTypeName) SELECT '00000000-0000-0000-0000-000000000000', ' ' FROM Trn_SupplierGen WHERE NOT EXISTS (SELECT 1 FROM Trn_OrganisationType WHERE OrganisationTypeId='00000000-0000-0000-0000-000000000000') LIMIT 1;
-INSERT INTO Trn_Organisation (OrganisationId, OrganisationKvkNumber, OrganisationName, OrganisationEmail, OrganisationPhone, OrganisationVATNumber, OrganisationTypeId, OrganisationAddressZipCode, OrganisationAddressCity, OrganisationAddressCountry, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationPhoneCode, OrganisationPhoneNumber) SELECT '00000000-0000-0000-0000-000000000000', ' ', ' ', ' ', ' ', ' ', '00000000-0000-0000-0000-000000000000', ' ', ' ', ' ', ' ', ' ', ' ', ' ' FROM Trn_SupplierGen WHERE NOT EXISTS (SELECT 1 FROM Trn_Organisation WHERE OrganisationId='00000000-0000-0000-0000-000000000000') LIMIT 1;
-CREATE INDEX ITRN_SUPPLIERGEN2 ON Trn_SupplierGen (OrganisationId );
+CREATE TABLE Trn_PreferredGenSupplier (PreferredGenSupplierId CHAR(36) NOT NULL , PreferredGenOrganisationId CHAR(36) NOT NULL , PreferredSupplierGenId CHAR(36) NOT NULL , PRIMARY KEY(PreferredGenSupplierId));
 
-ALTER TABLE Trn_SupplierAGB ADD OrganisationId CHAR(36) DEFAULT '00000000-0000-0000-0000-000000000000';
-UPDATE Trn_SupplierAGB SET OrganisationId=T.OrganisationId FROM Trn_ProductService T WHERE Trn_SupplierAGB.SupplierAgbId= T.SupplierAgbId;
-ALTER TABLE Trn_SupplierAGB ALTER COLUMN OrganisationId DROP DEFAULT;
-INSERT INTO Trn_OrganisationType (OrganisationTypeId, OrganisationTypeName) SELECT '00000000-0000-0000-0000-000000000000', ' ' FROM Trn_SupplierAGB WHERE NOT EXISTS (SELECT 1 FROM Trn_OrganisationType WHERE OrganisationTypeId='00000000-0000-0000-0000-000000000000') LIMIT 1;
-INSERT INTO Trn_Organisation (OrganisationId, OrganisationKvkNumber, OrganisationName, OrganisationEmail, OrganisationPhone, OrganisationVATNumber, OrganisationTypeId, OrganisationAddressZipCode, OrganisationAddressCity, OrganisationAddressCountry, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationPhoneCode, OrganisationPhoneNumber) SELECT '00000000-0000-0000-0000-000000000000', ' ', ' ', ' ', ' ', ' ', '00000000-0000-0000-0000-000000000000', ' ', ' ', ' ', ' ', ' ', ' ', ' ' FROM Trn_SupplierAGB WHERE NOT EXISTS (SELECT 1 FROM Trn_Organisation WHERE OrganisationId='00000000-0000-0000-0000-000000000000') LIMIT 1;
-CREATE INDEX ITRN_SUPPLIERAGB2 ON Trn_SupplierAGB (OrganisationId );
+CREATE TABLE Trn_PreferredAgbSupplier (PreferredAgbSupplierId CHAR(36) NOT NULL , PreferredAgbOrganisationId CHAR(36) NOT NULL , PreferredSupplierAgbId CHAR(36) NOT NULL , PRIMARY KEY(PreferredAgbSupplierId));
 
-ALTER TABLE Trn_ProductService ADD ProductServiceClass VARCHAR(400) NOT NULL DEFAULT '';
-ALTER TABLE Trn_ProductService ALTER COLUMN ProductServiceClass DROP DEFAULT;
+CREATE TABLE Trn_Audit (AuditId CHAR(36) NOT NULL , AuditDate timestamp without time zone NOT NULL , AuditTableName VARCHAR(100) NOT NULL , AuditDescription TEXT NOT NULL , AuditShortDescription VARCHAR(400) NOT NULL , GAMUserId CHAR(40) NOT NULL , AuditUserName VARCHAR(100) NOT NULL , AuditAction VARCHAR(40) NOT NULL , OrganisationId CHAR(36) NOT NULL , PRIMARY KEY(AuditId));
+CREATE INDEX ITRN_AUDIT ON Trn_Audit (OrganisationId );
 
-ALTER TABLE Trn_SupplierAGB ADD CONSTRAINT ITRN_SUPPLIERAGB2 FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId);
+DROP TABLE Trn_Amenity CASCADE;
 
-ALTER TABLE Trn_SupplierGen ADD CONSTRAINT ITRN_SUPPLIERGEN2 FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId);
+ALTER TABLE Trn_Audit ADD CONSTRAINT ITRN_AUDIT FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId);
 

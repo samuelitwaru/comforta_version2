@@ -174,7 +174,7 @@ namespace GeneXus.Programs {
             if ( ( GxWebError == 0 ) && ! isAjaxCallMode( ) )
             {
                /* GeneXus formulas. */
-               AV24Pgmname = "Trn_OrganisationSettingGeneral";
+               AV25Pgmname = "Trn_OrganisationSettingGeneral";
                edtavOrganisationsettinglanguage_description_Enabled = 0;
                AssignProp(sPrefix, false, edtavOrganisationsettinglanguage_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettinglanguage_description_Enabled), 5, 0), true);
                edtavOrganisationsettingfontsize_description_Enabled = 0;
@@ -938,7 +938,7 @@ namespace GeneXus.Programs {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         AV24Pgmname = "Trn_OrganisationSettingGeneral";
+         AV25Pgmname = "Trn_OrganisationSettingGeneral";
          edtavOrganisationsettinglanguage_description_Enabled = 0;
          AssignProp(sPrefix, false, edtavOrganisationsettinglanguage_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettinglanguage_description_Enabled), 5, 0), true);
          edtavOrganisationsettingfontsize_description_Enabled = 0;
@@ -999,7 +999,7 @@ namespace GeneXus.Programs {
 
       protected void before_start_formulas( )
       {
-         AV24Pgmname = "Trn_OrganisationSettingGeneral";
+         AV25Pgmname = "Trn_OrganisationSettingGeneral";
          edtavOrganisationsettinglanguage_description_Enabled = 0;
          AssignProp(sPrefix, false, edtavOrganisationsettinglanguage_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettinglanguage_description_Enabled), 5, 0), true);
          edtavOrganisationsettingfontsize_description_Enabled = 0;
@@ -1111,10 +1111,10 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV19ComboSelectedItems = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
          AV19ComboSelectedItems.FromJSonString(A105OrganisationSettingLanguage, null);
-         AV23GXV1 = 1;
-         while ( AV23GXV1 <= AV19ComboSelectedItems.Count )
+         AV24GXV1 = 1;
+         while ( AV24GXV1 <= AV19ComboSelectedItems.Count )
          {
-            AV20ComboSelectedItem = ((string)AV19ComboSelectedItems.Item(AV23GXV1));
+            AV20ComboSelectedItem = ((string)AV19ComboSelectedItems.Item(AV24GXV1));
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14OrganisationSettingLanguage_Description)) )
             {
                AV14OrganisationSettingLanguage_Description += ", ";
@@ -1139,7 +1139,7 @@ namespace GeneXus.Programs {
                AssignAttri(sPrefix, false, "AV14OrganisationSettingLanguage_Description", AV14OrganisationSettingLanguage_Description);
                GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vORGANISATIONSETTINGLANGUAGE_DESCRIPTION", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), context));
             }
-            AV23GXV1 = (int)(AV23GXV1+1);
+            AV24GXV1 = (int)(AV24GXV1+1);
          }
          if ( StringUtil.StrCmp(A104OrganisationSettingFontSize, "Small") == 0 )
          {
@@ -1243,7 +1243,7 @@ namespace GeneXus.Programs {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
          AV8TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
-         AV8TrnContext.gxTpr_Callerobject = AV24Pgmname;
+         AV8TrnContext.gxTpr_Callerobject = AV25Pgmname;
          AV8TrnContext.gxTpr_Callerondelete = false;
          AV8TrnContext.gxTpr_Callerurl = AV11HTTPRequest.ScriptName+"?"+AV11HTTPRequest.QueryString;
          AV8TrnContext.gxTpr_Transactionname = "Trn_OrganisationSetting";
@@ -1451,7 +1451,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021964725", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102518405947", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1467,7 +1467,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_organisationsettinggeneral.js", "?20241021964725", false, true);
+         context.AddJavascriptSource("trn_organisationsettinggeneral.js", "?2024102518405947", false, true);
          /* End function include_jscripts */
       }
 
@@ -1569,7 +1569,7 @@ namespace GeneXus.Programs {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sPrefix = "";
-         AV24Pgmname = "";
+         AV25Pgmname = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -1627,9 +1627,9 @@ namespace GeneXus.Programs {
                }
             }
          );
-         AV24Pgmname = "Trn_OrganisationSettingGeneral";
+         AV25Pgmname = "Trn_OrganisationSettingGeneral";
          /* GeneXus formulas. */
-         AV24Pgmname = "Trn_OrganisationSettingGeneral";
+         AV25Pgmname = "Trn_OrganisationSettingGeneral";
          edtavOrganisationsettinglanguage_description_Enabled = 0;
          edtavOrganisationsettingfontsize_description_Enabled = 0;
       }
@@ -1656,14 +1656,14 @@ namespace GeneXus.Programs {
       private int edtOrganisationId_Enabled ;
       private int edtOrganisationSettingid_Enabled ;
       private int edtOrganisationSettingBaseColor_Enabled ;
-      private int AV23GXV1 ;
+      private int AV24GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sPrefix ;
       private string sCompPrefix ;
       private string sSFPrefix ;
-      private string AV24Pgmname ;
+      private string AV25Pgmname ;
       private string edtavOrganisationsettinglanguage_description_Internalname ;
       private string edtavOrganisationsettingfontsize_description_Internalname ;
       private string sDynURL ;

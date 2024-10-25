@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241021061038"
+  version: "20241025155517"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -196,6 +196,32 @@ paths:
         404:
           description: "Not found"
 
+  /media/upload:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UploadMedia"
+      summary: "UploadMedia"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UploadMediaInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_Media"  
+
+        404:
+          description: "Not found"
+
 components:
   securitySchemes:
     oAuthGXGAM:
@@ -239,6 +265,21 @@ components:
         message:
           type: "string"
 
+
+    UploadMediaInput:  
+      properties:
+        MediaId:
+          type: "string"
+          format: "uuid"
+        MediaName:
+          type: "string"
+        MediaImageData:
+          type: "string"
+        MediaSize:
+          type: "integer"
+          format: "int64"
+        MediaType:
+          type: "string"
   
     SDT_LoginResidentResponse:
       properties:
@@ -435,6 +476,31 @@ components:
 
 
 
+    Trn_Media:
+      properties:
+        MediaId:
+          description: "Media Id"
+          type: "string"
+          format: "uuid"
+        MediaName:
+          description: "Media Name"
+          type: "string"
+        MediaImage:
+          description: "Media Image"
+          type: "string"
+        MediaSize:
+          description: "Media Size"
+          type: "integer"
+          format: "int64"
+        MediaType:
+          description: "Media Type"
+          type: "string"
+        MediaUrl:
+          description: "Media Url"
+          type: "string"
+
+
+
     SDT_Col:
       properties:
         ColId:
@@ -526,6 +592,14 @@ components:
         ProductServiceImage:
           description: "Product Service Image"
           type: "string"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
         ToPageId:
           description: "SG_To Page Id"
           type: "string"

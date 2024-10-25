@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable035( ) ;
                if ( AnyError == 0 )
                {
-                  ZM035( 19) ;
+                  ZM035( 23) ;
                }
                CloseExtendedTableCursors035( ) ;
             }
@@ -137,6 +137,7 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV29AuditingObject,  AV30Pgmname) ;
       }
 
       protected void S112( )
@@ -147,7 +148,7 @@ namespace GeneXus.Programs {
 
       protected void ZM035( short GX_JID )
       {
-         if ( ( GX_JID == 18 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
          {
             Z28ManagerGAMGUID = A28ManagerGAMGUID;
             Z24ManagerInitials = A24ManagerInitials;
@@ -161,10 +162,10 @@ namespace GeneXus.Programs {
             Z360ManagerIsMainManager = A360ManagerIsMainManager;
             Z394ManagerIsActive = A394ManagerIsActive;
          }
-         if ( ( GX_JID == 19 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -18 )
+         if ( GX_JID == -22 )
          {
             Z21ManagerId = A21ManagerId;
             Z28ManagerGAMGUID = A28ManagerGAMGUID;
@@ -185,6 +186,7 @@ namespace GeneXus.Programs {
       protected void standaloneNotModal( )
       {
          Gx_BScreen = 0;
+         AV30Pgmname = "Trn_Manager_BC";
       }
 
       protected void standaloneModal( )
@@ -220,7 +222,7 @@ namespace GeneXus.Programs {
             A27ManagerGender = BC00035_A27ManagerGender[0];
             A360ManagerIsMainManager = BC00035_A360ManagerIsMainManager[0];
             A394ManagerIsActive = BC00035_A394ManagerIsActive[0];
-            ZM035( -18) ;
+            ZM035( -22) ;
          }
          pr_default.close(3);
          OnLoadActions035( ) ;
@@ -310,7 +312,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A21ManagerId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM035( 18) ;
+            ZM035( 22) ;
             RcdFound5 = 1;
             A21ManagerId = BC00033_A21ManagerId[0];
             A28ManagerGAMGUID = BC00033_A28ManagerGAMGUID[0];
@@ -692,16 +694,26 @@ namespace GeneXus.Programs {
       protected void BeforeUpdate035( )
       {
          /* Before Update Rules */
+         new loadaudittrn_manager(context ).execute(  "Y", ref  AV29AuditingObject,  A21ManagerId,  A11OrganisationId,  Gx_mode) ;
       }
 
       protected void BeforeDelete035( )
       {
          /* Before Delete Rules */
+         new loadaudittrn_manager(context ).execute(  "Y", ref  AV29AuditingObject,  A21ManagerId,  A11OrganisationId,  Gx_mode) ;
       }
 
       protected void BeforeComplete035( )
       {
          /* Before Complete Rules */
+         if ( IsIns( )  )
+         {
+            new loadaudittrn_manager(context ).execute(  "N", ref  AV29AuditingObject,  A21ManagerId,  A11OrganisationId,  Gx_mode) ;
+         }
+         if ( IsUpd( )  )
+         {
+            new loadaudittrn_manager(context ).execute(  "N", ref  AV29AuditingObject,  A21ManagerId,  A11OrganisationId,  Gx_mode) ;
+         }
       }
 
       protected void BeforeValidate035( )
@@ -729,6 +741,7 @@ namespace GeneXus.Programs {
 
       protected void InitializeNonKey035( )
       {
+         AV29AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
          A28ManagerGAMGUID = "";
          A24ManagerInitials = "";
          AV24GAMErrorResponse = "";
@@ -891,7 +904,7 @@ namespace GeneXus.Programs {
             Z21ManagerId = A21ManagerId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM035( -18) ;
+         ZM035( -22) ;
          OnLoadActions035( ) ;
          AddRow035( ) ;
          ScanKeyEnd035( ) ;
@@ -929,7 +942,7 @@ namespace GeneXus.Programs {
             Z21ManagerId = A21ManagerId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM035( -18) ;
+         ZM035( -22) ;
          OnLoadActions035( ) ;
          AddRow035( ) ;
          ScanKeyEnd035( ) ;
@@ -1321,6 +1334,8 @@ namespace GeneXus.Programs {
          AV9WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV12TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV13WebSession = context.GetSession();
+         AV29AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
+         AV30Pgmname = "";
          Z28ManagerGAMGUID = "";
          A28ManagerGAMGUID = "";
          Z24ManagerInitials = "";
@@ -1444,6 +1459,7 @@ namespace GeneXus.Programs {
          i360ManagerIsMainManager = false;
          Z21ManagerId = Guid.NewGuid( );
          A21ManagerId = Guid.NewGuid( );
+         AV30Pgmname = "Trn_Manager_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1458,6 +1474,7 @@ namespace GeneXus.Programs {
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
+      private string AV30Pgmname ;
       private string Z24ManagerInitials ;
       private string A24ManagerInitials ;
       private string Z26ManagerPhone ;
@@ -1495,6 +1512,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV9WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV12TrnContext ;
+      private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject AV29AuditingObject ;
       private IDataStoreProvider pr_default ;
       private Guid[] BC00035_A21ManagerId ;
       private string[] BC00035_A28ManagerGAMGUID ;

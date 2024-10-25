@@ -122,17 +122,17 @@ namespace GeneXus.Programs {
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV8WWPContext) ;
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV28Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV29Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV29GXV1 = 1;
-            while ( AV29GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
+            AV30GXV1 = 1;
+            while ( AV30GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
             {
-               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV29GXV1));
+               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV30GXV1));
                if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "OrganisationId") == 0 )
                {
                   AV13Insert_OrganisationId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV29GXV1 = (int)(AV29GXV1+1);
+               AV30GXV1 = (int)(AV30GXV1+1);
             }
          }
       }
@@ -172,7 +172,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV28Pgmname = "Trn_OrganisationSetting_BC";
+         AV29Pgmname = "Trn_OrganisationSetting_BC";
       }
 
       protected void standaloneModal( )
@@ -1184,7 +1184,7 @@ namespace GeneXus.Programs {
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
-         AV28Pgmname = "";
+         AV29Pgmname = "";
          AV14TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV13Insert_OrganisationId = Guid.Empty;
          Z103OrganisationSettingBaseColor = "";
@@ -1284,7 +1284,7 @@ namespace GeneXus.Programs {
          );
          Z100OrganisationSettingid = Guid.NewGuid( );
          A100OrganisationSettingid = Guid.NewGuid( );
-         AV28Pgmname = "Trn_OrganisationSetting_BC";
+         AV29Pgmname = "Trn_OrganisationSetting_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1296,11 +1296,11 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound25 ;
       private int trnEnded ;
-      private int AV29GXV1 ;
+      private int AV30GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV28Pgmname ;
+      private string AV29Pgmname ;
       private string sMode25 ;
       private bool returnInSub ;
       private string Z105OrganisationSettingLanguage ;

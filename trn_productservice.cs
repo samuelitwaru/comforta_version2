@@ -800,14 +800,12 @@ namespace GeneXus.Programs {
                Z408ProductServiceClass = cgiGet( "Z408ProductServiceClass");
                Z366ProductServiceGroup = cgiGet( "Z366ProductServiceGroup");
                Z42SupplierGenId = StringUtil.StrToGuid( cgiGet( "Z42SupplierGenId"));
-               n42SupplierGenId = ((Guid.Empty==A42SupplierGenId) ? true : false);
                Z49SupplierAgbId = StringUtil.StrToGuid( cgiGet( "Z49SupplierAgbId"));
                n49SupplierAgbId = ((Guid.Empty==A49SupplierAgbId) ? true : false);
                IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
                N42SupplierGenId = StringUtil.StrToGuid( cgiGet( "N42SupplierGenId"));
-               n42SupplierGenId = ((Guid.Empty==A42SupplierGenId) ? true : false);
                N49SupplierAgbId = StringUtil.StrToGuid( cgiGet( "N49SupplierAgbId"));
                n49SupplierAgbId = ((Guid.Empty==A49SupplierAgbId) ? true : false);
                AV12ProductServiceId = StringUtil.StrToGuid( cgiGet( "vPRODUCTSERVICEID"));
@@ -938,7 +936,6 @@ namespace GeneXus.Programs {
                      wbErr = true;
                   }
                }
-               n42SupplierGenId = ((Guid.Empty==A42SupplierGenId) ? true : false);
                if ( StringUtil.StrCmp(cgiGet( edtSupplierAgbId_Internalname), "") == 0 )
                {
                   A49SupplierAgbId = Guid.Empty;
@@ -2968,7 +2965,6 @@ namespace GeneXus.Programs {
          A42SupplierGenId = Guid.Empty;
          n42SupplierGenId = false;
          AssignAttri("", false, "A42SupplierGenId", A42SupplierGenId.ToString());
-         n42SupplierGenId = ((Guid.Empty==A42SupplierGenId) ? true : false);
          A49SupplierAgbId = Guid.Empty;
          n49SupplierAgbId = false;
          AssignAttri("", false, "A49SupplierAgbId", A49SupplierAgbId.ToString());
@@ -3033,7 +3029,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102195596", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102518545024", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3049,7 +3045,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_productservice.js", "?2024102195598", false, true);
+         context.AddJavascriptSource("trn_productservice.js", "?2024102518545025", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

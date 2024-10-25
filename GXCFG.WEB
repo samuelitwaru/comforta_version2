@@ -35,10 +35,10 @@
       <add  key="Connection-Default-Schema" value="82sPNmMP8O3TlpdEZk1r8E=="/>
       <add  key="Connection-Default-Opts" value=";Integrated Security=no;"/>
       <add  key="Connection-Default-TrnInt" value="1"/>
-      <add  key="DateFormat" value="MDY"/>
+      <add  key="DateFormat" value="DMY"/>
       <add  key="YearLimit" value="1940"/>
       <add  key="TimeAmPmFormat" value="12"/>
-      <add  key="VER_STAMP" value="20241021.053148"/>
+      <add  key="VER_STAMP" value="20241025.144748"/>
       <add  key="CS_BLOB_PATH" value="PublicTempStorage"/>
       <add  key="TMPMEDIA_DIR" value="PrivateTempStorage"/>
       <add  key="PRINT_LAYOUT_METADATA_DIR" value="LayoutMetadata"/>
@@ -48,7 +48,7 @@
       <add  key="LANGUAGE" value="eng"/>
       <add  key="LANG_NAME" value="English"/>
       <add  key="DECIMAL_POINT" value="."/>
-      <add  key="DATE_FMT" value="MDY"/>
+      <add  key="DATE_FMT" value="DMY"/>
       <add  key="CTOD_DATE_FMT" value="L"/>
       <add  key="Culture" value="en-US"/>
       <add  key="Theme" value="WorkWithPlusDS"/>
@@ -72,14 +72,14 @@
       <add  key="wcf:serviceHostingEnvironment:useClassicReadEntityBodyMode" value="true"/>
       <add  key="HTTP_PROTOCOL" value="Unsecure"/>
       <add  key="SAMESITE_COOKIE" value="Lax"/>
-      <add  key="CACHE_INVALIDATION_TOKEN" value="202410219252570"/>
+      <add  key="CACHE_INVALIDATION_TOKEN" value="2024102519592890"/>
       <add  key="CORS_ALLOW_ORIGIN" value=""/>
       <add  key="LOG_OUTPUT" value="RollingFile"/>
       <add  key="MaxFileUploadSize" value="528000000"/>
       <add  key="SessionTimeout" value="20"/>
    </appSettings>
    <languages >
-      <English  code="eng" time_fmt="12" decimal_point="." thousand_sep="," date_fmt="MDY" culture="en-US" rtl="false"/>
+      <English  code="eng" time_fmt="12" decimal_point="." thousand_sep="," date_fmt="DMY" culture="en-US" rtl="false"/>
    </languages>
    <log4net  configSource="log.config"/>
 </configuration>

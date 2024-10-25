@@ -9,17 +9,17 @@
 
 
 <div id="toolbox-body">
-    <div class="navbar">
+    <div class="toolbox-navbar">
       <h3>The App toolbox builder</h3>
       <div class="navbar-buttons">
-        <button id="open-mapping" class="btn btn-outline">
+        <button id="open-mapping" class="toolbox-btn toolbox-btn-outline">
           <svg xmlns="http://www.w3.org/2000/svg" width="18.818" height="16" viewBox="0 0 18.818 18">
             <path id="Path_993" data-name="Path 993" d="M19.545,5a3.283,3.283,0,0,0-3.273,3.273A3.228,3.228,0,0,0,16.784,10l-2.541,3.177H10.427a3.273,3.273,0,1,0,0,1.636h3.816L16.784,18a3.229,3.229,0,0,0-.511,1.732,3.273,3.273,0,1,0,3.273-3.273,3.207,3.207,0,0,0-1.563.419L15.685,14l2.3-2.873a3.207,3.207,0,0,0,1.563.419,3.273,3.273,0,0,0,0-6.545Zm0,1.636a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,6.636ZM7.273,12.364A1.636,1.636,0,1,1,5.636,14,1.623,1.623,0,0,1,7.273,12.364Zm12.273,5.727a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,18.091Z" transform="translate(-4 -5)" fill="#5068a8"/>
           </svg>          
           Tree
         </button>
 
-        <button id="publish" class="btn btn-primary">
+        <button id="publish" class="toolbox-btn toolbox-btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 18">
             <path id="Path_958" data-name="Path 958" d="M13.5,3.594l-.519.507L7.925,9.263l1.038,1.06,3.814-3.9V18.644h1.444V6.429l3.814,3.9,1.038-1.06L14.019,4.1ZM7,20.119v1.475H20V20.119Z" transform="translate(-7 -3.594)" fill="#fff"/>
           </svg>          
@@ -58,12 +58,12 @@
               </div>
   
               <div class="bg-section">
-                <button class="add-image">
+                <button class="add-image" id="image-bg">
                     <span class="plus"><i class="fa fa-plus"></i></span>
                     <span class="icon"><i class="fa fa-image"></i></span>
                 </button>
                 <div class="percentage-wrapper">
-                    <input type="text" class="percentage-input" value="100" min="0" max="100">
+                    <input type="number" id="bg-opacity" class="percentage-input" value="100" min="0" max="100">
                     <span class="percentage-sign">%</span>
                 </div>
               </div>
@@ -93,11 +93,11 @@
                     <input type="radio" id="align-center" name="alignment" value="center" />
                     <label for="align-center" class="fas fa-align-center"></label>
                   </div>
-<!--                 
+                
                   <div class="align-item">
                     <input type="radio" id="align-right" name="alignment" value="right" />
                     <label for="align-right" class="fas fa-align-right"></label>
-                  </div> -->
+                  </div>
                 </div>
                 
               </div>
@@ -128,11 +128,17 @@
 
         <div id="mapping-section" style="display: none;">
           <h3>MAPPING</h3>
+          <h5 style="display: none;" id="current-page-title"></h5>
           <div id="tree-container" class="tree">
-            <h4>Home (Page Name)</h4>
           </div>
         </div>
       </div>
+      <div class="alerts-container" id="alerts-container"></div>
+      <div class="context-menu" id="contextMenu">
+        <ul>
+            <li data-card-id="1" id="delete-bg-image">Delete image</li>
+        </ul>
+    </div>
     </div>
 
     <script src="/Resources/UCGrapes/new-design/grapes/grapes.js"></script>

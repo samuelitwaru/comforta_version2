@@ -179,16 +179,6 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Customization";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Amenities", "");
-         Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fa fa-tv";
-         Gxm1homemodulessdt.gxTpr_Optiontype = 1;
-         Gxm1homemodulessdt.gxTpr_Optionsize = 2;
-         Gxm1homemodulessdt.gxTpr_Rolename = "All";
-         Gxm1homemodulessdt.gxTpr_Optionwclink = formatLink("trn_amenityww.aspx") ;
-         Gxm1homemodulessdt.gxTpr_Optionbackgroundimage = context.convertURL( (string)(context.GetImagePath( "a245472c-9d22-48bd-b724-960d555d3688", "", context.GetTheme( ))));
-         Gxm1homemodulessdt.gxTpr_Optiondescription = "Amenities";
-         Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
-         Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
          Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Page Templates", "");
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-file";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;

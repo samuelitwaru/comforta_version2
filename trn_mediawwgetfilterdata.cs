@@ -73,17 +73,17 @@ namespace GeneXus.Programs {
                            out string aP4_OptionsDescJson ,
                            out string aP5_OptionIndexesJson )
       {
-         this.AV31DDOName = aP0_DDOName;
-         this.AV32SearchTxtParms = aP1_SearchTxtParms;
-         this.AV33SearchTxtTo = aP2_SearchTxtTo;
-         this.AV34OptionsJson = "" ;
-         this.AV35OptionsDescJson = "" ;
-         this.AV36OptionIndexesJson = "" ;
+         this.AV35DDOName = aP0_DDOName;
+         this.AV36SearchTxtParms = aP1_SearchTxtParms;
+         this.AV37SearchTxtTo = aP2_SearchTxtTo;
+         this.AV38OptionsJson = "" ;
+         this.AV39OptionsDescJson = "" ;
+         this.AV40OptionIndexesJson = "" ;
          initialize();
          ExecuteImpl();
-         aP3_OptionsJson=this.AV34OptionsJson;
-         aP4_OptionsDescJson=this.AV35OptionsDescJson;
-         aP5_OptionIndexesJson=this.AV36OptionIndexesJson;
+         aP3_OptionsJson=this.AV38OptionsJson;
+         aP4_OptionsDescJson=this.AV39OptionsDescJson;
+         aP5_OptionIndexesJson=this.AV40OptionIndexesJson;
       }
 
       public string executeUdp( string aP0_DDOName ,
@@ -93,7 +93,7 @@ namespace GeneXus.Programs {
                                 out string aP4_OptionsDescJson )
       {
          execute(aP0_DDOName, aP1_SearchTxtParms, aP2_SearchTxtTo, out aP3_OptionsJson, out aP4_OptionsDescJson, out aP5_OptionIndexesJson);
-         return AV36OptionIndexesJson ;
+         return AV40OptionIndexesJson ;
       }
 
       public void executeSubmit( string aP0_DDOName ,
@@ -103,29 +103,29 @@ namespace GeneXus.Programs {
                                  out string aP4_OptionsDescJson ,
                                  out string aP5_OptionIndexesJson )
       {
-         this.AV31DDOName = aP0_DDOName;
-         this.AV32SearchTxtParms = aP1_SearchTxtParms;
-         this.AV33SearchTxtTo = aP2_SearchTxtTo;
-         this.AV34OptionsJson = "" ;
-         this.AV35OptionsDescJson = "" ;
-         this.AV36OptionIndexesJson = "" ;
+         this.AV35DDOName = aP0_DDOName;
+         this.AV36SearchTxtParms = aP1_SearchTxtParms;
+         this.AV37SearchTxtTo = aP2_SearchTxtTo;
+         this.AV38OptionsJson = "" ;
+         this.AV39OptionsDescJson = "" ;
+         this.AV40OptionIndexesJson = "" ;
          SubmitImpl();
-         aP3_OptionsJson=this.AV34OptionsJson;
-         aP4_OptionsDescJson=this.AV35OptionsDescJson;
-         aP5_OptionIndexesJson=this.AV36OptionIndexesJson;
+         aP3_OptionsJson=this.AV38OptionsJson;
+         aP4_OptionsDescJson=this.AV39OptionsDescJson;
+         aP5_OptionIndexesJson=this.AV40OptionIndexesJson;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV21Options = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV23OptionsDesc = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV24OptionIndexes = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV18MaxItems = 10;
-         AV17PageIndex = (short)((String.IsNullOrEmpty(StringUtil.RTrim( AV32SearchTxtParms)) ? 0 : (long)(Math.Round(NumberUtil.Val( StringUtil.Substring( AV32SearchTxtParms, 1, 2), "."), 18, MidpointRounding.ToEven))));
-         AV15SearchTxt = (String.IsNullOrEmpty(StringUtil.RTrim( AV32SearchTxtParms)) ? "" : StringUtil.Substring( AV32SearchTxtParms, 3, -1));
-         AV16SkipItems = (short)(AV17PageIndex*AV18MaxItems);
+         AV25Options = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+         AV27OptionsDesc = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+         AV28OptionIndexes = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+         AV22MaxItems = 10;
+         AV21PageIndex = (short)((String.IsNullOrEmpty(StringUtil.RTrim( AV36SearchTxtParms)) ? 0 : (long)(Math.Round(NumberUtil.Val( StringUtil.Substring( AV36SearchTxtParms, 1, 2), "."), 18, MidpointRounding.ToEven))));
+         AV19SearchTxt = (String.IsNullOrEmpty(StringUtil.RTrim( AV36SearchTxtParms)) ? "" : StringUtil.Substring( AV36SearchTxtParms, 3, -1));
+         AV20SkipItems = (short)(AV21PageIndex*AV22MaxItems);
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV9WWPContext) ;
          /* Execute user subroutine: 'LOADGRIDSTATE' */
          S111 ();
@@ -134,9 +134,9 @@ namespace GeneXus.Programs {
             cleanup();
             if (true) return;
          }
-         if ( StringUtil.StrCmp(StringUtil.Upper( AV31DDOName), "DDO_TRN_MEDIANAME") == 0 )
+         if ( StringUtil.StrCmp(StringUtil.Upper( AV35DDOName), "DDO_MEDIANAME") == 0 )
          {
-            /* Execute user subroutine: 'LOADTRN_MEDIANAMEOPTIONS' */
+            /* Execute user subroutine: 'LOADMEDIANAMEOPTIONS' */
             S121 ();
             if ( returnInSub )
             {
@@ -144,9 +144,9 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(StringUtil.Upper( AV31DDOName), "DDO_TRN_MEDIAURL") == 0 )
+         else if ( StringUtil.StrCmp(StringUtil.Upper( AV35DDOName), "DDO_MEDIATYPE") == 0 )
          {
-            /* Execute user subroutine: 'LOADTRN_MEDIAURLOPTIONS' */
+            /* Execute user subroutine: 'LOADMEDIATYPEOPTIONS' */
             S131 ();
             if ( returnInSub )
             {
@@ -154,9 +154,19 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         AV34OptionsJson = AV21Options.ToJSonString(false);
-         AV35OptionsDescJson = AV23OptionsDesc.ToJSonString(false);
-         AV36OptionIndexesJson = AV24OptionIndexes.ToJSonString(false);
+         else if ( StringUtil.StrCmp(StringUtil.Upper( AV35DDOName), "DDO_MEDIAURL") == 0 )
+         {
+            /* Execute user subroutine: 'LOADMEDIAURLOPTIONS' */
+            S141 ();
+            if ( returnInSub )
+            {
+               cleanup();
+               if (true) return;
+            }
+         }
+         AV38OptionsJson = AV25Options.ToJSonString(false);
+         AV39OptionsDescJson = AV27OptionsDesc.ToJSonString(false);
+         AV40OptionIndexesJson = AV28OptionIndexes.ToJSonString(false);
          cleanup();
       }
 
@@ -164,91 +174,120 @@ namespace GeneXus.Programs {
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(AV26Session.Get("Trn_MediaWWGridState"), "") == 0 )
+         if ( StringUtil.StrCmp(AV30Session.Get("Trn_MediaWWGridState"), "") == 0 )
          {
-            AV28GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  "Trn_MediaWWGridState"), null, "", "");
+            AV32GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  "Trn_MediaWWGridState"), null, "", "");
          }
          else
          {
-            AV28GridState.FromXml(AV26Session.Get("Trn_MediaWWGridState"), null, "", "");
+            AV32GridState.FromXml(AV30Session.Get("Trn_MediaWWGridState"), null, "", "");
          }
-         AV38GXV1 = 1;
-         while ( AV38GXV1 <= AV28GridState.gxTpr_Filtervalues.Count )
+         AV42GXV1 = 1;
+         while ( AV42GXV1 <= AV32GridState.gxTpr_Filtervalues.Count )
          {
-            AV29GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV28GridState.gxTpr_Filtervalues.Item(AV38GXV1));
-            if ( StringUtil.StrCmp(AV29GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
+            AV33GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV32GridState.gxTpr_Filtervalues.Item(AV42GXV1));
+            if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
-               AV37FilterFullText = AV29GridStateFilterValue.gxTpr_Value;
+               AV41FilterFullText = AV33GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV29GridStateFilterValue.gxTpr_Name, "TFTRN_MEDIANAME") == 0 )
+            else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFMEDIANAME") == 0 )
             {
-               AV11TFTrn_MediaName = AV29GridStateFilterValue.gxTpr_Value;
+               AV11TFMediaName = AV33GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV29GridStateFilterValue.gxTpr_Name, "TFTRN_MEDIANAME_SEL") == 0 )
+            else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFMEDIANAME_SEL") == 0 )
             {
-               AV12TFTrn_MediaName_Sel = AV29GridStateFilterValue.gxTpr_Value;
+               AV12TFMediaName_Sel = AV33GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV29GridStateFilterValue.gxTpr_Name, "TFTRN_MEDIAURL") == 0 )
+            else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFMEDIASIZE") == 0 )
             {
-               AV13TFTrn_MediaUrl = AV29GridStateFilterValue.gxTpr_Value;
+               AV13TFMediaSize = (int)(Math.Round(NumberUtil.Val( AV33GridStateFilterValue.gxTpr_Value, "."), 18, MidpointRounding.ToEven));
+               AV14TFMediaSize_To = (int)(Math.Round(NumberUtil.Val( AV33GridStateFilterValue.gxTpr_Valueto, "."), 18, MidpointRounding.ToEven));
             }
-            else if ( StringUtil.StrCmp(AV29GridStateFilterValue.gxTpr_Name, "TFTRN_MEDIAURL_SEL") == 0 )
+            else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFMEDIATYPE") == 0 )
             {
-               AV14TFTrn_MediaUrl_Sel = AV29GridStateFilterValue.gxTpr_Value;
+               AV15TFMediaType = AV33GridStateFilterValue.gxTpr_Value;
             }
-            AV38GXV1 = (int)(AV38GXV1+1);
+            else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFMEDIATYPE_SEL") == 0 )
+            {
+               AV16TFMediaType_Sel = AV33GridStateFilterValue.gxTpr_Value;
+            }
+            else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFMEDIAURL") == 0 )
+            {
+               AV17TFMediaUrl = AV33GridStateFilterValue.gxTpr_Value;
+            }
+            else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFMEDIAURL_SEL") == 0 )
+            {
+               AV18TFMediaUrl_Sel = AV33GridStateFilterValue.gxTpr_Value;
+            }
+            AV42GXV1 = (int)(AV42GXV1+1);
          }
       }
 
       protected void S121( )
       {
-         /* 'LOADTRN_MEDIANAMEOPTIONS' Routine */
+         /* 'LOADMEDIANAMEOPTIONS' Routine */
          returnInSub = false;
-         AV11TFTrn_MediaName = AV15SearchTxt;
-         AV12TFTrn_MediaName_Sel = "";
-         AV40Trn_mediawwds_1_filterfulltext = AV37FilterFullText;
-         AV41Trn_mediawwds_2_tftrn_medianame = AV11TFTrn_MediaName;
-         AV42Trn_mediawwds_3_tftrn_medianame_sel = AV12TFTrn_MediaName_Sel;
-         AV43Trn_mediawwds_4_tftrn_mediaurl = AV13TFTrn_MediaUrl;
-         AV44Trn_mediawwds_5_tftrn_mediaurl_sel = AV14TFTrn_MediaUrl_Sel;
+         AV11TFMediaName = AV19SearchTxt;
+         AV12TFMediaName_Sel = "";
+         AV44Trn_mediawwds_1_filterfulltext = AV41FilterFullText;
+         AV45Trn_mediawwds_2_tfmedianame = AV11TFMediaName;
+         AV46Trn_mediawwds_3_tfmedianame_sel = AV12TFMediaName_Sel;
+         AV47Trn_mediawwds_4_tfmediasize = AV13TFMediaSize;
+         AV48Trn_mediawwds_5_tfmediasize_to = AV14TFMediaSize_To;
+         AV49Trn_mediawwds_6_tfmediatype = AV15TFMediaType;
+         AV50Trn_mediawwds_7_tfmediatype_sel = AV16TFMediaType_Sel;
+         AV51Trn_mediawwds_8_tfmediaurl = AV17TFMediaUrl;
+         AV52Trn_mediawwds_9_tfmediaurl_sel = AV18TFMediaUrl_Sel;
          pr_default.dynParam(0, new Object[]{ new Object[]{
-                                              AV40Trn_mediawwds_1_filterfulltext ,
-                                              AV42Trn_mediawwds_3_tftrn_medianame_sel ,
-                                              AV41Trn_mediawwds_2_tftrn_medianame ,
-                                              AV44Trn_mediawwds_5_tftrn_mediaurl_sel ,
-                                              AV43Trn_mediawwds_4_tftrn_mediaurl ,
-                                              A253Trn_MediaName ,
-                                              A254Trn_MediaUrl } ,
+                                              AV44Trn_mediawwds_1_filterfulltext ,
+                                              AV46Trn_mediawwds_3_tfmedianame_sel ,
+                                              AV45Trn_mediawwds_2_tfmedianame ,
+                                              AV47Trn_mediawwds_4_tfmediasize ,
+                                              AV48Trn_mediawwds_5_tfmediasize_to ,
+                                              AV50Trn_mediawwds_7_tfmediatype_sel ,
+                                              AV49Trn_mediawwds_6_tfmediatype ,
+                                              AV52Trn_mediawwds_9_tfmediaurl_sel ,
+                                              AV51Trn_mediawwds_8_tfmediaurl ,
+                                              A410MediaName ,
+                                              A413MediaSize ,
+                                              A414MediaType ,
+                                              A412MediaUrl } ,
                                               new int[]{
+                                              TypeConstants.INT, TypeConstants.INT, TypeConstants.INT
                                               }
          });
-         lV40Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV40Trn_mediawwds_1_filterfulltext), "%", "");
-         lV40Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV40Trn_mediawwds_1_filterfulltext), "%", "");
-         lV41Trn_mediawwds_2_tftrn_medianame = StringUtil.Concat( StringUtil.RTrim( AV41Trn_mediawwds_2_tftrn_medianame), "%", "");
-         lV43Trn_mediawwds_4_tftrn_mediaurl = StringUtil.Concat( StringUtil.RTrim( AV43Trn_mediawwds_4_tftrn_mediaurl), "%", "");
-         /* Using cursor P005W2 */
-         pr_default.execute(0, new Object[] {lV40Trn_mediawwds_1_filterfulltext, lV40Trn_mediawwds_1_filterfulltext, lV41Trn_mediawwds_2_tftrn_medianame, AV42Trn_mediawwds_3_tftrn_medianame_sel, lV43Trn_mediawwds_4_tftrn_mediaurl, AV44Trn_mediawwds_5_tftrn_mediaurl_sel});
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV45Trn_mediawwds_2_tfmedianame = StringUtil.Concat( StringUtil.RTrim( AV45Trn_mediawwds_2_tfmedianame), "%", "");
+         lV49Trn_mediawwds_6_tfmediatype = StringUtil.PadR( StringUtil.RTrim( AV49Trn_mediawwds_6_tfmediatype), 20, "%");
+         lV51Trn_mediawwds_8_tfmediaurl = StringUtil.Concat( StringUtil.RTrim( AV51Trn_mediawwds_8_tfmediaurl), "%", "");
+         /* Using cursor P008O2 */
+         pr_default.execute(0, new Object[] {lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV45Trn_mediawwds_2_tfmedianame, AV46Trn_mediawwds_3_tfmedianame_sel, AV47Trn_mediawwds_4_tfmediasize, AV48Trn_mediawwds_5_tfmediasize_to, lV49Trn_mediawwds_6_tfmediatype, AV50Trn_mediawwds_7_tfmediatype_sel, lV51Trn_mediawwds_8_tfmediaurl, AV52Trn_mediawwds_9_tfmediaurl_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
-            BRK5W2 = false;
-            A253Trn_MediaName = P005W2_A253Trn_MediaName[0];
-            A254Trn_MediaUrl = P005W2_A254Trn_MediaUrl[0];
-            A252Trn_MediaId = P005W2_A252Trn_MediaId[0];
-            AV25count = 0;
-            while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P005W2_A253Trn_MediaName[0], A253Trn_MediaName) == 0 ) )
+            BRK8O2 = false;
+            A410MediaName = P008O2_A410MediaName[0];
+            A413MediaSize = P008O2_A413MediaSize[0];
+            A412MediaUrl = P008O2_A412MediaUrl[0];
+            A414MediaType = P008O2_A414MediaType[0];
+            A409MediaId = P008O2_A409MediaId[0];
+            AV29count = 0;
+            while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P008O2_A410MediaName[0], A410MediaName) == 0 ) )
             {
-               BRK5W2 = false;
-               A252Trn_MediaId = P005W2_A252Trn_MediaId[0];
-               AV25count = (long)(AV25count+1);
-               BRK5W2 = true;
+               BRK8O2 = false;
+               A409MediaId = P008O2_A409MediaId[0];
+               AV29count = (long)(AV29count+1);
+               BRK8O2 = true;
                pr_default.readNext(0);
             }
-            if ( (0==AV16SkipItems) )
+            if ( (0==AV20SkipItems) )
             {
-               AV20Option = (String.IsNullOrEmpty(StringUtil.RTrim( A253Trn_MediaName)) ? "<#Empty#>" : A253Trn_MediaName);
-               AV21Options.Add(AV20Option, 0);
-               AV24OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV25count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV21Options.Count == 10 )
+               AV24Option = (String.IsNullOrEmpty(StringUtil.RTrim( A410MediaName)) ? "<#Empty#>" : A410MediaName);
+               AV25Options.Add(AV24Option, 0);
+               AV28OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV29count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+               if ( AV25Options.Count == 10 )
                {
                   /* Exit For each command. Update data (if necessary), close cursors & exit. */
                   if (true) break;
@@ -256,11 +295,11 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV16SkipItems = (short)(AV16SkipItems-1);
+               AV20SkipItems = (short)(AV20SkipItems-1);
             }
-            if ( ! BRK5W2 )
+            if ( ! BRK8O2 )
             {
-               BRK5W2 = true;
+               BRK8O2 = true;
                pr_default.readNext(0);
             }
          }
@@ -269,53 +308,69 @@ namespace GeneXus.Programs {
 
       protected void S131( )
       {
-         /* 'LOADTRN_MEDIAURLOPTIONS' Routine */
+         /* 'LOADMEDIATYPEOPTIONS' Routine */
          returnInSub = false;
-         AV13TFTrn_MediaUrl = AV15SearchTxt;
-         AV14TFTrn_MediaUrl_Sel = "";
-         AV40Trn_mediawwds_1_filterfulltext = AV37FilterFullText;
-         AV41Trn_mediawwds_2_tftrn_medianame = AV11TFTrn_MediaName;
-         AV42Trn_mediawwds_3_tftrn_medianame_sel = AV12TFTrn_MediaName_Sel;
-         AV43Trn_mediawwds_4_tftrn_mediaurl = AV13TFTrn_MediaUrl;
-         AV44Trn_mediawwds_5_tftrn_mediaurl_sel = AV14TFTrn_MediaUrl_Sel;
+         AV15TFMediaType = AV19SearchTxt;
+         AV16TFMediaType_Sel = "";
+         AV44Trn_mediawwds_1_filterfulltext = AV41FilterFullText;
+         AV45Trn_mediawwds_2_tfmedianame = AV11TFMediaName;
+         AV46Trn_mediawwds_3_tfmedianame_sel = AV12TFMediaName_Sel;
+         AV47Trn_mediawwds_4_tfmediasize = AV13TFMediaSize;
+         AV48Trn_mediawwds_5_tfmediasize_to = AV14TFMediaSize_To;
+         AV49Trn_mediawwds_6_tfmediatype = AV15TFMediaType;
+         AV50Trn_mediawwds_7_tfmediatype_sel = AV16TFMediaType_Sel;
+         AV51Trn_mediawwds_8_tfmediaurl = AV17TFMediaUrl;
+         AV52Trn_mediawwds_9_tfmediaurl_sel = AV18TFMediaUrl_Sel;
          pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              AV40Trn_mediawwds_1_filterfulltext ,
-                                              AV42Trn_mediawwds_3_tftrn_medianame_sel ,
-                                              AV41Trn_mediawwds_2_tftrn_medianame ,
-                                              AV44Trn_mediawwds_5_tftrn_mediaurl_sel ,
-                                              AV43Trn_mediawwds_4_tftrn_mediaurl ,
-                                              A253Trn_MediaName ,
-                                              A254Trn_MediaUrl } ,
+                                              AV44Trn_mediawwds_1_filterfulltext ,
+                                              AV46Trn_mediawwds_3_tfmedianame_sel ,
+                                              AV45Trn_mediawwds_2_tfmedianame ,
+                                              AV47Trn_mediawwds_4_tfmediasize ,
+                                              AV48Trn_mediawwds_5_tfmediasize_to ,
+                                              AV50Trn_mediawwds_7_tfmediatype_sel ,
+                                              AV49Trn_mediawwds_6_tfmediatype ,
+                                              AV52Trn_mediawwds_9_tfmediaurl_sel ,
+                                              AV51Trn_mediawwds_8_tfmediaurl ,
+                                              A410MediaName ,
+                                              A413MediaSize ,
+                                              A414MediaType ,
+                                              A412MediaUrl } ,
                                               new int[]{
+                                              TypeConstants.INT, TypeConstants.INT, TypeConstants.INT
                                               }
          });
-         lV40Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV40Trn_mediawwds_1_filterfulltext), "%", "");
-         lV40Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV40Trn_mediawwds_1_filterfulltext), "%", "");
-         lV41Trn_mediawwds_2_tftrn_medianame = StringUtil.Concat( StringUtil.RTrim( AV41Trn_mediawwds_2_tftrn_medianame), "%", "");
-         lV43Trn_mediawwds_4_tftrn_mediaurl = StringUtil.Concat( StringUtil.RTrim( AV43Trn_mediawwds_4_tftrn_mediaurl), "%", "");
-         /* Using cursor P005W3 */
-         pr_default.execute(1, new Object[] {lV40Trn_mediawwds_1_filterfulltext, lV40Trn_mediawwds_1_filterfulltext, lV41Trn_mediawwds_2_tftrn_medianame, AV42Trn_mediawwds_3_tftrn_medianame_sel, lV43Trn_mediawwds_4_tftrn_mediaurl, AV44Trn_mediawwds_5_tftrn_mediaurl_sel});
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV45Trn_mediawwds_2_tfmedianame = StringUtil.Concat( StringUtil.RTrim( AV45Trn_mediawwds_2_tfmedianame), "%", "");
+         lV49Trn_mediawwds_6_tfmediatype = StringUtil.PadR( StringUtil.RTrim( AV49Trn_mediawwds_6_tfmediatype), 20, "%");
+         lV51Trn_mediawwds_8_tfmediaurl = StringUtil.Concat( StringUtil.RTrim( AV51Trn_mediawwds_8_tfmediaurl), "%", "");
+         /* Using cursor P008O3 */
+         pr_default.execute(1, new Object[] {lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV45Trn_mediawwds_2_tfmedianame, AV46Trn_mediawwds_3_tfmedianame_sel, AV47Trn_mediawwds_4_tfmediasize, AV48Trn_mediawwds_5_tfmediasize_to, lV49Trn_mediawwds_6_tfmediatype, AV50Trn_mediawwds_7_tfmediatype_sel, lV51Trn_mediawwds_8_tfmediaurl, AV52Trn_mediawwds_9_tfmediaurl_sel});
          while ( (pr_default.getStatus(1) != 101) )
          {
-            BRK5W4 = false;
-            A254Trn_MediaUrl = P005W3_A254Trn_MediaUrl[0];
-            A253Trn_MediaName = P005W3_A253Trn_MediaName[0];
-            A252Trn_MediaId = P005W3_A252Trn_MediaId[0];
-            AV25count = 0;
-            while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P005W3_A254Trn_MediaUrl[0], A254Trn_MediaUrl) == 0 ) )
+            BRK8O4 = false;
+            A414MediaType = P008O3_A414MediaType[0];
+            A413MediaSize = P008O3_A413MediaSize[0];
+            A412MediaUrl = P008O3_A412MediaUrl[0];
+            A410MediaName = P008O3_A410MediaName[0];
+            A409MediaId = P008O3_A409MediaId[0];
+            AV29count = 0;
+            while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P008O3_A414MediaType[0], A414MediaType) == 0 ) )
             {
-               BRK5W4 = false;
-               A252Trn_MediaId = P005W3_A252Trn_MediaId[0];
-               AV25count = (long)(AV25count+1);
-               BRK5W4 = true;
+               BRK8O4 = false;
+               A409MediaId = P008O3_A409MediaId[0];
+               AV29count = (long)(AV29count+1);
+               BRK8O4 = true;
                pr_default.readNext(1);
             }
-            if ( (0==AV16SkipItems) )
+            if ( (0==AV20SkipItems) )
             {
-               AV20Option = (String.IsNullOrEmpty(StringUtil.RTrim( A254Trn_MediaUrl)) ? "<#Empty#>" : A254Trn_MediaUrl);
-               AV21Options.Add(AV20Option, 0);
-               AV24OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV25count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV21Options.Count == 10 )
+               AV24Option = (String.IsNullOrEmpty(StringUtil.RTrim( A414MediaType)) ? "<#Empty#>" : A414MediaType);
+               AV25Options.Add(AV24Option, 0);
+               AV28OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV29count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+               if ( AV25Options.Count == 10 )
                {
                   /* Exit For each command. Update data (if necessary), close cursors & exit. */
                   if (true) break;
@@ -323,15 +378,98 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV16SkipItems = (short)(AV16SkipItems-1);
+               AV20SkipItems = (short)(AV20SkipItems-1);
             }
-            if ( ! BRK5W4 )
+            if ( ! BRK8O4 )
             {
-               BRK5W4 = true;
+               BRK8O4 = true;
                pr_default.readNext(1);
             }
          }
          pr_default.close(1);
+      }
+
+      protected void S141( )
+      {
+         /* 'LOADMEDIAURLOPTIONS' Routine */
+         returnInSub = false;
+         AV17TFMediaUrl = AV19SearchTxt;
+         AV18TFMediaUrl_Sel = "";
+         AV44Trn_mediawwds_1_filterfulltext = AV41FilterFullText;
+         AV45Trn_mediawwds_2_tfmedianame = AV11TFMediaName;
+         AV46Trn_mediawwds_3_tfmedianame_sel = AV12TFMediaName_Sel;
+         AV47Trn_mediawwds_4_tfmediasize = AV13TFMediaSize;
+         AV48Trn_mediawwds_5_tfmediasize_to = AV14TFMediaSize_To;
+         AV49Trn_mediawwds_6_tfmediatype = AV15TFMediaType;
+         AV50Trn_mediawwds_7_tfmediatype_sel = AV16TFMediaType_Sel;
+         AV51Trn_mediawwds_8_tfmediaurl = AV17TFMediaUrl;
+         AV52Trn_mediawwds_9_tfmediaurl_sel = AV18TFMediaUrl_Sel;
+         pr_default.dynParam(2, new Object[]{ new Object[]{
+                                              AV44Trn_mediawwds_1_filterfulltext ,
+                                              AV46Trn_mediawwds_3_tfmedianame_sel ,
+                                              AV45Trn_mediawwds_2_tfmedianame ,
+                                              AV47Trn_mediawwds_4_tfmediasize ,
+                                              AV48Trn_mediawwds_5_tfmediasize_to ,
+                                              AV50Trn_mediawwds_7_tfmediatype_sel ,
+                                              AV49Trn_mediawwds_6_tfmediatype ,
+                                              AV52Trn_mediawwds_9_tfmediaurl_sel ,
+                                              AV51Trn_mediawwds_8_tfmediaurl ,
+                                              A410MediaName ,
+                                              A413MediaSize ,
+                                              A414MediaType ,
+                                              A412MediaUrl } ,
+                                              new int[]{
+                                              TypeConstants.INT, TypeConstants.INT, TypeConstants.INT
+                                              }
+         });
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV44Trn_mediawwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext), "%", "");
+         lV45Trn_mediawwds_2_tfmedianame = StringUtil.Concat( StringUtil.RTrim( AV45Trn_mediawwds_2_tfmedianame), "%", "");
+         lV49Trn_mediawwds_6_tfmediatype = StringUtil.PadR( StringUtil.RTrim( AV49Trn_mediawwds_6_tfmediatype), 20, "%");
+         lV51Trn_mediawwds_8_tfmediaurl = StringUtil.Concat( StringUtil.RTrim( AV51Trn_mediawwds_8_tfmediaurl), "%", "");
+         /* Using cursor P008O4 */
+         pr_default.execute(2, new Object[] {lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV44Trn_mediawwds_1_filterfulltext, lV45Trn_mediawwds_2_tfmedianame, AV46Trn_mediawwds_3_tfmedianame_sel, AV47Trn_mediawwds_4_tfmediasize, AV48Trn_mediawwds_5_tfmediasize_to, lV49Trn_mediawwds_6_tfmediatype, AV50Trn_mediawwds_7_tfmediatype_sel, lV51Trn_mediawwds_8_tfmediaurl, AV52Trn_mediawwds_9_tfmediaurl_sel});
+         while ( (pr_default.getStatus(2) != 101) )
+         {
+            BRK8O6 = false;
+            A412MediaUrl = P008O4_A412MediaUrl[0];
+            A413MediaSize = P008O4_A413MediaSize[0];
+            A414MediaType = P008O4_A414MediaType[0];
+            A410MediaName = P008O4_A410MediaName[0];
+            A409MediaId = P008O4_A409MediaId[0];
+            AV29count = 0;
+            while ( (pr_default.getStatus(2) != 101) && ( StringUtil.StrCmp(P008O4_A412MediaUrl[0], A412MediaUrl) == 0 ) )
+            {
+               BRK8O6 = false;
+               A409MediaId = P008O4_A409MediaId[0];
+               AV29count = (long)(AV29count+1);
+               BRK8O6 = true;
+               pr_default.readNext(2);
+            }
+            if ( (0==AV20SkipItems) )
+            {
+               AV24Option = (String.IsNullOrEmpty(StringUtil.RTrim( A412MediaUrl)) ? "<#Empty#>" : A412MediaUrl);
+               AV25Options.Add(AV24Option, 0);
+               AV28OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV29count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+               if ( AV25Options.Count == 10 )
+               {
+                  /* Exit For each command. Update data (if necessary), close cursors & exit. */
+                  if (true) break;
+               }
+            }
+            else
+            {
+               AV20SkipItems = (short)(AV20SkipItems-1);
+            }
+            if ( ! BRK8O6 )
+            {
+               BRK8O6 = true;
+               pr_default.readNext(2);
+            }
+         }
+         pr_default.close(2);
       }
 
       public override void cleanup( )
@@ -346,101 +484,140 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV34OptionsJson = "";
-         AV35OptionsDescJson = "";
-         AV36OptionIndexesJson = "";
-         AV21Options = new GxSimpleCollection<string>();
-         AV23OptionsDesc = new GxSimpleCollection<string>();
-         AV24OptionIndexes = new GxSimpleCollection<string>();
-         AV15SearchTxt = "";
+         AV38OptionsJson = "";
+         AV39OptionsDescJson = "";
+         AV40OptionIndexesJson = "";
+         AV25Options = new GxSimpleCollection<string>();
+         AV27OptionsDesc = new GxSimpleCollection<string>();
+         AV28OptionIndexes = new GxSimpleCollection<string>();
+         AV19SearchTxt = "";
          AV9WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         AV26Session = context.GetSession();
-         AV28GridState = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState(context);
-         AV29GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
-         AV37FilterFullText = "";
-         AV11TFTrn_MediaName = "";
-         AV12TFTrn_MediaName_Sel = "";
-         AV13TFTrn_MediaUrl = "";
-         AV14TFTrn_MediaUrl_Sel = "";
-         AV40Trn_mediawwds_1_filterfulltext = "";
-         AV41Trn_mediawwds_2_tftrn_medianame = "";
-         AV42Trn_mediawwds_3_tftrn_medianame_sel = "";
-         AV43Trn_mediawwds_4_tftrn_mediaurl = "";
-         AV44Trn_mediawwds_5_tftrn_mediaurl_sel = "";
-         lV40Trn_mediawwds_1_filterfulltext = "";
-         lV41Trn_mediawwds_2_tftrn_medianame = "";
-         lV43Trn_mediawwds_4_tftrn_mediaurl = "";
-         A253Trn_MediaName = "";
-         A254Trn_MediaUrl = "";
-         P005W2_A253Trn_MediaName = new string[] {""} ;
-         P005W2_A254Trn_MediaUrl = new string[] {""} ;
-         P005W2_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
-         A252Trn_MediaId = Guid.Empty;
-         AV20Option = "";
-         P005W3_A254Trn_MediaUrl = new string[] {""} ;
-         P005W3_A253Trn_MediaName = new string[] {""} ;
-         P005W3_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
+         AV30Session = context.GetSession();
+         AV32GridState = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState(context);
+         AV33GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
+         AV41FilterFullText = "";
+         AV11TFMediaName = "";
+         AV12TFMediaName_Sel = "";
+         AV15TFMediaType = "";
+         AV16TFMediaType_Sel = "";
+         AV17TFMediaUrl = "";
+         AV18TFMediaUrl_Sel = "";
+         AV44Trn_mediawwds_1_filterfulltext = "";
+         AV45Trn_mediawwds_2_tfmedianame = "";
+         AV46Trn_mediawwds_3_tfmedianame_sel = "";
+         AV49Trn_mediawwds_6_tfmediatype = "";
+         AV50Trn_mediawwds_7_tfmediatype_sel = "";
+         AV51Trn_mediawwds_8_tfmediaurl = "";
+         AV52Trn_mediawwds_9_tfmediaurl_sel = "";
+         lV44Trn_mediawwds_1_filterfulltext = "";
+         lV45Trn_mediawwds_2_tfmedianame = "";
+         lV49Trn_mediawwds_6_tfmediatype = "";
+         lV51Trn_mediawwds_8_tfmediaurl = "";
+         A410MediaName = "";
+         A414MediaType = "";
+         A412MediaUrl = "";
+         P008O2_A410MediaName = new string[] {""} ;
+         P008O2_A413MediaSize = new int[1] ;
+         P008O2_A412MediaUrl = new string[] {""} ;
+         P008O2_A414MediaType = new string[] {""} ;
+         P008O2_A409MediaId = new Guid[] {Guid.Empty} ;
+         A409MediaId = Guid.Empty;
+         AV24Option = "";
+         P008O3_A414MediaType = new string[] {""} ;
+         P008O3_A413MediaSize = new int[1] ;
+         P008O3_A412MediaUrl = new string[] {""} ;
+         P008O3_A410MediaName = new string[] {""} ;
+         P008O3_A409MediaId = new Guid[] {Guid.Empty} ;
+         P008O4_A412MediaUrl = new string[] {""} ;
+         P008O4_A413MediaSize = new int[1] ;
+         P008O4_A414MediaType = new string[] {""} ;
+         P008O4_A410MediaName = new string[] {""} ;
+         P008O4_A409MediaId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_mediawwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P005W2_A253Trn_MediaName, P005W2_A254Trn_MediaUrl, P005W2_A252Trn_MediaId
+               P008O2_A410MediaName, P008O2_A413MediaSize, P008O2_A412MediaUrl, P008O2_A414MediaType, P008O2_A409MediaId
                }
                , new Object[] {
-               P005W3_A254Trn_MediaUrl, P005W3_A253Trn_MediaName, P005W3_A252Trn_MediaId
+               P008O3_A414MediaType, P008O3_A413MediaSize, P008O3_A412MediaUrl, P008O3_A410MediaName, P008O3_A409MediaId
+               }
+               , new Object[] {
+               P008O4_A412MediaUrl, P008O4_A413MediaSize, P008O4_A414MediaType, P008O4_A410MediaName, P008O4_A409MediaId
                }
             }
          );
          /* GeneXus formulas. */
       }
 
-      private short AV18MaxItems ;
-      private short AV17PageIndex ;
-      private short AV16SkipItems ;
-      private int AV38GXV1 ;
-      private long AV25count ;
+      private short AV22MaxItems ;
+      private short AV21PageIndex ;
+      private short AV20SkipItems ;
+      private int AV42GXV1 ;
+      private int AV13TFMediaSize ;
+      private int AV14TFMediaSize_To ;
+      private int AV47Trn_mediawwds_4_tfmediasize ;
+      private int AV48Trn_mediawwds_5_tfmediasize_to ;
+      private int A413MediaSize ;
+      private long AV29count ;
+      private string AV15TFMediaType ;
+      private string AV16TFMediaType_Sel ;
+      private string AV49Trn_mediawwds_6_tfmediatype ;
+      private string AV50Trn_mediawwds_7_tfmediatype_sel ;
+      private string lV49Trn_mediawwds_6_tfmediatype ;
+      private string A414MediaType ;
       private bool returnInSub ;
-      private bool BRK5W2 ;
-      private bool BRK5W4 ;
-      private string AV34OptionsJson ;
-      private string AV35OptionsDescJson ;
-      private string AV36OptionIndexesJson ;
-      private string AV31DDOName ;
-      private string AV32SearchTxtParms ;
-      private string AV33SearchTxtTo ;
-      private string AV15SearchTxt ;
-      private string AV37FilterFullText ;
-      private string AV11TFTrn_MediaName ;
-      private string AV12TFTrn_MediaName_Sel ;
-      private string AV13TFTrn_MediaUrl ;
-      private string AV14TFTrn_MediaUrl_Sel ;
-      private string AV40Trn_mediawwds_1_filterfulltext ;
-      private string AV41Trn_mediawwds_2_tftrn_medianame ;
-      private string AV42Trn_mediawwds_3_tftrn_medianame_sel ;
-      private string AV43Trn_mediawwds_4_tftrn_mediaurl ;
-      private string AV44Trn_mediawwds_5_tftrn_mediaurl_sel ;
-      private string lV40Trn_mediawwds_1_filterfulltext ;
-      private string lV41Trn_mediawwds_2_tftrn_medianame ;
-      private string lV43Trn_mediawwds_4_tftrn_mediaurl ;
-      private string A253Trn_MediaName ;
-      private string A254Trn_MediaUrl ;
-      private string AV20Option ;
-      private Guid A252Trn_MediaId ;
-      private IGxSession AV26Session ;
+      private bool BRK8O2 ;
+      private bool BRK8O4 ;
+      private bool BRK8O6 ;
+      private string AV38OptionsJson ;
+      private string AV39OptionsDescJson ;
+      private string AV40OptionIndexesJson ;
+      private string AV35DDOName ;
+      private string AV36SearchTxtParms ;
+      private string AV37SearchTxtTo ;
+      private string AV19SearchTxt ;
+      private string AV41FilterFullText ;
+      private string AV11TFMediaName ;
+      private string AV12TFMediaName_Sel ;
+      private string AV17TFMediaUrl ;
+      private string AV18TFMediaUrl_Sel ;
+      private string AV44Trn_mediawwds_1_filterfulltext ;
+      private string AV45Trn_mediawwds_2_tfmedianame ;
+      private string AV46Trn_mediawwds_3_tfmedianame_sel ;
+      private string AV51Trn_mediawwds_8_tfmediaurl ;
+      private string AV52Trn_mediawwds_9_tfmediaurl_sel ;
+      private string lV44Trn_mediawwds_1_filterfulltext ;
+      private string lV45Trn_mediawwds_2_tfmedianame ;
+      private string lV51Trn_mediawwds_8_tfmediaurl ;
+      private string A410MediaName ;
+      private string A412MediaUrl ;
+      private string AV24Option ;
+      private Guid A409MediaId ;
+      private IGxSession AV30Session ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GxSimpleCollection<string> AV21Options ;
-      private GxSimpleCollection<string> AV23OptionsDesc ;
-      private GxSimpleCollection<string> AV24OptionIndexes ;
+      private GxSimpleCollection<string> AV25Options ;
+      private GxSimpleCollection<string> AV27OptionsDesc ;
+      private GxSimpleCollection<string> AV28OptionIndexes ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV9WWPContext ;
-      private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV28GridState ;
-      private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV29GridStateFilterValue ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV32GridState ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV33GridStateFilterValue ;
       private IDataStoreProvider pr_default ;
-      private string[] P005W2_A253Trn_MediaName ;
-      private string[] P005W2_A254Trn_MediaUrl ;
-      private Guid[] P005W2_A252Trn_MediaId ;
-      private string[] P005W3_A254Trn_MediaUrl ;
-      private string[] P005W3_A253Trn_MediaName ;
-      private Guid[] P005W3_A252Trn_MediaId ;
+      private string[] P008O2_A410MediaName ;
+      private int[] P008O2_A413MediaSize ;
+      private string[] P008O2_A412MediaUrl ;
+      private string[] P008O2_A414MediaType ;
+      private Guid[] P008O2_A409MediaId ;
+      private string[] P008O3_A414MediaType ;
+      private int[] P008O3_A413MediaSize ;
+      private string[] P008O3_A412MediaUrl ;
+      private string[] P008O3_A410MediaName ;
+      private Guid[] P008O3_A409MediaId ;
+      private string[] P008O4_A412MediaUrl ;
+      private int[] P008O4_A413MediaSize ;
+      private string[] P008O4_A414MediaType ;
+      private string[] P008O4_A410MediaName ;
+      private Guid[] P008O4_A409MediaId ;
       private string aP3_OptionsJson ;
       private string aP4_OptionsDescJson ;
       private string aP5_OptionIndexesJson ;
@@ -448,144 +625,346 @@ namespace GeneXus.Programs {
 
    public class trn_mediawwgetfilterdata__default : DataStoreHelperBase, IDataStoreHelper
    {
-      protected Object[] conditional_P005W2( IGxContext context ,
-                                             string AV40Trn_mediawwds_1_filterfulltext ,
-                                             string AV42Trn_mediawwds_3_tftrn_medianame_sel ,
-                                             string AV41Trn_mediawwds_2_tftrn_medianame ,
-                                             string AV44Trn_mediawwds_5_tftrn_mediaurl_sel ,
-                                             string AV43Trn_mediawwds_4_tftrn_mediaurl ,
-                                             string A253Trn_MediaName ,
-                                             string A254Trn_MediaUrl )
+      protected Object[] conditional_P008O2( IGxContext context ,
+                                             string AV44Trn_mediawwds_1_filterfulltext ,
+                                             string AV46Trn_mediawwds_3_tfmedianame_sel ,
+                                             string AV45Trn_mediawwds_2_tfmedianame ,
+                                             int AV47Trn_mediawwds_4_tfmediasize ,
+                                             int AV48Trn_mediawwds_5_tfmediasize_to ,
+                                             string AV50Trn_mediawwds_7_tfmediatype_sel ,
+                                             string AV49Trn_mediawwds_6_tfmediatype ,
+                                             string AV52Trn_mediawwds_9_tfmediaurl_sel ,
+                                             string AV51Trn_mediawwds_8_tfmediaurl ,
+                                             string A410MediaName ,
+                                             int A413MediaSize ,
+                                             string A414MediaType ,
+                                             string A412MediaUrl )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int1 = new short[6];
+         short[] GXv_int1 = new short[12];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT Trn_MediaName, Trn_MediaUrl, Trn_MediaId FROM Trn_Media";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_mediawwds_1_filterfulltext)) )
+         scmdbuf = "SELECT MediaName, MediaSize, MediaUrl, MediaType, MediaId FROM Trn_Media";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_MediaName like '%' || :lV40Trn_mediawwds_1_filterfulltext) or ( Trn_MediaUrl like '%' || :lV40Trn_mediawwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( MediaName like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(MediaSize,'99999999'), 2) like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( MediaType like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( MediaUrl like '%' || :lV44Trn_mediawwds_1_filterfulltext))");
          }
          else
          {
             GXv_int1[0] = 1;
             GXv_int1[1] = 1;
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_mediawwds_3_tftrn_medianame_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Trn_mediawwds_2_tftrn_medianame)) ) )
-         {
-            AddWhere(sWhereString, "(Trn_MediaName like :lV41Trn_mediawwds_2_tftrn_medianame)");
-         }
-         else
-         {
             GXv_int1[2] = 1;
-         }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_mediawwds_3_tftrn_medianame_sel)) && ! ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
-         {
-            AddWhere(sWhereString, "(Trn_MediaName = ( :AV42Trn_mediawwds_3_tftrn_medianame_sel))");
-         }
-         else
-         {
             GXv_int1[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_mediawwds_3_tfmedianame_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_mediawwds_2_tfmedianame)) ) )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_MediaName))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_5_tftrn_mediaurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_mediawwds_4_tftrn_mediaurl)) ) )
-         {
-            AddWhere(sWhereString, "(Trn_MediaUrl like :lV43Trn_mediawwds_4_tftrn_mediaurl)");
+            AddWhere(sWhereString, "(MediaName like :lV45Trn_mediawwds_2_tfmedianame)");
          }
          else
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_5_tftrn_mediaurl_sel)) && ! ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_mediawwds_3_tfmedianame_sel)) && ! ( StringUtil.StrCmp(AV46Trn_mediawwds_3_tfmedianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(Trn_MediaUrl = ( :AV44Trn_mediawwds_5_tftrn_mediaurl_sel))");
+            AddWhere(sWhereString, "(MediaName = ( :AV46Trn_mediawwds_3_tfmedianame_sel))");
          }
          else
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV46Trn_mediawwds_3_tfmedianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_MediaUrl))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaName))=0))");
+         }
+         if ( ! (0==AV47Trn_mediawwds_4_tfmediasize) )
+         {
+            AddWhere(sWhereString, "(MediaSize >= :AV47Trn_mediawwds_4_tfmediasize)");
+         }
+         else
+         {
+            GXv_int1[6] = 1;
+         }
+         if ( ! (0==AV48Trn_mediawwds_5_tfmediasize_to) )
+         {
+            AddWhere(sWhereString, "(MediaSize <= :AV48Trn_mediawwds_5_tfmediasize_to)");
+         }
+         else
+         {
+            GXv_int1[7] = 1;
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_mediawwds_7_tfmediatype_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_mediawwds_6_tfmediatype)) ) )
+         {
+            AddWhere(sWhereString, "(MediaType like :lV49Trn_mediawwds_6_tfmediatype)");
+         }
+         else
+         {
+            GXv_int1[8] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_mediawwds_7_tfmediatype_sel)) && ! ( StringUtil.StrCmp(AV50Trn_mediawwds_7_tfmediatype_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(MediaType = ( :AV50Trn_mediawwds_7_tfmediatype_sel))");
+         }
+         else
+         {
+            GXv_int1[9] = 1;
+         }
+         if ( StringUtil.StrCmp(AV50Trn_mediawwds_7_tfmediatype_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaType))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_mediawwds_9_tfmediaurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_mediawwds_8_tfmediaurl)) ) )
+         {
+            AddWhere(sWhereString, "(MediaUrl like :lV51Trn_mediawwds_8_tfmediaurl)");
+         }
+         else
+         {
+            GXv_int1[10] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_mediawwds_9_tfmediaurl_sel)) && ! ( StringUtil.StrCmp(AV52Trn_mediawwds_9_tfmediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(MediaUrl = ( :AV52Trn_mediawwds_9_tfmediaurl_sel))");
+         }
+         else
+         {
+            GXv_int1[11] = 1;
+         }
+         if ( StringUtil.StrCmp(AV52Trn_mediawwds_9_tfmediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaUrl))=0))");
          }
          scmdbuf += sWhereString;
-         scmdbuf += " ORDER BY Trn_MediaName";
+         scmdbuf += " ORDER BY MediaName";
          GXv_Object2[0] = scmdbuf;
          GXv_Object2[1] = GXv_int1;
          return GXv_Object2 ;
       }
 
-      protected Object[] conditional_P005W3( IGxContext context ,
-                                             string AV40Trn_mediawwds_1_filterfulltext ,
-                                             string AV42Trn_mediawwds_3_tftrn_medianame_sel ,
-                                             string AV41Trn_mediawwds_2_tftrn_medianame ,
-                                             string AV44Trn_mediawwds_5_tftrn_mediaurl_sel ,
-                                             string AV43Trn_mediawwds_4_tftrn_mediaurl ,
-                                             string A253Trn_MediaName ,
-                                             string A254Trn_MediaUrl )
+      protected Object[] conditional_P008O3( IGxContext context ,
+                                             string AV44Trn_mediawwds_1_filterfulltext ,
+                                             string AV46Trn_mediawwds_3_tfmedianame_sel ,
+                                             string AV45Trn_mediawwds_2_tfmedianame ,
+                                             int AV47Trn_mediawwds_4_tfmediasize ,
+                                             int AV48Trn_mediawwds_5_tfmediasize_to ,
+                                             string AV50Trn_mediawwds_7_tfmediatype_sel ,
+                                             string AV49Trn_mediawwds_6_tfmediatype ,
+                                             string AV52Trn_mediawwds_9_tfmediaurl_sel ,
+                                             string AV51Trn_mediawwds_8_tfmediaurl ,
+                                             string A410MediaName ,
+                                             int A413MediaSize ,
+                                             string A414MediaType ,
+                                             string A412MediaUrl )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int3 = new short[6];
+         short[] GXv_int3 = new short[12];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT Trn_MediaUrl, Trn_MediaName, Trn_MediaId FROM Trn_Media";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_mediawwds_1_filterfulltext)) )
+         scmdbuf = "SELECT MediaType, MediaSize, MediaUrl, MediaName, MediaId FROM Trn_Media";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_MediaName like '%' || :lV40Trn_mediawwds_1_filterfulltext) or ( Trn_MediaUrl like '%' || :lV40Trn_mediawwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( MediaName like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(MediaSize,'99999999'), 2) like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( MediaType like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( MediaUrl like '%' || :lV44Trn_mediawwds_1_filterfulltext))");
          }
          else
          {
             GXv_int3[0] = 1;
             GXv_int3[1] = 1;
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_mediawwds_3_tftrn_medianame_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Trn_mediawwds_2_tftrn_medianame)) ) )
-         {
-            AddWhere(sWhereString, "(Trn_MediaName like :lV41Trn_mediawwds_2_tftrn_medianame)");
-         }
-         else
-         {
             GXv_int3[2] = 1;
-         }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_mediawwds_3_tftrn_medianame_sel)) && ! ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
-         {
-            AddWhere(sWhereString, "(Trn_MediaName = ( :AV42Trn_mediawwds_3_tftrn_medianame_sel))");
-         }
-         else
-         {
             GXv_int3[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Trn_mediawwds_3_tftrn_medianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_mediawwds_3_tfmedianame_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_mediawwds_2_tfmedianame)) ) )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_MediaName))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_5_tftrn_mediaurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_mediawwds_4_tftrn_mediaurl)) ) )
-         {
-            AddWhere(sWhereString, "(Trn_MediaUrl like :lV43Trn_mediawwds_4_tftrn_mediaurl)");
+            AddWhere(sWhereString, "(MediaName like :lV45Trn_mediawwds_2_tfmedianame)");
          }
          else
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_5_tftrn_mediaurl_sel)) && ! ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_mediawwds_3_tfmedianame_sel)) && ! ( StringUtil.StrCmp(AV46Trn_mediawwds_3_tfmedianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(Trn_MediaUrl = ( :AV44Trn_mediawwds_5_tftrn_mediaurl_sel))");
+            AddWhere(sWhereString, "(MediaName = ( :AV46Trn_mediawwds_3_tfmedianame_sel))");
          }
          else
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_mediawwds_5_tftrn_mediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV46Trn_mediawwds_3_tfmedianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_MediaUrl))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaName))=0))");
+         }
+         if ( ! (0==AV47Trn_mediawwds_4_tfmediasize) )
+         {
+            AddWhere(sWhereString, "(MediaSize >= :AV47Trn_mediawwds_4_tfmediasize)");
+         }
+         else
+         {
+            GXv_int3[6] = 1;
+         }
+         if ( ! (0==AV48Trn_mediawwds_5_tfmediasize_to) )
+         {
+            AddWhere(sWhereString, "(MediaSize <= :AV48Trn_mediawwds_5_tfmediasize_to)");
+         }
+         else
+         {
+            GXv_int3[7] = 1;
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_mediawwds_7_tfmediatype_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_mediawwds_6_tfmediatype)) ) )
+         {
+            AddWhere(sWhereString, "(MediaType like :lV49Trn_mediawwds_6_tfmediatype)");
+         }
+         else
+         {
+            GXv_int3[8] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_mediawwds_7_tfmediatype_sel)) && ! ( StringUtil.StrCmp(AV50Trn_mediawwds_7_tfmediatype_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(MediaType = ( :AV50Trn_mediawwds_7_tfmediatype_sel))");
+         }
+         else
+         {
+            GXv_int3[9] = 1;
+         }
+         if ( StringUtil.StrCmp(AV50Trn_mediawwds_7_tfmediatype_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaType))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_mediawwds_9_tfmediaurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_mediawwds_8_tfmediaurl)) ) )
+         {
+            AddWhere(sWhereString, "(MediaUrl like :lV51Trn_mediawwds_8_tfmediaurl)");
+         }
+         else
+         {
+            GXv_int3[10] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_mediawwds_9_tfmediaurl_sel)) && ! ( StringUtil.StrCmp(AV52Trn_mediawwds_9_tfmediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(MediaUrl = ( :AV52Trn_mediawwds_9_tfmediaurl_sel))");
+         }
+         else
+         {
+            GXv_int3[11] = 1;
+         }
+         if ( StringUtil.StrCmp(AV52Trn_mediawwds_9_tfmediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaUrl))=0))");
          }
          scmdbuf += sWhereString;
-         scmdbuf += " ORDER BY Trn_MediaUrl";
+         scmdbuf += " ORDER BY MediaType";
          GXv_Object4[0] = scmdbuf;
          GXv_Object4[1] = GXv_int3;
          return GXv_Object4 ;
+      }
+
+      protected Object[] conditional_P008O4( IGxContext context ,
+                                             string AV44Trn_mediawwds_1_filterfulltext ,
+                                             string AV46Trn_mediawwds_3_tfmedianame_sel ,
+                                             string AV45Trn_mediawwds_2_tfmedianame ,
+                                             int AV47Trn_mediawwds_4_tfmediasize ,
+                                             int AV48Trn_mediawwds_5_tfmediasize_to ,
+                                             string AV50Trn_mediawwds_7_tfmediatype_sel ,
+                                             string AV49Trn_mediawwds_6_tfmediatype ,
+                                             string AV52Trn_mediawwds_9_tfmediaurl_sel ,
+                                             string AV51Trn_mediawwds_8_tfmediaurl ,
+                                             string A410MediaName ,
+                                             int A413MediaSize ,
+                                             string A414MediaType ,
+                                             string A412MediaUrl )
+      {
+         System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
+         string scmdbuf;
+         short[] GXv_int5 = new short[12];
+         Object[] GXv_Object6 = new Object[2];
+         scmdbuf = "SELECT MediaUrl, MediaSize, MediaType, MediaName, MediaId FROM Trn_Media";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_mediawwds_1_filterfulltext)) )
+         {
+            AddWhere(sWhereString, "(( MediaName like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(MediaSize,'99999999'), 2) like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( MediaType like '%' || :lV44Trn_mediawwds_1_filterfulltext) or ( MediaUrl like '%' || :lV44Trn_mediawwds_1_filterfulltext))");
+         }
+         else
+         {
+            GXv_int5[0] = 1;
+            GXv_int5[1] = 1;
+            GXv_int5[2] = 1;
+            GXv_int5[3] = 1;
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_mediawwds_3_tfmedianame_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_mediawwds_2_tfmedianame)) ) )
+         {
+            AddWhere(sWhereString, "(MediaName like :lV45Trn_mediawwds_2_tfmedianame)");
+         }
+         else
+         {
+            GXv_int5[4] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_mediawwds_3_tfmedianame_sel)) && ! ( StringUtil.StrCmp(AV46Trn_mediawwds_3_tfmedianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(MediaName = ( :AV46Trn_mediawwds_3_tfmedianame_sel))");
+         }
+         else
+         {
+            GXv_int5[5] = 1;
+         }
+         if ( StringUtil.StrCmp(AV46Trn_mediawwds_3_tfmedianame_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaName))=0))");
+         }
+         if ( ! (0==AV47Trn_mediawwds_4_tfmediasize) )
+         {
+            AddWhere(sWhereString, "(MediaSize >= :AV47Trn_mediawwds_4_tfmediasize)");
+         }
+         else
+         {
+            GXv_int5[6] = 1;
+         }
+         if ( ! (0==AV48Trn_mediawwds_5_tfmediasize_to) )
+         {
+            AddWhere(sWhereString, "(MediaSize <= :AV48Trn_mediawwds_5_tfmediasize_to)");
+         }
+         else
+         {
+            GXv_int5[7] = 1;
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_mediawwds_7_tfmediatype_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_mediawwds_6_tfmediatype)) ) )
+         {
+            AddWhere(sWhereString, "(MediaType like :lV49Trn_mediawwds_6_tfmediatype)");
+         }
+         else
+         {
+            GXv_int5[8] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_mediawwds_7_tfmediatype_sel)) && ! ( StringUtil.StrCmp(AV50Trn_mediawwds_7_tfmediatype_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(MediaType = ( :AV50Trn_mediawwds_7_tfmediatype_sel))");
+         }
+         else
+         {
+            GXv_int5[9] = 1;
+         }
+         if ( StringUtil.StrCmp(AV50Trn_mediawwds_7_tfmediatype_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaType))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_mediawwds_9_tfmediaurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_mediawwds_8_tfmediaurl)) ) )
+         {
+            AddWhere(sWhereString, "(MediaUrl like :lV51Trn_mediawwds_8_tfmediaurl)");
+         }
+         else
+         {
+            GXv_int5[10] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_mediawwds_9_tfmediaurl_sel)) && ! ( StringUtil.StrCmp(AV52Trn_mediawwds_9_tfmediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(MediaUrl = ( :AV52Trn_mediawwds_9_tfmediaurl_sel))");
+         }
+         else
+         {
+            GXv_int5[11] = 1;
+         }
+         if ( StringUtil.StrCmp(AV52Trn_mediawwds_9_tfmediaurl_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from MediaUrl))=0))");
+         }
+         scmdbuf += sWhereString;
+         scmdbuf += " ORDER BY MediaUrl";
+         GXv_Object6[0] = scmdbuf;
+         GXv_Object6[1] = GXv_int5;
+         return GXv_Object6 ;
       }
 
       public override Object [] getDynamicStatement( int cursor ,
@@ -595,9 +974,11 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_P005W2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] );
+                     return conditional_P008O2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (int)dynConstraints[3] , (int)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] );
                case 1 :
-                     return conditional_P005W3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] );
+                     return conditional_P008O3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (int)dynConstraints[3] , (int)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] );
+               case 2 :
+                     return conditional_P008O4(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (int)dynConstraints[3] , (int)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -608,6 +989,7 @@ namespace GeneXus.Programs {
          return new Cursor[] {
           new ForEachCursor(def[0])
          ,new ForEachCursor(def[1])
+         ,new ForEachCursor(def[2])
        };
     }
 
@@ -616,27 +998,55 @@ namespace GeneXus.Programs {
     {
        if ( def == null )
        {
-          Object[] prmP005W2;
-          prmP005W2 = new Object[] {
-          new ParDef("lV40Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV40Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV41Trn_mediawwds_2_tftrn_medianame",GXType.VarChar,100,0) ,
-          new ParDef("AV42Trn_mediawwds_3_tftrn_medianame_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV43Trn_mediawwds_4_tftrn_mediaurl",GXType.VarChar,1000,0) ,
-          new ParDef("AV44Trn_mediawwds_5_tftrn_mediaurl_sel",GXType.VarChar,1000,0)
+          Object[] prmP008O2;
+          prmP008O2 = new Object[] {
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV45Trn_mediawwds_2_tfmedianame",GXType.VarChar,100,0) ,
+          new ParDef("AV46Trn_mediawwds_3_tfmedianame_sel",GXType.VarChar,100,0) ,
+          new ParDef("AV47Trn_mediawwds_4_tfmediasize",GXType.Int32,8,0) ,
+          new ParDef("AV48Trn_mediawwds_5_tfmediasize_to",GXType.Int32,8,0) ,
+          new ParDef("lV49Trn_mediawwds_6_tfmediatype",GXType.Char,20,0) ,
+          new ParDef("AV50Trn_mediawwds_7_tfmediatype_sel",GXType.Char,20,0) ,
+          new ParDef("lV51Trn_mediawwds_8_tfmediaurl",GXType.VarChar,1000,0) ,
+          new ParDef("AV52Trn_mediawwds_9_tfmediaurl_sel",GXType.VarChar,1000,0)
           };
-          Object[] prmP005W3;
-          prmP005W3 = new Object[] {
-          new ParDef("lV40Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV40Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV41Trn_mediawwds_2_tftrn_medianame",GXType.VarChar,100,0) ,
-          new ParDef("AV42Trn_mediawwds_3_tftrn_medianame_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV43Trn_mediawwds_4_tftrn_mediaurl",GXType.VarChar,1000,0) ,
-          new ParDef("AV44Trn_mediawwds_5_tftrn_mediaurl_sel",GXType.VarChar,1000,0)
+          Object[] prmP008O3;
+          prmP008O3 = new Object[] {
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV45Trn_mediawwds_2_tfmedianame",GXType.VarChar,100,0) ,
+          new ParDef("AV46Trn_mediawwds_3_tfmedianame_sel",GXType.VarChar,100,0) ,
+          new ParDef("AV47Trn_mediawwds_4_tfmediasize",GXType.Int32,8,0) ,
+          new ParDef("AV48Trn_mediawwds_5_tfmediasize_to",GXType.Int32,8,0) ,
+          new ParDef("lV49Trn_mediawwds_6_tfmediatype",GXType.Char,20,0) ,
+          new ParDef("AV50Trn_mediawwds_7_tfmediatype_sel",GXType.Char,20,0) ,
+          new ParDef("lV51Trn_mediawwds_8_tfmediaurl",GXType.VarChar,1000,0) ,
+          new ParDef("AV52Trn_mediawwds_9_tfmediaurl_sel",GXType.VarChar,1000,0)
+          };
+          Object[] prmP008O4;
+          prmP008O4 = new Object[] {
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV44Trn_mediawwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV45Trn_mediawwds_2_tfmedianame",GXType.VarChar,100,0) ,
+          new ParDef("AV46Trn_mediawwds_3_tfmedianame_sel",GXType.VarChar,100,0) ,
+          new ParDef("AV47Trn_mediawwds_4_tfmediasize",GXType.Int32,8,0) ,
+          new ParDef("AV48Trn_mediawwds_5_tfmediasize_to",GXType.Int32,8,0) ,
+          new ParDef("lV49Trn_mediawwds_6_tfmediatype",GXType.Char,20,0) ,
+          new ParDef("AV50Trn_mediawwds_7_tfmediatype_sel",GXType.Char,20,0) ,
+          new ParDef("lV51Trn_mediawwds_8_tfmediaurl",GXType.VarChar,1000,0) ,
+          new ParDef("AV52Trn_mediawwds_9_tfmediaurl_sel",GXType.VarChar,1000,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P005W2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP005W2,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P005W3", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP005W3,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P008O2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008O2,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P008O3", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008O3,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P008O4", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008O4,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -649,13 +1059,24 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((int[]) buf[1])[0] = rslt.getInt(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 return;
              case 1 :
+                ((string[]) buf[0])[0] = rslt.getString(1, 20);
+                ((int[]) buf[1])[0] = rslt.getInt(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+                return;
+             case 2 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((int[]) buf[1])[0] = rslt.getInt(2);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 return;
        }
     }

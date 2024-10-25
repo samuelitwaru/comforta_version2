@@ -40,10 +40,10 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( Guid aP0_Trn_MediaId ,
+      public void execute( Guid aP0_MediaId ,
                            string aP1_TabCode )
       {
-         this.AV10Trn_MediaId = aP0_Trn_MediaId;
+         this.AV10MediaId = aP0_MediaId;
          this.AV8TabCode = aP1_TabCode;
          ExecuteImpl();
       }
@@ -64,7 +64,7 @@ namespace GeneXus.Programs {
          if ( nGotPars == 0 )
          {
             entryPointCalled = false;
-            gxfirstwebparm = GetFirstPar( "Trn_MediaId");
+            gxfirstwebparm = GetFirstPar( "MediaId");
             gxfirstwebparm_bkp = gxfirstwebparm;
             gxfirstwebparm = DecryptAjaxCall( gxfirstwebparm);
             toggleJsOutput = isJsOutputEnabled( );
@@ -91,7 +91,7 @@ namespace GeneXus.Programs {
                   GxWebError = 1;
                   return  ;
                }
-               gxfirstwebparm = GetFirstPar( "Trn_MediaId");
+               gxfirstwebparm = GetFirstPar( "MediaId");
             }
             else if ( StringUtil.StrCmp(gxfirstwebparm, "gxfullajaxEvt") == 0 )
             {
@@ -100,7 +100,7 @@ namespace GeneXus.Programs {
                   GxWebError = 1;
                   return  ;
                }
-               gxfirstwebparm = GetFirstPar( "Trn_MediaId");
+               gxfirstwebparm = GetFirstPar( "MediaId");
             }
             else
             {
@@ -188,11 +188,11 @@ namespace GeneXus.Programs {
 
       public override short ExecuteStartEvent( )
       {
-         PA3M2( ) ;
+         PA7M2( ) ;
          gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
          if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
          {
-            START3M2( ) ;
+            START7M2( ) ;
          }
          return gxajaxcallmode ;
       }
@@ -270,7 +270,7 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         GXEncryptionTmp = "trn_mediaview.aspx"+UrlEncode(AV10Trn_MediaId.ToString()) + "," + UrlEncode(StringUtil.RTrim(AV8TabCode));
+         GXEncryptionTmp = "trn_mediaview.aspx"+UrlEncode(AV10MediaId.ToString()) + "," + UrlEncode(StringUtil.RTrim(AV8TabCode));
          context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("trn_mediaview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
@@ -288,8 +288,8 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
-         GxWebStd.gx_hidden_field( context, "vTRN_MEDIAID", AV10Trn_MediaId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vTRN_MEDIAID", GetSecureSignedToken( "", AV10Trn_MediaId, context));
+         GxWebStd.gx_hidden_field( context, "vMEDIAID", AV10MediaId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vMEDIAID", GetSecureSignedToken( "", AV10MediaId, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -298,11 +298,11 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "TRN_MEDIAID", A252Trn_MediaId.ToString());
+         GxWebStd.gx_hidden_field( context, "MEDIAID", A409MediaId.ToString());
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
-         GxWebStd.gx_hidden_field( context, "vTRN_MEDIAID", AV10Trn_MediaId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vTRN_MEDIAID", GetSecureSignedToken( "", AV10Trn_MediaId, context));
+         GxWebStd.gx_hidden_field( context, "vMEDIAID", AV10MediaId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vMEDIAID", GetSecureSignedToken( "", AV10MediaId, context));
          GxWebStd.gx_hidden_field( context, "vTABCODE", StringUtil.RTrim( AV8TabCode));
          GxWebStd.gx_hidden_field( context, "DDC_SUBSCRIPTIONS_Icontype", StringUtil.RTrim( Ddc_subscriptions_Icontype));
          GxWebStd.gx_hidden_field( context, "DDC_SUBSCRIPTIONS_Icon", StringUtil.RTrim( Ddc_subscriptions_Icon));
@@ -374,14 +374,14 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<div") ;
             GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
             context.WriteHtmlText( ">") ;
-            WE3M2( ) ;
+            WE7M2( ) ;
             context.WriteHtmlText( "</div>") ;
          }
       }
 
       public override void DispatchEvents( )
       {
-         EVT3M2( ) ;
+         EVT7M2( ) ;
       }
 
       public override bool HasEnterEvent( )
@@ -397,7 +397,7 @@ namespace GeneXus.Programs {
       public override string GetSelfLink( )
       {
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         GXEncryptionTmp = "trn_mediaview.aspx"+UrlEncode(AV10Trn_MediaId.ToString()) + "," + UrlEncode(StringUtil.RTrim(AV8TabCode));
+         GXEncryptionTmp = "trn_mediaview.aspx"+UrlEncode(AV10MediaId.ToString()) + "," + UrlEncode(StringUtil.RTrim(AV8TabCode));
          return formatLink("trn_mediaview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
@@ -411,7 +411,7 @@ namespace GeneXus.Programs {
          return context.GetMessage( "Trn_Media View", "") ;
       }
 
-      protected void WB3M0( )
+      protected void WB7M0( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -563,7 +563,7 @@ namespace GeneXus.Programs {
          wbLoad = true;
       }
 
-      protected void START3M2( )
+      protected void START7M2( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -583,16 +583,16 @@ namespace GeneXus.Programs {
          {
          }
          wbErr = false;
-         STRUP3M0( ) ;
+         STRUP7M0( ) ;
       }
 
-      protected void WS3M2( )
+      protected void WS7M2( )
       {
-         START3M2( ) ;
-         EVT3M2( ) ;
+         START7M2( ) ;
+         EVT7M2( ) ;
       }
 
-      protected void EVT3M2( )
+      protected void EVT7M2( )
       {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
@@ -624,35 +624,35 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Ddc_subscriptions.Onloadcomponent */
-                              E113M2 ();
+                              E117M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "DDC_DISCUSSIONS.ONLOADCOMPONENT") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Ddc_discussions.Onloadcomponent */
-                              E123M2 ();
+                              E127M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E133M2 ();
+                              E137M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Refresh */
-                              E143M2 ();
+                              E147M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E153M2 ();
+                              E157M2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -723,7 +723,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void WE3M2( )
+      protected void WE7M2( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -739,7 +739,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void PA3M2( )
+      protected void PA7M2( )
       {
          if ( nDonePA == 0 )
          {
@@ -775,7 +775,7 @@ namespace GeneXus.Programs {
                if ( nGotPars == 0 )
                {
                   entryPointCalled = false;
-                  gxfirstwebparm = GetFirstPar( "Trn_MediaId");
+                  gxfirstwebparm = GetFirstPar( "MediaId");
                   toggleJsOutput = isJsOutputEnabled( );
                   if ( context.isSpaRequest( ) )
                   {
@@ -783,9 +783,9 @@ namespace GeneXus.Programs {
                   }
                   if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
                   {
-                     AV10Trn_MediaId = StringUtil.StrToGuid( gxfirstwebparm);
-                     AssignAttri("", false, "AV10Trn_MediaId", AV10Trn_MediaId.ToString());
-                     GxWebStd.gx_hidden_field( context, "gxhash_vTRN_MEDIAID", GetSecureSignedToken( "", AV10Trn_MediaId, context));
+                     AV10MediaId = StringUtil.StrToGuid( gxfirstwebparm);
+                     AssignAttri("", false, "AV10MediaId", AV10MediaId.ToString());
+                     GxWebStd.gx_hidden_field( context, "gxhash_vMEDIAID", GetSecureSignedToken( "", AV10MediaId, context));
                      if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
                      {
                         AV8TabCode = GetPar( "TabCode");
@@ -846,7 +846,7 @@ namespace GeneXus.Programs {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF3M2( ) ;
+         RF7M2( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -858,12 +858,12 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      protected void RF3M2( )
+      protected void RF7M2( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
          /* Execute user event: Refresh */
-         E143M2 ();
+         E147M2 ();
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             if ( 1 != 0 )
@@ -889,22 +889,22 @@ namespace GeneXus.Programs {
          gxdyncontrolsrefreshing = false;
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            /* Using cursor H003M2 */
-            pr_default.execute(0, new Object[] {AV10Trn_MediaId});
+            /* Using cursor H007M2 */
+            pr_default.execute(0, new Object[] {AV10MediaId});
             while ( (pr_default.getStatus(0) != 101) )
             {
-               A252Trn_MediaId = H003M2_A252Trn_MediaId[0];
+               A409MediaId = H007M2_A409MediaId[0];
                /* Execute user event: Load */
-               E153M2 ();
+               E157M2 ();
                /* Exiting from a For First loop. */
                if (true) break;
             }
             pr_default.close(0);
-            WB3M0( ) ;
+            WB7M0( ) ;
          }
       }
 
-      protected void send_integrity_lvl_hashes3M2( )
+      protected void send_integrity_lvl_hashes7M2( )
       {
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
@@ -915,14 +915,14 @@ namespace GeneXus.Programs {
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP3M0( )
+      protected void STRUP7M0( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E133M2 ();
+         E137M2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -962,7 +962,7 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E133M2 ();
+         E137M2 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -970,7 +970,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E133M2( )
+      protected void E137M2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -978,14 +978,14 @@ namespace GeneXus.Programs {
          lblWorkwithlink_Link = formatLink("trn_mediaww.aspx") ;
          AssignProp("", false, lblWorkwithlink_Internalname, "Link", lblWorkwithlink_Link, true);
          AV16GXLvl9 = 0;
-         /* Using cursor H003M3 */
-         pr_default.execute(1, new Object[] {AV10Trn_MediaId});
+         /* Using cursor H007M3 */
+         pr_default.execute(1, new Object[] {AV10MediaId});
          while ( (pr_default.getStatus(1) != 101) )
          {
-            A252Trn_MediaId = H003M3_A252Trn_MediaId[0];
-            A253Trn_MediaName = H003M3_A253Trn_MediaName[0];
+            A409MediaId = H007M3_A409MediaId[0];
+            A410MediaName = H007M3_A410MediaName[0];
             AV16GXLvl9 = 1;
-            Form.Caption = A253Trn_MediaName;
+            Form.Caption = A410MediaName;
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
             AV9Exists = true;
             /* Exiting from a For First loop. */
@@ -1017,11 +1017,11 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E143M2( )
+      protected void E147M2( )
       {
          /* Refresh Routine */
          returnInSub = false;
-         if ( ! new GeneXus.Programs.wwpbaseobjects.discussions.wwp_hasdiscussionmessages(context).executeUdp(  "Trn_Media",  StringUtil.Trim( A252Trn_MediaId.ToString())) )
+         if ( ! new GeneXus.Programs.wwpbaseobjects.discussions.wwp_hasdiscussionmessages(context).executeUdp(  "Trn_Media",  StringUtil.Trim( A409MediaId.ToString())) )
          {
             Ddc_discussions_Icon = context.GetMessage( "far fa-comment", "");
             ucDdc_discussions.SendProperty(context, "", false, Ddc_discussions_Internalname, "Icon", Ddc_discussions_Icon);
@@ -1043,13 +1043,13 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E153M2( )
+      protected void E157M2( )
       {
          /* Load Routine */
          returnInSub = false;
       }
 
-      protected void E113M2( )
+      protected void E117M2( )
       {
          /* Ddc_subscriptions_Onloadcomponent Routine */
          returnInSub = false;
@@ -1068,7 +1068,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
          {
             WebComp_Wwpaux_wc.setjustcreated();
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0028",(string)"",(string)"Trn_Media",(short)2,StringUtil.Trim( A252Trn_MediaId.ToString()),(string)AV14RecordDescription});
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0028",(string)"",(string)"Trn_Media",(short)2,StringUtil.Trim( A409MediaId.ToString()),(string)AV14RecordDescription});
             WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)""+""+""+""+"",(string)""});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
@@ -1080,7 +1080,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E123M2( )
+      protected void E127M2( )
       {
          /* Ddc_discussions_Onloadcomponent Routine */
          returnInSub = false;
@@ -1104,8 +1104,8 @@ namespace GeneXus.Programs {
                gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
             }
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-            GXEncryptionTmp = "trn_mediaview.aspx"+UrlEncode(A252Trn_MediaId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0028",(string)"",(string)"Trn_Media",StringUtil.Trim( A252Trn_MediaId.ToString()),(string)AV14RecordDescription,formatLink("trn_mediaview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
+            GXEncryptionTmp = "trn_mediaview.aspx"+UrlEncode(A409MediaId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0028",(string)"",(string)"Trn_Media",StringUtil.Trim( A409MediaId.ToString()),(string)AV14RecordDescription,formatLink("trn_mediaview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
             WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)""+""+""+""+"",(string)"",(string)""+"",(string)"",(string)""+""});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
@@ -1136,7 +1136,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Webcomponent_general_Component) != 0 )
          {
             WebComp_Webcomponent_general.setjustcreated();
-            WebComp_Webcomponent_general.componentprepare(new Object[] {(string)"W0023",(string)"",(Guid)AV10Trn_MediaId});
+            WebComp_Webcomponent_general.componentprepare(new Object[] {(string)"W0023",(string)"",(Guid)AV10MediaId});
             WebComp_Webcomponent_general.componentbind(new Object[] {(string)""});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Webcomponent_general )
@@ -1151,9 +1151,9 @@ namespace GeneXus.Programs {
       {
          createObjects();
          initialize();
-         AV10Trn_MediaId = (Guid)getParm(obj,0);
-         AssignAttri("", false, "AV10Trn_MediaId", AV10Trn_MediaId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vTRN_MEDIAID", GetSecureSignedToken( "", AV10Trn_MediaId, context));
+         AV10MediaId = (Guid)getParm(obj,0);
+         AssignAttri("", false, "AV10MediaId", AV10MediaId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_vMEDIAID", GetSecureSignedToken( "", AV10MediaId, context));
          AV8TabCode = (string)getParm(obj,1);
          AssignAttri("", false, "AV8TabCode", AV8TabCode);
       }
@@ -1167,9 +1167,9 @@ namespace GeneXus.Programs {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA3M2( ) ;
-         WS3M2( ) ;
-         WE3M2( ) ;
+         PA7M2( ) ;
+         WS7M2( ) ;
+         WE7M2( ) ;
          cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
@@ -1205,7 +1205,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021983476", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102518442022", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1221,7 +1221,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_mediaview.js", "?20241021983476", false, true);
+         context.AddJavascriptSource("trn_mediaview.js", "?2024102518442022", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1303,11 +1303,11 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A252Trn_MediaId","fld":"TRN_MEDIAID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"AV10Trn_MediaId","fld":"vTRN_MEDIAID","hsh":true}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A409MediaId","fld":"MEDIAID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"AV10MediaId","fld":"vMEDIAID","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"Ddc_discussions_Icon","ctrl":"DDC_DISCUSSIONS","prop":"Icon"},{"av":"Ddc_subscriptions_Visible","ctrl":"DDC_SUBSCRIPTIONS","prop":"Visible"}]}""");
-         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E113M2","iparms":[{"av":"A252Trn_MediaId","fld":"TRN_MEDIAID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true}]""");
+         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E117M2","iparms":[{"av":"A409MediaId","fld":"MEDIAID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true}]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
-         setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E123M2","iparms":[{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A252Trn_MediaId","fld":"TRN_MEDIAID"}]""");
+         setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E127M2","iparms":[{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A409MediaId","fld":"MEDIAID"}]""");
          setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
          return  ;
       }
@@ -1323,7 +1323,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         wcpOAV10Trn_MediaId = Guid.Empty;
+         wcpOAV10MediaId = Guid.Empty;
          wcpOAV8TabCode = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
@@ -1333,7 +1333,7 @@ namespace GeneXus.Programs {
          GXKey = "";
          GXEncryptionTmp = "";
          AV14RecordDescription = "";
-         A252Trn_MediaId = Guid.Empty;
+         A409MediaId = Guid.Empty;
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -1350,21 +1350,21 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
-         H003M2_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
+         H007M2_A409MediaId = new Guid[] {Guid.Empty} ;
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         H003M3_A252Trn_MediaId = new Guid[] {Guid.Empty} ;
-         H003M3_A253Trn_MediaName = new string[] {""} ;
-         A253Trn_MediaName = "";
+         H007M3_A409MediaId = new Guid[] {Guid.Empty} ;
+         H007M3_A410MediaName = new string[] {""} ;
+         A410MediaName = "";
          AV15Session = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_mediaview__default(),
             new Object[][] {
                 new Object[] {
-               H003M2_A252Trn_MediaId
+               H007M2_A409MediaId
                }
                , new Object[] {
-               H003M3_A252Trn_MediaId, H003M3_A253Trn_MediaName
+               H007M3_A409MediaId, H007M3_A410MediaName
                }
             }
          );
@@ -1451,10 +1451,10 @@ namespace GeneXus.Programs {
       private bool bDynCreated_Wwpaux_wc ;
       private bool bDynCreated_Webcomponent_general ;
       private string AV14RecordDescription ;
-      private string A253Trn_MediaName ;
-      private Guid AV10Trn_MediaId ;
-      private Guid wcpOAV10Trn_MediaId ;
-      private Guid A252Trn_MediaId ;
+      private string A410MediaName ;
+      private Guid AV10MediaId ;
+      private Guid wcpOAV10MediaId ;
+      private Guid A409MediaId ;
       private IGxSession AV15Session ;
       private GXWebComponent WebComp_Webcomponent_general ;
       private GXWebComponent WebComp_Wwpaux_wc ;
@@ -1465,10 +1465,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
-      private Guid[] H003M2_A252Trn_MediaId ;
+      private Guid[] H007M2_A409MediaId ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
-      private Guid[] H003M3_A252Trn_MediaId ;
-      private string[] H003M3_A253Trn_MediaName ;
+      private Guid[] H007M3_A409MediaId ;
+      private string[] H007M3_A410MediaName ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }
@@ -1489,17 +1489,17 @@ namespace GeneXus.Programs {
     {
        if ( def == null )
        {
-          Object[] prmH003M2;
-          prmH003M2 = new Object[] {
-          new ParDef("AV10Trn_MediaId",GXType.UniqueIdentifier,36,0)
+          Object[] prmH007M2;
+          prmH007M2 = new Object[] {
+          new ParDef("AV10MediaId",GXType.UniqueIdentifier,36,0)
           };
-          Object[] prmH003M3;
-          prmH003M3 = new Object[] {
-          new ParDef("AV10Trn_MediaId",GXType.UniqueIdentifier,36,0)
+          Object[] prmH007M3;
+          prmH007M3 = new Object[] {
+          new ParDef("AV10MediaId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H003M2", "SELECT Trn_MediaId FROM Trn_Media WHERE Trn_MediaId = :AV10Trn_MediaId ORDER BY Trn_MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003M2,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("H003M3", "SELECT Trn_MediaId, Trn_MediaName FROM Trn_Media WHERE Trn_MediaId = :AV10Trn_MediaId ORDER BY Trn_MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003M3,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("H007M2", "SELECT MediaId FROM Trn_Media WHERE MediaId = :AV10MediaId ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007M2,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("H007M3", "SELECT MediaId, MediaName FROM Trn_Media WHERE MediaId = :AV10MediaId ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007M3,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }

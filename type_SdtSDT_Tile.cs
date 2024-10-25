@@ -117,6 +117,12 @@ namespace GeneXus.Programs
 
 
 
+			AddObjectProperty("OrganisationId", gxTpr_Organisationid, false);
+
+
+			AddObjectProperty("LocationId", gxTpr_Locationid, false);
+
+
 			AddObjectProperty("ToPageId", gxTpr_Topageid, false);
 
 
@@ -337,6 +343,38 @@ namespace GeneXus.Programs
 			}
 		}
 
+		[SoapElement(ElementName="OrganisationId")]
+		[XmlElement(ElementName="OrganisationId")]
+		public Guid gxTpr_Organisationid
+		{
+			get {
+				return gxTv_SdtSDT_Tile_Organisationid; 
+			}
+			set {
+				gxTv_SdtSDT_Tile_Organisationid = value;
+				SetDirty("Organisationid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationId")]
+		[XmlElement(ElementName="LocationId")]
+		public Guid gxTpr_Locationid
+		{
+			get {
+				return gxTv_SdtSDT_Tile_Locationid; 
+			}
+			set {
+				gxTv_SdtSDT_Tile_Locationid = value;
+				SetDirty("Locationid");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="ToPageId")]
 		[XmlElement(ElementName="ToPageId")]
 		public Guid gxTpr_Topageid
@@ -433,6 +471,8 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Tile_Productservicedescription = "";
 			gxTv_SdtSDT_Tile_Productserviceimage = "";gxTv_SdtSDT_Tile_Productserviceimage_gxi = "";
 
+
+
 			gxTv_SdtSDT_Tile_Topagename = "";
 
 			gxTv_SdtSDT_Tile_Topage_N = true;
@@ -480,6 +520,12 @@ namespace GeneXus.Programs
 		 
 		protected string gxTv_SdtSDT_Tile_Productserviceimage_gxi;
 		protected string gxTv_SdtSDT_Tile_Productserviceimage;
+		 
+
+		protected Guid gxTv_SdtSDT_Tile_Organisationid;
+		 
+
+		protected Guid gxTv_SdtSDT_Tile_Locationid;
 		 
 
 		protected Guid gxTv_SdtSDT_Tile_Topageid;
@@ -654,7 +700,31 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ToPageId", Order=12)]
+		[DataMember(Name="OrganisationId", Order=12)]
+		public Guid gxTpr_Organisationid
+		{
+			get { 
+				return sdt.gxTpr_Organisationid;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationid = value;
+			}
+		}
+
+		[DataMember(Name="LocationId", Order=13)]
+		public Guid gxTpr_Locationid
+		{
+			get { 
+				return sdt.gxTpr_Locationid;
+
+			}
+			set { 
+				sdt.gxTpr_Locationid = value;
+			}
+		}
+
+		[DataMember(Name="ToPageId", Order=14)]
 		public Guid gxTpr_Topageid
 		{
 			get { 
@@ -666,7 +736,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ToPageName", Order=13)]
+		[DataMember(Name="ToPageName", Order=15)]
 		public  string gxTpr_Topagename
 		{
 			get { 
@@ -678,7 +748,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ToPage", Order=14, EmitDefaultValue=false)]
+		[DataMember(Name="ToPage", Order=16, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtSDT_Page_RESTInterface gxTpr_Topage
 		{
 			get { 

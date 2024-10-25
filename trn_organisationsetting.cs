@@ -701,7 +701,7 @@ namespace GeneXus.Programs {
                AV13Insert_OrganisationId = StringUtil.StrToGuid( cgiGet( "vINSERT_ORGANISATIONID"));
                A40000OrganisationSettingLogo_GXI = cgiGet( "ORGANISATIONSETTINGLOGO_GXI");
                A40001OrganisationSettingFavicon_GXI = cgiGet( "ORGANISATIONSETTINGFAVICON_GXI");
-               AV28Pgmname = cgiGet( "vPGMNAME");
+               AV29Pgmname = cgiGet( "vPGMNAME");
                Combo_organisationsettinglanguage_Objectcall = cgiGet( "COMBO_ORGANISATIONSETTINGLANGUAGE_Objectcall");
                Combo_organisationsettinglanguage_Class = cgiGet( "COMBO_ORGANISATIONSETTINGLANGUAGE_Class");
                Combo_organisationsettinglanguage_Icontype = cgiGet( "COMBO_ORGANISATIONSETTINGLANGUAGE_Icontype");
@@ -1176,20 +1176,20 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV28Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV29Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV29GXV1 = 1;
-            AssignAttri("", false, "AV29GXV1", StringUtil.LTrimStr( (decimal)(AV29GXV1), 8, 0));
-            while ( AV29GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
+            AV30GXV1 = 1;
+            AssignAttri("", false, "AV30GXV1", StringUtil.LTrimStr( (decimal)(AV30GXV1), 8, 0));
+            while ( AV30GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
             {
-               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV29GXV1));
+               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV30GXV1));
                if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "OrganisationId") == 0 )
                {
                   AV13Insert_OrganisationId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
                   AssignAttri("", false, "AV13Insert_OrganisationId", AV13Insert_OrganisationId.ToString());
                }
-               AV29GXV1 = (int)(AV29GXV1+1);
-               AssignAttri("", false, "AV29GXV1", StringUtil.LTrimStr( (decimal)(AV29GXV1), 8, 0));
+               AV30GXV1 = (int)(AV30GXV1+1);
+               AssignAttri("", false, "AV30GXV1", StringUtil.LTrimStr( (decimal)(AV30GXV1), 8, 0));
             }
          }
          edtOrganisationId_Visible = 0;
@@ -1321,8 +1321,8 @@ namespace GeneXus.Programs {
       {
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
-         AV28Pgmname = "Trn_OrganisationSetting";
-         AssignAttri("", false, "AV28Pgmname", AV28Pgmname);
+         AV29Pgmname = "Trn_OrganisationSetting";
+         AssignAttri("", false, "AV29Pgmname", AV29Pgmname);
          bttBtntrn_delete_Enabled = 0;
          AssignProp("", false, bttBtntrn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtntrn_delete_Enabled), 5, 0), true);
          if ( ! (Guid.Empty==AV7OrganisationSettingid) )
@@ -2259,7 +2259,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "vINSERT_ORGANISATIONID", AV13Insert_OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "ORGANISATIONSETTINGLOGO_GXI", A40000OrganisationSettingLogo_GXI);
          GxWebStd.gx_hidden_field( context, "ORGANISATIONSETTINGFAVICON_GXI", A40001OrganisationSettingFavicon_GXI);
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV28Pgmname));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV29Pgmname));
          GXCCtlgxBlob = "ORGANISATIONSETTINGLOGO" + "_gxBlob";
          GxWebStd.gx_hidden_field( context, GXCCtlgxBlob, A101OrganisationSettingLogo);
          GXCCtlgxBlob = "ORGANISATIONSETTINGFAVICON" + "_gxBlob";
@@ -2450,7 +2450,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241021965919", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410251841119", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2466,7 +2466,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsetting.js", "?20241021965921", false, true);
+         context.AddJavascriptSource("trn_organisationsetting.js", "?2024102518411112", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2734,7 +2734,7 @@ namespace GeneXus.Programs {
          A103OrganisationSettingBaseColor = "";
          WebComp_Wwpaux_wc_Component = "";
          OldWwpaux_wc = "";
-         AV28Pgmname = "";
+         AV29Pgmname = "";
          Combo_organisationsettinglanguage_Objectcall = "";
          Combo_organisationsettinglanguage_Class = "";
          Combo_organisationsettinglanguage_Icontype = "";
@@ -2906,7 +2906,7 @@ namespace GeneXus.Programs {
          WebComp_Wwpaux_wc = new GeneXus.Http.GXNullWebComponent();
          Z100OrganisationSettingid = Guid.NewGuid( );
          A100OrganisationSettingid = Guid.NewGuid( );
-         AV28Pgmname = "Trn_OrganisationSetting";
+         AV29Pgmname = "Trn_OrganisationSetting";
       }
 
       private short GxWebError ;
@@ -2945,7 +2945,7 @@ namespace GeneXus.Programs {
       private int Combo_organisationsettingfontsize_Datalistupdateminimumcharacters ;
       private int Combo_organisationsettingfontsize_Gxcontroltype ;
       private int Ddc_selectcolor_Gxcontroltype ;
-      private int AV29GXV1 ;
+      private int AV30GXV1 ;
       private int idxLst ;
       private string sPrefix ;
       private string wcpOGx_mode ;
@@ -3021,7 +3021,7 @@ namespace GeneXus.Programs {
       private string divDiv_wwpauxwc_Internalname ;
       private string WebComp_Wwpaux_wc_Component ;
       private string OldWwpaux_wc ;
-      private string AV28Pgmname ;
+      private string AV29Pgmname ;
       private string Combo_organisationsettinglanguage_Objectcall ;
       private string Combo_organisationsettinglanguage_Class ;
       private string Combo_organisationsettinglanguage_Icontype ;
