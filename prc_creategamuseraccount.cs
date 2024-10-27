@@ -117,7 +117,7 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  new prc_logtofile(context ).execute(  context.GetMessage( "No Email Sent: ", "")+AV12RoleName) ;
+                  new prc_logtofile(context ).execute(  context.GetMessage( "No Email Sent : ", "")+AV12RoleName) ;
                }
             }
             else
