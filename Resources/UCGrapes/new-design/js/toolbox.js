@@ -1,5 +1,3 @@
-let myeditor = null
-
 class EditorManager {
   constructor(editor) {
     this.editor = editor;
@@ -62,9 +60,6 @@ class EditorManager {
       }
 
       const wrapper = this.editor.getWrapper();
-      myeditor = wrapper
-      console.dir(wrapper)
-      console.dir(wrapper.view)
       wrapper.view.el.addEventListener("click", (e) => {
         const button = e.target.closest(".action-button");
         if (!button) return;
@@ -1301,11 +1296,10 @@ class ToolBoxManager {
       
       
       // Prevent the image from being dragged
-      // templateBlock.querySelector("img").addEventListener("dragstart", (e) => {
-        
-      //   //alert(templateBlock)
-      //   //e.preventDefault();
-      // });
+      templateBlock.querySelector("img").addEventListener("dragstart", (e) => {
+        //alert(templateBlock)
+        //e.preventDefault();
+      });
 
       blockElement.addEventListener("click", () => {
         const popup = this.popupModal();
