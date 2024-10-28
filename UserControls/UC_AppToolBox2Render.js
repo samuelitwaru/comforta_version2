@@ -152,6 +152,7 @@ function UC_AppToolBox2($) {
 					
 					console.log(themes)
 					const editorManager = new EditorManager(editor);
+					console.log(editor.getWrapper().view)
 					editorManager.init();
 					const toolBox = new ToolBoxManager(editorManager, themes, iconsData, templates, mapping, this.BC_Trn_MediaCollection);
 					editorManager.toolsSection = toolBox

@@ -63,28 +63,28 @@ class EditorManager {
         }
   
         const wrapper = this.editor.getWrapper();
-        console.log(this.editor.getWrapper())
-        // wrapper.view.el.addEventListener("click", (e) => {
-        //   const button = e.target.closest(".action-button");
-        //   if (!button) return;
+        console.log(this.editor.getWrapper().view)
+        wrapper.view.el.addEventListener("click", (e) => {
+          const button = e.target.closest(".action-button");
+          if (!button) return;
   
-        //   const templateWrapper = button.closest(".template-wrapper");
-        //   if (!templateWrapper) return;
+          const templateWrapper = button.closest(".template-wrapper");
+          if (!templateWrapper) return;
   
-        //   this.templateComponent = this.editor.Components.getById(
-        //     templateWrapper.id
-        //   );
+          this.templateComponent = this.editor.Components.getById(
+            templateWrapper.id
+          );
   
-        //   if (!this.templateComponent) return;
+          if (!this.templateComponent) return;
   
-        //   if (button.classList.contains("delete-button")) {
-        //     this.deleteTemplate(this.templateComponent);
-        //   } else if (button.classList.contains("add-button-bottom")) {
-        //     this.addTemplateBottom(this.templateComponent);
-        //   } else if (button.classList.contains("add-button-right")) {
-        //     this.addTemplateRight(this.templateComponent);
-        //   }
-        // });
+          if (button.classList.contains("delete-button")) {
+            this.deleteTemplate(this.templateComponent);
+          } else if (button.classList.contains("add-button-bottom")) {
+            this.addTemplateBottom(this.templateComponent);
+          } else if (button.classList.contains("add-button-right")) {
+            this.addTemplateRight(this.templateComponent);
+          }
+        });
   
         wrapper.set({
           selectable: false,
