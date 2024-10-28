@@ -882,8 +882,8 @@ class ToolBoxManager {
     this.listThemesInSelectField();
     this.colorPalette();
     this.loadTiles();
-    alert()
     this.loadPageTemplates();
+    alert()
     this.handleFileManager();
     const tabButtons = document.querySelectorAll(".tab-button");
     const tabContents = document.querySelectorAll(".tab-content");
