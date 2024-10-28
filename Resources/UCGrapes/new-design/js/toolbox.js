@@ -877,14 +877,13 @@ class ToolBoxManager {
   }
 
   init() {
-    
+    alert()
     this.loadTheme();
     this.listThemesInSelectField();
     this.colorPalette();
     this.loadTiles();
     this.loadPageTemplates();
     this.handleFileManager();
-    alert()
     const tabButtons = document.querySelectorAll(".tab-button");
     const tabContents = document.querySelectorAll(".tab-content");
     tabButtons.forEach((button) => {
