@@ -1281,7 +1281,7 @@ class ToolBoxManager {
   loadPageTemplates() {
     
     const pageTemplates = document.getElementById("page-templates");
-    alert()
+    
     this.templates.forEach((template, index) => {
       const blockElement = document.createElement("div");
       blockElement.className = "page-template-wrapper"; // Wrapper class for each template block
@@ -1294,6 +1294,7 @@ class ToolBoxManager {
       templateBlock.title = "Click to load template"; //
       templateBlock.innerHTML = `<div>${template.media}</div>`;
       
+      alert()
       
       // Prevent the image from being dragged
       templateBlock.querySelector("img").addEventListener("dragstart", (e) => {
