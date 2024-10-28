@@ -489,7 +489,7 @@ namespace GeneXus.Programs {
          ucCombo_organisationsettingfontsize.SetProperty("Cls", Combo_organisationsettingfontsize_Cls);
          ucCombo_organisationsettingfontsize.SetProperty("DataListType", Combo_organisationsettingfontsize_Datalisttype);
          ucCombo_organisationsettingfontsize.SetProperty("DataListFixedValues", Combo_organisationsettingfontsize_Datalistfixedvalues);
-         ucCombo_organisationsettingfontsize.SetProperty("EmptyItemText", Combo_organisationsettingfontsize_Emptyitemtext);
+         ucCombo_organisationsettingfontsize.SetProperty("EmptyItem", Combo_organisationsettingfontsize_Emptyitem);
          ucCombo_organisationsettingfontsize.SetProperty("DropDownOptionsTitleSettingsIcons", AV16DDO_TitleSettingsIcons);
          ucCombo_organisationsettingfontsize.SetProperty("DropDownOptionsData", AV25OrganisationSettingFontSize_Data);
          ucCombo_organisationsettingfontsize.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_organisationsettingfontsize_Internalname, "COMBO_ORGANISATIONSETTINGFONTSIZEContainer");
@@ -2280,7 +2280,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "COMBO_ORGANISATIONSETTINGFONTSIZE_Enabled", StringUtil.BoolToStr( Combo_organisationsettingfontsize_Enabled));
          GxWebStd.gx_hidden_field( context, "COMBO_ORGANISATIONSETTINGFONTSIZE_Datalisttype", StringUtil.RTrim( Combo_organisationsettingfontsize_Datalisttype));
          GxWebStd.gx_hidden_field( context, "COMBO_ORGANISATIONSETTINGFONTSIZE_Datalistfixedvalues", StringUtil.RTrim( Combo_organisationsettingfontsize_Datalistfixedvalues));
-         GxWebStd.gx_hidden_field( context, "COMBO_ORGANISATIONSETTINGFONTSIZE_Emptyitemtext", StringUtil.RTrim( Combo_organisationsettingfontsize_Emptyitemtext));
+         GxWebStd.gx_hidden_field( context, "COMBO_ORGANISATIONSETTINGFONTSIZE_Emptyitem", StringUtil.BoolToStr( Combo_organisationsettingfontsize_Emptyitem));
          GxWebStd.gx_hidden_field( context, "DDC_SELECTCOLOR_Objectcall", StringUtil.RTrim( Ddc_selectcolor_Objectcall));
          GxWebStd.gx_hidden_field( context, "DDC_SELECTCOLOR_Enabled", StringUtil.BoolToStr( Ddc_selectcolor_Enabled));
          GxWebStd.gx_hidden_field( context, "DDC_SELECTCOLOR_Caption", StringUtil.RTrim( Ddc_selectcolor_Caption));
@@ -2450,7 +2450,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285261694", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102810425124", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2466,7 +2466,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsetting.js", "?202410285261697", false, true);
+         context.AddJavascriptSource("trn_organisationsetting.js", "?2024102810425126", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2553,7 +2553,7 @@ namespace GeneXus.Programs {
          edtOrganisationSettingFontSize_Jsonclick = "";
          edtOrganisationSettingFontSize_Enabled = 1;
          edtOrganisationSettingFontSize_Visible = 1;
-         Combo_organisationsettingfontsize_Emptyitemtext = "Select FontSize";
+         Combo_organisationsettingfontsize_Emptyitem = Convert.ToBoolean( 0);
          Combo_organisationsettingfontsize_Datalistfixedvalues = "Small:Small,Medium:Medium,Large:Large";
          Combo_organisationsettingfontsize_Datalisttype = "FixedValues";
          Combo_organisationsettingfontsize_Cls = "ExtendedCombo Attribute";
@@ -2778,6 +2778,7 @@ namespace GeneXus.Programs {
          Combo_organisationsettingfontsize_Multiplevaluestype = "";
          Combo_organisationsettingfontsize_Loadingdata = "";
          Combo_organisationsettingfontsize_Noresultsfound = "";
+         Combo_organisationsettingfontsize_Emptyitemtext = "";
          Combo_organisationsettingfontsize_Onlyselectedvalues = "";
          Combo_organisationsettingfontsize_Selectalltext = "";
          Combo_organisationsettingfontsize_Multiplevaluesseparator = "";
@@ -2991,7 +2992,6 @@ namespace GeneXus.Programs {
       private string Combo_organisationsettingfontsize_Cls ;
       private string Combo_organisationsettingfontsize_Datalisttype ;
       private string Combo_organisationsettingfontsize_Datalistfixedvalues ;
-      private string Combo_organisationsettingfontsize_Emptyitemtext ;
       private string Combo_organisationsettingfontsize_Internalname ;
       private string edtOrganisationSettingFontSize_Internalname ;
       private string edtOrganisationSettingFontSize_Jsonclick ;
@@ -3065,6 +3065,7 @@ namespace GeneXus.Programs {
       private string Combo_organisationsettingfontsize_Multiplevaluestype ;
       private string Combo_organisationsettingfontsize_Loadingdata ;
       private string Combo_organisationsettingfontsize_Noresultsfound ;
+      private string Combo_organisationsettingfontsize_Emptyitemtext ;
       private string Combo_organisationsettingfontsize_Onlyselectedvalues ;
       private string Combo_organisationsettingfontsize_Selectalltext ;
       private string Combo_organisationsettingfontsize_Multiplevaluesseparator ;
@@ -3101,6 +3102,7 @@ namespace GeneXus.Programs {
       private bool A102OrganisationSettingFavicon_IsBlob ;
       private bool Combo_organisationsettinglanguage_Allowmultipleselection ;
       private bool Combo_organisationsettinglanguage_Includeonlyselectedoption ;
+      private bool Combo_organisationsettingfontsize_Emptyitem ;
       private bool Combo_organisationsettinglanguage_Enabled ;
       private bool Combo_organisationsettinglanguage_Visible ;
       private bool Combo_organisationsettinglanguage_Isgriditem ;
@@ -3115,7 +3117,6 @@ namespace GeneXus.Programs {
       private bool Combo_organisationsettingfontsize_Hasdescription ;
       private bool Combo_organisationsettingfontsize_Includeonlyselectedoption ;
       private bool Combo_organisationsettingfontsize_Includeselectalloption ;
-      private bool Combo_organisationsettingfontsize_Emptyitem ;
       private bool Combo_organisationsettingfontsize_Includeaddnewoption ;
       private bool Ddc_selectcolor_Enabled ;
       private bool Ddc_selectcolor_Visible ;

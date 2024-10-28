@@ -17,7 +17,6 @@ type_SdtTrn_SupplierGen.cs
 type_SdtTrn_Location.cs
 type_SdtTrn_Organisation.cs
 type_SdtTrn_SupplierAgb.cs
-type_SdtTrn_ProductService.cs
 type_SdtTrn_NetworkCompany.cs
 type_SdtTrn_NetworkIndividual.cs
 type_SdtTrn_Receptionist.cs
@@ -25,7 +24,6 @@ type_SdtTrn_Resident.cs
 type_SdtTrn_Resident_NetworkCompany.cs
 type_SdtTrn_Resident_NetworkIndividual.cs
 workwithplus\type_SdtWWP_Parameter.cs
-type_SdtTrn_OrganisationSetting.cs
 wwpbaseobjects\type_SdtWWP_Entity.cs
 wwpbaseobjects\type_SdtWWP_UserExtended.cs
 wwpbaseobjects\subscriptions\type_SdtWWP_Subscription.cs
@@ -57,6 +55,8 @@ type_SdtTrn_CallToAction.cs
 type_SdtTrn_PreferredGenSupplier.cs
 type_SdtTrn_Template.cs
 type_SdtTrn_Page.cs
+type_SdtTrn_ProductService.cs
+type_SdtTrn_OrganisationSetting.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs
