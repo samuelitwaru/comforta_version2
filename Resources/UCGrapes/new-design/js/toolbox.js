@@ -883,7 +883,7 @@ class ToolBoxManager {
     this.colorPalette();
     this.loadTiles();
     this.loadPageTemplates();
-    alert()
+    
     this.handleFileManager();
     const tabButtons = document.querySelectorAll(".tab-button");
     const tabContents = document.querySelectorAll(".tab-content");
@@ -1281,6 +1281,7 @@ class ToolBoxManager {
   loadPageTemplates() {
     
     const pageTemplates = document.getElementById("page-templates");
+    alert()
     this.templates.forEach((template, index) => {
       const blockElement = document.createElement("div");
       blockElement.className = "page-template-wrapper"; // Wrapper class for each template block
