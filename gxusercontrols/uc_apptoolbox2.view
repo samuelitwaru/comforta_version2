@@ -142,5 +142,6 @@
     </div>
 	
     <script src="/Resources/UCGrapes/new-design/js/data.js"></script>
+    <script src="/Resources/UCGrapes/new-design/js/editor-manager.js"></script>
     <script src="/Resources/UCGrapes/new-design/js/toolbox.js"></script>
 </div>
