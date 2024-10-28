@@ -1297,11 +1297,11 @@ class ToolBoxManager {
       
       
       // Prevent the image from being dragged
-      templateBlock.querySelector("img").addEventListener("dragstart", (e) => {
+      // templateBlock.querySelector("img").addEventListener("dragstart", (e) => {
         
-        //alert(templateBlock)
-        //e.preventDefault();
-      });
+      //   //alert(templateBlock)
+      //   //e.preventDefault();
+      // });
 
       blockElement.addEventListener("click", () => {
         const popup = this.popupModal();
