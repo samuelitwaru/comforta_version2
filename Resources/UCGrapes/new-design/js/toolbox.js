@@ -1,4 +1,8 @@
 
+window.onclick = (e) => {
+  e.preventDefault()
+}
+
 class EditorManager {
   constructor(editor) {
     this.editor = editor;
