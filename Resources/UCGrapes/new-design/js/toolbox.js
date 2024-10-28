@@ -1,8 +1,3 @@
-
-window.onclick = (e) => {
-  e.preventDefault()
-}
-
 class EditorManager {
   constructor(editor) {
     this.editor = editor;
@@ -889,7 +884,7 @@ class ToolBoxManager {
     this.loadTiles();
     this.loadPageTemplates();
     this.handleFileManager();
-    
+    alert()
     const tabButtons = document.querySelectorAll(".tab-button");
     const tabContents = document.querySelectorAll(".tab-content");
     tabButtons.forEach((button) => {
