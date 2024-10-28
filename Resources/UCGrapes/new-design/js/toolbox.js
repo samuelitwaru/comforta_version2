@@ -60,7 +60,7 @@ class EditorManager {
       }
 
       const wrapper = this.editor.getWrapper();
-      console.dir(wrapper.view.el)
+      console.dir(wrapper.view)
       wrapper.view.el.addEventListener("click", (e) => {
         const button = e.target.closest(".action-button");
         if (!button) return;
