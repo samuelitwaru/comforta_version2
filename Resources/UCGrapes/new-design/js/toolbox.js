@@ -1,3 +1,4 @@
+
 class EditorManager {
   constructor(editor) {
     this.editor = editor;
@@ -877,13 +878,14 @@ class ToolBoxManager {
   }
 
   init() {
+    
     this.loadTheme();
     this.listThemesInSelectField();
     this.colorPalette();
     this.loadTiles();
     this.loadPageTemplates();
     this.handleFileManager();
-
+    
     const tabButtons = document.querySelectorAll(".tab-button");
     const tabContents = document.querySelectorAll(".tab-content");
     tabButtons.forEach((button) => {
@@ -900,6 +902,9 @@ class ToolBoxManager {
           .classList.add("active-tab");
       });
     });
+
+    
+
 
     // mapping
     const mappingButton = document.getElementById("open-mapping");
@@ -1275,24 +1280,25 @@ class ToolBoxManager {
   }
 
   loadPageTemplates() {
+    
     const pageTemplates = document.getElementById("page-templates");
-
     this.templates.forEach((template, index) => {
       const blockElement = document.createElement("div");
       blockElement.className = "page-template-wrapper"; // Wrapper class for each template block
-
       // Create the number element
       const numberElement = document.createElement("div");
       numberElement.className = "page-template-block-number";
       numberElement.textContent = index + 1; // Set the number
-
       const templateBlock = document.createElement("div");
       templateBlock.className = "page-template-block";
       templateBlock.title = "Click to load template"; //
       templateBlock.innerHTML = `<div>${template.media}</div>`;
-
+      
+      
       // Prevent the image from being dragged
       templateBlock.querySelector("img").addEventListener("dragstart", (e) => {
+        
+        alert(templateBlock)
         e.preventDefault();
       });
 

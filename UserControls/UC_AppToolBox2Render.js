@@ -75,7 +75,7 @@ function UC_AppToolBox2($) {
 		this.Start = function() {
 
 					const mapping = nestPages(this.SDT_PageCollection)
-					console.log(this.BC_Trn_MediaCollection)
+					console.log(this.BC_Trn_TemplateCollection)
 					const templates = this.BC_Trn_TemplateCollection.map(temp => {
 						let res = {
 							id: temp.Trn_TemplateId,
@@ -145,12 +145,13 @@ function UC_AppToolBox2($) {
 						hoverable: false,
 						highlightable: false,
 					});
-				
 					new Clock();
+					
+					
 					const editorManager = new EditorManager(editor);
 					editorManager.init();
 					new ToolBoxManager(editorManager, themes, iconsData, templates, mapping, this.BC_Trn_MediaCollection).init();
-				
+					
 				
 		}
 

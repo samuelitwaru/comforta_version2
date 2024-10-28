@@ -977,7 +977,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410251838377", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285223744", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -995,7 +995,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_selectlanguagedropdown.js", "?202410251838377", false, true);
+            context.AddJavascriptSource("wc_selectlanguagedropdown.js", "?202410285223744", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          }

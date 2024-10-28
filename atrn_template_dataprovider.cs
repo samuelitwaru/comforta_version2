@@ -34,8 +34,8 @@ namespace GeneXus.Programs {
 
       protected override int ExecuteCmdLine( string[] args )
       {
-         GXBCCollection<SdtTrn_Template> aP0_Gxm2rootcol = new GXBCCollection<SdtTrn_Template>()  ;
-         execute(out aP0_Gxm2rootcol);
+         GXBCCollection<SdtTrn_Template> aP0_Gxm1rootcol = new GXBCCollection<SdtTrn_Template>()  ;
+         execute(out aP0_Gxm1rootcol);
          return GX.GXRuntime.ExitCode ;
       }
 
@@ -69,51 +69,31 @@ namespace GeneXus.Programs {
          IsMain = false;
       }
 
-      public void execute( out GXBCCollection<SdtTrn_Template> aP0_Gxm2rootcol )
+      public void execute( out GXBCCollection<SdtTrn_Template> aP0_Gxm1rootcol )
       {
-         this.Gxm2rootcol = new GXBCCollection<SdtTrn_Template>( context, "Trn_Template", "Comforta_version2") ;
+         this.Gxm1rootcol = new GXBCCollection<SdtTrn_Template>( context, "Trn_Template", "Comforta_version2") ;
          initialize();
          ExecuteImpl();
-         aP0_Gxm2rootcol=this.Gxm2rootcol;
+         aP0_Gxm1rootcol=this.Gxm1rootcol;
       }
 
       public GXBCCollection<SdtTrn_Template> executeUdp( )
       {
-         execute(out aP0_Gxm2rootcol);
-         return Gxm2rootcol ;
+         execute(out aP0_Gxm1rootcol);
+         return Gxm1rootcol ;
       }
 
-      public void executeSubmit( out GXBCCollection<SdtTrn_Template> aP0_Gxm2rootcol )
+      public void executeSubmit( out GXBCCollection<SdtTrn_Template> aP0_Gxm1rootcol )
       {
-         this.Gxm2rootcol = new GXBCCollection<SdtTrn_Template>( context, "Trn_Template", "Comforta_version2") ;
+         this.Gxm1rootcol = new GXBCCollection<SdtTrn_Template>( context, "Trn_Template", "Comforta_version2") ;
          SubmitImpl();
-         aP0_Gxm2rootcol=this.Gxm2rootcol;
+         aP0_Gxm1rootcol=this.Gxm1rootcol;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         Gxm1trn_template = new SdtTrn_Template(context);
-         Gxm2rootcol.Add(Gxm1trn_template, 0);
-         Gxm1trn_template.gxTpr_Trn_templatename = context.GetMessage( "Template 1", "");
-         Gxm1trn_template.gxTpr_Trn_templatemedia = context.GetMessage( "<img src=\"/Resources/UCGrapes/new-design/img/template-1.png\" style=\"width: 100%; height: 100%;\" />", "");
-         Gxm1trn_template.gxTpr_Trn_templatecontent = "1, 2, 1, 3";
-         Gxm1trn_template = new SdtTrn_Template(context);
-         Gxm2rootcol.Add(Gxm1trn_template, 0);
-         Gxm1trn_template.gxTpr_Trn_templatename = context.GetMessage( "Template 2", "");
-         Gxm1trn_template.gxTpr_Trn_templatemedia = context.GetMessage( "<img src=\"/Resources/UCGrapes/new-design/img/template-2.png\" style=\"width: 100%; height: 100%;\" />", "");
-         Gxm1trn_template.gxTpr_Trn_templatecontent = "1,1,1";
-         Gxm1trn_template = new SdtTrn_Template(context);
-         Gxm2rootcol.Add(Gxm1trn_template, 0);
-         Gxm1trn_template.gxTpr_Trn_templatename = context.GetMessage( "Template 3", "");
-         Gxm1trn_template.gxTpr_Trn_templatemedia = context.GetMessage( "<img src=\"/Resources/UCGrapes/new-design/img/template-3.png\" style=\"width: 100%; height: 100%;\" />", "");
-         Gxm1trn_template.gxTpr_Trn_templatecontent = "2, 1, 2, 2";
-         Gxm1trn_template = new SdtTrn_Template(context);
-         Gxm2rootcol.Add(Gxm1trn_template, 0);
-         Gxm1trn_template.gxTpr_Trn_templatename = context.GetMessage( "Template 4", "");
-         Gxm1trn_template.gxTpr_Trn_templatemedia = context.GetMessage( "<img src=\"/Resources/UCGrapes/new-design/img/template-4.png\" style=\"width: 100%; height: 100%;\" />", "");
-         Gxm1trn_template.gxTpr_Trn_templatecontent = "1, 2, 2";
          cleanup();
       }
 
@@ -129,13 +109,11 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         Gxm1trn_template = new SdtTrn_Template(context);
          /* GeneXus formulas. */
       }
 
-      private GXBCCollection<SdtTrn_Template> Gxm2rootcol ;
-      private SdtTrn_Template Gxm1trn_template ;
-      private GXBCCollection<SdtTrn_Template> aP0_Gxm2rootcol ;
+      private GXBCCollection<SdtTrn_Template> Gxm1rootcol ;
+      private GXBCCollection<SdtTrn_Template> aP0_Gxm1rootcol ;
    }
 
 }
