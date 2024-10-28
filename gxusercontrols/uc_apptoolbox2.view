@@ -140,8 +140,7 @@
         </ul>
     </div>
     </div>
-
-    <script src="/Resources/UCGrapes/new-design/grapes/grapes.js"></script>
+	
     <script src="/Resources/UCGrapes/new-design/js/data.js"></script>
     <script src="/Resources/UCGrapes/new-design/js/toolbox.js"></script>
 </div>
