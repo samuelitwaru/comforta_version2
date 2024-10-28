@@ -1,3 +1,5 @@
+let myeditor = null
+
 class EditorManager {
   constructor(editor) {
     this.editor = editor;
@@ -60,6 +62,7 @@ class EditorManager {
       }
 
       const wrapper = this.editor.getWrapper();
+      myeditor = wrapper
       console.dir(wrapper)
       console.dir(wrapper.view)
       wrapper.view.el.addEventListener("click", (e) => {
