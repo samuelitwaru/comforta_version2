@@ -185,5 +185,26 @@
   ];
   
 
+const tileDefaultData = {
+    text: "Tile",
+    textColor: "#000000",
+    textAlignment: "left",
+    icon: "Tile",
+    iconColor: "#000000",
+    iconAlignment: "left",
+    bgColor: "#ffffff",
+    bgImage: "",
+}
+
+const defaultTileAttrs = `
+  tile-text="Tile"
+  tile-text-color="#000000"
+  tile-text-alignment="left"
+  tile-icon="icon-name"
+  tile-icon-color="#000000"
+  tile-icon-alignment="left"
+  tile-bg-color="#ffffff"
+  tile-bg-image=""
+`
   
   

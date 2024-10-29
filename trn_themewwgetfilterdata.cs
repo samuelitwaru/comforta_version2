@@ -73,17 +73,17 @@ namespace GeneXus.Programs {
                            out string aP4_OptionsDescJson ,
                            out string aP5_OptionIndexesJson )
       {
-         this.AV29DDOName = aP0_DDOName;
-         this.AV30SearchTxtParms = aP1_SearchTxtParms;
-         this.AV31SearchTxtTo = aP2_SearchTxtTo;
-         this.AV32OptionsJson = "" ;
-         this.AV33OptionsDescJson = "" ;
-         this.AV34OptionIndexesJson = "" ;
+         this.AV33DDOName = aP0_DDOName;
+         this.AV34SearchTxtParms = aP1_SearchTxtParms;
+         this.AV35SearchTxtTo = aP2_SearchTxtTo;
+         this.AV36OptionsJson = "" ;
+         this.AV37OptionsDescJson = "" ;
+         this.AV38OptionIndexesJson = "" ;
          initialize();
          ExecuteImpl();
-         aP3_OptionsJson=this.AV32OptionsJson;
-         aP4_OptionsDescJson=this.AV33OptionsDescJson;
-         aP5_OptionIndexesJson=this.AV34OptionIndexesJson;
+         aP3_OptionsJson=this.AV36OptionsJson;
+         aP4_OptionsDescJson=this.AV37OptionsDescJson;
+         aP5_OptionIndexesJson=this.AV38OptionIndexesJson;
       }
 
       public string executeUdp( string aP0_DDOName ,
@@ -93,7 +93,7 @@ namespace GeneXus.Programs {
                                 out string aP4_OptionsDescJson )
       {
          execute(aP0_DDOName, aP1_SearchTxtParms, aP2_SearchTxtTo, out aP3_OptionsJson, out aP4_OptionsDescJson, out aP5_OptionIndexesJson);
-         return AV34OptionIndexesJson ;
+         return AV38OptionIndexesJson ;
       }
 
       public void executeSubmit( string aP0_DDOName ,
@@ -103,29 +103,29 @@ namespace GeneXus.Programs {
                                  out string aP4_OptionsDescJson ,
                                  out string aP5_OptionIndexesJson )
       {
-         this.AV29DDOName = aP0_DDOName;
-         this.AV30SearchTxtParms = aP1_SearchTxtParms;
-         this.AV31SearchTxtTo = aP2_SearchTxtTo;
-         this.AV32OptionsJson = "" ;
-         this.AV33OptionsDescJson = "" ;
-         this.AV34OptionIndexesJson = "" ;
+         this.AV33DDOName = aP0_DDOName;
+         this.AV34SearchTxtParms = aP1_SearchTxtParms;
+         this.AV35SearchTxtTo = aP2_SearchTxtTo;
+         this.AV36OptionsJson = "" ;
+         this.AV37OptionsDescJson = "" ;
+         this.AV38OptionIndexesJson = "" ;
          SubmitImpl();
-         aP3_OptionsJson=this.AV32OptionsJson;
-         aP4_OptionsDescJson=this.AV33OptionsDescJson;
-         aP5_OptionIndexesJson=this.AV34OptionIndexesJson;
+         aP3_OptionsJson=this.AV36OptionsJson;
+         aP4_OptionsDescJson=this.AV37OptionsDescJson;
+         aP5_OptionIndexesJson=this.AV38OptionIndexesJson;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV19Options = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV21OptionsDesc = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV22OptionIndexes = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV16MaxItems = 10;
-         AV15PageIndex = (short)((String.IsNullOrEmpty(StringUtil.RTrim( AV30SearchTxtParms)) ? 0 : (long)(Math.Round(NumberUtil.Val( StringUtil.Substring( AV30SearchTxtParms, 1, 2), "."), 18, MidpointRounding.ToEven))));
-         AV13SearchTxt = (String.IsNullOrEmpty(StringUtil.RTrim( AV30SearchTxtParms)) ? "" : StringUtil.Substring( AV30SearchTxtParms, 3, -1));
-         AV14SkipItems = (short)(AV15PageIndex*AV16MaxItems);
+         AV23Options = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+         AV25OptionsDesc = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+         AV26OptionIndexes = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+         AV20MaxItems = 10;
+         AV19PageIndex = (short)((String.IsNullOrEmpty(StringUtil.RTrim( AV34SearchTxtParms)) ? 0 : (long)(Math.Round(NumberUtil.Val( StringUtil.Substring( AV34SearchTxtParms, 1, 2), "."), 18, MidpointRounding.ToEven))));
+         AV17SearchTxt = (String.IsNullOrEmpty(StringUtil.RTrim( AV34SearchTxtParms)) ? "" : StringUtil.Substring( AV34SearchTxtParms, 3, -1));
+         AV18SkipItems = (short)(AV19PageIndex*AV20MaxItems);
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV9WWPContext) ;
          /* Execute user subroutine: 'LOADGRIDSTATE' */
          S111 ();
@@ -134,7 +134,7 @@ namespace GeneXus.Programs {
             cleanup();
             if (true) return;
          }
-         if ( StringUtil.StrCmp(StringUtil.Upper( AV29DDOName), "DDO_TRN_THEMENAME") == 0 )
+         if ( StringUtil.StrCmp(StringUtil.Upper( AV33DDOName), "DDO_TRN_THEMENAME") == 0 )
          {
             /* Execute user subroutine: 'LOADTRN_THEMENAMEOPTIONS' */
             S121 ();
@@ -144,7 +144,7 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(StringUtil.Upper( AV29DDOName), "DDO_TRN_THEMEFONTFAMILY") == 0 )
+         else if ( StringUtil.StrCmp(StringUtil.Upper( AV33DDOName), "DDO_TRN_THEMEFONTFAMILY") == 0 )
          {
             /* Execute user subroutine: 'LOADTRN_THEMEFONTFAMILYOPTIONS' */
             S131 ();
@@ -154,9 +154,9 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         AV32OptionsJson = AV19Options.ToJSonString(false);
-         AV33OptionsDescJson = AV21OptionsDesc.ToJSonString(false);
-         AV34OptionIndexesJson = AV22OptionIndexes.ToJSonString(false);
+         AV36OptionsJson = AV23Options.ToJSonString(false);
+         AV37OptionsDescJson = AV25OptionsDesc.ToJSonString(false);
+         AV38OptionIndexesJson = AV26OptionIndexes.ToJSonString(false);
          cleanup();
       }
 
@@ -164,39 +164,44 @@ namespace GeneXus.Programs {
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(AV24Session.Get("Trn_ThemeWWGridState"), "") == 0 )
+         if ( StringUtil.StrCmp(AV28Session.Get("Trn_ThemeWWGridState"), "") == 0 )
          {
-            AV26GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  "Trn_ThemeWWGridState"), null, "", "");
+            AV30GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  "Trn_ThemeWWGridState"), null, "", "");
          }
          else
          {
-            AV26GridState.FromXml(AV24Session.Get("Trn_ThemeWWGridState"), null, "", "");
+            AV30GridState.FromXml(AV28Session.Get("Trn_ThemeWWGridState"), null, "", "");
          }
-         AV38GXV1 = 1;
-         while ( AV38GXV1 <= AV26GridState.gxTpr_Filtervalues.Count )
+         AV40GXV1 = 1;
+         while ( AV40GXV1 <= AV30GridState.gxTpr_Filtervalues.Count )
          {
-            AV27GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV26GridState.gxTpr_Filtervalues.Item(AV38GXV1));
-            if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
+            AV31GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV30GridState.gxTpr_Filtervalues.Item(AV40GXV1));
+            if ( StringUtil.StrCmp(AV31GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
-               AV35FilterFullText = AV27GridStateFilterValue.gxTpr_Value;
+               AV39FilterFullText = AV31GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTRN_THEMENAME") == 0 )
+            else if ( StringUtil.StrCmp(AV31GridStateFilterValue.gxTpr_Name, "TFTRN_THEMENAME") == 0 )
             {
-               AV11TFTrn_ThemeName = AV27GridStateFilterValue.gxTpr_Value;
+               AV11TFTrn_ThemeName = AV31GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTRN_THEMENAME_SEL") == 0 )
+            else if ( StringUtil.StrCmp(AV31GridStateFilterValue.gxTpr_Name, "TFTRN_THEMENAME_SEL") == 0 )
             {
-               AV12TFTrn_ThemeName_Sel = AV27GridStateFilterValue.gxTpr_Value;
+               AV12TFTrn_ThemeName_Sel = AV31GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTRN_THEMEFONTFAMILY") == 0 )
+            else if ( StringUtil.StrCmp(AV31GridStateFilterValue.gxTpr_Name, "TFTRN_THEMEFONTFAMILY") == 0 )
             {
-               AV36TFTrn_ThemeFontFamily = AV27GridStateFilterValue.gxTpr_Value;
+               AV13TFTrn_ThemeFontFamily = AV31GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "TFTRN_THEMEFONTFAMILY_SEL") == 0 )
+            else if ( StringUtil.StrCmp(AV31GridStateFilterValue.gxTpr_Name, "TFTRN_THEMEFONTFAMILY_SEL") == 0 )
             {
-               AV37TFTrn_ThemeFontFamily_Sel = AV27GridStateFilterValue.gxTpr_Value;
+               AV14TFTrn_ThemeFontFamily_Sel = AV31GridStateFilterValue.gxTpr_Value;
             }
-            AV38GXV1 = (int)(AV38GXV1+1);
+            else if ( StringUtil.StrCmp(AV31GridStateFilterValue.gxTpr_Name, "TFTRN_THEMEFONTSIZE") == 0 )
+            {
+               AV15TFTrn_ThemeFontSize = (short)(Math.Round(NumberUtil.Val( AV31GridStateFilterValue.gxTpr_Value, "."), 18, MidpointRounding.ToEven));
+               AV16TFTrn_ThemeFontSize_To = (short)(Math.Round(NumberUtil.Val( AV31GridStateFilterValue.gxTpr_Valueto, "."), 18, MidpointRounding.ToEven));
+            }
+            AV40GXV1 = (int)(AV40GXV1+1);
          }
       }
 
@@ -204,51 +209,59 @@ namespace GeneXus.Programs {
       {
          /* 'LOADTRN_THEMENAMEOPTIONS' Routine */
          returnInSub = false;
-         AV11TFTrn_ThemeName = AV13SearchTxt;
+         AV11TFTrn_ThemeName = AV17SearchTxt;
          AV12TFTrn_ThemeName_Sel = "";
-         AV40Trn_themewwds_1_filterfulltext = AV35FilterFullText;
-         AV41Trn_themewwds_2_tftrn_themename = AV11TFTrn_ThemeName;
-         AV42Trn_themewwds_3_tftrn_themename_sel = AV12TFTrn_ThemeName_Sel;
-         AV43Trn_themewwds_4_tftrn_themefontfamily = AV36TFTrn_ThemeFontFamily;
-         AV44Trn_themewwds_5_tftrn_themefontfamily_sel = AV37TFTrn_ThemeFontFamily_Sel;
+         AV42Trn_themewwds_1_filterfulltext = AV39FilterFullText;
+         AV43Trn_themewwds_2_tftrn_themename = AV11TFTrn_ThemeName;
+         AV44Trn_themewwds_3_tftrn_themename_sel = AV12TFTrn_ThemeName_Sel;
+         AV45Trn_themewwds_4_tftrn_themefontfamily = AV13TFTrn_ThemeFontFamily;
+         AV46Trn_themewwds_5_tftrn_themefontfamily_sel = AV14TFTrn_ThemeFontFamily_Sel;
+         AV47Trn_themewwds_6_tftrn_themefontsize = AV15TFTrn_ThemeFontSize;
+         AV48Trn_themewwds_7_tftrn_themefontsize_to = AV16TFTrn_ThemeFontSize_To;
          pr_default.dynParam(0, new Object[]{ new Object[]{
-                                              AV40Trn_themewwds_1_filterfulltext ,
-                                              AV42Trn_themewwds_3_tftrn_themename_sel ,
-                                              AV41Trn_themewwds_2_tftrn_themename ,
-                                              AV44Trn_themewwds_5_tftrn_themefontfamily_sel ,
-                                              AV43Trn_themewwds_4_tftrn_themefontfamily ,
+                                              AV42Trn_themewwds_1_filterfulltext ,
+                                              AV44Trn_themewwds_3_tftrn_themename_sel ,
+                                              AV43Trn_themewwds_2_tftrn_themename ,
+                                              AV46Trn_themewwds_5_tftrn_themefontfamily_sel ,
+                                              AV45Trn_themewwds_4_tftrn_themefontfamily ,
+                                              AV47Trn_themewwds_6_tftrn_themefontsize ,
+                                              AV48Trn_themewwds_7_tftrn_themefontsize_to ,
                                               A248Trn_ThemeName ,
-                                              A260Trn_ThemeFontFamily } ,
+                                              A260Trn_ThemeFontFamily ,
+                                              A399Trn_ThemeFontSize } ,
                                               new int[]{
+                                              TypeConstants.SHORT, TypeConstants.SHORT, TypeConstants.SHORT
                                               }
          });
-         lV40Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV40Trn_themewwds_1_filterfulltext), "%", "");
-         lV40Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV40Trn_themewwds_1_filterfulltext), "%", "");
-         lV41Trn_themewwds_2_tftrn_themename = StringUtil.Concat( StringUtil.RTrim( AV41Trn_themewwds_2_tftrn_themename), "%", "");
-         lV43Trn_themewwds_4_tftrn_themefontfamily = StringUtil.Concat( StringUtil.RTrim( AV43Trn_themewwds_4_tftrn_themefontfamily), "%", "");
-         /* Using cursor P005V2 */
-         pr_default.execute(0, new Object[] {lV40Trn_themewwds_1_filterfulltext, lV40Trn_themewwds_1_filterfulltext, lV41Trn_themewwds_2_tftrn_themename, AV42Trn_themewwds_3_tftrn_themename_sel, lV43Trn_themewwds_4_tftrn_themefontfamily, AV44Trn_themewwds_5_tftrn_themefontfamily_sel});
+         lV42Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext), "%", "");
+         lV42Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext), "%", "");
+         lV42Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext), "%", "");
+         lV43Trn_themewwds_2_tftrn_themename = StringUtil.Concat( StringUtil.RTrim( AV43Trn_themewwds_2_tftrn_themename), "%", "");
+         lV45Trn_themewwds_4_tftrn_themefontfamily = StringUtil.Concat( StringUtil.RTrim( AV45Trn_themewwds_4_tftrn_themefontfamily), "%", "");
+         /* Using cursor P008P2 */
+         pr_default.execute(0, new Object[] {lV42Trn_themewwds_1_filterfulltext, lV42Trn_themewwds_1_filterfulltext, lV42Trn_themewwds_1_filterfulltext, lV43Trn_themewwds_2_tftrn_themename, AV44Trn_themewwds_3_tftrn_themename_sel, lV45Trn_themewwds_4_tftrn_themefontfamily, AV46Trn_themewwds_5_tftrn_themefontfamily_sel, AV47Trn_themewwds_6_tftrn_themefontsize, AV48Trn_themewwds_7_tftrn_themefontsize_to});
          while ( (pr_default.getStatus(0) != 101) )
          {
-            BRK5V2 = false;
-            A248Trn_ThemeName = P005V2_A248Trn_ThemeName[0];
-            A260Trn_ThemeFontFamily = P005V2_A260Trn_ThemeFontFamily[0];
-            A247Trn_ThemeId = P005V2_A247Trn_ThemeId[0];
-            AV23count = 0;
-            while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P005V2_A248Trn_ThemeName[0], A248Trn_ThemeName) == 0 ) )
+            BRK8P2 = false;
+            A248Trn_ThemeName = P008P2_A248Trn_ThemeName[0];
+            A399Trn_ThemeFontSize = P008P2_A399Trn_ThemeFontSize[0];
+            A260Trn_ThemeFontFamily = P008P2_A260Trn_ThemeFontFamily[0];
+            A247Trn_ThemeId = P008P2_A247Trn_ThemeId[0];
+            AV27count = 0;
+            while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P008P2_A248Trn_ThemeName[0], A248Trn_ThemeName) == 0 ) )
             {
-               BRK5V2 = false;
-               A247Trn_ThemeId = P005V2_A247Trn_ThemeId[0];
-               AV23count = (long)(AV23count+1);
-               BRK5V2 = true;
+               BRK8P2 = false;
+               A247Trn_ThemeId = P008P2_A247Trn_ThemeId[0];
+               AV27count = (long)(AV27count+1);
+               BRK8P2 = true;
                pr_default.readNext(0);
             }
-            if ( (0==AV14SkipItems) )
+            if ( (0==AV18SkipItems) )
             {
-               AV18Option = (String.IsNullOrEmpty(StringUtil.RTrim( A248Trn_ThemeName)) ? "<#Empty#>" : A248Trn_ThemeName);
-               AV19Options.Add(AV18Option, 0);
-               AV22OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV23count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV19Options.Count == 10 )
+               AV22Option = (String.IsNullOrEmpty(StringUtil.RTrim( A248Trn_ThemeName)) ? "<#Empty#>" : A248Trn_ThemeName);
+               AV23Options.Add(AV22Option, 0);
+               AV26OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV27count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+               if ( AV23Options.Count == 10 )
                {
                   /* Exit For each command. Update data (if necessary), close cursors & exit. */
                   if (true) break;
@@ -256,11 +269,11 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV14SkipItems = (short)(AV14SkipItems-1);
+               AV18SkipItems = (short)(AV18SkipItems-1);
             }
-            if ( ! BRK5V2 )
+            if ( ! BRK8P2 )
             {
-               BRK5V2 = true;
+               BRK8P2 = true;
                pr_default.readNext(0);
             }
          }
@@ -271,51 +284,59 @@ namespace GeneXus.Programs {
       {
          /* 'LOADTRN_THEMEFONTFAMILYOPTIONS' Routine */
          returnInSub = false;
-         AV36TFTrn_ThemeFontFamily = AV13SearchTxt;
-         AV37TFTrn_ThemeFontFamily_Sel = "";
-         AV40Trn_themewwds_1_filterfulltext = AV35FilterFullText;
-         AV41Trn_themewwds_2_tftrn_themename = AV11TFTrn_ThemeName;
-         AV42Trn_themewwds_3_tftrn_themename_sel = AV12TFTrn_ThemeName_Sel;
-         AV43Trn_themewwds_4_tftrn_themefontfamily = AV36TFTrn_ThemeFontFamily;
-         AV44Trn_themewwds_5_tftrn_themefontfamily_sel = AV37TFTrn_ThemeFontFamily_Sel;
+         AV13TFTrn_ThemeFontFamily = AV17SearchTxt;
+         AV14TFTrn_ThemeFontFamily_Sel = "";
+         AV42Trn_themewwds_1_filterfulltext = AV39FilterFullText;
+         AV43Trn_themewwds_2_tftrn_themename = AV11TFTrn_ThemeName;
+         AV44Trn_themewwds_3_tftrn_themename_sel = AV12TFTrn_ThemeName_Sel;
+         AV45Trn_themewwds_4_tftrn_themefontfamily = AV13TFTrn_ThemeFontFamily;
+         AV46Trn_themewwds_5_tftrn_themefontfamily_sel = AV14TFTrn_ThemeFontFamily_Sel;
+         AV47Trn_themewwds_6_tftrn_themefontsize = AV15TFTrn_ThemeFontSize;
+         AV48Trn_themewwds_7_tftrn_themefontsize_to = AV16TFTrn_ThemeFontSize_To;
          pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              AV40Trn_themewwds_1_filterfulltext ,
-                                              AV42Trn_themewwds_3_tftrn_themename_sel ,
-                                              AV41Trn_themewwds_2_tftrn_themename ,
-                                              AV44Trn_themewwds_5_tftrn_themefontfamily_sel ,
-                                              AV43Trn_themewwds_4_tftrn_themefontfamily ,
+                                              AV42Trn_themewwds_1_filterfulltext ,
+                                              AV44Trn_themewwds_3_tftrn_themename_sel ,
+                                              AV43Trn_themewwds_2_tftrn_themename ,
+                                              AV46Trn_themewwds_5_tftrn_themefontfamily_sel ,
+                                              AV45Trn_themewwds_4_tftrn_themefontfamily ,
+                                              AV47Trn_themewwds_6_tftrn_themefontsize ,
+                                              AV48Trn_themewwds_7_tftrn_themefontsize_to ,
                                               A248Trn_ThemeName ,
-                                              A260Trn_ThemeFontFamily } ,
+                                              A260Trn_ThemeFontFamily ,
+                                              A399Trn_ThemeFontSize } ,
                                               new int[]{
+                                              TypeConstants.SHORT, TypeConstants.SHORT, TypeConstants.SHORT
                                               }
          });
-         lV40Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV40Trn_themewwds_1_filterfulltext), "%", "");
-         lV40Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV40Trn_themewwds_1_filterfulltext), "%", "");
-         lV41Trn_themewwds_2_tftrn_themename = StringUtil.Concat( StringUtil.RTrim( AV41Trn_themewwds_2_tftrn_themename), "%", "");
-         lV43Trn_themewwds_4_tftrn_themefontfamily = StringUtil.Concat( StringUtil.RTrim( AV43Trn_themewwds_4_tftrn_themefontfamily), "%", "");
-         /* Using cursor P005V3 */
-         pr_default.execute(1, new Object[] {lV40Trn_themewwds_1_filterfulltext, lV40Trn_themewwds_1_filterfulltext, lV41Trn_themewwds_2_tftrn_themename, AV42Trn_themewwds_3_tftrn_themename_sel, lV43Trn_themewwds_4_tftrn_themefontfamily, AV44Trn_themewwds_5_tftrn_themefontfamily_sel});
+         lV42Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext), "%", "");
+         lV42Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext), "%", "");
+         lV42Trn_themewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext), "%", "");
+         lV43Trn_themewwds_2_tftrn_themename = StringUtil.Concat( StringUtil.RTrim( AV43Trn_themewwds_2_tftrn_themename), "%", "");
+         lV45Trn_themewwds_4_tftrn_themefontfamily = StringUtil.Concat( StringUtil.RTrim( AV45Trn_themewwds_4_tftrn_themefontfamily), "%", "");
+         /* Using cursor P008P3 */
+         pr_default.execute(1, new Object[] {lV42Trn_themewwds_1_filterfulltext, lV42Trn_themewwds_1_filterfulltext, lV42Trn_themewwds_1_filterfulltext, lV43Trn_themewwds_2_tftrn_themename, AV44Trn_themewwds_3_tftrn_themename_sel, lV45Trn_themewwds_4_tftrn_themefontfamily, AV46Trn_themewwds_5_tftrn_themefontfamily_sel, AV47Trn_themewwds_6_tftrn_themefontsize, AV48Trn_themewwds_7_tftrn_themefontsize_to});
          while ( (pr_default.getStatus(1) != 101) )
          {
-            BRK5V4 = false;
-            A260Trn_ThemeFontFamily = P005V3_A260Trn_ThemeFontFamily[0];
-            A248Trn_ThemeName = P005V3_A248Trn_ThemeName[0];
-            A247Trn_ThemeId = P005V3_A247Trn_ThemeId[0];
-            AV23count = 0;
-            while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P005V3_A260Trn_ThemeFontFamily[0], A260Trn_ThemeFontFamily) == 0 ) )
+            BRK8P4 = false;
+            A260Trn_ThemeFontFamily = P008P3_A260Trn_ThemeFontFamily[0];
+            A399Trn_ThemeFontSize = P008P3_A399Trn_ThemeFontSize[0];
+            A248Trn_ThemeName = P008P3_A248Trn_ThemeName[0];
+            A247Trn_ThemeId = P008P3_A247Trn_ThemeId[0];
+            AV27count = 0;
+            while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P008P3_A260Trn_ThemeFontFamily[0], A260Trn_ThemeFontFamily) == 0 ) )
             {
-               BRK5V4 = false;
-               A247Trn_ThemeId = P005V3_A247Trn_ThemeId[0];
-               AV23count = (long)(AV23count+1);
-               BRK5V4 = true;
+               BRK8P4 = false;
+               A247Trn_ThemeId = P008P3_A247Trn_ThemeId[0];
+               AV27count = (long)(AV27count+1);
+               BRK8P4 = true;
                pr_default.readNext(1);
             }
-            if ( (0==AV14SkipItems) )
+            if ( (0==AV18SkipItems) )
             {
-               AV18Option = (String.IsNullOrEmpty(StringUtil.RTrim( A260Trn_ThemeFontFamily)) ? "<#Empty#>" : A260Trn_ThemeFontFamily);
-               AV19Options.Add(AV18Option, 0);
-               AV22OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV23count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV19Options.Count == 10 )
+               AV22Option = (String.IsNullOrEmpty(StringUtil.RTrim( A260Trn_ThemeFontFamily)) ? "<#Empty#>" : A260Trn_ThemeFontFamily);
+               AV23Options.Add(AV22Option, 0);
+               AV26OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV27count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+               if ( AV23Options.Count == 10 )
                {
                   /* Exit For each command. Update data (if necessary), close cursors & exit. */
                   if (true) break;
@@ -323,11 +344,11 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV14SkipItems = (short)(AV14SkipItems-1);
+               AV18SkipItems = (short)(AV18SkipItems-1);
             }
-            if ( ! BRK5V4 )
+            if ( ! BRK8P4 )
             {
-               BRK5V4 = true;
+               BRK8P4 = true;
                pr_default.readNext(1);
             }
          }
@@ -346,101 +367,110 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV32OptionsJson = "";
-         AV33OptionsDescJson = "";
-         AV34OptionIndexesJson = "";
-         AV19Options = new GxSimpleCollection<string>();
-         AV21OptionsDesc = new GxSimpleCollection<string>();
-         AV22OptionIndexes = new GxSimpleCollection<string>();
-         AV13SearchTxt = "";
+         AV36OptionsJson = "";
+         AV37OptionsDescJson = "";
+         AV38OptionIndexesJson = "";
+         AV23Options = new GxSimpleCollection<string>();
+         AV25OptionsDesc = new GxSimpleCollection<string>();
+         AV26OptionIndexes = new GxSimpleCollection<string>();
+         AV17SearchTxt = "";
          AV9WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         AV24Session = context.GetSession();
-         AV26GridState = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState(context);
-         AV27GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
-         AV35FilterFullText = "";
+         AV28Session = context.GetSession();
+         AV30GridState = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState(context);
+         AV31GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
+         AV39FilterFullText = "";
          AV11TFTrn_ThemeName = "";
          AV12TFTrn_ThemeName_Sel = "";
-         AV36TFTrn_ThemeFontFamily = "";
-         AV37TFTrn_ThemeFontFamily_Sel = "";
-         AV40Trn_themewwds_1_filterfulltext = "";
-         AV41Trn_themewwds_2_tftrn_themename = "";
-         AV42Trn_themewwds_3_tftrn_themename_sel = "";
-         AV43Trn_themewwds_4_tftrn_themefontfamily = "";
-         AV44Trn_themewwds_5_tftrn_themefontfamily_sel = "";
-         lV40Trn_themewwds_1_filterfulltext = "";
-         lV41Trn_themewwds_2_tftrn_themename = "";
-         lV43Trn_themewwds_4_tftrn_themefontfamily = "";
+         AV13TFTrn_ThemeFontFamily = "";
+         AV14TFTrn_ThemeFontFamily_Sel = "";
+         AV42Trn_themewwds_1_filterfulltext = "";
+         AV43Trn_themewwds_2_tftrn_themename = "";
+         AV44Trn_themewwds_3_tftrn_themename_sel = "";
+         AV45Trn_themewwds_4_tftrn_themefontfamily = "";
+         AV46Trn_themewwds_5_tftrn_themefontfamily_sel = "";
+         lV42Trn_themewwds_1_filterfulltext = "";
+         lV43Trn_themewwds_2_tftrn_themename = "";
+         lV45Trn_themewwds_4_tftrn_themefontfamily = "";
          A248Trn_ThemeName = "";
          A260Trn_ThemeFontFamily = "";
-         P005V2_A248Trn_ThemeName = new string[] {""} ;
-         P005V2_A260Trn_ThemeFontFamily = new string[] {""} ;
-         P005V2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         P008P2_A248Trn_ThemeName = new string[] {""} ;
+         P008P2_A399Trn_ThemeFontSize = new short[1] ;
+         P008P2_A260Trn_ThemeFontFamily = new string[] {""} ;
+         P008P2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          A247Trn_ThemeId = Guid.Empty;
-         AV18Option = "";
-         P005V3_A260Trn_ThemeFontFamily = new string[] {""} ;
-         P005V3_A248Trn_ThemeName = new string[] {""} ;
-         P005V3_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         AV22Option = "";
+         P008P3_A260Trn_ThemeFontFamily = new string[] {""} ;
+         P008P3_A399Trn_ThemeFontSize = new short[1] ;
+         P008P3_A248Trn_ThemeName = new string[] {""} ;
+         P008P3_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_themewwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P005V2_A248Trn_ThemeName, P005V2_A260Trn_ThemeFontFamily, P005V2_A247Trn_ThemeId
+               P008P2_A248Trn_ThemeName, P008P2_A399Trn_ThemeFontSize, P008P2_A260Trn_ThemeFontFamily, P008P2_A247Trn_ThemeId
                }
                , new Object[] {
-               P005V3_A260Trn_ThemeFontFamily, P005V3_A248Trn_ThemeName, P005V3_A247Trn_ThemeId
+               P008P3_A260Trn_ThemeFontFamily, P008P3_A399Trn_ThemeFontSize, P008P3_A248Trn_ThemeName, P008P3_A247Trn_ThemeId
                }
             }
          );
          /* GeneXus formulas. */
       }
 
-      private short AV16MaxItems ;
-      private short AV15PageIndex ;
-      private short AV14SkipItems ;
-      private int AV38GXV1 ;
-      private long AV23count ;
+      private short AV20MaxItems ;
+      private short AV19PageIndex ;
+      private short AV18SkipItems ;
+      private short AV15TFTrn_ThemeFontSize ;
+      private short AV16TFTrn_ThemeFontSize_To ;
+      private short AV47Trn_themewwds_6_tftrn_themefontsize ;
+      private short AV48Trn_themewwds_7_tftrn_themefontsize_to ;
+      private short A399Trn_ThemeFontSize ;
+      private int AV40GXV1 ;
+      private long AV27count ;
       private bool returnInSub ;
-      private bool BRK5V2 ;
-      private bool BRK5V4 ;
-      private string AV32OptionsJson ;
-      private string AV33OptionsDescJson ;
-      private string AV34OptionIndexesJson ;
-      private string AV29DDOName ;
-      private string AV30SearchTxtParms ;
-      private string AV31SearchTxtTo ;
-      private string AV13SearchTxt ;
-      private string AV35FilterFullText ;
+      private bool BRK8P2 ;
+      private bool BRK8P4 ;
+      private string AV36OptionsJson ;
+      private string AV37OptionsDescJson ;
+      private string AV38OptionIndexesJson ;
+      private string AV33DDOName ;
+      private string AV34SearchTxtParms ;
+      private string AV35SearchTxtTo ;
+      private string AV17SearchTxt ;
+      private string AV39FilterFullText ;
       private string AV11TFTrn_ThemeName ;
       private string AV12TFTrn_ThemeName_Sel ;
-      private string AV36TFTrn_ThemeFontFamily ;
-      private string AV37TFTrn_ThemeFontFamily_Sel ;
-      private string AV40Trn_themewwds_1_filterfulltext ;
-      private string AV41Trn_themewwds_2_tftrn_themename ;
-      private string AV42Trn_themewwds_3_tftrn_themename_sel ;
-      private string AV43Trn_themewwds_4_tftrn_themefontfamily ;
-      private string AV44Trn_themewwds_5_tftrn_themefontfamily_sel ;
-      private string lV40Trn_themewwds_1_filterfulltext ;
-      private string lV41Trn_themewwds_2_tftrn_themename ;
-      private string lV43Trn_themewwds_4_tftrn_themefontfamily ;
+      private string AV13TFTrn_ThemeFontFamily ;
+      private string AV14TFTrn_ThemeFontFamily_Sel ;
+      private string AV42Trn_themewwds_1_filterfulltext ;
+      private string AV43Trn_themewwds_2_tftrn_themename ;
+      private string AV44Trn_themewwds_3_tftrn_themename_sel ;
+      private string AV45Trn_themewwds_4_tftrn_themefontfamily ;
+      private string AV46Trn_themewwds_5_tftrn_themefontfamily_sel ;
+      private string lV42Trn_themewwds_1_filterfulltext ;
+      private string lV43Trn_themewwds_2_tftrn_themename ;
+      private string lV45Trn_themewwds_4_tftrn_themefontfamily ;
       private string A248Trn_ThemeName ;
       private string A260Trn_ThemeFontFamily ;
-      private string AV18Option ;
+      private string AV22Option ;
       private Guid A247Trn_ThemeId ;
-      private IGxSession AV24Session ;
+      private IGxSession AV28Session ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GxSimpleCollection<string> AV19Options ;
-      private GxSimpleCollection<string> AV21OptionsDesc ;
-      private GxSimpleCollection<string> AV22OptionIndexes ;
+      private GxSimpleCollection<string> AV23Options ;
+      private GxSimpleCollection<string> AV25OptionsDesc ;
+      private GxSimpleCollection<string> AV26OptionIndexes ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV9WWPContext ;
-      private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV26GridState ;
-      private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV27GridStateFilterValue ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV30GridState ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV31GridStateFilterValue ;
       private IDataStoreProvider pr_default ;
-      private string[] P005V2_A248Trn_ThemeName ;
-      private string[] P005V2_A260Trn_ThemeFontFamily ;
-      private Guid[] P005V2_A247Trn_ThemeId ;
-      private string[] P005V3_A260Trn_ThemeFontFamily ;
-      private string[] P005V3_A248Trn_ThemeName ;
-      private Guid[] P005V3_A247Trn_ThemeId ;
+      private string[] P008P2_A248Trn_ThemeName ;
+      private short[] P008P2_A399Trn_ThemeFontSize ;
+      private string[] P008P2_A260Trn_ThemeFontFamily ;
+      private Guid[] P008P2_A247Trn_ThemeId ;
+      private string[] P008P3_A260Trn_ThemeFontFamily ;
+      private short[] P008P3_A399Trn_ThemeFontSize ;
+      private string[] P008P3_A248Trn_ThemeName ;
+      private Guid[] P008P3_A247Trn_ThemeId ;
       private string aP3_OptionsJson ;
       private string aP4_OptionsDescJson ;
       private string aP5_OptionIndexesJson ;
@@ -448,68 +478,88 @@ namespace GeneXus.Programs {
 
    public class trn_themewwgetfilterdata__default : DataStoreHelperBase, IDataStoreHelper
    {
-      protected Object[] conditional_P005V2( IGxContext context ,
-                                             string AV40Trn_themewwds_1_filterfulltext ,
-                                             string AV42Trn_themewwds_3_tftrn_themename_sel ,
-                                             string AV41Trn_themewwds_2_tftrn_themename ,
-                                             string AV44Trn_themewwds_5_tftrn_themefontfamily_sel ,
-                                             string AV43Trn_themewwds_4_tftrn_themefontfamily ,
+      protected Object[] conditional_P008P2( IGxContext context ,
+                                             string AV42Trn_themewwds_1_filterfulltext ,
+                                             string AV44Trn_themewwds_3_tftrn_themename_sel ,
+                                             string AV43Trn_themewwds_2_tftrn_themename ,
+                                             string AV46Trn_themewwds_5_tftrn_themefontfamily_sel ,
+                                             string AV45Trn_themewwds_4_tftrn_themefontfamily ,
+                                             short AV47Trn_themewwds_6_tftrn_themefontsize ,
+                                             short AV48Trn_themewwds_7_tftrn_themefontsize_to ,
                                              string A248Trn_ThemeName ,
-                                             string A260Trn_ThemeFontFamily )
+                                             string A260Trn_ThemeFontFamily ,
+                                             short A399Trn_ThemeFontSize )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int1 = new short[6];
+         short[] GXv_int1 = new short[9];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeId FROM Trn_Theme";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_themewwds_1_filterfulltext)) )
+         scmdbuf = "SELECT Trn_ThemeName, Trn_ThemeFontSize, Trn_ThemeFontFamily, Trn_ThemeId FROM Trn_Theme";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_ThemeName like '%' || :lV40Trn_themewwds_1_filterfulltext) or ( Trn_ThemeFontFamily like '%' || :lV40Trn_themewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( Trn_ThemeName like '%' || :lV42Trn_themewwds_1_filterfulltext) or ( Trn_ThemeFontFamily like '%' || :lV42Trn_themewwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(Trn_ThemeFontSize,'9999'), 2) like '%' || :lV42Trn_themewwds_1_filterfulltext))");
          }
          else
          {
             GXv_int1[0] = 1;
             GXv_int1[1] = 1;
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_themewwds_3_tftrn_themename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Trn_themewwds_2_tftrn_themename)) ) )
-         {
-            AddWhere(sWhereString, "(Trn_ThemeName like :lV41Trn_themewwds_2_tftrn_themename)");
-         }
-         else
-         {
             GXv_int1[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_themewwds_3_tftrn_themename_sel)) && ! ( StringUtil.StrCmp(AV42Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_themewwds_2_tftrn_themename)) ) )
          {
-            AddWhere(sWhereString, "(Trn_ThemeName = ( :AV42Trn_themewwds_3_tftrn_themename_sel))");
+            AddWhere(sWhereString, "(Trn_ThemeName like :lV43Trn_themewwds_2_tftrn_themename)");
          }
          else
          {
             GXv_int1[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeName))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_5_tftrn_themefontfamily_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_themewwds_4_tftrn_themefontfamily)) ) )
-         {
-            AddWhere(sWhereString, "(Trn_ThemeFontFamily like :lV43Trn_themewwds_4_tftrn_themefontfamily)");
+            AddWhere(sWhereString, "(Trn_ThemeName = ( :AV44Trn_themewwds_3_tftrn_themename_sel))");
          }
          else
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_5_tftrn_themefontfamily_sel)) && ! ( StringUtil.StrCmp(AV44Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "(Trn_ThemeFontFamily = ( :AV44Trn_themewwds_5_tftrn_themefontfamily_sel))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeName))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_themewwds_4_tftrn_themefontfamily)) ) )
+         {
+            AddWhere(sWhereString, "(Trn_ThemeFontFamily like :lV45Trn_themewwds_4_tftrn_themefontfamily)");
          }
          else
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ! ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(Trn_ThemeFontFamily = ( :AV46Trn_themewwds_5_tftrn_themefontfamily_sel))");
+         }
+         else
+         {
+            GXv_int1[6] = 1;
+         }
+         if ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeFontFamily))=0))");
+         }
+         if ( ! (0==AV47Trn_themewwds_6_tftrn_themefontsize) )
+         {
+            AddWhere(sWhereString, "(Trn_ThemeFontSize >= :AV47Trn_themewwds_6_tftrn_themefontsize)");
+         }
+         else
+         {
+            GXv_int1[7] = 1;
+         }
+         if ( ! (0==AV48Trn_themewwds_7_tftrn_themefontsize_to) )
+         {
+            AddWhere(sWhereString, "(Trn_ThemeFontSize <= :AV48Trn_themewwds_7_tftrn_themefontsize_to)");
+         }
+         else
+         {
+            GXv_int1[8] = 1;
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY Trn_ThemeName";
@@ -518,68 +568,88 @@ namespace GeneXus.Programs {
          return GXv_Object2 ;
       }
 
-      protected Object[] conditional_P005V3( IGxContext context ,
-                                             string AV40Trn_themewwds_1_filterfulltext ,
-                                             string AV42Trn_themewwds_3_tftrn_themename_sel ,
-                                             string AV41Trn_themewwds_2_tftrn_themename ,
-                                             string AV44Trn_themewwds_5_tftrn_themefontfamily_sel ,
-                                             string AV43Trn_themewwds_4_tftrn_themefontfamily ,
+      protected Object[] conditional_P008P3( IGxContext context ,
+                                             string AV42Trn_themewwds_1_filterfulltext ,
+                                             string AV44Trn_themewwds_3_tftrn_themename_sel ,
+                                             string AV43Trn_themewwds_2_tftrn_themename ,
+                                             string AV46Trn_themewwds_5_tftrn_themefontfamily_sel ,
+                                             string AV45Trn_themewwds_4_tftrn_themefontfamily ,
+                                             short AV47Trn_themewwds_6_tftrn_themefontsize ,
+                                             short AV48Trn_themewwds_7_tftrn_themefontsize_to ,
                                              string A248Trn_ThemeName ,
-                                             string A260Trn_ThemeFontFamily )
+                                             string A260Trn_ThemeFontFamily ,
+                                             short A399Trn_ThemeFontSize )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int3 = new short[6];
+         short[] GXv_int3 = new short[9];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT Trn_ThemeFontFamily, Trn_ThemeName, Trn_ThemeId FROM Trn_Theme";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_themewwds_1_filterfulltext)) )
+         scmdbuf = "SELECT Trn_ThemeFontFamily, Trn_ThemeFontSize, Trn_ThemeName, Trn_ThemeId FROM Trn_Theme";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_ThemeName like '%' || :lV40Trn_themewwds_1_filterfulltext) or ( Trn_ThemeFontFamily like '%' || :lV40Trn_themewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( Trn_ThemeName like '%' || :lV42Trn_themewwds_1_filterfulltext) or ( Trn_ThemeFontFamily like '%' || :lV42Trn_themewwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(Trn_ThemeFontSize,'9999'), 2) like '%' || :lV42Trn_themewwds_1_filterfulltext))");
          }
          else
          {
             GXv_int3[0] = 1;
             GXv_int3[1] = 1;
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_themewwds_3_tftrn_themename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Trn_themewwds_2_tftrn_themename)) ) )
-         {
-            AddWhere(sWhereString, "(Trn_ThemeName like :lV41Trn_themewwds_2_tftrn_themename)");
-         }
-         else
-         {
             GXv_int3[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_themewwds_3_tftrn_themename_sel)) && ! ( StringUtil.StrCmp(AV42Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_themewwds_2_tftrn_themename)) ) )
          {
-            AddWhere(sWhereString, "(Trn_ThemeName = ( :AV42Trn_themewwds_3_tftrn_themename_sel))");
+            AddWhere(sWhereString, "(Trn_ThemeName like :lV43Trn_themewwds_2_tftrn_themename)");
          }
          else
          {
             GXv_int3[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV42Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeName))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_5_tftrn_themefontfamily_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_themewwds_4_tftrn_themefontfamily)) ) )
-         {
-            AddWhere(sWhereString, "(Trn_ThemeFontFamily like :lV43Trn_themewwds_4_tftrn_themefontfamily)");
+            AddWhere(sWhereString, "(Trn_ThemeName = ( :AV44Trn_themewwds_3_tftrn_themename_sel))");
          }
          else
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_5_tftrn_themefontfamily_sel)) && ! ( StringUtil.StrCmp(AV44Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "(Trn_ThemeFontFamily = ( :AV44Trn_themewwds_5_tftrn_themefontfamily_sel))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeName))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_themewwds_4_tftrn_themefontfamily)) ) )
+         {
+            AddWhere(sWhereString, "(Trn_ThemeFontFamily like :lV45Trn_themewwds_4_tftrn_themefontfamily)");
          }
          else
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ! ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         {
+            AddWhere(sWhereString, "(Trn_ThemeFontFamily = ( :AV46Trn_themewwds_5_tftrn_themefontfamily_sel))");
+         }
+         else
+         {
+            GXv_int3[6] = 1;
+         }
+         if ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeFontFamily))=0))");
+         }
+         if ( ! (0==AV47Trn_themewwds_6_tftrn_themefontsize) )
+         {
+            AddWhere(sWhereString, "(Trn_ThemeFontSize >= :AV47Trn_themewwds_6_tftrn_themefontsize)");
+         }
+         else
+         {
+            GXv_int3[7] = 1;
+         }
+         if ( ! (0==AV48Trn_themewwds_7_tftrn_themefontsize_to) )
+         {
+            AddWhere(sWhereString, "(Trn_ThemeFontSize <= :AV48Trn_themewwds_7_tftrn_themefontsize_to)");
+         }
+         else
+         {
+            GXv_int3[8] = 1;
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY Trn_ThemeFontFamily";
@@ -595,9 +665,9 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_P005V2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] );
+                     return conditional_P008P2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (short)dynConstraints[5] , (short)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (short)dynConstraints[9] );
                case 1 :
-                     return conditional_P005V3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] );
+                     return conditional_P008P3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (short)dynConstraints[5] , (short)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (short)dynConstraints[9] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -616,27 +686,33 @@ namespace GeneXus.Programs {
     {
        if ( def == null )
        {
-          Object[] prmP005V2;
-          prmP005V2 = new Object[] {
-          new ParDef("lV40Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV40Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV41Trn_themewwds_2_tftrn_themename",GXType.VarChar,100,0) ,
-          new ParDef("AV42Trn_themewwds_3_tftrn_themename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV43Trn_themewwds_4_tftrn_themefontfamily",GXType.VarChar,40,0) ,
-          new ParDef("AV44Trn_themewwds_5_tftrn_themefontfamily_sel",GXType.VarChar,40,0)
+          Object[] prmP008P2;
+          prmP008P2 = new Object[] {
+          new ParDef("lV42Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV42Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV42Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV43Trn_themewwds_2_tftrn_themename",GXType.VarChar,100,0) ,
+          new ParDef("AV44Trn_themewwds_3_tftrn_themename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV45Trn_themewwds_4_tftrn_themefontfamily",GXType.VarChar,40,0) ,
+          new ParDef("AV46Trn_themewwds_5_tftrn_themefontfamily_sel",GXType.VarChar,40,0) ,
+          new ParDef("AV47Trn_themewwds_6_tftrn_themefontsize",GXType.Int16,4,0) ,
+          new ParDef("AV48Trn_themewwds_7_tftrn_themefontsize_to",GXType.Int16,4,0)
           };
-          Object[] prmP005V3;
-          prmP005V3 = new Object[] {
-          new ParDef("lV40Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV40Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV41Trn_themewwds_2_tftrn_themename",GXType.VarChar,100,0) ,
-          new ParDef("AV42Trn_themewwds_3_tftrn_themename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV43Trn_themewwds_4_tftrn_themefontfamily",GXType.VarChar,40,0) ,
-          new ParDef("AV44Trn_themewwds_5_tftrn_themefontfamily_sel",GXType.VarChar,40,0)
+          Object[] prmP008P3;
+          prmP008P3 = new Object[] {
+          new ParDef("lV42Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV42Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV42Trn_themewwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV43Trn_themewwds_2_tftrn_themename",GXType.VarChar,100,0) ,
+          new ParDef("AV44Trn_themewwds_3_tftrn_themename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV45Trn_themewwds_4_tftrn_themefontfamily",GXType.VarChar,40,0) ,
+          new ParDef("AV46Trn_themewwds_5_tftrn_themefontfamily_sel",GXType.VarChar,40,0) ,
+          new ParDef("AV47Trn_themewwds_6_tftrn_themefontsize",GXType.Int16,4,0) ,
+          new ParDef("AV48Trn_themewwds_7_tftrn_themefontsize_to",GXType.Int16,4,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P005V2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP005V2,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P005V3", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP005V3,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P008P2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008P2,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P008P3", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008P3,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -649,13 +725,15 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((short[]) buf[1])[0] = rslt.getShort(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 return;
              case 1 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((short[]) buf[1])[0] = rslt.getShort(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 return;
        }
     }

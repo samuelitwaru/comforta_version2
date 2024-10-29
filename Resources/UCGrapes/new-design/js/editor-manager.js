@@ -1,20 +1,21 @@
-
+var globalEditor = null
 
 class EditorManager {
     constructor(editor) {
-        this.editor = editor;
-        this.selectedTemplateWrapper = null;
-        this.selectedComponent = null;
-        this.templateComponent = null;
-        this.isResizing = false;
-        this.currentResizer = null;
-        this.initialX = null;
-        this.initialWidth = null;
-        
-        this.pageId = this.getCurrentPageId();
-        
-        this.pageName = "Home";
-        //this.toolsSection = new ToolBoxManager();
+      globalEditor = editor;
+      this.editor = editor;
+      this.selectedTemplateWrapper = null;
+      this.selectedComponent = null;
+      this.templateComponent = null;
+      this.isResizing = false;
+      this.currentResizer = null;
+      this.initialX = null;
+      this.initialWidth = null;
+      
+      this.pageId = this.getCurrentPageId();
+      
+      this.pageName = "Home";
+      //this.toolsSection = new ToolBoxManager();
     }
   
     init() {
@@ -414,6 +415,7 @@ class EditorManager {
       for (let i = 0; i < columns; i++) {
         wrappers += `
         <div class="template-wrapper"
+                  ${defaultTileAttrs}
                   style="flex: 0 0 ${columnWidth}%);"
                   data-gjs-type="template-wrapper"
                   data-gjs-droppable="false">

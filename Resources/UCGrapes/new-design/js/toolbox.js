@@ -13,7 +13,6 @@ class ToolBoxManager {
   }
 
   init() {
-    
     this.loadTheme();
     console.log(this.themes)
     this.listThemesInSelectField();
@@ -41,6 +40,7 @@ class ToolBoxManager {
 
     // mapping
     const mappingButton = document.getElementById("open-mapping");
+    const publishButton = document.getElementById("publish");
     const mappingSection = document.getElementById("mapping-section");
     const toolsSection = document.getElementById("tools-section");
 
@@ -55,6 +55,13 @@ class ToolBoxManager {
 
       this.loadMappings();
     });
+
+    publishButton.onclick = (e) => {
+      e.preventDefault()
+      const data = this.editorManager.editor.getProjectData();
+      let res = mapTemplateToPageData(data)
+      console.log(res)
+    }
 
     
 
@@ -418,11 +425,10 @@ class ToolBoxManager {
   }
   
   loadPageTemplates() {
-    
     const pageTemplates = document.getElementById("page-templates");
-    
     this.templates.forEach((template, index) => {
       const blockElement = document.createElement("div");
+      
       blockElement.className = "page-template-wrapper"; // Wrapper class for each template block
       // Create the number element
       const numberElement = document.createElement("div");
@@ -942,6 +948,7 @@ class ToolBoxManager {
   setAttributeToSelected(attributeName, attributeValue){
     this.editorManager.editor.getSelected().addAttributes({[attributeName]: attributeValue})
   }
+
 }
 
 class PagesManager {

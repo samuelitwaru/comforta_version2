@@ -170,12 +170,12 @@ namespace GeneXus.Programs {
             {
                ValidateSpaRequest();
             }
-            PA3K2( ) ;
+            PA7S2( ) ;
             if ( ( GxWebError == 0 ) && ! isAjaxCallMode( ) )
             {
                /* GeneXus formulas. */
                AV14Pgmname = "Trn_ThemeGeneral";
-               WS3K2( ) ;
+               WS7S2( ) ;
                if ( ! isAjaxCallMode( ) )
                {
                   if ( nDynComponent == 0 )
@@ -336,7 +336,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( sPrefix, AV13IsAuthorized_Delete, context));
       }
 
-      protected void RenderHtmlCloseForm3K2( )
+      protected void RenderHtmlCloseForm7S2( )
       {
          SendCloseFormHiddens( ) ;
          if ( ( StringUtil.Len( sPrefix) != 0 ) && ( context.isAjaxRequest( ) || context.isSpaRequest( ) ) )
@@ -393,7 +393,7 @@ namespace GeneXus.Programs {
          return context.GetMessage( "Trn_Theme General", "") ;
       }
 
-      protected void WB3K0( )
+      protected void WB7S0( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -478,6 +478,23 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_ThemeFontSize_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtTrn_ThemeFontSize_Internalname, context.GetMessage( "Font Size", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtTrn_ThemeFontSize_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A399Trn_ThemeFontSize), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtTrn_ThemeFontSize_Enabled!=0) ? context.localUtil.Format( (decimal)(A399Trn_ThemeFontSize), "ZZZ9") : context.localUtil.Format( (decimal)(A399Trn_ThemeFontSize), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,29);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_ThemeFontSize_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_ThemeFontSize_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_ThemeGeneral.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -489,14 +506,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnupdate_Internalname, "", context.GetMessage( "GXM_update", ""), bttBtnupdate_Jsonclick, 5, context.GetMessage( "GXM_update", ""), "", StyleString, ClassString, bttBtnupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ThemeGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtndelete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtndelete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtndelete_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DODELETE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ThemeGeneral.htm");
@@ -513,7 +530,7 @@ namespace GeneXus.Programs {
          wbLoad = true;
       }
 
-      protected void START3K2( )
+      protected void START7S2( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -548,18 +565,18 @@ namespace GeneXus.Programs {
          {
             if ( nDoneStart == 0 )
             {
-               STRUP3K0( ) ;
+               STRUP7S0( ) ;
             }
          }
       }
 
-      protected void WS3K2( )
+      protected void WS7S2( )
       {
-         START3K2( ) ;
-         EVT3K2( ) ;
+         START7S2( ) ;
+         EVT7S2( ) ;
       }
 
-      protected void EVT3K2( )
+      protected void EVT7S2( )
       {
          sXEvt = cgiGet( "_EventName");
          if ( ( ( ( StringUtil.Len( sPrefix) == 0 ) ) || ( StringUtil.StringSearch( sXEvt, sPrefix, 1) > 0 ) ) && ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) )
@@ -589,7 +606,7 @@ namespace GeneXus.Programs {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP3K0( ) ;
+                                 STRUP7S0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -604,7 +621,7 @@ namespace GeneXus.Programs {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP3K0( ) ;
+                                 STRUP7S0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -613,7 +630,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E113K2 ();
+                                    E117S2 ();
                                  }
                               }
                            }
@@ -621,7 +638,7 @@ namespace GeneXus.Programs {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP3K0( ) ;
+                                 STRUP7S0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -630,7 +647,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E123K2 ();
+                                    E127S2 ();
                                  }
                               }
                            }
@@ -638,7 +655,7 @@ namespace GeneXus.Programs {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP3K0( ) ;
+                                 STRUP7S0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -647,7 +664,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoUpdate' */
-                                    E133K2 ();
+                                    E137S2 ();
                                  }
                               }
                            }
@@ -655,7 +672,7 @@ namespace GeneXus.Programs {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP3K0( ) ;
+                                 STRUP7S0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -664,7 +681,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoDelete' */
-                                    E143K2 ();
+                                    E147S2 ();
                                  }
                               }
                            }
@@ -672,7 +689,7 @@ namespace GeneXus.Programs {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP3K0( ) ;
+                                 STRUP7S0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -695,7 +712,7 @@ namespace GeneXus.Programs {
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
-                                 STRUP3K0( ) ;
+                                 STRUP7S0( ) ;
                               }
                               if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
                               {
@@ -719,7 +736,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void WE3K2( )
+      protected void WE7S2( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -727,12 +744,12 @@ namespace GeneXus.Programs {
             Refresh( ) ;
             if ( ! GxWebStd.gx_redirect( context) )
             {
-               RenderHtmlCloseForm3K2( ) ;
+               RenderHtmlCloseForm7S2( ) ;
             }
          }
       }
 
-      protected void PA3K2( )
+      protected void PA7S2( )
       {
          if ( nDonePA == 0 )
          {
@@ -844,7 +861,7 @@ namespace GeneXus.Programs {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF3K2( ) ;
+         RF7S2( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -857,7 +874,7 @@ namespace GeneXus.Programs {
          AV14Pgmname = "Trn_ThemeGeneral";
       }
 
-      protected void RF3K2( )
+      protected void RF7S2( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
@@ -866,25 +883,27 @@ namespace GeneXus.Programs {
          gxdyncontrolsrefreshing = false;
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            /* Using cursor H003K2 */
+            /* Using cursor H007S2 */
             pr_default.execute(0, new Object[] {A247Trn_ThemeId});
             while ( (pr_default.getStatus(0) != 101) )
             {
-               A260Trn_ThemeFontFamily = H003K2_A260Trn_ThemeFontFamily[0];
+               A399Trn_ThemeFontSize = H007S2_A399Trn_ThemeFontSize[0];
+               AssignAttri(sPrefix, false, "A399Trn_ThemeFontSize", StringUtil.LTrimStr( (decimal)(A399Trn_ThemeFontSize), 4, 0));
+               A260Trn_ThemeFontFamily = H007S2_A260Trn_ThemeFontFamily[0];
                AssignAttri(sPrefix, false, "A260Trn_ThemeFontFamily", A260Trn_ThemeFontFamily);
-               A248Trn_ThemeName = H003K2_A248Trn_ThemeName[0];
+               A248Trn_ThemeName = H007S2_A248Trn_ThemeName[0];
                AssignAttri(sPrefix, false, "A248Trn_ThemeName", A248Trn_ThemeName);
                /* Execute user event: Load */
-               E123K2 ();
+               E127S2 ();
                /* Exiting from a For First loop. */
                if (true) break;
             }
             pr_default.close(0);
-            WB3K0( ) ;
+            WB7S0( ) ;
          }
       }
 
-      protected void send_integrity_lvl_hashes3K2( )
+      protected void send_integrity_lvl_hashes7S2( )
       {
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_UPDATE", AV12IsAuthorized_Update);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( sPrefix, AV12IsAuthorized_Update, context));
@@ -901,17 +920,19 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, edtTrn_ThemeName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_ThemeName_Enabled), 5, 0), true);
          edtTrn_ThemeFontFamily_Enabled = 0;
          AssignProp(sPrefix, false, edtTrn_ThemeFontFamily_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_ThemeFontFamily_Enabled), 5, 0), true);
+         edtTrn_ThemeFontSize_Enabled = 0;
+         AssignProp(sPrefix, false, edtTrn_ThemeFontSize_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_ThemeFontSize_Enabled), 5, 0), true);
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP3K0( )
+      protected void STRUP7S0( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E113K2 ();
+         E117S2 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -926,6 +947,8 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "A248Trn_ThemeName", A248Trn_ThemeName);
             A260Trn_ThemeFontFamily = cgiGet( edtTrn_ThemeFontFamily_Internalname);
             AssignAttri(sPrefix, false, "A260Trn_ThemeFontFamily", A260Trn_ThemeFontFamily);
+            A399Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtTrn_ThemeFontSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AssignAttri(sPrefix, false, "A399Trn_ThemeFontSize", StringUtil.LTrimStr( (decimal)(A399Trn_ThemeFontSize), 4, 0));
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -939,7 +962,7 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E113K2 ();
+         E117S2 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -947,7 +970,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E113K2( )
+      protected void E117S2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -965,7 +988,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E123K2( )
+      protected void E127S2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -991,7 +1014,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E133K2( )
+      protected void E137S2( )
       {
          /* 'DoUpdate' Routine */
          returnInSub = false;
@@ -1018,7 +1041,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E143K2( )
+      protected void E147S2( )
       {
          /* 'DoDelete' Routine */
          returnInSub = false;
@@ -1074,9 +1097,9 @@ namespace GeneXus.Programs {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA3K2( ) ;
-         WS3K2( ) ;
-         WE3K2( ) ;
+         PA7S2( ) ;
+         WS7S2( ) ;
+         WE7S2( ) ;
          cleanup();
          context.SetWrapped(false);
          SaveComponentMsgList(sPrefix);
@@ -1106,7 +1129,7 @@ namespace GeneXus.Programs {
                                                   string sPSFPrefix )
       {
          sPrefix = sPPrefix + sPSFPrefix;
-         PA3K2( ) ;
+         PA7S2( ) ;
          WCParametersGet( ) ;
       }
 
@@ -1126,7 +1149,7 @@ namespace GeneXus.Programs {
             init_default_properties( ) ;
             init_web_controls( ) ;
          }
-         PA3K2( ) ;
+         PA7S2( ) ;
          if ( ! GetJustCreated( ) && ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 ) && ( context.wbGlbDoneStart == 0 ) )
          {
             WCParametersGet( ) ;
@@ -1170,10 +1193,10 @@ namespace GeneXus.Programs {
          context.GX_msglist = LclMsgLst;
          INITWEB( ) ;
          nDraw = 0;
-         PA3K2( ) ;
+         PA7S2( ) ;
          sEvt = sCompEvt;
          WCParametersGet( ) ;
-         WS3K2( ) ;
+         WS7S2( ) ;
          if ( isFullAjaxMode( ) )
          {
             componentdraw();
@@ -1195,7 +1218,7 @@ namespace GeneXus.Programs {
          nDraw = 1;
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
-         WS3K2( ) ;
+         WS7S2( ) ;
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
       }
@@ -1218,7 +1241,7 @@ namespace GeneXus.Programs {
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
          WCParametersSet( ) ;
-         WE3K2( ) ;
+         WE7S2( ) ;
          SaveComponentMsgList(sPrefix);
          context.GX_msglist = BackMsgLst;
       }
@@ -1258,7 +1281,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285265026", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102815541133", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1274,7 +1297,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_themegeneral.js", "?202410285265026", false, true);
+         context.AddJavascriptSource("trn_themegeneral.js", "?2024102815541133", false, true);
          /* End function include_jscripts */
       }
 
@@ -1288,6 +1311,7 @@ namespace GeneXus.Programs {
          edtTrn_ThemeId_Internalname = sPrefix+"TRN_THEMEID";
          edtTrn_ThemeName_Internalname = sPrefix+"TRN_THEMENAME";
          edtTrn_ThemeFontFamily_Internalname = sPrefix+"TRN_THEMEFONTFAMILY";
+         edtTrn_ThemeFontSize_Internalname = sPrefix+"TRN_THEMEFONTSIZE";
          divTransactiondetail_tableattributes_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLEATTRIBUTES";
          bttBtnupdate_Internalname = sPrefix+"BTNUPDATE";
          bttBtndelete_Internalname = sPrefix+"BTNDELETE";
@@ -1312,6 +1336,8 @@ namespace GeneXus.Programs {
          init_default_properties( ) ;
          bttBtndelete_Visible = 1;
          bttBtnupdate_Visible = 1;
+         edtTrn_ThemeFontSize_Jsonclick = "";
+         edtTrn_ThemeFontSize_Enabled = 0;
          edtTrn_ThemeFontFamily_Jsonclick = "";
          edtTrn_ThemeFontFamily_Enabled = 0;
          edtTrn_ThemeName_Jsonclick = "";
@@ -1335,9 +1361,9 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"},{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true}]}""");
-         setEventMetadata("'DOUPDATE'","""{"handler":"E133K2","iparms":[{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"}]""");
+         setEventMetadata("'DOUPDATE'","""{"handler":"E137S2","iparms":[{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"}]""");
          setEventMetadata("'DOUPDATE'",""","oparms":[{"ctrl":"BTNUPDATE","prop":"Visible"}]}""");
-         setEventMetadata("'DODELETE'","""{"handler":"E143K2","iparms":[{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"}]""");
+         setEventMetadata("'DODELETE'","""{"handler":"E147S2","iparms":[{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"}]""");
          setEventMetadata("'DODELETE'",""","oparms":[{"ctrl":"BTNDELETE","prop":"Visible"}]}""");
          setEventMetadata("VALID_TRN_THEMEID","""{"handler":"Valid_Trn_themeid","iparms":[]}""");
          return  ;
@@ -1379,9 +1405,10 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
-         H003K2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         H003K2_A260Trn_ThemeFontFamily = new string[] {""} ;
-         H003K2_A248Trn_ThemeName = new string[] {""} ;
+         H007S2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         H007S2_A399Trn_ThemeFontSize = new short[1] ;
+         H007S2_A260Trn_ThemeFontFamily = new string[] {""} ;
+         H007S2_A248Trn_ThemeName = new string[] {""} ;
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV8TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV11HTTPRequest = new GxHttpRequest( context);
@@ -1392,7 +1419,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_themegeneral__default(),
             new Object[][] {
                 new Object[] {
-               H003K2_A247Trn_ThemeId, H003K2_A260Trn_ThemeFontFamily, H003K2_A248Trn_ThemeName
+               H007S2_A247Trn_ThemeId, H007S2_A399Trn_ThemeFontSize, H007S2_A260Trn_ThemeFontFamily, H007S2_A248Trn_ThemeName
                }
             }
          );
@@ -1406,6 +1433,7 @@ namespace GeneXus.Programs {
       private short nDynComponent ;
       private short wbEnd ;
       private short wbStart ;
+      private short A399Trn_ThemeFontSize ;
       private short nDraw ;
       private short nDoneStart ;
       private short nDonePA ;
@@ -1414,6 +1442,7 @@ namespace GeneXus.Programs {
       private int edtTrn_ThemeId_Enabled ;
       private int edtTrn_ThemeName_Enabled ;
       private int edtTrn_ThemeFontFamily_Enabled ;
+      private int edtTrn_ThemeFontSize_Enabled ;
       private int bttBtnupdate_Visible ;
       private int bttBtndelete_Visible ;
       private int idxLst ;
@@ -1439,6 +1468,8 @@ namespace GeneXus.Programs {
       private string edtTrn_ThemeName_Jsonclick ;
       private string edtTrn_ThemeFontFamily_Internalname ;
       private string edtTrn_ThemeFontFamily_Jsonclick ;
+      private string edtTrn_ThemeFontSize_Internalname ;
+      private string edtTrn_ThemeFontSize_Jsonclick ;
       private string ClassString ;
       private string StyleString ;
       private string bttBtnupdate_Internalname ;
@@ -1472,9 +1503,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
-      private Guid[] H003K2_A247Trn_ThemeId ;
-      private string[] H003K2_A260Trn_ThemeFontFamily ;
-      private string[] H003K2_A248Trn_ThemeName ;
+      private Guid[] H007S2_A247Trn_ThemeId ;
+      private short[] H007S2_A399Trn_ThemeFontSize ;
+      private string[] H007S2_A260Trn_ThemeFontFamily ;
+      private string[] H007S2_A248Trn_ThemeName ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV8TrnContext ;
       private msglist BackMsgLst ;
@@ -1496,12 +1528,12 @@ namespace GeneXus.Programs {
     {
        if ( def == null )
        {
-          Object[] prmH003K2;
-          prmH003K2 = new Object[] {
+          Object[] prmH007S2;
+          prmH007S2 = new Object[] {
           new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H003K2", "SELECT Trn_ThemeId, Trn_ThemeFontFamily, Trn_ThemeName FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003K2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H007S2", "SELECT Trn_ThemeId, Trn_ThemeFontSize, Trn_ThemeFontFamily, Trn_ThemeName FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007S2,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -1514,8 +1546,9 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((short[]) buf[1])[0] = rslt.getShort(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 return;
        }
     }

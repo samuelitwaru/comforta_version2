@@ -57,9 +57,6 @@ namespace GeneXus.Programs {
          obj = new GeneXus.Programs.workwithplus.SdtWWP_Parameter(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_OrganisationSetting(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new GeneXus.Programs.wwpbaseobjects.SdtWWP_Entity(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
@@ -97,9 +94,6 @@ namespace GeneXus.Programs {
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_Mail(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
-         obj = new SdtTrn_Theme(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_Media(context);
@@ -142,6 +136,12 @@ namespace GeneXus.Programs {
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_ProductService(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_Theme(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_OrganisationSetting(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          return 1 ;

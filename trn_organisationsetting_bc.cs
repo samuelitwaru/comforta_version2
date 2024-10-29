@@ -106,7 +106,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0F25( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0F25( 9) ;
+                  ZM0F25( 10) ;
                }
                CloseExtendedTableCursors0F25( ) ;
             }
@@ -147,16 +147,16 @@ namespace GeneXus.Programs {
 
       protected void ZM0F25( short GX_JID )
       {
-         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
             Z103OrganisationSettingBaseColor = A103OrganisationSettingBaseColor;
             Z104OrganisationSettingFontSize = A104OrganisationSettingFontSize;
             Z11OrganisationId = A11OrganisationId;
          }
-         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 10 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -8 )
+         if ( GX_JID == -9 )
          {
             Z100OrganisationSettingid = A100OrganisationSettingid;
             Z103OrganisationSettingBaseColor = A103OrganisationSettingBaseColor;
@@ -208,7 +208,7 @@ namespace GeneXus.Programs {
             A11OrganisationId = BC000F5_A11OrganisationId[0];
             A101OrganisationSettingLogo = BC000F5_A101OrganisationSettingLogo[0];
             A102OrganisationSettingFavicon = BC000F5_A102OrganisationSettingFavicon[0];
-            ZM0F25( -8) ;
+            ZM0F25( -9) ;
          }
          pr_default.close(3);
          OnLoadActions0F25( ) ;
@@ -261,7 +261,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A100OrganisationSettingid});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0F25( 8) ;
+            ZM0F25( 9) ;
             RcdFound25 = 1;
             A100OrganisationSettingid = BC000F3_A100OrganisationSettingid[0];
             A103OrganisationSettingBaseColor = BC000F3_A103OrganisationSettingBaseColor[0];
@@ -613,6 +613,10 @@ namespace GeneXus.Programs {
       protected void BeforeInsert0F25( )
       {
          /* Before Insert Rules */
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( A103OrganisationSettingBaseColor)) )
+         {
+            A103OrganisationSettingBaseColor = context.GetMessage( "Teal", "");
+         }
       }
 
       protected void BeforeUpdate0F25( )
@@ -768,7 +772,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z100OrganisationSettingid = A100OrganisationSettingid;
          }
-         ZM0F25( -8) ;
+         ZM0F25( -9) ;
          OnLoadActions0F25( ) ;
          AddRow0F25( ) ;
          ScanKeyEnd0F25( ) ;
@@ -797,7 +801,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z100OrganisationSettingid = A100OrganisationSettingid;
          }
-         ZM0F25( -8) ;
+         ZM0F25( -9) ;
          OnLoadActions0F25( ) ;
          AddRow0F25( ) ;
          ScanKeyEnd0F25( ) ;

@@ -44,6 +44,10 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+trn_themecolorwc
+trn_themegeneral
+trn_themeww
+trn_themeview
 trn_tiletrn_colwc
 trn_mediageneral
 trn_mediaww
@@ -142,7 +146,6 @@ wp_createorganisationandmanagerstep1
 wp_useractivation
 wp_createorganisationandmanager
 trn_tileattributewc
-trn_themeiconwc
 trn_tilegeneral
 wp_applicationdesign
 wp_applicationdesign
@@ -156,10 +159,6 @@ trn_organisationsettingview
 trn_organisationtypeww
 trn_organisationww
 trn_organisationview
-trn_themecolorwc
-trn_themegeneral
-trn_themeww
-trn_themeview
 trn_managergeneral
 trn_managerview
 wc_selectlanguagedropdown
@@ -274,6 +273,7 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+trn_themewwgetfilterdata
 trn_mediawwgetfilterdata
 wp_organisationgeneralsuppliersgetfilterdata
 wp_organisationagbsuppliersgetfilterdata
@@ -281,7 +281,6 @@ trn_auditwwgetfilterdata
 trn_auditloaddvcombo
 aprc_savepage
 aprc_uploadmedia
-aprc_tiles
 wp_locationdynamicformgetfilterdata
 trn_calltoactionloaddvcombo
 aprc_pagesapi
@@ -318,7 +317,6 @@ trn_organisationwwgetfilterdata
 trn_organisationloaddvcombo
 workwithplus\dynamicforms\wwp_forminstancewwgetfilterdata
 workwithplus\dynamicforms\wwp_formwwgetfilterdata
-trn_themewwgetfilterdata
 aprc_initializegamroles
 trn_managerwwgetfilterdata
 workwithplus\dynamicforms\wwp_df_report

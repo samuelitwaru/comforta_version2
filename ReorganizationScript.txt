@@ -1,15 +1,2 @@
-DROP INDEX ITRN_SUPPLIERAGB2;
-ALTER TABLE Trn_SupplierAGB DROP CONSTRAINT ITRN_SUPPLIERAGB2;
-ALTER TABLE Trn_SupplierAGB DROP OrganisationId;
-
-CREATE TABLE Trn_PreferredGenSupplier (PreferredGenSupplierId CHAR(36) NOT NULL , PreferredGenOrganisationId CHAR(36) NOT NULL , PreferredSupplierGenId CHAR(36) NOT NULL , PRIMARY KEY(PreferredGenSupplierId));
-
-CREATE TABLE Trn_PreferredAgbSupplier (PreferredAgbSupplierId CHAR(36) NOT NULL , PreferredAgbOrganisationId CHAR(36) NOT NULL , PreferredSupplierAgbId CHAR(36) NOT NULL , PRIMARY KEY(PreferredAgbSupplierId));
-
-CREATE TABLE Trn_Audit (AuditId CHAR(36) NOT NULL , AuditDate timestamp without time zone NOT NULL , AuditTableName VARCHAR(100) NOT NULL , AuditDescription TEXT NOT NULL , AuditShortDescription VARCHAR(400) NOT NULL , GAMUserId CHAR(40) NOT NULL , AuditUserName VARCHAR(100) NOT NULL , AuditAction VARCHAR(40) NOT NULL , OrganisationId CHAR(36) NOT NULL , PRIMARY KEY(AuditId));
-CREATE INDEX ITRN_AUDIT ON Trn_Audit (OrganisationId );
-
-DROP TABLE Trn_Amenity CASCADE;
-
-ALTER TABLE Trn_Audit ADD CONSTRAINT ITRN_AUDIT FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId);
+ALTER TABLE Trn_ThemeColor ALTER COLUMN ColorCode TYPE VARCHAR(100);
 
