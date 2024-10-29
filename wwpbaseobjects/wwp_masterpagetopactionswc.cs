@@ -907,6 +907,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* 'DoActionChangePassword' Routine */
          returnInSub = false;
          this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "DropDownComponent_Close", new Object[] {(string)divTablemain_Internalname}, false);
+         CallWebObject(formatLink("gamchangepassword.aspx") );
+         context.wjLocDisableFrm = 1;
       }
 
       protected void E133A2( )
@@ -1104,7 +1106,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285232296", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024102911512618", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1122,7 +1124,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?202410285232299", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?2024102911512620", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          }
