@@ -612,7 +612,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavResidentemail_Internalname, AV18ResidentEmail, StringUtil.RTrim( context.localUtil.Format( AV18ResidentEmail, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,49);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavResidentemail_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavResidentemail_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, false, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep1.htm");
+            GxWebStd.gx_single_line_edit( context, edtavResidentemail_Internalname, AV18ResidentEmail, StringUtil.RTrim( context.localUtil.Format( AV18ResidentEmail, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,49);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "johndoe@gmail.com", ""), edtavResidentemail_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavResidentemail_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, false, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep1.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -662,7 +662,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 68,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavResidentbsnnumber_Internalname, AV12ResidentBsnNumber, StringUtil.RTrim( context.localUtil.Format( AV12ResidentBsnNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,68);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavResidentbsnnumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavResidentbsnnumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep1.htm");
+            GxWebStd.gx_single_line_edit( context, edtavResidentbsnnumber_Internalname, AV12ResidentBsnNumber, StringUtil.RTrim( context.localUtil.Format( AV12ResidentBsnNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,68);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "123456789", edtavResidentbsnnumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavResidentbsnnumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep1.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -760,7 +760,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 96,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavResidentzipcode_Internalname, AV28ResidentZipCode, StringUtil.RTrim( context.localUtil.Format( AV28ResidentZipCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,96);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavResidentzipcode_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavResidentzipcode_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep1.htm");
+            GxWebStd.gx_single_line_edit( context, edtavResidentzipcode_Internalname, AV28ResidentZipCode, StringUtil.RTrim( context.localUtil.Format( AV28ResidentZipCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,96);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "1234 AB", ""), edtavResidentzipcode_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavResidentzipcode_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WP_CreateResidentAndNetworkStep1.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1569,20 +1569,26 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, edtavResidentphone_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavResidentphone_Visible), 5, 0), true);
          edtavResidenttypename_Visible = 0;
          AssignProp(sPrefix, false, edtavResidenttypename_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavResidenttypename_Visible), 5, 0), true);
-         AV38defaultCountry = "Netherlands";
-         Combo_residentcountry_Selectedtext_set = AV38defaultCountry;
-         ucCombo_residentcountry.SendProperty(context, sPrefix, false, Combo_residentcountry_Internalname, "SelectedText_set", Combo_residentcountry_Selectedtext_set);
-         Combo_residentcountry_Selectedvalue_set = AV38defaultCountry;
-         ucCombo_residentcountry.SendProperty(context, sPrefix, false, Combo_residentcountry_Internalname, "SelectedValue_set", Combo_residentcountry_Selectedvalue_set);
-         AV26ResidentCountry = AV38defaultCountry;
-         AssignAttri(sPrefix, false, "AV26ResidentCountry", AV26ResidentCountry);
-         AV43defaultCountryPhoneCode = "+31";
-         AV39ResidentPhoneCode = "+31";
-         AssignAttri(sPrefix, false, "AV39ResidentPhoneCode", AV39ResidentPhoneCode);
-         Combo_residentphonecode_Selectedtext_set = AV43defaultCountryPhoneCode;
-         ucCombo_residentphonecode.SendProperty(context, sPrefix, false, Combo_residentphonecode_Internalname, "SelectedText_set", Combo_residentphonecode_Selectedtext_set);
-         Combo_residentphonecode_Selectedvalue_set = AV43defaultCountryPhoneCode;
-         ucCombo_residentphonecode.SendProperty(context, sPrefix, false, Combo_residentphonecode_Internalname, "SelectedValue_set", Combo_residentphonecode_Selectedvalue_set);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV26ResidentCountry)) )
+         {
+            AV38defaultCountry = "Netherlands";
+            Combo_residentcountry_Selectedtext_set = AV38defaultCountry;
+            ucCombo_residentcountry.SendProperty(context, sPrefix, false, Combo_residentcountry_Internalname, "SelectedText_set", Combo_residentcountry_Selectedtext_set);
+            Combo_residentcountry_Selectedvalue_set = AV38defaultCountry;
+            ucCombo_residentcountry.SendProperty(context, sPrefix, false, Combo_residentcountry_Internalname, "SelectedValue_set", Combo_residentcountry_Selectedvalue_set);
+            AV26ResidentCountry = AV38defaultCountry;
+            AssignAttri(sPrefix, false, "AV26ResidentCountry", AV26ResidentCountry);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV39ResidentPhoneCode)) )
+         {
+            AV43defaultCountryPhoneCode = "+31";
+            AV39ResidentPhoneCode = "+31";
+            AssignAttri(sPrefix, false, "AV39ResidentPhoneCode", AV39ResidentPhoneCode);
+            Combo_residentphonecode_Selectedtext_set = AV43defaultCountryPhoneCode;
+            ucCombo_residentphonecode.SendProperty(context, sPrefix, false, Combo_residentphonecode_Internalname, "SelectedText_set", Combo_residentphonecode_Selectedtext_set);
+            Combo_residentphonecode_Selectedvalue_set = AV43defaultCountryPhoneCode;
+            ucCombo_residentphonecode.SendProperty(context, sPrefix, false, Combo_residentphonecode_Internalname, "SelectedValue_set", Combo_residentphonecode_Selectedvalue_set);
+         }
       }
 
       protected void E126Q2( )
@@ -2184,7 +2190,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285224734", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014312916", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2200,7 +2206,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?202410285224735", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?2024103014312916", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2403,6 +2409,7 @@ namespace GeneXus.Programs {
          setEventMetadata("VALIDV_RESIDENTSALUTATION","""{"handler":"Validv_Residentsalutation","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTGENDER","""{"handler":"Validv_Residentgender","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTEMAIL","""{"handler":"Validv_Residentemail","iparms":[]}""");
+         setEventMetadata("VALIDV_RESIDENTPHONENUMBER","""{"handler":"Validv_Residentphonenumber","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTTYPEID","""{"handler":"Validv_Residenttypeid","iparms":[]}""");
          setEventMetadata("VALIDV_MEDICALINDICATIONID","""{"handler":"Validv_Medicalindicationid","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTID","""{"handler":"Validv_Residentid","iparms":[]}""");

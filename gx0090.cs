@@ -1301,7 +1301,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285305255", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014334939", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1317,7 +1317,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gx0090.js", "?202410285305255", false, true);
+         context.AddJavascriptSource("gx0090.js", "?2024103014334939", false, true);
          /* End function include_jscripts */
       }
 
@@ -1648,6 +1648,7 @@ namespace GeneXus.Programs {
          setEventMetadata("GRID1_NEXTPAGE","""{"handler":"subgrid1_nextpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV6cSupplierGenId","fld":"vCSUPPLIERGENID"},{"av":"AV7cSupplierGenKvkNumber","fld":"vCSUPPLIERGENKVKNUMBER"},{"av":"AV8cSupplierGenContactPhone","fld":"vCSUPPLIERGENCONTACTPHONE"}]}""");
          setEventMetadata("GRID1_LASTPAGE","""{"handler":"subgrid1_lastpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV6cSupplierGenId","fld":"vCSUPPLIERGENID"},{"av":"AV7cSupplierGenKvkNumber","fld":"vCSUPPLIERGENKVKNUMBER"},{"av":"AV8cSupplierGenContactPhone","fld":"vCSUPPLIERGENCONTACTPHONE"}]}""");
          setEventMetadata("VALIDV_CSUPPLIERGENID","""{"handler":"Validv_Csuppliergenid","iparms":[]}""");
+         setEventMetadata("VALIDV_CSUPPLIERGENKVKNUMBER","""{"handler":"Validv_Csuppliergenkvknumber","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Valid_Suppliergencontactphone","iparms":[]}""");
          return  ;
       }

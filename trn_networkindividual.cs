@@ -915,7 +915,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0A17( short GX_JID )
       {
-         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -950,7 +950,7 @@ namespace GeneXus.Programs {
                Z348NetworkIndividualAddressLine2 = A348NetworkIndividualAddressLine2;
             }
          }
-         if ( GX_JID == -6 )
+         if ( GX_JID == -7 )
          {
             Z74NetworkIndividualId = A74NetworkIndividualId;
             Z75NetworkIndividualBsnNumber = A75NetworkIndividualBsnNumber;
@@ -1040,7 +1040,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A347NetworkIndividualAddressLine1", A347NetworkIndividualAddressLine1);
             A348NetworkIndividualAddressLine2 = T000A4_A348NetworkIndividualAddressLine2[0];
             AssignAttri("", false, "A348NetworkIndividualAddressLine2", A348NetworkIndividualAddressLine2);
-            ZM0A17( -6) ;
+            ZM0A17( -7) ;
          }
          pr_default.close(2);
          OnLoadActions0A17( ) ;
@@ -1067,6 +1067,13 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Network Individual Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "NETWORKINDIVIDUALEMAIL");
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualEmail_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
+         if ( ! ( GxRegex.IsMatch(A388NetworkIndividualPhoneNumber,"\\b\\d{9}\\b") ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Network Individual Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "NETWORKINDIVIDUALPHONENUMBER");
+            AnyError = 1;
+            GX_FocusControl = edtNetworkIndividualPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( ! ( ( StringUtil.StrCmp(A81NetworkIndividualGender, "Male") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Female") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Other") == 0 ) ) )
@@ -1107,7 +1114,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A74NetworkIndividualId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0A17( 6) ;
+            ZM0A17( 7) ;
             RcdFound17 = 1;
             A74NetworkIndividualId = T000A3_A74NetworkIndividualId[0];
             AssignAttri("", false, "A74NetworkIndividualId", A74NetworkIndividualId.ToString());
@@ -2165,7 +2172,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285252612", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014323489", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2181,7 +2188,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_networkindividual.js", "?202410285252613", false, true);
+         context.AddJavascriptSource("trn_networkindividual.js", "?2024103014323490", false, true);
          /* End function include_jscripts */
       }
 
@@ -2394,6 +2401,7 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_NETWORKINDIVIDUALID",""","oparms":[{"av":"A75NetworkIndividualBsnNumber","fld":"NETWORKINDIVIDUALBSNNUMBER"},{"av":"A76NetworkIndividualGivenName","fld":"NETWORKINDIVIDUALGIVENNAME"},{"av":"A77NetworkIndividualLastName","fld":"NETWORKINDIVIDUALLASTNAME"},{"av":"A78NetworkIndividualEmail","fld":"NETWORKINDIVIDUALEMAIL"},{"av":"A79NetworkIndividualPhone","fld":"NETWORKINDIVIDUALPHONE"},{"av":"A387NetworkIndividualPhoneCode","fld":"NETWORKINDIVIDUALPHONECODE"},{"av":"A388NetworkIndividualPhoneNumber","fld":"NETWORKINDIVIDUALPHONENUMBER"},{"av":"cmbNetworkIndividualGender"},{"av":"A81NetworkIndividualGender","fld":"NETWORKINDIVIDUALGENDER"},{"av":"A344NetworkIndividualCountry","fld":"NETWORKINDIVIDUALCOUNTRY"},{"av":"A345NetworkIndividualCity","fld":"NETWORKINDIVIDUALCITY"},{"av":"A346NetworkIndividualZipCode","fld":"NETWORKINDIVIDUALZIPCODE"},{"av":"A347NetworkIndividualAddressLine1","fld":"NETWORKINDIVIDUALADDRESSLINE1"},{"av":"A348NetworkIndividualAddressLine2","fld":"NETWORKINDIVIDUALADDRESSLINE2"},{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"Z74NetworkIndividualId"},{"av":"Z75NetworkIndividualBsnNumber"},{"av":"Z76NetworkIndividualGivenName"},{"av":"Z77NetworkIndividualLastName"},{"av":"Z78NetworkIndividualEmail"},{"av":"Z79NetworkIndividualPhone"},{"av":"Z387NetworkIndividualPhoneCode"},{"av":"Z388NetworkIndividualPhoneNumber"},{"av":"Z81NetworkIndividualGender"},{"av":"Z344NetworkIndividualCountry"},{"av":"Z345NetworkIndividualCity"},{"av":"Z346NetworkIndividualZipCode"},{"av":"Z347NetworkIndividualAddressLine1"},{"av":"Z348NetworkIndividualAddressLine2"},{"ctrl":"BTN_DELETE","prop":"Enabled"},{"ctrl":"BTN_ENTER","prop":"Enabled"}]}""");
          setEventMetadata("VALID_NETWORKINDIVIDUALBSNNUMBER","""{"handler":"Valid_Networkindividualbsnnumber","iparms":[]}""");
          setEventMetadata("VALID_NETWORKINDIVIDUALEMAIL","""{"handler":"Valid_Networkindividualemail","iparms":[]}""");
+         setEventMetadata("VALID_NETWORKINDIVIDUALPHONENUMBER","""{"handler":"Valid_Networkindividualphonenumber","iparms":[]}""");
          setEventMetadata("VALID_NETWORKINDIVIDUALGENDER","""{"handler":"Valid_Networkindividualgender","iparms":[]}""");
          return  ;
       }

@@ -106,7 +106,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0711( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0711( 19) ;
+                  ZM0711( 21) ;
                }
                CloseExtendedTableCursors0711( ) ;
             }
@@ -145,7 +145,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0711( short GX_JID )
       {
-         if ( ( GX_JID == 18 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 20 ) || ( GX_JID == 0 ) )
          {
             Z56SupplierAgbPhone = A56SupplierAgbPhone;
             Z50SupplierAgbNumber = A50SupplierAgbNumber;
@@ -162,11 +162,11 @@ namespace GeneXus.Programs {
             Z57SupplierAgbEmail = A57SupplierAgbEmail;
             Z283SupplierAgbTypeId = A283SupplierAgbTypeId;
          }
-         if ( ( GX_JID == 19 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 21 ) || ( GX_JID == 0 ) )
          {
             Z291SupplierAgbTypeName = A291SupplierAgbTypeName;
          }
-         if ( GX_JID == -18 )
+         if ( GX_JID == -20 )
          {
             Z49SupplierAgbId = A49SupplierAgbId;
             Z56SupplierAgbPhone = A56SupplierAgbPhone;
@@ -226,7 +226,7 @@ namespace GeneXus.Programs {
             A378SupplierAgbPhoneNumber = BC00075_A378SupplierAgbPhoneNumber[0];
             A57SupplierAgbEmail = BC00075_A57SupplierAgbEmail[0];
             A283SupplierAgbTypeId = BC00075_A283SupplierAgbTypeId[0];
-            ZM0711( -18) ;
+            ZM0711( -20) ;
          }
          pr_default.close(3);
          OnLoadActions0711( ) ;
@@ -271,6 +271,11 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Agb Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
+         if ( ! ( GxRegex.IsMatch(A52SupplierAgbKvkNumber,"\\b\\d{8}\\b") ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "KvK number should contain 8 digits", ""), context.GetMessage( "Supplier Agb Kvk Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            AnyError = 1;
+         }
          if ( StringUtil.Len( A52SupplierAgbKvkNumber) != 8 )
          {
             GX_msglist.addItem(context.GetMessage( "KvK Number should contain 8 digits", ""), 1, "");
@@ -299,6 +304,11 @@ namespace GeneXus.Programs {
          GXt_char1 = A56SupplierAgbPhone;
          new prc_concatenateintlphone(context ).execute(  A377SupplierAgbPhoneCode,  A378SupplierAgbPhoneNumber, out  GXt_char1) ;
          A56SupplierAgbPhone = GXt_char1;
+         if ( ! ( GxRegex.IsMatch(A378SupplierAgbPhoneNumber,"\\b\\d{9}\\b") ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Supplier Agb Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            AnyError = 1;
+         }
          if ( StringUtil.Len( A378SupplierAgbPhoneNumber) != 9 )
          {
             GX_msglist.addItem(context.GetMessage( "Phone should contain 9 digits", ""), 1, "");
@@ -341,7 +351,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n49SupplierAgbId, A49SupplierAgbId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0711( 18) ;
+            ZM0711( 20) ;
             RcdFound11 = 1;
             A49SupplierAgbId = BC00073_A49SupplierAgbId[0];
             n49SupplierAgbId = BC00073_n49SupplierAgbId[0];
@@ -940,7 +950,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         ZM0711( -18) ;
+         ZM0711( -20) ;
          OnLoadActions0711( ) ;
          AddRow0711( ) ;
          ScanKeyEnd0711( ) ;
@@ -969,7 +979,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         ZM0711( -18) ;
+         ZM0711( -20) ;
          OnLoadActions0711( ) ;
          AddRow0711( ) ;
          ScanKeyEnd0711( ) ;

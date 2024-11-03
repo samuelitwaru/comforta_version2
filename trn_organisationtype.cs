@@ -341,7 +341,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 RequiredDataContentCell", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtOrganisationTypeName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
@@ -757,7 +757,7 @@ namespace GeneXus.Programs {
 
       protected void ZM024( short GX_JID )
       {
-         if ( ( GX_JID == 5 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -768,7 +768,7 @@ namespace GeneXus.Programs {
                Z20OrganisationTypeName = A20OrganisationTypeName;
             }
          }
-         if ( GX_JID == -5 )
+         if ( GX_JID == -6 )
          {
             Z19OrganisationTypeId = A19OrganisationTypeId;
             Z20OrganisationTypeName = A20OrganisationTypeName;
@@ -837,7 +837,7 @@ namespace GeneXus.Programs {
             RcdFound4 = 1;
             A20OrganisationTypeName = T00024_A20OrganisationTypeName[0];
             AssignAttri("", false, "A20OrganisationTypeName", A20OrganisationTypeName);
-            ZM024( -5) ;
+            ZM024( -6) ;
          }
          pr_default.close(2);
          OnLoadActions024( ) ;
@@ -852,6 +852,13 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          standaloneModal( ) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( A20OrganisationTypeName)) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Organisation Type Name", ""), "", "", "", "", "", "", "", ""), 1, "ORGANISATIONTYPENAME");
+            AnyError = 1;
+            GX_FocusControl = edtOrganisationTypeName_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
       }
 
       protected void CloseExtendedTableCursors024( )
@@ -883,7 +890,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A19OrganisationTypeId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM024( 5) ;
+            ZM024( 6) ;
             RcdFound4 = 1;
             A19OrganisationTypeId = T00023_A19OrganisationTypeId[0];
             AssignAttri("", false, "A19OrganisationTypeId", A19OrganisationTypeId.ToString());
@@ -1654,7 +1661,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285241554", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014315557", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1670,7 +1677,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationtype.js", "?202410285241554", false, true);
+         context.AddJavascriptSource("trn_organisationtype.js", "?2024103014315557", false, true);
          /* End function include_jscripts */
       }
 
@@ -1761,6 +1768,7 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7OrganisationTypeId","fld":"vORGANISATIONTYPEID","hsh":true}]}""");
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7OrganisationTypeId","fld":"vORGANISATIONTYPEID","hsh":true}]}""");
          setEventMetadata("AFTER TRN","""{"handler":"E12022","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
+         setEventMetadata("VALID_ORGANISATIONTYPENAME","""{"handler":"Valid_Organisationtypename","iparms":[]}""");
          setEventMetadata("VALID_ORGANISATIONTYPEID","""{"handler":"Valid_Organisationtypeid","iparms":[]}""");
          return  ;
       }

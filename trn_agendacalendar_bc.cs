@@ -104,6 +104,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable1358( ) ;
                if ( AnyError == 0 )
                {
+                  ZM1358( 8) ;
                }
                CloseExtendedTableCursors1358( ) ;
             }
@@ -115,22 +116,27 @@ namespace GeneXus.Programs {
 
       protected void ZM1358( short GX_JID )
       {
-         if ( ( GX_JID == 5 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
          {
-            Z29LocationId = A29LocationId;
             Z304AgendaCalendarTitle = A304AgendaCalendarTitle;
             Z305AgendaCalendarStartDate = A305AgendaCalendarStartDate;
             Z306AgendaCalendarEndDate = A306AgendaCalendarEndDate;
             Z307AgendaCalendarAllDay = A307AgendaCalendarAllDay;
+            Z29LocationId = A29LocationId;
+            Z11OrganisationId = A11OrganisationId;
          }
-         if ( GX_JID == -5 )
+         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
+         {
+         }
+         if ( GX_JID == -7 )
          {
             Z303AgendaCalendarId = A303AgendaCalendarId;
-            Z29LocationId = A29LocationId;
             Z304AgendaCalendarTitle = A304AgendaCalendarTitle;
             Z305AgendaCalendarStartDate = A305AgendaCalendarStartDate;
             Z306AgendaCalendarEndDate = A306AgendaCalendarEndDate;
             Z307AgendaCalendarAllDay = A307AgendaCalendarAllDay;
+            Z29LocationId = A29LocationId;
+            Z11OrganisationId = A11OrganisationId;
          }
       }
 
@@ -147,6 +153,9 @@ namespace GeneXus.Programs {
          GXt_guid1 = A29LocationId;
          new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
          A29LocationId = GXt_guid1;
+         GXt_guid1 = A11OrganisationId;
+         new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
+         A11OrganisationId = GXt_guid1;
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
          }
@@ -154,19 +163,20 @@ namespace GeneXus.Programs {
 
       protected void Load1358( )
       {
-         /* Using cursor BC00134 */
-         pr_default.execute(2, new Object[] {A303AgendaCalendarId});
-         if ( (pr_default.getStatus(2) != 101) )
+         /* Using cursor BC00135 */
+         pr_default.execute(3, new Object[] {A303AgendaCalendarId});
+         if ( (pr_default.getStatus(3) != 101) )
          {
             RcdFound58 = 1;
-            A29LocationId = BC00134_A29LocationId[0];
-            A304AgendaCalendarTitle = BC00134_A304AgendaCalendarTitle[0];
-            A305AgendaCalendarStartDate = BC00134_A305AgendaCalendarStartDate[0];
-            A306AgendaCalendarEndDate = BC00134_A306AgendaCalendarEndDate[0];
-            A307AgendaCalendarAllDay = BC00134_A307AgendaCalendarAllDay[0];
-            ZM1358( -5) ;
+            A304AgendaCalendarTitle = BC00135_A304AgendaCalendarTitle[0];
+            A305AgendaCalendarStartDate = BC00135_A305AgendaCalendarStartDate[0];
+            A306AgendaCalendarEndDate = BC00135_A306AgendaCalendarEndDate[0];
+            A307AgendaCalendarAllDay = BC00135_A307AgendaCalendarAllDay[0];
+            A29LocationId = BC00135_A29LocationId[0];
+            A11OrganisationId = BC00135_A11OrganisationId[0];
+            ZM1358( -7) ;
          }
-         pr_default.close(2);
+         pr_default.close(3);
          OnLoadActions1358( ) ;
       }
 
@@ -177,10 +187,19 @@ namespace GeneXus.Programs {
       protected void CheckExtendedTable1358( )
       {
          standaloneModal( ) ;
+         /* Using cursor BC00134 */
+         pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
+         if ( (pr_default.getStatus(2) == 101) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            AnyError = 1;
+         }
+         pr_default.close(2);
       }
 
       protected void CloseExtendedTableCursors1358( )
       {
+         pr_default.close(2);
       }
 
       protected void enableDisable( )
@@ -189,9 +208,9 @@ namespace GeneXus.Programs {
 
       protected void GetKey1358( )
       {
-         /* Using cursor BC00135 */
-         pr_default.execute(3, new Object[] {A303AgendaCalendarId});
-         if ( (pr_default.getStatus(3) != 101) )
+         /* Using cursor BC00136 */
+         pr_default.execute(4, new Object[] {A303AgendaCalendarId});
+         if ( (pr_default.getStatus(4) != 101) )
          {
             RcdFound58 = 1;
          }
@@ -199,7 +218,7 @@ namespace GeneXus.Programs {
          {
             RcdFound58 = 0;
          }
-         pr_default.close(3);
+         pr_default.close(4);
       }
 
       protected void getByPrimaryKey( )
@@ -208,14 +227,15 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A303AgendaCalendarId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1358( 5) ;
+            ZM1358( 7) ;
             RcdFound58 = 1;
             A303AgendaCalendarId = BC00133_A303AgendaCalendarId[0];
-            A29LocationId = BC00133_A29LocationId[0];
             A304AgendaCalendarTitle = BC00133_A304AgendaCalendarTitle[0];
             A305AgendaCalendarStartDate = BC00133_A305AgendaCalendarStartDate[0];
             A306AgendaCalendarEndDate = BC00133_A306AgendaCalendarEndDate[0];
             A307AgendaCalendarAllDay = BC00133_A307AgendaCalendarAllDay[0];
+            A29LocationId = BC00133_A29LocationId[0];
+            A11OrganisationId = BC00133_A11OrganisationId[0];
             Z303AgendaCalendarId = A303AgendaCalendarId;
             sMode58 = Gx_mode;
             Gx_mode = "DSP";
@@ -281,7 +301,12 @@ namespace GeneXus.Programs {
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(0) == 101) || ( Z29LocationId != BC00132_A29LocationId[0] ) || ( StringUtil.StrCmp(Z304AgendaCalendarTitle, BC00132_A304AgendaCalendarTitle[0]) != 0 ) || ( Z305AgendaCalendarStartDate != BC00132_A305AgendaCalendarStartDate[0] ) || ( Z306AgendaCalendarEndDate != BC00132_A306AgendaCalendarEndDate[0] ) || ( Z307AgendaCalendarAllDay != BC00132_A307AgendaCalendarAllDay[0] ) )
+            Gx_longc = false;
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z304AgendaCalendarTitle, BC00132_A304AgendaCalendarTitle[0]) != 0 ) || ( Z305AgendaCalendarStartDate != BC00132_A305AgendaCalendarStartDate[0] ) || ( Z306AgendaCalendarEndDate != BC00132_A306AgendaCalendarEndDate[0] ) || ( Z307AgendaCalendarAllDay != BC00132_A307AgendaCalendarAllDay[0] ) || ( Z29LocationId != BC00132_A29LocationId[0] ) )
+            {
+               Gx_longc = true;
+            }
+            if ( Gx_longc || ( Z11OrganisationId != BC00132_A11OrganisationId[0] ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_AgendaCalendar"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -309,11 +334,11 @@ namespace GeneXus.Programs {
                   BeforeInsert1358( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC00136 */
-                     pr_default.execute(4, new Object[] {A303AgendaCalendarId, A29LocationId, A304AgendaCalendarTitle, A305AgendaCalendarStartDate, A306AgendaCalendarEndDate, A307AgendaCalendarAllDay});
-                     pr_default.close(4);
+                     /* Using cursor BC00137 */
+                     pr_default.execute(5, new Object[] {A303AgendaCalendarId, A304AgendaCalendarTitle, A305AgendaCalendarStartDate, A306AgendaCalendarEndDate, A307AgendaCalendarAllDay, A29LocationId, A11OrganisationId});
+                     pr_default.close(5);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_AgendaCalendar");
-                     if ( (pr_default.getStatus(4) == 1) )
+                     if ( (pr_default.getStatus(5) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
                         AnyError = 1;
@@ -364,11 +389,11 @@ namespace GeneXus.Programs {
                   BeforeUpdate1358( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC00137 */
-                     pr_default.execute(5, new Object[] {A29LocationId, A304AgendaCalendarTitle, A305AgendaCalendarStartDate, A306AgendaCalendarEndDate, A307AgendaCalendarAllDay, A303AgendaCalendarId});
-                     pr_default.close(5);
+                     /* Using cursor BC00138 */
+                     pr_default.execute(6, new Object[] {A304AgendaCalendarTitle, A305AgendaCalendarStartDate, A306AgendaCalendarEndDate, A307AgendaCalendarAllDay, A29LocationId, A11OrganisationId, A303AgendaCalendarId});
+                     pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_AgendaCalendar");
-                     if ( (pr_default.getStatus(5) == 103) )
+                     if ( (pr_default.getStatus(6) == 103) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_AgendaCalendar"}), "RecordIsLocked", 1, "");
                         AnyError = 1;
@@ -420,9 +445,9 @@ namespace GeneXus.Programs {
                if ( AnyError == 0 )
                {
                   /* No cascading delete specified. */
-                  /* Using cursor BC00138 */
-                  pr_default.execute(6, new Object[] {A303AgendaCalendarId});
-                  pr_default.close(6);
+                  /* Using cursor BC00139 */
+                  pr_default.execute(7, new Object[] {A303AgendaCalendarId});
+                  pr_default.close(7);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_AgendaCalendar");
                   if ( AnyError == 0 )
                   {
@@ -482,18 +507,19 @@ namespace GeneXus.Programs {
 
       public void ScanKeyStart1358( )
       {
-         /* Using cursor BC00139 */
-         pr_default.execute(7, new Object[] {A303AgendaCalendarId});
+         /* Using cursor BC001310 */
+         pr_default.execute(8, new Object[] {A303AgendaCalendarId});
          RcdFound58 = 0;
-         if ( (pr_default.getStatus(7) != 101) )
+         if ( (pr_default.getStatus(8) != 101) )
          {
             RcdFound58 = 1;
-            A303AgendaCalendarId = BC00139_A303AgendaCalendarId[0];
-            A29LocationId = BC00139_A29LocationId[0];
-            A304AgendaCalendarTitle = BC00139_A304AgendaCalendarTitle[0];
-            A305AgendaCalendarStartDate = BC00139_A305AgendaCalendarStartDate[0];
-            A306AgendaCalendarEndDate = BC00139_A306AgendaCalendarEndDate[0];
-            A307AgendaCalendarAllDay = BC00139_A307AgendaCalendarAllDay[0];
+            A303AgendaCalendarId = BC001310_A303AgendaCalendarId[0];
+            A304AgendaCalendarTitle = BC001310_A304AgendaCalendarTitle[0];
+            A305AgendaCalendarStartDate = BC001310_A305AgendaCalendarStartDate[0];
+            A306AgendaCalendarEndDate = BC001310_A306AgendaCalendarEndDate[0];
+            A307AgendaCalendarAllDay = BC001310_A307AgendaCalendarAllDay[0];
+            A29LocationId = BC001310_A29LocationId[0];
+            A11OrganisationId = BC001310_A11OrganisationId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -501,7 +527,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext1358( )
       {
          /* Scan next routine */
-         pr_default.readNext(7);
+         pr_default.readNext(8);
          RcdFound58 = 0;
          ScanKeyLoad1358( ) ;
       }
@@ -510,22 +536,23 @@ namespace GeneXus.Programs {
       {
          sMode58 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(7) != 101) )
+         if ( (pr_default.getStatus(8) != 101) )
          {
             RcdFound58 = 1;
-            A303AgendaCalendarId = BC00139_A303AgendaCalendarId[0];
-            A29LocationId = BC00139_A29LocationId[0];
-            A304AgendaCalendarTitle = BC00139_A304AgendaCalendarTitle[0];
-            A305AgendaCalendarStartDate = BC00139_A305AgendaCalendarStartDate[0];
-            A306AgendaCalendarEndDate = BC00139_A306AgendaCalendarEndDate[0];
-            A307AgendaCalendarAllDay = BC00139_A307AgendaCalendarAllDay[0];
+            A303AgendaCalendarId = BC001310_A303AgendaCalendarId[0];
+            A304AgendaCalendarTitle = BC001310_A304AgendaCalendarTitle[0];
+            A305AgendaCalendarStartDate = BC001310_A305AgendaCalendarStartDate[0];
+            A306AgendaCalendarEndDate = BC001310_A306AgendaCalendarEndDate[0];
+            A307AgendaCalendarAllDay = BC001310_A307AgendaCalendarAllDay[0];
+            A29LocationId = BC001310_A29LocationId[0];
+            A11OrganisationId = BC001310_A11OrganisationId[0];
          }
          Gx_mode = sMode58;
       }
 
       protected void ScanKeyEnd1358( )
       {
-         pr_default.close(7);
+         pr_default.close(8);
       }
 
       protected void AfterConfirm1358( )
@@ -579,15 +606,17 @@ namespace GeneXus.Programs {
       protected void InitializeNonKey1358( )
       {
          A29LocationId = Guid.Empty;
+         A11OrganisationId = Guid.Empty;
          A304AgendaCalendarTitle = "";
          A305AgendaCalendarStartDate = (DateTime)(DateTime.MinValue);
          A306AgendaCalendarEndDate = (DateTime)(DateTime.MinValue);
          A307AgendaCalendarAllDay = false;
-         Z29LocationId = Guid.Empty;
          Z304AgendaCalendarTitle = "";
          Z305AgendaCalendarStartDate = (DateTime)(DateTime.MinValue);
          Z306AgendaCalendarEndDate = (DateTime)(DateTime.MinValue);
          Z307AgendaCalendarAllDay = false;
+         Z29LocationId = Guid.Empty;
+         Z11OrganisationId = Guid.Empty;
       }
 
       protected void InitAll1358( )
@@ -599,6 +628,7 @@ namespace GeneXus.Programs {
       protected void StandaloneModalInsert( )
       {
          A29LocationId = i29LocationId;
+         A11OrganisationId = i11OrganisationId;
       }
 
       protected bool IsIns( )
@@ -625,6 +655,7 @@ namespace GeneXus.Programs {
       {
          obj58.gxTpr_Mode = Gx_mode;
          obj58.gxTpr_Locationid = A29LocationId;
+         obj58.gxTpr_Organisationid = A11OrganisationId;
          obj58.gxTpr_Agendacalendartitle = A304AgendaCalendarTitle;
          obj58.gxTpr_Agendacalendarstartdate = A305AgendaCalendarStartDate;
          obj58.gxTpr_Agendacalendarenddate = A306AgendaCalendarEndDate;
@@ -636,6 +667,7 @@ namespace GeneXus.Programs {
          obj58.gxTpr_Agendacalendarenddate_Z = Z306AgendaCalendarEndDate;
          obj58.gxTpr_Agendacalendarallday_Z = Z307AgendaCalendarAllDay;
          obj58.gxTpr_Locationid_Z = Z29LocationId;
+         obj58.gxTpr_Organisationid_Z = Z11OrganisationId;
          obj58.gxTpr_Mode = Gx_mode;
          return  ;
       }
@@ -651,6 +683,7 @@ namespace GeneXus.Programs {
       {
          Gx_mode = obj58.gxTpr_Mode;
          A29LocationId = obj58.gxTpr_Locationid;
+         A11OrganisationId = obj58.gxTpr_Organisationid;
          A304AgendaCalendarTitle = obj58.gxTpr_Agendacalendartitle;
          A305AgendaCalendarStartDate = obj58.gxTpr_Agendacalendarstartdate;
          A306AgendaCalendarEndDate = obj58.gxTpr_Agendacalendarenddate;
@@ -662,6 +695,7 @@ namespace GeneXus.Programs {
          Z306AgendaCalendarEndDate = obj58.gxTpr_Agendacalendarenddate_Z;
          Z307AgendaCalendarAllDay = obj58.gxTpr_Agendacalendarallday_Z;
          Z29LocationId = obj58.gxTpr_Locationid_Z;
+         Z11OrganisationId = obj58.gxTpr_Organisationid_Z;
          Gx_mode = obj58.gxTpr_Mode;
          return  ;
       }
@@ -684,7 +718,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z303AgendaCalendarId = A303AgendaCalendarId;
          }
-         ZM1358( -5) ;
+         ZM1358( -7) ;
          OnLoadActions1358( ) ;
          AddRow1358( ) ;
          ScanKeyEnd1358( ) ;
@@ -713,7 +747,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z303AgendaCalendarId = A303AgendaCalendarId;
          }
-         ZM1358( -5) ;
+         ZM1358( -7) ;
          OnLoadActions1358( ) ;
          AddRow1358( ) ;
          ScanKeyEnd1358( ) ;
@@ -1097,42 +1131,50 @@ namespace GeneXus.Programs {
          endTrnMsgCod = "";
          Z303AgendaCalendarId = Guid.Empty;
          A303AgendaCalendarId = Guid.Empty;
-         Z29LocationId = Guid.Empty;
-         A29LocationId = Guid.Empty;
          Z304AgendaCalendarTitle = "";
          A304AgendaCalendarTitle = "";
          Z305AgendaCalendarStartDate = (DateTime)(DateTime.MinValue);
          A305AgendaCalendarStartDate = (DateTime)(DateTime.MinValue);
          Z306AgendaCalendarEndDate = (DateTime)(DateTime.MinValue);
          A306AgendaCalendarEndDate = (DateTime)(DateTime.MinValue);
+         Z29LocationId = Guid.Empty;
+         A29LocationId = Guid.Empty;
+         Z11OrganisationId = Guid.Empty;
+         A11OrganisationId = Guid.Empty;
          GXt_guid1 = Guid.Empty;
-         BC00134_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
-         BC00134_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC00134_A304AgendaCalendarTitle = new string[] {""} ;
-         BC00134_A305AgendaCalendarStartDate = new DateTime[] {DateTime.MinValue} ;
-         BC00134_A306AgendaCalendarEndDate = new DateTime[] {DateTime.MinValue} ;
-         BC00134_A307AgendaCalendarAllDay = new bool[] {false} ;
          BC00135_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
+         BC00135_A304AgendaCalendarTitle = new string[] {""} ;
+         BC00135_A305AgendaCalendarStartDate = new DateTime[] {DateTime.MinValue} ;
+         BC00135_A306AgendaCalendarEndDate = new DateTime[] {DateTime.MinValue} ;
+         BC00135_A307AgendaCalendarAllDay = new bool[] {false} ;
+         BC00135_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00135_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00134_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00136_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
          BC00133_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
-         BC00133_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00133_A304AgendaCalendarTitle = new string[] {""} ;
          BC00133_A305AgendaCalendarStartDate = new DateTime[] {DateTime.MinValue} ;
          BC00133_A306AgendaCalendarEndDate = new DateTime[] {DateTime.MinValue} ;
          BC00133_A307AgendaCalendarAllDay = new bool[] {false} ;
+         BC00133_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00133_A11OrganisationId = new Guid[] {Guid.Empty} ;
          sMode58 = "";
          BC00132_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
-         BC00132_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00132_A304AgendaCalendarTitle = new string[] {""} ;
          BC00132_A305AgendaCalendarStartDate = new DateTime[] {DateTime.MinValue} ;
          BC00132_A306AgendaCalendarEndDate = new DateTime[] {DateTime.MinValue} ;
          BC00132_A307AgendaCalendarAllDay = new bool[] {false} ;
-         BC00139_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
-         BC00139_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC00139_A304AgendaCalendarTitle = new string[] {""} ;
-         BC00139_A305AgendaCalendarStartDate = new DateTime[] {DateTime.MinValue} ;
-         BC00139_A306AgendaCalendarEndDate = new DateTime[] {DateTime.MinValue} ;
-         BC00139_A307AgendaCalendarAllDay = new bool[] {false} ;
+         BC00132_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00132_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC001310_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
+         BC001310_A304AgendaCalendarTitle = new string[] {""} ;
+         BC001310_A305AgendaCalendarStartDate = new DateTime[] {DateTime.MinValue} ;
+         BC001310_A306AgendaCalendarEndDate = new DateTime[] {DateTime.MinValue} ;
+         BC001310_A307AgendaCalendarAllDay = new bool[] {false} ;
+         BC001310_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC001310_A11OrganisationId = new Guid[] {Guid.Empty} ;
          i29LocationId = Guid.Empty;
+         i11OrganisationId = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_agendacalendar_bc__gam(),
@@ -1142,16 +1184,19 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_agendacalendar_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC00132_A303AgendaCalendarId, BC00132_A29LocationId, BC00132_A304AgendaCalendarTitle, BC00132_A305AgendaCalendarStartDate, BC00132_A306AgendaCalendarEndDate, BC00132_A307AgendaCalendarAllDay
+               BC00132_A303AgendaCalendarId, BC00132_A304AgendaCalendarTitle, BC00132_A305AgendaCalendarStartDate, BC00132_A306AgendaCalendarEndDate, BC00132_A307AgendaCalendarAllDay, BC00132_A29LocationId, BC00132_A11OrganisationId
                }
                , new Object[] {
-               BC00133_A303AgendaCalendarId, BC00133_A29LocationId, BC00133_A304AgendaCalendarTitle, BC00133_A305AgendaCalendarStartDate, BC00133_A306AgendaCalendarEndDate, BC00133_A307AgendaCalendarAllDay
+               BC00133_A303AgendaCalendarId, BC00133_A304AgendaCalendarTitle, BC00133_A305AgendaCalendarStartDate, BC00133_A306AgendaCalendarEndDate, BC00133_A307AgendaCalendarAllDay, BC00133_A29LocationId, BC00133_A11OrganisationId
                }
                , new Object[] {
-               BC00134_A303AgendaCalendarId, BC00134_A29LocationId, BC00134_A304AgendaCalendarTitle, BC00134_A305AgendaCalendarStartDate, BC00134_A306AgendaCalendarEndDate, BC00134_A307AgendaCalendarAllDay
+               BC00134_A29LocationId
                }
                , new Object[] {
-               BC00135_A303AgendaCalendarId
+               BC00135_A303AgendaCalendarId, BC00135_A304AgendaCalendarTitle, BC00135_A305AgendaCalendarStartDate, BC00135_A306AgendaCalendarEndDate, BC00135_A307AgendaCalendarAllDay, BC00135_A29LocationId, BC00135_A11OrganisationId
+               }
+               , new Object[] {
+               BC00136_A303AgendaCalendarId
                }
                , new Object[] {
                }
@@ -1160,7 +1205,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC00139_A303AgendaCalendarId, BC00139_A29LocationId, BC00139_A304AgendaCalendarTitle, BC00139_A305AgendaCalendarStartDate, BC00139_A306AgendaCalendarEndDate, BC00139_A307AgendaCalendarAllDay
+               BC001310_A303AgendaCalendarId, BC001310_A304AgendaCalendarTitle, BC001310_A305AgendaCalendarStartDate, BC001310_A306AgendaCalendarEndDate, BC001310_A307AgendaCalendarAllDay, BC001310_A29LocationId, BC001310_A11OrganisationId
                }
             }
          );
@@ -1185,42 +1230,51 @@ namespace GeneXus.Programs {
       private DateTime A306AgendaCalendarEndDate ;
       private bool Z307AgendaCalendarAllDay ;
       private bool A307AgendaCalendarAllDay ;
+      private bool Gx_longc ;
       private string Z304AgendaCalendarTitle ;
       private string A304AgendaCalendarTitle ;
       private Guid Z303AgendaCalendarId ;
       private Guid A303AgendaCalendarId ;
       private Guid Z29LocationId ;
       private Guid A29LocationId ;
+      private Guid Z11OrganisationId ;
+      private Guid A11OrganisationId ;
       private Guid GXt_guid1 ;
       private Guid i29LocationId ;
+      private Guid i11OrganisationId ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
-      private Guid[] BC00134_A303AgendaCalendarId ;
-      private Guid[] BC00134_A29LocationId ;
-      private string[] BC00134_A304AgendaCalendarTitle ;
-      private DateTime[] BC00134_A305AgendaCalendarStartDate ;
-      private DateTime[] BC00134_A306AgendaCalendarEndDate ;
-      private bool[] BC00134_A307AgendaCalendarAllDay ;
       private Guid[] BC00135_A303AgendaCalendarId ;
+      private string[] BC00135_A304AgendaCalendarTitle ;
+      private DateTime[] BC00135_A305AgendaCalendarStartDate ;
+      private DateTime[] BC00135_A306AgendaCalendarEndDate ;
+      private bool[] BC00135_A307AgendaCalendarAllDay ;
+      private Guid[] BC00135_A29LocationId ;
+      private Guid[] BC00135_A11OrganisationId ;
+      private Guid[] BC00134_A29LocationId ;
+      private Guid[] BC00136_A303AgendaCalendarId ;
       private Guid[] BC00133_A303AgendaCalendarId ;
-      private Guid[] BC00133_A29LocationId ;
       private string[] BC00133_A304AgendaCalendarTitle ;
       private DateTime[] BC00133_A305AgendaCalendarStartDate ;
       private DateTime[] BC00133_A306AgendaCalendarEndDate ;
       private bool[] BC00133_A307AgendaCalendarAllDay ;
+      private Guid[] BC00133_A29LocationId ;
+      private Guid[] BC00133_A11OrganisationId ;
       private Guid[] BC00132_A303AgendaCalendarId ;
-      private Guid[] BC00132_A29LocationId ;
       private string[] BC00132_A304AgendaCalendarTitle ;
       private DateTime[] BC00132_A305AgendaCalendarStartDate ;
       private DateTime[] BC00132_A306AgendaCalendarEndDate ;
       private bool[] BC00132_A307AgendaCalendarAllDay ;
-      private Guid[] BC00139_A303AgendaCalendarId ;
-      private Guid[] BC00139_A29LocationId ;
-      private string[] BC00139_A304AgendaCalendarTitle ;
-      private DateTime[] BC00139_A305AgendaCalendarStartDate ;
-      private DateTime[] BC00139_A306AgendaCalendarEndDate ;
-      private bool[] BC00139_A307AgendaCalendarAllDay ;
+      private Guid[] BC00132_A29LocationId ;
+      private Guid[] BC00132_A11OrganisationId ;
+      private Guid[] BC001310_A303AgendaCalendarId ;
+      private string[] BC001310_A304AgendaCalendarTitle ;
+      private DateTime[] BC001310_A305AgendaCalendarStartDate ;
+      private DateTime[] BC001310_A306AgendaCalendarEndDate ;
+      private bool[] BC001310_A307AgendaCalendarAllDay ;
+      private Guid[] BC001310_A29LocationId ;
+      private Guid[] BC001310_A11OrganisationId ;
       private SdtTrn_AgendaCalendar bcTrn_AgendaCalendar ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1269,10 +1323,11 @@ namespace GeneXus.Programs {
        ,new ForEachCursor(def[1])
        ,new ForEachCursor(def[2])
        ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
+       ,new ForEachCursor(def[4])
        ,new UpdateCursor(def[5])
        ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
+       ,new UpdateCursor(def[7])
+       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1291,7 +1346,8 @@ namespace GeneXus.Programs {
         };
         Object[] prmBC00134;
         prmBC00134 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00135;
         prmBC00135 = new Object[] {
@@ -1299,39 +1355,46 @@ namespace GeneXus.Programs {
         };
         Object[] prmBC00136;
         prmBC00136 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("AgendaCalendarTitle",GXType.VarChar,100,0) ,
-        new ParDef("AgendaCalendarStartDate",GXType.DateTime,8,5) ,
-        new ParDef("AgendaCalendarEndDate",GXType.DateTime,8,5) ,
-        new ParDef("AgendaCalendarAllDay",GXType.Boolean,4,0)
+        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00137;
         prmBC00137 = new Object[] {
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("AgendaCalendarTitle",GXType.VarChar,100,0) ,
         new ParDef("AgendaCalendarStartDate",GXType.DateTime,8,5) ,
         new ParDef("AgendaCalendarEndDate",GXType.DateTime,8,5) ,
         new ParDef("AgendaCalendarAllDay",GXType.Boolean,4,0) ,
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00138;
         prmBC00138 = new Object[] {
+        new ParDef("AgendaCalendarTitle",GXType.VarChar,100,0) ,
+        new ParDef("AgendaCalendarStartDate",GXType.DateTime,8,5) ,
+        new ParDef("AgendaCalendarEndDate",GXType.DateTime,8,5) ,
+        new ParDef("AgendaCalendarAllDay",GXType.Boolean,4,0) ,
+        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00139;
         prmBC00139 = new Object[] {
         new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
         };
+        Object[] prmBC001310;
+        prmBC001310 = new Object[] {
+        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+        };
         def= new CursorDef[] {
-            new CursorDef("BC00132", "SELECT AgendaCalendarId, LocationId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarAllDay FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId  FOR UPDATE OF Trn_AgendaCalendar",true, GxErrorMask.GX_NOMASK, false, this,prmBC00132,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00133", "SELECT AgendaCalendarId, LocationId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarAllDay FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00133,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00134", "SELECT TM1.AgendaCalendarId, TM1.LocationId, TM1.AgendaCalendarTitle, TM1.AgendaCalendarStartDate, TM1.AgendaCalendarEndDate, TM1.AgendaCalendarAllDay FROM Trn_AgendaCalendar TM1 WHERE TM1.AgendaCalendarId = :AgendaCalendarId ORDER BY TM1.AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00134,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00135", "SELECT AgendaCalendarId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00135,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00136", "SAVEPOINT gxupdate;INSERT INTO Trn_AgendaCalendar(AgendaCalendarId, LocationId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarAllDay) VALUES(:AgendaCalendarId, :LocationId, :AgendaCalendarTitle, :AgendaCalendarStartDate, :AgendaCalendarEndDate, :AgendaCalendarAllDay);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00136)
-           ,new CursorDef("BC00137", "SAVEPOINT gxupdate;UPDATE Trn_AgendaCalendar SET LocationId=:LocationId, AgendaCalendarTitle=:AgendaCalendarTitle, AgendaCalendarStartDate=:AgendaCalendarStartDate, AgendaCalendarEndDate=:AgendaCalendarEndDate, AgendaCalendarAllDay=:AgendaCalendarAllDay  WHERE AgendaCalendarId = :AgendaCalendarId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00137)
-           ,new CursorDef("BC00138", "SAVEPOINT gxupdate;DELETE FROM Trn_AgendaCalendar  WHERE AgendaCalendarId = :AgendaCalendarId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00138)
-           ,new CursorDef("BC00139", "SELECT TM1.AgendaCalendarId, TM1.LocationId, TM1.AgendaCalendarTitle, TM1.AgendaCalendarStartDate, TM1.AgendaCalendarEndDate, TM1.AgendaCalendarAllDay FROM Trn_AgendaCalendar TM1 WHERE TM1.AgendaCalendarId = :AgendaCalendarId ORDER BY TM1.AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00139,100, GxCacheFrequency.OFF ,true,false )
+            new CursorDef("BC00132", "SELECT AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarAllDay, LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId  FOR UPDATE OF Trn_AgendaCalendar",true, GxErrorMask.GX_NOMASK, false, this,prmBC00132,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00133", "SELECT AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarAllDay, LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00133,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00134", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00134,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00135", "SELECT TM1.AgendaCalendarId, TM1.AgendaCalendarTitle, TM1.AgendaCalendarStartDate, TM1.AgendaCalendarEndDate, TM1.AgendaCalendarAllDay, TM1.LocationId, TM1.OrganisationId FROM Trn_AgendaCalendar TM1 WHERE TM1.AgendaCalendarId = :AgendaCalendarId ORDER BY TM1.AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00135,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00136", "SELECT AgendaCalendarId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00136,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00137", "SAVEPOINT gxupdate;INSERT INTO Trn_AgendaCalendar(AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarAllDay, LocationId, OrganisationId) VALUES(:AgendaCalendarId, :AgendaCalendarTitle, :AgendaCalendarStartDate, :AgendaCalendarEndDate, :AgendaCalendarAllDay, :LocationId, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00137)
+           ,new CursorDef("BC00138", "SAVEPOINT gxupdate;UPDATE Trn_AgendaCalendar SET AgendaCalendarTitle=:AgendaCalendarTitle, AgendaCalendarStartDate=:AgendaCalendarStartDate, AgendaCalendarEndDate=:AgendaCalendarEndDate, AgendaCalendarAllDay=:AgendaCalendarAllDay, LocationId=:LocationId, OrganisationId=:OrganisationId  WHERE AgendaCalendarId = :AgendaCalendarId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00138)
+           ,new CursorDef("BC00139", "SAVEPOINT gxupdate;DELETE FROM Trn_AgendaCalendar  WHERE AgendaCalendarId = :AgendaCalendarId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00139)
+           ,new CursorDef("BC001310", "SELECT TM1.AgendaCalendarId, TM1.AgendaCalendarTitle, TM1.AgendaCalendarStartDate, TM1.AgendaCalendarEndDate, TM1.AgendaCalendarAllDay, TM1.LocationId, TM1.OrganisationId FROM Trn_AgendaCalendar TM1 WHERE TM1.AgendaCalendarId = :AgendaCalendarId ORDER BY TM1.AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001310,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1344,38 +1407,45 @@ namespace GeneXus.Programs {
      {
            case 0 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
               ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
-              ((bool[]) buf[5])[0] = rslt.getBool(6);
+              ((bool[]) buf[4])[0] = rslt.getBool(5);
+              ((Guid[]) buf[5])[0] = rslt.getGuid(6);
+              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
               return;
            case 1 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
               ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
-              ((bool[]) buf[5])[0] = rslt.getBool(6);
+              ((bool[]) buf[4])[0] = rslt.getBool(5);
+              ((Guid[]) buf[5])[0] = rslt.getGuid(6);
+              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
               return;
            case 2 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
-              ((bool[]) buf[5])[0] = rslt.getBool(6);
               return;
            case 3 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
               ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
-              ((bool[]) buf[5])[0] = rslt.getBool(6);
+              ((bool[]) buf[4])[0] = rslt.getBool(5);
+              ((Guid[]) buf[5])[0] = rslt.getGuid(6);
+              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+              return;
+           case 4 :
+              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              return;
+           case 8 :
+              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
+              ((bool[]) buf[4])[0] = rslt.getBool(5);
+              ((Guid[]) buf[5])[0] = rslt.getGuid(6);
+              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
               return;
      }
   }

@@ -115,7 +115,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0A17( short GX_JID )
       {
-         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
          {
             Z75NetworkIndividualBsnNumber = A75NetworkIndividualBsnNumber;
             Z76NetworkIndividualGivenName = A76NetworkIndividualGivenName;
@@ -131,7 +131,7 @@ namespace GeneXus.Programs {
             Z347NetworkIndividualAddressLine1 = A347NetworkIndividualAddressLine1;
             Z348NetworkIndividualAddressLine2 = A348NetworkIndividualAddressLine2;
          }
-         if ( GX_JID == -6 )
+         if ( GX_JID == -7 )
          {
             Z74NetworkIndividualId = A74NetworkIndividualId;
             Z75NetworkIndividualBsnNumber = A75NetworkIndividualBsnNumber;
@@ -185,7 +185,7 @@ namespace GeneXus.Programs {
             A346NetworkIndividualZipCode = BC000A4_A346NetworkIndividualZipCode[0];
             A347NetworkIndividualAddressLine1 = BC000A4_A347NetworkIndividualAddressLine1[0];
             A348NetworkIndividualAddressLine2 = BC000A4_A348NetworkIndividualAddressLine2[0];
-            ZM0A17( -6) ;
+            ZM0A17( -7) ;
          }
          pr_default.close(2);
          OnLoadActions0A17( ) ;
@@ -206,6 +206,11 @@ namespace GeneXus.Programs {
          if ( ! ( GxRegex.IsMatch(A78NetworkIndividualEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Network Individual Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            AnyError = 1;
+         }
+         if ( ! ( GxRegex.IsMatch(A388NetworkIndividualPhoneNumber,"\\b\\d{9}\\b") ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Network Individual Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( ( StringUtil.StrCmp(A81NetworkIndividualGender, "Male") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Female") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Other") == 0 ) ) )
@@ -244,7 +249,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A74NetworkIndividualId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0A17( 6) ;
+            ZM0A17( 7) ;
             RcdFound17 = 1;
             A74NetworkIndividualId = BC000A3_A74NetworkIndividualId[0];
             A75NetworkIndividualBsnNumber = BC000A3_A75NetworkIndividualBsnNumber[0];
@@ -811,7 +816,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z74NetworkIndividualId = A74NetworkIndividualId;
          }
-         ZM0A17( -6) ;
+         ZM0A17( -7) ;
          OnLoadActions0A17( ) ;
          AddRow0A17( ) ;
          ScanKeyEnd0A17( ) ;
@@ -840,7 +845,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z74NetworkIndividualId = A74NetworkIndividualId;
          }
-         ZM0A17( -6) ;
+         ZM0A17( -7) ;
          OnLoadActions0A17( ) ;
          AddRow0A17( ) ;
          ScanKeyEnd0A17( ) ;

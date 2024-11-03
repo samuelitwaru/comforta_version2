@@ -1229,7 +1229,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285223975", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014313057", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1245,7 +1245,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("editreceptionists.js", "?202410285223975", false, true);
+         context.AddJavascriptSource("editreceptionists.js", "?2024103014313057", false, true);
          /* End function include_jscripts */
       }
 
@@ -1333,6 +1333,7 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV17ReceptionistIsActive","fld":"vRECEPTIONISTISACTIVE"}]}""");
+         setEventMetadata("VALIDV_RECEPTIONISTPHONENUMBER","""{"handler":"Validv_Receptionistphonenumber","iparms":[]}""");
          setEventMetadata("VALIDV_RECEPTIONISTEMAIL","""{"handler":"Validv_Receptionistemail","iparms":[]}""");
          return  ;
       }

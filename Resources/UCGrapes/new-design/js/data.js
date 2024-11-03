@@ -199,12 +199,19 @@ const tileDefaultData = {
 const defaultTileAttrs = `
   tile-text="Tile"
   tile-text-color="#000000"
-  tile-text-alignment="left"
+  tile-text-align="left"
+
   tile-icon="icon-name"
   tile-icon-color="#000000"
-  tile-icon-alignment="left"
+  tile-icon-align="left"
+
   tile-bg-color="#ffffff"
+
   tile-bg-image=""
+  tile-bg-image-opacity=100
+
+  tile-action-object="Page"
+  tile-action-object-id=""
 `
   
   

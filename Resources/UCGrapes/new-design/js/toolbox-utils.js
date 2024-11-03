@@ -51,8 +51,8 @@ function mapTemplateToPageData(templateData) {
 
   // Create the base page structure
   const pageData = {
-    PageId: generateUUID(),
-    PageName: "Home",
+    PageId: localStorage.getItem("pageId"),
+    PageName: localStorage.getItem("pageName"),
     Row: [],
   };
 
@@ -119,21 +119,32 @@ function mapTemplateToPageData(templateData) {
       const titleText = titleSpan?.components?.[0]?.content || "";
 
       // Create tile object
+
+      let tileActionObjectId = attributes["tile-action-object-id"]
+      alert(attributes["tile-icon-color"])
       col.Tile = {
         TileId: generateUUID(),
         TileName: titleText,
+        TileText: titleText,
+        TileTextColor: attributes["tile-text-color"], // Not present in source data
+        TileTextAlignment: attributes["tile-text-align"] || "center",
+
         TileIcon: attributes["tile-icon"] || "",
+        TileIconColor: attributes["tile-icon-color"] || "",
+        TileIconAlignment: attributes["tile-icon-align"] || "center",
+
         TileBGColor: attributes["tile-bgcolor"] || "",
         TileBGImageUrl: attributes["tile-bg-image-url"] || "",
-        TileTextColor: "", // Not present in source data
-        TileTextAlignment: attributes["tile-text-align"] || "center",
-        TileIconAlignment: attributes["tile-icon-align"] || "center",
+        TileBGImageOpacity: attributes["tile-bg-image-opacity"] || "",
+
         ProductServiceId: "00000000-0000-0000-0000-000000000000",
         ProductServiceName: "",
         ProductServiceDescription: "",
         ProductServiceImage: "",
-        ToPageId: generateUUID(),
-        ToPageName: titleText,
+        TileAction: {
+          ObjectType: attributes['tile-action-object'],
+          ObjectId: (tileActionObjectId == "") ? "00000000-0000-0000-0000-000000000000" : tileActionObjectId
+        }
       };
 
       return col;

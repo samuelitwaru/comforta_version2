@@ -106,7 +106,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable1D84( ) ;
                if ( AnyError == 0 )
                {
-                  ZM1D84( 7) ;
+                  ZM1D84( 8) ;
                }
                CloseExtendedTableCursors1D84( ) ;
             }
@@ -145,7 +145,7 @@ namespace GeneXus.Programs {
 
       protected void ZM1D84( short GX_JID )
       {
-         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
          {
             Z416AuditDate = A416AuditDate;
             Z417AuditTableName = A417AuditTableName;
@@ -154,11 +154,13 @@ namespace GeneXus.Programs {
             Z421AuditUserName = A421AuditUserName;
             Z422AuditAction = A422AuditAction;
             Z11OrganisationId = A11OrganisationId;
+            Z435AuditDisplayDescription = A435AuditDisplayDescription;
          }
-         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
          {
+            Z435AuditDisplayDescription = A435AuditDisplayDescription;
          }
-         if ( GX_JID == -6 )
+         if ( GX_JID == -7 )
          {
             Z415AuditId = A415AuditId;
             Z416AuditDate = A416AuditDate;
@@ -203,7 +205,7 @@ namespace GeneXus.Programs {
             A421AuditUserName = BC001D5_A421AuditUserName[0];
             A422AuditAction = BC001D5_A422AuditAction[0];
             A11OrganisationId = BC001D5_A11OrganisationId[0];
-            ZM1D84( -6) ;
+            ZM1D84( -7) ;
          }
          pr_default.close(3);
          OnLoadActions1D84( ) ;
@@ -211,11 +213,13 @@ namespace GeneXus.Programs {
 
       protected void OnLoadActions1D84( )
       {
+         A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
       }
 
       protected void CheckExtendedTable1D84( )
       {
          standaloneModal( ) ;
+         A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
          /* Using cursor BC001D4 */
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
@@ -256,7 +260,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A415AuditId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1D84( 6) ;
+            ZM1D84( 7) ;
             RcdFound84 = 1;
             A415AuditId = BC001D3_A415AuditId[0];
             A416AuditDate = BC001D3_A416AuditDate[0];
@@ -507,7 +511,11 @@ namespace GeneXus.Programs {
       protected void OnDeleteControls1D84( )
       {
          standaloneModal( ) ;
-         /* No delete mode formulas found. */
+         if ( AnyError == 0 )
+         {
+            /* Delete mode formulas */
+            A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
+         }
       }
 
       protected void EndLevel1D84( )
@@ -641,6 +649,7 @@ namespace GeneXus.Programs {
 
       protected void InitializeNonKey1D84( )
       {
+         A435AuditDisplayDescription = "";
          A416AuditDate = (DateTime)(DateTime.MinValue);
          A417AuditTableName = "";
          A418AuditDescription = "";
@@ -691,6 +700,7 @@ namespace GeneXus.Programs {
       public void VarsToRow84( SdtTrn_Audit obj84 )
       {
          obj84.gxTpr_Mode = Gx_mode;
+         obj84.gxTpr_Auditdisplaydescription = A435AuditDisplayDescription;
          obj84.gxTpr_Auditdate = A416AuditDate;
          obj84.gxTpr_Audittablename = A417AuditTableName;
          obj84.gxTpr_Auditdescription = A418AuditDescription;
@@ -707,6 +717,7 @@ namespace GeneXus.Programs {
          obj84.gxTpr_Gamuserid_Z = Z420GAMUserId;
          obj84.gxTpr_Auditusername_Z = Z421AuditUserName;
          obj84.gxTpr_Auditaction_Z = Z422AuditAction;
+         obj84.gxTpr_Auditdisplaydescription_Z = Z435AuditDisplayDescription;
          obj84.gxTpr_Organisationid_Z = Z11OrganisationId;
          obj84.gxTpr_Mode = Gx_mode;
          return  ;
@@ -722,6 +733,7 @@ namespace GeneXus.Programs {
                                int forceLoad )
       {
          Gx_mode = obj84.gxTpr_Mode;
+         A435AuditDisplayDescription = obj84.gxTpr_Auditdisplaydescription;
          A416AuditDate = obj84.gxTpr_Auditdate;
          A417AuditTableName = obj84.gxTpr_Audittablename;
          A418AuditDescription = obj84.gxTpr_Auditdescription;
@@ -738,6 +750,7 @@ namespace GeneXus.Programs {
          Z420GAMUserId = obj84.gxTpr_Gamuserid_Z;
          Z421AuditUserName = obj84.gxTpr_Auditusername_Z;
          Z422AuditAction = obj84.gxTpr_Auditaction_Z;
+         Z435AuditDisplayDescription = obj84.gxTpr_Auditdisplaydescription_Z;
          Z11OrganisationId = obj84.gxTpr_Organisationid_Z;
          Gx_mode = obj84.gxTpr_Mode;
          return  ;
@@ -761,7 +774,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z415AuditId = A415AuditId;
          }
-         ZM1D84( -6) ;
+         ZM1D84( -7) ;
          OnLoadActions1D84( ) ;
          AddRow1D84( ) ;
          ScanKeyEnd1D84( ) ;
@@ -790,7 +803,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z415AuditId = A415AuditId;
          }
-         ZM1D84( -6) ;
+         ZM1D84( -7) ;
          OnLoadActions1D84( ) ;
          AddRow1D84( ) ;
          ScanKeyEnd1D84( ) ;
@@ -1194,6 +1207,8 @@ namespace GeneXus.Programs {
          A422AuditAction = "";
          Z11OrganisationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
+         Z435AuditDisplayDescription = "";
+         A435AuditDisplayDescription = "";
          Z418AuditDescription = "";
          A418AuditDescription = "";
          BC001D5_A415AuditId = new Guid[] {Guid.Empty} ;
@@ -1305,6 +1320,8 @@ namespace GeneXus.Programs {
       private string A421AuditUserName ;
       private string Z422AuditAction ;
       private string A422AuditAction ;
+      private string Z435AuditDisplayDescription ;
+      private string A435AuditDisplayDescription ;
       private Guid Z415AuditId ;
       private Guid A415AuditId ;
       private Guid AV13Insert_OrganisationId ;

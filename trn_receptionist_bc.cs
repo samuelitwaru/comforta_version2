@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0C74( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0C74( 23) ;
+                  ZM0C74( 24) ;
                }
                CloseExtendedTableCursors0C74( ) ;
             }
@@ -151,7 +151,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0C74( short GX_JID )
       {
-         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
          {
             Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
             Z92ReceptionistInitials = A92ReceptionistInitials;
@@ -163,10 +163,10 @@ namespace GeneXus.Programs {
             Z374ReceptionistPhoneNumber = A374ReceptionistPhoneNumber;
             Z398ReceptionistIsActive = A398ReceptionistIsActive;
          }
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -22 )
+         if ( GX_JID == -23 )
          {
             Z89ReceptionistId = A89ReceptionistId;
             Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
@@ -218,7 +218,7 @@ namespace GeneXus.Programs {
             A373ReceptionistPhoneCode = BC000C5_A373ReceptionistPhoneCode[0];
             A374ReceptionistPhoneNumber = BC000C5_A374ReceptionistPhoneNumber[0];
             A398ReceptionistIsActive = BC000C5_A398ReceptionistIsActive[0];
-            ZM0C74( -22) ;
+            ZM0C74( -23) ;
          }
          pr_default.close(3);
          OnLoadActions0C74( ) ;
@@ -270,6 +270,11 @@ namespace GeneXus.Programs {
          GXt_char2 = A94ReceptionistPhone;
          new prc_concatenateintlphone(context ).execute(  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber, out  GXt_char2) ;
          A94ReceptionistPhone = GXt_char2;
+         if ( ! ( GxRegex.IsMatch(A374ReceptionistPhoneNumber,"\\b\\d{9}\\b") ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Receptionist Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            AnyError = 1;
+         }
          if ( StringUtil.Len( A374ReceptionistPhoneNumber) != 9 )
          {
             GX_msglist.addItem(context.GetMessage( "Phone must contains 9 digits", ""), 1, "");
@@ -307,7 +312,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A89ReceptionistId, A11OrganisationId, A29LocationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0C74( 22) ;
+            ZM0C74( 23) ;
             RcdFound74 = 1;
             A89ReceptionistId = BC000C3_A89ReceptionistId[0];
             A95ReceptionistGAMGUID = BC000C3_A95ReceptionistGAMGUID[0];
@@ -881,7 +886,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -22) ;
+         ZM0C74( -23) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;
@@ -920,7 +925,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -22) ;
+         ZM0C74( -23) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241029071013"
+  version: "20241103150102"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -222,6 +222,136 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/pages/list:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetPages"
+      summary: "Get Pages"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_Page"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/create-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreatePage"
+      summary: "Create Page"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /toolbox/save-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.SavePage"
+      summary: "Save Page"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavePageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /toolbox/update-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdatePage"
+      summary: "Update Page"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /toolbox/add-page-children:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.AddPageCildren"
+      summary: "Add Page CHildren"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddPageCildrenInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
 components:
   securitySchemes:
     oAuthGXGAM:
@@ -229,7 +359,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: http://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -280,6 +410,48 @@ components:
           format: "int64"
         MediaType:
           type: "string"
+
+
+    CreatePageInput:  
+      properties:
+        PageName:
+          type: "string"
+
+    SavePageInput:  
+      properties:
+        PageId:
+          type: "string"
+          format: "uuid"
+        PageJsonContent:
+          type: "string"
+        PageGJSHtml:
+          type: "string"
+        PageGJSJson:
+          type: "string"
+        SDT_Page:
+          description: "SDT_Page"
+          $ref: "#/components/schemas/SDT_Page"
+
+    UpdatePageInput:  
+      properties:
+        PageId:
+          type: "string"
+          format: "uuid"
+        PageJsonContent:
+          type: "string"
+        PageGJSHtml:
+          type: "string"
+        PageGJSJson:
+          type: "string"
+
+    AddPageCildrenInput:  
+      properties:
+        ParentPageId:
+          type: "string"
+          format: "uuid"
+        ChildPageId:
+          type: "string"
+          format: "uuid"
   
     SDT_LoginResidentResponse:
       properties:
@@ -468,6 +640,22 @@ components:
         Theme:
           description: "SDT_Theme"
           $ref: "#/components/schemas/SDT_Theme"
+        PageIsPublished:
+          description: "Page Is Published"
+          type: "boolean"
+        PageGJSJson:
+          description: "Page GJSJson"
+          type: "string"
+        PageGJSHtml:
+          description: "Page GJSHtml"
+          type: "string"
+        PageJsonContent:
+          description: "Page Json Content"
+          type: "string"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
         Row:
           description: "SDT_Row"
           type: array
@@ -561,14 +749,8 @@ components:
         TileName:
           description: "Tile Name"
           type: "string"
-        TileIcon:
-          description: "Tile Icon"
-          type: "string"
-        TileBGColor:
-          description: "Tile BGColor"
-          type: "string"
-        TileBGImageUrl:
-          description: "Tile BGImage Url"
+        TileText:
+          description: "Tile Text"
           type: "string"
         TileTextColor:
           description: "Tile Text Color"
@@ -576,40 +758,40 @@ components:
         TileTextAlignment:
           description: "Tile Text Alignment"
           type: "string"
+        TileIcon:
+          description: "Tile Icon"
+          type: "string"
+        TileIconColor:
+          description: "Tile Icon Color"
+          type: "string"
         TileIconAlignment:
           description: "Tile Icon Alignment"
           type: "string"
-        ProductServiceId:
-          description: "Product Service Id"
+        TileBGColor:
+          description: "Tile BGColor"
+          type: "string"
+        TileBGImageUrl:
+          description: "Tile BGImage Url"
+          type: "string"
+        TileBGImageOpacity:
+          description: "Tile BGImage Opacity"
+          type: "integer"
+          format: "int32"
+        TileAction:
+          description: "SDT_Tile Action"
+          $ref: "#/components/schemas/SDT_TileAction"
+
+
+
+    SDT_TileAction:
+      properties:
+        ObjectType:
+          description: "Object Type"
+          type: "string"
+        ObjectId:
+          description: "Object Id"
           type: "string"
           format: "uuid"
-        ProductServiceName:
-          description: "Product Service Name"
-          type: "string"
-        ProductServiceDescription:
-          description: "Product Service Description"
-          type: "string"
-        ProductServiceImage:
-          description: "Product Service Image"
-          type: "string"
-        OrganisationId:
-          description: "Organisation Id"
-          type: "string"
-          format: "uuid"
-        LocationId:
-          description: "Location Id"
-          type: "string"
-          format: "uuid"
-        ToPageId:
-          description: "SG_To Page Id"
-          type: "string"
-          format: "uuid"
-        ToPageName:
-          description: "SG_To Page Name"
-          type: "string"
-        ToPage:
-          description: "SDT_Page"
-          $ref: "#/components/schemas/SDT_Page"
 
 
 

@@ -461,6 +461,69 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtPageJsonContent_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtPageJsonContent_Internalname, context.GetMessage( "Json Content", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Multiple line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'" + sPrefix + "',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_html_textarea( context, edtPageJsonContent_Internalname, A431PageJsonContent, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,24);\"", 0, 1, edtPageJsonContent_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_PageGeneral.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtPageGJSHtml_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtPageGJSHtml_Internalname, context.GetMessage( "GJSHtml", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Multiple line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_html_textarea( context, edtPageGJSHtml_Internalname, A432PageGJSHtml, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", 1, 1, edtPageGJSHtml_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "GeneXus\\Html", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_PageGeneral.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtPageGJSJson_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtPageGJSJson_Internalname, context.GetMessage( "GJSJson", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Multiple line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'" + sPrefix + "',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_html_textarea( context, edtPageGJSJson_Internalname, A433PageGJSJson, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,34);\"", 0, 1, edtPageGJSJson_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_PageGeneral.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -472,14 +535,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnupdate_Internalname, "", context.GetMessage( "GXM_update", ""), bttBtnupdate_Jsonclick, 5, context.GetMessage( "GXM_update", ""), "", StyleString, ClassString, bttBtnupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_PageGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 41,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtndelete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtndelete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtndelete_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DODELETE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_PageGeneral.htm");
@@ -853,6 +916,12 @@ namespace GeneXus.Programs {
             pr_default.execute(0, new Object[] {A310Trn_PageId});
             while ( (pr_default.getStatus(0) != 101) )
             {
+               A433PageGJSJson = H005N2_A433PageGJSJson[0];
+               AssignAttri(sPrefix, false, "A433PageGJSJson", A433PageGJSJson);
+               A432PageGJSHtml = H005N2_A432PageGJSHtml[0];
+               AssignAttri(sPrefix, false, "A432PageGJSHtml", A432PageGJSHtml);
+               A431PageJsonContent = H005N2_A431PageJsonContent[0];
+               AssignAttri(sPrefix, false, "A431PageJsonContent", A431PageJsonContent);
                A318Trn_PageName = H005N2_A318Trn_PageName[0];
                AssignAttri(sPrefix, false, "A318Trn_PageName", A318Trn_PageName);
                /* Execute user event: Load */
@@ -880,6 +949,12 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, edtTrn_PageId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_PageId_Enabled), 5, 0), true);
          edtTrn_PageName_Enabled = 0;
          AssignProp(sPrefix, false, edtTrn_PageName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_PageName_Enabled), 5, 0), true);
+         edtPageJsonContent_Enabled = 0;
+         AssignProp(sPrefix, false, edtPageJsonContent_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtPageJsonContent_Enabled), 5, 0), true);
+         edtPageGJSHtml_Enabled = 0;
+         AssignProp(sPrefix, false, edtPageGJSHtml_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtPageGJSHtml_Enabled), 5, 0), true);
+         edtPageGJSJson_Enabled = 0;
+         AssignProp(sPrefix, false, edtPageGJSJson_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtPageGJSJson_Enabled), 5, 0), true);
          fix_multi_value_controls( ) ;
       }
 
@@ -903,6 +978,12 @@ namespace GeneXus.Programs {
             /* Read variables values. */
             A318Trn_PageName = cgiGet( edtTrn_PageName_Internalname);
             AssignAttri(sPrefix, false, "A318Trn_PageName", A318Trn_PageName);
+            A431PageJsonContent = cgiGet( edtPageJsonContent_Internalname);
+            AssignAttri(sPrefix, false, "A431PageJsonContent", A431PageJsonContent);
+            A432PageGJSHtml = cgiGet( edtPageGJSHtml_Internalname);
+            AssignAttri(sPrefix, false, "A432PageGJSHtml", A432PageGJSHtml);
+            A433PageGJSJson = cgiGet( edtPageGJSJson_Internalname);
+            AssignAttri(sPrefix, false, "A433PageGJSJson", A433PageGJSJson);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -1235,7 +1316,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285265220", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241029173346", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1251,7 +1332,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_pagegeneral.js", "?202410285265220", false, true);
+         context.AddJavascriptSource("trn_pagegeneral.js", "?20241029173347", false, true);
          /* End function include_jscripts */
       }
 
@@ -1264,6 +1345,9 @@ namespace GeneXus.Programs {
       {
          edtTrn_PageId_Internalname = sPrefix+"TRN_PAGEID";
          edtTrn_PageName_Internalname = sPrefix+"TRN_PAGENAME";
+         edtPageJsonContent_Internalname = sPrefix+"PAGEJSONCONTENT";
+         edtPageGJSHtml_Internalname = sPrefix+"PAGEGJSHTML";
+         edtPageGJSJson_Internalname = sPrefix+"PAGEGJSJSON";
          divTransactiondetail_tableattributes_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLEATTRIBUTES";
          bttBtnupdate_Internalname = sPrefix+"BTNUPDATE";
          bttBtndelete_Internalname = sPrefix+"BTNDELETE";
@@ -1288,6 +1372,9 @@ namespace GeneXus.Programs {
          init_default_properties( ) ;
          bttBtndelete_Visible = 1;
          bttBtnupdate_Visible = 1;
+         edtPageGJSJson_Enabled = 0;
+         edtPageGJSHtml_Enabled = 0;
+         edtPageJsonContent_Enabled = 0;
          edtTrn_PageName_Jsonclick = "";
          edtTrn_PageName_Enabled = 0;
          edtTrn_PageId_Jsonclick = "";
@@ -1343,6 +1430,9 @@ namespace GeneXus.Programs {
          A318Trn_PageName = "";
          ClassString = "";
          StyleString = "";
+         A431PageJsonContent = "";
+         A432PageGJSHtml = "";
+         A433PageGJSJson = "";
          bttBtnupdate_Jsonclick = "";
          bttBtndelete_Jsonclick = "";
          Form = new GXWebForm();
@@ -1353,6 +1443,9 @@ namespace GeneXus.Programs {
          sEvtType = "";
          GXDecQS = "";
          H005N2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         H005N2_A433PageGJSJson = new string[] {""} ;
+         H005N2_A432PageGJSHtml = new string[] {""} ;
+         H005N2_A431PageJsonContent = new string[] {""} ;
          H005N2_A318Trn_PageName = new string[] {""} ;
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV8TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
@@ -1364,7 +1457,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_pagegeneral__default(),
             new Object[][] {
                 new Object[] {
-               H005N2_A310Trn_PageId, H005N2_A318Trn_PageName
+               H005N2_A310Trn_PageId, H005N2_A433PageGJSJson, H005N2_A432PageGJSHtml, H005N2_A431PageJsonContent, H005N2_A318Trn_PageName
                }
             }
          );
@@ -1385,6 +1478,9 @@ namespace GeneXus.Programs {
       private short nGXWrapped ;
       private int edtTrn_PageId_Enabled ;
       private int edtTrn_PageName_Enabled ;
+      private int edtPageJsonContent_Enabled ;
+      private int edtPageGJSHtml_Enabled ;
+      private int edtPageGJSJson_Enabled ;
       private int bttBtnupdate_Visible ;
       private int bttBtndelete_Visible ;
       private int idxLst ;
@@ -1408,8 +1504,11 @@ namespace GeneXus.Programs {
       private string edtTrn_PageId_Jsonclick ;
       private string edtTrn_PageName_Internalname ;
       private string edtTrn_PageName_Jsonclick ;
+      private string edtPageJsonContent_Internalname ;
       private string ClassString ;
       private string StyleString ;
+      private string edtPageGJSHtml_Internalname ;
+      private string edtPageGJSJson_Internalname ;
       private string bttBtnupdate_Internalname ;
       private string bttBtnupdate_Jsonclick ;
       private string bttBtndelete_Internalname ;
@@ -1431,6 +1530,9 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool GXt_boolean1 ;
+      private string A431PageJsonContent ;
+      private string A432PageGJSHtml ;
+      private string A433PageGJSJson ;
       private string A318Trn_PageName ;
       private Guid A310Trn_PageId ;
       private Guid wcpOA310Trn_PageId ;
@@ -1441,6 +1543,9 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
       private Guid[] H005N2_A310Trn_PageId ;
+      private string[] H005N2_A433PageGJSJson ;
+      private string[] H005N2_A432PageGJSHtml ;
+      private string[] H005N2_A431PageJsonContent ;
       private string[] H005N2_A318Trn_PageName ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV8TrnContext ;
@@ -1468,7 +1573,7 @@ namespace GeneXus.Programs {
           new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H005N2", "SELECT Trn_PageId, Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005N2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H005N2", "SELECT Trn_PageId, PageGJSJson, PageGJSHtml, PageJsonContent, Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005N2,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -1481,7 +1586,10 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
+                ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 return;
        }
     }

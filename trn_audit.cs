@@ -529,6 +529,27 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtAuditDisplayDescription_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtAuditDisplayDescription_Internalname, context.GetMessage( "Display Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+         /* Multiple line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 72,'',false,'',0)\"";
+         ClassString = "Attribute";
+         StyleString = "";
+         ClassString = "Attribute";
+         StyleString = "";
+         GxWebStd.gx_html_textarea( context, edtAuditDisplayDescription_Internalname, A435AuditDisplayDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,72);\"", 0, 1, edtAuditDisplayDescription_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "GeneXusUnanimo\\Description", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_Audit.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -544,21 +565,21 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 72,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Audit.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 79,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Audit.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 76,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 81,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Audit.htm");
@@ -578,8 +599,8 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, divSectionattribute_organisationid_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 81,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtavComboorganisationid_Internalname, AV20ComboOrganisationId.ToString(), AV20ComboOrganisationId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,81);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavComboorganisationid_Jsonclick, 0, "Attribute", "", "", "", "", edtavComboorganisationid_Visible, edtavComboorganisationid_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_Trn_Audit.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 86,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtavComboorganisationid_Internalname, AV20ComboOrganisationId.ToString(), AV20ComboOrganisationId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,86);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavComboorganisationid_Jsonclick, 0, "Attribute", "", "", "", "", edtavComboorganisationid_Visible, edtavComboorganisationid_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_Trn_Audit.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -733,6 +754,8 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A422AuditAction", A422AuditAction);
                A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
                AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
+               A435AuditDisplayDescription = cgiGet( edtAuditDisplayDescription_Internalname);
+               AssignAttri("", false, "A435AuditDisplayDescription", A435AuditDisplayDescription);
                AV20ComboOrganisationId = StringUtil.StrToGuid( cgiGet( edtavComboorganisationid_Internalname));
                AssignAttri("", false, "AV20ComboOrganisationId", AV20ComboOrganisationId.ToString());
                /* Read subfile selected row values. */
@@ -1104,7 +1127,7 @@ namespace GeneXus.Programs {
 
       protected void ZM1D84( short GX_JID )
       {
-         if ( ( GX_JID == 10 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1125,7 +1148,7 @@ namespace GeneXus.Programs {
                Z422AuditAction = A422AuditAction;
             }
          }
-         if ( GX_JID == -10 )
+         if ( GX_JID == -11 )
          {
             Z11OrganisationId = A11OrganisationId;
             Z415AuditId = A415AuditId;
@@ -1243,7 +1266,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A421AuditUserName", A421AuditUserName);
             A422AuditAction = T001D5_A422AuditAction[0];
             AssignAttri("", false, "A422AuditAction", A422AuditAction);
-            ZM1D84( -10) ;
+            ZM1D84( -11) ;
          }
          pr_default.close(3);
          OnLoadActions1D84( ) ;
@@ -1261,6 +1284,8 @@ namespace GeneXus.Programs {
             A11OrganisationId = AV20ComboOrganisationId;
             AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
          }
+         A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
+         AssignAttri("", false, "A435AuditDisplayDescription", A435AuditDisplayDescription);
       }
 
       protected void CheckExtendedTable1D84( )
@@ -1278,6 +1303,8 @@ namespace GeneXus.Programs {
             A11OrganisationId = AV20ComboOrganisationId;
             AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
          }
+         A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
+         AssignAttri("", false, "A435AuditDisplayDescription", A435AuditDisplayDescription);
       }
 
       protected void CloseExtendedTableCursors1D84( )
@@ -1309,7 +1336,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A415AuditId});
          if ( (pr_default.getStatus(1) != 101) && ( T001D3_A11OrganisationId[0] == A11OrganisationId ) )
          {
-            ZM1D84( 10) ;
+            ZM1D84( 11) ;
             RcdFound84 = 1;
             A415AuditId = T001D3_A415AuditId[0];
             AssignAttri("", false, "A415AuditId", A415AuditId.ToString());
@@ -1778,7 +1805,12 @@ namespace GeneXus.Programs {
       protected void OnDeleteControls1D84( )
       {
          standaloneModal( ) ;
-         /* No delete mode formulas found. */
+         if ( AnyError == 0 )
+         {
+            /* Delete mode formulas */
+            A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
+            AssignAttri("", false, "A435AuditDisplayDescription", A435AuditDisplayDescription);
+         }
       }
 
       protected void EndLevel1D84( )
@@ -1897,6 +1929,8 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtAuditAction_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtAuditAction_Enabled), 5, 0), true);
          edtOrganisationId_Enabled = 0;
          AssignProp("", false, edtOrganisationId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Enabled), 5, 0), true);
+         edtAuditDisplayDescription_Enabled = 0;
+         AssignProp("", false, edtAuditDisplayDescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtAuditDisplayDescription_Enabled), 5, 0), true);
          edtavComboorganisationid_Enabled = 0;
          AssignProp("", false, edtavComboorganisationid_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavComboorganisationid_Enabled), 5, 0), true);
       }
@@ -2144,6 +2178,8 @@ namespace GeneXus.Programs {
 
       protected void InitializeNonKey1D84( )
       {
+         A435AuditDisplayDescription = "";
+         AssignAttri("", false, "A435AuditDisplayDescription", A435AuditDisplayDescription);
          A416AuditDate = (DateTime)(DateTime.MinValue);
          AssignAttri("", false, "A416AuditDate", context.localUtil.TToC( A416AuditDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A417AuditTableName = "";
@@ -2189,7 +2225,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285271921", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014325348", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2205,7 +2241,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_audit.js", "?202410285271923", false, true);
+         context.AddJavascriptSource("trn_audit.js", "?2024103014325350", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2226,6 +2262,7 @@ namespace GeneXus.Programs {
          Combo_organisationid_Internalname = "COMBO_ORGANISATIONID";
          edtOrganisationId_Internalname = "ORGANISATIONID";
          divTablesplittedorganisationid_Internalname = "TABLESPLITTEDORGANISATIONID";
+         edtAuditDisplayDescription_Internalname = "AUDITDISPLAYDESCRIPTION";
          divTableattributes_Internalname = "TABLEATTRIBUTES";
          divTablecontent_Internalname = "TABLECONTENT";
          grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
@@ -2261,6 +2298,7 @@ namespace GeneXus.Programs {
          bttBtntrn_cancel_Visible = 1;
          bttBtntrn_enter_Enabled = 1;
          bttBtntrn_enter_Visible = 1;
+         edtAuditDisplayDescription_Enabled = 0;
          edtOrganisationId_Jsonclick = "";
          edtOrganisationId_Enabled = 0;
          edtOrganisationId_Visible = 1;
@@ -2335,6 +2373,7 @@ namespace GeneXus.Programs {
          setEventMetadata("COMBO_ORGANISATIONID.ONOPTIONCLICKED","""{"handler":"E121D2","iparms":[{"av":"Combo_organisationid_Selectedvalue_get","ctrl":"COMBO_ORGANISATIONID","prop":"SelectedValue_get"}]""");
          setEventMetadata("COMBO_ORGANISATIONID.ONOPTIONCLICKED",""","oparms":[{"av":"AV20ComboOrganisationId","fld":"vCOMBOORGANISATIONID"}]}""");
          setEventMetadata("VALID_AUDITID","""{"handler":"Valid_Auditid","iparms":[]}""");
+         setEventMetadata("VALID_AUDITSHORTDESCRIPTION","""{"handler":"Valid_Auditshortdescription","iparms":[]}""");
          setEventMetadata("VALID_ORGANISATIONID","""{"handler":"Valid_Organisationid","iparms":[]}""");
          setEventMetadata("VALIDV_COMBOORGANISATIONID","""{"handler":"Validv_Comboorganisationid","iparms":[]}""");
          return  ;
@@ -2391,6 +2430,7 @@ namespace GeneXus.Programs {
          ucCombo_organisationid = new GXUserControl();
          AV16DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV15OrganisationId_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
+         A435AuditDisplayDescription = "";
          bttBtntrn_enter_Jsonclick = "";
          bttBtntrn_cancel_Jsonclick = "";
          bttBtntrn_delete_Jsonclick = "";
@@ -2547,6 +2587,7 @@ namespace GeneXus.Programs {
       private int edtAuditAction_Enabled ;
       private int edtOrganisationId_Visible ;
       private int edtOrganisationId_Enabled ;
+      private int edtAuditDisplayDescription_Enabled ;
       private int bttBtntrn_enter_Visible ;
       private int bttBtntrn_enter_Enabled ;
       private int bttBtntrn_cancel_Visible ;
@@ -2604,6 +2645,7 @@ namespace GeneXus.Programs {
       private string Combo_organisationid_Internalname ;
       private string edtOrganisationId_Internalname ;
       private string edtOrganisationId_Jsonclick ;
+      private string edtAuditDisplayDescription_Internalname ;
       private string bttBtntrn_enter_Internalname ;
       private string bttBtntrn_enter_Jsonclick ;
       private string bttBtntrn_cancel_Internalname ;
@@ -2680,6 +2722,7 @@ namespace GeneXus.Programs {
       private string A419AuditShortDescription ;
       private string A421AuditUserName ;
       private string A422AuditAction ;
+      private string A435AuditDisplayDescription ;
       private string AV17ComboSelectedValue ;
       private string AV18ComboSelectedText ;
       private Guid wcpOAV7AuditId ;

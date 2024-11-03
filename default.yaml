@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241029071013"
+  version: "20241103150102"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -1996,6 +1996,34 @@ components:
       properties:
         SearchTxt:
           type: "string"
+    SDT_AgendaLocation:
+      properties:
+        AgendaCalendarId:
+          description: "Agenda Calendar Id"
+          type: "string"
+          format: "uuid"
+        AgendaCalendarTitle:
+          description: "Agenda Calendar Title"
+          type: "string"
+        AgendaCalendarStartDate:
+          description: "Agenda Calendar Start Date"
+          type: "string"
+          format: "date-time"
+        AgendaCalendarEndDate:
+          description: "Agenda Calendar End Date"
+          type: "string"
+          format: "date-time"
+        AgendaCalendarAllDay:
+          description: "Agenda Calendar All Day"
+          type: "boolean"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
     SDT_Col:
       properties:
         ColId:
@@ -2121,11 +2149,50 @@ components:
         Theme:
           description: "SDT_Theme"
           $ref: "#/components/schemas/SDT_Theme"
+        PageIsPublished:
+          description: "Page Is Published"
+          type: "boolean"
+        PageGJSJson:
+          description: "Page GJSJson"
+          type: "string"
+        PageGJSHtml:
+          description: "Page GJSHtml"
+          type: "string"
+        PageJsonContent:
+          description: "Page Json Content"
+          type: "string"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
         Row:
           description: "SDT_Row"
           type: array
           items:
             $ref: "#/components/schemas/SDT_Row"
+    SDT_PageChildren:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+          format: "uuid"
+        Name:
+          description: "Name"
+          type: "string"
+    SDT_PageStructure:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+          format: "uuid"
+        Name:
+          description: "Name"
+          type: "string"
+        Children:
+          description: "SDT_Page Children"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_PageChildren"
     SDT_Resident:
       properties:
         ResidentId:
@@ -2227,14 +2294,8 @@ components:
         TileName:
           description: "Tile Name"
           type: "string"
-        TileIcon:
-          description: "Tile Icon"
-          type: "string"
-        TileBGColor:
-          description: "Tile BGColor"
-          type: "string"
-        TileBGImageUrl:
-          description: "Tile BGImage Url"
+        TileText:
+          description: "Tile Text"
           type: "string"
         TileTextColor:
           description: "Tile Text Color"
@@ -2242,40 +2303,37 @@ components:
         TileTextAlignment:
           description: "Tile Text Alignment"
           type: "string"
+        TileIcon:
+          description: "Tile Icon"
+          type: "string"
+        TileIconColor:
+          description: "Tile Icon Color"
+          type: "string"
         TileIconAlignment:
           description: "Tile Icon Alignment"
           type: "string"
-        ProductServiceId:
-          description: "Product Service Id"
+        TileBGColor:
+          description: "Tile BGColor"
+          type: "string"
+        TileBGImageUrl:
+          description: "Tile BGImage Url"
+          type: "string"
+        TileBGImageOpacity:
+          description: "Tile BGImage Opacity"
+          type: "integer"
+          format: "int32"
+        TileAction:
+          description: "SDT_Tile Action"
+          $ref: "#/components/schemas/SDT_TileAction"
+    SDT_TileAction:
+      properties:
+        ObjectType:
+          description: "Object Type"
+          type: "string"
+        ObjectId:
+          description: "Object Id"
           type: "string"
           format: "uuid"
-        ProductServiceName:
-          description: "Product Service Name"
-          type: "string"
-        ProductServiceDescription:
-          description: "Product Service Description"
-          type: "string"
-        ProductServiceImage:
-          description: "Product Service Image"
-          type: "string"
-        OrganisationId:
-          description: "Organisation Id"
-          type: "string"
-          format: "uuid"
-        LocationId:
-          description: "Location Id"
-          type: "string"
-          format: "uuid"
-        ToPageId:
-          description: "SG_To Page Id"
-          type: "string"
-          format: "uuid"
-        ToPageName:
-          description: "SG_To Page Name"
-          type: "string"
-        ToPage:
-          description: "SDT_Page"
-          $ref: "#/components/schemas/SDT_Page"
     Trn_Media:
       properties:
         MediaId:

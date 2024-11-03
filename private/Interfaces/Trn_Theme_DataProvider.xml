@@ -48,6 +48,42 @@
               </Property>
             </Properties>
           </Field>
+          <Field name="Icon" description="Icon" collection="true">
+            <Fields>
+              <Field name="IconId" description="Icon Id">
+                <Properties>
+                  <Property>
+                    <Name>Type</Name>
+                    <Value>GUID</Value>
+                  </Property>
+                </Properties>
+              </Field>
+              <Field name="IconName" description="Icon Name">
+                <Properties>
+                  <Property>
+                    <Name>Type</Name>
+                    <Value>VarChar</Value>
+                  </Property>
+                  <Property>
+                    <Name>Length</Name>
+                    <Value>100</Value>
+                  </Property>
+                </Properties>
+              </Field>
+              <Field name="IconSVG" description="Icon SVG">
+                <Properties>
+                  <Property>
+                    <Name>Type</Name>
+                    <Value>LongVarChar</Value>
+                  </Property>
+                  <Property>
+                    <Name>Length</Name>
+                    <Value>2097152</Value>
+                  </Property>
+                </Properties>
+              </Field>
+            </Fields>
+          </Field>
           <Field name="Color" description="Color" collection="true">
             <Fields>
               <Field name="ColorId" description="Color Id">

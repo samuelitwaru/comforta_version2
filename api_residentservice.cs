@@ -63,6 +63,26 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getpages") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_createpage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_savepage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updatepage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_addpagecildren") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          return GAMSecurityLevel.SecurityLow ;
       }
 
@@ -155,16 +175,25 @@ namespace GeneXus.Programs {
       {
          /* Getpagesinformation_After Routine */
          returnInSub = false;
-         if ( AV25SDT_PageCollection.FromJSonString(AV17result, null) )
+         if ( AV44SDT_PageCollection.FromJSonString(AV17result, null) )
          {
          }
       }
 
       protected void E17012( )
       {
+         /* Getpages_After Routine */
+         returnInSub = false;
+         if ( AV44SDT_PageCollection.FromJSonString(AV17result, null) )
+         {
+         }
+      }
+
+      protected void E18012( )
+      {
          /* Uploadmedia_After Routine */
          returnInSub = false;
-         if ( AV32BC_Trn_Media.FromJSonString(AV17result, null) )
+         if ( AV50BC_Trn_Media.FromJSonString(AV17result, null) )
          {
          }
       }
@@ -318,26 +347,26 @@ namespace GeneXus.Programs {
       public void gxep_getpagesinformation( Guid aP0_Trn_PageId ,
                                             out GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection )
       {
-         this.AV24Trn_PageId = aP0_Trn_PageId;
-         AV25SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
+         this.AV43Trn_PageId = aP0_Trn_PageId;
+         AV44SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          initialize();
          /* GetPagesInformation Constructor */
-         new prc_pagesapi(context ).execute(  AV24Trn_PageId, out  AV17result) ;
+         new prc_pagesapi(context ).execute(  AV43Trn_PageId, out  AV17result) ;
          /* Execute user event: Getpagesinformation.After */
          E16012 ();
          if ( returnInSub )
          {
-            aP1_SDT_PageCollection=this.AV25SDT_PageCollection;
+            aP1_SDT_PageCollection=this.AV44SDT_PageCollection;
             return;
          }
          /* Execute user event: After */
          E11012 ();
          if ( returnInSub )
          {
-            aP1_SDT_PageCollection=this.AV25SDT_PageCollection;
+            aP1_SDT_PageCollection=this.AV44SDT_PageCollection;
             return;
          }
-         aP1_SDT_PageCollection=this.AV25SDT_PageCollection;
+         aP1_SDT_PageCollection=this.AV44SDT_PageCollection;
       }
 
       public void gxep_uploadmedia( Guid aP0_MediaId ,
@@ -347,30 +376,137 @@ namespace GeneXus.Programs {
                                     string aP4_MediaType ,
                                     out SdtTrn_Media aP5_BC_Trn_Media )
       {
-         this.AV27MediaId = aP0_MediaId;
-         this.AV29MediaName = aP1_MediaName;
-         this.AV31MediaImageData = aP2_MediaImageData;
-         this.AV33MediaSize = aP3_MediaSize;
-         this.AV34MediaType = aP4_MediaType;
-         AV32BC_Trn_Media = new SdtTrn_Media(context);
+         this.AV46MediaId = aP0_MediaId;
+         this.AV47MediaName = aP1_MediaName;
+         this.AV49MediaImageData = aP2_MediaImageData;
+         this.AV51MediaSize = aP3_MediaSize;
+         this.AV52MediaType = aP4_MediaType;
+         AV50BC_Trn_Media = new SdtTrn_Media(context);
          initialize();
          /* UploadMedia Constructor */
-         new prc_uploadmedia(context ).execute(  AV27MediaId,  AV29MediaName,  AV31MediaImageData,  AV33MediaSize,  AV34MediaType, out  AV17result) ;
+         new prc_uploadmedia(context ).execute(  AV46MediaId,  AV47MediaName,  AV49MediaImageData,  AV51MediaSize,  AV52MediaType, out  AV17result) ;
          /* Execute user event: Uploadmedia.After */
-         E17012 ();
+         E18012 ();
          if ( returnInSub )
          {
-            aP5_BC_Trn_Media=this.AV32BC_Trn_Media;
+            aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
             return;
          }
          /* Execute user event: After */
          E11012 ();
          if ( returnInSub )
          {
-            aP5_BC_Trn_Media=this.AV32BC_Trn_Media;
+            aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
             return;
          }
-         aP5_BC_Trn_Media=this.AV32BC_Trn_Media;
+         aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
+      }
+
+      public void gxep_getpages( out GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection )
+      {
+         AV44SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
+         initialize();
+         /* GetPages Constructor */
+         new prc_getpages(context ).execute( out  AV17result) ;
+         /* Execute user event: Getpages.After */
+         E17012 ();
+         if ( returnInSub )
+         {
+            aP0_SDT_PageCollection=this.AV44SDT_PageCollection;
+            return;
+         }
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP0_SDT_PageCollection=this.AV44SDT_PageCollection;
+            return;
+         }
+         aP0_SDT_PageCollection=this.AV44SDT_PageCollection;
+      }
+
+      public void gxep_createpage( string aP0_PageName ,
+                                   out string aP1_result )
+      {
+         this.AV60PageName = aP0_PageName;
+         initialize();
+         /* CreatePage Constructor */
+         new prc_createpage(context ).execute(  AV60PageName, ref  AV17result) ;
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP1_result=this.AV17result;
+            return;
+         }
+         aP1_result=this.AV17result;
+      }
+
+      public void gxep_savepage( Guid aP0_PageId ,
+                                 string aP1_PageJsonContent ,
+                                 string aP2_PageGJSHtml ,
+                                 string aP3_PageGJSJson ,
+                                 SdtSDT_Page aP4_SDT_Page ,
+                                 out string aP5_result )
+      {
+         this.AV54PageId = aP0_PageId;
+         this.AV58PageJsonContent = aP1_PageJsonContent;
+         this.AV56PageGJSHtml = aP2_PageGJSHtml;
+         this.AV57PageGJSJson = aP3_PageGJSJson;
+         this.AV55SDT_Page = aP4_SDT_Page;
+         initialize();
+         /* SavePage Constructor */
+         new prc_savepage(context ).execute(  AV54PageId,  AV58PageJsonContent,  AV56PageGJSHtml,  AV57PageGJSJson,  AV55SDT_Page, ref  AV17result) ;
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP5_result=this.AV17result;
+            return;
+         }
+         aP5_result=this.AV17result;
+      }
+
+      public void gxep_updatepage( Guid aP0_PageId ,
+                                   string aP1_PageJsonContent ,
+                                   string aP2_PageGJSHtml ,
+                                   string aP3_PageGJSJson ,
+                                   out string aP4_result )
+      {
+         this.AV54PageId = aP0_PageId;
+         this.AV58PageJsonContent = aP1_PageJsonContent;
+         this.AV56PageGJSHtml = aP2_PageGJSHtml;
+         this.AV57PageGJSJson = aP3_PageGJSJson;
+         initialize();
+         /* UpdatePage Constructor */
+         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, out  AV17result) ;
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP4_result=this.AV17result;
+            return;
+         }
+         aP4_result=this.AV17result;
+      }
+
+      public void gxep_addpagecildren( Guid aP0_ParentPageId ,
+                                       Guid aP1_ChildPageId ,
+                                       out string aP2_result )
+      {
+         this.AV61ParentPageId = aP0_ParentPageId;
+         this.AV62ChildPageId = aP1_ChildPageId;
+         initialize();
+         /* AddPageCildren Constructor */
+         new prc_addpagechildren(context ).execute(  AV61ParentPageId,  AV62ChildPageId, out  AV17result) ;
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP2_result=this.AV17result;
+            return;
+         }
+         aP2_result=this.AV17result;
       }
 
       public override void cleanup( )
@@ -386,31 +522,38 @@ namespace GeneXus.Programs {
          AV22SDT_Resident = new SdtSDT_Resident(context);
          AV23SDT_Organisation = new SdtSDT_Organisation(context);
          AV18SDT_Location = new SdtSDT_Location(context);
-         AV25SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
-         AV32BC_Trn_Media = new SdtTrn_Media(context);
+         AV44SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
+         AV50BC_Trn_Media = new SdtTrn_Media(context);
          /* GeneXus formulas. */
       }
 
       protected short AV11DeviceType ;
-      protected int AV33MediaSize ;
+      protected int AV51MediaSize ;
       protected string Gx_restmethod ;
       protected string AV10DeviceToken ;
       protected string AV9DeviceID ;
-      protected string AV34MediaType ;
+      protected string AV52MediaType ;
       protected bool returnInSub ;
       protected string AV17result ;
       protected string AV7secretKey ;
-      protected string AV31MediaImageData ;
+      protected string AV49MediaImageData ;
+      protected string AV58PageJsonContent ;
+      protected string AV56PageGJSHtml ;
+      protected string AV57PageGJSJson ;
       protected string AV8userId ;
       protected string AV14NotificationPlatform ;
       protected string AV15NotificationPlatformId ;
       protected string AV19title ;
       protected string AV13message ;
-      protected string AV29MediaName ;
+      protected string AV47MediaName ;
+      protected string AV60PageName ;
       protected Guid AV16organisationId ;
       protected Guid AV12locationId ;
-      protected Guid AV24Trn_PageId ;
-      protected Guid AV27MediaId ;
+      protected Guid AV43Trn_PageId ;
+      protected Guid AV46MediaId ;
+      protected Guid AV54PageId ;
+      protected Guid AV61ParentPageId ;
+      protected Guid AV62ChildPageId ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
       protected SdtSDT_LoginResidentResponse AV20SDT_LoginResidentResponse ;
@@ -418,8 +561,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_Resident AV22SDT_Resident ;
       protected SdtSDT_Organisation AV23SDT_Organisation ;
       protected SdtSDT_Location AV18SDT_Location ;
-      protected GXBaseCollection<SdtSDT_Page> AV25SDT_PageCollection ;
-      protected SdtTrn_Media AV32BC_Trn_Media ;
+      protected GXBaseCollection<SdtSDT_Page> AV44SDT_PageCollection ;
+      protected SdtTrn_Media AV50BC_Trn_Media ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_Resident aP1_SDT_Resident ;
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
@@ -428,6 +571,11 @@ namespace GeneXus.Programs {
       protected string aP2_result ;
       protected GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection ;
       protected SdtTrn_Media aP5_BC_Trn_Media ;
+      protected GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ;
+      protected string aP1_result ;
+      protected SdtSDT_Page AV55SDT_Page ;
+      protected string aP5_result ;
+      protected string aP4_result ;
    }
 
 }

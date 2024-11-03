@@ -57,7 +57,7 @@ namespace GeneXus.Programs {
          metadata.Set("BT", "Trn_Theme");
          metadata.Set("PK", "[ \"Trn_ThemeId\" ]");
          metadata.Set("PKAssigned", "[ \"Trn_ThemeId\" ]");
-         metadata.Set("Levels", "[ \"Color\" ]");
+         metadata.Set("Levels", "[ \"Color\",\"Icon\" ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");
@@ -84,6 +84,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Theme_Trn_themename = sdt.gxTv_SdtTrn_Theme_Trn_themename ;
          gxTv_SdtTrn_Theme_Trn_themefontfamily = sdt.gxTv_SdtTrn_Theme_Trn_themefontfamily ;
          gxTv_SdtTrn_Theme_Trn_themefontsize = sdt.gxTv_SdtTrn_Theme_Trn_themefontsize ;
+         gxTv_SdtTrn_Theme_Icon = sdt.gxTv_SdtTrn_Theme_Icon ;
          gxTv_SdtTrn_Theme_Color = sdt.gxTv_SdtTrn_Theme_Color ;
          gxTv_SdtTrn_Theme_Mode = sdt.gxTv_SdtTrn_Theme_Mode ;
          gxTv_SdtTrn_Theme_Initialized = sdt.gxTv_SdtTrn_Theme_Initialized ;
@@ -113,6 +114,10 @@ namespace GeneXus.Programs {
          AddObjectProperty("Trn_ThemeName", gxTv_SdtTrn_Theme_Trn_themename, false, includeNonInitialized);
          AddObjectProperty("Trn_ThemeFontFamily", gxTv_SdtTrn_Theme_Trn_themefontfamily, false, includeNonInitialized);
          AddObjectProperty("Trn_ThemeFontSize", gxTv_SdtTrn_Theme_Trn_themefontsize, false, includeNonInitialized);
+         if ( gxTv_SdtTrn_Theme_Icon != null )
+         {
+            AddObjectProperty("Icon", gxTv_SdtTrn_Theme_Icon, includeState, includeNonInitialized);
+         }
          if ( gxTv_SdtTrn_Theme_Color != null )
          {
             AddObjectProperty("Color", gxTv_SdtTrn_Theme_Color, includeState, includeNonInitialized);
@@ -150,6 +155,32 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_Theme_Trn_themefontsize = sdt.gxTv_SdtTrn_Theme_Trn_themefontsize ;
+         }
+         if ( gxTv_SdtTrn_Theme_Icon != null )
+         {
+            GXBCLevelCollection<SdtTrn_Theme_Icon> newCollectionIcon = sdt.gxTpr_Icon;
+            SdtTrn_Theme_Icon currItemIcon;
+            SdtTrn_Theme_Icon newItemIcon;
+            short idx = 1;
+            while ( idx <= newCollectionIcon.Count )
+            {
+               newItemIcon = ((SdtTrn_Theme_Icon)newCollectionIcon.Item(idx));
+               currItemIcon = gxTv_SdtTrn_Theme_Icon.GetByKey(newItemIcon.gxTpr_Iconid);
+               if ( StringUtil.StrCmp(currItemIcon.gxTpr_Mode, "UPD") == 0 )
+               {
+                  currItemIcon.UpdateDirties(newItemIcon);
+                  if ( StringUtil.StrCmp(newItemIcon.gxTpr_Mode, "DLT") == 0 )
+                  {
+                     currItemIcon.gxTpr_Mode = "DLT";
+                  }
+                  currItemIcon.gxTpr_Modified = 1;
+               }
+               else
+               {
+                  gxTv_SdtTrn_Theme_Icon.Add(newItemIcon, 0);
+               }
+               idx = (short)(idx+1);
+            }
          }
          if ( gxTv_SdtTrn_Theme_Color != null )
          {
@@ -197,6 +228,19 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Theme_Trn_themename_Z_SetNull( );
                this.gxTv_SdtTrn_Theme_Trn_themefontfamily_Z_SetNull( );
                this.gxTv_SdtTrn_Theme_Trn_themefontsize_Z_SetNull( );
+               if ( gxTv_SdtTrn_Theme_Icon != null )
+               {
+                  GXBCLevelCollection<SdtTrn_Theme_Icon> collectionIcon = gxTv_SdtTrn_Theme_Icon;
+                  SdtTrn_Theme_Icon currItemIcon;
+                  short idx = 1;
+                  while ( idx <= collectionIcon.Count )
+                  {
+                     currItemIcon = ((SdtTrn_Theme_Icon)collectionIcon.Item(idx));
+                     currItemIcon.gxTpr_Mode = "INS";
+                     currItemIcon.gxTpr_Modified = 1;
+                     idx = (short)(idx+1);
+                  }
+               }
                if ( gxTv_SdtTrn_Theme_Color != null )
                {
                   GXBCLevelCollection<SdtTrn_Theme_Color> collectionColor = gxTv_SdtTrn_Theme_Color;
@@ -263,6 +307,66 @@ namespace GeneXus.Programs {
             SetDirty("Trn_themefontsize");
          }
 
+      }
+
+      [  SoapElement( ElementName = "Icon" )]
+      [  XmlArray( ElementName = "Icon"  )]
+      [  XmlArrayItemAttribute( ElementName= "Trn_Theme.Icon"  , IsNullable=false)]
+      public GXBCLevelCollection<SdtTrn_Theme_Icon> gxTpr_Icon_GXBCLevelCollection
+      {
+         get {
+            if ( gxTv_SdtTrn_Theme_Icon == null )
+            {
+               gxTv_SdtTrn_Theme_Icon = new GXBCLevelCollection<SdtTrn_Theme_Icon>( context, "Trn_Theme.Icon", "Comforta_version2");
+            }
+            return gxTv_SdtTrn_Theme_Icon ;
+         }
+
+         set {
+            if ( gxTv_SdtTrn_Theme_Icon == null )
+            {
+               gxTv_SdtTrn_Theme_Icon = new GXBCLevelCollection<SdtTrn_Theme_Icon>( context, "Trn_Theme.Icon", "Comforta_version2");
+            }
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Icon = value;
+         }
+
+      }
+
+      [XmlIgnore]
+      public GXBCLevelCollection<SdtTrn_Theme_Icon> gxTpr_Icon
+      {
+         get {
+            if ( gxTv_SdtTrn_Theme_Icon == null )
+            {
+               gxTv_SdtTrn_Theme_Icon = new GXBCLevelCollection<SdtTrn_Theme_Icon>( context, "Trn_Theme.Icon", "Comforta_version2");
+            }
+            sdtIsNull = 0;
+            return gxTv_SdtTrn_Theme_Icon ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Icon = value;
+            SetDirty("Icon");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Theme_Icon_SetNull( )
+      {
+         gxTv_SdtTrn_Theme_Icon = null;
+         SetDirty("Icon");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Theme_Icon_IsNull( )
+      {
+         if ( gxTv_SdtTrn_Theme_Icon == null )
+         {
+            return true ;
+         }
+         return false ;
       }
 
       [  SoapElement( ElementName = "Color" )]
@@ -542,6 +646,7 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Theme_Trn_themefontfamily_Z ;
       private Guid gxTv_SdtTrn_Theme_Trn_themeid ;
       private Guid gxTv_SdtTrn_Theme_Trn_themeid_Z ;
+      private GXBCLevelCollection<SdtTrn_Theme_Icon> gxTv_SdtTrn_Theme_Icon=null ;
       private GXBCLevelCollection<SdtTrn_Theme_Color> gxTv_SdtTrn_Theme_Color=null ;
    }
 
@@ -613,7 +718,20 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "Color" , Order = 4 )]
+      [DataMember( Name = "Icon" , Order = 4 )]
+      public GxGenericCollection<SdtTrn_Theme_Icon_RESTInterface> gxTpr_Icon
+      {
+         get {
+            return new GxGenericCollection<SdtTrn_Theme_Icon_RESTInterface>(sdt.gxTpr_Icon) ;
+         }
+
+         set {
+            value.LoadCollection(sdt.gxTpr_Icon);
+         }
+
+      }
+
+      [DataMember( Name = "Color" , Order = 5 )]
       public GxGenericCollection<SdtTrn_Theme_Color_RESTInterface> gxTpr_Color
       {
          get {
@@ -647,7 +765,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 5 )]
+      [DataMember( Name = "gx_md5_hash", Order = 6 )]
       public string Hash
       {
          get {

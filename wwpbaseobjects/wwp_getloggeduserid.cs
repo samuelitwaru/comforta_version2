@@ -62,6 +62,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* GeneXus formulas */
          /* Output device settings */
          AV8WWPUserExtendedId = new GeneXus.Programs.genexussecurity.SdtGAMUser(context).getid();
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9WebSession.Get(context.GetMessage( "DiscussionResidentId", "")))) )
+         {
+            AV8WWPUserExtendedId = AV9WebSession.Get(context.GetMessage( "DiscussionResidentId", ""));
+         }
          cleanup();
       }
 
@@ -78,10 +82,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
       public override void initialize( )
       {
          AV8WWPUserExtendedId = "";
+         AV9WebSession = context.GetSession();
          /* GeneXus formulas. */
       }
 
       private string AV8WWPUserExtendedId ;
+      private IGxSession AV9WebSession ;
       private string aP0_WWPUserExtendedId ;
    }
 

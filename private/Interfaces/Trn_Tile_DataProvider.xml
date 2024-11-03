@@ -24,18 +24,6 @@
               </Property>
             </Properties>
           </Field>
-          <Field name="TileIcon" description="Tile Icon">
-            <Properties>
-              <Property>
-                <Name>Type</Name>
-                <Value>Character</Value>
-              </Property>
-              <Property>
-                <Name>Length</Name>
-                <Value>20</Value>
-              </Property>
-            </Properties>
-          </Field>
           <Field name="TileBGColor" description="Tile BGColor">
             <Properties>
               <Property>
@@ -84,7 +72,31 @@
               </Property>
             </Properties>
           </Field>
+          <Field name="TileIcon" description="Tile Icon">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Character</Value>
+              </Property>
+              <Property>
+                <Name>Length</Name>
+                <Value>20</Value>
+              </Property>
+            </Properties>
+          </Field>
           <Field name="TileIconAlignment" description="Tile Icon Alignment">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Character</Value>
+              </Property>
+              <Property>
+                <Name>Length</Name>
+                <Value>20</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="TileIconColor" description="Tile Icon Color">
             <Properties>
               <Property>
                 <Name>Type</Name>
@@ -152,6 +164,18 @@
               </Property>
             </Properties>
           </Field>
+          <Field name="TileAction" description="Tile Action">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>LongVarChar</Value>
+              </Property>
+              <Property>
+                <Name>Length</Name>
+                <Value>2097152</Value>
+              </Property>
+            </Properties>
+          </Field>
           <Field name="SG_ToPageId" description="SG_To Page Id">
             <Properties>
               <Property>
@@ -171,42 +195,6 @@
                 <Value>100</Value>
               </Property>
             </Properties>
-          </Field>
-          <Field name="Attribute" description="Attribute" collection="true">
-            <Fields>
-              <Field name="AttributeId" description="Attribute Id">
-                <Properties>
-                  <Property>
-                    <Name>Type</Name>
-                    <Value>GUID</Value>
-                  </Property>
-                </Properties>
-              </Field>
-              <Field name="AttributeName" description="Attribute Name">
-                <Properties>
-                  <Property>
-                    <Name>Type</Name>
-                    <Value>VarChar</Value>
-                  </Property>
-                  <Property>
-                    <Name>Length</Name>
-                    <Value>100</Value>
-                  </Property>
-                </Properties>
-              </Field>
-              <Field name="AttrbuteValue" description="Attrbute Value">
-                <Properties>
-                  <Property>
-                    <Name>Type</Name>
-                    <Value>VarChar</Value>
-                  </Property>
-                  <Property>
-                    <Name>Length</Name>
-                    <Value>100</Value>
-                  </Property>
-                </Properties>
-              </Field>
-            </Fields>
           </Field>
         </Fields>
       </Field>

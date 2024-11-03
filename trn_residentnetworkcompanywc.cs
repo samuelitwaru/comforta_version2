@@ -1969,7 +1969,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241028525988", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014322538", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1985,7 +1985,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_residentnetworkcompanywc.js", "?20241028525988", false, true);
+         context.AddJavascriptSource("trn_residentnetworkcompanywc.js", "?2024103014322538", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -2786,7 +2786,7 @@ namespace GeneXus.Programs {
          string sFromString;
          string sOrderString;
          sSelectString = " T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkCompanyAddressLine2, T2.NetworkCompanyAddressLine1, T2.NetworkCompanyZipCode, T2.NetworkCompanyCity, T2.NetworkCompanyCountry, T2.NetworkCompanyPhone, T2.NetworkCompanyEmail, T2.NetworkCompanyName, T2.NetworkCompanyKvkNumber, T1.NetworkCompanyId";
-         sFromString = " FROM (Trn_NetworkCompanyResident T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId)";
+         sFromString = " FROM (Trn_ResidentNetworkCompany T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId)";
          sOrderString = "";
          AddWhere(sWhereString, "(T1.ResidentId = :AV8ResidentId)");
          AddWhere(sWhereString, "(T1.LocationId = :AV9LocationId)");
@@ -2847,7 +2847,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int5 = new short[3];
          Object[] GXv_Object6 = new Object[2];
-         scmdbuf = "SELECT COUNT(*) FROM (Trn_NetworkCompanyResident T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId)";
+         scmdbuf = "SELECT COUNT(*) FROM (Trn_ResidentNetworkCompany T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId)";
          AddWhere(sWhereString, "(T1.ResidentId = :AV8ResidentId)");
          AddWhere(sWhereString, "(T1.LocationId = :AV9LocationId)");
          AddWhere(sWhereString, "(T1.OrganisationId = :AV10OrganisationId)");

@@ -44,6 +44,16 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wwpbaseobjects\workwithplustoolboxmasterpage
+wp_residentdiscussion
+wp_residentdiscussion
+wc_discussions
+wp_discussion
+wp_residentdynamicform
+wp_residentdynamicform
+wc_residentdynamicform
+trn_themeiconwc
+wwpbaseobjects\workwithplusmasterpagetoolbox
 trn_themecolorwc
 trn_themegeneral
 trn_themeww
@@ -145,7 +155,6 @@ wp_createorganisationandmanagerstep2
 wp_createorganisationandmanagerstep1
 wp_useractivation
 wp_createorganisationandmanager
-trn_tileattributewc
 trn_tilegeneral
 wp_applicationdesign
 wp_applicationdesign
@@ -213,6 +222,7 @@ workwithplus\dynamicforms\wwp_df_dynamicsuggest_wc
 workwithplus\dynamicforms\wwp_df_dynamiccombobox_wc
 workwithplus\dynamicforms\wwp_forminstanceww
 workwithplus\dynamicforms\wwp_dynamicform
+workwithplus\dynamicforms\wwp_dynamicform
 wwpbaseobjects\wwp_selectimportfile
 workwithplus\dynamicforms\wwp_createdynamicform
 workwithplus\dynamicforms\wwp_formww
@@ -273,6 +283,10 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+aprc_getpages
+aprc_addpagechildren
+aprc_listpages
+aprc_createpage
 trn_themewwgetfilterdata
 trn_mediawwgetfilterdata
 wp_organisationgeneralsuppliersgetfilterdata

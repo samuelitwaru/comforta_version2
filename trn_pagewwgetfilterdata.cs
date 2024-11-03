@@ -162,10 +162,10 @@ namespace GeneXus.Programs {
          {
             AV26GridState.FromXml(AV24Session.Get("Trn_PageWWGridState"), null, "", "");
          }
-         AV36GXV1 = 1;
-         while ( AV36GXV1 <= AV26GridState.gxTpr_Filtervalues.Count )
+         AV42GXV1 = 1;
+         while ( AV42GXV1 <= AV26GridState.gxTpr_Filtervalues.Count )
          {
-            AV27GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV26GridState.gxTpr_Filtervalues.Item(AV36GXV1));
+            AV27GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV26GridState.gxTpr_Filtervalues.Item(AV42GXV1));
             if ( StringUtil.StrCmp(AV27GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV35FilterFullText = AV27GridStateFilterValue.gxTpr_Value;
@@ -178,7 +178,7 @@ namespace GeneXus.Programs {
             {
                AV12TFTrn_PageName_Sel = AV27GridStateFilterValue.gxTpr_Value;
             }
-            AV36GXV1 = (int)(AV36GXV1+1);
+            AV42GXV1 = (int)(AV42GXV1+1);
          }
       }
 
@@ -188,21 +188,21 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV11TFTrn_PageName = AV13SearchTxt;
          AV12TFTrn_PageName_Sel = "";
-         AV38Trn_pagewwds_1_filterfulltext = AV35FilterFullText;
-         AV39Trn_pagewwds_2_tftrn_pagename = AV11TFTrn_PageName;
-         AV40Trn_pagewwds_3_tftrn_pagename_sel = AV12TFTrn_PageName_Sel;
+         AV44Trn_pagewwds_1_filterfulltext = AV35FilterFullText;
+         AV45Trn_pagewwds_2_tftrn_pagename = AV11TFTrn_PageName;
+         AV46Trn_pagewwds_3_tftrn_pagename_sel = AV12TFTrn_PageName_Sel;
          pr_default.dynParam(0, new Object[]{ new Object[]{
-                                              AV38Trn_pagewwds_1_filterfulltext ,
-                                              AV40Trn_pagewwds_3_tftrn_pagename_sel ,
-                                              AV39Trn_pagewwds_2_tftrn_pagename ,
+                                              AV44Trn_pagewwds_1_filterfulltext ,
+                                              AV46Trn_pagewwds_3_tftrn_pagename_sel ,
+                                              AV45Trn_pagewwds_2_tftrn_pagename ,
                                               A318Trn_PageName } ,
                                               new int[]{
                                               }
          });
-         lV38Trn_pagewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV38Trn_pagewwds_1_filterfulltext), "%", "");
-         lV39Trn_pagewwds_2_tftrn_pagename = StringUtil.Concat( StringUtil.RTrim( AV39Trn_pagewwds_2_tftrn_pagename), "%", "");
+         lV44Trn_pagewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV44Trn_pagewwds_1_filterfulltext), "%", "");
+         lV45Trn_pagewwds_2_tftrn_pagename = StringUtil.Concat( StringUtil.RTrim( AV45Trn_pagewwds_2_tftrn_pagename), "%", "");
          /* Using cursor P006Y2 */
-         pr_default.execute(0, new Object[] {lV38Trn_pagewwds_1_filterfulltext, lV39Trn_pagewwds_2_tftrn_pagename, AV40Trn_pagewwds_3_tftrn_pagename_sel});
+         pr_default.execute(0, new Object[] {lV44Trn_pagewwds_1_filterfulltext, lV45Trn_pagewwds_2_tftrn_pagename, AV46Trn_pagewwds_3_tftrn_pagename_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK6Y2 = false;
@@ -267,11 +267,11 @@ namespace GeneXus.Programs {
          AV35FilterFullText = "";
          AV11TFTrn_PageName = "";
          AV12TFTrn_PageName_Sel = "";
-         AV38Trn_pagewwds_1_filterfulltext = "";
-         AV39Trn_pagewwds_2_tftrn_pagename = "";
-         AV40Trn_pagewwds_3_tftrn_pagename_sel = "";
-         lV38Trn_pagewwds_1_filterfulltext = "";
-         lV39Trn_pagewwds_2_tftrn_pagename = "";
+         AV44Trn_pagewwds_1_filterfulltext = "";
+         AV45Trn_pagewwds_2_tftrn_pagename = "";
+         AV46Trn_pagewwds_3_tftrn_pagename_sel = "";
+         lV44Trn_pagewwds_1_filterfulltext = "";
+         lV45Trn_pagewwds_2_tftrn_pagename = "";
          A318Trn_PageName = "";
          P006Y2_A318Trn_PageName = new string[] {""} ;
          P006Y2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
@@ -290,7 +290,7 @@ namespace GeneXus.Programs {
       private short AV16MaxItems ;
       private short AV15PageIndex ;
       private short AV14SkipItems ;
-      private int AV36GXV1 ;
+      private int AV42GXV1 ;
       private long AV23count ;
       private bool returnInSub ;
       private bool BRK6Y2 ;
@@ -304,11 +304,11 @@ namespace GeneXus.Programs {
       private string AV35FilterFullText ;
       private string AV11TFTrn_PageName ;
       private string AV12TFTrn_PageName_Sel ;
-      private string AV38Trn_pagewwds_1_filterfulltext ;
-      private string AV39Trn_pagewwds_2_tftrn_pagename ;
-      private string AV40Trn_pagewwds_3_tftrn_pagename_sel ;
-      private string lV38Trn_pagewwds_1_filterfulltext ;
-      private string lV39Trn_pagewwds_2_tftrn_pagename ;
+      private string AV44Trn_pagewwds_1_filterfulltext ;
+      private string AV45Trn_pagewwds_2_tftrn_pagename ;
+      private string AV46Trn_pagewwds_3_tftrn_pagename_sel ;
+      private string lV44Trn_pagewwds_1_filterfulltext ;
+      private string lV45Trn_pagewwds_2_tftrn_pagename ;
       private string A318Trn_PageName ;
       private string AV18Option ;
       private Guid A310Trn_PageId ;
@@ -332,9 +332,9 @@ namespace GeneXus.Programs {
    public class trn_pagewwgetfilterdata__default : DataStoreHelperBase, IDataStoreHelper
    {
       protected Object[] conditional_P006Y2( IGxContext context ,
-                                             string AV38Trn_pagewwds_1_filterfulltext ,
-                                             string AV40Trn_pagewwds_3_tftrn_pagename_sel ,
-                                             string AV39Trn_pagewwds_2_tftrn_pagename ,
+                                             string AV44Trn_pagewwds_1_filterfulltext ,
+                                             string AV46Trn_pagewwds_3_tftrn_pagename_sel ,
+                                             string AV45Trn_pagewwds_2_tftrn_pagename ,
                                              string A318Trn_PageName )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
@@ -342,31 +342,31 @@ namespace GeneXus.Programs {
          short[] GXv_int1 = new short[3];
          Object[] GXv_Object2 = new Object[2];
          scmdbuf = "SELECT Trn_PageName, Trn_PageId FROM Trn_Page";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_pagewwds_1_filterfulltext)) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_pagewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_PageName like '%' || :lV38Trn_pagewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( Trn_PageName like '%' || :lV44Trn_pagewwds_1_filterfulltext))");
          }
          else
          {
             GXv_int1[0] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_pagewwds_3_tftrn_pagename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV39Trn_pagewwds_2_tftrn_pagename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_pagewwds_3_tftrn_pagename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_pagewwds_2_tftrn_pagename)) ) )
          {
-            AddWhere(sWhereString, "(Trn_PageName like :lV39Trn_pagewwds_2_tftrn_pagename)");
+            AddWhere(sWhereString, "(Trn_PageName like :lV45Trn_pagewwds_2_tftrn_pagename)");
          }
          else
          {
             GXv_int1[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_pagewwds_3_tftrn_pagename_sel)) && ! ( StringUtil.StrCmp(AV40Trn_pagewwds_3_tftrn_pagename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_pagewwds_3_tftrn_pagename_sel)) && ! ( StringUtil.StrCmp(AV46Trn_pagewwds_3_tftrn_pagename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(Trn_PageName = ( :AV40Trn_pagewwds_3_tftrn_pagename_sel))");
+            AddWhere(sWhereString, "(Trn_PageName = ( :AV46Trn_pagewwds_3_tftrn_pagename_sel))");
          }
          else
          {
             GXv_int1[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV40Trn_pagewwds_3_tftrn_pagename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV46Trn_pagewwds_3_tftrn_pagename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_PageName))=0))");
          }
@@ -404,9 +404,9 @@ namespace GeneXus.Programs {
        {
           Object[] prmP006Y2;
           prmP006Y2 = new Object[] {
-          new ParDef("lV38Trn_pagewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV39Trn_pagewwds_2_tftrn_pagename",GXType.VarChar,100,0) ,
-          new ParDef("AV40Trn_pagewwds_3_tftrn_pagename_sel",GXType.VarChar,100,0)
+          new ParDef("lV44Trn_pagewwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV45Trn_pagewwds_2_tftrn_pagename",GXType.VarChar,100,0) ,
+          new ParDef("AV46Trn_pagewwds_3_tftrn_pagename_sel",GXType.VarChar,100,0)
           };
           def= new CursorDef[] {
               new CursorDef("P006Y2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006Y2,100, GxCacheFrequency.OFF ,true,false )

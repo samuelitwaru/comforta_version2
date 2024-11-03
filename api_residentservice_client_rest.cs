@@ -320,6 +320,155 @@ namespace GeneXus.Programs {
          /* UploadMedia Constructor */
       }
 
+      public void gxep_getpages( out GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection )
+      {
+         restCliGetPages = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/pages/list";
+         restCliGetPages.Location = restLocation;
+         restCliGetPages.HttpMethod = "GET";
+         restCliGetPages.RestExecute();
+         if ( restCliGetPages.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetPages.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetPages.ErrorMessage;
+            gxProperties.StatusCode = restCliGetPages.StatusCode;
+            aP0_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
+         }
+         else
+         {
+            aP0_SDT_PageCollection = restCliGetPages.GetBodySdtCollection<SdtSDT_Page>("SDT_PageCollection");
+         }
+         /* GetPages Constructor */
+      }
+
+      public void gxep_createpage( string aP0_PageName ,
+                                   out string aP1_result )
+      {
+         restCliCreatePage = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/create-page";
+         restCliCreatePage.Location = restLocation;
+         restCliCreatePage.HttpMethod = "POST";
+         restCliCreatePage.AddBodyVar("PageName", (string)(aP0_PageName));
+         restCliCreatePage.RestExecute();
+         if ( restCliCreatePage.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliCreatePage.ErrorCode;
+            gxProperties.ErrorMessage = restCliCreatePage.ErrorMessage;
+            gxProperties.StatusCode = restCliCreatePage.StatusCode;
+            aP1_result = "";
+         }
+         else
+         {
+            aP1_result = restCliCreatePage.GetBodyString("result");
+         }
+         /* CreatePage Constructor */
+      }
+
+      public void gxep_savepage( Guid aP0_PageId ,
+                                 string aP1_PageJsonContent ,
+                                 string aP2_PageGJSHtml ,
+                                 string aP3_PageGJSJson ,
+                                 SdtSDT_Page aP4_SDT_Page ,
+                                 out string aP5_result )
+      {
+         restCliSavePage = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/save-page";
+         restCliSavePage.Location = restLocation;
+         restCliSavePage.HttpMethod = "POST";
+         restCliSavePage.AddBodyVar("PageId", (Guid)(aP0_PageId));
+         restCliSavePage.AddBodyVar("PageJsonContent", (string)(aP1_PageJsonContent));
+         restCliSavePage.AddBodyVar("PageGJSHtml", (string)(aP2_PageGJSHtml));
+         restCliSavePage.AddBodyVar("PageGJSJson", (string)(aP3_PageGJSJson));
+         restCliSavePage.AddBodyVar("SDT_Page", aP4_SDT_Page);
+         restCliSavePage.RestExecute();
+         if ( restCliSavePage.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliSavePage.ErrorCode;
+            gxProperties.ErrorMessage = restCliSavePage.ErrorMessage;
+            gxProperties.StatusCode = restCliSavePage.StatusCode;
+            aP5_result = "";
+         }
+         else
+         {
+            aP5_result = restCliSavePage.GetBodyString("result");
+         }
+         /* SavePage Constructor */
+      }
+
+      public void gxep_updatepage( Guid aP0_PageId ,
+                                   string aP1_PageJsonContent ,
+                                   string aP2_PageGJSHtml ,
+                                   string aP3_PageGJSJson ,
+                                   out string aP4_result )
+      {
+         restCliUpdatePage = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/update-page";
+         restCliUpdatePage.Location = restLocation;
+         restCliUpdatePage.HttpMethod = "POST";
+         restCliUpdatePage.AddBodyVar("PageId", (Guid)(aP0_PageId));
+         restCliUpdatePage.AddBodyVar("PageJsonContent", (string)(aP1_PageJsonContent));
+         restCliUpdatePage.AddBodyVar("PageGJSHtml", (string)(aP2_PageGJSHtml));
+         restCliUpdatePage.AddBodyVar("PageGJSJson", (string)(aP3_PageGJSJson));
+         restCliUpdatePage.RestExecute();
+         if ( restCliUpdatePage.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUpdatePage.ErrorCode;
+            gxProperties.ErrorMessage = restCliUpdatePage.ErrorMessage;
+            gxProperties.StatusCode = restCliUpdatePage.StatusCode;
+            aP4_result = "";
+         }
+         else
+         {
+            aP4_result = restCliUpdatePage.GetBodyString("result");
+         }
+         /* UpdatePage Constructor */
+      }
+
+      public void gxep_addpagecildren( Guid aP0_ParentPageId ,
+                                       Guid aP1_ChildPageId ,
+                                       out string aP2_result )
+      {
+         restCliAddPageCildren = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/add-page-children";
+         restCliAddPageCildren.Location = restLocation;
+         restCliAddPageCildren.HttpMethod = "POST";
+         restCliAddPageCildren.AddBodyVar("ParentPageId", (Guid)(aP0_ParentPageId));
+         restCliAddPageCildren.AddBodyVar("ChildPageId", (Guid)(aP1_ChildPageId));
+         restCliAddPageCildren.RestExecute();
+         if ( restCliAddPageCildren.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliAddPageCildren.ErrorCode;
+            gxProperties.ErrorMessage = restCliAddPageCildren.ErrorMessage;
+            gxProperties.StatusCode = restCliAddPageCildren.StatusCode;
+            aP2_result = "";
+         }
+         else
+         {
+            aP2_result = restCliAddPageCildren.GetBodyString("result");
+         }
+         /* AddPageCildren Constructor */
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -344,6 +493,15 @@ namespace GeneXus.Programs {
          aP1_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
          restCliUploadMedia = new GXRestAPIClient();
          aP5_BC_Trn_Media = new SdtTrn_Media();
+         restCliGetPages = new GXRestAPIClient();
+         aP0_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
+         restCliCreatePage = new GXRestAPIClient();
+         aP1_result = "";
+         restCliSavePage = new GXRestAPIClient();
+         aP5_result = "";
+         restCliUpdatePage = new GXRestAPIClient();
+         aP4_result = "";
+         restCliAddPageCildren = new GXRestAPIClient();
          /* GeneXus formulas. */
       }
 
@@ -356,6 +514,11 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliSendNotification ;
       protected GXRestAPIClient restCliGetPagesInformation ;
       protected GXRestAPIClient restCliUploadMedia ;
+      protected GXRestAPIClient restCliGetPages ;
+      protected GXRestAPIClient restCliCreatePage ;
+      protected GXRestAPIClient restCliSavePage ;
+      protected GXRestAPIClient restCliUpdatePage ;
+      protected GXRestAPIClient restCliAddPageCildren ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
       protected IGxDataStore dsGAM ;
@@ -368,6 +531,10 @@ namespace GeneXus.Programs {
       protected string aP2_result ;
       protected GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection ;
       protected SdtTrn_Media aP5_BC_Trn_Media ;
+      protected GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ;
+      protected string aP1_result ;
+      protected string aP5_result ;
+      protected string aP4_result ;
    }
 
 }

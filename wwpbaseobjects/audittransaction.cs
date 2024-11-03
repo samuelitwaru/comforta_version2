@@ -82,7 +82,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AV12Audit.gxTpr_Organisationid = GXt_guid2;
             if ( AV18FirstRecord )
             {
-               AV14AuditShortDescription = context.GetMessage( "Record with key '", "");
+               AV14AuditShortDescription = context.GetMessage( "Record '", "");
                AV15AuditDescription = context.GetMessage( "Record with key '", "");
                AV17ActualMode = AV8AuditingObject.gxTpr_Mode;
             }
@@ -112,12 +112,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
                {
                   if ( StringUtil.StrCmp(AV17ActualMode, "INS") == 0 )
                   {
-                     AV14AuditShortDescription += AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue + " ";
                      AV15AuditDescription += AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue + " ";
                   }
                   else
                   {
-                     AV14AuditShortDescription += AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue + " ";
                      AV15AuditDescription += AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue + " ";
                   }
                }
@@ -125,12 +123,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
                {
                   if ( StringUtil.StrCmp(AV17ActualMode, "INS") == 0 )
                   {
-                     AV14AuditShortDescription += "- " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue + " ";
+                     AV14AuditShortDescription += AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue + " ";
                      AV15AuditDescription += "- " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue + " ";
                   }
                   else
                   {
-                     AV14AuditShortDescription += "- " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue + " ";
+                     AV14AuditShortDescription += AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue + " ";
                      AV15AuditDescription += "- " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue + " ";
                   }
                }

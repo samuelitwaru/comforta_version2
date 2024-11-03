@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable035( ) ;
                if ( AnyError == 0 )
                {
-                  ZM035( 23) ;
+                  ZM035( 24) ;
                }
                CloseExtendedTableCursors035( ) ;
             }
@@ -148,7 +148,7 @@ namespace GeneXus.Programs {
 
       protected void ZM035( short GX_JID )
       {
-         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
          {
             Z28ManagerGAMGUID = A28ManagerGAMGUID;
             Z24ManagerInitials = A24ManagerInitials;
@@ -162,10 +162,10 @@ namespace GeneXus.Programs {
             Z360ManagerIsMainManager = A360ManagerIsMainManager;
             Z394ManagerIsActive = A394ManagerIsActive;
          }
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -22 )
+         if ( GX_JID == -23 )
          {
             Z21ManagerId = A21ManagerId;
             Z28ManagerGAMGUID = A28ManagerGAMGUID;
@@ -222,7 +222,7 @@ namespace GeneXus.Programs {
             A27ManagerGender = BC00035_A27ManagerGender[0];
             A360ManagerIsMainManager = BC00035_A360ManagerIsMainManager[0];
             A394ManagerIsActive = BC00035_A394ManagerIsActive[0];
-            ZM035( -22) ;
+            ZM035( -23) ;
          }
          pr_default.close(3);
          OnLoadActions035( ) ;
@@ -270,6 +270,11 @@ namespace GeneXus.Programs {
          GXt_char1 = A26ManagerPhone;
          new prc_concatenateintlphone(context ).execute(  A385ManagerPhoneCode,  A386ManagerPhoneNumber, out  GXt_char1) ;
          A26ManagerPhone = GXt_char1;
+         if ( ! ( GxRegex.IsMatch(A386ManagerPhoneNumber,"\\b\\d{9}\\b") ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone should contain 9 digits", ""), context.GetMessage( "Manager Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            AnyError = 1;
+         }
          if ( StringUtil.Len( A386ManagerPhoneNumber) != 9 )
          {
             GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
@@ -312,7 +317,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A21ManagerId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM035( 22) ;
+            ZM035( 23) ;
             RcdFound5 = 1;
             A21ManagerId = BC00033_A21ManagerId[0];
             A28ManagerGAMGUID = BC00033_A28ManagerGAMGUID[0];
@@ -904,7 +909,7 @@ namespace GeneXus.Programs {
             Z21ManagerId = A21ManagerId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM035( -22) ;
+         ZM035( -23) ;
          OnLoadActions035( ) ;
          AddRow035( ) ;
          ScanKeyEnd035( ) ;
@@ -942,7 +947,7 @@ namespace GeneXus.Programs {
             Z21ManagerId = A21ManagerId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM035( -22) ;
+         ZM035( -23) ;
          OnLoadActions035( ) ;
          AddRow035( ) ;
          ScanKeyEnd035( ) ;

@@ -861,7 +861,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0B19( short GX_JID )
       {
-         if ( ( GX_JID == 5 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -892,7 +892,7 @@ namespace GeneXus.Programs {
                Z353NetworkCompanyAddressLine2 = A353NetworkCompanyAddressLine2;
             }
          }
-         if ( GX_JID == -5 )
+         if ( GX_JID == -6 )
          {
             Z82NetworkCompanyId = A82NetworkCompanyId;
             Z83NetworkCompanyKvkNumber = A83NetworkCompanyKvkNumber;
@@ -976,7 +976,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A352NetworkCompanyAddressLine1", A352NetworkCompanyAddressLine1);
             A353NetworkCompanyAddressLine2 = T000B4_A353NetworkCompanyAddressLine2[0];
             AssignAttri("", false, "A353NetworkCompanyAddressLine2", A353NetworkCompanyAddressLine2);
-            ZM0B19( -5) ;
+            ZM0B19( -6) ;
          }
          pr_default.close(2);
          OnLoadActions0B19( ) ;
@@ -1003,6 +1003,13 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Network Company Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "NETWORKCOMPANYEMAIL");
             AnyError = 1;
             GX_FocusControl = edtNetworkCompanyEmail_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
+         if ( ! ( GxRegex.IsMatch(A392NetworkCompanyPhoneNumber,"\\b\\d{9}\\b") ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Network Company Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "NETWORKCOMPANYPHONENUMBER");
+            AnyError = 1;
+            GX_FocusControl = edtNetworkCompanyPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
       }
@@ -1036,7 +1043,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A82NetworkCompanyId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0B19( 5) ;
+            ZM0B19( 6) ;
             RcdFound19 = 1;
             A82NetworkCompanyId = T000B3_A82NetworkCompanyId[0];
             AssignAttri("", false, "A82NetworkCompanyId", A82NetworkCompanyId.ToString());
@@ -1688,7 +1695,7 @@ namespace GeneXus.Programs {
             pr_default.execute(9, new Object[] {A82NetworkCompanyId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_NetworkCompanyResident", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_ResidentNetworkCompany", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);
@@ -2066,7 +2073,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285252411", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014324562", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2082,7 +2089,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_networkcompany.js", "?202410285252412", false, true);
+         context.AddJavascriptSource("trn_networkcompany.js", "?2024103014324563", false, true);
          /* End function include_jscripts */
       }
 
@@ -2262,6 +2269,7 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_NETWORKCOMPANYID",""","oparms":[{"av":"A83NetworkCompanyKvkNumber","fld":"NETWORKCOMPANYKVKNUMBER"},{"av":"A84NetworkCompanyName","fld":"NETWORKCOMPANYNAME"},{"av":"A85NetworkCompanyEmail","fld":"NETWORKCOMPANYEMAIL"},{"av":"A86NetworkCompanyPhone","fld":"NETWORKCOMPANYPHONE"},{"av":"A391NetworkCompanyPhoneCode","fld":"NETWORKCOMPANYPHONECODE"},{"av":"A392NetworkCompanyPhoneNumber","fld":"NETWORKCOMPANYPHONENUMBER"},{"av":"A349NetworkCompanyCountry","fld":"NETWORKCOMPANYCOUNTRY"},{"av":"A350NetworkCompanyCity","fld":"NETWORKCOMPANYCITY"},{"av":"A351NetworkCompanyZipCode","fld":"NETWORKCOMPANYZIPCODE"},{"av":"A352NetworkCompanyAddressLine1","fld":"NETWORKCOMPANYADDRESSLINE1"},{"av":"A353NetworkCompanyAddressLine2","fld":"NETWORKCOMPANYADDRESSLINE2"},{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"Z82NetworkCompanyId"},{"av":"Z83NetworkCompanyKvkNumber"},{"av":"Z84NetworkCompanyName"},{"av":"Z85NetworkCompanyEmail"},{"av":"Z86NetworkCompanyPhone"},{"av":"Z391NetworkCompanyPhoneCode"},{"av":"Z392NetworkCompanyPhoneNumber"},{"av":"Z349NetworkCompanyCountry"},{"av":"Z350NetworkCompanyCity"},{"av":"Z351NetworkCompanyZipCode"},{"av":"Z352NetworkCompanyAddressLine1"},{"av":"Z353NetworkCompanyAddressLine2"},{"ctrl":"BTN_DELETE","prop":"Enabled"},{"ctrl":"BTN_ENTER","prop":"Enabled"}]}""");
          setEventMetadata("VALID_NETWORKCOMPANYKVKNUMBER","""{"handler":"Valid_Networkcompanykvknumber","iparms":[]}""");
          setEventMetadata("VALID_NETWORKCOMPANYEMAIL","""{"handler":"Valid_Networkcompanyemail","iparms":[]}""");
+         setEventMetadata("VALID_NETWORKCOMPANYPHONENUMBER","""{"handler":"Valid_Networkcompanyphonenumber","iparms":[]}""");
          return  ;
       }
 
@@ -2762,7 +2770,7 @@ namespace GeneXus.Programs {
            ,new CursorDef("T000B8", "SAVEPOINT gxupdate;INSERT INTO Trn_NetworkCompany(NetworkCompanyId, NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2) VALUES(:NetworkCompanyId, :NetworkCompanyKvkNumber, :NetworkCompanyName, :NetworkCompanyEmail, :NetworkCompanyPhone, :NetworkCompanyPhoneCode, :NetworkCompanyPhoneNumber, :NetworkCompanyCountry, :NetworkCompanyCity, :NetworkCompanyZipCode, :NetworkCompanyAddressLine1, :NetworkCompanyAddressLine2);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000B8)
            ,new CursorDef("T000B9", "SAVEPOINT gxupdate;UPDATE Trn_NetworkCompany SET NetworkCompanyKvkNumber=:NetworkCompanyKvkNumber, NetworkCompanyName=:NetworkCompanyName, NetworkCompanyEmail=:NetworkCompanyEmail, NetworkCompanyPhone=:NetworkCompanyPhone, NetworkCompanyPhoneCode=:NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber=:NetworkCompanyPhoneNumber, NetworkCompanyCountry=:NetworkCompanyCountry, NetworkCompanyCity=:NetworkCompanyCity, NetworkCompanyZipCode=:NetworkCompanyZipCode, NetworkCompanyAddressLine1=:NetworkCompanyAddressLine1, NetworkCompanyAddressLine2=:NetworkCompanyAddressLine2  WHERE NetworkCompanyId = :NetworkCompanyId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000B9)
            ,new CursorDef("T000B10", "SAVEPOINT gxupdate;DELETE FROM Trn_NetworkCompany  WHERE NetworkCompanyId = :NetworkCompanyId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000B10)
-           ,new CursorDef("T000B11", "SELECT NetworkCompanyId, ResidentId, LocationId, OrganisationId FROM Trn_NetworkCompanyResident WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000B11,1, GxCacheFrequency.OFF ,true,true )
+           ,new CursorDef("T000B11", "SELECT NetworkCompanyId, ResidentId, LocationId, OrganisationId FROM Trn_ResidentNetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000B11,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("T000B12", "SELECT NetworkCompanyId FROM Trn_NetworkCompany ORDER BY NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000B12,100, GxCacheFrequency.OFF ,true,false )
         };
      }

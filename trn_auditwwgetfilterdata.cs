@@ -154,9 +154,9 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(StringUtil.Upper( AV41DDOName), "DDO_AUDITSHORTDESCRIPTION") == 0 )
+         else if ( StringUtil.StrCmp(StringUtil.Upper( AV41DDOName), "DDO_AUDITUSERNAME") == 0 )
          {
-            /* Execute user subroutine: 'LOADAUDITSHORTDESCRIPTIONOPTIONS' */
+            /* Execute user subroutine: 'LOADAUDITUSERNAMEOPTIONS' */
             S141 ();
             if ( returnInSub )
             {
@@ -164,9 +164,9 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(StringUtil.Upper( AV41DDOName), "DDO_AUDITUSERNAME") == 0 )
+         else if ( StringUtil.StrCmp(StringUtil.Upper( AV41DDOName), "DDO_AUDITSHORTDESCRIPTION") == 0 )
          {
-            /* Execute user subroutine: 'LOADAUDITUSERNAMEOPTIONS' */
+            /* Execute user subroutine: 'LOADAUDITSHORTDESCRIPTIONOPTIONS' */
             S151 ();
             if ( returnInSub )
             {
@@ -192,13 +192,18 @@ namespace GeneXus.Programs {
          {
             AV38GridState.FromXml(AV36Session.Get("Trn_AuditWWGridState"), null, "", "");
          }
-         AV48GXV1 = 1;
-         while ( AV48GXV1 <= AV38GridState.gxTpr_Filtervalues.Count )
+         AV50GXV1 = 1;
+         while ( AV50GXV1 <= AV38GridState.gxTpr_Filtervalues.Count )
          {
-            AV39GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV38GridState.gxTpr_Filtervalues.Item(AV48GXV1));
+            AV39GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV38GridState.gxTpr_Filtervalues.Item(AV50GXV1));
             if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV47FilterFullText = AV39GridStateFilterValue.gxTpr_Value;
+            }
+            else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITDATE") == 0 )
+            {
+               AV11TFAuditDate = context.localUtil.CToT( AV39GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV12TFAuditDate_To = context.localUtil.CToT( AV39GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITACTION") == 0 )
             {
@@ -208,11 +213,6 @@ namespace GeneXus.Programs {
             {
                AV24TFAuditAction_Sel = AV39GridStateFilterValue.gxTpr_Value;
             }
-            else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITDATE") == 0 )
-            {
-               AV11TFAuditDate = context.localUtil.CToT( AV39GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
-               AV12TFAuditDate_To = context.localUtil.CToT( AV39GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
-            }
             else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITTABLENAME") == 0 )
             {
                AV13TFAuditTableName = AV39GridStateFilterValue.gxTpr_Value;
@@ -220,14 +220,6 @@ namespace GeneXus.Programs {
             else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITTABLENAME_SEL") == 0 )
             {
                AV14TFAuditTableName_Sel = AV39GridStateFilterValue.gxTpr_Value;
-            }
-            else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITSHORTDESCRIPTION") == 0 )
-            {
-               AV17TFAuditShortDescription = AV39GridStateFilterValue.gxTpr_Value;
-            }
-            else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITSHORTDESCRIPTION_SEL") == 0 )
-            {
-               AV18TFAuditShortDescription_Sel = AV39GridStateFilterValue.gxTpr_Value;
             }
             else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITUSERNAME") == 0 )
             {
@@ -237,7 +229,15 @@ namespace GeneXus.Programs {
             {
                AV22TFAuditUserName_Sel = AV39GridStateFilterValue.gxTpr_Value;
             }
-            AV48GXV1 = (int)(AV48GXV1+1);
+            else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITSHORTDESCRIPTION") == 0 )
+            {
+               AV17TFAuditShortDescription = AV39GridStateFilterValue.gxTpr_Value;
+            }
+            else if ( StringUtil.StrCmp(AV39GridStateFilterValue.gxTpr_Name, "TFAUDITSHORTDESCRIPTION_SEL") == 0 )
+            {
+               AV18TFAuditShortDescription_Sel = AV39GridStateFilterValue.gxTpr_Value;
+            }
+            AV50GXV1 = (int)(AV50GXV1+1);
          }
       }
 
@@ -247,67 +247,68 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV23TFAuditAction = AV25SearchTxt;
          AV24TFAuditAction_Sel = "";
-         AV50Trn_auditwwds_1_filterfulltext = AV47FilterFullText;
-         AV51Trn_auditwwds_2_tfauditaction = AV23TFAuditAction;
-         AV52Trn_auditwwds_3_tfauditaction_sel = AV24TFAuditAction_Sel;
-         AV53Trn_auditwwds_4_tfauditdate = AV11TFAuditDate;
-         AV54Trn_auditwwds_5_tfauditdate_to = AV12TFAuditDate_To;
-         AV55Trn_auditwwds_6_tfaudittablename = AV13TFAuditTableName;
-         AV56Trn_auditwwds_7_tfaudittablename_sel = AV14TFAuditTableName_Sel;
-         AV57Trn_auditwwds_8_tfauditshortdescription = AV17TFAuditShortDescription;
-         AV58Trn_auditwwds_9_tfauditshortdescription_sel = AV18TFAuditShortDescription_Sel;
-         AV59Trn_auditwwds_10_tfauditusername = AV21TFAuditUserName;
-         AV60Trn_auditwwds_11_tfauditusername_sel = AV22TFAuditUserName_Sel;
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV52Trn_auditwwds_1_filterfulltext = AV47FilterFullText;
+         AV53Trn_auditwwds_2_tfauditdate = AV11TFAuditDate;
+         AV54Trn_auditwwds_3_tfauditdate_to = AV12TFAuditDate_To;
+         AV55Trn_auditwwds_4_tfauditaction = AV23TFAuditAction;
+         AV56Trn_auditwwds_5_tfauditaction_sel = AV24TFAuditAction_Sel;
+         AV57Trn_auditwwds_6_tfaudittablename = AV13TFAuditTableName;
+         AV58Trn_auditwwds_7_tfaudittablename_sel = AV14TFAuditTableName_Sel;
+         AV59Trn_auditwwds_8_tfauditusername = AV21TFAuditUserName;
+         AV60Trn_auditwwds_9_tfauditusername_sel = AV22TFAuditUserName_Sel;
+         AV61Trn_auditwwds_10_tfauditshortdescription = AV17TFAuditShortDescription;
+         AV62Trn_auditwwds_11_tfauditshortdescription_sel = AV18TFAuditShortDescription_Sel;
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
          pr_default.dynParam(0, new Object[]{ new Object[]{
-                                              AV50Trn_auditwwds_1_filterfulltext ,
-                                              AV52Trn_auditwwds_3_tfauditaction_sel ,
-                                              AV51Trn_auditwwds_2_tfauditaction ,
-                                              AV53Trn_auditwwds_4_tfauditdate ,
-                                              AV54Trn_auditwwds_5_tfauditdate_to ,
-                                              AV56Trn_auditwwds_7_tfaudittablename_sel ,
-                                              AV55Trn_auditwwds_6_tfaudittablename ,
-                                              AV58Trn_auditwwds_9_tfauditshortdescription_sel ,
-                                              AV57Trn_auditwwds_8_tfauditshortdescription ,
-                                              AV60Trn_auditwwds_11_tfauditusername_sel ,
-                                              AV59Trn_auditwwds_10_tfauditusername ,
+                                              AV52Trn_auditwwds_1_filterfulltext ,
+                                              AV53Trn_auditwwds_2_tfauditdate ,
+                                              AV54Trn_auditwwds_3_tfauditdate_to ,
+                                              AV56Trn_auditwwds_5_tfauditaction_sel ,
+                                              AV55Trn_auditwwds_4_tfauditaction ,
+                                              AV58Trn_auditwwds_7_tfaudittablename_sel ,
+                                              AV57Trn_auditwwds_6_tfaudittablename ,
+                                              AV60Trn_auditwwds_9_tfauditusername_sel ,
+                                              AV59Trn_auditwwds_8_tfauditusername ,
+                                              AV62Trn_auditwwds_11_tfauditshortdescription_sel ,
+                                              AV61Trn_auditwwds_10_tfauditshortdescription ,
                                               A422AuditAction ,
                                               A417AuditTableName ,
-                                              A419AuditShortDescription ,
                                               A421AuditUserName ,
+                                              A419AuditShortDescription ,
                                               A416AuditDate ,
                                               A11OrganisationId ,
-                                              AV61Udparg12 } ,
+                                              AV63Udparg12 } ,
                                               new int[]{
                                               TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE
                                               }
          });
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV51Trn_auditwwds_2_tfauditaction = StringUtil.Concat( StringUtil.RTrim( AV51Trn_auditwwds_2_tfauditaction), "%", "");
-         lV55Trn_auditwwds_6_tfaudittablename = StringUtil.Concat( StringUtil.RTrim( AV55Trn_auditwwds_6_tfaudittablename), "%", "");
-         lV57Trn_auditwwds_8_tfauditshortdescription = StringUtil.Concat( StringUtil.RTrim( AV57Trn_auditwwds_8_tfauditshortdescription), "%", "");
-         lV59Trn_auditwwds_10_tfauditusername = StringUtil.Concat( StringUtil.RTrim( AV59Trn_auditwwds_10_tfauditusername), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV55Trn_auditwwds_4_tfauditaction = StringUtil.Concat( StringUtil.RTrim( AV55Trn_auditwwds_4_tfauditaction), "%", "");
+         lV57Trn_auditwwds_6_tfaudittablename = StringUtil.Concat( StringUtil.RTrim( AV57Trn_auditwwds_6_tfaudittablename), "%", "");
+         lV59Trn_auditwwds_8_tfauditusername = StringUtil.Concat( StringUtil.RTrim( AV59Trn_auditwwds_8_tfauditusername), "%", "");
+         lV61Trn_auditwwds_10_tfauditshortdescription = StringUtil.Concat( StringUtil.RTrim( AV61Trn_auditwwds_10_tfauditshortdescription), "%", "");
          /* Using cursor P008I2 */
-         pr_default.execute(0, new Object[] {AV61Udparg12, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV51Trn_auditwwds_2_tfauditaction, AV52Trn_auditwwds_3_tfauditaction_sel, AV53Trn_auditwwds_4_tfauditdate, AV54Trn_auditwwds_5_tfauditdate_to, lV55Trn_auditwwds_6_tfaudittablename, AV56Trn_auditwwds_7_tfaudittablename_sel, lV57Trn_auditwwds_8_tfauditshortdescription, AV58Trn_auditwwds_9_tfauditshortdescription_sel, lV59Trn_auditwwds_10_tfauditusername, AV60Trn_auditwwds_11_tfauditusername_sel});
+         pr_default.execute(0, new Object[] {AV63Udparg12, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, AV53Trn_auditwwds_2_tfauditdate, AV54Trn_auditwwds_3_tfauditdate_to, lV55Trn_auditwwds_4_tfauditaction, AV56Trn_auditwwds_5_tfauditaction_sel, lV57Trn_auditwwds_6_tfaudittablename, AV58Trn_auditwwds_7_tfaudittablename_sel, lV59Trn_auditwwds_8_tfauditusername, AV60Trn_auditwwds_9_tfauditusername_sel, lV61Trn_auditwwds_10_tfauditshortdescription, AV62Trn_auditwwds_11_tfauditshortdescription_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK8I2 = false;
             A11OrganisationId = P008I2_A11OrganisationId[0];
             A422AuditAction = P008I2_A422AuditAction[0];
             A416AuditDate = P008I2_A416AuditDate[0];
-            A421AuditUserName = P008I2_A421AuditUserName[0];
             A419AuditShortDescription = P008I2_A419AuditShortDescription[0];
+            A421AuditUserName = P008I2_A421AuditUserName[0];
             A417AuditTableName = P008I2_A417AuditTableName[0];
             A415AuditId = P008I2_A415AuditId[0];
             AV35count = 0;
@@ -349,67 +350,68 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV13TFAuditTableName = AV25SearchTxt;
          AV14TFAuditTableName_Sel = "";
-         AV50Trn_auditwwds_1_filterfulltext = AV47FilterFullText;
-         AV51Trn_auditwwds_2_tfauditaction = AV23TFAuditAction;
-         AV52Trn_auditwwds_3_tfauditaction_sel = AV24TFAuditAction_Sel;
-         AV53Trn_auditwwds_4_tfauditdate = AV11TFAuditDate;
-         AV54Trn_auditwwds_5_tfauditdate_to = AV12TFAuditDate_To;
-         AV55Trn_auditwwds_6_tfaudittablename = AV13TFAuditTableName;
-         AV56Trn_auditwwds_7_tfaudittablename_sel = AV14TFAuditTableName_Sel;
-         AV57Trn_auditwwds_8_tfauditshortdescription = AV17TFAuditShortDescription;
-         AV58Trn_auditwwds_9_tfauditshortdescription_sel = AV18TFAuditShortDescription_Sel;
-         AV59Trn_auditwwds_10_tfauditusername = AV21TFAuditUserName;
-         AV60Trn_auditwwds_11_tfauditusername_sel = AV22TFAuditUserName_Sel;
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV52Trn_auditwwds_1_filterfulltext = AV47FilterFullText;
+         AV53Trn_auditwwds_2_tfauditdate = AV11TFAuditDate;
+         AV54Trn_auditwwds_3_tfauditdate_to = AV12TFAuditDate_To;
+         AV55Trn_auditwwds_4_tfauditaction = AV23TFAuditAction;
+         AV56Trn_auditwwds_5_tfauditaction_sel = AV24TFAuditAction_Sel;
+         AV57Trn_auditwwds_6_tfaudittablename = AV13TFAuditTableName;
+         AV58Trn_auditwwds_7_tfaudittablename_sel = AV14TFAuditTableName_Sel;
+         AV59Trn_auditwwds_8_tfauditusername = AV21TFAuditUserName;
+         AV60Trn_auditwwds_9_tfauditusername_sel = AV22TFAuditUserName_Sel;
+         AV61Trn_auditwwds_10_tfauditshortdescription = AV17TFAuditShortDescription;
+         AV62Trn_auditwwds_11_tfauditshortdescription_sel = AV18TFAuditShortDescription_Sel;
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
          pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              AV50Trn_auditwwds_1_filterfulltext ,
-                                              AV52Trn_auditwwds_3_tfauditaction_sel ,
-                                              AV51Trn_auditwwds_2_tfauditaction ,
-                                              AV53Trn_auditwwds_4_tfauditdate ,
-                                              AV54Trn_auditwwds_5_tfauditdate_to ,
-                                              AV56Trn_auditwwds_7_tfaudittablename_sel ,
-                                              AV55Trn_auditwwds_6_tfaudittablename ,
-                                              AV58Trn_auditwwds_9_tfauditshortdescription_sel ,
-                                              AV57Trn_auditwwds_8_tfauditshortdescription ,
-                                              AV60Trn_auditwwds_11_tfauditusername_sel ,
-                                              AV59Trn_auditwwds_10_tfauditusername ,
+                                              AV52Trn_auditwwds_1_filterfulltext ,
+                                              AV53Trn_auditwwds_2_tfauditdate ,
+                                              AV54Trn_auditwwds_3_tfauditdate_to ,
+                                              AV56Trn_auditwwds_5_tfauditaction_sel ,
+                                              AV55Trn_auditwwds_4_tfauditaction ,
+                                              AV58Trn_auditwwds_7_tfaudittablename_sel ,
+                                              AV57Trn_auditwwds_6_tfaudittablename ,
+                                              AV60Trn_auditwwds_9_tfauditusername_sel ,
+                                              AV59Trn_auditwwds_8_tfauditusername ,
+                                              AV62Trn_auditwwds_11_tfauditshortdescription_sel ,
+                                              AV61Trn_auditwwds_10_tfauditshortdescription ,
                                               A422AuditAction ,
                                               A417AuditTableName ,
-                                              A419AuditShortDescription ,
                                               A421AuditUserName ,
+                                              A419AuditShortDescription ,
                                               A416AuditDate ,
                                               A11OrganisationId ,
-                                              AV61Udparg12 } ,
+                                              AV63Udparg12 } ,
                                               new int[]{
                                               TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE
                                               }
          });
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV51Trn_auditwwds_2_tfauditaction = StringUtil.Concat( StringUtil.RTrim( AV51Trn_auditwwds_2_tfauditaction), "%", "");
-         lV55Trn_auditwwds_6_tfaudittablename = StringUtil.Concat( StringUtil.RTrim( AV55Trn_auditwwds_6_tfaudittablename), "%", "");
-         lV57Trn_auditwwds_8_tfauditshortdescription = StringUtil.Concat( StringUtil.RTrim( AV57Trn_auditwwds_8_tfauditshortdescription), "%", "");
-         lV59Trn_auditwwds_10_tfauditusername = StringUtil.Concat( StringUtil.RTrim( AV59Trn_auditwwds_10_tfauditusername), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV55Trn_auditwwds_4_tfauditaction = StringUtil.Concat( StringUtil.RTrim( AV55Trn_auditwwds_4_tfauditaction), "%", "");
+         lV57Trn_auditwwds_6_tfaudittablename = StringUtil.Concat( StringUtil.RTrim( AV57Trn_auditwwds_6_tfaudittablename), "%", "");
+         lV59Trn_auditwwds_8_tfauditusername = StringUtil.Concat( StringUtil.RTrim( AV59Trn_auditwwds_8_tfauditusername), "%", "");
+         lV61Trn_auditwwds_10_tfauditshortdescription = StringUtil.Concat( StringUtil.RTrim( AV61Trn_auditwwds_10_tfauditshortdescription), "%", "");
          /* Using cursor P008I3 */
-         pr_default.execute(1, new Object[] {AV61Udparg12, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV51Trn_auditwwds_2_tfauditaction, AV52Trn_auditwwds_3_tfauditaction_sel, AV53Trn_auditwwds_4_tfauditdate, AV54Trn_auditwwds_5_tfauditdate_to, lV55Trn_auditwwds_6_tfaudittablename, AV56Trn_auditwwds_7_tfaudittablename_sel, lV57Trn_auditwwds_8_tfauditshortdescription, AV58Trn_auditwwds_9_tfauditshortdescription_sel, lV59Trn_auditwwds_10_tfauditusername, AV60Trn_auditwwds_11_tfauditusername_sel});
+         pr_default.execute(1, new Object[] {AV63Udparg12, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, AV53Trn_auditwwds_2_tfauditdate, AV54Trn_auditwwds_3_tfauditdate_to, lV55Trn_auditwwds_4_tfauditaction, AV56Trn_auditwwds_5_tfauditaction_sel, lV57Trn_auditwwds_6_tfaudittablename, AV58Trn_auditwwds_7_tfaudittablename_sel, lV59Trn_auditwwds_8_tfauditusername, AV60Trn_auditwwds_9_tfauditusername_sel, lV61Trn_auditwwds_10_tfauditshortdescription, AV62Trn_auditwwds_11_tfauditshortdescription_sel});
          while ( (pr_default.getStatus(1) != 101) )
          {
             BRK8I4 = false;
             A11OrganisationId = P008I3_A11OrganisationId[0];
             A417AuditTableName = P008I3_A417AuditTableName[0];
             A416AuditDate = P008I3_A416AuditDate[0];
-            A421AuditUserName = P008I3_A421AuditUserName[0];
             A419AuditShortDescription = P008I3_A419AuditShortDescription[0];
+            A421AuditUserName = P008I3_A421AuditUserName[0];
             A422AuditAction = P008I3_A422AuditAction[0];
             A415AuditId = P008I3_A415AuditId[0];
             AV35count = 0;
@@ -447,75 +449,76 @@ namespace GeneXus.Programs {
 
       protected void S141( )
       {
-         /* 'LOADAUDITSHORTDESCRIPTIONOPTIONS' Routine */
+         /* 'LOADAUDITUSERNAMEOPTIONS' Routine */
          returnInSub = false;
-         AV17TFAuditShortDescription = AV25SearchTxt;
-         AV18TFAuditShortDescription_Sel = "";
-         AV50Trn_auditwwds_1_filterfulltext = AV47FilterFullText;
-         AV51Trn_auditwwds_2_tfauditaction = AV23TFAuditAction;
-         AV52Trn_auditwwds_3_tfauditaction_sel = AV24TFAuditAction_Sel;
-         AV53Trn_auditwwds_4_tfauditdate = AV11TFAuditDate;
-         AV54Trn_auditwwds_5_tfauditdate_to = AV12TFAuditDate_To;
-         AV55Trn_auditwwds_6_tfaudittablename = AV13TFAuditTableName;
-         AV56Trn_auditwwds_7_tfaudittablename_sel = AV14TFAuditTableName_Sel;
-         AV57Trn_auditwwds_8_tfauditshortdescription = AV17TFAuditShortDescription;
-         AV58Trn_auditwwds_9_tfauditshortdescription_sel = AV18TFAuditShortDescription_Sel;
-         AV59Trn_auditwwds_10_tfauditusername = AV21TFAuditUserName;
-         AV60Trn_auditwwds_11_tfauditusername_sel = AV22TFAuditUserName_Sel;
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV21TFAuditUserName = AV25SearchTxt;
+         AV22TFAuditUserName_Sel = "";
+         AV52Trn_auditwwds_1_filterfulltext = AV47FilterFullText;
+         AV53Trn_auditwwds_2_tfauditdate = AV11TFAuditDate;
+         AV54Trn_auditwwds_3_tfauditdate_to = AV12TFAuditDate_To;
+         AV55Trn_auditwwds_4_tfauditaction = AV23TFAuditAction;
+         AV56Trn_auditwwds_5_tfauditaction_sel = AV24TFAuditAction_Sel;
+         AV57Trn_auditwwds_6_tfaudittablename = AV13TFAuditTableName;
+         AV58Trn_auditwwds_7_tfaudittablename_sel = AV14TFAuditTableName_Sel;
+         AV59Trn_auditwwds_8_tfauditusername = AV21TFAuditUserName;
+         AV60Trn_auditwwds_9_tfauditusername_sel = AV22TFAuditUserName_Sel;
+         AV61Trn_auditwwds_10_tfauditshortdescription = AV17TFAuditShortDescription;
+         AV62Trn_auditwwds_11_tfauditshortdescription_sel = AV18TFAuditShortDescription_Sel;
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
          pr_default.dynParam(2, new Object[]{ new Object[]{
-                                              AV50Trn_auditwwds_1_filterfulltext ,
-                                              AV52Trn_auditwwds_3_tfauditaction_sel ,
-                                              AV51Trn_auditwwds_2_tfauditaction ,
-                                              AV53Trn_auditwwds_4_tfauditdate ,
-                                              AV54Trn_auditwwds_5_tfauditdate_to ,
-                                              AV56Trn_auditwwds_7_tfaudittablename_sel ,
-                                              AV55Trn_auditwwds_6_tfaudittablename ,
-                                              AV58Trn_auditwwds_9_tfauditshortdescription_sel ,
-                                              AV57Trn_auditwwds_8_tfauditshortdescription ,
-                                              AV60Trn_auditwwds_11_tfauditusername_sel ,
-                                              AV59Trn_auditwwds_10_tfauditusername ,
+                                              AV52Trn_auditwwds_1_filterfulltext ,
+                                              AV53Trn_auditwwds_2_tfauditdate ,
+                                              AV54Trn_auditwwds_3_tfauditdate_to ,
+                                              AV56Trn_auditwwds_5_tfauditaction_sel ,
+                                              AV55Trn_auditwwds_4_tfauditaction ,
+                                              AV58Trn_auditwwds_7_tfaudittablename_sel ,
+                                              AV57Trn_auditwwds_6_tfaudittablename ,
+                                              AV60Trn_auditwwds_9_tfauditusername_sel ,
+                                              AV59Trn_auditwwds_8_tfauditusername ,
+                                              AV62Trn_auditwwds_11_tfauditshortdescription_sel ,
+                                              AV61Trn_auditwwds_10_tfauditshortdescription ,
                                               A422AuditAction ,
                                               A417AuditTableName ,
-                                              A419AuditShortDescription ,
                                               A421AuditUserName ,
+                                              A419AuditShortDescription ,
                                               A416AuditDate ,
                                               A11OrganisationId ,
-                                              AV61Udparg12 } ,
+                                              AV63Udparg12 } ,
                                               new int[]{
                                               TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE
                                               }
          });
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV51Trn_auditwwds_2_tfauditaction = StringUtil.Concat( StringUtil.RTrim( AV51Trn_auditwwds_2_tfauditaction), "%", "");
-         lV55Trn_auditwwds_6_tfaudittablename = StringUtil.Concat( StringUtil.RTrim( AV55Trn_auditwwds_6_tfaudittablename), "%", "");
-         lV57Trn_auditwwds_8_tfauditshortdescription = StringUtil.Concat( StringUtil.RTrim( AV57Trn_auditwwds_8_tfauditshortdescription), "%", "");
-         lV59Trn_auditwwds_10_tfauditusername = StringUtil.Concat( StringUtil.RTrim( AV59Trn_auditwwds_10_tfauditusername), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV55Trn_auditwwds_4_tfauditaction = StringUtil.Concat( StringUtil.RTrim( AV55Trn_auditwwds_4_tfauditaction), "%", "");
+         lV57Trn_auditwwds_6_tfaudittablename = StringUtil.Concat( StringUtil.RTrim( AV57Trn_auditwwds_6_tfaudittablename), "%", "");
+         lV59Trn_auditwwds_8_tfauditusername = StringUtil.Concat( StringUtil.RTrim( AV59Trn_auditwwds_8_tfauditusername), "%", "");
+         lV61Trn_auditwwds_10_tfauditshortdescription = StringUtil.Concat( StringUtil.RTrim( AV61Trn_auditwwds_10_tfauditshortdescription), "%", "");
          /* Using cursor P008I4 */
-         pr_default.execute(2, new Object[] {AV61Udparg12, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV51Trn_auditwwds_2_tfauditaction, AV52Trn_auditwwds_3_tfauditaction_sel, AV53Trn_auditwwds_4_tfauditdate, AV54Trn_auditwwds_5_tfauditdate_to, lV55Trn_auditwwds_6_tfaudittablename, AV56Trn_auditwwds_7_tfaudittablename_sel, lV57Trn_auditwwds_8_tfauditshortdescription, AV58Trn_auditwwds_9_tfauditshortdescription_sel, lV59Trn_auditwwds_10_tfauditusername, AV60Trn_auditwwds_11_tfauditusername_sel});
+         pr_default.execute(2, new Object[] {AV63Udparg12, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, AV53Trn_auditwwds_2_tfauditdate, AV54Trn_auditwwds_3_tfauditdate_to, lV55Trn_auditwwds_4_tfauditaction, AV56Trn_auditwwds_5_tfauditaction_sel, lV57Trn_auditwwds_6_tfaudittablename, AV58Trn_auditwwds_7_tfaudittablename_sel, lV59Trn_auditwwds_8_tfauditusername, AV60Trn_auditwwds_9_tfauditusername_sel, lV61Trn_auditwwds_10_tfauditshortdescription, AV62Trn_auditwwds_11_tfauditshortdescription_sel});
          while ( (pr_default.getStatus(2) != 101) )
          {
             BRK8I6 = false;
             A11OrganisationId = P008I4_A11OrganisationId[0];
-            A419AuditShortDescription = P008I4_A419AuditShortDescription[0];
-            A416AuditDate = P008I4_A416AuditDate[0];
             A421AuditUserName = P008I4_A421AuditUserName[0];
+            A416AuditDate = P008I4_A416AuditDate[0];
+            A419AuditShortDescription = P008I4_A419AuditShortDescription[0];
             A417AuditTableName = P008I4_A417AuditTableName[0];
             A422AuditAction = P008I4_A422AuditAction[0];
             A415AuditId = P008I4_A415AuditId[0];
             AV35count = 0;
-            while ( (pr_default.getStatus(2) != 101) && ( StringUtil.StrCmp(P008I4_A419AuditShortDescription[0], A419AuditShortDescription) == 0 ) )
+            while ( (pr_default.getStatus(2) != 101) && ( StringUtil.StrCmp(P008I4_A421AuditUserName[0], A421AuditUserName) == 0 ) )
             {
                BRK8I6 = false;
                A415AuditId = P008I4_A415AuditId[0];
@@ -525,7 +528,7 @@ namespace GeneXus.Programs {
             }
             if ( (0==AV26SkipItems) )
             {
-               AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A419AuditShortDescription)) ? "<#Empty#>" : A419AuditShortDescription);
+               AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A421AuditUserName)) ? "<#Empty#>" : A421AuditUserName);
                AV31Options.Add(AV30Option, 0);
                AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
                if ( AV31Options.Count == 10 )
@@ -549,75 +552,76 @@ namespace GeneXus.Programs {
 
       protected void S151( )
       {
-         /* 'LOADAUDITUSERNAMEOPTIONS' Routine */
+         /* 'LOADAUDITSHORTDESCRIPTIONOPTIONS' Routine */
          returnInSub = false;
-         AV21TFAuditUserName = AV25SearchTxt;
-         AV22TFAuditUserName_Sel = "";
-         AV50Trn_auditwwds_1_filterfulltext = AV47FilterFullText;
-         AV51Trn_auditwwds_2_tfauditaction = AV23TFAuditAction;
-         AV52Trn_auditwwds_3_tfauditaction_sel = AV24TFAuditAction_Sel;
-         AV53Trn_auditwwds_4_tfauditdate = AV11TFAuditDate;
-         AV54Trn_auditwwds_5_tfauditdate_to = AV12TFAuditDate_To;
-         AV55Trn_auditwwds_6_tfaudittablename = AV13TFAuditTableName;
-         AV56Trn_auditwwds_7_tfaudittablename_sel = AV14TFAuditTableName_Sel;
-         AV57Trn_auditwwds_8_tfauditshortdescription = AV17TFAuditShortDescription;
-         AV58Trn_auditwwds_9_tfauditshortdescription_sel = AV18TFAuditShortDescription_Sel;
-         AV59Trn_auditwwds_10_tfauditusername = AV21TFAuditUserName;
-         AV60Trn_auditwwds_11_tfauditusername_sel = AV22TFAuditUserName_Sel;
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
-         AV61Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV17TFAuditShortDescription = AV25SearchTxt;
+         AV18TFAuditShortDescription_Sel = "";
+         AV52Trn_auditwwds_1_filterfulltext = AV47FilterFullText;
+         AV53Trn_auditwwds_2_tfauditdate = AV11TFAuditDate;
+         AV54Trn_auditwwds_3_tfauditdate_to = AV12TFAuditDate_To;
+         AV55Trn_auditwwds_4_tfauditaction = AV23TFAuditAction;
+         AV56Trn_auditwwds_5_tfauditaction_sel = AV24TFAuditAction_Sel;
+         AV57Trn_auditwwds_6_tfaudittablename = AV13TFAuditTableName;
+         AV58Trn_auditwwds_7_tfaudittablename_sel = AV14TFAuditTableName_Sel;
+         AV59Trn_auditwwds_8_tfauditusername = AV21TFAuditUserName;
+         AV60Trn_auditwwds_9_tfauditusername_sel = AV22TFAuditUserName_Sel;
+         AV61Trn_auditwwds_10_tfauditshortdescription = AV17TFAuditShortDescription;
+         AV62Trn_auditwwds_11_tfauditshortdescription_sel = AV18TFAuditShortDescription_Sel;
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
+         AV63Udparg12 = new prc_getuserorganisationid(context).executeUdp( );
          pr_default.dynParam(3, new Object[]{ new Object[]{
-                                              AV50Trn_auditwwds_1_filterfulltext ,
-                                              AV52Trn_auditwwds_3_tfauditaction_sel ,
-                                              AV51Trn_auditwwds_2_tfauditaction ,
-                                              AV53Trn_auditwwds_4_tfauditdate ,
-                                              AV54Trn_auditwwds_5_tfauditdate_to ,
-                                              AV56Trn_auditwwds_7_tfaudittablename_sel ,
-                                              AV55Trn_auditwwds_6_tfaudittablename ,
-                                              AV58Trn_auditwwds_9_tfauditshortdescription_sel ,
-                                              AV57Trn_auditwwds_8_tfauditshortdescription ,
-                                              AV60Trn_auditwwds_11_tfauditusername_sel ,
-                                              AV59Trn_auditwwds_10_tfauditusername ,
+                                              AV52Trn_auditwwds_1_filterfulltext ,
+                                              AV53Trn_auditwwds_2_tfauditdate ,
+                                              AV54Trn_auditwwds_3_tfauditdate_to ,
+                                              AV56Trn_auditwwds_5_tfauditaction_sel ,
+                                              AV55Trn_auditwwds_4_tfauditaction ,
+                                              AV58Trn_auditwwds_7_tfaudittablename_sel ,
+                                              AV57Trn_auditwwds_6_tfaudittablename ,
+                                              AV60Trn_auditwwds_9_tfauditusername_sel ,
+                                              AV59Trn_auditwwds_8_tfauditusername ,
+                                              AV62Trn_auditwwds_11_tfauditshortdescription_sel ,
+                                              AV61Trn_auditwwds_10_tfauditshortdescription ,
                                               A422AuditAction ,
                                               A417AuditTableName ,
-                                              A419AuditShortDescription ,
                                               A421AuditUserName ,
+                                              A419AuditShortDescription ,
                                               A416AuditDate ,
                                               A11OrganisationId ,
-                                              AV61Udparg12 } ,
+                                              AV63Udparg12 } ,
                                               new int[]{
                                               TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE
                                               }
          });
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV50Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext), "%", "");
-         lV51Trn_auditwwds_2_tfauditaction = StringUtil.Concat( StringUtil.RTrim( AV51Trn_auditwwds_2_tfauditaction), "%", "");
-         lV55Trn_auditwwds_6_tfaudittablename = StringUtil.Concat( StringUtil.RTrim( AV55Trn_auditwwds_6_tfaudittablename), "%", "");
-         lV57Trn_auditwwds_8_tfauditshortdescription = StringUtil.Concat( StringUtil.RTrim( AV57Trn_auditwwds_8_tfauditshortdescription), "%", "");
-         lV59Trn_auditwwds_10_tfauditusername = StringUtil.Concat( StringUtil.RTrim( AV59Trn_auditwwds_10_tfauditusername), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV52Trn_auditwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext), "%", "");
+         lV55Trn_auditwwds_4_tfauditaction = StringUtil.Concat( StringUtil.RTrim( AV55Trn_auditwwds_4_tfauditaction), "%", "");
+         lV57Trn_auditwwds_6_tfaudittablename = StringUtil.Concat( StringUtil.RTrim( AV57Trn_auditwwds_6_tfaudittablename), "%", "");
+         lV59Trn_auditwwds_8_tfauditusername = StringUtil.Concat( StringUtil.RTrim( AV59Trn_auditwwds_8_tfauditusername), "%", "");
+         lV61Trn_auditwwds_10_tfauditshortdescription = StringUtil.Concat( StringUtil.RTrim( AV61Trn_auditwwds_10_tfauditshortdescription), "%", "");
          /* Using cursor P008I5 */
-         pr_default.execute(3, new Object[] {AV61Udparg12, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV50Trn_auditwwds_1_filterfulltext, lV51Trn_auditwwds_2_tfauditaction, AV52Trn_auditwwds_3_tfauditaction_sel, AV53Trn_auditwwds_4_tfauditdate, AV54Trn_auditwwds_5_tfauditdate_to, lV55Trn_auditwwds_6_tfaudittablename, AV56Trn_auditwwds_7_tfaudittablename_sel, lV57Trn_auditwwds_8_tfauditshortdescription, AV58Trn_auditwwds_9_tfauditshortdescription_sel, lV59Trn_auditwwds_10_tfauditusername, AV60Trn_auditwwds_11_tfauditusername_sel});
+         pr_default.execute(3, new Object[] {AV63Udparg12, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, lV52Trn_auditwwds_1_filterfulltext, AV53Trn_auditwwds_2_tfauditdate, AV54Trn_auditwwds_3_tfauditdate_to, lV55Trn_auditwwds_4_tfauditaction, AV56Trn_auditwwds_5_tfauditaction_sel, lV57Trn_auditwwds_6_tfaudittablename, AV58Trn_auditwwds_7_tfaudittablename_sel, lV59Trn_auditwwds_8_tfauditusername, AV60Trn_auditwwds_9_tfauditusername_sel, lV61Trn_auditwwds_10_tfauditshortdescription, AV62Trn_auditwwds_11_tfauditshortdescription_sel});
          while ( (pr_default.getStatus(3) != 101) )
          {
             BRK8I8 = false;
             A11OrganisationId = P008I5_A11OrganisationId[0];
-            A421AuditUserName = P008I5_A421AuditUserName[0];
-            A416AuditDate = P008I5_A416AuditDate[0];
             A419AuditShortDescription = P008I5_A419AuditShortDescription[0];
+            A416AuditDate = P008I5_A416AuditDate[0];
+            A421AuditUserName = P008I5_A421AuditUserName[0];
             A417AuditTableName = P008I5_A417AuditTableName[0];
             A422AuditAction = P008I5_A422AuditAction[0];
             A415AuditId = P008I5_A415AuditId[0];
             AV35count = 0;
-            while ( (pr_default.getStatus(3) != 101) && ( StringUtil.StrCmp(P008I5_A421AuditUserName[0], A421AuditUserName) == 0 ) )
+            while ( (pr_default.getStatus(3) != 101) && ( StringUtil.StrCmp(P008I5_A419AuditShortDescription[0], A419AuditShortDescription) == 0 ) )
             {
                BRK8I8 = false;
                A415AuditId = P008I5_A415AuditId[0];
@@ -627,7 +631,7 @@ namespace GeneXus.Programs {
             }
             if ( (0==AV26SkipItems) )
             {
-               AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A421AuditUserName)) ? "<#Empty#>" : A421AuditUserName);
+               AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A419AuditShortDescription)) ? "<#Empty#>" : A419AuditShortDescription);
                AV31Options.Add(AV30Option, 0);
                AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
                if ( AV31Options.Count == 10 )
@@ -673,44 +677,44 @@ namespace GeneXus.Programs {
          AV38GridState = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState(context);
          AV39GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
          AV47FilterFullText = "";
-         AV23TFAuditAction = "";
-         AV24TFAuditAction_Sel = "";
          AV11TFAuditDate = (DateTime)(DateTime.MinValue);
          AV12TFAuditDate_To = (DateTime)(DateTime.MinValue);
+         AV23TFAuditAction = "";
+         AV24TFAuditAction_Sel = "";
          AV13TFAuditTableName = "";
          AV14TFAuditTableName_Sel = "";
-         AV17TFAuditShortDescription = "";
-         AV18TFAuditShortDescription_Sel = "";
          AV21TFAuditUserName = "";
          AV22TFAuditUserName_Sel = "";
-         AV50Trn_auditwwds_1_filterfulltext = "";
-         AV51Trn_auditwwds_2_tfauditaction = "";
-         AV52Trn_auditwwds_3_tfauditaction_sel = "";
-         AV53Trn_auditwwds_4_tfauditdate = (DateTime)(DateTime.MinValue);
-         AV54Trn_auditwwds_5_tfauditdate_to = (DateTime)(DateTime.MinValue);
-         AV55Trn_auditwwds_6_tfaudittablename = "";
-         AV56Trn_auditwwds_7_tfaudittablename_sel = "";
-         AV57Trn_auditwwds_8_tfauditshortdescription = "";
-         AV58Trn_auditwwds_9_tfauditshortdescription_sel = "";
-         AV59Trn_auditwwds_10_tfauditusername = "";
-         AV60Trn_auditwwds_11_tfauditusername_sel = "";
-         AV61Udparg12 = Guid.Empty;
-         lV50Trn_auditwwds_1_filterfulltext = "";
-         lV51Trn_auditwwds_2_tfauditaction = "";
-         lV55Trn_auditwwds_6_tfaudittablename = "";
-         lV57Trn_auditwwds_8_tfauditshortdescription = "";
-         lV59Trn_auditwwds_10_tfauditusername = "";
+         AV17TFAuditShortDescription = "";
+         AV18TFAuditShortDescription_Sel = "";
+         AV52Trn_auditwwds_1_filterfulltext = "";
+         AV53Trn_auditwwds_2_tfauditdate = (DateTime)(DateTime.MinValue);
+         AV54Trn_auditwwds_3_tfauditdate_to = (DateTime)(DateTime.MinValue);
+         AV55Trn_auditwwds_4_tfauditaction = "";
+         AV56Trn_auditwwds_5_tfauditaction_sel = "";
+         AV57Trn_auditwwds_6_tfaudittablename = "";
+         AV58Trn_auditwwds_7_tfaudittablename_sel = "";
+         AV59Trn_auditwwds_8_tfauditusername = "";
+         AV60Trn_auditwwds_9_tfauditusername_sel = "";
+         AV61Trn_auditwwds_10_tfauditshortdescription = "";
+         AV62Trn_auditwwds_11_tfauditshortdescription_sel = "";
+         AV63Udparg12 = Guid.Empty;
+         lV52Trn_auditwwds_1_filterfulltext = "";
+         lV55Trn_auditwwds_4_tfauditaction = "";
+         lV57Trn_auditwwds_6_tfaudittablename = "";
+         lV59Trn_auditwwds_8_tfauditusername = "";
+         lV61Trn_auditwwds_10_tfauditshortdescription = "";
          A422AuditAction = "";
          A417AuditTableName = "";
-         A419AuditShortDescription = "";
          A421AuditUserName = "";
+         A419AuditShortDescription = "";
          A416AuditDate = (DateTime)(DateTime.MinValue);
          A11OrganisationId = Guid.Empty;
          P008I2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008I2_A422AuditAction = new string[] {""} ;
          P008I2_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
-         P008I2_A421AuditUserName = new string[] {""} ;
          P008I2_A419AuditShortDescription = new string[] {""} ;
+         P008I2_A421AuditUserName = new string[] {""} ;
          P008I2_A417AuditTableName = new string[] {""} ;
          P008I2_A415AuditId = new Guid[] {Guid.Empty} ;
          A415AuditId = Guid.Empty;
@@ -718,37 +722,37 @@ namespace GeneXus.Programs {
          P008I3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008I3_A417AuditTableName = new string[] {""} ;
          P008I3_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
-         P008I3_A421AuditUserName = new string[] {""} ;
          P008I3_A419AuditShortDescription = new string[] {""} ;
+         P008I3_A421AuditUserName = new string[] {""} ;
          P008I3_A422AuditAction = new string[] {""} ;
          P008I3_A415AuditId = new Guid[] {Guid.Empty} ;
          P008I4_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P008I4_A419AuditShortDescription = new string[] {""} ;
-         P008I4_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I4_A421AuditUserName = new string[] {""} ;
+         P008I4_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
+         P008I4_A419AuditShortDescription = new string[] {""} ;
          P008I4_A417AuditTableName = new string[] {""} ;
          P008I4_A422AuditAction = new string[] {""} ;
          P008I4_A415AuditId = new Guid[] {Guid.Empty} ;
          P008I5_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P008I5_A421AuditUserName = new string[] {""} ;
-         P008I5_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I5_A419AuditShortDescription = new string[] {""} ;
+         P008I5_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
+         P008I5_A421AuditUserName = new string[] {""} ;
          P008I5_A417AuditTableName = new string[] {""} ;
          P008I5_A422AuditAction = new string[] {""} ;
          P008I5_A415AuditId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_auditwwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P008I2_A11OrganisationId, P008I2_A422AuditAction, P008I2_A416AuditDate, P008I2_A421AuditUserName, P008I2_A419AuditShortDescription, P008I2_A417AuditTableName, P008I2_A415AuditId
+               P008I2_A11OrganisationId, P008I2_A422AuditAction, P008I2_A416AuditDate, P008I2_A419AuditShortDescription, P008I2_A421AuditUserName, P008I2_A417AuditTableName, P008I2_A415AuditId
                }
                , new Object[] {
-               P008I3_A11OrganisationId, P008I3_A417AuditTableName, P008I3_A416AuditDate, P008I3_A421AuditUserName, P008I3_A419AuditShortDescription, P008I3_A422AuditAction, P008I3_A415AuditId
+               P008I3_A11OrganisationId, P008I3_A417AuditTableName, P008I3_A416AuditDate, P008I3_A419AuditShortDescription, P008I3_A421AuditUserName, P008I3_A422AuditAction, P008I3_A415AuditId
                }
                , new Object[] {
-               P008I4_A11OrganisationId, P008I4_A419AuditShortDescription, P008I4_A416AuditDate, P008I4_A421AuditUserName, P008I4_A417AuditTableName, P008I4_A422AuditAction, P008I4_A415AuditId
+               P008I4_A11OrganisationId, P008I4_A421AuditUserName, P008I4_A416AuditDate, P008I4_A419AuditShortDescription, P008I4_A417AuditTableName, P008I4_A422AuditAction, P008I4_A415AuditId
                }
                , new Object[] {
-               P008I5_A11OrganisationId, P008I5_A421AuditUserName, P008I5_A416AuditDate, P008I5_A419AuditShortDescription, P008I5_A417AuditTableName, P008I5_A422AuditAction, P008I5_A415AuditId
+               P008I5_A11OrganisationId, P008I5_A419AuditShortDescription, P008I5_A416AuditDate, P008I5_A421AuditUserName, P008I5_A417AuditTableName, P008I5_A422AuditAction, P008I5_A415AuditId
                }
             }
          );
@@ -758,12 +762,12 @@ namespace GeneXus.Programs {
       private short AV28MaxItems ;
       private short AV27PageIndex ;
       private short AV26SkipItems ;
-      private int AV48GXV1 ;
+      private int AV50GXV1 ;
       private long AV35count ;
       private DateTime AV11TFAuditDate ;
       private DateTime AV12TFAuditDate_To ;
-      private DateTime AV53Trn_auditwwds_4_tfauditdate ;
-      private DateTime AV54Trn_auditwwds_5_tfauditdate_to ;
+      private DateTime AV53Trn_auditwwds_2_tfauditdate ;
+      private DateTime AV54Trn_auditwwds_3_tfauditdate_to ;
       private DateTime A416AuditDate ;
       private bool returnInSub ;
       private bool BRK8I2 ;
@@ -782,30 +786,30 @@ namespace GeneXus.Programs {
       private string AV24TFAuditAction_Sel ;
       private string AV13TFAuditTableName ;
       private string AV14TFAuditTableName_Sel ;
-      private string AV17TFAuditShortDescription ;
-      private string AV18TFAuditShortDescription_Sel ;
       private string AV21TFAuditUserName ;
       private string AV22TFAuditUserName_Sel ;
-      private string AV50Trn_auditwwds_1_filterfulltext ;
-      private string AV51Trn_auditwwds_2_tfauditaction ;
-      private string AV52Trn_auditwwds_3_tfauditaction_sel ;
-      private string AV55Trn_auditwwds_6_tfaudittablename ;
-      private string AV56Trn_auditwwds_7_tfaudittablename_sel ;
-      private string AV57Trn_auditwwds_8_tfauditshortdescription ;
-      private string AV58Trn_auditwwds_9_tfauditshortdescription_sel ;
-      private string AV59Trn_auditwwds_10_tfauditusername ;
-      private string AV60Trn_auditwwds_11_tfauditusername_sel ;
-      private string lV50Trn_auditwwds_1_filterfulltext ;
-      private string lV51Trn_auditwwds_2_tfauditaction ;
-      private string lV55Trn_auditwwds_6_tfaudittablename ;
-      private string lV57Trn_auditwwds_8_tfauditshortdescription ;
-      private string lV59Trn_auditwwds_10_tfauditusername ;
+      private string AV17TFAuditShortDescription ;
+      private string AV18TFAuditShortDescription_Sel ;
+      private string AV52Trn_auditwwds_1_filterfulltext ;
+      private string AV55Trn_auditwwds_4_tfauditaction ;
+      private string AV56Trn_auditwwds_5_tfauditaction_sel ;
+      private string AV57Trn_auditwwds_6_tfaudittablename ;
+      private string AV58Trn_auditwwds_7_tfaudittablename_sel ;
+      private string AV59Trn_auditwwds_8_tfauditusername ;
+      private string AV60Trn_auditwwds_9_tfauditusername_sel ;
+      private string AV61Trn_auditwwds_10_tfauditshortdescription ;
+      private string AV62Trn_auditwwds_11_tfauditshortdescription_sel ;
+      private string lV52Trn_auditwwds_1_filterfulltext ;
+      private string lV55Trn_auditwwds_4_tfauditaction ;
+      private string lV57Trn_auditwwds_6_tfaudittablename ;
+      private string lV59Trn_auditwwds_8_tfauditusername ;
+      private string lV61Trn_auditwwds_10_tfauditshortdescription ;
       private string A422AuditAction ;
       private string A417AuditTableName ;
-      private string A419AuditShortDescription ;
       private string A421AuditUserName ;
+      private string A419AuditShortDescription ;
       private string AV30Option ;
-      private Guid AV61Udparg12 ;
+      private Guid AV63Udparg12 ;
       private Guid A11OrganisationId ;
       private Guid A415AuditId ;
       private IGxSession AV36Session ;
@@ -821,28 +825,28 @@ namespace GeneXus.Programs {
       private Guid[] P008I2_A11OrganisationId ;
       private string[] P008I2_A422AuditAction ;
       private DateTime[] P008I2_A416AuditDate ;
-      private string[] P008I2_A421AuditUserName ;
       private string[] P008I2_A419AuditShortDescription ;
+      private string[] P008I2_A421AuditUserName ;
       private string[] P008I2_A417AuditTableName ;
       private Guid[] P008I2_A415AuditId ;
       private Guid[] P008I3_A11OrganisationId ;
       private string[] P008I3_A417AuditTableName ;
       private DateTime[] P008I3_A416AuditDate ;
-      private string[] P008I3_A421AuditUserName ;
       private string[] P008I3_A419AuditShortDescription ;
+      private string[] P008I3_A421AuditUserName ;
       private string[] P008I3_A422AuditAction ;
       private Guid[] P008I3_A415AuditId ;
       private Guid[] P008I4_A11OrganisationId ;
-      private string[] P008I4_A419AuditShortDescription ;
-      private DateTime[] P008I4_A416AuditDate ;
       private string[] P008I4_A421AuditUserName ;
+      private DateTime[] P008I4_A416AuditDate ;
+      private string[] P008I4_A419AuditShortDescription ;
       private string[] P008I4_A417AuditTableName ;
       private string[] P008I4_A422AuditAction ;
       private Guid[] P008I4_A415AuditId ;
       private Guid[] P008I5_A11OrganisationId ;
-      private string[] P008I5_A421AuditUserName ;
-      private DateTime[] P008I5_A416AuditDate ;
       private string[] P008I5_A419AuditShortDescription ;
+      private DateTime[] P008I5_A416AuditDate ;
+      private string[] P008I5_A421AuditUserName ;
       private string[] P008I5_A417AuditTableName ;
       private string[] P008I5_A422AuditAction ;
       private Guid[] P008I5_A415AuditId ;
@@ -854,34 +858,34 @@ namespace GeneXus.Programs {
    public class trn_auditwwgetfilterdata__default : DataStoreHelperBase, IDataStoreHelper
    {
       protected Object[] conditional_P008I2( IGxContext context ,
-                                             string AV50Trn_auditwwds_1_filterfulltext ,
-                                             string AV52Trn_auditwwds_3_tfauditaction_sel ,
-                                             string AV51Trn_auditwwds_2_tfauditaction ,
-                                             DateTime AV53Trn_auditwwds_4_tfauditdate ,
-                                             DateTime AV54Trn_auditwwds_5_tfauditdate_to ,
-                                             string AV56Trn_auditwwds_7_tfaudittablename_sel ,
-                                             string AV55Trn_auditwwds_6_tfaudittablename ,
-                                             string AV58Trn_auditwwds_9_tfauditshortdescription_sel ,
-                                             string AV57Trn_auditwwds_8_tfauditshortdescription ,
-                                             string AV60Trn_auditwwds_11_tfauditusername_sel ,
-                                             string AV59Trn_auditwwds_10_tfauditusername ,
+                                             string AV52Trn_auditwwds_1_filterfulltext ,
+                                             DateTime AV53Trn_auditwwds_2_tfauditdate ,
+                                             DateTime AV54Trn_auditwwds_3_tfauditdate_to ,
+                                             string AV56Trn_auditwwds_5_tfauditaction_sel ,
+                                             string AV55Trn_auditwwds_4_tfauditaction ,
+                                             string AV58Trn_auditwwds_7_tfaudittablename_sel ,
+                                             string AV57Trn_auditwwds_6_tfaudittablename ,
+                                             string AV60Trn_auditwwds_9_tfauditusername_sel ,
+                                             string AV59Trn_auditwwds_8_tfauditusername ,
+                                             string AV62Trn_auditwwds_11_tfauditshortdescription_sel ,
+                                             string AV61Trn_auditwwds_10_tfauditshortdescription ,
                                              string A422AuditAction ,
                                              string A417AuditTableName ,
-                                             string A419AuditShortDescription ,
                                              string A421AuditUserName ,
+                                             string A419AuditShortDescription ,
                                              DateTime A416AuditDate ,
                                              Guid A11OrganisationId ,
-                                             Guid AV61Udparg12 )
+                                             Guid AV63Udparg12 )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int1 = new short[15];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, AuditAction, AuditDate, AuditUserName, AuditShortDescription, AuditTableName, AuditId FROM Trn_Audit";
-         AddWhere(sWhereString, "(OrganisationId = :AV61Udparg12)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext)) )
+         scmdbuf = "SELECT OrganisationId, AuditAction, AuditDate, AuditShortDescription, AuditUserName, AuditTableName, AuditId FROM Trn_Audit";
+         AddWhere(sWhereString, "(OrganisationId = :AV63Udparg12)");
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditTableName like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV50Trn_auditwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( AuditAction like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditTableName like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV52Trn_auditwwds_1_filterfulltext))");
          }
          else
          {
@@ -890,101 +894,101 @@ namespace GeneXus.Programs {
             GXv_int1[3] = 1;
             GXv_int1[4] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_3_tfauditaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_auditwwds_2_tfauditaction)) ) )
+         if ( ! (DateTime.MinValue==AV53Trn_auditwwds_2_tfauditdate) )
          {
-            AddWhere(sWhereString, "(AuditAction like :lV51Trn_auditwwds_2_tfauditaction)");
+            AddWhere(sWhereString, "(AuditDate >= :AV53Trn_auditwwds_2_tfauditdate)");
          }
          else
          {
             GXv_int1[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_3_tfauditaction_sel)) && ! ( StringUtil.StrCmp(AV52Trn_auditwwds_3_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! (DateTime.MinValue==AV54Trn_auditwwds_3_tfauditdate_to) )
          {
-            AddWhere(sWhereString, "(AuditAction = ( :AV52Trn_auditwwds_3_tfauditaction_sel))");
+            AddWhere(sWhereString, "(AuditDate <= :AV54Trn_auditwwds_3_tfauditdate_to)");
          }
          else
          {
             GXv_int1[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV52Trn_auditwwds_3_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_5_tfauditaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_auditwwds_4_tfauditaction)) ) )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditAction))=0))");
-         }
-         if ( ! (DateTime.MinValue==AV53Trn_auditwwds_4_tfauditdate) )
-         {
-            AddWhere(sWhereString, "(AuditDate >= :AV53Trn_auditwwds_4_tfauditdate)");
+            AddWhere(sWhereString, "(AuditAction like :lV55Trn_auditwwds_4_tfauditaction)");
          }
          else
          {
             GXv_int1[7] = 1;
          }
-         if ( ! (DateTime.MinValue==AV54Trn_auditwwds_5_tfauditdate_to) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_5_tfauditaction_sel)) && ! ( StringUtil.StrCmp(AV56Trn_auditwwds_5_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditDate <= :AV54Trn_auditwwds_5_tfauditdate_to)");
+            AddWhere(sWhereString, "(AuditAction = ( :AV56Trn_auditwwds_5_tfauditaction_sel))");
          }
          else
          {
             GXv_int1[8] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_7_tfaudittablename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_auditwwds_6_tfaudittablename)) ) )
+         if ( StringUtil.StrCmp(AV56Trn_auditwwds_5_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "(AuditTableName like :lV55Trn_auditwwds_6_tfaudittablename)");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditAction))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_7_tfaudittablename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_auditwwds_6_tfaudittablename)) ) )
+         {
+            AddWhere(sWhereString, "(AuditTableName like :lV57Trn_auditwwds_6_tfaudittablename)");
          }
          else
          {
             GXv_int1[9] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_7_tfaudittablename_sel)) && ! ( StringUtil.StrCmp(AV56Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_7_tfaudittablename_sel)) && ! ( StringUtil.StrCmp(AV58Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditTableName = ( :AV56Trn_auditwwds_7_tfaudittablename_sel))");
+            AddWhere(sWhereString, "(AuditTableName = ( :AV58Trn_auditwwds_7_tfaudittablename_sel))");
          }
          else
          {
             GXv_int1[10] = 1;
          }
-         if ( StringUtil.StrCmp(AV56Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditTableName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_9_tfauditshortdescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_auditwwds_8_tfauditshortdescription)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_9_tfauditusername_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_auditwwds_8_tfauditusername)) ) )
          {
-            AddWhere(sWhereString, "(AuditShortDescription like :lV57Trn_auditwwds_8_tfauditshortdescription)");
+            AddWhere(sWhereString, "(AuditUserName like :lV59Trn_auditwwds_8_tfauditusername)");
          }
          else
          {
             GXv_int1[11] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_9_tfauditshortdescription_sel)) && ! ( StringUtil.StrCmp(AV58Trn_auditwwds_9_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_9_tfauditusername_sel)) && ! ( StringUtil.StrCmp(AV60Trn_auditwwds_9_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditShortDescription = ( :AV58Trn_auditwwds_9_tfauditshortdescription_sel))");
+            AddWhere(sWhereString, "(AuditUserName = ( :AV60Trn_auditwwds_9_tfauditusername_sel))");
          }
          else
          {
             GXv_int1[12] = 1;
          }
-         if ( StringUtil.StrCmp(AV58Trn_auditwwds_9_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_auditwwds_9_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditShortDescription))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditUserName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_11_tfauditusername_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_auditwwds_10_tfauditusername)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_auditwwds_11_tfauditshortdescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_auditwwds_10_tfauditshortdescription)) ) )
          {
-            AddWhere(sWhereString, "(AuditUserName like :lV59Trn_auditwwds_10_tfauditusername)");
+            AddWhere(sWhereString, "(AuditShortDescription like :lV61Trn_auditwwds_10_tfauditshortdescription)");
          }
          else
          {
             GXv_int1[13] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_11_tfauditusername_sel)) && ! ( StringUtil.StrCmp(AV60Trn_auditwwds_11_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_auditwwds_11_tfauditshortdescription_sel)) && ! ( StringUtil.StrCmp(AV62Trn_auditwwds_11_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditUserName = ( :AV60Trn_auditwwds_11_tfauditusername_sel))");
+            AddWhere(sWhereString, "(AuditShortDescription = ( :AV62Trn_auditwwds_11_tfauditshortdescription_sel))");
          }
          else
          {
             GXv_int1[14] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_auditwwds_11_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_auditwwds_11_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditUserName))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditShortDescription))=0))");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY AuditAction";
@@ -994,34 +998,34 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P008I3( IGxContext context ,
-                                             string AV50Trn_auditwwds_1_filterfulltext ,
-                                             string AV52Trn_auditwwds_3_tfauditaction_sel ,
-                                             string AV51Trn_auditwwds_2_tfauditaction ,
-                                             DateTime AV53Trn_auditwwds_4_tfauditdate ,
-                                             DateTime AV54Trn_auditwwds_5_tfauditdate_to ,
-                                             string AV56Trn_auditwwds_7_tfaudittablename_sel ,
-                                             string AV55Trn_auditwwds_6_tfaudittablename ,
-                                             string AV58Trn_auditwwds_9_tfauditshortdescription_sel ,
-                                             string AV57Trn_auditwwds_8_tfauditshortdescription ,
-                                             string AV60Trn_auditwwds_11_tfauditusername_sel ,
-                                             string AV59Trn_auditwwds_10_tfauditusername ,
+                                             string AV52Trn_auditwwds_1_filterfulltext ,
+                                             DateTime AV53Trn_auditwwds_2_tfauditdate ,
+                                             DateTime AV54Trn_auditwwds_3_tfauditdate_to ,
+                                             string AV56Trn_auditwwds_5_tfauditaction_sel ,
+                                             string AV55Trn_auditwwds_4_tfauditaction ,
+                                             string AV58Trn_auditwwds_7_tfaudittablename_sel ,
+                                             string AV57Trn_auditwwds_6_tfaudittablename ,
+                                             string AV60Trn_auditwwds_9_tfauditusername_sel ,
+                                             string AV59Trn_auditwwds_8_tfauditusername ,
+                                             string AV62Trn_auditwwds_11_tfauditshortdescription_sel ,
+                                             string AV61Trn_auditwwds_10_tfauditshortdescription ,
                                              string A422AuditAction ,
                                              string A417AuditTableName ,
-                                             string A419AuditShortDescription ,
                                              string A421AuditUserName ,
+                                             string A419AuditShortDescription ,
                                              DateTime A416AuditDate ,
                                              Guid A11OrganisationId ,
-                                             Guid AV61Udparg12 )
+                                             Guid AV63Udparg12 )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int3 = new short[15];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, AuditTableName, AuditDate, AuditUserName, AuditShortDescription, AuditAction, AuditId FROM Trn_Audit";
-         AddWhere(sWhereString, "(OrganisationId = :AV61Udparg12)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext)) )
+         scmdbuf = "SELECT OrganisationId, AuditTableName, AuditDate, AuditShortDescription, AuditUserName, AuditAction, AuditId FROM Trn_Audit";
+         AddWhere(sWhereString, "(OrganisationId = :AV63Udparg12)");
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditTableName like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV50Trn_auditwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( AuditAction like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditTableName like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV52Trn_auditwwds_1_filterfulltext))");
          }
          else
          {
@@ -1030,101 +1034,101 @@ namespace GeneXus.Programs {
             GXv_int3[3] = 1;
             GXv_int3[4] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_3_tfauditaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_auditwwds_2_tfauditaction)) ) )
+         if ( ! (DateTime.MinValue==AV53Trn_auditwwds_2_tfauditdate) )
          {
-            AddWhere(sWhereString, "(AuditAction like :lV51Trn_auditwwds_2_tfauditaction)");
+            AddWhere(sWhereString, "(AuditDate >= :AV53Trn_auditwwds_2_tfauditdate)");
          }
          else
          {
             GXv_int3[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_3_tfauditaction_sel)) && ! ( StringUtil.StrCmp(AV52Trn_auditwwds_3_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! (DateTime.MinValue==AV54Trn_auditwwds_3_tfauditdate_to) )
          {
-            AddWhere(sWhereString, "(AuditAction = ( :AV52Trn_auditwwds_3_tfauditaction_sel))");
+            AddWhere(sWhereString, "(AuditDate <= :AV54Trn_auditwwds_3_tfauditdate_to)");
          }
          else
          {
             GXv_int3[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV52Trn_auditwwds_3_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_5_tfauditaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_auditwwds_4_tfauditaction)) ) )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditAction))=0))");
-         }
-         if ( ! (DateTime.MinValue==AV53Trn_auditwwds_4_tfauditdate) )
-         {
-            AddWhere(sWhereString, "(AuditDate >= :AV53Trn_auditwwds_4_tfauditdate)");
+            AddWhere(sWhereString, "(AuditAction like :lV55Trn_auditwwds_4_tfauditaction)");
          }
          else
          {
             GXv_int3[7] = 1;
          }
-         if ( ! (DateTime.MinValue==AV54Trn_auditwwds_5_tfauditdate_to) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_5_tfauditaction_sel)) && ! ( StringUtil.StrCmp(AV56Trn_auditwwds_5_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditDate <= :AV54Trn_auditwwds_5_tfauditdate_to)");
+            AddWhere(sWhereString, "(AuditAction = ( :AV56Trn_auditwwds_5_tfauditaction_sel))");
          }
          else
          {
             GXv_int3[8] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_7_tfaudittablename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_auditwwds_6_tfaudittablename)) ) )
+         if ( StringUtil.StrCmp(AV56Trn_auditwwds_5_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "(AuditTableName like :lV55Trn_auditwwds_6_tfaudittablename)");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditAction))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_7_tfaudittablename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_auditwwds_6_tfaudittablename)) ) )
+         {
+            AddWhere(sWhereString, "(AuditTableName like :lV57Trn_auditwwds_6_tfaudittablename)");
          }
          else
          {
             GXv_int3[9] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_7_tfaudittablename_sel)) && ! ( StringUtil.StrCmp(AV56Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_7_tfaudittablename_sel)) && ! ( StringUtil.StrCmp(AV58Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditTableName = ( :AV56Trn_auditwwds_7_tfaudittablename_sel))");
+            AddWhere(sWhereString, "(AuditTableName = ( :AV58Trn_auditwwds_7_tfaudittablename_sel))");
          }
          else
          {
             GXv_int3[10] = 1;
          }
-         if ( StringUtil.StrCmp(AV56Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditTableName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_9_tfauditshortdescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_auditwwds_8_tfauditshortdescription)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_9_tfauditusername_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_auditwwds_8_tfauditusername)) ) )
          {
-            AddWhere(sWhereString, "(AuditShortDescription like :lV57Trn_auditwwds_8_tfauditshortdescription)");
+            AddWhere(sWhereString, "(AuditUserName like :lV59Trn_auditwwds_8_tfauditusername)");
          }
          else
          {
             GXv_int3[11] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_9_tfauditshortdescription_sel)) && ! ( StringUtil.StrCmp(AV58Trn_auditwwds_9_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_9_tfauditusername_sel)) && ! ( StringUtil.StrCmp(AV60Trn_auditwwds_9_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditShortDescription = ( :AV58Trn_auditwwds_9_tfauditshortdescription_sel))");
+            AddWhere(sWhereString, "(AuditUserName = ( :AV60Trn_auditwwds_9_tfauditusername_sel))");
          }
          else
          {
             GXv_int3[12] = 1;
          }
-         if ( StringUtil.StrCmp(AV58Trn_auditwwds_9_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_auditwwds_9_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditShortDescription))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditUserName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_11_tfauditusername_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_auditwwds_10_tfauditusername)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_auditwwds_11_tfauditshortdescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_auditwwds_10_tfauditshortdescription)) ) )
          {
-            AddWhere(sWhereString, "(AuditUserName like :lV59Trn_auditwwds_10_tfauditusername)");
+            AddWhere(sWhereString, "(AuditShortDescription like :lV61Trn_auditwwds_10_tfauditshortdescription)");
          }
          else
          {
             GXv_int3[13] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_11_tfauditusername_sel)) && ! ( StringUtil.StrCmp(AV60Trn_auditwwds_11_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_auditwwds_11_tfauditshortdescription_sel)) && ! ( StringUtil.StrCmp(AV62Trn_auditwwds_11_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditUserName = ( :AV60Trn_auditwwds_11_tfauditusername_sel))");
+            AddWhere(sWhereString, "(AuditShortDescription = ( :AV62Trn_auditwwds_11_tfauditshortdescription_sel))");
          }
          else
          {
             GXv_int3[14] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_auditwwds_11_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_auditwwds_11_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditUserName))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditShortDescription))=0))");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY AuditTableName";
@@ -1134,34 +1138,34 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_P008I4( IGxContext context ,
-                                             string AV50Trn_auditwwds_1_filterfulltext ,
-                                             string AV52Trn_auditwwds_3_tfauditaction_sel ,
-                                             string AV51Trn_auditwwds_2_tfauditaction ,
-                                             DateTime AV53Trn_auditwwds_4_tfauditdate ,
-                                             DateTime AV54Trn_auditwwds_5_tfauditdate_to ,
-                                             string AV56Trn_auditwwds_7_tfaudittablename_sel ,
-                                             string AV55Trn_auditwwds_6_tfaudittablename ,
-                                             string AV58Trn_auditwwds_9_tfauditshortdescription_sel ,
-                                             string AV57Trn_auditwwds_8_tfauditshortdescription ,
-                                             string AV60Trn_auditwwds_11_tfauditusername_sel ,
-                                             string AV59Trn_auditwwds_10_tfauditusername ,
+                                             string AV52Trn_auditwwds_1_filterfulltext ,
+                                             DateTime AV53Trn_auditwwds_2_tfauditdate ,
+                                             DateTime AV54Trn_auditwwds_3_tfauditdate_to ,
+                                             string AV56Trn_auditwwds_5_tfauditaction_sel ,
+                                             string AV55Trn_auditwwds_4_tfauditaction ,
+                                             string AV58Trn_auditwwds_7_tfaudittablename_sel ,
+                                             string AV57Trn_auditwwds_6_tfaudittablename ,
+                                             string AV60Trn_auditwwds_9_tfauditusername_sel ,
+                                             string AV59Trn_auditwwds_8_tfauditusername ,
+                                             string AV62Trn_auditwwds_11_tfauditshortdescription_sel ,
+                                             string AV61Trn_auditwwds_10_tfauditshortdescription ,
                                              string A422AuditAction ,
                                              string A417AuditTableName ,
-                                             string A419AuditShortDescription ,
                                              string A421AuditUserName ,
+                                             string A419AuditShortDescription ,
                                              DateTime A416AuditDate ,
                                              Guid A11OrganisationId ,
-                                             Guid AV61Udparg12 )
+                                             Guid AV63Udparg12 )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int5 = new short[15];
          Object[] GXv_Object6 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, AuditShortDescription, AuditDate, AuditUserName, AuditTableName, AuditAction, AuditId FROM Trn_Audit";
-         AddWhere(sWhereString, "(OrganisationId = :AV61Udparg12)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext)) )
+         scmdbuf = "SELECT OrganisationId, AuditUserName, AuditDate, AuditShortDescription, AuditTableName, AuditAction, AuditId FROM Trn_Audit";
+         AddWhere(sWhereString, "(OrganisationId = :AV63Udparg12)");
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditTableName like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV50Trn_auditwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( AuditAction like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditTableName like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV52Trn_auditwwds_1_filterfulltext))");
          }
          else
          {
@@ -1170,138 +1174,138 @@ namespace GeneXus.Programs {
             GXv_int5[3] = 1;
             GXv_int5[4] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_3_tfauditaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_auditwwds_2_tfauditaction)) ) )
+         if ( ! (DateTime.MinValue==AV53Trn_auditwwds_2_tfauditdate) )
          {
-            AddWhere(sWhereString, "(AuditAction like :lV51Trn_auditwwds_2_tfauditaction)");
+            AddWhere(sWhereString, "(AuditDate >= :AV53Trn_auditwwds_2_tfauditdate)");
          }
          else
          {
             GXv_int5[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_3_tfauditaction_sel)) && ! ( StringUtil.StrCmp(AV52Trn_auditwwds_3_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! (DateTime.MinValue==AV54Trn_auditwwds_3_tfauditdate_to) )
          {
-            AddWhere(sWhereString, "(AuditAction = ( :AV52Trn_auditwwds_3_tfauditaction_sel))");
+            AddWhere(sWhereString, "(AuditDate <= :AV54Trn_auditwwds_3_tfauditdate_to)");
          }
          else
          {
             GXv_int5[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV52Trn_auditwwds_3_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_5_tfauditaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_auditwwds_4_tfauditaction)) ) )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditAction))=0))");
-         }
-         if ( ! (DateTime.MinValue==AV53Trn_auditwwds_4_tfauditdate) )
-         {
-            AddWhere(sWhereString, "(AuditDate >= :AV53Trn_auditwwds_4_tfauditdate)");
+            AddWhere(sWhereString, "(AuditAction like :lV55Trn_auditwwds_4_tfauditaction)");
          }
          else
          {
             GXv_int5[7] = 1;
          }
-         if ( ! (DateTime.MinValue==AV54Trn_auditwwds_5_tfauditdate_to) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_5_tfauditaction_sel)) && ! ( StringUtil.StrCmp(AV56Trn_auditwwds_5_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditDate <= :AV54Trn_auditwwds_5_tfauditdate_to)");
+            AddWhere(sWhereString, "(AuditAction = ( :AV56Trn_auditwwds_5_tfauditaction_sel))");
          }
          else
          {
             GXv_int5[8] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_7_tfaudittablename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_auditwwds_6_tfaudittablename)) ) )
+         if ( StringUtil.StrCmp(AV56Trn_auditwwds_5_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "(AuditTableName like :lV55Trn_auditwwds_6_tfaudittablename)");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditAction))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_7_tfaudittablename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_auditwwds_6_tfaudittablename)) ) )
+         {
+            AddWhere(sWhereString, "(AuditTableName like :lV57Trn_auditwwds_6_tfaudittablename)");
          }
          else
          {
             GXv_int5[9] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_7_tfaudittablename_sel)) && ! ( StringUtil.StrCmp(AV56Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_7_tfaudittablename_sel)) && ! ( StringUtil.StrCmp(AV58Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditTableName = ( :AV56Trn_auditwwds_7_tfaudittablename_sel))");
+            AddWhere(sWhereString, "(AuditTableName = ( :AV58Trn_auditwwds_7_tfaudittablename_sel))");
          }
          else
          {
             GXv_int5[10] = 1;
          }
-         if ( StringUtil.StrCmp(AV56Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditTableName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_9_tfauditshortdescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_auditwwds_8_tfauditshortdescription)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_9_tfauditusername_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_auditwwds_8_tfauditusername)) ) )
          {
-            AddWhere(sWhereString, "(AuditShortDescription like :lV57Trn_auditwwds_8_tfauditshortdescription)");
+            AddWhere(sWhereString, "(AuditUserName like :lV59Trn_auditwwds_8_tfauditusername)");
          }
          else
          {
             GXv_int5[11] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_9_tfauditshortdescription_sel)) && ! ( StringUtil.StrCmp(AV58Trn_auditwwds_9_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_9_tfauditusername_sel)) && ! ( StringUtil.StrCmp(AV60Trn_auditwwds_9_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditShortDescription = ( :AV58Trn_auditwwds_9_tfauditshortdescription_sel))");
+            AddWhere(sWhereString, "(AuditUserName = ( :AV60Trn_auditwwds_9_tfauditusername_sel))");
          }
          else
          {
             GXv_int5[12] = 1;
          }
-         if ( StringUtil.StrCmp(AV58Trn_auditwwds_9_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_auditwwds_9_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditShortDescription))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditUserName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_11_tfauditusername_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_auditwwds_10_tfauditusername)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_auditwwds_11_tfauditshortdescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_auditwwds_10_tfauditshortdescription)) ) )
          {
-            AddWhere(sWhereString, "(AuditUserName like :lV59Trn_auditwwds_10_tfauditusername)");
+            AddWhere(sWhereString, "(AuditShortDescription like :lV61Trn_auditwwds_10_tfauditshortdescription)");
          }
          else
          {
             GXv_int5[13] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_11_tfauditusername_sel)) && ! ( StringUtil.StrCmp(AV60Trn_auditwwds_11_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_auditwwds_11_tfauditshortdescription_sel)) && ! ( StringUtil.StrCmp(AV62Trn_auditwwds_11_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditUserName = ( :AV60Trn_auditwwds_11_tfauditusername_sel))");
+            AddWhere(sWhereString, "(AuditShortDescription = ( :AV62Trn_auditwwds_11_tfauditshortdescription_sel))");
          }
          else
          {
             GXv_int5[14] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_auditwwds_11_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_auditwwds_11_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditUserName))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditShortDescription))=0))");
          }
          scmdbuf += sWhereString;
-         scmdbuf += " ORDER BY AuditShortDescription";
+         scmdbuf += " ORDER BY AuditUserName";
          GXv_Object6[0] = scmdbuf;
          GXv_Object6[1] = GXv_int5;
          return GXv_Object6 ;
       }
 
       protected Object[] conditional_P008I5( IGxContext context ,
-                                             string AV50Trn_auditwwds_1_filterfulltext ,
-                                             string AV52Trn_auditwwds_3_tfauditaction_sel ,
-                                             string AV51Trn_auditwwds_2_tfauditaction ,
-                                             DateTime AV53Trn_auditwwds_4_tfauditdate ,
-                                             DateTime AV54Trn_auditwwds_5_tfauditdate_to ,
-                                             string AV56Trn_auditwwds_7_tfaudittablename_sel ,
-                                             string AV55Trn_auditwwds_6_tfaudittablename ,
-                                             string AV58Trn_auditwwds_9_tfauditshortdescription_sel ,
-                                             string AV57Trn_auditwwds_8_tfauditshortdescription ,
-                                             string AV60Trn_auditwwds_11_tfauditusername_sel ,
-                                             string AV59Trn_auditwwds_10_tfauditusername ,
+                                             string AV52Trn_auditwwds_1_filterfulltext ,
+                                             DateTime AV53Trn_auditwwds_2_tfauditdate ,
+                                             DateTime AV54Trn_auditwwds_3_tfauditdate_to ,
+                                             string AV56Trn_auditwwds_5_tfauditaction_sel ,
+                                             string AV55Trn_auditwwds_4_tfauditaction ,
+                                             string AV58Trn_auditwwds_7_tfaudittablename_sel ,
+                                             string AV57Trn_auditwwds_6_tfaudittablename ,
+                                             string AV60Trn_auditwwds_9_tfauditusername_sel ,
+                                             string AV59Trn_auditwwds_8_tfauditusername ,
+                                             string AV62Trn_auditwwds_11_tfauditshortdescription_sel ,
+                                             string AV61Trn_auditwwds_10_tfauditshortdescription ,
                                              string A422AuditAction ,
                                              string A417AuditTableName ,
-                                             string A419AuditShortDescription ,
                                              string A421AuditUserName ,
+                                             string A419AuditShortDescription ,
                                              DateTime A416AuditDate ,
                                              Guid A11OrganisationId ,
-                                             Guid AV61Udparg12 )
+                                             Guid AV63Udparg12 )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int7 = new short[15];
          Object[] GXv_Object8 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, AuditUserName, AuditDate, AuditShortDescription, AuditTableName, AuditAction, AuditId FROM Trn_Audit";
-         AddWhere(sWhereString, "(OrganisationId = :AV61Udparg12)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_auditwwds_1_filterfulltext)) )
+         scmdbuf = "SELECT OrganisationId, AuditShortDescription, AuditDate, AuditUserName, AuditTableName, AuditAction, AuditId FROM Trn_Audit";
+         AddWhere(sWhereString, "(OrganisationId = :AV63Udparg12)");
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditTableName like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV50Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV50Trn_auditwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( AuditAction like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditTableName like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV52Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV52Trn_auditwwds_1_filterfulltext))");
          }
          else
          {
@@ -1310,104 +1314,104 @@ namespace GeneXus.Programs {
             GXv_int7[3] = 1;
             GXv_int7[4] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_3_tfauditaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_auditwwds_2_tfauditaction)) ) )
+         if ( ! (DateTime.MinValue==AV53Trn_auditwwds_2_tfauditdate) )
          {
-            AddWhere(sWhereString, "(AuditAction like :lV51Trn_auditwwds_2_tfauditaction)");
+            AddWhere(sWhereString, "(AuditDate >= :AV53Trn_auditwwds_2_tfauditdate)");
          }
          else
          {
             GXv_int7[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_auditwwds_3_tfauditaction_sel)) && ! ( StringUtil.StrCmp(AV52Trn_auditwwds_3_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! (DateTime.MinValue==AV54Trn_auditwwds_3_tfauditdate_to) )
          {
-            AddWhere(sWhereString, "(AuditAction = ( :AV52Trn_auditwwds_3_tfauditaction_sel))");
+            AddWhere(sWhereString, "(AuditDate <= :AV54Trn_auditwwds_3_tfauditdate_to)");
          }
          else
          {
             GXv_int7[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV52Trn_auditwwds_3_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_5_tfauditaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_auditwwds_4_tfauditaction)) ) )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditAction))=0))");
-         }
-         if ( ! (DateTime.MinValue==AV53Trn_auditwwds_4_tfauditdate) )
-         {
-            AddWhere(sWhereString, "(AuditDate >= :AV53Trn_auditwwds_4_tfauditdate)");
+            AddWhere(sWhereString, "(AuditAction like :lV55Trn_auditwwds_4_tfauditaction)");
          }
          else
          {
             GXv_int7[7] = 1;
          }
-         if ( ! (DateTime.MinValue==AV54Trn_auditwwds_5_tfauditdate_to) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_5_tfauditaction_sel)) && ! ( StringUtil.StrCmp(AV56Trn_auditwwds_5_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditDate <= :AV54Trn_auditwwds_5_tfauditdate_to)");
+            AddWhere(sWhereString, "(AuditAction = ( :AV56Trn_auditwwds_5_tfauditaction_sel))");
          }
          else
          {
             GXv_int7[8] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_7_tfaudittablename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_auditwwds_6_tfaudittablename)) ) )
+         if ( StringUtil.StrCmp(AV56Trn_auditwwds_5_tfauditaction_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "(AuditTableName like :lV55Trn_auditwwds_6_tfaudittablename)");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditAction))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_7_tfaudittablename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_auditwwds_6_tfaudittablename)) ) )
+         {
+            AddWhere(sWhereString, "(AuditTableName like :lV57Trn_auditwwds_6_tfaudittablename)");
          }
          else
          {
             GXv_int7[9] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_auditwwds_7_tfaudittablename_sel)) && ! ( StringUtil.StrCmp(AV56Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_7_tfaudittablename_sel)) && ! ( StringUtil.StrCmp(AV58Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditTableName = ( :AV56Trn_auditwwds_7_tfaudittablename_sel))");
+            AddWhere(sWhereString, "(AuditTableName = ( :AV58Trn_auditwwds_7_tfaudittablename_sel))");
          }
          else
          {
             GXv_int7[10] = 1;
          }
-         if ( StringUtil.StrCmp(AV56Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_auditwwds_7_tfaudittablename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditTableName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_9_tfauditshortdescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_auditwwds_8_tfauditshortdescription)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_9_tfauditusername_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_auditwwds_8_tfauditusername)) ) )
          {
-            AddWhere(sWhereString, "(AuditShortDescription like :lV57Trn_auditwwds_8_tfauditshortdescription)");
+            AddWhere(sWhereString, "(AuditUserName like :lV59Trn_auditwwds_8_tfauditusername)");
          }
          else
          {
             GXv_int7[11] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_auditwwds_9_tfauditshortdescription_sel)) && ! ( StringUtil.StrCmp(AV58Trn_auditwwds_9_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_9_tfauditusername_sel)) && ! ( StringUtil.StrCmp(AV60Trn_auditwwds_9_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditShortDescription = ( :AV58Trn_auditwwds_9_tfauditshortdescription_sel))");
+            AddWhere(sWhereString, "(AuditUserName = ( :AV60Trn_auditwwds_9_tfauditusername_sel))");
          }
          else
          {
             GXv_int7[12] = 1;
          }
-         if ( StringUtil.StrCmp(AV58Trn_auditwwds_9_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_auditwwds_9_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditShortDescription))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditUserName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_11_tfauditusername_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_auditwwds_10_tfauditusername)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_auditwwds_11_tfauditshortdescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_auditwwds_10_tfauditshortdescription)) ) )
          {
-            AddWhere(sWhereString, "(AuditUserName like :lV59Trn_auditwwds_10_tfauditusername)");
+            AddWhere(sWhereString, "(AuditShortDescription like :lV61Trn_auditwwds_10_tfauditshortdescription)");
          }
          else
          {
             GXv_int7[13] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_auditwwds_11_tfauditusername_sel)) && ! ( StringUtil.StrCmp(AV60Trn_auditwwds_11_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_auditwwds_11_tfauditshortdescription_sel)) && ! ( StringUtil.StrCmp(AV62Trn_auditwwds_11_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(AuditUserName = ( :AV60Trn_auditwwds_11_tfauditusername_sel))");
+            AddWhere(sWhereString, "(AuditShortDescription = ( :AV62Trn_auditwwds_11_tfauditshortdescription_sel))");
          }
          else
          {
             GXv_int7[14] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_auditwwds_11_tfauditusername_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_auditwwds_11_tfauditshortdescription_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditUserName))=0))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AuditShortDescription))=0))");
          }
          scmdbuf += sWhereString;
-         scmdbuf += " ORDER BY AuditUserName";
+         scmdbuf += " ORDER BY AuditShortDescription";
          GXv_Object8[0] = scmdbuf;
          GXv_Object8[1] = GXv_int7;
          return GXv_Object8 ;
@@ -1420,13 +1424,13 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_P008I2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (DateTime)dynConstraints[3] , (DateTime)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (DateTime)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
+                     return conditional_P008I2(context, (string)dynConstraints[0] , (DateTime)dynConstraints[1] , (DateTime)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (DateTime)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
                case 1 :
-                     return conditional_P008I3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (DateTime)dynConstraints[3] , (DateTime)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (DateTime)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
+                     return conditional_P008I3(context, (string)dynConstraints[0] , (DateTime)dynConstraints[1] , (DateTime)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (DateTime)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
                case 2 :
-                     return conditional_P008I4(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (DateTime)dynConstraints[3] , (DateTime)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (DateTime)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
+                     return conditional_P008I4(context, (string)dynConstraints[0] , (DateTime)dynConstraints[1] , (DateTime)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (DateTime)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
                case 3 :
-                     return conditional_P008I5(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (DateTime)dynConstraints[3] , (DateTime)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (DateTime)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
+                     return conditional_P008I5(context, (string)dynConstraints[0] , (DateTime)dynConstraints[1] , (DateTime)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (DateTime)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -1449,75 +1453,75 @@ namespace GeneXus.Programs {
        {
           Object[] prmP008I2;
           prmP008I2 = new Object[] {
-          new ParDef("AV61Udparg12",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV51Trn_auditwwds_2_tfauditaction",GXType.VarChar,40,0) ,
-          new ParDef("AV52Trn_auditwwds_3_tfauditaction_sel",GXType.VarChar,40,0) ,
-          new ParDef("AV53Trn_auditwwds_4_tfauditdate",GXType.DateTime,8,5) ,
-          new ParDef("AV54Trn_auditwwds_5_tfauditdate_to",GXType.DateTime,8,5) ,
-          new ParDef("lV55Trn_auditwwds_6_tfaudittablename",GXType.VarChar,100,0) ,
-          new ParDef("AV56Trn_auditwwds_7_tfaudittablename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_auditwwds_8_tfauditshortdescription",GXType.VarChar,400,0) ,
-          new ParDef("AV58Trn_auditwwds_9_tfauditshortdescription_sel",GXType.VarChar,400,0) ,
-          new ParDef("lV59Trn_auditwwds_10_tfauditusername",GXType.VarChar,100,0) ,
-          new ParDef("AV60Trn_auditwwds_11_tfauditusername_sel",GXType.VarChar,100,0)
+          new ParDef("AV63Udparg12",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("AV53Trn_auditwwds_2_tfauditdate",GXType.DateTime,8,5) ,
+          new ParDef("AV54Trn_auditwwds_3_tfauditdate_to",GXType.DateTime,8,5) ,
+          new ParDef("lV55Trn_auditwwds_4_tfauditaction",GXType.VarChar,40,0) ,
+          new ParDef("AV56Trn_auditwwds_5_tfauditaction_sel",GXType.VarChar,40,0) ,
+          new ParDef("lV57Trn_auditwwds_6_tfaudittablename",GXType.VarChar,100,0) ,
+          new ParDef("AV58Trn_auditwwds_7_tfaudittablename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV59Trn_auditwwds_8_tfauditusername",GXType.VarChar,100,0) ,
+          new ParDef("AV60Trn_auditwwds_9_tfauditusername_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV61Trn_auditwwds_10_tfauditshortdescription",GXType.VarChar,400,0) ,
+          new ParDef("AV62Trn_auditwwds_11_tfauditshortdescription_sel",GXType.VarChar,400,0)
           };
           Object[] prmP008I3;
           prmP008I3 = new Object[] {
-          new ParDef("AV61Udparg12",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV51Trn_auditwwds_2_tfauditaction",GXType.VarChar,40,0) ,
-          new ParDef("AV52Trn_auditwwds_3_tfauditaction_sel",GXType.VarChar,40,0) ,
-          new ParDef("AV53Trn_auditwwds_4_tfauditdate",GXType.DateTime,8,5) ,
-          new ParDef("AV54Trn_auditwwds_5_tfauditdate_to",GXType.DateTime,8,5) ,
-          new ParDef("lV55Trn_auditwwds_6_tfaudittablename",GXType.VarChar,100,0) ,
-          new ParDef("AV56Trn_auditwwds_7_tfaudittablename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_auditwwds_8_tfauditshortdescription",GXType.VarChar,400,0) ,
-          new ParDef("AV58Trn_auditwwds_9_tfauditshortdescription_sel",GXType.VarChar,400,0) ,
-          new ParDef("lV59Trn_auditwwds_10_tfauditusername",GXType.VarChar,100,0) ,
-          new ParDef("AV60Trn_auditwwds_11_tfauditusername_sel",GXType.VarChar,100,0)
+          new ParDef("AV63Udparg12",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("AV53Trn_auditwwds_2_tfauditdate",GXType.DateTime,8,5) ,
+          new ParDef("AV54Trn_auditwwds_3_tfauditdate_to",GXType.DateTime,8,5) ,
+          new ParDef("lV55Trn_auditwwds_4_tfauditaction",GXType.VarChar,40,0) ,
+          new ParDef("AV56Trn_auditwwds_5_tfauditaction_sel",GXType.VarChar,40,0) ,
+          new ParDef("lV57Trn_auditwwds_6_tfaudittablename",GXType.VarChar,100,0) ,
+          new ParDef("AV58Trn_auditwwds_7_tfaudittablename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV59Trn_auditwwds_8_tfauditusername",GXType.VarChar,100,0) ,
+          new ParDef("AV60Trn_auditwwds_9_tfauditusername_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV61Trn_auditwwds_10_tfauditshortdescription",GXType.VarChar,400,0) ,
+          new ParDef("AV62Trn_auditwwds_11_tfauditshortdescription_sel",GXType.VarChar,400,0)
           };
           Object[] prmP008I4;
           prmP008I4 = new Object[] {
-          new ParDef("AV61Udparg12",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV51Trn_auditwwds_2_tfauditaction",GXType.VarChar,40,0) ,
-          new ParDef("AV52Trn_auditwwds_3_tfauditaction_sel",GXType.VarChar,40,0) ,
-          new ParDef("AV53Trn_auditwwds_4_tfauditdate",GXType.DateTime,8,5) ,
-          new ParDef("AV54Trn_auditwwds_5_tfauditdate_to",GXType.DateTime,8,5) ,
-          new ParDef("lV55Trn_auditwwds_6_tfaudittablename",GXType.VarChar,100,0) ,
-          new ParDef("AV56Trn_auditwwds_7_tfaudittablename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_auditwwds_8_tfauditshortdescription",GXType.VarChar,400,0) ,
-          new ParDef("AV58Trn_auditwwds_9_tfauditshortdescription_sel",GXType.VarChar,400,0) ,
-          new ParDef("lV59Trn_auditwwds_10_tfauditusername",GXType.VarChar,100,0) ,
-          new ParDef("AV60Trn_auditwwds_11_tfauditusername_sel",GXType.VarChar,100,0)
+          new ParDef("AV63Udparg12",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("AV53Trn_auditwwds_2_tfauditdate",GXType.DateTime,8,5) ,
+          new ParDef("AV54Trn_auditwwds_3_tfauditdate_to",GXType.DateTime,8,5) ,
+          new ParDef("lV55Trn_auditwwds_4_tfauditaction",GXType.VarChar,40,0) ,
+          new ParDef("AV56Trn_auditwwds_5_tfauditaction_sel",GXType.VarChar,40,0) ,
+          new ParDef("lV57Trn_auditwwds_6_tfaudittablename",GXType.VarChar,100,0) ,
+          new ParDef("AV58Trn_auditwwds_7_tfaudittablename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV59Trn_auditwwds_8_tfauditusername",GXType.VarChar,100,0) ,
+          new ParDef("AV60Trn_auditwwds_9_tfauditusername_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV61Trn_auditwwds_10_tfauditshortdescription",GXType.VarChar,400,0) ,
+          new ParDef("AV62Trn_auditwwds_11_tfauditshortdescription_sel",GXType.VarChar,400,0)
           };
           Object[] prmP008I5;
           prmP008I5 = new Object[] {
-          new ParDef("AV61Udparg12",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV50Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV51Trn_auditwwds_2_tfauditaction",GXType.VarChar,40,0) ,
-          new ParDef("AV52Trn_auditwwds_3_tfauditaction_sel",GXType.VarChar,40,0) ,
-          new ParDef("AV53Trn_auditwwds_4_tfauditdate",GXType.DateTime,8,5) ,
-          new ParDef("AV54Trn_auditwwds_5_tfauditdate_to",GXType.DateTime,8,5) ,
-          new ParDef("lV55Trn_auditwwds_6_tfaudittablename",GXType.VarChar,100,0) ,
-          new ParDef("AV56Trn_auditwwds_7_tfaudittablename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_auditwwds_8_tfauditshortdescription",GXType.VarChar,400,0) ,
-          new ParDef("AV58Trn_auditwwds_9_tfauditshortdescription_sel",GXType.VarChar,400,0) ,
-          new ParDef("lV59Trn_auditwwds_10_tfauditusername",GXType.VarChar,100,0) ,
-          new ParDef("AV60Trn_auditwwds_11_tfauditusername_sel",GXType.VarChar,100,0)
+          new ParDef("AV63Udparg12",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV52Trn_auditwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("AV53Trn_auditwwds_2_tfauditdate",GXType.DateTime,8,5) ,
+          new ParDef("AV54Trn_auditwwds_3_tfauditdate_to",GXType.DateTime,8,5) ,
+          new ParDef("lV55Trn_auditwwds_4_tfauditaction",GXType.VarChar,40,0) ,
+          new ParDef("AV56Trn_auditwwds_5_tfauditaction_sel",GXType.VarChar,40,0) ,
+          new ParDef("lV57Trn_auditwwds_6_tfaudittablename",GXType.VarChar,100,0) ,
+          new ParDef("AV58Trn_auditwwds_7_tfaudittablename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV59Trn_auditwwds_8_tfauditusername",GXType.VarChar,100,0) ,
+          new ParDef("AV60Trn_auditwwds_9_tfauditusername_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV61Trn_auditwwds_10_tfauditshortdescription",GXType.VarChar,400,0) ,
+          new ParDef("AV62Trn_auditwwds_11_tfauditshortdescription_sel",GXType.VarChar,400,0)
           };
           def= new CursorDef[] {
               new CursorDef("P008I2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008I2,100, GxCacheFrequency.OFF ,true,false )

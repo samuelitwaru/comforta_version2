@@ -1,31 +1,34 @@
+let globalVar = null;
 class ToolBoxManager {
   constructor(editorManager, themes, icons, templates, mapping, media) {
     this.editorManager = editorManager;
+    this.getPages(editorManager);
     this.themes = themes;
-    console.log(themes)
     this.icons = icons;
     this.currentTheme = null;
     this.templates = templates;
     this.mappingsItems = mapping;
-    this.selectedFile = null
-    this.media = media
-    this.init()
+    this.selectedFile = null;
+    this.media = media;
+    this.init();
   }
 
   init() {
+    self = this;
+    console.log(this.mappingsItems);
     this.loadTheme();
-    console.log(this.themes)
     this.listThemesInSelectField();
     this.colorPalette();
     this.loadTiles();
     this.loadPageTemplates();
-    
+    this.listServices(this.editorManager);
+
     this.handleFileManager();
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const tabContents = document.querySelectorAll(".tab-content");
+    const tabButtons = document.querySelectorAll(".toolbox-tab-button");
+    const tabContents = document.querySelectorAll(".toolbox-tab-content");
     tabButtons.forEach((button) => {
       button.addEventListener("click", (e) => {
-        e.preventDefault()
+        e.preventDefault();
         tabButtons.forEach((btn) => btn.classList.remove("active"));
         tabContents.forEach((content) =>
           content.classList.remove("active-tab")
@@ -45,7 +48,7 @@ class ToolBoxManager {
     const toolsSection = document.getElementById("tools-section");
 
     mappingButton.addEventListener("click", (e) => {
-      e.preventDefault()
+      e.preventDefault();
 
       toolsSection.style.display =
         toolsSection.style.display === "none" ? "block" : "none";
@@ -57,15 +60,20 @@ class ToolBoxManager {
     });
 
     publishButton.onclick = (e) => {
-      e.preventDefault()
+      e.preventDefault();
       const data = this.editorManager.editor.getProjectData();
-      let res = mapTemplateToPageData(data)
-      console.log(res)
-    }
+      let res = mapTemplateToPageData(data);
 
-    
+      let pageId = this.editorManager.getCurrentPageId();
+      console.log(pageId);
+      if (pageId) {
+        this.updatePage(pageId, res);
+      } else {
+        this.publishPage(res);
+      }
+    };
 
-    // alignment
+    // tile title alignment
     const leftAlign = document.getElementById("align-left");
     const centerAlign = document.getElementById("align-center");
     const rightAlign = document.getElementById("align-right");
@@ -74,14 +82,14 @@ class ToolBoxManager {
       if (this.editorManager.selectedTemplateWrapper) {
         const templateBlock = this.editorManager.editor
           .getSelected()
-          .find(".tile-title")[0];
+          .find(".tile-title-section")[0];
 
         if (templateBlock) {
           templateBlock.setStyle({
             display: "flex",
-            "justify-content": "flex-start",
+            "align-self": "start",
           });
-          this.setAttributeToSelected("tile-text-align", "left")
+          this.setAttributeToSelected("tile-text-align", "left");
         }
       }
     });
@@ -90,14 +98,14 @@ class ToolBoxManager {
       if (this.editorManager.selectedTemplateWrapper) {
         const templateBlock = this.editorManager.editor
           .getSelected()
-          .find(".tile-title")[0];
+          .find(".tile-title-section")[0];
 
         if (templateBlock) {
           templateBlock.setStyle({
             display: "flex",
-            "justify-content": "center",
+            "align-self": "center",
           });
-          this.setAttributeToSelected("tile-text-align", "center")
+          this.setAttributeToSelected("tile-text-align", "center");
         }
       }
     });
@@ -106,19 +114,70 @@ class ToolBoxManager {
       if (this.editorManager.selectedTemplateWrapper) {
         const templateBlock = this.editorManager.editor
           .getSelected()
-          .find(".tile-title")[0];
+          .find(".tile-title-section")[0];
 
         if (templateBlock) {
           templateBlock.setStyle({
             display: "flex",
-            "justify-content": "flex-end",
+            "align-self": "end",
           });
-          this.setAttributeToSelected("tile-text-align", "right")
+          this.setAttributeToSelected("tile-text-align", "right");
         }
       }
     });
 
-    // open modal
+    // tile icon alignment
+    const iconLeftAlign = document.getElementById("icon-align-left");
+    const iconCenterAlign = document.getElementById("icon-align-center");
+    const iconRightAlign = document.getElementById("icon-align-right");
+
+    iconLeftAlign.addEventListener("click", () => {
+      if (this.editorManager.selectedTemplateWrapper) {
+        const templateBlock = this.editorManager.editor
+          .getSelected()
+          .find(".tile-icon-section")[0];
+        console.log("clicked");
+        if (templateBlock) {
+          templateBlock.setStyle({
+            display: "flex",
+            "align-self": "start",
+          });
+          this.setAttributeToSelected("tile-icon-align", "left");
+        }
+      }
+    });
+
+    iconCenterAlign.addEventListener("click", () => {
+      if (this.editorManager.selectedTemplateWrapper) {
+        const templateBlock = this.editorManager.editor
+          .getSelected()
+          .find(".tile-icon-section")[0];
+
+        if (templateBlock) {
+          templateBlock.setStyle({
+            display: "flex",
+            "align-self": "center",
+          });
+          this.setAttributeToSelected("tile-icon-align", "center");
+        }
+      }
+    });
+
+    iconRightAlign.addEventListener("click", () => {
+      if (this.editorManager.selectedTemplateWrapper) {
+        const templateBlock = this.editorManager.editor
+          .getSelected()
+          .find(".tile-icon-section")[0];
+
+        if (templateBlock) {
+          templateBlock.setStyle({
+            display: "flex",
+            "align-self": "end",
+          });
+          this.setAttributeToSelected("tile-icon-align", "right");
+        }
+      }
+    });
 
     // apply opacity to a bg image of a selected tile
     const imageOpacity = document.getElementById("bg-opacity");
@@ -140,11 +199,55 @@ class ToolBoxManager {
       }
     });
 
-    
+    // undo and redo
+    const um = this.editorManager.editor.UndoManager;
+    //undo
+    const undoButton = document.getElementById("undo");
+    undoButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (um.hasUndo()) {
+        um.undo();
+      }
+    });
+
+    // redo
+    const redoButton = document.getElementById("redo");
+    redoButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (um.hasRedo()) {
+        um.redo();
+      }
+    });
+
+    // Create new page
+    const createPageButton = document.getElementById("create-new-page");
+
+    createPageButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      const pageFormSection = document.getElementById("page-form");
+      pageFormSection.style.display = "block";
+      const pageInput = document.getElementById("page-title");
+      const pageSubmit = document.getElementById("page-submit");
+
+      pageSubmit.disabled = true;
+
+      pageInput.addEventListener("input", () => {
+        pageSubmit.disabled = !pageInput.value.trim();
+      });
+
+      pageSubmit.addEventListener("click", (e) => {
+        e.preventDefault();
+        const pageTitle = pageInput.value.trim();
+        if (pageTitle) {
+          // Additional check to ensure value exists
+          this.createNewpage(pageTitle);
+        }
+      });
+    });
   }
 
   listThemesInSelectField() {
-    console.log(this.themes)
+    console.log(this.themes);
     const themeSelect = document.getElementById("theme-select");
 
     this.themes.forEach((theme) => {
@@ -313,8 +416,7 @@ class ToolBoxManager {
         this.editorManager.selectedComponent.addStyle({
           "background-color": colorValue,
         });
-        this.setAttributeToSelected("tile-bgcolor", colorValue)
-
+        this.setAttributeToSelected("tile-bgcolor", colorValue);
       };
     });
   }
@@ -341,6 +443,7 @@ class ToolBoxManager {
         this.editorManager.selectedComponent.addStyle({
           color: colorValues[colorKey],
         });
+        this.setAttributeToSelected("tile-text-color", colorValues[colorKey])
       };
     });
 
@@ -348,8 +451,9 @@ class ToolBoxManager {
       const colorKey = Object.keys(colorValues)[index];
 
       box.style.backgroundColor = colorValues[colorKey];
-
+      
       box.onclick = () => {
+        alert()
         if (this.editorManager.selectedTemplateWrapper) {
           const svgIcon = this.editorManager.editor
             .getSelected()
@@ -358,6 +462,7 @@ class ToolBoxManager {
           if (svgIcon) {
             svgIcon.removeAttributes("fill");
             svgIcon.addAttributes({ fill: colorValues[colorKey] }); // Use the correct color key
+            this.setAttributeToSelected("tile-icon-color", colorValues[colorKey])
           } else {
             const message = "Svg icon not found. Try again";
             const status = "error";
@@ -395,19 +500,19 @@ class ToolBoxManager {
               .find(".tile-icon")[0];
             if (iconComponent) {
               iconComponent.components(icon.svg);
-              this.setAttributeToSelected("tile-icon", icon.svg)
+              this.setAttributeToSelected("tile-icon", icon.svg);
             }
-            const titleComponent = this.editorManager.editor
-              .getSelected()
-              .find(".tile-title")[0];
-            if (titleComponent) {
-              titleComponent.components(icon.name);
+            // const titleComponent = this.editorManager.editor
+            //   .getSelected()
+            //   .find(".tile-title-section")[0];
+            // if (titleComponent) {
+            //   titleComponent.components(icon.name);
 
-              const sidebarInputTitle = document.getElementById("tile-title");
-              if (sidebarInputTitle) {
-                sidebarInputTitle.textContent = icon.name;
-              }
-            }
+            //   const sidebarInputTitle = document.getElementById("tile-title");
+            //   if (sidebarInputTitle) {
+            //     sidebarInputTitle.textContent = icon.name;
+            //   }
+            // }
           } else {
             const message = "No tile selected. Please select a tile";
             const status = "error";
@@ -423,12 +528,12 @@ class ToolBoxManager {
       tileIcons.appendChild(iconItem);
     });
   }
-  
+
   loadPageTemplates() {
     const pageTemplates = document.getElementById("page-templates");
     this.templates.forEach((template, index) => {
       const blockElement = document.createElement("div");
-      
+
       blockElement.className = "page-template-wrapper"; // Wrapper class for each template block
       // Create the number element
       const numberElement = document.createElement("div");
@@ -438,10 +543,7 @@ class ToolBoxManager {
       templateBlock.className = "page-template-block";
       templateBlock.title = "Click to load template"; //
       templateBlock.innerHTML = `<div>${template.media}</div>`;
-      
-      
-      
-      
+
       // Prevent the image from being dragged
       // templateBlock.querySelector("img").addEventListener("dragstart", (e) => {
       //   //alert(templateBlock)
@@ -497,16 +599,16 @@ class ToolBoxManager {
     data.forEach((item, index) => {
       const li = document.createElement("li");
       const span = document.createElement("span");
-      span.textContent = item.name;
+      span.textContent = item.Name;
       li.appendChild(span);
-      li.className = this.checkActivePage(item.id) ? "selected-page" : "";
-      span.title = item.id;
+      li.className = this.checkActivePage(item.Id) ? "selected-page" : "";
+      span.title = item.Id;
 
-      if (item.children && item.children.length > 0) {
-        const childrenContainer = this.createTree(item.children); // Recursively create children
+      if (item.Children && item.Children.length > 0) {
+        const childrenContainer = this.createTree(item.Children); // Recursively create children
         li.appendChild(childrenContainer);
 
-        span.textContent = item.name + " +";
+        span.textContent = item.Name + " +";
         span.style.cursor = "pointer";
 
         span.onclick = () => {
@@ -515,13 +617,13 @@ class ToolBoxManager {
 
           span.textContent =
             childrenContainer.style.display === "none"
-              ? item.name + " +"
-              : item.name + " -";
+              ? item.Name + " +"
+              : item.Name + " -";
         };
       } else {
         span.onclick = () => {
-          this.editorManager.setCurrentPageName(item.name);
-          this.editorManager.setCurrentPageId(item.id);
+          this.editorManager.setCurrentPageName(item.Name);
+          this.editorManager.setCurrentPageId(item.Id);
 
           const editor = this.editorManager.editor;
 
@@ -537,7 +639,7 @@ class ToolBoxManager {
           const mainPage = document.getElementById("current-page-title");
           mainPage.textContent = this.updateActivePageName();
 
-          const message = `${item.name} Page loaded successfully`;
+          const message = `${item.Name} Page loaded successfully`;
           const status = "success";
           this.displayAlertMessage(message, status);
         };
@@ -560,26 +662,32 @@ class ToolBoxManager {
 
   openFileUploadModal() {
     const modal = document.createElement("div");
-    modal.className = "modal";
+    modal.className = "toolbox-modal";
 
     const modalContent = document.createElement("div");
-    modalContent.className = "modal-content";
+    modalContent.className = "toolbox-modal-content";
 
-    let fileListHtml = ``
-    this.media.forEach(file=>{
+    let fileListHtml = ``;
+
+    for (let index = 0; index < this.media.length; index++) {
+      const file = this.media[index];
       fileListHtml += `
-        <div class="file-list" id="fileList">
-          <div class="file-item valid">
-            <img src="${file.MediaUrl}" alt="File thumbnail" class="preview-image">
-            <div class="file-info"><div class="file-name">${file.MediaName}</div>
-            <div class="file-size">68 KB</div>
+        <div class="file-item valid" 
+            data-MediaId="${file.MediaId}" 
+            data-MediaUrl="${file.MediaUrl}" 
+            data-MediaName="${file.MediaName}">
+          <img src="${file.MediaUrl}" alt="${file.MediaName}" class="preview-image">
+          <div class="file-info">
+            <div class="file-name">${file.MediaName}</div>
+            <div class="file-size">${file.MediaSize}</div>
           </div>
+          <span class="status-icon" style="color: green;"></span>
         </div>
-      `
-    })
+      `;
+    }
 
     modalContent.innerHTML = `
-    <div class="modal-header">
+    <div class="toolbox-modal-header">
         <h2>Upload</h2>
         <span class="close">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
@@ -599,7 +707,6 @@ class ToolBoxManager {
         <button class="toolbox-btn toolbox-btn-primary" id="saveBtn">Save</button>
     </div>
     `;
-
     modal.appendChild(modalContent);
 
     return modal;
@@ -614,7 +721,7 @@ class ToolBoxManager {
     let allUploadedFiles = [];
 
     openModal.addEventListener("click", (e) => {
-      e.preventDefault()
+      e.preventDefault();
       if (this.editorManager.editor.getSelected()) {
         fileInputField.type = "file";
         fileInputField.multiple = true;
@@ -624,6 +731,14 @@ class ToolBoxManager {
 
         document.body.appendChild(modal);
         document.body.appendChild(fileInputField);
+
+        // add onclick event handler for file items
+        const fileItems = document.querySelectorAll(".file-item");
+        fileItems.forEach((element) => {
+          element.addEventListener("click", (e) => {
+            this.mediaFileClicked(element);
+          });
+        });
 
         modal.style.display = "flex";
 
@@ -639,10 +754,8 @@ class ToolBoxManager {
           );
           allUploadedFiles = [...allUploadedFiles, ...newFiles];
 
-          console.log(allUploadedFiles)
-
           const fileList = modal.querySelector("#fileList");
-          fileList.innerHTML = "";
+          //fileList.innerHTML = "";
 
           allUploadedFiles.forEach((file) => {
             const fileItem = document.createElement("div");
@@ -652,9 +765,7 @@ class ToolBoxManager {
             const reader = new FileReader();
             reader.onload = (e) => {
               img.src = e.target.result;
-              console.log(file.size)
-              console.log(file.type)
-              this.uploadFile(e.target.result, file.name, file.size, file.type)
+              this.uploadFile(e.target.result, file.name, file.size, file.type);
             };
             reader.readAsDataURL(file);
             img.alt = "File thumbnail";
@@ -726,14 +837,15 @@ class ToolBoxManager {
     saveBtn.onclick = () => {
       if (this.selectedFile) {
         const templateBlock = this.editorManager.editor
-            .getSelected()
-            .find(".template-block")[0];
-          templateBlock.addStyle({
-            "background-image": `url(${this.selectedFile.MediaUrl})`,
-            "background-image": `url(${`https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg`})`,
-            "background-size": "cover",
-            "background-position": "center",
-          });
+          .getSelected()
+          .find(".template-block")[0];
+        templateBlock.addStyle({
+          "background-image": `url(${this.selectedFile.MediaUrl})`,
+          "background-size": "cover",
+          "background-position": "center",
+        });
+
+        this.setAttributeToSelected("tile-bg-image-url", this.selectedFile.MediaUrl)
       }
 
       modal.style.display = "none";
@@ -742,65 +854,70 @@ class ToolBoxManager {
     };
   }
 
-  uploadFile(fileData, fileName, fileSize, fileType){
-    let tbm = this
+  uploadFile(fileData, fileName, fileSize, fileType) {
+    let tbm = this;
     if (fileData) {
       $.ajax({
-        url: 'http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/media/upload', // Replace with the actual API endpoint
-        type: 'POST', // POST request as specified in the YAML
-        
-        contentType: 'multipart/form-data', // Sending JSON as per the request body
+        url:
+          "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/media/upload", // Replace with the actual API endpoint
+        type: "POST", // POST request as specified in the YAML
+
+        contentType: "multipart/form-data", // Sending JSON as per the request body
         data: JSON.stringify({
-          "MediaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "MediaName": fileName,
-          "MediaImageData": fileData,
-          "MediaSize": fileSize,
-          "MediaType": fileType,
+          MediaId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          MediaName: fileName,
+          MediaImageData: fileData,
+          MediaSize: fileSize,
+          MediaType: fileType,
         }),
-        success: function(response) {
-            // Handle a successful response
-            console.log('Success:', response);
-            if (response.MediaId) {
-              tbm.displayMediaFile(response)
-            }
+        success: function (response) {
+          // Handle a successful response
+          console.log("Success:", response);
+          if (response.MediaId) {
+            tbm.media.push(response);
+            tbm.displayMediaFile(response);
+          }
         },
-        error: function(xhr, status, error) {
-            if(xhr.status === 404) {
-                console.error('Error 404: Not Found');
-            } else {
-                console.error('Error:', status, error);
-            }
-        }
+        error: function (xhr, status, error) {
+          if (xhr.status === 404) {
+            console.error("Error 404: Not Found");
+          } else {
+            console.error("Error:", status, error);
+          }
+        },
       });
     } else {
-      alert('Please select a file!');
+      alert("Please select a file!");
     }
   }
 
-  getMediaFiles(){
+  getMediaFiles() {
     $.ajax({
-      url: 'http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/media/', // Replace with the actual API endpoint
-      type: 'GET',
-      success: function(response) {
-          // display media files
-          console.log(response)
+      url:
+        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/media/", // Replace with the actual API endpoint
+      type: "GET",
+      success: function (response) {
+        // display media files
+        console.log(response);
       },
-      error: function(xhr, status, error) {
-          if(xhr.status === 404) {
-              console.error('Error 404: Not Found');
-          } else {
-              console.error('Error:', status, error);
-          }
-      }
+      error: function (xhr, status, error) {
+        if (xhr.status === 404) {
+          console.error("Error 404: Not Found");
+        } else {
+          console.error("Error:", status, error);
+        }
+      },
     });
   }
 
-  displayMediaFile(file){
+  displayMediaFile(file) {
+    const fileList = document.querySelector("#fileList");
     const fileItem = document.createElement("div");
     fileItem.className = "file-item";
+    fileItem.setAttribute("data-mediaid", file.MediaId);
 
     const img = document.createElement("img");
-    img.src = 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg'
+    img.src = file.MediaUrl;
     img.alt = "File thumbnail";
     img.className = "preview-image";
 
@@ -828,13 +945,9 @@ class ToolBoxManager {
 
     // Check file size limit (2MB) and file type
     const isValidSize = file.MediaSize <= 2 * 1024 * 1024;
-    const isValidType = [
-      "image/jpeg",
-      "image/jpg",
-      "image/png",
-    ].includes(file.MediaType);
-    console.log(isValidSize)
-    console.log(isValidType)
+    const isValidType = ["image/jpeg", "image/jpg", "image/png"].includes(
+      file.MediaType
+    );
 
     if (isValidSize && isValidType) {
       fileItem.classList.add("valid");
@@ -846,38 +959,43 @@ class ToolBoxManager {
       statusIcon.style.color = "red";
     }
 
-    fileItem.onclick = () => {
-      if (fileItem.classList.contains("invalid")) {
-        return;
-      }
-
-      document.querySelector(".modal-actions").style.display = "flex";
-
-      document.querySelectorAll(".file-item").forEach((el) => {
-        el.classList.remove("selected");
-        const icon = el.querySelector(".status-icon");
-        if (icon) {
-          icon.innerHTML = el.classList.contains("invalid") ? "⚠" : "";
-        }
-      });
-
-      fileItem.classList.add("selected");
-      statusIcon.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13.423" viewBox="0 0 18 13.423">
-                  <path id="Icon_awesome-check" data-name="Icon awesome-check" d="M6.114,17.736l-5.85-5.85a.9.9,0,0,1,0-1.273L1.536,9.341a.9.9,0,0,1,1.273,0L6.75,13.282l8.441-8.441a.9.9,0,0,1,1.273,0l1.273,1.273a.9.9,0,0,1,0,1.273L7.386,17.736A.9.9,0,0,1,6.114,17.736Z" transform="translate(0 -4.577)" fill="#3a9341"/>
-                </svg>
-              `;
-      statusIcon.style.color = "green";
-      this.selectedFile = file;
-    };
-
     fileInfo.appendChild(fileName);
     fileInfo.appendChild(fileSize);
 
     fileItem.appendChild(img);
     fileItem.appendChild(fileInfo);
     fileItem.appendChild(statusIcon);
+    fileItem.onclick = (e) => {
+      this.mediaFileClicked(fileItem);
+    };
     fileList.appendChild(fileItem);
+  }
+
+  mediaFileClicked(fileItem) {
+    if (fileItem.classList.contains("invalid")) {
+      return;
+    }
+    document.querySelector(".modal-actions").style.display = "flex";
+
+    document.querySelectorAll(".file-item").forEach((el) => {
+      el.classList.remove("selected");
+      const icon = el.querySelector(".status-icon");
+      if (icon) {
+        icon.innerHTML = el.classList.contains("invalid") ? "⚠" : "";
+      }
+    });
+
+    fileItem.classList.add("selected");
+    let statusIcon = fileItem.querySelector(".status-icon");
+    statusIcon.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13.423" viewBox="0 0 18 13.423">
+                <path id="Icon_awesome-check" data-name="Icon awesome-check" d="M6.114,17.736l-5.85-5.85a.9.9,0,0,1,0-1.273L1.536,9.341a.9.9,0,0,1,1.273,0L6.75,13.282l8.441-8.441a.9.9,0,0,1,1.273,0l1.273,1.273a.9.9,0,0,1,0,1.273L7.386,17.736A.9.9,0,0,1,6.114,17.736Z" transform="translate(0 -4.577)" fill="#3a9341"/>
+              </svg>
+            `;
+    statusIcon.style.color = "green";
+    this.selectedFile = this.media.find(
+      (file) => file.MediaId == fileItem.dataset.mediaid
+    );
   }
 
   popupModal() {
@@ -945,10 +1063,399 @@ class ToolBoxManager {
     }
   }
 
-  setAttributeToSelected(attributeName, attributeValue){
-    this.editorManager.editor.getSelected().addAttributes({[attributeName]: attributeValue})
+  setAttributeToSelected(attributeName, attributeValue) {
+    this.editorManager.editor
+      .getSelected()
+      .addAttributes({ [attributeName]: attributeValue });
   }
 
+  listServices(editorManager) {
+    this.getPagesService()
+      .then((pages) => {
+        const pageOptions = mapPageNamesToOptions(pages);
+        console.log('pageOptions', pageOptions)
+        console.log("pages loaded", pageOptions);
+
+        categoryData.forEach((category) => {
+          if (category.name === "Page") {
+            category.options = pageOptions;
+          }
+        });
+
+        populateDropdownMenu();
+        console.log("Updated category data:", categoryData);
+      })
+      .catch((error) => {
+        console.error("Error fetching pages:", error);
+      });
+
+    const mapPageNamesToOptions = (pages) => {
+      const pageOptions = pages.map((page) => ({
+        PageName: page.PageName,
+        PageId: page.PageId,
+      }));
+      console.log("Pages", pageOptions);
+      return pageOptions;
+    };
+
+    const categoryData = [
+      {
+        name: "Page",
+        options: [],
+      },
+      {
+        name: "Service/Product Page",
+        options: [{PageId:"2354481d-5df0-4154-92b8-2fc0aaf9b3e7", PageName:"Service Example"}],
+      },
+      {
+        name: "Dynamic Form",
+        options: ["Form A", "Form B", "Form C"],
+      },
+      {
+        name: "Call to Action",
+        options: ["Email", "SMS", "Call"],
+      },
+    ];
+
+    const populateDropdownMenu = () => {
+      const self = this;
+      const dropdownMenu = document.getElementById("dropdownMenu");
+      dropdownMenu.innerHTML = "";
+      let selectedCategory = null
+
+      categoryData.forEach((category) => {
+        const categoryElement = document.createElement("details");
+        categoryElement.classList.add("category");
+        categoryElement.setAttribute("data-category", category.name);
+
+        const summaryElement = document.createElement("summary");
+        summaryElement.innerHTML = `${category.name} <i class="fa fa-angle-right"></i>`;
+        categoryElement.appendChild(summaryElement);
+
+        const searchBox = document.createElement("div");
+        searchBox.classList.add("search-container");
+        searchBox.innerHTML = `<i class="fas fa-search search-icon"></i><input type="text" placeholder="Search" class="search-input" />`;
+        categoryElement.appendChild(searchBox);
+
+        const categoryContent = document.createElement("ul");
+        categoryContent.classList.add("category-content");
+
+        category.options.forEach((option) => {
+          const optionElement = document.createElement("li");
+          optionElement.textContent = option.PageName;
+          optionElement.id = option.PageId;
+          categoryContent.appendChild(optionElement);
+        });
+
+        categoryElement.appendChild(categoryContent);
+
+        const noRecordsMessage = document.createElement("li");
+        noRecordsMessage.textContent = "No records found";
+        noRecordsMessage.classList.add("no-records-message");
+        noRecordsMessage.style.display = "none";
+        categoryContent.appendChild(noRecordsMessage);
+
+        dropdownMenu.appendChild(categoryElement);
+      });
+
+      const dropdownHeader = document.getElementById("selectedOption");
+      const categories = document.querySelectorAll(".category");
+
+      // Toggle dropdown menu visibility
+      dropdownHeader.addEventListener("click", () => {
+        dropdownMenu.style.display =
+          dropdownMenu.style.display === "block" ? "none" : "block";
+        dropdownHeader.querySelector("i").classList.toggle("fa-angle-up");
+        dropdownHeader.querySelector("i").classList.toggle("fa-angle-down");
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (event) => {
+        if (
+          !dropdownHeader.contains(event.target) &&
+          !dropdownMenu.contains(event.target)
+        ) {
+          dropdownMenu.style.display = "none";
+          dropdownHeader.querySelector("i").classList.remove("fa-angle-up");
+          dropdownHeader.querySelector("i").classList.add("fa-angle-down");
+        }
+      });
+
+      // Toggle display of the search box based on category open state and handle icons
+      categories.forEach((category) => {
+        category.addEventListener("toggle", function () {
+          selectedCategory = category.dataset.category
+          self.setAttributeToSelected("tile-action-object", category.dataset.category)
+          const searchBox = this.querySelector(".search-container");
+          const icon = this.querySelector("summary i");
+          const isOpen = this.open;
+
+          // Close other categories if this one is opened
+          if (isOpen) {
+            categories.forEach((otherCategory) => {
+              if (otherCategory !== this) {
+                otherCategory.open = false; // Close other categories
+                otherCategory.querySelector(".search-container").style.display =
+                  "none"; // Hide other search boxes
+                otherCategory
+                  .querySelector("summary i")
+                  .classList.replace("fa-angle-down", "fa-angle-right");
+              }
+            });
+            searchBox.style.display = "block"; // Show the search box for this category
+            icon.classList.replace("fa-angle-right", "fa-angle-down"); // Change icon direction
+          } else {
+            searchBox.style.display = "none"; // Hide search box if closed
+            icon.classList.replace("fa-angle-down", "fa-angle-right"); // Change icon direction
+          }
+        });
+      });
+
+      // Handle selecting an option and displaying it in the header
+      document.querySelectorAll(".category-content li").forEach((item) => {
+        item.addEventListener("click", function () {
+          dropdownHeader.textContent = `${
+            this.closest(".category").dataset.category
+          }, ${this.textContent}`;
+
+          // add value to the tile
+          if (editorManager.editor.getSelected()) {
+            // console.log(this.editorManager.selectedTemplateWrapper);
+            const titleComponent = editorManager.editor
+              .getSelected()
+              .find(".tile-title")[0];
+
+            // add apage to a selected tile
+            const currentPageId = localStorage.getItem("pageId");
+            if (currentPageId !== undefined) {
+              self.setAttributeToSelected("tile-action-object-id", this.id)
+              console.log(self.editorManager.editor.getHtml())
+              self.addPageChild(
+                this.id,
+                currentPageId
+              );
+            }
+            
+            if (titleComponent) {
+              titleComponent.components(this.textContent);
+
+              const sidebarInputTitle = document.getElementById("tile-title");
+              if (sidebarInputTitle) {
+                sidebarInputTitle.textContent = this.textContent;
+              }
+            }
+          }
+          dropdownHeader.innerHTML += ' <i class="fa fa-angle-down"></i>';
+          dropdownMenu.style.display = "none"; // Close the dropdown menu
+        });
+      });
+
+      // Add search functionality to each search input
+      document.querySelectorAll(".search-input").forEach((input) => {
+        input.addEventListener("input", function () {
+          const filter = this.value.toLowerCase();
+          const items = this.closest(".category").querySelectorAll(
+            ".category-content li:not(.no-records-message)"
+          );
+          let hasVisibleItems = false; // Track if there are visible items
+
+          items.forEach((item) => {
+            if (item.textContent.toLowerCase().includes(filter)) {
+              item.style.display = "block";
+              hasVisibleItems = true; // At least one item is visible
+            } else {
+              item.style.display = "none";
+            }
+          });
+
+          // Show or hide the no records message
+          const noRecordsMessage = this.closest(".category").querySelector(
+            ".no-records-message"
+          );
+          noRecordsMessage.style.display = hasVisibleItems ? "none" : "block";
+        });
+      });
+    };
+  }
+
+  getPages(editorManager) {
+    $.ajax({
+      url:
+        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/pages",
+      type: "GET",
+      data: JSON.stringify({
+        PageId: "",
+      }),
+      success: function (response) {
+        this.pages = response;
+        localStorage.clear();
+        this.pages.forEach((page) => {
+          console.log('page',page)
+          if (page.PageName === "Home") {
+            editorManager.pageId = page.PageId;
+            localStorage.setItem("pageId", page.PageId);
+            localStorage.setItem("pageName", page.PageName);
+            editorManager.editor.trigger("load");
+          }
+          const localStorageKey = `page-${page.PageId}`;
+          localStorage.setItem(localStorageKey, page.PageGJSJson);
+        });
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status === 404) {
+          console.error("Error 404: Not Found");
+        } else {
+          console.error("Error:", status, error);
+        }
+      },
+    });
+  }
+
+  getPagesService() {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url:
+          "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/pages/list",
+        type: "GET",
+        data: JSON.stringify({
+          PageId: "",
+        }),
+        contentType: "application/json", // Set content type for JSON
+        success: function (response) {
+          const pages = response;
+          resolve(pages); // Resolve the promise with the pages
+        },
+        error: function (xhr, status, error) {
+          if (xhr.status === 404) {
+            console.error("Error 404: Not Found");
+          } else {
+            console.error("Error:", status, error);
+          }
+          reject(error); // Reject the promise with the error
+        },
+      });
+    });
+  }
+
+  publishPage(pageData) {
+    const pageId =
+      localStorage.getItem("pageId") || "3a438e66-6344-4e0d-8d40-ce9bf5eae096";
+
+    $.ajax({
+      url:
+        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/save-page", // Replace with the actual API endpoint
+      type: "POST",
+      data: JSON.stringify({
+        PageId: pageId,
+        PageJSON: JSON.stringify(pageData),
+        PageGJSHtml: this.editorManager.editor.getHtml(),
+        PageGJSJson: JSON.stringify(this.editorManager.editor.getProjectData()),
+        SDT_Page: pageData,
+      }),
+      success: function (response) {
+        console.log("Success:", response);
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status === 404) {
+          console.error("Error 404: Not Found");
+        } else {
+          console.error("Error:", status, error);
+        }
+      },
+    });
+  }
+
+  updatePage(pageId, pageData) {
+    let tbm = this;
+    console.log({
+      PageId: pageId,
+      PageJsonContent: JSON.stringify(pageData),
+      PageGJSHtml: this.editorManager.editor.getHtml(),
+      PageGJSJson: JSON.stringify(this.editorManager.editor.getProjectData()),
+      SDT_Page: pageData,
+    })
+    $.ajax({
+      url:
+        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/update-page", // Replace with the actual API endpoint
+      type: "POST",
+      data: JSON.stringify({
+        PageId: pageId,
+        PageJsonContent: JSON.stringify(pageData),
+        PageGJSHtml: this.editorManager.editor.getHtml(),
+        PageGJSJson: JSON.stringify(this.editorManager.editor.getProjectData()),
+        SDT_Page: pageData,
+      }),
+      success: function (response) {
+        console.log("Success:", response);
+        tbm.displayAlertMessage("Page Save Successfully", "success");
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status === 404) {
+          console.error("Error 404: Not Found");
+        } else {
+          console.error("Error:", status, error);
+        }
+      },
+    });
+  }
+
+  createNewpage(pageName) {
+    const self = this; // Store the context
+
+    $.ajax({
+      url:
+        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/create-page",
+      type: "POST",
+      contentType: "application/json", // Ensure JSON content type
+      data: JSON.stringify({ PageName: pageName }),
+      success: function (response) {
+        console.log("Success:", response);
+
+        const pageInput = document.getElementById("page-title");
+        pageInput.value = "";
+
+        // Assuming getPages returns a Promise if it is asynchronous
+        // self
+        //   .getPages(self.editorManager)
+        //   .then((data) => {
+        //     console.log("data:", data);
+        //     self.createTree(data); // Use the retrieved data here
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error retrieving pages:", error);
+        //   });
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status === 404) {
+          console.error("Error 404: Not Found");
+        } else {
+          console.error("Error:", status, error);
+        }
+      },
+    });
+  }
+
+  addPageChild(childPageId, currentPageId) {
+    $.ajax({
+      url:
+        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/add-page-children", // Replace with the actual API endpoint
+      type: "POST",
+      data: JSON.stringify({
+        ParentPageId: currentPageId,
+        ChildPageId: childPageId
+      }),
+      success: function (response) {
+        console.log("Success:", response);
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status === 404) {
+          console.error("Error 404: Not Found");
+        } else {
+          console.error("Error:", status, error);
+        }
+      },
+    });
+  }
 }
 
 class PagesManager {

@@ -14,6 +14,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtGxMap_Line.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtGxMap_Line_Point.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtGxMap_RoutePoint.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_AgendaLocation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Col.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Country_SDT_CountryItem.cs" />
@@ -28,12 +29,15 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Organisation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationSetting.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Page.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_PageChildren.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_PageStructure.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionist.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionists_SDT_ReceptionistsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Resident.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Row.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Tile.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_TileAction.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWPConfFormattingVariable.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWP_Calendar_Events_Item.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWP_Calendar_Events_Item_ActionsItem.cs" />

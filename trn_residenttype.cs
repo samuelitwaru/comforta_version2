@@ -341,7 +341,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 RequiredDataContentCell", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentTypeName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
@@ -757,7 +757,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0D22( short GX_JID )
       {
-         if ( ( GX_JID == 5 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -768,7 +768,7 @@ namespace GeneXus.Programs {
                Z97ResidentTypeName = A97ResidentTypeName;
             }
          }
-         if ( GX_JID == -5 )
+         if ( GX_JID == -6 )
          {
             Z96ResidentTypeId = A96ResidentTypeId;
             Z97ResidentTypeName = A97ResidentTypeName;
@@ -837,7 +837,7 @@ namespace GeneXus.Programs {
             RcdFound22 = 1;
             A97ResidentTypeName = T000D4_A97ResidentTypeName[0];
             AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
-            ZM0D22( -5) ;
+            ZM0D22( -6) ;
          }
          pr_default.close(2);
          OnLoadActions0D22( ) ;
@@ -852,6 +852,13 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          standaloneModal( ) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( A97ResidentTypeName)) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Type Name", ""), "", "", "", "", "", "", "", ""), 1, "RESIDENTTYPENAME");
+            AnyError = 1;
+            GX_FocusControl = edtResidentTypeName_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
       }
 
       protected void CloseExtendedTableCursors0D22( )
@@ -883,7 +890,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A96ResidentTypeId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0D22( 5) ;
+            ZM0D22( 6) ;
             RcdFound22 = 1;
             A96ResidentTypeId = T000D3_A96ResidentTypeId[0];
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
@@ -1654,7 +1661,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285255499", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014324413", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1670,7 +1677,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residenttype.js", "?20241028525550", false, true);
+         context.AddJavascriptSource("trn_residenttype.js", "?2024103014324413", false, true);
          /* End function include_jscripts */
       }
 
@@ -1761,6 +1768,7 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7ResidentTypeId","fld":"vRESIDENTTYPEID","hsh":true}]}""");
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7ResidentTypeId","fld":"vRESIDENTTYPEID","hsh":true}]}""");
          setEventMetadata("AFTER TRN","""{"handler":"E120D2","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
+         setEventMetadata("VALID_RESIDENTTYPENAME","""{"handler":"Valid_Residenttypename","iparms":[]}""");
          setEventMetadata("VALID_RESIDENTTYPEID","""{"handler":"Valid_Residenttypeid","iparms":[]}""");
          return  ;
       }

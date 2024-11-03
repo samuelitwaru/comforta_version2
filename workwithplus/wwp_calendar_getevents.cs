@@ -118,8 +118,8 @@ namespace GeneXus.Programs.workwithplus {
                                               A305AgendaCalendarStartDate ,
                                               A306AgendaCalendarEndDate ,
                                               A304AgendaCalendarTitle ,
-                                              A29LocationId ,
-                                              AV13Udparg3 } ,
+                                              AV13Udparg3 ,
+                                              A29LocationId } ,
                                               new int[]{
                                               TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE
                                               }
@@ -221,8 +221,8 @@ namespace GeneXus.Programs.workwithplus {
                                              DateTime A305AgendaCalendarStartDate ,
                                              DateTime A306AgendaCalendarEndDate ,
                                              string A304AgendaCalendarTitle ,
-                                             Guid A29LocationId ,
-                                             Guid AV13Udparg3 )
+                                             Guid AV13Udparg3 ,
+                                             Guid A29LocationId )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
@@ -250,7 +250,7 @@ namespace GeneXus.Programs.workwithplus {
             GXv_int1[5] = 1;
          }
          scmdbuf += sWhereString;
-         scmdbuf += " ORDER BY AgendaCalendarId";
+         scmdbuf += " ORDER BY LocationId";
          GXv_Object2[0] = scmdbuf;
          GXv_Object2[1] = GXv_int1;
          return GXv_Object2 ;

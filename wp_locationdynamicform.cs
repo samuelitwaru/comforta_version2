@@ -161,7 +161,7 @@ namespace GeneXus.Programs {
          AV14OrderedDsc = StringUtil.StrToBool( GetPar( "OrderedDsc"));
          AV61LocationId = StringUtil.StrToGuid( GetPar( "LocationId"));
          AV19ManageFiltersExecutionStep = (short)(Math.Round(NumberUtil.Val( GetPar( "ManageFiltersExecutionStep"), "."), 18, MidpointRounding.ToEven));
-         AV72Pgmname = GetPar( "Pgmname");
+         AV73Pgmname = GetPar( "Pgmname");
          AV15FilterFullText = GetPar( "FilterFullText");
          AV20TFWWPFormReferenceName = GetPar( "TFWWPFormReferenceName");
          AV21TFWWPFormReferenceName_Sel = GetPar( "TFWWPFormReferenceName_Sel");
@@ -184,7 +184,7 @@ namespace GeneXus.Programs {
             GxWebError = 1;
             return  ;
          }
-         gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV72Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
+         gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV73Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGrid_refresh_invoke */
       }
@@ -365,8 +365,8 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV72Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV72Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV73Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV73Pgmname, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_USERACTIONEDIT", AV49IsAuthorized_UserActionEdit);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_USERACTIONEDIT", GetSecureSignedToken( "", AV49IsAuthorized_UserActionEdit, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_USERACTIONDISPLAY", AV51IsAuthorized_UserActionDisplay);
@@ -412,8 +412,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "vDDO_WWPFORMDATEAUXDATE", context.localUtil.DToC( AV26DDO_WWPFormDateAuxDate, 0, "/"));
          GxWebStd.gx_hidden_field( context, "vDDO_WWPFORMDATEAUXDATETO", context.localUtil.DToC( AV27DDO_WWPFormDateAuxDateTo, 0, "/"));
          GxWebStd.gx_hidden_field( context, "vMANAGEFILTERSEXECUTIONSTEP", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19ManageFiltersExecutionStep), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV72Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV72Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV73Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV73Pgmname, "")), context));
          GxWebStd.gx_hidden_field( context, "vTFWWPFORMREFERENCENAME", AV20TFWWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, "vTFWWPFORMREFERENCENAME_SEL", AV21TFWWPFormReferenceName_Sel);
          GxWebStd.gx_hidden_field( context, "vTFWWPFORMTITLE", AV22TFWWPFormTitle);
@@ -1222,7 +1222,7 @@ namespace GeneXus.Programs {
                                        bool AV14OrderedDsc ,
                                        Guid AV61LocationId ,
                                        short AV19ManageFiltersExecutionStep ,
-                                       string AV72Pgmname ,
+                                       string AV73Pgmname ,
                                        string AV15FilterFullText ,
                                        string AV20TFWWPFormReferenceName ,
                                        string AV21TFWWPFormReferenceName_Sel ,
@@ -1290,42 +1290,42 @@ namespace GeneXus.Programs {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         AV72Pgmname = "WP_LocationDynamicForm";
+         AV73Pgmname = "WP_LocationDynamicForm";
       }
 
       protected int subGridclient_rec_count_fnc( )
       {
-         AV73Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
-         AV74Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
-         AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
-         AV76Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
-         AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
-         AV78Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
-         AV79Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
-         AV80Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
-         AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
-         AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
-         AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
+         AV74Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
+         AV75Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
+         AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
+         AV77Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
+         AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
+         AV79Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
+         AV80Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
+         AV81Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
+         AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
+         AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
+         AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
          GRID_nRecordCount = 0;
          pr_default.dynParam(0, new Object[]{ new Object[]{
-                                              AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel ,
-                                              AV74Wp_locationdynamicformds_2_tfwwpformreferencename ,
-                                              AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel ,
-                                              AV76Wp_locationdynamicformds_4_tfwwpformtitle ,
-                                              AV78Wp_locationdynamicformds_6_tfwwpformdate ,
-                                              AV79Wp_locationdynamicformds_7_tfwwpformdate_to ,
-                                              AV80Wp_locationdynamicformds_8_tfwwpformversionnumber ,
-                                              AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to ,
+                                              AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel ,
+                                              AV75Wp_locationdynamicformds_2_tfwwpformreferencename ,
+                                              AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel ,
+                                              AV77Wp_locationdynamicformds_4_tfwwpformtitle ,
+                                              AV79Wp_locationdynamicformds_6_tfwwpformdate ,
+                                              AV80Wp_locationdynamicformds_7_tfwwpformdate_to ,
+                                              AV81Wp_locationdynamicformds_8_tfwwpformversionnumber ,
+                                              AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to ,
                                               A208WWPFormReferenceName ,
                                               A209WWPFormTitle ,
                                               A231WWPFormDate ,
                                               A207WWPFormVersionNumber ,
                                               AV13OrderedBy ,
                                               AV14OrderedDsc ,
-                                              AV73Wp_locationdynamicformds_1_filterfulltext ,
+                                              AV74Wp_locationdynamicformds_1_filterfulltext ,
                                               A219WWPFormLatestVersionNumber ,
-                                              AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ,
-                                              AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ,
+                                              AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ,
+                                              AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ,
                                               A29LocationId ,
                                               AV61LocationId } ,
                                               new int[]{
@@ -1333,10 +1333,10 @@ namespace GeneXus.Programs {
                                               TypeConstants.SHORT
                                               }
          });
-         lV74Wp_locationdynamicformds_2_tfwwpformreferencename = StringUtil.Concat( StringUtil.RTrim( AV74Wp_locationdynamicformds_2_tfwwpformreferencename), "%", "");
-         lV76Wp_locationdynamicformds_4_tfwwpformtitle = StringUtil.Concat( StringUtil.RTrim( AV76Wp_locationdynamicformds_4_tfwwpformtitle), "%", "");
+         lV75Wp_locationdynamicformds_2_tfwwpformreferencename = StringUtil.Concat( StringUtil.RTrim( AV75Wp_locationdynamicformds_2_tfwwpformreferencename), "%", "");
+         lV77Wp_locationdynamicformds_4_tfwwpformtitle = StringUtil.Concat( StringUtil.RTrim( AV77Wp_locationdynamicformds_4_tfwwpformtitle), "%", "");
          /* Using cursor H00702 */
-         pr_default.execute(0, new Object[] {AV61LocationId, lV74Wp_locationdynamicformds_2_tfwwpformreferencename, AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel, lV76Wp_locationdynamicformds_4_tfwwpformtitle, AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel, AV78Wp_locationdynamicformds_6_tfwwpformdate, AV79Wp_locationdynamicformds_7_tfwwpformdate_to, AV80Wp_locationdynamicformds_8_tfwwpformversionnumber, AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to});
+         pr_default.execute(0, new Object[] {AV61LocationId, lV75Wp_locationdynamicformds_2_tfwwpformreferencename, AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel, lV77Wp_locationdynamicformds_4_tfwwpformtitle, AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel, AV79Wp_locationdynamicformds_6_tfwwpformdate, AV80Wp_locationdynamicformds_7_tfwwpformdate_to, AV81Wp_locationdynamicformds_8_tfwwpformversionnumber, AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A242WWPFormIsForDynamicValidations = H00702_A242WWPFormIsForDynamicValidations[0];
@@ -1369,11 +1369,11 @@ namespace GeneXus.Programs {
             GXt_int1 = A219WWPFormLatestVersionNumber;
             new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int1) ;
             A219WWPFormLatestVersionNumber = GXt_int1;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV73Wp_locationdynamicformds_1_filterfulltext)) || ( ( StringUtil.Like( A208WWPFormReferenceName , StringUtil.PadR( "%" + AV73Wp_locationdynamicformds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A209WWPFormTitle , StringUtil.PadR( "%" + AV73Wp_locationdynamicformds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV73Wp_locationdynamicformds_1_filterfulltext , 254 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A219WWPFormLatestVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV73Wp_locationdynamicformds_1_filterfulltext , 254 , "%"),  ' ' ) ) ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Wp_locationdynamicformds_1_filterfulltext)) || ( ( StringUtil.Like( A208WWPFormReferenceName , StringUtil.PadR( "%" + AV74Wp_locationdynamicformds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A209WWPFormTitle , StringUtil.PadR( "%" + AV74Wp_locationdynamicformds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV74Wp_locationdynamicformds_1_filterfulltext , 254 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A219WWPFormLatestVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV74Wp_locationdynamicformds_1_filterfulltext , 254 , "%"),  ' ' ) ) ) )
             {
-               if ( (0==AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber) || ( ( A219WWPFormLatestVersionNumber >= AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ) ) )
+               if ( (0==AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber) || ( ( A219WWPFormLatestVersionNumber >= AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ) ) )
                {
-                  if ( (0==AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to) || ( ( A219WWPFormLatestVersionNumber <= AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ) ) )
+                  if ( (0==AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to) || ( ( A219WWPFormLatestVersionNumber <= AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ) ) )
                   {
                      GRID_nRecordCount = (long)(GRID_nRecordCount+1);
                   }
@@ -1428,24 +1428,24 @@ namespace GeneXus.Programs {
          {
             SubsflControlProps_372( ) ;
             pr_default.dynParam(1, new Object[]{ new Object[]{
-                                                 AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel ,
-                                                 AV74Wp_locationdynamicformds_2_tfwwpformreferencename ,
-                                                 AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel ,
-                                                 AV76Wp_locationdynamicformds_4_tfwwpformtitle ,
-                                                 AV78Wp_locationdynamicformds_6_tfwwpformdate ,
-                                                 AV79Wp_locationdynamicformds_7_tfwwpformdate_to ,
-                                                 AV80Wp_locationdynamicformds_8_tfwwpformversionnumber ,
-                                                 AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to ,
+                                                 AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel ,
+                                                 AV75Wp_locationdynamicformds_2_tfwwpformreferencename ,
+                                                 AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel ,
+                                                 AV77Wp_locationdynamicformds_4_tfwwpformtitle ,
+                                                 AV79Wp_locationdynamicformds_6_tfwwpformdate ,
+                                                 AV80Wp_locationdynamicformds_7_tfwwpformdate_to ,
+                                                 AV81Wp_locationdynamicformds_8_tfwwpformversionnumber ,
+                                                 AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to ,
                                                  A208WWPFormReferenceName ,
                                                  A209WWPFormTitle ,
                                                  A231WWPFormDate ,
                                                  A207WWPFormVersionNumber ,
                                                  AV13OrderedBy ,
                                                  AV14OrderedDsc ,
-                                                 AV73Wp_locationdynamicformds_1_filterfulltext ,
+                                                 AV74Wp_locationdynamicformds_1_filterfulltext ,
                                                  A219WWPFormLatestVersionNumber ,
-                                                 AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ,
-                                                 AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ,
+                                                 AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ,
+                                                 AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ,
                                                  A29LocationId ,
                                                  AV61LocationId } ,
                                                  new int[]{
@@ -1453,10 +1453,10 @@ namespace GeneXus.Programs {
                                                  TypeConstants.SHORT
                                                  }
             });
-            lV74Wp_locationdynamicformds_2_tfwwpformreferencename = StringUtil.Concat( StringUtil.RTrim( AV74Wp_locationdynamicformds_2_tfwwpformreferencename), "%", "");
-            lV76Wp_locationdynamicformds_4_tfwwpformtitle = StringUtil.Concat( StringUtil.RTrim( AV76Wp_locationdynamicformds_4_tfwwpformtitle), "%", "");
+            lV75Wp_locationdynamicformds_2_tfwwpformreferencename = StringUtil.Concat( StringUtil.RTrim( AV75Wp_locationdynamicformds_2_tfwwpformreferencename), "%", "");
+            lV77Wp_locationdynamicformds_4_tfwwpformtitle = StringUtil.Concat( StringUtil.RTrim( AV77Wp_locationdynamicformds_4_tfwwpformtitle), "%", "");
             /* Using cursor H00703 */
-            pr_default.execute(1, new Object[] {AV61LocationId, lV74Wp_locationdynamicformds_2_tfwwpformreferencename, AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel, lV76Wp_locationdynamicformds_4_tfwwpformtitle, AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel, AV78Wp_locationdynamicformds_6_tfwwpformdate, AV79Wp_locationdynamicformds_7_tfwwpformdate_to, AV80Wp_locationdynamicformds_8_tfwwpformversionnumber, AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to});
+            pr_default.execute(1, new Object[] {AV61LocationId, lV75Wp_locationdynamicformds_2_tfwwpformreferencename, AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel, lV77Wp_locationdynamicformds_4_tfwwpformtitle, AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel, AV79Wp_locationdynamicformds_6_tfwwpformdate, AV80Wp_locationdynamicformds_7_tfwwpformdate_to, AV81Wp_locationdynamicformds_8_tfwwpformversionnumber, AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to});
             nGXsfl_37_idx = 1;
             sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
             SubsflControlProps_372( ) ;
@@ -1494,11 +1494,11 @@ namespace GeneXus.Programs {
                GXt_int1 = A219WWPFormLatestVersionNumber;
                new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int1) ;
                A219WWPFormLatestVersionNumber = GXt_int1;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV73Wp_locationdynamicformds_1_filterfulltext)) || ( ( StringUtil.Like( A208WWPFormReferenceName , StringUtil.PadR( "%" + AV73Wp_locationdynamicformds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A209WWPFormTitle , StringUtil.PadR( "%" + AV73Wp_locationdynamicformds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV73Wp_locationdynamicformds_1_filterfulltext , 254 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A219WWPFormLatestVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV73Wp_locationdynamicformds_1_filterfulltext , 254 , "%"),  ' ' ) ) ) )
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Wp_locationdynamicformds_1_filterfulltext)) || ( ( StringUtil.Like( A208WWPFormReferenceName , StringUtil.PadR( "%" + AV74Wp_locationdynamicformds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A209WWPFormTitle , StringUtil.PadR( "%" + AV74Wp_locationdynamicformds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV74Wp_locationdynamicformds_1_filterfulltext , 254 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A219WWPFormLatestVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV74Wp_locationdynamicformds_1_filterfulltext , 254 , "%"),  ' ' ) ) ) )
                {
-                  if ( (0==AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber) || ( ( A219WWPFormLatestVersionNumber >= AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ) ) )
+                  if ( (0==AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber) || ( ( A219WWPFormLatestVersionNumber >= AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ) ) )
                   {
-                     if ( (0==AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to) || ( ( A219WWPFormLatestVersionNumber <= AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ) ) )
+                     if ( (0==AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to) || ( ( A219WWPFormLatestVersionNumber <= AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ) ) )
                      {
                         /* Execute user event: Grid.Load */
                         E20702 ();
@@ -1518,8 +1518,8 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes702( )
       {
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV72Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV72Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV73Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV73Pgmname, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_USERACTIONEDIT", AV49IsAuthorized_UserActionEdit);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_USERACTIONEDIT", GetSecureSignedToken( "", AV49IsAuthorized_UserActionEdit, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_USERACTIONDISPLAY", AV51IsAuthorized_UserActionDisplay);
@@ -1573,22 +1573,22 @@ namespace GeneXus.Programs {
 
       protected short subgrid_firstpage( )
       {
-         AV73Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
-         AV74Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
-         AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
-         AV76Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
-         AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
-         AV78Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
-         AV79Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
-         AV80Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
-         AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
-         AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
-         AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
+         AV74Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
+         AV75Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
+         AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
+         AV77Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
+         AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
+         AV79Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
+         AV80Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
+         AV81Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
+         AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
+         AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
+         AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
          GRID_nFirstRecordOnPage = 0;
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV72Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV73Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1596,17 +1596,17 @@ namespace GeneXus.Programs {
 
       protected short subgrid_nextpage( )
       {
-         AV73Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
-         AV74Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
-         AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
-         AV76Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
-         AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
-         AV78Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
-         AV79Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
-         AV80Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
-         AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
-         AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
-         AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
+         AV74Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
+         AV75Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
+         AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
+         AV77Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
+         AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
+         AV79Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
+         AV80Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
+         AV81Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
+         AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
+         AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
+         AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
          if ( GRID_nEOF == 0 )
          {
             GRID_nFirstRecordOnPage = (long)(GRID_nFirstRecordOnPage+subGrid_fnc_Recordsperpage( ));
@@ -1615,7 +1615,7 @@ namespace GeneXus.Programs {
          GridContainer.AddObjectProperty("GRID_nFirstRecordOnPage", GRID_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV72Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV73Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((GRID_nEOF==0) ? 0 : 2)) ;
@@ -1623,17 +1623,17 @@ namespace GeneXus.Programs {
 
       protected short subgrid_previouspage( )
       {
-         AV73Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
-         AV74Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
-         AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
-         AV76Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
-         AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
-         AV78Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
-         AV79Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
-         AV80Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
-         AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
-         AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
-         AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
+         AV74Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
+         AV75Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
+         AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
+         AV77Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
+         AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
+         AV79Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
+         AV80Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
+         AV81Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
+         AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
+         AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
+         AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
          if ( GRID_nFirstRecordOnPage >= subGrid_fnc_Recordsperpage( ) )
          {
             GRID_nFirstRecordOnPage = (long)(GRID_nFirstRecordOnPage-subGrid_fnc_Recordsperpage( ));
@@ -1645,7 +1645,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV72Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV73Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1653,17 +1653,17 @@ namespace GeneXus.Programs {
 
       protected short subgrid_lastpage( )
       {
-         AV73Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
-         AV74Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
-         AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
-         AV76Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
-         AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
-         AV78Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
-         AV79Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
-         AV80Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
-         AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
-         AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
-         AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
+         AV74Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
+         AV75Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
+         AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
+         AV77Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
+         AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
+         AV79Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
+         AV80Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
+         AV81Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
+         AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
+         AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
+         AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
          GRID_nRecordCount = subGrid_fnc_Recordcount( );
          if ( GRID_nRecordCount > subGrid_fnc_Recordsperpage( ) )
          {
@@ -1683,7 +1683,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV72Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV73Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1691,17 +1691,17 @@ namespace GeneXus.Programs {
 
       protected int subgrid_gotopage( int nPageNo )
       {
-         AV73Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
-         AV74Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
-         AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
-         AV76Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
-         AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
-         AV78Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
-         AV79Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
-         AV80Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
-         AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
-         AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
-         AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
+         AV74Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
+         AV75Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
+         AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
+         AV77Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
+         AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
+         AV79Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
+         AV80Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
+         AV81Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
+         AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
+         AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
+         AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
          if ( nPageNo > 0 )
          {
             GRID_nFirstRecordOnPage = (long)(subGrid_fnc_Recordsperpage( )*(nPageNo-1));
@@ -1713,7 +1713,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV72Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV73Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1721,7 +1721,7 @@ namespace GeneXus.Programs {
 
       protected void before_start_formulas( )
       {
-         AV72Pgmname = "WP_LocationDynamicForm";
+         AV73Pgmname = "WP_LocationDynamicForm";
          edtLocationDynamicFormId_Enabled = 0;
          edtOrganisationId_Enabled = 0;
          edtLocationId_Enabled = 0;
@@ -2017,20 +2017,20 @@ namespace GeneXus.Programs {
          AV38GridPageCount = subGrid_fnc_Pagecount( );
          AssignAttri("", false, "AV38GridPageCount", StringUtil.LTrimStr( (decimal)(AV38GridPageCount), 10, 0));
          GXt_char4 = AV39GridAppliedFilters;
-         new GeneXus.Programs.wwpbaseobjects.wwp_getappliedfiltersdescription(context ).execute(  AV72Pgmname, out  GXt_char4) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getappliedfiltersdescription(context ).execute(  AV73Pgmname, out  GXt_char4) ;
          AV39GridAppliedFilters = GXt_char4;
          AssignAttri("", false, "AV39GridAppliedFilters", AV39GridAppliedFilters);
-         AV73Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
-         AV74Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
-         AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
-         AV76Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
-         AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
-         AV78Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
-         AV79Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
-         AV80Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
-         AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
-         AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
-         AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
+         AV74Wp_locationdynamicformds_1_filterfulltext = AV15FilterFullText;
+         AV75Wp_locationdynamicformds_2_tfwwpformreferencename = AV20TFWWPFormReferenceName;
+         AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel = AV21TFWWPFormReferenceName_Sel;
+         AV77Wp_locationdynamicformds_4_tfwwpformtitle = AV22TFWWPFormTitle;
+         AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel = AV23TFWWPFormTitle_Sel;
+         AV79Wp_locationdynamicformds_6_tfwwpformdate = AV24TFWWPFormDate;
+         AV80Wp_locationdynamicformds_7_tfwwpformdate_to = AV25TFWWPFormDate_To;
+         AV81Wp_locationdynamicformds_8_tfwwpformversionnumber = AV29TFWWPFormVersionNumber;
+         AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to = AV30TFWWPFormVersionNumber_To;
+         AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber = AV31TFWWPFormLatestVersionNumber;
+         AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to = AV32TFWWPFormLatestVersionNumber_To;
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
@@ -2153,6 +2153,7 @@ namespace GeneXus.Programs {
             {
                cmbavActiongroup.addItem("5", StringUtil.Format( "%1;%2", context.GetMessage( "Filled forms", ""), "far fa-eye", "", "", "", "", "", "", ""), 0);
             }
+            cmbavActiongroup.addItem("6", StringUtil.Format( "%1;%2", context.GetMessage( "fill out form", ""), "fas fa-file-circle-plus", "", "", "", "", "", "", ""), 0);
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -2200,7 +2201,7 @@ namespace GeneXus.Programs {
                gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
             }
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("WP_LocationDynamicFormFilters")) + "," + UrlEncode(StringUtil.RTrim(AV72Pgmname+"GridState"));
+            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("WP_LocationDynamicFormFilters")) + "," + UrlEncode(StringUtil.RTrim(AV73Pgmname+"GridState"));
             context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV19ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV19ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV19ManageFiltersExecutionStep), 1, 0));
@@ -2237,7 +2238,7 @@ namespace GeneXus.Programs {
                   returnInSub = true;
                   if (true) return;
                }
-               new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV72Pgmname+"GridState",  AV18ManageFiltersXml) ;
+               new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV73Pgmname+"GridState",  AV18ManageFiltersXml) ;
                AV11GridState.FromXml(AV18ManageFiltersXml, null, "", "");
                AV13OrderedBy = AV11GridState.gxTpr_Orderedby;
                AssignAttri("", false, "AV13OrderedBy", StringUtil.LTrimStr( (decimal)(AV13OrderedBy), 4, 0));
@@ -2319,6 +2320,16 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
+         else if ( AV71ActionGroup == 6 )
+         {
+            /* Execute user subroutine: 'DO USERACTIONFILLOUTFORM' */
+            S242 ();
+            if ( returnInSub )
+            {
+               returnInSub = true;
+               if (true) return;
+            }
+         }
          AV71ActionGroup = 0;
          AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV71ActionGroup), 4, 0));
          /*  Sending Event outputs  */
@@ -2335,7 +2346,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Dvelop_confirmpanel_useractiondelete_Result, "Yes") == 0 )
          {
             /* Execute user subroutine: 'DO ACTION USERACTIONDELETE' */
-            S242 ();
+            S252 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2546,15 +2557,15 @@ namespace GeneXus.Programs {
          AV55NewWWPForm.gxTpr_Wwpformvalidations = AV52WWPForm.gxTpr_Wwpformvalidations;
          AV55NewWWPForm.gxTpr_Wwpformresume = AV52WWPForm.gxTpr_Wwpformresume;
          AV55NewWWPForm.gxTpr_Wwpformresumemessage = AV52WWPForm.gxTpr_Wwpformresumemessage;
-         AV85GXV1 = 1;
-         while ( AV85GXV1 <= AV52WWPForm.gxTpr_Element.Count )
+         AV86GXV1 = 1;
+         while ( AV86GXV1 <= AV52WWPForm.gxTpr_Element.Count )
          {
-            AV56Element = ((GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element)AV52WWPForm.gxTpr_Element.Item(AV85GXV1));
+            AV56Element = ((GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element)AV52WWPForm.gxTpr_Element.Item(AV86GXV1));
             if ( AV56Element.gxTpr_Wwpformelementparentid >= 0 )
             {
                AV55NewWWPForm.gxTpr_Element.Add(AV56Element, 0);
             }
-            AV85GXV1 = (int)(AV85GXV1+1);
+            AV86GXV1 = (int)(AV86GXV1+1);
          }
          if ( AV55NewWWPForm.Insert() )
          {
@@ -2573,26 +2584,26 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  AV87GXV3 = 1;
-                  AV86GXV2 = AV62Trn_LocationDynamicForm.GetMessages();
-                  while ( AV87GXV3 <= AV86GXV2.Count )
+                  AV88GXV3 = 1;
+                  AV87GXV2 = AV62Trn_LocationDynamicForm.GetMessages();
+                  while ( AV88GXV3 <= AV87GXV2.Count )
                   {
-                     AV57Message = ((GeneXus.Utils.SdtMessages_Message)AV86GXV2.Item(AV87GXV3));
+                     AV57Message = ((GeneXus.Utils.SdtMessages_Message)AV87GXV2.Item(AV88GXV3));
                      GX_msglist.addItem(AV57Message.gxTpr_Description);
-                     AV87GXV3 = (int)(AV87GXV3+1);
+                     AV88GXV3 = (int)(AV88GXV3+1);
                   }
                }
             }
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_DF_Copy_SuccessTitle", ""),  context.GetMessage( "WWP_DF_Copy_Success", ""),  "success",  "",  "na",  ""));
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV72Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV73Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
          }
          else
          {
-            AV89GXV5 = 1;
-            AV88GXV4 = AV55NewWWPForm.GetMessages();
-            while ( AV89GXV5 <= AV88GXV4.Count )
+            AV90GXV5 = 1;
+            AV89GXV4 = AV55NewWWPForm.GetMessages();
+            while ( AV90GXV5 <= AV89GXV4.Count )
             {
-               AV57Message = ((GeneXus.Utils.SdtMessages_Message)AV88GXV4.Item(AV89GXV5));
+               AV57Message = ((GeneXus.Utils.SdtMessages_Message)AV89GXV4.Item(AV90GXV5));
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58ResultMsg)) )
                {
                   AV58ResultMsg += StringUtil.NewLine( );
@@ -2600,7 +2611,7 @@ namespace GeneXus.Programs {
                }
                AV58ResultMsg += AV57Message.gxTpr_Description;
                AssignAttri("", false, "AV58ResultMsg", AV58ResultMsg);
-               AV89GXV5 = (int)(AV89GXV5+1);
+               AV90GXV5 = (int)(AV90GXV5+1);
             }
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_DF_ErrorCloning", ""),  AV58ResultMsg,  "error",  "",  "false",  ""));
          }
@@ -2616,12 +2627,12 @@ namespace GeneXus.Programs {
          this.executeUsercontrolMethod("", false, "DVELOP_CONFIRMPANEL_USERACTIONDELETEContainer", "Confirm", "", new Object[] {});
       }
 
-      protected void S242( )
+      protected void S252( )
       {
          /* 'DO ACTION USERACTIONDELETE' Routine */
          returnInSub = false;
          new prc_deletelocationform(context ).execute(  A206WWPFormId) ;
-         gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV72Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
+         gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV61LocationId, AV19ManageFiltersExecutionStep, AV73Pgmname, AV15FilterFullText, AV20TFWWPFormReferenceName, AV21TFWWPFormReferenceName_Sel, AV22TFWWPFormTitle, AV23TFWWPFormTitle_Sel, AV24TFWWPFormDate, AV25TFWWPFormDate_To, AV29TFWWPFormVersionNumber, AV30TFWWPFormVersionNumber_To, AV31TFWWPFormLatestVersionNumber, AV32TFWWPFormLatestVersionNumber_To, AV49IsAuthorized_UserActionEdit, AV51IsAuthorized_UserActionDisplay, AV70IsAuthorized_UserActionFilledForms, AV60OrganisationId, AV47WWPFormType) ;
       }
 
       protected void S232( )
@@ -2646,17 +2657,25 @@ namespace GeneXus.Programs {
          }
       }
 
+      protected void S242( )
+      {
+         /* 'DO USERACTIONFILLOUTFORM' Routine */
+         returnInSub = false;
+         CallWebObject(formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(A208WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(0,1,0)),UrlEncode(StringUtil.RTrim("INS"))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode"}) );
+         context.wjLocDisableFrm = 1;
+      }
+
       protected void S132( )
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(AV16Session.Get(AV72Pgmname+"GridState"), "") == 0 )
+         if ( StringUtil.StrCmp(AV16Session.Get(AV73Pgmname+"GridState"), "") == 0 )
          {
-            AV11GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  AV72Pgmname+"GridState"), null, "", "");
+            AV11GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  AV73Pgmname+"GridState"), null, "", "");
          }
          else
          {
-            AV11GridState.FromXml(AV16Session.Get(AV72Pgmname+"GridState"), null, "", "");
+            AV11GridState.FromXml(AV16Session.Get(AV73Pgmname+"GridState"), null, "", "");
          }
          AV13OrderedBy = AV11GridState.gxTpr_Orderedby;
          AssignAttri("", false, "AV13OrderedBy", StringUtil.LTrimStr( (decimal)(AV13OrderedBy), 4, 0));
@@ -2688,10 +2707,10 @@ namespace GeneXus.Programs {
       {
          /* 'LOADREGFILTERSSTATE' Routine */
          returnInSub = false;
-         AV90GXV6 = 1;
-         while ( AV90GXV6 <= AV11GridState.gxTpr_Filtervalues.Count )
+         AV91GXV6 = 1;
+         while ( AV91GXV6 <= AV11GridState.gxTpr_Filtervalues.Count )
          {
-            AV12GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV11GridState.gxTpr_Filtervalues.Item(AV90GXV6));
+            AV12GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV11GridState.gxTpr_Filtervalues.Item(AV91GXV6));
             if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV15FilterFullText = AV12GridStateFilterValue.gxTpr_Value;
@@ -2742,7 +2761,7 @@ namespace GeneXus.Programs {
                AV32TFWWPFormLatestVersionNumber_To = (short)(Math.Round(NumberUtil.Val( AV12GridStateFilterValue.gxTpr_Valueto, "."), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV32TFWWPFormLatestVersionNumber_To", StringUtil.LTrimStr( (decimal)(AV32TFWWPFormLatestVersionNumber_To), 4, 0));
             }
-            AV90GXV6 = (int)(AV90GXV6+1);
+            AV91GXV6 = (int)(AV91GXV6+1);
          }
          GXt_char4 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV21TFWWPFormReferenceName_Sel)),  AV21TFWWPFormReferenceName_Sel, out  GXt_char4) ;
@@ -2764,7 +2783,7 @@ namespace GeneXus.Programs {
       {
          /* 'SAVEGRIDSTATE' Routine */
          returnInSub = false;
-         AV11GridState.FromXml(AV16Session.Get(AV72Pgmname+"GridState"), null, "", "");
+         AV11GridState.FromXml(AV16Session.Get(AV73Pgmname+"GridState"), null, "", "");
          AV11GridState.gxTpr_Orderedby = AV13OrderedBy;
          AV11GridState.gxTpr_Ordereddsc = AV14OrderedDsc;
          AV11GridState.gxTpr_Filtervalues.Clear();
@@ -2776,7 +2795,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "TFWWPFORMLATESTVERSIONNUMBER",  context.GetMessage( "Latest Version", ""),  !((0==AV31TFWWPFormLatestVersionNumber)&&(0==AV32TFWWPFormLatestVersionNumber_To)),  0,  StringUtil.Trim( StringUtil.Str( (decimal)(AV31TFWWPFormLatestVersionNumber), 4, 0)),  ((0==AV31TFWWPFormLatestVersionNumber) ? "" : StringUtil.Trim( context.localUtil.Format( (decimal)(AV31TFWWPFormLatestVersionNumber), "ZZZ9"))),  true,  StringUtil.Trim( StringUtil.Str( (decimal)(AV32TFWWPFormLatestVersionNumber_To), 4, 0)),  ((0==AV32TFWWPFormLatestVersionNumber_To) ? "" : StringUtil.Trim( context.localUtil.Format( (decimal)(AV32TFWWPFormLatestVersionNumber_To), "ZZZ9")))) ;
          AV11GridState.gxTpr_Pagesize = StringUtil.Str( (decimal)(subGrid_Rows), 10, 0);
          AV11GridState.gxTpr_Currentpage = (short)(subGrid_fnc_Currentpage( ));
-         new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV72Pgmname+"GridState",  AV11GridState.ToXml(false, true, "", "")) ;
+         new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV73Pgmname+"GridState",  AV11GridState.ToXml(false, true, "", "")) ;
       }
 
       protected void S122( )
@@ -2784,7 +2803,7 @@ namespace GeneXus.Programs {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
          AV9TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
-         AV9TrnContext.gxTpr_Callerobject = AV72Pgmname;
+         AV9TrnContext.gxTpr_Callerobject = AV73Pgmname;
          AV9TrnContext.gxTpr_Callerondelete = true;
          AV9TrnContext.gxTpr_Callerurl = AV8HTTPRequest.ScriptName+"?"+AV8HTTPRequest.QueryString;
          AV9TrnContext.gxTpr_Transactionname = "Trn_LocationDynamicForm";
@@ -2875,7 +2894,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410285311886", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024103014335698", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2891,7 +2910,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_locationdynamicform.js", "?202410285311889", false, true);
+         context.AddJavascriptSource("wp_locationdynamicform.js", "?2024103014335699", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3635,20 +3654,20 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV73Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV37GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV38GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV39GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E12702","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E13702","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E12702","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV73Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E13702","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV73Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
          setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE",""","oparms":[{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]}""");
-         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E15702","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"},{"av":"Ddo_grid_Filteredtextto_get","ctrl":"DDO_GRID","prop":"FilteredTextTo_get"}]""");
+         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E15702","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV73Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"},{"av":"Ddo_grid_Filteredtextto_get","ctrl":"DDO_GRID","prop":"FilteredTextTo_get"}]""");
          setEventMetadata("DDO_GRID.ONOPTIONCLICKED",""","oparms":[{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"}]}""");
          setEventMetadata("GRID.LOAD","""{"handler":"E20702","iparms":[{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true}]""");
          setEventMetadata("GRID.LOAD",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV71ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"}]}""");
-         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E11702","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV26DDO_WWPFormDateAuxDate","fld":"vDDO_WWPFORMDATEAUXDATE"},{"av":"AV27DDO_WWPFormDateAuxDateTo","fld":"vDDO_WWPFORMDATEAUXDATETO"}]""");
+         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E11702","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV73Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV26DDO_WWPFormDateAuxDate","fld":"vDDO_WWPFORMDATEAUXDATE"},{"av":"AV27DDO_WWPFormDateAuxDateTo","fld":"vDDO_WWPFORMDATEAUXDATETO"}]""");
          setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Filteredtextto_set","ctrl":"DDO_GRID","prop":"FilteredTextTo_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV26DDO_WWPFormDateAuxDate","fld":"vDDO_WWPFORMDATEAUXDATE"},{"av":"AV27DDO_WWPFormDateAuxDateTo","fld":"vDDO_WWPFORMDATEAUXDATETO"},{"av":"AV37GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV38GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV39GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
-         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E21702","iparms":[{"av":"cmbavActiongroup"},{"av":"AV71ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9","hsh":true},{"av":"cmbWWPFormType"},{"av":"A240WWPFormType","fld":"WWPFORMTYPE","pic":"9"},{"av":"A207WWPFormVersionNumber","fld":"WWPFORMVERSIONNUMBER","pic":"ZZZ9","hsh":true},{"av":"A208WWPFormReferenceName","fld":"WWPFORMREFERENCENAME"},{"av":"AV58ResultMsg","fld":"vRESULTMSG"},{"av":"A395LocationDynamicFormId","fld":"LOCATIONDYNAMICFORMID","hsh":true},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true},{"av":"A29LocationId","fld":"LOCATIONID","hsh":true},{"av":"A209WWPFormTitle","fld":"WWPFORMTITLE"}]""");
+         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E21702","iparms":[{"av":"cmbavActiongroup"},{"av":"AV71ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV73Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9","hsh":true},{"av":"cmbWWPFormType"},{"av":"A240WWPFormType","fld":"WWPFORMTYPE","pic":"9"},{"av":"A207WWPFormVersionNumber","fld":"WWPFORMVERSIONNUMBER","pic":"ZZZ9","hsh":true},{"av":"A208WWPFormReferenceName","fld":"WWPFORMREFERENCENAME"},{"av":"AV58ResultMsg","fld":"vRESULTMSG"},{"av":"A395LocationDynamicFormId","fld":"LOCATIONDYNAMICFORMID","hsh":true},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true},{"av":"A29LocationId","fld":"LOCATIONID","hsh":true},{"av":"A209WWPFormTitle","fld":"WWPFORMTITLE"}]""");
          setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV71ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV58ResultMsg","fld":"vRESULTMSG"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV37GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV38GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV39GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("DVELOP_CONFIRMPANEL_USERACTIONDELETE.CLOSE","""{"handler":"E16702","iparms":[{"av":"Dvelop_confirmpanel_useractiondelete_Result","ctrl":"DVELOP_CONFIRMPANEL_USERACTIONDELETE","prop":"Result"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9","hsh":true}]""");
+         setEventMetadata("DVELOP_CONFIRMPANEL_USERACTIONDELETE.CLOSE","""{"handler":"E16702","iparms":[{"av":"Dvelop_confirmpanel_useractiondelete_Result","ctrl":"DVELOP_CONFIRMPANEL_USERACTIONDELETE","prop":"Result"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV61LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV73Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFWWPFormReferenceName","fld":"vTFWWPFORMREFERENCENAME"},{"av":"AV21TFWWPFormReferenceName_Sel","fld":"vTFWWPFORMREFERENCENAME_SEL"},{"av":"AV22TFWWPFormTitle","fld":"vTFWWPFORMTITLE"},{"av":"AV23TFWWPFormTitle_Sel","fld":"vTFWWPFORMTITLE_SEL"},{"av":"AV24TFWWPFormDate","fld":"vTFWWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV25TFWWPFormDate_To","fld":"vTFWWPFORMDATE_TO","pic":"99/99/99 99:99"},{"av":"AV29TFWWPFormVersionNumber","fld":"vTFWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30TFWWPFormVersionNumber_To","fld":"vTFWWPFORMVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV31TFWWPFormLatestVersionNumber","fld":"vTFWWPFORMLATESTVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32TFWWPFormLatestVersionNumber_To","fld":"vTFWWPFORMLATESTVERSIONNUMBER_TO","pic":"ZZZ9"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"av":"AV60OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV47WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9","hsh":true}]""");
          setEventMetadata("DVELOP_CONFIRMPANEL_USERACTIONDELETE.CLOSE",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV37GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV38GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV39GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV49IsAuthorized_UserActionEdit","fld":"vISAUTHORIZED_USERACTIONEDIT","hsh":true},{"av":"AV51IsAuthorized_UserActionDisplay","fld":"vISAUTHORIZED_USERACTIONDISPLAY","hsh":true},{"av":"AV70IsAuthorized_UserActionFilledForms","fld":"vISAUTHORIZED_USERACTIONFILLEDFORMS","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E14702","iparms":[]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
@@ -3684,7 +3703,7 @@ namespace GeneXus.Programs {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          AV61LocationId = Guid.Empty;
-         AV72Pgmname = "";
+         AV73Pgmname = "";
          AV15FilterFullText = "";
          AV20TFWWPFormReferenceName = "";
          AV21TFWWPFormReferenceName_Sel = "";
@@ -3744,15 +3763,15 @@ namespace GeneXus.Programs {
          A235WWPFormResumeMessage = "";
          A233WWPFormValidations = "";
          A241WWPFormSectionRefElements = "";
-         AV73Wp_locationdynamicformds_1_filterfulltext = "";
-         AV74Wp_locationdynamicformds_2_tfwwpformreferencename = "";
-         AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel = "";
-         AV76Wp_locationdynamicformds_4_tfwwpformtitle = "";
-         AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel = "";
-         AV78Wp_locationdynamicformds_6_tfwwpformdate = (DateTime)(DateTime.MinValue);
-         AV79Wp_locationdynamicformds_7_tfwwpformdate_to = (DateTime)(DateTime.MinValue);
-         lV74Wp_locationdynamicformds_2_tfwwpformreferencename = "";
-         lV76Wp_locationdynamicformds_4_tfwwpformtitle = "";
+         AV74Wp_locationdynamicformds_1_filterfulltext = "";
+         AV75Wp_locationdynamicformds_2_tfwwpformreferencename = "";
+         AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel = "";
+         AV77Wp_locationdynamicformds_4_tfwwpformtitle = "";
+         AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel = "";
+         AV79Wp_locationdynamicformds_6_tfwwpformdate = (DateTime)(DateTime.MinValue);
+         AV80Wp_locationdynamicformds_7_tfwwpformdate_to = (DateTime)(DateTime.MinValue);
+         lV75Wp_locationdynamicformds_2_tfwwpformreferencename = "";
+         lV77Wp_locationdynamicformds_4_tfwwpformtitle = "";
          H00702_A242WWPFormIsForDynamicValidations = new bool[] {false} ;
          H00702_A241WWPFormSectionRefElements = new string[] {""} ;
          H00702_A240WWPFormType = new short[1] ;
@@ -3802,9 +3821,9 @@ namespace GeneXus.Programs {
          H00704_A206WWPFormId = new short[1] ;
          AV56Element = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element(context);
          AV62Trn_LocationDynamicForm = new SdtTrn_LocationDynamicForm(context);
-         AV86GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV87GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV57Message = new GeneXus.Utils.SdtMessages_Message(context);
-         AV88GXV4 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV89GXV4 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV64LocationDynamicFormId_Selected = Guid.Empty;
          AV65OrganisationId_Selected = Guid.Empty;
          AV66LocationId_Selected = Guid.Empty;
@@ -3840,9 +3859,9 @@ namespace GeneXus.Programs {
             }
          );
          WebComp_Wwpaux_wc = new GeneXus.Http.GXNullWebComponent();
-         AV72Pgmname = "WP_LocationDynamicForm";
+         AV73Pgmname = "WP_LocationDynamicForm";
          /* GeneXus formulas. */
-         AV72Pgmname = "WP_LocationDynamicForm";
+         AV73Pgmname = "WP_LocationDynamicForm";
       }
 
       private short GRID_nEOF ;
@@ -3869,10 +3888,10 @@ namespace GeneXus.Programs {
       private short nCmpId ;
       private short nDonePA ;
       private short gxcookieaux ;
-      private short AV80Wp_locationdynamicformds_8_tfwwpformversionnumber ;
-      private short AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to ;
-      private short AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ;
-      private short AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ;
+      private short AV81Wp_locationdynamicformds_8_tfwwpformversionnumber ;
+      private short AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to ;
+      private short AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ;
+      private short AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ;
       private short subGrid_Backcolorstyle ;
       private short subGrid_Sortable ;
       private short GXt_int1 ;
@@ -3905,10 +3924,10 @@ namespace GeneXus.Programs {
       private int edtWWPFormValidations_Enabled ;
       private int edtWWPFormSectionRefElements_Enabled ;
       private int AV36PageToGo ;
-      private int AV85GXV1 ;
-      private int AV87GXV3 ;
-      private int AV89GXV5 ;
-      private int AV90GXV6 ;
+      private int AV86GXV1 ;
+      private int AV88GXV3 ;
+      private int AV90GXV5 ;
+      private int AV91GXV6 ;
       private int idxLst ;
       private int subGrid_Backcolor ;
       private int subGrid_Allbackcolor ;
@@ -3932,7 +3951,7 @@ namespace GeneXus.Programs {
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sGXsfl_37_idx="0001" ;
-      private string AV72Pgmname ;
+      private string AV73Pgmname ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -4068,8 +4087,8 @@ namespace GeneXus.Programs {
       private DateTime AV24TFWWPFormDate ;
       private DateTime AV25TFWWPFormDate_To ;
       private DateTime A231WWPFormDate ;
-      private DateTime AV78Wp_locationdynamicformds_6_tfwwpformdate ;
-      private DateTime AV79Wp_locationdynamicformds_7_tfwwpformdate_to ;
+      private DateTime AV79Wp_locationdynamicformds_6_tfwwpformdate ;
+      private DateTime AV80Wp_locationdynamicformds_7_tfwwpformdate_to ;
       private DateTime AV26DDO_WWPFormDateAuxDate ;
       private DateTime AV27DDO_WWPFormDateAuxDateTo ;
       private bool entryPointCalled ;
@@ -4110,13 +4129,13 @@ namespace GeneXus.Programs {
       private string A208WWPFormReferenceName ;
       private string A209WWPFormTitle ;
       private string A241WWPFormSectionRefElements ;
-      private string AV73Wp_locationdynamicformds_1_filterfulltext ;
-      private string AV74Wp_locationdynamicformds_2_tfwwpformreferencename ;
-      private string AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel ;
-      private string AV76Wp_locationdynamicformds_4_tfwwpformtitle ;
-      private string AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel ;
-      private string lV74Wp_locationdynamicformds_2_tfwwpformreferencename ;
-      private string lV76Wp_locationdynamicformds_4_tfwwpformtitle ;
+      private string AV74Wp_locationdynamicformds_1_filterfulltext ;
+      private string AV75Wp_locationdynamicformds_2_tfwwpformreferencename ;
+      private string AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel ;
+      private string AV77Wp_locationdynamicformds_4_tfwwpformtitle ;
+      private string AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel ;
+      private string lV75Wp_locationdynamicformds_2_tfwwpformreferencename ;
+      private string lV77Wp_locationdynamicformds_4_tfwwpformtitle ;
       private string AV54WWPFormReferenceName ;
       private Guid AV61LocationId ;
       private Guid AV60OrganisationId ;
@@ -4196,9 +4215,9 @@ namespace GeneXus.Programs {
       private short[] H00704_A206WWPFormId ;
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element AV56Element ;
       private SdtTrn_LocationDynamicForm AV62Trn_LocationDynamicForm ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV86GXV2 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV87GXV2 ;
       private GeneXus.Utils.SdtMessages_Message AV57Message ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV88GXV4 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV89GXV4 ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV12GridStateFilterValue ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV9TrnContext ;
       private msglist BackMsgLst ;
@@ -4241,24 +4260,24 @@ namespace GeneXus.Programs {
  public class wp_locationdynamicform__default : DataStoreHelperBase, IDataStoreHelper
  {
     protected Object[] conditional_H00702( IGxContext context ,
-                                           string AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel ,
-                                           string AV74Wp_locationdynamicformds_2_tfwwpformreferencename ,
-                                           string AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel ,
-                                           string AV76Wp_locationdynamicformds_4_tfwwpformtitle ,
-                                           DateTime AV78Wp_locationdynamicformds_6_tfwwpformdate ,
-                                           DateTime AV79Wp_locationdynamicformds_7_tfwwpformdate_to ,
-                                           short AV80Wp_locationdynamicformds_8_tfwwpformversionnumber ,
-                                           short AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to ,
+                                           string AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel ,
+                                           string AV75Wp_locationdynamicformds_2_tfwwpformreferencename ,
+                                           string AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel ,
+                                           string AV77Wp_locationdynamicformds_4_tfwwpformtitle ,
+                                           DateTime AV79Wp_locationdynamicformds_6_tfwwpformdate ,
+                                           DateTime AV80Wp_locationdynamicformds_7_tfwwpformdate_to ,
+                                           short AV81Wp_locationdynamicformds_8_tfwwpformversionnumber ,
+                                           short AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to ,
                                            string A208WWPFormReferenceName ,
                                            string A209WWPFormTitle ,
                                            DateTime A231WWPFormDate ,
                                            short A207WWPFormVersionNumber ,
                                            short AV13OrderedBy ,
                                            bool AV14OrderedDsc ,
-                                           string AV73Wp_locationdynamicformds_1_filterfulltext ,
+                                           string AV74Wp_locationdynamicformds_1_filterfulltext ,
                                            short A219WWPFormLatestVersionNumber ,
-                                           short AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ,
-                                           short AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ,
+                                           short AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ,
+                                           short AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ,
                                            Guid A29LocationId ,
                                            Guid AV61LocationId )
     {
@@ -4268,73 +4287,73 @@ namespace GeneXus.Programs {
        Object[] GXv_Object9 = new Object[2];
        scmdbuf = "SELECT T2.WWPFormIsForDynamicValidations, T2.WWPFormSectionRefElements, T2.WWPFormType, T2.WWPFormInstantiated, T2.WWPFormValidations, T2.WWPFormResumeMessage, T2.WWPFormResume, T2.WWPFormIsWizard, T1.WWPFormVersionNumber, T2.WWPFormDate, T2.WWPFormTitle, T2.WWPFormReferenceName, T1.LocationId, T1.OrganisationId, T1.LocationDynamicFormId, T1.WWPFormId FROM (Trn_LocationDynamicForm T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber)";
        AddWhere(sWhereString, "(T1.LocationId = :AV61LocationId)");
-       if ( String.IsNullOrEmpty(StringUtil.RTrim( AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Wp_locationdynamicformds_2_tfwwpformreferencename)) ) )
+       if ( String.IsNullOrEmpty(StringUtil.RTrim( AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Wp_locationdynamicformds_2_tfwwpformreferencename)) ) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormReferenceName like :lV74Wp_locationdynamicformds_2_tfwwpformreferencename)");
+          AddWhere(sWhereString, "(T2.WWPFormReferenceName like :lV75Wp_locationdynamicformds_2_tfwwpformreferencename)");
        }
        else
        {
           GXv_int8[1] = 1;
        }
-       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ! ( StringUtil.StrCmp(AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 ) )
+       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ! ( StringUtil.StrCmp(AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 ) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormReferenceName = ( :AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel))");
+          AddWhere(sWhereString, "(T2.WWPFormReferenceName = ( :AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel))");
        }
        else
        {
           GXv_int8[2] = 1;
        }
-       if ( StringUtil.StrCmp(AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 )
+       if ( StringUtil.StrCmp(AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 )
        {
           AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPFormReferenceName))=0))");
        }
-       if ( String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Wp_locationdynamicformds_4_tfwwpformtitle)) ) )
+       if ( String.IsNullOrEmpty(StringUtil.RTrim( AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_locationdynamicformds_4_tfwwpformtitle)) ) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormTitle like :lV76Wp_locationdynamicformds_4_tfwwpformtitle)");
+          AddWhere(sWhereString, "(T2.WWPFormTitle like :lV77Wp_locationdynamicformds_4_tfwwpformtitle)");
        }
        else
        {
           GXv_int8[3] = 1;
        }
-       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ! ( StringUtil.StrCmp(AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 ) )
+       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ! ( StringUtil.StrCmp(AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 ) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormTitle = ( :AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel))");
+          AddWhere(sWhereString, "(T2.WWPFormTitle = ( :AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel))");
        }
        else
        {
           GXv_int8[4] = 1;
        }
-       if ( StringUtil.StrCmp(AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 )
+       if ( StringUtil.StrCmp(AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 )
        {
           AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPFormTitle))=0))");
        }
-       if ( ! (DateTime.MinValue==AV78Wp_locationdynamicformds_6_tfwwpformdate) )
+       if ( ! (DateTime.MinValue==AV79Wp_locationdynamicformds_6_tfwwpformdate) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormDate >= :AV78Wp_locationdynamicformds_6_tfwwpformdate)");
+          AddWhere(sWhereString, "(T2.WWPFormDate >= :AV79Wp_locationdynamicformds_6_tfwwpformdate)");
        }
        else
        {
           GXv_int8[5] = 1;
        }
-       if ( ! (DateTime.MinValue==AV79Wp_locationdynamicformds_7_tfwwpformdate_to) )
+       if ( ! (DateTime.MinValue==AV80Wp_locationdynamicformds_7_tfwwpformdate_to) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormDate <= :AV79Wp_locationdynamicformds_7_tfwwpformdate_to)");
+          AddWhere(sWhereString, "(T2.WWPFormDate <= :AV80Wp_locationdynamicformds_7_tfwwpformdate_to)");
        }
        else
        {
           GXv_int8[6] = 1;
        }
-       if ( ! (0==AV80Wp_locationdynamicformds_8_tfwwpformversionnumber) )
+       if ( ! (0==AV81Wp_locationdynamicformds_8_tfwwpformversionnumber) )
        {
-          AddWhere(sWhereString, "(T1.WWPFormVersionNumber >= :AV80Wp_locationdynamicformds_8_tfwwpformversionnumber)");
+          AddWhere(sWhereString, "(T1.WWPFormVersionNumber >= :AV81Wp_locationdynamicformds_8_tfwwpformversionnumber)");
        }
        else
        {
           GXv_int8[7] = 1;
        }
-       if ( ! (0==AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to) )
+       if ( ! (0==AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to) )
        {
-          AddWhere(sWhereString, "(T1.WWPFormVersionNumber <= :AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to)");
+          AddWhere(sWhereString, "(T1.WWPFormVersionNumber <= :AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to)");
        }
        else
        {
@@ -4379,24 +4398,24 @@ namespace GeneXus.Programs {
     }
 
     protected Object[] conditional_H00703( IGxContext context ,
-                                           string AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel ,
-                                           string AV74Wp_locationdynamicformds_2_tfwwpformreferencename ,
-                                           string AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel ,
-                                           string AV76Wp_locationdynamicformds_4_tfwwpformtitle ,
-                                           DateTime AV78Wp_locationdynamicformds_6_tfwwpformdate ,
-                                           DateTime AV79Wp_locationdynamicformds_7_tfwwpformdate_to ,
-                                           short AV80Wp_locationdynamicformds_8_tfwwpformversionnumber ,
-                                           short AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to ,
+                                           string AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel ,
+                                           string AV75Wp_locationdynamicformds_2_tfwwpformreferencename ,
+                                           string AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel ,
+                                           string AV77Wp_locationdynamicformds_4_tfwwpformtitle ,
+                                           DateTime AV79Wp_locationdynamicformds_6_tfwwpformdate ,
+                                           DateTime AV80Wp_locationdynamicformds_7_tfwwpformdate_to ,
+                                           short AV81Wp_locationdynamicformds_8_tfwwpformversionnumber ,
+                                           short AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to ,
                                            string A208WWPFormReferenceName ,
                                            string A209WWPFormTitle ,
                                            DateTime A231WWPFormDate ,
                                            short A207WWPFormVersionNumber ,
                                            short AV13OrderedBy ,
                                            bool AV14OrderedDsc ,
-                                           string AV73Wp_locationdynamicformds_1_filterfulltext ,
+                                           string AV74Wp_locationdynamicformds_1_filterfulltext ,
                                            short A219WWPFormLatestVersionNumber ,
-                                           short AV82Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ,
-                                           short AV83Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ,
+                                           short AV83Wp_locationdynamicformds_10_tfwwpformlatestversionnumber ,
+                                           short AV84Wp_locationdynamicformds_11_tfwwpformlatestversionnumber_to ,
                                            Guid A29LocationId ,
                                            Guid AV61LocationId )
     {
@@ -4406,73 +4425,73 @@ namespace GeneXus.Programs {
        Object[] GXv_Object11 = new Object[2];
        scmdbuf = "SELECT T2.WWPFormIsForDynamicValidations, T2.WWPFormSectionRefElements, T2.WWPFormType, T2.WWPFormInstantiated, T2.WWPFormValidations, T2.WWPFormResumeMessage, T2.WWPFormResume, T2.WWPFormIsWizard, T1.WWPFormVersionNumber, T2.WWPFormDate, T2.WWPFormTitle, T2.WWPFormReferenceName, T1.LocationId, T1.OrganisationId, T1.LocationDynamicFormId, T1.WWPFormId FROM (Trn_LocationDynamicForm T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber)";
        AddWhere(sWhereString, "(T1.LocationId = :AV61LocationId)");
-       if ( String.IsNullOrEmpty(StringUtil.RTrim( AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Wp_locationdynamicformds_2_tfwwpformreferencename)) ) )
+       if ( String.IsNullOrEmpty(StringUtil.RTrim( AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Wp_locationdynamicformds_2_tfwwpformreferencename)) ) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormReferenceName like :lV74Wp_locationdynamicformds_2_tfwwpformreferencename)");
+          AddWhere(sWhereString, "(T2.WWPFormReferenceName like :lV75Wp_locationdynamicformds_2_tfwwpformreferencename)");
        }
        else
        {
           GXv_int10[1] = 1;
        }
-       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ! ( StringUtil.StrCmp(AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 ) )
+       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ! ( StringUtil.StrCmp(AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 ) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormReferenceName = ( :AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel))");
+          AddWhere(sWhereString, "(T2.WWPFormReferenceName = ( :AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel))");
        }
        else
        {
           GXv_int10[2] = 1;
        }
-       if ( StringUtil.StrCmp(AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 )
+       if ( StringUtil.StrCmp(AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 )
        {
           AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPFormReferenceName))=0))");
        }
-       if ( String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Wp_locationdynamicformds_4_tfwwpformtitle)) ) )
+       if ( String.IsNullOrEmpty(StringUtil.RTrim( AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_locationdynamicformds_4_tfwwpformtitle)) ) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormTitle like :lV76Wp_locationdynamicformds_4_tfwwpformtitle)");
+          AddWhere(sWhereString, "(T2.WWPFormTitle like :lV77Wp_locationdynamicformds_4_tfwwpformtitle)");
        }
        else
        {
           GXv_int10[3] = 1;
        }
-       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ! ( StringUtil.StrCmp(AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 ) )
+       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ! ( StringUtil.StrCmp(AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 ) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormTitle = ( :AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel))");
+          AddWhere(sWhereString, "(T2.WWPFormTitle = ( :AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel))");
        }
        else
        {
           GXv_int10[4] = 1;
        }
-       if ( StringUtil.StrCmp(AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 )
+       if ( StringUtil.StrCmp(AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 )
        {
           AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPFormTitle))=0))");
        }
-       if ( ! (DateTime.MinValue==AV78Wp_locationdynamicformds_6_tfwwpformdate) )
+       if ( ! (DateTime.MinValue==AV79Wp_locationdynamicformds_6_tfwwpformdate) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormDate >= :AV78Wp_locationdynamicformds_6_tfwwpformdate)");
+          AddWhere(sWhereString, "(T2.WWPFormDate >= :AV79Wp_locationdynamicformds_6_tfwwpformdate)");
        }
        else
        {
           GXv_int10[5] = 1;
        }
-       if ( ! (DateTime.MinValue==AV79Wp_locationdynamicformds_7_tfwwpformdate_to) )
+       if ( ! (DateTime.MinValue==AV80Wp_locationdynamicformds_7_tfwwpformdate_to) )
        {
-          AddWhere(sWhereString, "(T2.WWPFormDate <= :AV79Wp_locationdynamicformds_7_tfwwpformdate_to)");
+          AddWhere(sWhereString, "(T2.WWPFormDate <= :AV80Wp_locationdynamicformds_7_tfwwpformdate_to)");
        }
        else
        {
           GXv_int10[6] = 1;
        }
-       if ( ! (0==AV80Wp_locationdynamicformds_8_tfwwpformversionnumber) )
+       if ( ! (0==AV81Wp_locationdynamicformds_8_tfwwpformversionnumber) )
        {
-          AddWhere(sWhereString, "(T1.WWPFormVersionNumber >= :AV80Wp_locationdynamicformds_8_tfwwpformversionnumber)");
+          AddWhere(sWhereString, "(T1.WWPFormVersionNumber >= :AV81Wp_locationdynamicformds_8_tfwwpformversionnumber)");
        }
        else
        {
           GXv_int10[7] = 1;
        }
-       if ( ! (0==AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to) )
+       if ( ! (0==AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to) )
        {
-          AddWhere(sWhereString, "(T1.WWPFormVersionNumber <= :AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to)");
+          AddWhere(sWhereString, "(T1.WWPFormVersionNumber <= :AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to)");
        }
        else
        {
@@ -4551,26 +4570,26 @@ namespace GeneXus.Programs {
         Object[] prmH00702;
         prmH00702 = new Object[] {
         new ParDef("AV61LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("lV74Wp_locationdynamicformds_2_tfwwpformreferencename",GXType.VarChar,100,0) ,
-        new ParDef("AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel",GXType.VarChar,100,0) ,
-        new ParDef("lV76Wp_locationdynamicformds_4_tfwwpformtitle",GXType.VarChar,100,0) ,
-        new ParDef("AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel",GXType.VarChar,100,0) ,
-        new ParDef("AV78Wp_locationdynamicformds_6_tfwwpformdate",GXType.DateTime,8,5) ,
-        new ParDef("AV79Wp_locationdynamicformds_7_tfwwpformdate_to",GXType.DateTime,8,5) ,
-        new ParDef("AV80Wp_locationdynamicformds_8_tfwwpformversionnumber",GXType.Int16,4,0) ,
-        new ParDef("AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to",GXType.Int16,4,0)
+        new ParDef("lV75Wp_locationdynamicformds_2_tfwwpformreferencename",GXType.VarChar,100,0) ,
+        new ParDef("AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel",GXType.VarChar,100,0) ,
+        new ParDef("lV77Wp_locationdynamicformds_4_tfwwpformtitle",GXType.VarChar,100,0) ,
+        new ParDef("AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel",GXType.VarChar,100,0) ,
+        new ParDef("AV79Wp_locationdynamicformds_6_tfwwpformdate",GXType.DateTime,8,5) ,
+        new ParDef("AV80Wp_locationdynamicformds_7_tfwwpformdate_to",GXType.DateTime,8,5) ,
+        new ParDef("AV81Wp_locationdynamicformds_8_tfwwpformversionnumber",GXType.Int16,4,0) ,
+        new ParDef("AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to",GXType.Int16,4,0)
         };
         Object[] prmH00703;
         prmH00703 = new Object[] {
         new ParDef("AV61LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("lV74Wp_locationdynamicformds_2_tfwwpformreferencename",GXType.VarChar,100,0) ,
-        new ParDef("AV75Wp_locationdynamicformds_3_tfwwpformreferencename_sel",GXType.VarChar,100,0) ,
-        new ParDef("lV76Wp_locationdynamicformds_4_tfwwpformtitle",GXType.VarChar,100,0) ,
-        new ParDef("AV77Wp_locationdynamicformds_5_tfwwpformtitle_sel",GXType.VarChar,100,0) ,
-        new ParDef("AV78Wp_locationdynamicformds_6_tfwwpformdate",GXType.DateTime,8,5) ,
-        new ParDef("AV79Wp_locationdynamicformds_7_tfwwpformdate_to",GXType.DateTime,8,5) ,
-        new ParDef("AV80Wp_locationdynamicformds_8_tfwwpformversionnumber",GXType.Int16,4,0) ,
-        new ParDef("AV81Wp_locationdynamicformds_9_tfwwpformversionnumber_to",GXType.Int16,4,0)
+        new ParDef("lV75Wp_locationdynamicformds_2_tfwwpformreferencename",GXType.VarChar,100,0) ,
+        new ParDef("AV76Wp_locationdynamicformds_3_tfwwpformreferencename_sel",GXType.VarChar,100,0) ,
+        new ParDef("lV77Wp_locationdynamicformds_4_tfwwpformtitle",GXType.VarChar,100,0) ,
+        new ParDef("AV78Wp_locationdynamicformds_5_tfwwpformtitle_sel",GXType.VarChar,100,0) ,
+        new ParDef("AV79Wp_locationdynamicformds_6_tfwwpformdate",GXType.DateTime,8,5) ,
+        new ParDef("AV80Wp_locationdynamicformds_7_tfwwpformdate_to",GXType.DateTime,8,5) ,
+        new ParDef("AV81Wp_locationdynamicformds_8_tfwwpformversionnumber",GXType.Int16,4,0) ,
+        new ParDef("AV82Wp_locationdynamicformds_9_tfwwpformversionnumber_to",GXType.Int16,4,0)
         };
         def= new CursorDef[] {
             new CursorDef("H00702", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00702,11, GxCacheFrequency.OFF ,true,false )
