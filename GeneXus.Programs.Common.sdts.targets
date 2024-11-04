@@ -23,6 +23,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_LocationDynamicForm_SDT_LocationDynamicFormItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_LoginResidentResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Managers_SDT_ManagersItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MobilePage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NetworkCompany.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NetworkIndividual.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalRegistration.cs" />

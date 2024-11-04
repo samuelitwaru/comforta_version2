@@ -31,7 +31,6 @@ class EditorManager {
         const projectData = localStorage.getItem(
           `page-${this.getCurrentPageId()}`
         );
-
         if (projectData) {
           try {
             let parsedData = JSON.parse(projectData);

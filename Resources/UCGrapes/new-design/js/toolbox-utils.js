@@ -121,7 +121,6 @@ function mapTemplateToPageData(templateData) {
       // Create tile object
 
       let tileActionObjectId = attributes["tile-action-object-id"]
-      alert(attributes["tile-icon-color"])
       col.Tile = {
         TileId: generateUUID(),
         TileName: titleText,

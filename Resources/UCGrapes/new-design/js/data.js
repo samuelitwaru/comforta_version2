@@ -1,4 +1,11 @@
-  const themesData = [
+const environment = "/Comforta_version2DevelopmentNETPostgreSQL"
+let baseURL = window.location.origin 
+
+if (baseURL.startsWith("http://localhost")) baseURL += environment
+
+console.log(baseURL)
+
+const themesData = [
       {
         name: "Modern Theme",
         colors: {

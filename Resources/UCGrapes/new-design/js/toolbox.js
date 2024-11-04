@@ -453,7 +453,6 @@ class ToolBoxManager {
       box.style.backgroundColor = colorValues[colorKey];
       
       box.onclick = () => {
-        alert()
         if (this.editorManager.selectedTemplateWrapper) {
           const svgIcon = this.editorManager.editor
             .getSelected()
@@ -624,6 +623,10 @@ class ToolBoxManager {
         span.onclick = () => {
           this.editorManager.setCurrentPageName(item.Name);
           this.editorManager.setCurrentPageId(item.Id);
+          let selectedPage = this.pages.find(page=>page.PageId==item.Id)
+          if(selectedPage){
+            localStorage.setItem(`page-${selectedPage.PageId}`, selectedPage.PageGJSJson)
+          }          
 
           const editor = this.editorManager.editor;
 
@@ -859,7 +862,7 @@ class ToolBoxManager {
     if (fileData) {
       $.ajax({
         url:
-          "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/media/upload", // Replace with the actual API endpoint
+          `${baseURL}/api/media/upload`, // Replace with the actual API endpoint
         type: "POST", // POST request as specified in the YAML
 
         contentType: "multipart/form-data", // Sending JSON as per the request body
@@ -894,7 +897,7 @@ class ToolBoxManager {
   getMediaFiles() {
     $.ajax({
       url:
-        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/media/", // Replace with the actual API endpoint
+        `${baseURL}/api/media/`, // Replace with the actual API endpoint
       type: "GET",
       success: function (response) {
         // display media files
@@ -1279,26 +1282,29 @@ class ToolBoxManager {
   }
 
   getPages(editorManager) {
+    let self = this;
     $.ajax({
       url:
-        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/pages",
+        `${baseURL}/api/toolbox/pages/list`,
       type: "GET",
       data: JSON.stringify({
         PageId: "",
       }),
       success: function (response) {
-        this.pages = response;
+        self.pages = response;
         localStorage.clear();
-        this.pages.forEach((page) => {
+        self.pages.forEach((page) => {
           console.log('page',page)
           if (page.PageName === "Home") {
             editorManager.pageId = page.PageId;
             localStorage.setItem("pageId", page.PageId);
             localStorage.setItem("pageName", page.PageName);
+            const localStorageKey = `page-${page.PageId}`;
+            localStorage.setItem(localStorageKey, page.PageGJSJson);
+            console.log(page.PageGJSJson)
             editorManager.editor.trigger("load");
           }
-          const localStorageKey = `page-${page.PageId}`;
-          localStorage.setItem(localStorageKey, page.PageGJSJson);
+          
         });
       },
       error: function (xhr, status, error) {
@@ -1315,7 +1321,7 @@ class ToolBoxManager {
     return new Promise((resolve, reject) => {
       $.ajax({
         url:
-          "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/pages/list",
+          `${baseURL}/api/toolbox/pages/list`,
         type: "GET",
         data: JSON.stringify({
           PageId: "",
@@ -1343,7 +1349,7 @@ class ToolBoxManager {
 
     $.ajax({
       url:
-        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/save-page", // Replace with the actual API endpoint
+        `${baseURL}/api/toolbox/save-page`, // Replace with the actual API endpoint
       type: "POST",
       data: JSON.stringify({
         PageId: pageId,
@@ -1376,7 +1382,7 @@ class ToolBoxManager {
     })
     $.ajax({
       url:
-        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/update-page", // Replace with the actual API endpoint
+        `${baseURL}/api/toolbox/update-page`, // Replace with the actual API endpoint
       type: "POST",
       data: JSON.stringify({
         PageId: pageId,
@@ -1404,7 +1410,7 @@ class ToolBoxManager {
 
     $.ajax({
       url:
-        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/create-page",
+        `${baseURL}/api/toolbox/create-page`,
       type: "POST",
       contentType: "application/json", // Ensure JSON content type
       data: JSON.stringify({ PageName: pageName }),
@@ -1438,7 +1444,7 @@ class ToolBoxManager {
   addPageChild(childPageId, currentPageId) {
     $.ajax({
       url:
-        "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api/toolbox/add-page-children", // Replace with the actual API endpoint
+        `${baseURL}/api/toolbox/add-page-children`, // Replace with the actual API endpoint
       type: "POST",
       data: JSON.stringify({
         ParentPageId: currentPageId,

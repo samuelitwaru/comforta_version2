@@ -137,7 +137,7 @@ namespace GeneXus.Programs {
             A29LocationId = P007W2_A29LocationId[0];
             n29LocationId = P007W2_n29LocationId[0];
             new prc_logtofile(context ).execute(  A318Trn_PageName) ;
-            AV8SDT_Page = new SdtSDT_Page(context);
+            AV8SDT_Page = new SdtSDT_MobilePage(context);
             AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
             if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( A431PageJsonContent))) )
             {
@@ -182,8 +182,8 @@ namespace GeneXus.Programs {
          A318Trn_PageName = "";
          A431PageJsonContent = "";
          A29LocationId = Guid.Empty;
-         AV8SDT_Page = new SdtSDT_Page(context);
-         AV9SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
+         AV8SDT_Page = new SdtSDT_MobilePage(context);
+         AV9SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2");
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_pagesapi__default(),
             new Object[][] {
                 new Object[] {
@@ -209,8 +209,8 @@ namespace GeneXus.Programs {
       private string[] P007W2_A431PageJsonContent ;
       private Guid[] P007W2_A29LocationId ;
       private bool[] P007W2_n29LocationId ;
-      private SdtSDT_Page AV8SDT_Page ;
-      private GXBaseCollection<SdtSDT_Page> AV9SDT_PageCollection ;
+      private SdtSDT_MobilePage AV8SDT_Page ;
+      private GXBaseCollection<SdtSDT_MobilePage> AV9SDT_PageCollection ;
       private string aP1_response ;
    }
 
