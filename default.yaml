@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241103150102"
+  version: "20241104071749"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -1996,34 +1996,6 @@ components:
       properties:
         SearchTxt:
           type: "string"
-    SDT_AgendaLocation:
-      properties:
-        AgendaCalendarId:
-          description: "Agenda Calendar Id"
-          type: "string"
-          format: "uuid"
-        AgendaCalendarTitle:
-          description: "Agenda Calendar Title"
-          type: "string"
-        AgendaCalendarStartDate:
-          description: "Agenda Calendar Start Date"
-          type: "string"
-          format: "date-time"
-        AgendaCalendarEndDate:
-          description: "Agenda Calendar End Date"
-          type: "string"
-          format: "date-time"
-        AgendaCalendarAllDay:
-          description: "Agenda Calendar All Day"
-          type: "boolean"
-        LocationId:
-          description: "Location Id"
-          type: "string"
-          format: "uuid"
-        OrganisationId:
-          description: "Organisation Id"
-          type: "string"
-          format: "uuid"
     SDT_Col:
       properties:
         ColId:
@@ -2161,6 +2133,11 @@ components:
         PageJsonContent:
           description: "Page Json Content"
           type: "string"
+        PageChildren:
+          description: "SDT_Page Children"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_PageChildren"
         LocationId:
           description: "Location Id"
           type: "string"

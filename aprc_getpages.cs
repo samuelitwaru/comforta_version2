@@ -117,12 +117,15 @@ namespace GeneXus.Programs {
             A431PageJsonContent = P008Y2_A431PageJsonContent[0];
             A432PageGJSHtml = P008Y2_A432PageGJSHtml[0];
             A433PageGJSJson = P008Y2_A433PageGJSJson[0];
+            A437PageChildren = P008Y2_A437PageChildren[0];
+            n437PageChildren = P008Y2_n437PageChildren[0];
             AV8SDT_Page = new SdtSDT_Page(context);
             AV8SDT_Page.gxTpr_Pageid = A310Trn_PageId;
             AV8SDT_Page.gxTpr_Pagename = A318Trn_PageName;
             AV8SDT_Page.gxTpr_Pagejsoncontent = A431PageJsonContent;
             AV8SDT_Page.gxTpr_Pagegjshtml = A432PageGJSHtml;
             AV8SDT_Page.gxTpr_Pagegjsjson = A433PageGJSJson;
+            AV8SDT_Page.gxTpr_Pagechildren.FromJSonString(A437PageChildren, null);
             AV9SDT_PageCollection.Add(AV8SDT_Page, 0);
             pr_default.readNext(0);
          }
@@ -156,27 +159,32 @@ namespace GeneXus.Programs {
          P008Y2_A431PageJsonContent = new string[] {""} ;
          P008Y2_A432PageGJSHtml = new string[] {""} ;
          P008Y2_A433PageGJSJson = new string[] {""} ;
+         P008Y2_A437PageChildren = new string[] {""} ;
+         P008Y2_n437PageChildren = new bool[] {false} ;
          A310Trn_PageId = Guid.Empty;
          A318Trn_PageName = "";
          A431PageJsonContent = "";
          A432PageGJSHtml = "";
          A433PageGJSJson = "";
+         A437PageChildren = "";
          AV8SDT_Page = new SdtSDT_Page(context);
          AV9SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_getpages__default(),
             new Object[][] {
                 new Object[] {
-               P008Y2_A310Trn_PageId, P008Y2_A318Trn_PageName, P008Y2_A431PageJsonContent, P008Y2_A432PageGJSHtml, P008Y2_A433PageGJSJson
+               P008Y2_A310Trn_PageId, P008Y2_A318Trn_PageName, P008Y2_A431PageJsonContent, P008Y2_A432PageGJSHtml, P008Y2_A433PageGJSJson, P008Y2_A437PageChildren, P008Y2_n437PageChildren
                }
             }
          );
          /* GeneXus formulas. */
       }
 
+      private bool n437PageChildren ;
       private string AV14response ;
       private string A431PageJsonContent ;
       private string A432PageGJSHtml ;
       private string A433PageGJSJson ;
+      private string A437PageChildren ;
       private string A318Trn_PageName ;
       private Guid A310Trn_PageId ;
       private IGxDataStore dsGAM ;
@@ -187,6 +195,8 @@ namespace GeneXus.Programs {
       private string[] P008Y2_A431PageJsonContent ;
       private string[] P008Y2_A432PageGJSHtml ;
       private string[] P008Y2_A433PageGJSJson ;
+      private string[] P008Y2_A437PageChildren ;
+      private bool[] P008Y2_n437PageChildren ;
       private SdtSDT_Page AV8SDT_Page ;
       private GXBaseCollection<SdtSDT_Page> AV9SDT_PageCollection ;
       private string aP0_response ;
@@ -211,7 +221,7 @@ namespace GeneXus.Programs {
           prmP008Y2 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P008Y2", "SELECT Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson FROM Trn_Page ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P008Y2", "SELECT Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageChildren FROM Trn_Page ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -228,6 +238,8 @@ namespace GeneXus.Programs {
                 ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
                 ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+                ((bool[]) buf[6])[0] = rslt.wasNull(6);
                 return;
        }
     }

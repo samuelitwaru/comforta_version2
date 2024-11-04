@@ -327,7 +327,7 @@ namespace GeneXus.Programs {
          {
             InitLocation();
          }
-         restLocation.ResourceName = "/toolbox/pages/list";
+         restLocation.ResourceName = "/toolbox/pages/list2";
          restCliGetPages.Location = restLocation;
          restCliGetPages.HttpMethod = "GET";
          restCliGetPages.RestExecute();
@@ -343,6 +343,31 @@ namespace GeneXus.Programs {
             aP0_SDT_PageCollection = restCliGetPages.GetBodySdtCollection<SdtSDT_Page>("SDT_PageCollection");
          }
          /* GetPages Constructor */
+      }
+
+      public void gxep_listpages( out GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection )
+      {
+         restCliListPages = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/pages/list";
+         restCliListPages.Location = restLocation;
+         restCliListPages.HttpMethod = "GET";
+         restCliListPages.RestExecute();
+         if ( restCliListPages.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliListPages.ErrorCode;
+            gxProperties.ErrorMessage = restCliListPages.ErrorMessage;
+            gxProperties.StatusCode = restCliListPages.StatusCode;
+            aP0_SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>();
+         }
+         else
+         {
+            aP0_SDT_PageStructureCollection = restCliListPages.GetBodySdtCollection<SdtSDT_PageStructure>("SDT_PageStructureCollection");
+         }
+         /* ListPages Constructor */
       }
 
       public void gxep_createpage( string aP0_PageName ,
@@ -495,6 +520,8 @@ namespace GeneXus.Programs {
          aP5_BC_Trn_Media = new SdtTrn_Media();
          restCliGetPages = new GXRestAPIClient();
          aP0_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
+         restCliListPages = new GXRestAPIClient();
+         aP0_SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>();
          restCliCreatePage = new GXRestAPIClient();
          aP1_result = "";
          restCliSavePage = new GXRestAPIClient();
@@ -515,6 +542,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetPagesInformation ;
       protected GXRestAPIClient restCliUploadMedia ;
       protected GXRestAPIClient restCliGetPages ;
+      protected GXRestAPIClient restCliListPages ;
       protected GXRestAPIClient restCliCreatePage ;
       protected GXRestAPIClient restCliSavePage ;
       protected GXRestAPIClient restCliUpdatePage ;
@@ -532,6 +560,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection ;
       protected SdtTrn_Media aP5_BC_Trn_Media ;
       protected GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ;
+      protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected string aP1_result ;
       protected string aP5_result ;
       protected string aP4_result ;

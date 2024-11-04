@@ -67,6 +67,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_listpages") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_createpage") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -190,6 +194,15 @@ namespace GeneXus.Programs {
       }
 
       protected void E18012( )
+      {
+         /* Listpages_After Routine */
+         returnInSub = false;
+         if ( AV64SDT_PageStructureCollection.FromJSonString(AV17result, null) )
+         {
+         }
+      }
+
+      protected void E19012( )
       {
          /* Uploadmedia_After Routine */
          returnInSub = false;
@@ -386,7 +399,7 @@ namespace GeneXus.Programs {
          /* UploadMedia Constructor */
          new prc_uploadmedia(context ).execute(  AV46MediaId,  AV47MediaName,  AV49MediaImageData,  AV51MediaSize,  AV52MediaType, out  AV17result) ;
          /* Execute user event: Uploadmedia.After */
-         E18012 ();
+         E19012 ();
          if ( returnInSub )
          {
             aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
@@ -423,6 +436,29 @@ namespace GeneXus.Programs {
             return;
          }
          aP0_SDT_PageCollection=this.AV44SDT_PageCollection;
+      }
+
+      public void gxep_listpages( out GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection )
+      {
+         AV64SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
+         initialize();
+         /* ListPages Constructor */
+         new prc_listpages(context ).execute( out  AV17result) ;
+         /* Execute user event: Listpages.After */
+         E18012 ();
+         if ( returnInSub )
+         {
+            aP0_SDT_PageStructureCollection=this.AV64SDT_PageStructureCollection;
+            return;
+         }
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP0_SDT_PageStructureCollection=this.AV64SDT_PageStructureCollection;
+            return;
+         }
+         aP0_SDT_PageStructureCollection=this.AV64SDT_PageStructureCollection;
       }
 
       public void gxep_createpage( string aP0_PageName ,
@@ -523,6 +559,7 @@ namespace GeneXus.Programs {
          AV23SDT_Organisation = new SdtSDT_Organisation(context);
          AV18SDT_Location = new SdtSDT_Location(context);
          AV44SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
+         AV64SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          AV50BC_Trn_Media = new SdtTrn_Media(context);
          /* GeneXus formulas. */
       }
@@ -562,6 +599,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Organisation AV23SDT_Organisation ;
       protected SdtSDT_Location AV18SDT_Location ;
       protected GXBaseCollection<SdtSDT_Page> AV44SDT_PageCollection ;
+      protected GXBaseCollection<SdtSDT_PageStructure> AV64SDT_PageStructureCollection ;
       protected SdtTrn_Media AV50BC_Trn_Media ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_Resident aP1_SDT_Resident ;
@@ -572,6 +610,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_Page> aP1_SDT_PageCollection ;
       protected SdtTrn_Media aP5_BC_Trn_Media ;
       protected GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ;
+      protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected string aP1_result ;
       protected SdtSDT_Page AV55SDT_Page ;
       protected string aP5_result ;

@@ -803,7 +803,6 @@ namespace GeneXus.Programs {
                Ddc_selectcolor_Load = cgiGet( "DDC_SELECTCOLOR_Load");
                Ddc_selectcolor_Keepopened = StringUtil.StrToBool( cgiGet( "DDC_SELECTCOLOR_Keepopened"));
                Ddc_selectcolor_Trigger = cgiGet( "DDC_SELECTCOLOR_Trigger");
-               Ddc_selectcolor_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_SELECTCOLOR_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                A101OrganisationSettingLogo = cgiGet( imgOrganisationSettingLogo_Internalname);
                AssignAttri("", false, "A101OrganisationSettingLogo", A101OrganisationSettingLogo);
@@ -2468,7 +2467,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202410291093427", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024114963435", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2484,7 +2483,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsetting.js", "?202410291093429", false, true);
+         context.AddJavascriptSource("trn_organisationsetting.js", "?2024114963437", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2966,7 +2965,6 @@ namespace GeneXus.Programs {
       private int Combo_organisationsettinglanguage_Gxcontroltype ;
       private int Combo_organisationsettingfontsize_Datalistupdateminimumcharacters ;
       private int Combo_organisationsettingfontsize_Gxcontroltype ;
-      private int Ddc_selectcolor_Gxcontroltype ;
       private int AV30GXV1 ;
       private int idxLst ;
       private string sPrefix ;

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241103150102"
+  version: "20241104071749"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -222,7 +222,7 @@ paths:
         404:
           description: "Not found"
 
-  /toolbox/pages/list:
+  /toolbox/pages/list2:
     get:
       tags:
         - API_ResidentService  
@@ -240,6 +240,28 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SDT_Page"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/pages/list:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ListPages"
+      summary: "Get Pages"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_PageStructure"  
 
         404:
           description: "Not found"
@@ -359,7 +381,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: http://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -410,6 +432,7 @@ components:
           format: "int64"
         MediaType:
           type: "string"
+
 
 
     CreatePageInput:  
@@ -652,6 +675,11 @@ components:
         PageJsonContent:
           description: "Page Json Content"
           type: "string"
+        PageChildren:
+          description: "SDT_Page Children"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_PageChildren"
         LocationId:
           description: "Location Id"
           type: "string"
@@ -689,6 +717,23 @@ components:
 
 
 
+    SDT_PageStructure:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+          format: "uuid"
+        Name:
+          description: "Name"
+          type: "string"
+        Children:
+          description: "SDT_Page Children"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_PageChildren"
+
+
+
     SDT_Col:
       properties:
         ColId:
@@ -701,6 +746,18 @@ components:
         Tile:
           description: "SDT_Tile"
           $ref: "#/components/schemas/SDT_Tile"
+
+
+
+    SDT_PageChildren:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+          format: "uuid"
+        Name:
+          description: "Name"
+          type: "string"
 
 
 

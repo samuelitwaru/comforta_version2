@@ -15,7 +15,6 @@ class ToolBoxManager {
 
   init() {
     self = this;
-    console.log(this.mappingsItems);
     this.loadTheme();
     this.listThemesInSelectField();
     this.colorPalette();
@@ -592,8 +591,14 @@ class ToolBoxManager {
   }
 
   createTree(data, isRoot = false) {
+    console.log(data)
+    // Sort the data so that "Home" is always first
+    data.sort((a, b) => (a.Name === "Home" ? -1 : b.Name === "Home" ? 1 : 0));
+
     const ul = document.createElement("ul");
     if (!isRoot) ul.style.display = "block";
+
+    console.log("Data: ", data);
 
     data.forEach((item, index) => {
       const li = document.createElement("li");
@@ -623,10 +628,6 @@ class ToolBoxManager {
         span.onclick = () => {
           this.editorManager.setCurrentPageName(item.Name);
           this.editorManager.setCurrentPageId(item.Id);
-          let selectedPage = this.pages.find(page=>page.PageId==item.Id)
-          if(selectedPage){
-            localStorage.setItem(`page-${selectedPage.PageId}`, selectedPage.PageGJSJson)
-          }          
 
           const editor = this.editorManager.editor;
 
@@ -1094,8 +1095,8 @@ class ToolBoxManager {
 
     const mapPageNamesToOptions = (pages) => {
       const pageOptions = pages.map((page) => ({
-        PageName: page.PageName,
-        PageId: page.PageId,
+        PageName: page.Name,
+        PageId: page.Id,
       }));
       console.log("Pages", pageOptions);
       return pageOptions;
@@ -1108,15 +1109,15 @@ class ToolBoxManager {
       },
       {
         name: "Service/Product Page",
-        options: [{PageId:"2354481d-5df0-4154-92b8-2fc0aaf9b3e7", PageName:"Service Example"}],
+        options: [{PageId:"2354481d-5df0-4154-92b8-2fc0aaf9b3e7", PageName:"Taxi service"}],
       },
       {
         name: "Dynamic Form",
-        options: ["Form A", "Form B", "Form C"],
+        options: [{PageId:"2354481d-5df0-4154-92b8-2fc0aaf9b3e7", PageName:"Form 1"}],
       },
       {
         name: "Call to Action",
-        options: ["Email", "SMS", "Call"],
+        options: [{PageId:"2354481d-5df0-4154-92b8-2fc0aaf9b3e7", PageName:"Call To Action"}],
       },
     ];
 
@@ -1285,7 +1286,7 @@ class ToolBoxManager {
     let self = this;
     $.ajax({
       url:
-        `${baseURL}/api/toolbox/pages/list`,
+        `${baseURL}/api/toolbox/pages/list2`,
       type: "GET",
       data: JSON.stringify({
         PageId: "",
@@ -1323,12 +1324,9 @@ class ToolBoxManager {
         url:
           `${baseURL}/api/toolbox/pages/list`,
         type: "GET",
-        data: JSON.stringify({
-          PageId: "",
-        }),
-        contentType: "application/json", // Set content type for JSON
         success: function (response) {
           const pages = response;
+          console.log('service pages', pages)
           resolve(pages); // Resolve the promise with the pages
         },
         error: function (xhr, status, error) {
@@ -1420,16 +1418,23 @@ class ToolBoxManager {
         const pageInput = document.getElementById("page-title");
         pageInput.value = "";
 
-        // Assuming getPages returns a Promise if it is asynchronous
-        // self
-        //   .getPages(self.editorManager)
-        //   .then((data) => {
-        //     console.log("data:", data);
-        //     self.createTree(data); // Use the retrieved data here
-        //   })
-        //   .catch((error) => {
-        //     console.error("Error retrieving pages:", error);
-        //   });
+        self
+          .getPagesService()
+          .then((pages) => {
+            console.log("pageData:", pages);
+
+            // Clear the current tree structure
+            const treeContainer = document.getElementById("tree-container"); // Assuming tree is rendered here
+            treeContainer.innerHTML = ""; // Clear existing nodes
+
+            // Re-create the tree with updated pages data
+            const newTree = self.createTree(pages, true); // Set isRoot to true if it's the root
+            treeContainer.appendChild(newTree); // Append the new tree structure to the container
+          })
+          .catch((error) => {
+            console.error("Error fetching pages:", error);
+          });
+        
       },
       error: function (xhr, status, error) {
         if (xhr.status === 404) {

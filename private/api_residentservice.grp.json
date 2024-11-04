@@ -85,13 +85,23 @@
 "Implementation":"Prc_UploadMedia"
 },
 {
-"PathRegexp":"toolbox/pages/list",
-"Path":"toolbox/pages/list",
+"PathRegexp":"toolbox/pages/list2",
+"Path":"toolbox/pages/list2",
 "Name":"getpages",
 "Bodystyle":"Wrapped",
 "VariableAlias": [],
 "ServiceMethod":"gxep_getpages",
 "Implementation":"Prc_GetPages",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/pages/list",
+"Path":"toolbox/pages/list",
+"Name":"listpages",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_listpages",
+"Implementation":"Prc_ListPages",
 "Verb":"GET"
 },
 {
