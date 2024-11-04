@@ -124,6 +124,12 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         GXt_objcol_guid1 = AV40PreferredAgbSuppliers;
+         new prc_getpreferredagbsuppliers(context ).execute( ref  GXt_objcol_guid1) ;
+         AV40PreferredAgbSuppliers = GXt_objcol_guid1;
+         GXt_objcol_guid1 = AV41PreferredGenSuppliers;
+         new prc_getpreferredgensuppliers(context ).execute( ref  GXt_objcol_guid1) ;
+         AV41PreferredGenSuppliers = GXt_objcol_guid1;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV19WWPContext) ;
          /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
          S112 ();
@@ -133,12 +139,12 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV16TrnContext.FromXml(AV18WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV41Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV43Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV42GXV1 = 1;
-            while ( AV42GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
+            AV44GXV1 = 1;
+            while ( AV44GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
             {
-               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV42GXV1));
+               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV44GXV1));
                if ( StringUtil.StrCmp(AV17TrnContextAtt.gxTpr_Attributename, "SupplierGenId") == 0 )
                {
                   AV10Insert_SupplierGenId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
@@ -147,7 +153,7 @@ namespace GeneXus.Programs {
                {
                   AV9Insert_SupplierAgbId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV42GXV1 = (int)(AV42GXV1+1);
+               AV44GXV1 = (int)(AV44GXV1+1);
             }
          }
       }
@@ -226,7 +232,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV41Pgmname = "Trn_ProductService_BC";
+         AV43Pgmname = "Trn_ProductService_BC";
          Gx_BScreen = 0;
       }
 
@@ -236,12 +242,12 @@ namespace GeneXus.Programs {
          {
             A58ProductServiceId = Guid.NewGuid( );
          }
-         GXt_guid1 = A11OrganisationId;
-         new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
-         A11OrganisationId = GXt_guid1;
-         GXt_guid1 = A29LocationId;
-         new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
-         A29LocationId = GXt_guid1;
+         GXt_guid2 = A11OrganisationId;
+         new prc_getuserorganisationid(context ).execute( out  GXt_guid2) ;
+         A11OrganisationId = GXt_guid2;
+         GXt_guid2 = A29LocationId;
+         new prc_getuserlocationid(context ).execute( out  GXt_guid2) ;
+         A29LocationId = GXt_guid2;
          if ( IsIns( )  && String.IsNullOrEmpty(StringUtil.RTrim( A366ProductServiceGroup)) && ( Gx_BScreen == 0 ) )
          {
             A366ProductServiceGroup = "Location";
@@ -1404,10 +1410,13 @@ namespace GeneXus.Programs {
          A29LocationId = Guid.Empty;
          Z11OrganisationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
+         AV40PreferredAgbSuppliers = new GxSimpleCollection<Guid>();
+         AV41PreferredGenSuppliers = new GxSimpleCollection<Guid>();
+         GXt_objcol_guid1 = new GxSimpleCollection<Guid>();
          AV19WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV16TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV18WebSession = context.GetSession();
-         AV41Pgmname = "";
+         AV43Pgmname = "";
          AV17TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV10Insert_SupplierGenId = Guid.Empty;
          AV9Insert_SupplierAgbId = Guid.Empty;
@@ -1435,7 +1444,7 @@ namespace GeneXus.Programs {
          A61ProductServiceImage = "";
          Z40000ProductServiceImage_GXI = "";
          A40000ProductServiceImage_GXI = "";
-         GXt_guid1 = Guid.Empty;
+         GXt_guid2 = Guid.Empty;
          BC00087_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          BC00087_A59ProductServiceName = new string[] {""} ;
          BC00087_A301ProductServiceTileName = new string[] {""} ;
@@ -1568,7 +1577,7 @@ namespace GeneXus.Programs {
          );
          Z58ProductServiceId = Guid.NewGuid( );
          A58ProductServiceId = Guid.NewGuid( );
-         AV41Pgmname = "Trn_ProductService_BC";
+         AV43Pgmname = "Trn_ProductService_BC";
          A366ProductServiceGroup = "Location";
          Z366ProductServiceGroup = "Location";
          i366ProductServiceGroup = "Location";
@@ -1583,11 +1592,11 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound75 ;
       private int trnEnded ;
-      private int AV42GXV1 ;
+      private int AV44GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV41Pgmname ;
+      private string AV43Pgmname ;
       private string Z301ProductServiceTileName ;
       private string A301ProductServiceTileName ;
       private string sMode75 ;
@@ -1626,10 +1635,13 @@ namespace GeneXus.Programs {
       private Guid A42SupplierGenId ;
       private Guid Z49SupplierAgbId ;
       private Guid A49SupplierAgbId ;
-      private Guid GXt_guid1 ;
+      private Guid GXt_guid2 ;
       private IGxSession AV18WebSession ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private GxSimpleCollection<Guid> AV40PreferredAgbSuppliers ;
+      private GxSimpleCollection<Guid> AV41PreferredGenSuppliers ;
+      private GxSimpleCollection<Guid> GXt_objcol_guid1 ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV19WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV16TrnContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute AV17TrnContextAtt ;

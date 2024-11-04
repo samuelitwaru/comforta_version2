@@ -753,9 +753,9 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         AV8LocationId = StringUtil.StrToGuid( context.GetMessage( "8cfe0d33-0109-4721-9347-eca74fb8bfa2", ""));
+         AV8LocationId = StringUtil.StrToGuid( context.GetMessage( "45f091ad-dc47-4686-8c55-1a76245b87ec", ""));
          AssignAttri("", false, "AV8LocationId", AV8LocationId.ToString());
-         AV11WebSession.Set(context.GetMessage( "DiscussionResidentId", ""), context.GetMessage( "19fbf3d3-187a-4e01-8ca8-c8f740b01a76", ""));
+         AV11WebSession.Set(context.GetMessage( "DiscussionResidentId", ""), context.GetMessage( "11a575df-c74d-4d0e-99e4-107218dd52a9", ""));
          /* Object Property */
          if ( true )
          {
@@ -842,7 +842,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024114994483", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411422471323", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -858,7 +858,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdiscussion.js", "?2024114994483", false, true);
+         context.AddJavascriptSource("wp_residentdiscussion.js", "?202411422471323", false, true);
          /* End function include_jscripts */
       }
 

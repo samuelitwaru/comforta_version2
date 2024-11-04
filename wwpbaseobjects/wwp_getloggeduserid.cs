@@ -5,6 +5,8 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
+using System.Data;
+using GeneXus.Data;
 using com.genexus;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
@@ -26,45 +28,49 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
          IsMain = true;
-         context.SetDefaultTheme("WorkWithPlusDS", true);
       }
 
       public wwp_getloggeduserid( IGxContext context )
       {
          this.context = context;
          IsMain = false;
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
       }
 
       public void execute( out string aP0_WWPUserExtendedId )
       {
-         this.AV8WWPUserExtendedId = "" ;
+         this.AV2WWPUserExtendedId = "" ;
          initialize();
          ExecuteImpl();
-         aP0_WWPUserExtendedId=this.AV8WWPUserExtendedId;
+         aP0_WWPUserExtendedId=this.AV2WWPUserExtendedId;
       }
 
       public string executeUdp( )
       {
          execute(out aP0_WWPUserExtendedId);
-         return AV8WWPUserExtendedId ;
+         return AV2WWPUserExtendedId ;
       }
 
       public void executeSubmit( out string aP0_WWPUserExtendedId )
       {
-         this.AV8WWPUserExtendedId = "" ;
+         this.AV2WWPUserExtendedId = "" ;
          SubmitImpl();
-         aP0_WWPUserExtendedId=this.AV8WWPUserExtendedId;
+         aP0_WWPUserExtendedId=this.AV2WWPUserExtendedId;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV8WWPUserExtendedId = new GeneXus.Programs.genexussecurity.SdtGAMUser(context).getid();
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9WebSession.Get(context.GetMessage( "DiscussionResidentId", "")))) )
+         args = new Object[] {(string)AV2WWPUserExtendedId} ;
+         ClassLoader.Execute("wwpbaseobjects.awwp_getloggeduserid","GeneXus.Programs","wwpbaseobjects.awwp_getloggeduserid", new Object[] {context }, "execute", args);
+         if ( ( args != null ) && ( args.Length == 1 ) )
          {
-            AV8WWPUserExtendedId = AV9WebSession.Get(context.GetMessage( "DiscussionResidentId", ""));
+            AV2WWPUserExtendedId = (string)(args[0]) ;
          }
          cleanup();
       }
@@ -76,18 +82,18 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             context.CloseConnections();
          }
-         ExitApp();
       }
 
       public override void initialize( )
       {
-         AV8WWPUserExtendedId = "";
-         AV9WebSession = context.GetSession();
+         AV2WWPUserExtendedId = "";
          /* GeneXus formulas. */
       }
 
-      private string AV8WWPUserExtendedId ;
-      private IGxSession AV9WebSession ;
+      private string AV2WWPUserExtendedId ;
+      private IGxDataStore dsGAM ;
+      private IGxDataStore dsDefault ;
+      private Object[] args ;
       private string aP0_WWPUserExtendedId ;
    }
 

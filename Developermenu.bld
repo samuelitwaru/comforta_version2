@@ -44,6 +44,7 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wp_notificationpanel
 wwpbaseobjects\workwithplustoolboxmasterpage
 wp_residentdiscussion
 wp_residentdiscussion
@@ -342,6 +343,7 @@ wwpbaseobjects\discussions\wwp_getusersfordiscussionmentions
 workwithplus\wwp_parameterwwgetfilterdata
 wwpbaseobjects\wwp_downloadreport
 wwpbaseobjects\awwp_synchandler
+wwpbaseobjects\awwp_getloggeduserid
 wwpbaseobjects\awwp_impactmetadata
 atrn_row_dataprovider
 atrn_col_dataprovider

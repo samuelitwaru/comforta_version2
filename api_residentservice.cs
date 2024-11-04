@@ -507,23 +507,25 @@ namespace GeneXus.Programs {
                                    string aP1_PageJsonContent ,
                                    string aP2_PageGJSHtml ,
                                    string aP3_PageGJSJson ,
-                                   out string aP4_result )
+                                   bool aP4_PageIsPublished ,
+                                   out string aP5_result )
       {
          this.AV54PageId = aP0_PageId;
          this.AV58PageJsonContent = aP1_PageJsonContent;
          this.AV56PageGJSHtml = aP2_PageGJSHtml;
          this.AV57PageGJSJson = aP3_PageGJSJson;
+         this.AV65PageIsPublished = aP4_PageIsPublished;
          initialize();
          /* UpdatePage Constructor */
-         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, out  AV17result) ;
+         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, ref  AV65PageIsPublished, out  AV17result) ;
          /* Execute user event: After */
          E11012 ();
          if ( returnInSub )
          {
-            aP4_result=this.AV17result;
+            aP5_result=this.AV17result;
             return;
          }
-         aP4_result=this.AV17result;
+         aP5_result=this.AV17result;
       }
 
       public void gxep_addpagecildren( Guid aP0_ParentPageId ,
@@ -571,6 +573,7 @@ namespace GeneXus.Programs {
       protected string AV9DeviceID ;
       protected string AV52MediaType ;
       protected bool returnInSub ;
+      protected bool AV65PageIsPublished ;
       protected string AV17result ;
       protected string AV7secretKey ;
       protected string AV49MediaImageData ;
@@ -614,7 +617,6 @@ namespace GeneXus.Programs {
       protected string aP1_result ;
       protected SdtSDT_Page AV55SDT_Page ;
       protected string aP5_result ;
-      protected string aP4_result ;
    }
 
 }

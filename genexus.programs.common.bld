@@ -8,8 +8,6 @@ SoapParm.cs
 GxFullTextSearchReindexer.cs
 GxModelInfoProvider.cs
 @genexus.programs.sdt.bld
-workwithplus\dynamicforms\type_SdtWWP_FormInstance.cs
-workwithplus\dynamicforms\type_SdtWWP_FormInstance_Element.cs
 workwithplus\dynamicforms\type_SdtWWP_Form.cs
 workwithplus\dynamicforms\type_SdtWWP_Form_Element.cs
 type_SdtTrn_Organisation.cs
@@ -34,7 +32,6 @@ wwpbaseobjects\mail\type_SdtWWP_MailTemplate.cs
 wwpbaseobjects\mail\type_SdtWWP_Mail.cs
 wwpbaseobjects\mail\type_SdtWWP_Mail_Attachments.cs
 wwpbaseobjects\discussions\type_SdtWWP_DiscussionMessageMention.cs
-wwpbaseobjects\discussions\type_SdtWWP_DiscussionMessage.cs
 wwpbaseobjects\type_SdtUserCustomizations.cs
 type_SdtTrn_Theme.cs
 type_SdtTrn_Theme_Color.cs
@@ -48,7 +45,6 @@ type_SdtTrn_PreferredAgbSupplier.cs
 type_SdtTrn_CallToAction.cs
 type_SdtTrn_PreferredGenSupplier.cs
 type_SdtTrn_Page.cs
-type_SdtTrn_ProductService.cs
 type_SdtTrn_Row.cs
 type_SdtTrn_Resident.cs
 type_SdtTrn_Resident_NetworkCompany.cs
@@ -56,6 +52,10 @@ type_SdtTrn_Resident_NetworkIndividual.cs
 type_SdtTrn_Tile.cs
 type_SdtTrn_Col.cs
 type_SdtTrn_Audit.cs
+workwithplus\dynamicforms\type_SdtWWP_FormInstance.cs
+workwithplus\dynamicforms\type_SdtWWP_FormInstance_Element.cs
+wwpbaseobjects\discussions\type_SdtWWP_DiscussionMessage.cs
+type_SdtTrn_ProductService.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs

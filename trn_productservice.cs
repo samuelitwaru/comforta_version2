@@ -815,7 +815,7 @@ namespace GeneXus.Programs {
                A40000ProductServiceImage_GXI = cgiGet( "PRODUCTSERVICEIMAGE_GXI");
                A44SupplierGenCompanyName = cgiGet( "SUPPLIERGENCOMPANYNAME");
                A51SupplierAgbName = cgiGet( "SUPPLIERAGBNAME");
-               AV41Pgmname = cgiGet( "vPGMNAME");
+               AV43Pgmname = cgiGet( "vPGMNAME");
                Combo_suppliergenid_Objectcall = cgiGet( "COMBO_SUPPLIERGENID_Objectcall");
                Combo_suppliergenid_Class = cgiGet( "COMBO_SUPPLIERGENID_Class");
                Combo_suppliergenid_Icontype = cgiGet( "COMBO_SUPPLIERGENID_Icontype");
@@ -1300,12 +1300,18 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         GXt_objcol_guid1 = AV40PreferredAgbSuppliers;
+         new prc_getpreferredagbsuppliers(context ).execute( ref  GXt_objcol_guid1) ;
+         AV40PreferredAgbSuppliers = GXt_objcol_guid1;
+         GXt_objcol_guid1 = AV41PreferredGenSuppliers;
+         new prc_getpreferredgensuppliers(context ).execute( ref  GXt_objcol_guid1) ;
+         AV41PreferredGenSuppliers = GXt_objcol_guid1;
          divLayoutmaintable_Class = divLayoutmaintable_Class+" "+"EditForm";
          AssignProp("", false, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV19WWPContext) ;
-         GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = AV22DDO_TitleSettingsIcons;
-         new GeneXus.Programs.wwpbaseobjects.getwwptitlesettingsicons(context ).execute( out  GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1) ;
-         AV22DDO_TitleSettingsIcons = GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1;
+         GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2 = AV22DDO_TitleSettingsIcons;
+         new GeneXus.Programs.wwpbaseobjects.getwwptitlesettingsicons(context ).execute( out  GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2) ;
+         AV22DDO_TitleSettingsIcons = GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2;
          AV27GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).get(out  AV28GAMErrors);
          Combo_supplieragbid_Gamoauthtoken = AV27GAMSession.gxTpr_Token;
          ucCombo_supplieragbid.SendProperty(context, "", false, Combo_supplieragbid_Internalname, "GAMOAuthToken", Combo_supplieragbid_Gamoauthtoken);
@@ -1345,13 +1351,13 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV16TrnContext.FromXml(AV18WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV41Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV43Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV42GXV1 = 1;
-            AssignAttri("", false, "AV42GXV1", StringUtil.LTrimStr( (decimal)(AV42GXV1), 8, 0));
-            while ( AV42GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
+            AV44GXV1 = 1;
+            AssignAttri("", false, "AV44GXV1", StringUtil.LTrimStr( (decimal)(AV44GXV1), 8, 0));
+            while ( AV44GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
             {
-               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV42GXV1));
+               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV44GXV1));
                if ( StringUtil.StrCmp(AV17TrnContextAtt.gxTpr_Attributename, "SupplierGenId") == 0 )
                {
                   AV10Insert_SupplierGenId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
@@ -1362,11 +1368,11 @@ namespace GeneXus.Programs {
                      AssignAttri("", false, "AV26ComboSupplierGenId", AV26ComboSupplierGenId.ToString());
                      Combo_suppliergenid_Selectedvalue_set = StringUtil.Trim( AV26ComboSupplierGenId.ToString());
                      ucCombo_suppliergenid.SendProperty(context, "", false, Combo_suppliergenid_Internalname, "SelectedValue_set", Combo_suppliergenid_Selectedvalue_set);
-                     GXt_char2 = AV25Combo_DataJson;
-                     new trn_productserviceloaddvcombo(context ).execute(  "SupplierGenId",  "GET",  false,  AV12ProductServiceId,  AV33LocationId,  AV34OrganisationId,  AV17TrnContextAtt.gxTpr_Attributevalue, out  AV23ComboSelectedValue, out  AV24ComboSelectedText, out  GXt_char2) ;
+                     GXt_char3 = AV25Combo_DataJson;
+                     new trn_productserviceloaddvcombo(context ).execute(  "SupplierGenId",  "GET",  false,  AV12ProductServiceId,  AV33LocationId,  AV34OrganisationId,  AV17TrnContextAtt.gxTpr_Attributevalue, out  AV23ComboSelectedValue, out  AV24ComboSelectedText, out  GXt_char3) ;
                      AssignAttri("", false, "AV23ComboSelectedValue", AV23ComboSelectedValue);
                      AssignAttri("", false, "AV24ComboSelectedText", AV24ComboSelectedText);
-                     AV25Combo_DataJson = GXt_char2;
+                     AV25Combo_DataJson = GXt_char3;
                      AssignAttri("", false, "AV25Combo_DataJson", AV25Combo_DataJson);
                      Combo_suppliergenid_Selectedtext_set = AV24ComboSelectedText;
                      ucCombo_suppliergenid.SendProperty(context, "", false, Combo_suppliergenid_Internalname, "SelectedText_set", Combo_suppliergenid_Selectedtext_set);
@@ -1384,11 +1390,11 @@ namespace GeneXus.Programs {
                      AssignAttri("", false, "AV30ComboSupplierAgbId", AV30ComboSupplierAgbId.ToString());
                      Combo_supplieragbid_Selectedvalue_set = StringUtil.Trim( AV30ComboSupplierAgbId.ToString());
                      ucCombo_supplieragbid.SendProperty(context, "", false, Combo_supplieragbid_Internalname, "SelectedValue_set", Combo_supplieragbid_Selectedvalue_set);
-                     GXt_char2 = AV25Combo_DataJson;
-                     new trn_productserviceloaddvcombo(context ).execute(  "SupplierAgbId",  "GET",  false,  AV12ProductServiceId,  AV33LocationId,  AV34OrganisationId,  AV17TrnContextAtt.gxTpr_Attributevalue, out  AV23ComboSelectedValue, out  AV24ComboSelectedText, out  GXt_char2) ;
+                     GXt_char3 = AV25Combo_DataJson;
+                     new trn_productserviceloaddvcombo(context ).execute(  "SupplierAgbId",  "GET",  false,  AV12ProductServiceId,  AV33LocationId,  AV34OrganisationId,  AV17TrnContextAtt.gxTpr_Attributevalue, out  AV23ComboSelectedValue, out  AV24ComboSelectedText, out  GXt_char3) ;
                      AssignAttri("", false, "AV23ComboSelectedValue", AV23ComboSelectedValue);
                      AssignAttri("", false, "AV24ComboSelectedText", AV24ComboSelectedText);
-                     AV25Combo_DataJson = GXt_char2;
+                     AV25Combo_DataJson = GXt_char3;
                      AssignAttri("", false, "AV25Combo_DataJson", AV25Combo_DataJson);
                      Combo_supplieragbid_Selectedtext_set = AV24ComboSelectedText;
                      ucCombo_supplieragbid.SendProperty(context, "", false, Combo_supplieragbid_Internalname, "SelectedText_set", Combo_supplieragbid_Selectedtext_set);
@@ -1396,8 +1402,8 @@ namespace GeneXus.Programs {
                      ucCombo_supplieragbid.SendProperty(context, "", false, Combo_supplieragbid_Internalname, "Enabled", StringUtil.BoolToStr( Combo_supplieragbid_Enabled));
                   }
                }
-               AV42GXV1 = (int)(AV42GXV1+1);
-               AssignAttri("", false, "AV42GXV1", StringUtil.LTrimStr( (decimal)(AV42GXV1), 8, 0));
+               AV44GXV1 = (int)(AV44GXV1+1);
+               AssignAttri("", false, "AV44GXV1", StringUtil.LTrimStr( (decimal)(AV44GXV1), 8, 0));
             }
          }
          edtProductServiceId_Visible = 0;
@@ -1457,11 +1463,11 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOSUPPLIERAGBID' Routine */
          returnInSub = false;
-         GXt_char2 = AV25Combo_DataJson;
-         new trn_productserviceloaddvcombo(context ).execute(  "SupplierAgbId",  Gx_mode,  false,  AV12ProductServiceId,  AV33LocationId,  AV34OrganisationId,  "", out  AV23ComboSelectedValue, out  AV24ComboSelectedText, out  GXt_char2) ;
+         GXt_char3 = AV25Combo_DataJson;
+         new trn_productserviceloaddvcombo(context ).execute(  "SupplierAgbId",  Gx_mode,  false,  AV12ProductServiceId,  AV33LocationId,  AV34OrganisationId,  "", out  AV23ComboSelectedValue, out  AV24ComboSelectedText, out  GXt_char3) ;
          AssignAttri("", false, "AV23ComboSelectedValue", AV23ComboSelectedValue);
          AssignAttri("", false, "AV24ComboSelectedText", AV24ComboSelectedText);
-         AV25Combo_DataJson = GXt_char2;
+         AV25Combo_DataJson = GXt_char3;
          AssignAttri("", false, "AV25Combo_DataJson", AV25Combo_DataJson);
          Combo_supplieragbid_Selectedvalue_set = AV23ComboSelectedValue;
          ucCombo_supplieragbid.SendProperty(context, "", false, Combo_supplieragbid_Internalname, "SelectedValue_set", Combo_supplieragbid_Selectedvalue_set);
@@ -1480,11 +1486,11 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOSUPPLIERGENID' Routine */
          returnInSub = false;
-         GXt_char2 = AV25Combo_DataJson;
-         new trn_productserviceloaddvcombo(context ).execute(  "SupplierGenId",  Gx_mode,  false,  AV12ProductServiceId,  AV33LocationId,  AV34OrganisationId,  "", out  AV23ComboSelectedValue, out  AV24ComboSelectedText, out  GXt_char2) ;
+         GXt_char3 = AV25Combo_DataJson;
+         new trn_productserviceloaddvcombo(context ).execute(  "SupplierGenId",  Gx_mode,  false,  AV12ProductServiceId,  AV33LocationId,  AV34OrganisationId,  "", out  AV23ComboSelectedValue, out  AV24ComboSelectedText, out  GXt_char3) ;
          AssignAttri("", false, "AV23ComboSelectedValue", AV23ComboSelectedValue);
          AssignAttri("", false, "AV24ComboSelectedText", AV24ComboSelectedText);
-         AV25Combo_DataJson = GXt_char2;
+         AV25Combo_DataJson = GXt_char3;
          AssignAttri("", false, "AV25Combo_DataJson", AV25Combo_DataJson);
          Combo_suppliergenid_Selectedvalue_set = AV23ComboSelectedValue;
          ucCombo_suppliergenid.SendProperty(context, "", false, Combo_suppliergenid_Internalname, "SelectedValue_set", Combo_suppliergenid_Selectedvalue_set);
@@ -1543,8 +1549,8 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV41Pgmname = "Trn_ProductService";
-         AssignAttri("", false, "AV41Pgmname", AV41Pgmname);
+         AV43Pgmname = "Trn_ProductService";
+         AssignAttri("", false, "AV43Pgmname", AV43Pgmname);
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          bttBtntrn_delete_Enabled = 0;
@@ -1571,9 +1577,9 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXt_guid3 = A29LocationId;
-            new prc_getuserlocationid(context ).execute( out  GXt_guid3) ;
-            A29LocationId = GXt_guid3;
+            GXt_guid4 = A29LocationId;
+            new prc_getuserlocationid(context ).execute( out  GXt_guid4) ;
+            A29LocationId = GXt_guid4;
             AssignAttri("", false, "A29LocationId", A29LocationId.ToString());
          }
          if ( ! (Guid.Empty==AV33LocationId) )
@@ -1598,9 +1604,9 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXt_guid3 = A11OrganisationId;
-            new prc_getuserorganisationid(context ).execute( out  GXt_guid3) ;
-            A11OrganisationId = GXt_guid3;
+            GXt_guid4 = A11OrganisationId;
+            new prc_getuserorganisationid(context ).execute( out  GXt_guid4) ;
+            A11OrganisationId = GXt_guid4;
             AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
          }
          if ( ! (Guid.Empty==AV34OrganisationId) )
@@ -2808,7 +2814,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "PRODUCTSERVICEIMAGE_GXI", A40000ProductServiceImage_GXI);
          GxWebStd.gx_hidden_field( context, "SUPPLIERGENCOMPANYNAME", A44SupplierGenCompanyName);
          GxWebStd.gx_hidden_field( context, "SUPPLIERAGBNAME", A51SupplierAgbName);
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV41Pgmname));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV43Pgmname));
          GXCCtlgxBlob = "PRODUCTSERVICEIMAGE" + "_gxBlob";
          GxWebStd.gx_hidden_field( context, GXCCtlgxBlob, A61ProductServiceImage);
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERGENID_Objectcall", StringUtil.RTrim( Combo_suppliergenid_Objectcall));
@@ -2976,7 +2982,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411496168", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241142235763", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2992,7 +2998,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_productservice.js", "?2024114961610", false, true);
+         context.AddJavascriptSource("trn_productservice.js", "?20241142235764", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3125,9 +3131,9 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXt_guid3 = A29LocationId;
-            new prc_getuserlocationid(context ).execute( out  GXt_guid3) ;
-            A29LocationId = GXt_guid3;
+            GXt_guid4 = A29LocationId;
+            new prc_getuserlocationid(context ).execute( out  GXt_guid4) ;
+            A29LocationId = GXt_guid4;
             AssignAttri("", false, "A29LocationId", A29LocationId.ToString());
          }
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -3151,9 +3157,9 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXt_guid3 = A11OrganisationId;
-            new prc_getuserorganisationid(context ).execute( out  GXt_guid3) ;
-            A11OrganisationId = GXt_guid3;
+            GXt_guid4 = A11OrganisationId;
+            new prc_getuserorganisationid(context ).execute( out  GXt_guid4) ;
+            A11OrganisationId = GXt_guid4;
             AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
          }
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -3380,7 +3386,7 @@ namespace GeneXus.Programs {
          AV9Insert_SupplierAgbId = Guid.Empty;
          A44SupplierGenCompanyName = "";
          A51SupplierAgbName = "";
-         AV41Pgmname = "";
+         AV43Pgmname = "";
          Combo_suppliergenid_Objectcall = "";
          Combo_suppliergenid_Class = "";
          Combo_suppliergenid_Icontype = "";
@@ -3440,8 +3446,11 @@ namespace GeneXus.Programs {
          sEvtType = "";
          endTrnMsgTxt = "";
          endTrnMsgCod = "";
+         AV40PreferredAgbSuppliers = new GxSimpleCollection<Guid>();
+         AV41PreferredGenSuppliers = new GxSimpleCollection<Guid>();
+         GXt_objcol_guid1 = new GxSimpleCollection<Guid>();
          AV19WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
+         GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV27GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context);
          AV28GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV16TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
@@ -3450,7 +3459,7 @@ namespace GeneXus.Programs {
          AV25Combo_DataJson = "";
          AV23ComboSelectedValue = "";
          AV24ComboSelectedText = "";
-         GXt_char2 = "";
+         GXt_char3 = "";
          Z60ProductServiceDescription = "";
          Z61ProductServiceImage = "";
          Z40000ProductServiceImage_GXI = "";
@@ -3527,7 +3536,7 @@ namespace GeneXus.Programs {
          GXEncryptionTmp = "";
          GXCCtlgxBlob = "";
          i366ProductServiceGroup = "";
-         GXt_guid3 = Guid.Empty;
+         GXt_guid4 = Guid.Empty;
          T000822_A29LocationId = new Guid[] {Guid.Empty} ;
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_productservice__gam(),
             new Object[][] {
@@ -3601,7 +3610,7 @@ namespace GeneXus.Programs {
          );
          Z58ProductServiceId = Guid.NewGuid( );
          A58ProductServiceId = Guid.NewGuid( );
-         AV41Pgmname = "Trn_ProductService";
+         AV43Pgmname = "Trn_ProductService";
          Z366ProductServiceGroup = "Location";
          A366ProductServiceGroup = "Location";
          i366ProductServiceGroup = "Location";
@@ -3645,7 +3654,7 @@ namespace GeneXus.Programs {
       private int Combo_suppliergenid_Gxcontroltype ;
       private int Combo_supplieragbid_Datalistupdateminimumcharacters ;
       private int Combo_supplieragbid_Gxcontroltype ;
-      private int AV42GXV1 ;
+      private int AV44GXV1 ;
       private int idxLst ;
       private string sPrefix ;
       private string wcpOGx_mode ;
@@ -3725,7 +3734,7 @@ namespace GeneXus.Programs {
       private string edtLocationId_Jsonclick ;
       private string edtOrganisationId_Internalname ;
       private string edtOrganisationId_Jsonclick ;
-      private string AV41Pgmname ;
+      private string AV43Pgmname ;
       private string Combo_suppliergenid_Objectcall ;
       private string Combo_suppliergenid_Class ;
       private string Combo_suppliergenid_Icontype ;
@@ -3784,7 +3793,7 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string GXt_char2 ;
+      private string GXt_char3 ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -3858,7 +3867,7 @@ namespace GeneXus.Programs {
       private Guid A58ProductServiceId ;
       private Guid AV10Insert_SupplierGenId ;
       private Guid AV9Insert_SupplierAgbId ;
-      private Guid GXt_guid3 ;
+      private Guid GXt_guid4 ;
       private IGxSession AV18WebSession ;
       private GXProperties forbiddenHiddens ;
       private GXUserControl ucCombo_suppliergenid ;
@@ -3871,8 +3880,11 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV22DDO_TitleSettingsIcons ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV21SupplierGenId_Data ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV29SupplierAgbId_Data ;
+      private GxSimpleCollection<Guid> AV40PreferredAgbSuppliers ;
+      private GxSimpleCollection<Guid> AV41PreferredGenSuppliers ;
+      private GxSimpleCollection<Guid> GXt_objcol_guid1 ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV19WWPContext ;
-      private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
+      private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2 ;
       private GeneXus.Programs.genexussecurity.SdtGAMSession AV27GAMSession ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV28GAMErrors ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV16TrnContext ;

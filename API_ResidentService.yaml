@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241104084244"
+  version: "20241104193531"
 servers:
-  - url: https://staging.comforta.yukon.software//api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -381,7 +381,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
+          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -466,6 +466,8 @@ components:
           type: "string"
         PageGJSJson:
           type: "string"
+        PageIsPublished:
+          type: "boolean"
 
     AddPageCildrenInput:  
       properties:

@@ -436,7 +436,8 @@ namespace GeneXus.Programs {
                                    string aP1_PageJsonContent ,
                                    string aP2_PageGJSHtml ,
                                    string aP3_PageGJSJson ,
-                                   out string aP4_result )
+                                   bool aP4_PageIsPublished ,
+                                   out string aP5_result )
       {
          restCliUpdatePage = new GXRestAPIClient();
          if ( restLocation == null )
@@ -450,17 +451,18 @@ namespace GeneXus.Programs {
          restCliUpdatePage.AddBodyVar("PageJsonContent", (string)(aP1_PageJsonContent));
          restCliUpdatePage.AddBodyVar("PageGJSHtml", (string)(aP2_PageGJSHtml));
          restCliUpdatePage.AddBodyVar("PageGJSJson", (string)(aP3_PageGJSJson));
+         restCliUpdatePage.AddBodyVar("PageIsPublished", aP4_PageIsPublished);
          restCliUpdatePage.RestExecute();
          if ( restCliUpdatePage.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliUpdatePage.ErrorCode;
             gxProperties.ErrorMessage = restCliUpdatePage.ErrorMessage;
             gxProperties.StatusCode = restCliUpdatePage.StatusCode;
-            aP4_result = "";
+            aP5_result = "";
          }
          else
          {
-            aP4_result = restCliUpdatePage.GetBodyString("result");
+            aP5_result = restCliUpdatePage.GetBodyString("result");
          }
          /* UpdatePage Constructor */
       }
@@ -527,7 +529,6 @@ namespace GeneXus.Programs {
          restCliSavePage = new GXRestAPIClient();
          aP5_result = "";
          restCliUpdatePage = new GXRestAPIClient();
-         aP4_result = "";
          restCliAddPageCildren = new GXRestAPIClient();
          /* GeneXus formulas. */
       }
@@ -563,7 +564,6 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected string aP1_result ;
       protected string aP5_result ;
-      protected string aP4_result ;
    }
 
 }

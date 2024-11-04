@@ -64,15 +64,15 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Text Constructor */
          if ( StringUtil.StrCmp(AV14ParameterName, "SMTP_Host") == 0 )
          {
-            AV15TextParameter = "smtp.gmail.com";
+            AV15TextParameter = "comforta.yukon.software";
          }
          else if ( StringUtil.StrCmp(AV14ParameterName, "SMTP_Username") == 0 )
          {
-            AV15TextParameter = "samplemail@gmail.com";
+            AV15TextParameter = "no-reply@comforta.yukon.software";
          }
          else if ( StringUtil.StrCmp(AV14ParameterName, "SMTP_Password") == 0 )
          {
-            AV15TextParameter = "samplemail_password";
+            AV15TextParameter = "2uSFuxkquz";
          }
          else if ( StringUtil.StrCmp(AV14ParameterName, "SMS_ServicePlanId") == 0 )
          {
