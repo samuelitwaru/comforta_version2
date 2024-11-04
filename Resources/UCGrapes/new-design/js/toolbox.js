@@ -582,8 +582,14 @@ class ToolBoxManager {
   loadMappings() {
     const treeContainer = document.getElementById("tree-container");
     this.clearMappings();
-    treeContainer.appendChild(this.createTree(this.mappingsItems, true));
-  }
+    this.getPagesService()
+      .then((pages) => {
+        treeContainer.appendChild(this.createTree(pages, true));
+      })
+      .catch((error) => {
+        console.error("Error fetching pages:", error);
+      });
+  }
 
   clearMappings() {
     const treeContainer = document.getElementById("tree-container");
@@ -591,7 +597,6 @@ class ToolBoxManager {
   }
 
   createTree(data, isRoot = false) {
-    console.log(data)
     // Sort the data so that "Home" is always first
     data.sort((a, b) => (a.Name === "Home" ? -1 : b.Name === "Home" ? 1 : 0));
 
@@ -607,47 +612,54 @@ class ToolBoxManager {
       li.appendChild(span);
       li.className = this.checkActivePage(item.Id) ? "selected-page" : "";
       span.title = item.Id;
-
+      let pageTile = document.createElement("span")
+      pageTile.textContent = item.Name
       if (item.Children && item.Children.length > 0) {
         const childrenContainer = this.createTree(item.Children); // Recursively create children
         li.appendChild(childrenContainer);
 
-        span.textContent = item.Name + " +";
+        let childToggle = document.createElement("span")
+        
+        childToggle.textContent = " + ";
         span.style.cursor = "pointer";
 
-        span.onclick = () => {
+        childToggle.onclick = () => {
           childrenContainer.style.display =
             childrenContainer.style.display === "none" ? "block" : "none";
 
-          span.textContent =
+          childToggle.textContent =
             childrenContainer.style.display === "none"
-              ? item.Name + " +"
-              : item.Name + " -";
+              ? " + "
+              : " - ";
         };
-      } else {
-        span.onclick = () => {
-          this.editorManager.setCurrentPageName(item.Name);
-          this.editorManager.setCurrentPageId(item.Id);
 
-          const editor = this.editorManager.editor;
+        //span.appendChild(pageTile)
+        span.appendChild(childToggle)
+      } 
+      //else {
+      span.onclick = () => {
+        this.editorManager.setCurrentPageName(item.Name);
+        this.editorManager.setCurrentPageId(item.Id);
 
-          editor.DomComponents.clear();
-          this.editorManager.templateComponent = null;
-          editor.trigger("load");
+        const editor = this.editorManager.editor;
 
-          document.querySelectorAll(".selected-page").forEach((el) => {
-            el.classList.remove("selected-page");
-          });
+        editor.DomComponents.clear();
+        this.editorManager.templateComponent = null;
+        editor.trigger("load");
 
-          span.closest("li").classList.add("selected-page");
-          const mainPage = document.getElementById("current-page-title");
-          mainPage.textContent = this.updateActivePageName();
+        document.querySelectorAll(".selected-page").forEach((el) => {
+          el.classList.remove("selected-page");
+        });
 
-          const message = `${item.Name} Page loaded successfully`;
-          const status = "success";
-          this.displayAlertMessage(message, status);
-        };
-      }
+        span.closest("li").classList.add("selected-page");
+        const mainPage = document.getElementById("current-page-title");
+        mainPage.textContent = this.updateActivePageName();
+
+        const message = `${item.Name} Page loaded successfully`;
+        const status = "success";
+        this.displayAlertMessage(message, status);
+      };
+      //}
       ul.appendChild(li);
     });
     return ul;
