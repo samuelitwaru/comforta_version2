@@ -1,5 +1,5 @@
 let globalVar = null;
-window.onclick = (e) => {e.preventDefault()}
+//window.onclick = (e) => {e.preventDefault()}
 class ToolBoxManager {
   dataManager = null
   constructor(editorManager, dataManager, themes, icons, templates, mapping, media) {
@@ -16,8 +16,8 @@ class ToolBoxManager {
   }
 
   init() {
-    alert('tbm init start')
     let self = this;
+    alert('tbm init')
     this.dataManager.getPages().then(pages=>{
       localStorage.clear();
       pages.forEach((page) => {
@@ -1102,8 +1102,6 @@ class ToolBoxManager {
       return pageOptions;
     };
 
-    console.log(this.dataManager.services)
-
     const categoryData = [
       {
         name: "Page",
@@ -1192,6 +1190,7 @@ class ToolBoxManager {
       // Toggle display of the search box based on category open state and handle icons
       categories.forEach((category) => {
         category.addEventListener("toggle", function () {
+          alert()
           selectedCategory = category.dataset.category
           self.setAttributeToSelected("tile-action-object", category.dataset.category)
           const searchBox = this.querySelector(".search-container");
