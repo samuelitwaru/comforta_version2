@@ -32,6 +32,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Page.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageChildren.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageStructure.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductService.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionist.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionists_SDT_ReceptionistsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Resident.cs" />

@@ -87,6 +87,14 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_agendalocation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_senddynamicform") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
          return GAMSecurityLevel.SecurityLow ;
       }
 
@@ -207,6 +215,15 @@ namespace GeneXus.Programs {
          /* Uploadmedia_After Routine */
          returnInSub = false;
          if ( AV50BC_Trn_Media.FromJSonString(AV17result, null) )
+         {
+         }
+      }
+
+      protected void E20012( )
+      {
+         /* Agendalocation_After Routine */
+         returnInSub = false;
+         if ( AV59SDT_AgendaLocation.FromJSonString(AV17result, null) )
          {
          }
       }
@@ -547,6 +564,46 @@ namespace GeneXus.Programs {
          aP2_result=this.AV17result;
       }
 
+      public void gxep_agendalocation( Guid aP0_locationId ,
+                                       out GXBaseCollection<SdtSDT_AgendaLocation> aP1_SDT_AgendaLocation )
+      {
+         this.AV12locationId = aP0_locationId;
+         AV59SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>( context, "SDT_AgendaLocation", "Comforta_version2");
+         initialize();
+         /* AgendaLocation Constructor */
+         new prc_agendalocationapi(context ).execute(  AV12locationId, out  AV17result) ;
+         /* Execute user event: Agendalocation.After */
+         E20012 ();
+         if ( returnInSub )
+         {
+            aP1_SDT_AgendaLocation=this.AV59SDT_AgendaLocation;
+            return;
+         }
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP1_SDT_AgendaLocation=this.AV59SDT_AgendaLocation;
+            return;
+         }
+         aP1_SDT_AgendaLocation=this.AV59SDT_AgendaLocation;
+      }
+
+      public void gxep_senddynamicform( out string aP0_result )
+      {
+         initialize();
+         /* SendDynamicForm Constructor */
+         new prc_dynamicformapi(context ).execute( out  AV17result) ;
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP0_result=this.AV17result;
+            return;
+         }
+         aP0_result=this.AV17result;
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -563,6 +620,7 @@ namespace GeneXus.Programs {
          AV44SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          AV64SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          AV50BC_Trn_Media = new SdtTrn_Media(context);
+         AV59SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>( context, "SDT_AgendaLocation", "Comforta_version2");
          /* GeneXus formulas. */
       }
 
@@ -604,6 +662,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_Page> AV44SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_PageStructure> AV64SDT_PageStructureCollection ;
       protected SdtTrn_Media AV50BC_Trn_Media ;
+      protected GXBaseCollection<SdtSDT_AgendaLocation> AV59SDT_AgendaLocation ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_Resident aP1_SDT_Resident ;
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
@@ -617,6 +676,8 @@ namespace GeneXus.Programs {
       protected string aP1_result ;
       protected SdtSDT_Page AV55SDT_Page ;
       protected string aP5_result ;
+      protected GXBaseCollection<SdtSDT_AgendaLocation> aP1_SDT_AgendaLocation ;
+      protected string aP0_result ;
    }
 
 }

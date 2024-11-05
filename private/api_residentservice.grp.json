@@ -143,4 +143,24 @@
 "VariableAlias": [],
 "ServiceMethod":"gxep_addpagecildren",
 "Implementation":"Prc_AddPageChildren"
+},
+{
+"PathRegexp":"location/agenda",
+"Path":"location/agenda",
+"Verb":"POST",
+"Name":"agendalocation",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_agendalocation",
+"Implementation":"Prc_AgendaLocationAPI"
+},
+{
+"PathRegexp":"form/dynamic-form",
+"Path":"form/dynamic-form",
+"Name":"senddynamicform",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_senddynamicform",
+"Implementation":"Prc_DynamicFormAPI",
+"Verb":"GET"
 }]}

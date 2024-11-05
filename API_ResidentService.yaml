@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241104193531"
+  version: "20241105084353"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -374,6 +374,55 @@ paths:
         404:
           description: "Not found"
 
+  /location/agenda:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.AgendaLocation"
+      summary: "Location Agenda"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgendaLocationInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_AgendaLocation"  
+
+        404:
+          description: "Not found"
+
+  /form/dynamic-form:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.SendDynamicForm"
+      summary: "Send Test Dynamic form"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
 components:
   securitySchemes:
     oAuthGXGAM:
@@ -477,6 +526,13 @@ components:
         ChildPageId:
           type: "string"
           format: "uuid"
+
+    AgendaLocationInput:  
+      properties:
+        locationId:
+          type: "string"
+          format: "uuid"
+
   
     SDT_LoginResidentResponse:
       properties:
@@ -733,6 +789,37 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_PageChildren"
+
+
+
+    SDT_AgendaLocation:
+      properties:
+        AgendaCalendarId:
+          description: "Agenda Calendar Id"
+          type: "string"
+          format: "uuid"
+        AgendaCalendarTitle:
+          description: "Agenda Calendar Title"
+          type: "string"
+        AgendaCalendarStartDate:
+          description: "Agenda Calendar Start Date"
+          type: "string"
+          format: "date-time"
+        AgendaCalendarEndDate:
+          description: "Agenda Calendar End Date"
+          type: "string"
+          format: "date-time"
+        AgendaCalendarAllDay:
+          description: "Agenda Calendar All Day"
+          type: "boolean"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
 
 
 

@@ -1,8 +1,9 @@
 let globalVar = null;
 class ToolBoxManager {
-  constructor(editorManager, themes, icons, templates, mapping, media) {
+  dataManager = null
+  constructor(editorManager, dataManager, themes, icons, templates, mapping, media) {
     this.editorManager = editorManager;
-    this.getPages(editorManager);
+    this.dataManager = dataManager;
     this.themes = themes;
     this.icons = icons;
     this.currentTheme = null;
@@ -14,7 +15,18 @@ class ToolBoxManager {
   }
 
   init() {
-    self = this;
+    let self = this;
+    this.dataManager.getPages().then(pages=>{
+      localStorage.clear();
+      pages.forEach((page) => {
+        if (page.PageName === "Home") {
+          this.editorManager.pageId = page.PageId;
+          this.editorManager.setCurrentPage(page)
+          this.editorManager.editor.trigger("load")
+        }
+      });
+    })
+
     this.loadTheme();
     this.listThemesInSelectField();
     this.colorPalette();
@@ -60,15 +72,22 @@ class ToolBoxManager {
 
     publishButton.onclick = (e) => {
       e.preventDefault();
-      const data = this.editorManager.editor.getProjectData();
-      let res = mapTemplateToPageData(data);
-
+      let pageData = mapTemplateToPageData(
+        this.editorManager.editor.getProjectData()
+      );
       let pageId = this.editorManager.getCurrentPageId();
-      console.log(pageId);
       if (pageId) {
-        this.updatePage(pageId, res);
-      } else {
-        this.publishPage(res);
+        let data = {
+          PageId: pageId,
+          PageJsonContent: JSON.stringify(pageData),
+          PageGJSHtml: this.editorManager.editor.getHtml(),
+          PageGJSJson: JSON.stringify(this.editorManager.editor.getProjectData()),
+          SDT_Page: pageData,
+          PageIsPublished: true
+        }
+        this.dataManager.updatePage(data).then(res=>{
+          this.displayAlertMessage("Page Save Successfully", "success")
+        })
       }
     };
 
@@ -239,7 +258,25 @@ class ToolBoxManager {
         const pageTitle = pageInput.value.trim();
         if (pageTitle) {
           // Additional check to ensure value exists
-          this.createNewpage(pageTitle);
+          this.dataManager.createNewPage(pageTitle).then( res => {
+            const pageInput = document.getElementById("page-title");
+            pageInput.value = "";
+
+            this.dataManager
+              .getPagesService()
+              .then((pages) => {
+                // Clear the current tree structure
+                const treeContainer = document.getElementById("tree-container"); // Assuming tree is rendered here
+                treeContainer.innerHTML = ""; // Clear existing nodes
+
+                // Re-create the tree with updated pages data
+                const newTree = self.createTree(pages, true); // Set isRoot to true if it's the root
+                treeContainer.appendChild(newTree); // Append the new tree structure to the container
+              })
+              .catch((error) => {
+                console.error("Error fetching pages:", error);
+              });
+          })
         }
       });
     });
@@ -582,7 +619,7 @@ class ToolBoxManager {
   loadMappings() {
     const treeContainer = document.getElementById("tree-container");
     this.clearMappings();
-    this.getPagesService()
+    this.dataManager.getPagesService()
       .then((pages) => {
         treeContainer.appendChild(this.createTree(pages, true));
       })
@@ -781,7 +818,12 @@ class ToolBoxManager {
             const reader = new FileReader();
             reader.onload = (e) => {
               img.src = e.target.result;
-              this.uploadFile(e.target.result, file.name, file.size, file.type);
+              this.uploadFile(e.target.result, file.name, file.size, file.type).then(response=>{
+                if (response.MediaId) {
+                  this.media.push(response);
+                  this.displayMediaFile(response);
+                }
+              })
             };
             reader.readAsDataURL(file);
             img.alt = "File thumbnail";
@@ -868,62 +910,6 @@ class ToolBoxManager {
       document.body.removeChild(modal);
       document.body.removeChild(fileInputField);
     };
-  }
-
-  uploadFile(fileData, fileName, fileSize, fileType) {
-    let tbm = this;
-    if (fileData) {
-      $.ajax({
-        url:
-          `${baseURL}/api/media/upload`, // Replace with the actual API endpoint
-        type: "POST", // POST request as specified in the YAML
-
-        contentType: "multipart/form-data", // Sending JSON as per the request body
-        data: JSON.stringify({
-          MediaId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          MediaName: fileName,
-          MediaImageData: fileData,
-          MediaSize: fileSize,
-          MediaType: fileType,
-        }),
-        success: function (response) {
-          // Handle a successful response
-          console.log("Success:", response);
-          if (response.MediaId) {
-            tbm.media.push(response);
-            tbm.displayMediaFile(response);
-          }
-        },
-        error: function (xhr, status, error) {
-          if (xhr.status === 404) {
-            console.error("Error 404: Not Found");
-          } else {
-            console.error("Error:", status, error);
-          }
-        },
-      });
-    } else {
-      alert("Please select a file!");
-    }
-  }
-
-  getMediaFiles() {
-    $.ajax({
-      url:
-        `${baseURL}/api/media/`, // Replace with the actual API endpoint
-      type: "GET",
-      success: function (response) {
-        // display media files
-        console.log(response);
-      },
-      error: function (xhr, status, error) {
-        if (xhr.status === 404) {
-          console.error("Error 404: Not Found");
-        } else {
-          console.error("Error:", status, error);
-        }
-      },
-    });
   }
 
   displayMediaFile(file) {
@@ -1086,7 +1072,7 @@ class ToolBoxManager {
   }
 
   listServices(editorManager) {
-    this.getPagesService()
+    this.dataManager.getPagesService()
       .then((pages) => {
         const pageOptions = mapPageNamesToOptions(pages);
         console.log('pageOptions', pageOptions)
@@ -1114,6 +1100,8 @@ class ToolBoxManager {
       return pageOptions;
     };
 
+    console.log(this.dataManager.services)
+
     const categoryData = [
       {
         name: "Page",
@@ -1121,7 +1109,9 @@ class ToolBoxManager {
       },
       {
         name: "Service/Product Page",
-        options: [{PageId:"2354481d-5df0-4154-92b8-2fc0aaf9b3e7", PageName:"Taxi service"}],
+        options: this.dataManager.services.map(service => {
+          return {PageId:service.ProductServiceId, PageName:service.ProductServiceName}
+        })
       },
       {
         name: "Dynamic Form",
@@ -1245,8 +1235,7 @@ class ToolBoxManager {
             const currentPageId = localStorage.getItem("pageId");
             if (currentPageId !== undefined) {
               self.setAttributeToSelected("tile-action-object-id", this.id)
-              console.log(self.editorManager.editor.getHtml())
-              self.addPageChild(
+              self.dataManager.addPageChild(
                 this.id,
                 currentPageId
               );
@@ -1292,192 +1281,6 @@ class ToolBoxManager {
         });
       });
     };
-  }
-
-  getPages(editorManager) {
-    let self = this;
-    $.ajax({
-      url:
-        `${baseURL}/api/toolbox/pages/list2`,
-      type: "GET",
-      data: JSON.stringify({
-        PageId: "",
-      }),
-      success: function (response) {
-        self.pages = response;
-        localStorage.clear();
-        self.pages.forEach((page) => {
-          console.log('page',page)
-          if (page.PageName === "Home") {
-            editorManager.pageId = page.PageId;
-            localStorage.setItem("pageId", page.PageId);
-            localStorage.setItem("pageName", page.PageName);
-            const localStorageKey = `page-${page.PageId}`;
-            localStorage.setItem(localStorageKey, page.PageGJSJson);
-            console.log(page.PageGJSJson)
-            editorManager.editor.trigger("load");
-          }
-          
-        });
-      },
-      error: function (xhr, status, error) {
-        if (xhr.status === 404) {
-          console.error("Error 404: Not Found");
-        } else {
-          console.error("Error:", status, error);
-        }
-      },
-    });
-  }
-
-  getPagesService() {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url:
-          `${baseURL}/api/toolbox/pages/list`,
-        type: "GET",
-        success: function (response) {
-          const pages = response;
-          console.log('service pages', pages)
-          resolve(pages); // Resolve the promise with the pages
-        },
-        error: function (xhr, status, error) {
-          if (xhr.status === 404) {
-            console.error("Error 404: Not Found");
-          } else {
-            console.error("Error:", status, error);
-          }
-          reject(error); // Reject the promise with the error
-        },
-      });
-    });
-  }
-
-  publishPage(pageData) {
-    const pageId =
-      localStorage.getItem("pageId") || "3a438e66-6344-4e0d-8d40-ce9bf5eae096";
-
-    $.ajax({
-      url:
-        `${baseURL}/api/toolbox/save-page`, // Replace with the actual API endpoint
-      type: "POST",
-      data: JSON.stringify({
-        PageId: pageId,
-        PageJSON: JSON.stringify(pageData),
-        PageGJSHtml: this.editorManager.editor.getHtml(),
-        PageGJSJson: JSON.stringify(this.editorManager.editor.getProjectData()),
-        SDT_Page: pageData,
-      }),
-      success: function (response) {
-        console.log("Success:", response);
-      },
-      error: function (xhr, status, error) {
-        if (xhr.status === 404) {
-          console.error("Error 404: Not Found");
-        } else {
-          console.error("Error:", status, error);
-        }
-      },
-    });
-  }
-
-  updatePage(pageId, pageData) {
-    let tbm = this;
-    console.log({
-      PageId: pageId,
-      PageJsonContent: JSON.stringify(pageData),
-      PageGJSHtml: this.editorManager.editor.getHtml(),
-      PageGJSJson: JSON.stringify(this.editorManager.editor.getProjectData()),
-      SDT_Page: pageData,
-    })
-    $.ajax({
-      url:
-        `${baseURL}/api/toolbox/update-page`, // Replace with the actual API endpoint
-      type: "POST",
-      data: JSON.stringify({
-        PageId: pageId,
-        PageJsonContent: JSON.stringify(pageData),
-        PageGJSHtml: this.editorManager.editor.getHtml(),
-        PageGJSJson: JSON.stringify(this.editorManager.editor.getProjectData()),
-        SDT_Page: pageData,
-      }),
-      success: function (response) {
-        console.log("Success:", response);
-        tbm.displayAlertMessage("Page Save Successfully", "success");
-      },
-      error: function (xhr, status, error) {
-        if (xhr.status === 404) {
-          console.error("Error 404: Not Found");
-        } else {
-          console.error("Error:", status, error);
-        }
-      },
-    });
-  }
-
-  createNewpage(pageName) {
-    const self = this; // Store the context
-
-    $.ajax({
-      url:
-        `${baseURL}/api/toolbox/create-page`,
-      type: "POST",
-      contentType: "application/json", // Ensure JSON content type
-      data: JSON.stringify({ PageName: pageName }),
-      success: function (response) {
-        console.log("Success:", response);
-
-        const pageInput = document.getElementById("page-title");
-        pageInput.value = "";
-
-        self
-          .getPagesService()
-          .then((pages) => {
-            console.log("pageData:", pages);
-
-            // Clear the current tree structure
-            const treeContainer = document.getElementById("tree-container"); // Assuming tree is rendered here
-            treeContainer.innerHTML = ""; // Clear existing nodes
-
-            // Re-create the tree with updated pages data
-            const newTree = self.createTree(pages, true); // Set isRoot to true if it's the root
-            treeContainer.appendChild(newTree); // Append the new tree structure to the container
-          })
-          .catch((error) => {
-            console.error("Error fetching pages:", error);
-          });
-        
-      },
-      error: function (xhr, status, error) {
-        if (xhr.status === 404) {
-          console.error("Error 404: Not Found");
-        } else {
-          console.error("Error:", status, error);
-        }
-      },
-    });
-  }
-
-  addPageChild(childPageId, currentPageId) {
-    $.ajax({
-      url:
-        `${baseURL}/api/toolbox/add-page-children`, // Replace with the actual API endpoint
-      type: "POST",
-      data: JSON.stringify({
-        ParentPageId: currentPageId,
-        ChildPageId: childPageId
-      }),
-      success: function (response) {
-        console.log("Success:", response);
-      },
-      error: function (xhr, status, error) {
-        if (xhr.status === 404) {
-          console.error("Error 404: Not Found");
-        } else {
-          console.error("Error:", status, error);
-        }
-      },
-    });
   }
 }
 

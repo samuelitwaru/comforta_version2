@@ -496,6 +496,58 @@ namespace GeneXus.Programs {
          /* AddPageCildren Constructor */
       }
 
+      public void gxep_agendalocation( Guid aP0_locationId ,
+                                       out GXBaseCollection<SdtSDT_AgendaLocation> aP1_SDT_AgendaLocation )
+      {
+         restCliAgendaLocation = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/location/agenda";
+         restCliAgendaLocation.Location = restLocation;
+         restCliAgendaLocation.HttpMethod = "POST";
+         restCliAgendaLocation.AddBodyVar("locationId", (Guid)(aP0_locationId));
+         restCliAgendaLocation.RestExecute();
+         if ( restCliAgendaLocation.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliAgendaLocation.ErrorCode;
+            gxProperties.ErrorMessage = restCliAgendaLocation.ErrorMessage;
+            gxProperties.StatusCode = restCliAgendaLocation.StatusCode;
+            aP1_SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>();
+         }
+         else
+         {
+            aP1_SDT_AgendaLocation = restCliAgendaLocation.GetBodySdtCollection<SdtSDT_AgendaLocation>("SDT_AgendaLocation");
+         }
+         /* AgendaLocation Constructor */
+      }
+
+      public void gxep_senddynamicform( out string aP0_result )
+      {
+         restCliSendDynamicForm = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/form/dynamic-form";
+         restCliSendDynamicForm.Location = restLocation;
+         restCliSendDynamicForm.HttpMethod = "GET";
+         restCliSendDynamicForm.RestExecute();
+         if ( restCliSendDynamicForm.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliSendDynamicForm.ErrorCode;
+            gxProperties.ErrorMessage = restCliSendDynamicForm.ErrorMessage;
+            gxProperties.StatusCode = restCliSendDynamicForm.StatusCode;
+            aP0_result = "";
+         }
+         else
+         {
+            aP0_result = restCliSendDynamicForm.GetBodyString("result");
+         }
+         /* SendDynamicForm Constructor */
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -530,6 +582,10 @@ namespace GeneXus.Programs {
          aP5_result = "";
          restCliUpdatePage = new GXRestAPIClient();
          restCliAddPageCildren = new GXRestAPIClient();
+         restCliAgendaLocation = new GXRestAPIClient();
+         aP1_SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>();
+         restCliSendDynamicForm = new GXRestAPIClient();
+         aP0_result = "";
          /* GeneXus formulas. */
       }
 
@@ -548,6 +604,8 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliSavePage ;
       protected GXRestAPIClient restCliUpdatePage ;
       protected GXRestAPIClient restCliAddPageCildren ;
+      protected GXRestAPIClient restCliAgendaLocation ;
+      protected GXRestAPIClient restCliSendDynamicForm ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
       protected IGxDataStore dsGAM ;
@@ -564,6 +622,8 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected string aP1_result ;
       protected string aP5_result ;
+      protected GXBaseCollection<SdtSDT_AgendaLocation> aP1_SDT_AgendaLocation ;
+      protected string aP0_result ;
    }
 
 }

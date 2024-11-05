@@ -205,6 +205,13 @@ class EditorManager {
     return this.selectedComponent;
   }
 
+  setCurrentPage(page){
+    localStorage.setItem("pageId", page.PageId);
+    localStorage.setItem("pageName", page.PageName);
+    const localStorageKey = `page-${page.PageId}`;
+    localStorage.setItem(localStorageKey, page.PageGJSJson);
+  }
+
   setCurrentPageId(pageId) {
     localStorage.setItem("pageId", pageId);
   }
@@ -837,7 +844,26 @@ class EditorManager {
     try {
       const data = this.editor.getProjectData();
       localStorage.setItem(localStorageKey, JSON.stringify(data));
+      let pageData = mapTemplateToPageData(
+        this.editor.getProjectData()
+      );
+      let pageId = this.getCurrentPageId();
+      if (pageId) {
+        let data = {
+          PageId: pageId,
+          PageJsonContent: JSON.stringify(pageData),
+          PageGJSHtml: this.editor.getHtml(),
+          PageGJSJson: JSON.stringify(this.editor.getProjectData()),
+          SDT_Page: pageData,
+          PageIsPublished: true
+        }
+        this.toolsSection.dataManager.updatePage(data).then(res=>{
+          console.log("Page Save Successfully")
+        })
+      }
+
     } catch (error) {
+      console.log(error)
       const message = "Failed to save current page";
       const status = "succuss";
       this.toolsSection.displayAlertMessage(message, status);
