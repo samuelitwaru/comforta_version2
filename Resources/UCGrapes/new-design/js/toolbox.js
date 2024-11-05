@@ -16,6 +16,7 @@ class ToolBoxManager {
   }
 
   init() {
+    alert('tbm init start')
     let self = this;
     this.dataManager.getPages().then(pages=>{
       localStorage.clear();
