@@ -1,4 +1,5 @@
 let globalVar = null;
+window.onclick = (e) => {e.preventDefault()}
 class ToolBoxManager {
   dataManager = null
   constructor(editorManager, dataManager, themes, icons, templates, mapping, media) {
