@@ -182,7 +182,15 @@ namespace GeneXus.Programs {
          AV14BC_Trn_Media.gxTpr_Medianame = AV12MediaName;
          AV14BC_Trn_Media.gxTpr_Mediasize = AV20MediaSize;
          AV14BC_Trn_Media.gxTpr_Mediatype = AV21MediaType;
-         AV14BC_Trn_Media.gxTpr_Mediaurl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, context.GetMessage( "api/media/", ""), context.GetMessage( "media/", "")+AV12MediaName);
+         AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, context.GetMessage( "api/media/", ""), context.GetMessage( "media/", "")+AV12MediaName);
+         if ( StringUtil.StartsWith( AV23MediaUrl, context.GetMessage( "http://localhost", "")) )
+         {
+         }
+         else
+         {
+            AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, context.GetMessage( "http://", ""), context.GetMessage( "https://", ""));
+         }
+         AV14BC_Trn_Media.gxTpr_Mediaurl = AV23MediaUrl;
          AV14BC_Trn_Media.Save();
          if ( AV14BC_Trn_Media.Success() )
          {
@@ -198,13 +206,13 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV24GXV2 = 1;
-            AV23GXV1 = AV14BC_Trn_Media.GetMessages();
-            while ( AV24GXV2 <= AV23GXV1.Count )
+            AV25GXV2 = 1;
+            AV24GXV1 = AV14BC_Trn_Media.GetMessages();
+            while ( AV25GXV2 <= AV24GXV1.Count )
             {
-               AV17Message = ((GeneXus.Utils.SdtMessages_Message)AV23GXV1.Item(AV24GXV2));
+               AV17Message = ((GeneXus.Utils.SdtMessages_Message)AV24GXV1.Item(AV25GXV2));
                new prc_logtofile(context ).execute(  AV17Message.gxTpr_Description) ;
-               AV24GXV2 = (int)(AV24GXV2+1);
+               AV25GXV2 = (int)(AV25GXV2+1);
             }
             AV10response = context.GetMessage( "Insert ERROR", "");
             context.RollbackDataStores("prc_uploadmedia",pr_default);
@@ -226,9 +234,10 @@ namespace GeneXus.Programs {
       {
          AV10response = "";
          AV14BC_Trn_Media = new SdtTrn_Media(context);
+         AV23MediaUrl = "";
          AV8HttpRequest = new GxHttpRequest( context);
          AV22Path = "";
-         AV23GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV24GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV17Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.aprc_uploadmedia__gam(),
             new Object[][] {
@@ -242,11 +251,12 @@ namespace GeneXus.Programs {
       }
 
       private int AV20MediaSize ;
-      private int AV24GXV2 ;
+      private int AV25GXV2 ;
       private string AV21MediaType ;
       private string AV18MediaImageData ;
       private string AV10response ;
       private string AV12MediaName ;
+      private string AV23MediaUrl ;
       private string AV22Path ;
       private Guid AV11MediaId ;
       private GxHttpRequest AV8HttpRequest ;
@@ -254,7 +264,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private SdtTrn_Media AV14BC_Trn_Media ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV23GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV24GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV17Message ;
       private string aP5_response ;
       private IDataStoreProvider pr_gam ;
