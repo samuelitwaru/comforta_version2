@@ -1,7 +1,16 @@
 let globalVar = null;
 class ToolBoxManager {
-  dataManager = null
-  constructor(editorManager, dataManager, themes, icons, templates, mapping, media) {
+  dataManager = null;
+  constructor(
+    editorManager,
+    dataManager,
+    themes,
+    icons,
+    templates,
+    mapping,
+    media,
+    currentLanguage
+  ) {
     this.editorManager = editorManager;
     this.dataManager = dataManager;
     this.themes = themes;
@@ -11,30 +20,34 @@ class ToolBoxManager {
     this.mappingsItems = mapping;
     this.selectedFile = null;
     this.media = media;
-    this.init();
+    this.currentLanguage = currentLanguage;
+    // this.init();
   }
 
   init() {
     let self = this;
-    this.dataManager.getPages().then(pages=>{
+    this.dataManager.getPages().then((pages) => {
       localStorage.clear();
       pages.forEach((page) => {
         if (page.PageName === "Home") {
           this.editorManager.pageId = page.PageId;
-          this.editorManager.setCurrentPage(page)
-          this.editorManager.editor.trigger("load")
+          this.editorManager.setCurrentPage(page);
+          this.editorManager.editor.trigger("load");
         }
       });
-    })
+    });
 
+    
     this.loadTheme();
     this.listThemesInSelectField();
     this.colorPalette();
     this.loadTiles();
     this.loadPageTemplates();
-    this.listServices(this.editorManager);
-
-    this.handleFileManager();
+    
+    this.actionList = new ActionListComponent(this.editorManager, this.dataManager, this.currentLanguage, this)
+    
+    this.mediaComponent = new MediaComponent(this.dataManager, this.editorManager, this)
+    this.mediaComponent = new MediaComponent(this.dataManager, this.editorManager, this)
     const tabButtons = document.querySelectorAll(".toolbox-tab-button");
     const tabContents = document.querySelectorAll(".toolbox-tab-content");
     tabButtons.forEach((button) => {
@@ -67,7 +80,7 @@ class ToolBoxManager {
       mappingSection.style.display =
         mappingSection.style.display === "block" ? "none" : "block";
 
-      this.loadMappings();
+        this.mappingComponent = new MappingComponent(this.dataManager, this.editorManager, this)
     });
 
     publishButton.onclick = (e) => {
@@ -81,20 +94,22 @@ class ToolBoxManager {
           PageId: pageId,
           PageJsonContent: JSON.stringify(pageData),
           PageGJSHtml: this.editorManager.editor.getHtml(),
-          PageGJSJson: JSON.stringify(this.editorManager.editor.getProjectData()),
+          PageGJSJson: JSON.stringify(
+            this.editorManager.editor.getProjectData()
+          ),
           SDT_Page: pageData,
-          PageIsPublished: true
-        }
-        this.dataManager.updatePage(data).then(res=>{
-          this.displayAlertMessage("Page Save Successfully", "success")
-        })
+          PageIsPublished: true,
+        };
+        this.dataManager.updatePage(data).then((res) => {
+          this.displayAlertMessage("Page Save Successfully", "success");
+        });
       }
     };
 
     // tile title alignment
-    const leftAlign = document.getElementById("align-left");
-    const centerAlign = document.getElementById("align-center");
-    const rightAlign = document.getElementById("align-right");
+    const leftAlign = document.getElementById("text-align-left");
+    const centerAlign = document.getElementById("text-align-center");
+    const rightAlign = document.getElementById("text-align-right");
 
     leftAlign.addEventListener("click", () => {
       if (this.editorManager.selectedTemplateWrapper) {
@@ -236,50 +251,6 @@ class ToolBoxManager {
         um.redo();
       }
     });
-
-    // Create new page
-    const createPageButton = document.getElementById("create-new-page");
-
-    createPageButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      const pageFormSection = document.getElementById("page-form");
-      pageFormSection.style.display = "block";
-      const pageInput = document.getElementById("page-title");
-      const pageSubmit = document.getElementById("page-submit");
-
-      pageSubmit.disabled = true;
-
-      pageInput.addEventListener("input", () => {
-        pageSubmit.disabled = !pageInput.value.trim();
-      });
-
-      pageSubmit.addEventListener("click", (e) => {
-        e.preventDefault();
-        const pageTitle = pageInput.value.trim();
-        if (pageTitle) {
-          // Additional check to ensure value exists
-          this.dataManager.createNewPage(pageTitle).then( res => {
-            const pageInput = document.getElementById("page-title");
-            pageInput.value = "";
-
-            this.dataManager
-              .getPagesService()
-              .then((pages) => {
-                // Clear the current tree structure
-                const treeContainer = document.getElementById("tree-container"); // Assuming tree is rendered here
-                treeContainer.innerHTML = ""; // Clear existing nodes
-
-                // Re-create the tree with updated pages data
-                const newTree = self.createTree(pages, true); // Set isRoot to true if it's the root
-                treeContainer.appendChild(newTree); // Append the new tree structure to the container
-              })
-              .catch((error) => {
-                console.error("Error fetching pages:", error);
-              });
-          })
-        }
-      });
-    });
   }
 
   listThemesInSelectField() {
@@ -301,11 +272,15 @@ class ToolBoxManager {
         this.themeColorPalette(this.currentTheme.colors);
         localStorage.setItem("selectedTheme", themeName);
 
-        const message = "Theme applied successfully";
+        const message = this.currentLanguage.getTranslation(
+          "theme_applied_success_message"
+        );
         const status = "success";
         this.displayAlertMessage(message, status);
       } else {
-        const message = "Error applying theme. Please try again";
+        const message = this.currentLanguage.getTranslation(
+          "error_applying_theme_message"
+        );
         const status = "error";
         this.displayAlertMessage(message, status);
       }
@@ -428,10 +403,8 @@ class ToolBoxManager {
     const colorEntries = Object.entries(colors);
 
     colorEntries.forEach(([colorName, colorValue], index) => {
-      // Create the HTML for each color
       const alignItem = document.createElement("div");
       alignItem.className = "color-item";
-
       const radioInput = document.createElement("input");
       radioInput.type = "radio";
       radioInput.id = `color-${colorName}`;
@@ -442,6 +415,7 @@ class ToolBoxManager {
       colorBox.className = "color-box";
       colorBox.setAttribute("for", `color-${colorName}`);
       colorBox.style.backgroundColor = colorValue;
+      colorBox.setAttribute("data-tile-bgcolor", colorValue);
 
       alignItem.appendChild(radioInput);
       alignItem.appendChild(colorBox);
@@ -458,55 +432,122 @@ class ToolBoxManager {
   }
 
   colorPalette() {
-    const textColorBoxes = document.querySelectorAll(
-      "#text-color-palette .color-box"
+    const textColorPaletteContainer = document.getElementById(
+      "text-color-palette"
     );
-    const iconColorBoxes = document.querySelectorAll(
-      "#icon-color-palette .color-box"
+    const iconColorPaletteContainer = document.getElementById(
+      "icon-color-palette"
     );
 
+    // Fixed color values
     const colorValues = {
-      color1: "#ffffff",
-      color2: "#333333",
+      color1: "#ffffff", // Example white
+      color2: "#333333", // Example dark gray
+      // Add more colors as needed
     };
 
-    textColorBoxes.forEach((box, index) => {
-      const colorKey = Object.keys(colorValues)[index];
+    // Create options for text color palette
+    Object.entries(colorValues).forEach(([colorName, colorValue]) => {
+      const alignItem = document.createElement("div");
+      alignItem.className = "color-item";
 
-      box.style.backgroundColor = colorValues[colorKey];
+      const radioInput = document.createElement("input");
+      radioInput.type = "radio";
+      radioInput.id = `text-color-${colorName}`;
+      radioInput.name = "text-color";
+      radioInput.value = colorName;
 
-      box.onclick = () => {
+      const colorBox = document.createElement("label");
+      colorBox.className = "color-box";
+      colorBox.setAttribute("for", `text-color-${colorName}`);
+      colorBox.style.backgroundColor = colorValue;
+      colorBox.setAttribute("data-tile-text-color", colorValue);
+
+      alignItem.appendChild(radioInput);
+      alignItem.appendChild(colorBox);
+      textColorPaletteContainer.appendChild(alignItem);
+
+      radioInput.onclick = () => {
         this.editorManager.selectedComponent.addStyle({
-          color: colorValues[colorKey],
+          color: colorValue,
         });
-        this.setAttributeToSelected("tile-text-color", colorValues[colorKey])
+        this.setAttributeToSelected("tile-text-color", colorValue);
       };
     });
 
-    iconColorBoxes.forEach((box, index) => {
-      const colorKey = Object.keys(colorValues)[index];
+    // Create options for icon color palette
+    Object.entries(colorValues).forEach(([colorName, colorValue]) => {
+      const alignItem = document.createElement("div");
+      alignItem.className = "color-item";
 
-      box.style.backgroundColor = colorValues[colorKey];
-      
-      box.onclick = () => {
-        if (this.editorManager.selectedTemplateWrapper) {
+      const radioInput = document.createElement("input");
+      radioInput.type = "radio";
+      radioInput.id = `icon-color-${colorName}`;
+      radioInput.name = "icon-color";
+      radioInput.value = colorName;
+
+      const colorBox = document.createElement("label");
+      colorBox.className = "color-box";
+      colorBox.setAttribute("for", `icon-color-${colorName}`);
+      colorBox.style.backgroundColor = colorValue;
+      colorBox.setAttribute("data-tile-icon-color", colorValue);
+
+      alignItem.appendChild(radioInput);
+      alignItem.appendChild(colorBox);
+      iconColorPaletteContainer.appendChild(alignItem);
+
+      radioInput.onclick = () => {
+        const svgIcon = this.editorManager.editor
+          .getSelected()
+          .find(".tile-icon path")[0];
+        if (svgIcon) {
+          svgIcon.removeAttributes("fill");
+          svgIcon.addAttributes({ fill: colorValue });
+          this.setAttributeToSelected("tile-icon-color", colorValue);
+        } else {
+          const message = this.currentLanguage.getTranslation(
+            "no_icon_selected_error_message"
+          );
+          this.displayAlertMessage(message, "error");
+        }
+      };
+    });
+  }
+
+  setupColorRadios(radioGroup, colorValues, type) {
+    Object.keys(colorValues).forEach((colorKey, index) => {
+      const radio = radioGroup[index];
+      const colorValue = colorValues[colorKey];
+
+      const colorBox = radio.nextElementSibling; // Get the color box label
+      colorBox.style.backgroundColor = colorValue;
+      colorBox.setAttribute("data-tile-bgcolor", colorValue);
+
+      radio.onclick = () => {
+        // Uncheck other radio buttons in the group
+        radioGroup.forEach((r) => (r.checked = false));
+        radio.checked = true;
+
+        // Apply the color based on type
+        if (type === "text") {
+          this.editorManager.selectedComponent.addStyle({
+            color: colorValue,
+          });
+          this.setAttributeToSelected("tile-text-color", colorValue);
+        } else if (type === "icon") {
           const svgIcon = this.editorManager.editor
             .getSelected()
             .find(".tile-icon path")[0];
-
           if (svgIcon) {
             svgIcon.removeAttributes("fill");
-            svgIcon.addAttributes({ fill: colorValues[colorKey] }); // Use the correct color key
-            this.setAttributeToSelected("tile-icon-color", colorValues[colorKey])
+            svgIcon.addAttributes({ fill: colorValue });
+            this.setAttributeToSelected("tile-icon-color", colorValue);
           } else {
-            const message = "Svg icon not found. Try again";
-            const status = "error";
-            this.displayAlertMessage(message, status);
+            const message = this.currentLanguage.getTranslation(
+              "no_icon_selected_error_message"
+            );
+            this.displayAlertMessage(message, "error");
           }
-        } else {
-          const message = "No tile selected. Please select a tile";
-          const status = "error";
-          this.displayAlertMessage(message, status);
         }
       };
     });
@@ -549,12 +590,16 @@ class ToolBoxManager {
             //   }
             // }
           } else {
-            const message = "No tile selected. Please select a tile";
+            const message = this.currentLanguage.getTranslation(
+              "no_tile_selected_error_message"
+            );
             const status = "error";
             this.displayAlertMessage(message, status);
           }
         } else {
-          const message = "No tile selected. Please select a tile";
+          const message = this.currentLanguage.getTranslation(
+            "no_tile_selected_error_message"
+          );
           const status = "error";
           this.displayAlertMessage(message, status);
         }
@@ -579,11 +624,6 @@ class ToolBoxManager {
       templateBlock.title = "Click to load template"; //
       templateBlock.innerHTML = `<div>${template.media}</div>`;
 
-      // Prevent the image from being dragged
-      // templateBlock.querySelector("img").addEventListener("dragstart", (e) => {
-      //   //alert(templateBlock)
-      //   //e.preventDefault();
-      // });
       blockElement.addEventListener("click", () => {
         const popup = this.popupModal();
         document.body.appendChild(popup);
@@ -595,13 +635,13 @@ class ToolBoxManager {
           document.body.removeChild(popup);
         };
 
-        const cancelBtn = popup.querySelector("#close-popup");
+        const cancelBtn = popup.querySelector("#close_popup");
         cancelBtn.onclick = () => {
           popup.style.display = "none";
           document.body.removeChild(popup);
         };
 
-        const acceptBtn = popup.querySelector("#accept-popup");
+        const acceptBtn = popup.querySelector("#accept_popup");
         acceptBtn.onclick = () => {
           popup.style.display = "none";
           document.body.removeChild(popup);
@@ -616,389 +656,7 @@ class ToolBoxManager {
     });
   }
 
-  loadMappings() {
-    const treeContainer = document.getElementById("tree-container");
-    this.clearMappings();
-    this.dataManager.getPagesService()
-      .then((pages) => {
-        treeContainer.appendChild(this.createTree(pages, true));
-      })
-      .catch((error) => {
-        console.error("Error fetching pages:", error);
-      });
-  }
-
-  clearMappings() {
-    const treeContainer = document.getElementById("tree-container");
-    treeContainer.innerHTML = ""; // Clear previous mappings
-  }
-
-  createTree(data, isRoot = false) {
-    // Sort the data so that "Home" is always first
-    data.sort((a, b) => (a.Name === "Home" ? -1 : b.Name === "Home" ? 1 : 0));
-
-    const ul = document.createElement("ul");
-    if (!isRoot) ul.style.display = "block";
-
-    console.log("Data: ", data);
-
-    data.forEach((item, index) => {
-      const li = document.createElement("li");
-      const span = document.createElement("span");
-      span.textContent = item.Name;
-      li.appendChild(span);
-      li.className = this.checkActivePage(item.Id) ? "selected-page" : "";
-      span.title = item.Id;
-      let pageTile = document.createElement("span")
-      pageTile.textContent = item.Name
-      if (item.Children && item.Children.length > 0) {
-        const childrenContainer = this.createTree(item.Children); // Recursively create children
-        li.appendChild(childrenContainer);
-
-        let childToggle = document.createElement("span")
-        
-        childToggle.textContent = " + ";
-        span.style.cursor = "pointer";
-
-        childToggle.onclick = () => {
-          childrenContainer.style.display =
-            childrenContainer.style.display === "none" ? "block" : "none";
-
-          childToggle.textContent =
-            childrenContainer.style.display === "none"
-              ? " + "
-              : " - ";
-        };
-
-        //span.appendChild(pageTile)
-        span.appendChild(childToggle)
-      } 
-      //else {
-      span.onclick = () => {
-        this.editorManager.setCurrentPageName(item.Name);
-        this.editorManager.setCurrentPageId(item.Id);
-
-        const editor = this.editorManager.editor;
-
-        editor.DomComponents.clear();
-        this.editorManager.templateComponent = null;
-        editor.trigger("load");
-
-        document.querySelectorAll(".selected-page").forEach((el) => {
-          el.classList.remove("selected-page");
-        });
-
-        span.closest("li").classList.add("selected-page");
-        const mainPage = document.getElementById("current-page-title");
-        mainPage.textContent = this.updateActivePageName();
-
-        const message = `${item.Name} Page loaded successfully`;
-        const status = "success";
-        this.displayAlertMessage(message, status);
-      };
-      //}
-      ul.appendChild(li);
-    });
-    return ul;
-  }
-
-  checkActivePage(id) {
-    const pageId = localStorage.getItem("pageId");
-    if (pageId === id) {
-      return true;
-    }
-  }
-
-  updateActivePageName() {
-    return this.editorManager.getCurrentPageName();
-  }
-
-  openFileUploadModal() {
-    const modal = document.createElement("div");
-    modal.className = "toolbox-modal";
-
-    const modalContent = document.createElement("div");
-    modalContent.className = "toolbox-modal-content";
-
-    let fileListHtml = ``;
-
-    for (let index = 0; index < this.media.length; index++) {
-      const file = this.media[index];
-      fileListHtml += `
-        <div class="file-item valid" 
-            data-MediaId="${file.MediaId}" 
-            data-MediaUrl="${file.MediaUrl}" 
-            data-MediaName="${file.MediaName}">
-          <img src="${file.MediaUrl}" alt="${file.MediaName}" class="preview-image">
-          <div class="file-info">
-            <div class="file-name">${file.MediaName}</div>
-            <div class="file-size">${file.MediaSize}</div>
-          </div>
-          <span class="status-icon" style="color: green;"></span>
-        </div>
-      `;
-    }
-
-    modalContent.innerHTML = `
-    <div class="toolbox-modal-header">
-        <h2>Upload</h2>
-        <span class="close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
-                <path id="Icon_material-close" data-name="Icon material-close" d="M28.5,9.615,26.385,7.5,18,15.885,9.615,7.5,7.5,9.615,15.885,18,7.5,26.385,9.615,28.5,18,20.115,26.385,28.5,28.5,26.385,20.115,18Z" transform="translate(-7.5 -7.5)" fill="#6a747f" opacity="0.54"/>
-            </svg>
-        </span>
-    </div>
-    <div class="upload-area" id="uploadArea">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40.999" height="28.865" viewBox="0 0 40.999 28.865">
-            <path id="Path_1040" data-name="Path 1040" d="M21.924,11.025a3.459,3.459,0,0,0-3.287,3.608,3.459,3.459,0,0,0,3.287,3.608,3.459,3.459,0,0,0,3.287-3.608A3.459,3.459,0,0,0,21.924,11.025ZM36.716,21.849l-11.5,14.432-8.218-9.02L8.044,39.89h41Z" transform="translate(-8.044 -11.025)" fill="#afadad"/>
-          </svg>
-        <p>Drag and drop or <a href="#" id="browseLink">browse</a></p>
-    </div>
-    <div class="file-list" id="fileList">${fileListHtml}</div>
-    <div class="modal-actions">
-        <button class="toolbox-btn toolbox-btn-outline" id="cancelBtn">Cancel</button>
-        <button class="toolbox-btn toolbox-btn-primary" id="saveBtn">Save</button>
-    </div>
-    `;
-    modal.appendChild(modalContent);
-
-    return modal;
-  }
-
-  handleFileManager() {
-    const openModal = document.getElementById("image-bg");
-    const fileInputField = document.createElement("input");
-    const modal = this.openFileUploadModal();
-
-    let selectedFile = null;
-    let allUploadedFiles = [];
-
-    openModal.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (this.editorManager.editor.getSelected()) {
-        fileInputField.type = "file";
-        fileInputField.multiple = true;
-        fileInputField.accept = "image/jpeg, image/jpg, image/png"; // Only accept specific image types
-        fileInputField.id = "fileInput";
-        fileInputField.style.display = "none";
-
-        document.body.appendChild(modal);
-        document.body.appendChild(fileInputField);
-
-        // add onclick event handler for file items
-        const fileItems = document.querySelectorAll(".file-item");
-        fileItems.forEach((element) => {
-          element.addEventListener("click", (e) => {
-            this.mediaFileClicked(element);
-          });
-        });
-
-        modal.style.display = "flex";
-
-        const uploadArea = modal.querySelector("#uploadArea");
-        uploadArea.onclick = () => {
-          fileInputField.click();
-        };
-
-        fileInputField.onchange = (event) => {
-          // Filter only allowed image types
-          const newFiles = Array.from(event.target.files).filter((file) =>
-            ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
-          );
-          allUploadedFiles = [...allUploadedFiles, ...newFiles];
-
-          const fileList = modal.querySelector("#fileList");
-          //fileList.innerHTML = "";
-
-          allUploadedFiles.forEach((file) => {
-            const fileItem = document.createElement("div");
-            fileItem.className = "file-item";
-
-            const img = document.createElement("img");
-            const reader = new FileReader();
-            reader.onload = (e) => {
-              img.src = e.target.result;
-              this.uploadFile(e.target.result, file.name, file.size, file.type).then(response=>{
-                if (response.MediaId) {
-                  this.media.push(response);
-                  this.displayMediaFile(response);
-                }
-              })
-            };
-            reader.readAsDataURL(file);
-            img.alt = "File thumbnail";
-            img.className = "preview-image";
-
-            const fileInfo = document.createElement("div");
-            fileInfo.className = "file-info";
-
-            const fileName = document.createElement("div");
-            fileName.className = "file-name";
-            fileName.textContent = file.name;
-
-            const fileSize = document.createElement("div");
-            fileSize.className = "file-size";
-            const formatFileSize = (bytes) => {
-              if (bytes < 1024) return `${bytes} B`;
-              if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
-              if (bytes < 1024 * 1024 * 1024)
-                return `${Math.round(bytes / 1024 / 1024)} MB`;
-              return `${Math.round(bytes / 1024 / 1024 / 1024)} GB`;
-            };
-
-            fileSize.textContent = formatFileSize(file.size);
-
-            const statusIcon = document.createElement("span");
-            statusIcon.className = "status-icon";
-
-            // Check file size limit (2MB) and file type
-            const isValidSize = file.size <= 2 * 1024 * 1024;
-            const isValidType = [
-              "image/jpeg",
-              "image/jpg",
-              "image/png",
-            ].includes(file.type);
-
-            if (isValidSize && isValidType) {
-              fileItem.classList.add("valid");
-              statusIcon.innerHTML = "";
-              statusIcon.style.color = "green";
-            } else {
-              fileItem.classList.add("invalid");
-              statusIcon.innerHTML = "⚠";
-              statusIcon.style.color = "red";
-            }
-          });
-        };
-      } else {
-        const message = "Please select a tile to continue";
-        const status = "error";
-        this.displayAlertMessage(message, status);
-      }
-    });
-
-    const closeButton = modal.querySelector(".close");
-    closeButton.onclick = () => {
-      modal.style.display = "none";
-      document.body.removeChild(modal);
-      document.body.removeChild(fileInputField);
-    };
-
-    const cancelBtn = modal.querySelector("#cancelBtn");
-    cancelBtn.onclick = () => {
-      modal.style.display = "none";
-      document.body.removeChild(modal);
-      document.body.removeChild(fileInputField);
-    };
-
-    const saveBtn = modal.querySelector("#saveBtn");
-    saveBtn.onclick = () => {
-      if (this.selectedFile) {
-        const templateBlock = this.editorManager.editor
-          .getSelected()
-          .find(".template-block")[0];
-        templateBlock.addStyle({
-          "background-image": `url(${this.selectedFile.MediaUrl})`,
-          "background-size": "cover",
-          "background-position": "center",
-        });
-
-        this.setAttributeToSelected("tile-bg-image-url", this.selectedFile.MediaUrl)
-      }
-
-      modal.style.display = "none";
-      document.body.removeChild(modal);
-      document.body.removeChild(fileInputField);
-    };
-  }
-
-  displayMediaFile(file) {
-    const fileList = document.querySelector("#fileList");
-    const fileItem = document.createElement("div");
-    fileItem.className = "file-item";
-    fileItem.setAttribute("data-mediaid", file.MediaId);
-
-    const img = document.createElement("img");
-    img.src = file.MediaUrl;
-    img.alt = "File thumbnail";
-    img.className = "preview-image";
-
-    const fileInfo = document.createElement("div");
-    fileInfo.className = "file-info";
-
-    const fileName = document.createElement("div");
-    fileName.className = "file-name";
-    fileName.textContent = file.MediaName;
-
-    const fileSize = document.createElement("div");
-    fileSize.className = "file-size";
-    const formatFileSize = (bytes) => {
-      if (bytes < 1024) return `${bytes} B`;
-      if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
-      if (bytes < 1024 * 1024 * 1024)
-        return `${Math.round(bytes / 1024 / 1024)} MB`;
-      return `${Math.round(bytes / 1024 / 1024 / 1024)} GB`;
-    };
-
-    fileSize.textContent = formatFileSize(file.MediaSize);
-
-    const statusIcon = document.createElement("span");
-    statusIcon.className = "status-icon";
-
-    // Check file size limit (2MB) and file type
-    const isValidSize = file.MediaSize <= 2 * 1024 * 1024;
-    const isValidType = ["image/jpeg", "image/jpg", "image/png"].includes(
-      file.MediaType
-    );
-
-    if (isValidSize && isValidType) {
-      fileItem.classList.add("valid");
-      statusIcon.innerHTML = "";
-      statusIcon.style.color = "green";
-    } else {
-      fileItem.classList.add("invalid");
-      statusIcon.innerHTML = "⚠";
-      statusIcon.style.color = "red";
-    }
-
-    fileInfo.appendChild(fileName);
-    fileInfo.appendChild(fileSize);
-
-    fileItem.appendChild(img);
-    fileItem.appendChild(fileInfo);
-    fileItem.appendChild(statusIcon);
-    fileItem.onclick = (e) => {
-      this.mediaFileClicked(fileItem);
-    };
-    fileList.appendChild(fileItem);
-  }
-
-  mediaFileClicked(fileItem) {
-    if (fileItem.classList.contains("invalid")) {
-      return;
-    }
-    document.querySelector(".modal-actions").style.display = "flex";
-
-    document.querySelectorAll(".file-item").forEach((el) => {
-      el.classList.remove("selected");
-      const icon = el.querySelector(".status-icon");
-      if (icon) {
-        icon.innerHTML = el.classList.contains("invalid") ? "⚠" : "";
-      }
-    });
-
-    fileItem.classList.add("selected");
-    let statusIcon = fileItem.querySelector(".status-icon");
-    statusIcon.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13.423" viewBox="0 0 18 13.423">
-                <path id="Icon_awesome-check" data-name="Icon awesome-check" d="M6.114,17.736l-5.85-5.85a.9.9,0,0,1,0-1.273L1.536,9.341a.9.9,0,0,1,1.273,0L6.75,13.282l8.441-8.441a.9.9,0,0,1,1.273,0l1.273,1.273a.9.9,0,0,1,0,1.273L7.386,17.736A.9.9,0,0,1,6.114,17.736Z" transform="translate(0 -4.577)" fill="#3a9341"/>
-              </svg>
-            `;
-    statusIcon.style.color = "green";
-    this.selectedFile = this.media.find(
-      (file) => file.MediaId == fileItem.dataset.mediaid
-    );
-  }
+  
 
   popupModal() {
     const popup = document.createElement("div");
@@ -1006,7 +664,9 @@ class ToolBoxManager {
     popup.innerHTML = `
       <div class="popup">
         <div class="popup-header">
-          <span>Confirmation</span>
+          <span>${this.currentLanguage.getTranslation(
+            "confirmation_modal_title"
+          )}</span>
           <button class="close">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 21 21">
                 <path id="Icon_material-close" data-name="Icon material-close" d="M28.5,9.615,26.385,7.5,18,15.885,9.615,7.5,7.5,9.615,15.885,18,7.5,26.385,9.615,28.5,18,20.115,26.385,28.5,28.5,26.385,20.115,18Z" transform="translate(-7.5 -7.5)" fill="#6a747f" opacity="0.54"/>
@@ -1014,12 +674,16 @@ class ToolBoxManager {
           </button>
         </div>
         <hr>
-        <div class="popup-body">
-          When you continue, all the changes you have made will be cleared.
+        <div class="popup-body" id="confirmation_modal_message">
+          ${this.currentLanguage.getTranslation("confirmation_modal_message")}
         </div>
         <div class="popup-footer">
-          <button id="accept-popup" class="toolbox-btn toolbox-btn-primary">OK</button>
-          <button id="close-popup" class="toolbox-btn toolbox-btn-outline">Cancel</button>
+          <button id="accept_popup" class="toolbox-btn toolbox-btn-primary">
+          ${this.currentLanguage.getTranslation("accept_popup")}
+          </button>
+          <button id="close_popup" class="toolbox-btn toolbox-btn-outline">
+          ${this.currentLanguage.getTranslation("cancel_btn")}
+          </button>
         </div>
       </div>
     `;
@@ -1048,9 +712,15 @@ class ToolBoxManager {
     alertBox.classList = `alert ${status == "success" ? "success" : "error"}`;
     alertBox.innerHTML = `
       <div class="alert-header">
-        <strong>${status == "success" ? "Success" : "Error"}</strong>
+        <strong>
+          ${
+            status == "success"
+              ? this.currentLanguage.getTranslation("alert_type_success")
+              : this.currentLanguage.getTranslation("alert_type_error")
+          }
+        </strong>
         <span class="alert-close-btn">✖</span>
-      </div> 
+      </div>
       <p>${message}</p>
     `;
 
@@ -1066,219 +736,99 @@ class ToolBoxManager {
   }
 
   setAttributeToSelected(attributeName, attributeValue) {
-    this.editorManager.editor
-      .getSelected()
-      .addAttributes({ [attributeName]: attributeValue });
+    if (this.editorManager.editor.getSelected()) {
+      this.editorManager.editor
+        .getSelected()
+        .addAttributes({ [attributeName]: attributeValue });
+    } else {
+      this.displayAlertMessage(
+        this.currentLanguage.getTranslation("no_tile_selected_error_message"),
+        "error"
+      );
+    }
   }
 
-  listServices(editorManager) {
-    this.dataManager.getPagesService()
-      .then((pages) => {
-        const pageOptions = mapPageNamesToOptions(pages);
-        console.log('pageOptions', pageOptions)
-        console.log("pages loaded", pageOptions);
-
-        categoryData.forEach((category) => {
-          if (category.name === "Page") {
-            category.options = pageOptions;
-          }
-        });
-
-        populateDropdownMenu();
-        console.log("Updated category data:", categoryData);
-      })
-      .catch((error) => {
-        console.error("Error fetching pages:", error);
-      });
-
-    const mapPageNamesToOptions = (pages) => {
-      const pageOptions = pages.map((page) => ({
-        PageName: page.Name,
-        PageId: page.Id,
-      }));
-      console.log("Pages", pageOptions);
-      return pageOptions;
-    };
-
-    const categoryData = [
-      {
-        name: "Page",
-        options: [],
-      },
-      {
-        name: "Service/Product Page",
-        options: this.dataManager.services.map(service => {
-          return {PageId:service.ProductServiceId, PageName:service.ProductServiceName}
-        })
-      },
-      {
-        name: "Dynamic Form",
-        options: [{PageId:"2354481d-5df0-4154-92b8-2fc0aaf9b3e7", PageName:"Form 1"}],
-      },
-      {
-        name: "Call to Action",
-        options: [{PageId:"2354481d-5df0-4154-92b8-2fc0aaf9b3e7", PageName:"Call To Action"}],
-      },
+  updateTileProperties(editor) {
+    // Combined alignment checker
+    const alignmentTypes = [
+      { type: "text", attribute: "tile-text-align" },
+      { type: "icon", attribute: "tile-icon-align" },
     ];
 
-    const populateDropdownMenu = () => {
-      const self = this;
-      const dropdownMenu = document.getElementById("dropdownMenu");
-      dropdownMenu.innerHTML = "";
-      let selectedCategory = null
-
-      categoryData.forEach((category) => {
-        const categoryElement = document.createElement("details");
-        categoryElement.classList.add("category");
-        categoryElement.setAttribute("data-category", category.name);
-
-        const summaryElement = document.createElement("summary");
-        summaryElement.innerHTML = `${category.name} <i class="fa fa-angle-right"></i>`;
-        categoryElement.appendChild(summaryElement);
-
-        const searchBox = document.createElement("div");
-        searchBox.classList.add("search-container");
-        searchBox.innerHTML = `<i class="fas fa-search search-icon"></i><input type="text" placeholder="Search" class="search-input" />`;
-        categoryElement.appendChild(searchBox);
-
-        const categoryContent = document.createElement("ul");
-        categoryContent.classList.add("category-content");
-
-        category.options.forEach((option) => {
-          const optionElement = document.createElement("li");
-          optionElement.textContent = option.PageName;
-          optionElement.id = option.PageId;
-          categoryContent.appendChild(optionElement);
-        });
-
-        categoryElement.appendChild(categoryContent);
-
-        const noRecordsMessage = document.createElement("li");
-        noRecordsMessage.textContent = "No records found";
-        noRecordsMessage.classList.add("no-records-message");
-        noRecordsMessage.style.display = "none";
-        categoryContent.appendChild(noRecordsMessage);
-
-        dropdownMenu.appendChild(categoryElement);
+    alignmentTypes.forEach(({ type, attribute }) => {
+      const currentAlign = editor.getSelected()?.getAttributes()?.[attribute];
+      ["left", "center", "right"].forEach((align) => {
+        document.getElementById(`${type}-align-${align}`).checked =
+          currentAlign === align;
       });
+    });
 
-      const dropdownHeader = document.getElementById("selectedOption");
-      const categories = document.querySelectorAll(".category");
+    const currentTextColor = editor.getSelected()?.getAttributes()?.[
+      "tile-text-color"
+    ];
+    const textColorRadios = document.querySelectorAll(
+      '.text-color-palette.text-colors .color-item input[type="radio"]' // Added .text-colors
+    );
 
-      // Toggle dropdown menu visibility
-      dropdownHeader.addEventListener("click", () => {
-        dropdownMenu.style.display =
-          dropdownMenu.style.display === "block" ? "none" : "block";
-        dropdownHeader.querySelector("i").classList.toggle("fa-angle-up");
-        dropdownHeader.querySelector("i").classList.toggle("fa-angle-down");
-      });
+    textColorRadios.forEach((radio) => {
+      const colorBox = radio.nextElementSibling;
+      radio.checked =
+        colorBox.getAttribute("data-tile-text-color") === currentTextColor;
+    });
 
-      // Close dropdown when clicking outside
-      document.addEventListener("click", (event) => {
-        if (
-          !dropdownHeader.contains(event.target) &&
-          !dropdownMenu.contains(event.target)
-        ) {
-          dropdownMenu.style.display = "none";
-          dropdownHeader.querySelector("i").classList.remove("fa-angle-up");
-          dropdownHeader.querySelector("i").classList.add("fa-angle-down");
-        }
-      });
+    // Update tile icon color
+    const currentIconColor = editor.getSelected()?.getAttributes()?.[
+      "tile-icon-color"
+    ];
+    const iconColorRadios = document.querySelectorAll(
+      '.text-color-palette.icon-colors .color-item input[type="radio"]' // Added .icon-colors
+    );
 
-      // Toggle display of the search box based on category open state and handle icons
-      categories.forEach((category) => {
-        category.addEventListener("toggle", function () {
-          selectedCategory = category.dataset.category
-          self.setAttributeToSelected("tile-action-object", category.dataset.category)
-          const searchBox = this.querySelector(".search-container");
-          const icon = this.querySelector("summary i");
-          const isOpen = this.open;
+    iconColorRadios.forEach((radio) => {
+      const colorBox = radio.nextElementSibling;
+      radio.checked =
+        colorBox.getAttribute("data-tile-icon-color") === currentIconColor;
+    });
 
-          // Close other categories if this one is opened
-          if (isOpen) {
-            categories.forEach((otherCategory) => {
-              if (otherCategory !== this) {
-                otherCategory.open = false; // Close other categories
-                otherCategory.querySelector(".search-container").style.display =
-                  "none"; // Hide other search boxes
-                otherCategory
-                  .querySelector("summary i")
-                  .classList.replace("fa-angle-down", "fa-angle-right");
-              }
-            });
-            searchBox.style.display = "block"; // Show the search box for this category
-            icon.classList.replace("fa-angle-right", "fa-angle-down"); // Change icon direction
-          } else {
-            searchBox.style.display = "none"; // Hide search box if closed
-            icon.classList.replace("fa-angle-down", "fa-angle-right"); // Change icon direction
-          }
-        });
-      });
+    // update tile bg color
+    const currentBgColor = editor.getSelected()?.getAttributes()?.[
+      "tile-bgcolor"
+    ];
+    const radios = document.querySelectorAll(
+      '#theme-color-palette input[type="radio"]'
+    );
 
-      // Handle selecting an option and displaying it in the header
-      document.querySelectorAll(".category-content li").forEach((item) => {
-        item.addEventListener("click", function () {
-          dropdownHeader.textContent = `${
-            this.closest(".category").dataset.category
-          }, ${this.textContent}`;
+    radios.forEach((radio) => {
+      const colorBox = radio.nextElementSibling;
+      radio.checked =
+        colorBox.getAttribute("data-tile-bgcolor") === currentBgColor;
+    });
 
-          // add value to the tile
-          if (editorManager.editor.getSelected()) {
-            // console.log(this.editorManager.selectedTemplateWrapper);
-            const titleComponent = editorManager.editor
-              .getSelected()
-              .find(".tile-title")[0];
+    // update action
+    const currentActionName = editor.getSelected()?.getAttributes()?.[
+      "tile-action-object"
+    ];
 
-            // add apage to a selected tile
-            const currentPageId = localStorage.getItem("pageId");
-            if (currentPageId !== undefined) {
-              self.setAttributeToSelected("tile-action-object-id", this.id)
-              self.dataManager.addPageChild(
-                this.id,
-                currentPageId
-              );
-            }
-            
-            if (titleComponent) {
-              titleComponent.components(this.textContent);
+    const currentActionId = editor.getSelected()?.getAttributes()?.[
+      "tile-action-object-id"
+    ];
 
-              const sidebarInputTitle = document.getElementById("tile-title");
-              if (sidebarInputTitle) {
-                sidebarInputTitle.textContent = this.textContent;
-              }
-            }
-          }
-          dropdownHeader.innerHTML += ' <i class="fa fa-angle-down"></i>';
-          dropdownMenu.style.display = "none"; // Close the dropdown menu
-        });
-      });
+    const propertySection = document.getElementById("selectedOption");
+    const selectedOptionElement = document.getElementById(currentActionId);
 
-      // Add search functionality to each search input
-      document.querySelectorAll(".search-input").forEach((input) => {
-        input.addEventListener("input", function () {
-          const filter = this.value.toLowerCase();
-          const items = this.closest(".category").querySelectorAll(
-            ".category-content li:not(.no-records-message)"
-          );
-          let hasVisibleItems = false; // Track if there are visible items
+    // Clear background styles for all options
+    const allOptions = document.querySelectorAll(".category-content li");
+    allOptions.forEach((option) => {
+      option.style.background = ""; // Clear any existing background styles
+    });
 
-          items.forEach((item) => {
-            if (item.textContent.toLowerCase().includes(filter)) {
-              item.style.display = "block";
-              hasVisibleItems = true; // At least one item is visible
-            } else {
-              item.style.display = "none";
-            }
-          });
+    if (currentActionName && currentActionId && selectedOptionElement) {
+      propertySection.textContent = currentActionName;
+      propertySection.innerHTML += ' <i class="fa fa-angle-down"></i>';
 
-          // Show or hide the no records message
-          const noRecordsMessage = this.closest(".category").querySelector(
-            ".no-records-message"
-          );
-          noRecordsMessage.style.display = hasVisibleItems ? "none" : "block";
-        });
-      });
-    };
+      // Set background style for the selected option
+      selectedOptionElement.style.background = "#f0f0f0";
+    }
   }
 }
 

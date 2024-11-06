@@ -130,8 +130,9 @@ namespace GeneXus.Programs {
          A310Trn_PageId = Guid.NewGuid( );
          A29LocationId = Guid.NewGuid( );
          n29LocationId = false;
+         A439PageIsContentPage = false;
          /* Using cursor P008V2 */
-         pr_default.execute(0, new Object[] {A310Trn_PageId, A318Trn_PageName, A434PageIsPublished, n29LocationId, A29LocationId});
+         pr_default.execute(0, new Object[] {A310Trn_PageId, A318Trn_PageName, A434PageIsPublished, n29LocationId, A29LocationId, A439PageIsContentPage});
          pr_default.close(0);
          pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
          if ( (pr_default.getStatus(0) == 1) )
@@ -183,6 +184,7 @@ namespace GeneXus.Programs {
       private string Gx_emsg ;
       private bool A434PageIsPublished ;
       private bool n29LocationId ;
+      private bool A439PageIsContentPage ;
       private string AV17Response ;
       private string AV16PageName ;
       private string A318Trn_PageName ;
@@ -215,10 +217,11 @@ namespace GeneXus.Programs {
           new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
           new ParDef("PageIsPublished",GXType.Boolean,4,0) ,
-          new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+          new ParDef("PageIsContentPage",GXType.Boolean,4,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008V2", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, PageIsPublished, LocationId, PageJsonContent, PageGJSHtml, PageGJSJson, PageChildren) VALUES(:Trn_PageId, :Trn_PageName, :PageIsPublished, :LocationId, '', '', '', '');RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP008V2)
+              new CursorDef("P008V2", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, PageIsPublished, LocationId, PageIsContentPage, PageJsonContent, PageGJSHtml, PageGJSJson, PageChildren) VALUES(:Trn_PageId, :Trn_PageName, :PageIsPublished, :LocationId, :PageIsContentPage, '', '', '', '');RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP008V2)
           };
        }
     }

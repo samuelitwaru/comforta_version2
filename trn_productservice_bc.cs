@@ -139,12 +139,12 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV16TrnContext.FromXml(AV18WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV43Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV54Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV44GXV1 = 1;
-            while ( AV44GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
+            AV55GXV1 = 1;
+            while ( AV55GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
             {
-               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV44GXV1));
+               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV55GXV1));
                if ( StringUtil.StrCmp(AV17TrnContextAtt.gxTpr_Attributename, "SupplierGenId") == 0 )
                {
                   AV10Insert_SupplierGenId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
@@ -153,7 +153,7 @@ namespace GeneXus.Programs {
                {
                   AV9Insert_SupplierAgbId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV44GXV1 = (int)(AV44GXV1+1);
+               AV55GXV1 = (int)(AV55GXV1+1);
             }
          }
       }
@@ -186,6 +186,62 @@ namespace GeneXus.Programs {
          {
             AV30ComboSupplierAgbId = Guid.Empty;
             AV26ComboSupplierGenId = Guid.Empty;
+         }
+      }
+
+      protected void E14082( )
+      {
+         /* Listgen_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( AV43ListGen )
+         {
+            AV51ListGenPre = true;
+         }
+         else if ( ! AV43ListGen )
+         {
+            AV51ListGenPre = false;
+         }
+      }
+
+      protected void E15082( )
+      {
+         /* Listgenpre_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( AV51ListGenPre )
+         {
+            AV43ListGen = true;
+         }
+         else if ( ! AV51ListGenPre )
+         {
+            AV43ListGen = false;
+         }
+      }
+
+      protected void E16082( )
+      {
+         /* Listagb_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( AV42ListAgb )
+         {
+            AV52ListAgbPre = true;
+         }
+         else if ( ! AV42ListAgb )
+         {
+            AV52ListAgbPre = false;
+         }
+      }
+
+      protected void E17082( )
+      {
+         /* Listagbpre_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( AV52ListAgbPre )
+         {
+            AV42ListAgb = true;
+         }
+         else if ( ! AV52ListAgbPre )
+         {
+            AV42ListAgb = false;
          }
       }
 
@@ -232,7 +288,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV43Pgmname = "Trn_ProductService_BC";
+         AV54Pgmname = "Trn_ProductService_BC";
          Gx_BScreen = 0;
       }
 
@@ -1416,7 +1472,7 @@ namespace GeneXus.Programs {
          AV19WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV16TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV18WebSession = context.GetSession();
-         AV43Pgmname = "";
+         AV54Pgmname = "";
          AV17TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV10Insert_SupplierGenId = Guid.Empty;
          AV9Insert_SupplierAgbId = Guid.Empty;
@@ -1577,7 +1633,7 @@ namespace GeneXus.Programs {
          );
          Z58ProductServiceId = Guid.NewGuid( );
          A58ProductServiceId = Guid.NewGuid( );
-         AV43Pgmname = "Trn_ProductService_BC";
+         AV54Pgmname = "Trn_ProductService_BC";
          A366ProductServiceGroup = "Location";
          Z366ProductServiceGroup = "Location";
          i366ProductServiceGroup = "Location";
@@ -1592,15 +1648,19 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound75 ;
       private int trnEnded ;
-      private int AV44GXV1 ;
+      private int AV55GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV43Pgmname ;
+      private string AV54Pgmname ;
       private string Z301ProductServiceTileName ;
       private string A301ProductServiceTileName ;
       private string sMode75 ;
       private bool returnInSub ;
+      private bool AV43ListGen ;
+      private bool AV51ListGenPre ;
+      private bool AV42ListAgb ;
+      private bool AV52ListAgbPre ;
       private bool n42SupplierGenId ;
       private bool n49SupplierAgbId ;
       private bool Gx_longc ;

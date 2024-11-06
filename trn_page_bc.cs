@@ -131,13 +131,14 @@ namespace GeneXus.Programs {
 
       protected void ZM1768( short GX_JID )
       {
-         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
          {
             Z29LocationId = A29LocationId;
             Z318Trn_PageName = A318Trn_PageName;
             Z434PageIsPublished = A434PageIsPublished;
+            Z439PageIsContentPage = A439PageIsContentPage;
          }
-         if ( GX_JID == -6 )
+         if ( GX_JID == -7 )
          {
             Z310Trn_PageId = A310Trn_PageId;
             Z29LocationId = A29LocationId;
@@ -146,6 +147,7 @@ namespace GeneXus.Programs {
             Z432PageGJSHtml = A432PageGJSHtml;
             Z433PageGJSJson = A433PageGJSJson;
             Z434PageIsPublished = A434PageIsPublished;
+            Z439PageIsContentPage = A439PageIsContentPage;
             Z437PageChildren = A437PageChildren;
          }
       }
@@ -165,6 +167,10 @@ namespace GeneXus.Programs {
          if ( IsIns( )  && (Guid.Empty==A310Trn_PageId) )
          {
             A310Trn_PageId = Guid.NewGuid( );
+         }
+         if ( IsIns( )  && (false==A439PageIsContentPage) && ( Gx_BScreen == 0 ) )
+         {
+            A439PageIsContentPage = false;
          }
          if ( IsIns( )  && (false==A434PageIsPublished) && ( Gx_BScreen == 0 ) )
          {
@@ -189,9 +195,10 @@ namespace GeneXus.Programs {
             A432PageGJSHtml = BC00174_A432PageGJSHtml[0];
             A433PageGJSJson = BC00174_A433PageGJSJson[0];
             A434PageIsPublished = BC00174_A434PageIsPublished[0];
+            A439PageIsContentPage = BC00174_A439PageIsContentPage[0];
             A437PageChildren = BC00174_A437PageChildren[0];
             n437PageChildren = BC00174_n437PageChildren[0];
-            ZM1768( -6) ;
+            ZM1768( -7) ;
          }
          pr_default.close(2);
          OnLoadActions1768( ) ;
@@ -235,7 +242,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A310Trn_PageId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1768( 6) ;
+            ZM1768( 7) ;
             RcdFound68 = 1;
             A310Trn_PageId = BC00173_A310Trn_PageId[0];
             A29LocationId = BC00173_A29LocationId[0];
@@ -245,6 +252,7 @@ namespace GeneXus.Programs {
             A432PageGJSHtml = BC00173_A432PageGJSHtml[0];
             A433PageGJSJson = BC00173_A433PageGJSJson[0];
             A434PageIsPublished = BC00173_A434PageIsPublished[0];
+            A439PageIsContentPage = BC00173_A439PageIsContentPage[0];
             A437PageChildren = BC00173_A437PageChildren[0];
             n437PageChildren = BC00173_n437PageChildren[0];
             Z310Trn_PageId = A310Trn_PageId;
@@ -312,7 +320,7 @@ namespace GeneXus.Programs {
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(0) == 101) || ( Z29LocationId != BC00172_A29LocationId[0] ) || ( StringUtil.StrCmp(Z318Trn_PageName, BC00172_A318Trn_PageName[0]) != 0 ) || ( Z434PageIsPublished != BC00172_A434PageIsPublished[0] ) )
+            if ( (pr_default.getStatus(0) == 101) || ( Z29LocationId != BC00172_A29LocationId[0] ) || ( StringUtil.StrCmp(Z318Trn_PageName, BC00172_A318Trn_PageName[0]) != 0 ) || ( Z434PageIsPublished != BC00172_A434PageIsPublished[0] ) || ( Z439PageIsContentPage != BC00172_A439PageIsContentPage[0] ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Page"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -341,7 +349,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00176 */
-                     pr_default.execute(4, new Object[] {A310Trn_PageId, n29LocationId, A29LocationId, A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, n437PageChildren, A437PageChildren});
+                     pr_default.execute(4, new Object[] {A310Trn_PageId, n29LocationId, A29LocationId, A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, A439PageIsContentPage, n437PageChildren, A437PageChildren});
                      pr_default.close(4);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
                      if ( (pr_default.getStatus(4) == 1) )
@@ -396,7 +404,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00177 */
-                     pr_default.execute(5, new Object[] {n29LocationId, A29LocationId, A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, n437PageChildren, A437PageChildren, A310Trn_PageId});
+                     pr_default.execute(5, new Object[] {n29LocationId, A29LocationId, A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, A439PageIsContentPage, n437PageChildren, A437PageChildren, A310Trn_PageId});
                      pr_default.close(5);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
                      if ( (pr_default.getStatus(5) == 103) )
@@ -547,6 +555,7 @@ namespace GeneXus.Programs {
             A432PageGJSHtml = BC001711_A432PageGJSHtml[0];
             A433PageGJSJson = BC001711_A433PageGJSJson[0];
             A434PageIsPublished = BC001711_A434PageIsPublished[0];
+            A439PageIsContentPage = BC001711_A439PageIsContentPage[0];
             A437PageChildren = BC001711_A437PageChildren[0];
             n437PageChildren = BC001711_n437PageChildren[0];
          }
@@ -576,6 +585,7 @@ namespace GeneXus.Programs {
             A432PageGJSHtml = BC001711_A432PageGJSHtml[0];
             A433PageGJSJson = BC001711_A433PageGJSJson[0];
             A434PageIsPublished = BC001711_A434PageIsPublished[0];
+            A439PageIsContentPage = BC001711_A439PageIsContentPage[0];
             A437PageChildren = BC001711_A437PageChildren[0];
             n437PageChildren = BC001711_n437PageChildren[0];
          }
@@ -646,9 +656,11 @@ namespace GeneXus.Programs {
          A29LocationId = Guid.NewGuid( );
          n29LocationId = false;
          A434PageIsPublished = false;
+         A439PageIsContentPage = false;
          Z29LocationId = Guid.Empty;
          Z318Trn_PageName = "";
          Z434PageIsPublished = false;
+         Z439PageIsContentPage = false;
       }
 
       protected void InitAll1768( )
@@ -661,6 +673,7 @@ namespace GeneXus.Programs {
       {
          A29LocationId = i29LocationId;
          n29LocationId = false;
+         A439PageIsContentPage = i439PageIsContentPage;
          A434PageIsPublished = i434PageIsPublished;
       }
 
@@ -694,10 +707,12 @@ namespace GeneXus.Programs {
          obj68.gxTpr_Pagechildren = A437PageChildren;
          obj68.gxTpr_Locationid = A29LocationId;
          obj68.gxTpr_Pageispublished = A434PageIsPublished;
+         obj68.gxTpr_Pageiscontentpage = A439PageIsContentPage;
          obj68.gxTpr_Trn_pageid = A310Trn_PageId;
          obj68.gxTpr_Trn_pageid_Z = Z310Trn_PageId;
          obj68.gxTpr_Trn_pagename_Z = Z318Trn_PageName;
          obj68.gxTpr_Pageispublished_Z = Z434PageIsPublished;
+         obj68.gxTpr_Pageiscontentpage_Z = Z439PageIsContentPage;
          obj68.gxTpr_Locationid_Z = Z29LocationId;
          obj68.gxTpr_Locationid_N = (short)(Convert.ToInt16(n29LocationId));
          obj68.gxTpr_Pagechildren_N = (short)(Convert.ToInt16(n437PageChildren));
@@ -724,10 +739,12 @@ namespace GeneXus.Programs {
          A29LocationId = obj68.gxTpr_Locationid;
          n29LocationId = false;
          A434PageIsPublished = obj68.gxTpr_Pageispublished;
+         A439PageIsContentPage = obj68.gxTpr_Pageiscontentpage;
          A310Trn_PageId = obj68.gxTpr_Trn_pageid;
          Z310Trn_PageId = obj68.gxTpr_Trn_pageid_Z;
          Z318Trn_PageName = obj68.gxTpr_Trn_pagename_Z;
          Z434PageIsPublished = obj68.gxTpr_Pageispublished_Z;
+         Z439PageIsContentPage = obj68.gxTpr_Pageiscontentpage_Z;
          Z29LocationId = obj68.gxTpr_Locationid_Z;
          n29LocationId = (bool)(Convert.ToBoolean(obj68.gxTpr_Locationid_N));
          n437PageChildren = (bool)(Convert.ToBoolean(obj68.gxTpr_Pagechildren_N));
@@ -753,7 +770,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z310Trn_PageId = A310Trn_PageId;
          }
-         ZM1768( -6) ;
+         ZM1768( -7) ;
          OnLoadActions1768( ) ;
          AddRow1768( ) ;
          ScanKeyEnd1768( ) ;
@@ -782,7 +799,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z310Trn_PageId = A310Trn_PageId;
          }
-         ZM1768( -6) ;
+         ZM1768( -7) ;
          OnLoadActions1768( ) ;
          AddRow1768( ) ;
          ScanKeyEnd1768( ) ;
@@ -1189,6 +1206,7 @@ namespace GeneXus.Programs {
          BC00174_A432PageGJSHtml = new string[] {""} ;
          BC00174_A433PageGJSJson = new string[] {""} ;
          BC00174_A434PageIsPublished = new bool[] {false} ;
+         BC00174_A439PageIsContentPage = new bool[] {false} ;
          BC00174_A437PageChildren = new string[] {""} ;
          BC00174_n437PageChildren = new bool[] {false} ;
          BC00175_A310Trn_PageId = new Guid[] {Guid.Empty} ;
@@ -1200,6 +1218,7 @@ namespace GeneXus.Programs {
          BC00173_A432PageGJSHtml = new string[] {""} ;
          BC00173_A433PageGJSJson = new string[] {""} ;
          BC00173_A434PageIsPublished = new bool[] {false} ;
+         BC00173_A439PageIsContentPage = new bool[] {false} ;
          BC00173_A437PageChildren = new string[] {""} ;
          BC00173_n437PageChildren = new bool[] {false} ;
          sMode68 = "";
@@ -1211,6 +1230,7 @@ namespace GeneXus.Programs {
          BC00172_A432PageGJSHtml = new string[] {""} ;
          BC00172_A433PageGJSJson = new string[] {""} ;
          BC00172_A434PageIsPublished = new bool[] {false} ;
+         BC00172_A439PageIsContentPage = new bool[] {false} ;
          BC00172_A437PageChildren = new string[] {""} ;
          BC00172_n437PageChildren = new bool[] {false} ;
          BC00179_A407TileId = new Guid[] {Guid.Empty} ;
@@ -1223,6 +1243,7 @@ namespace GeneXus.Programs {
          BC001711_A432PageGJSHtml = new string[] {""} ;
          BC001711_A433PageGJSJson = new string[] {""} ;
          BC001711_A434PageIsPublished = new bool[] {false} ;
+         BC001711_A439PageIsContentPage = new bool[] {false} ;
          BC001711_A437PageChildren = new string[] {""} ;
          BC001711_n437PageChildren = new bool[] {false} ;
          i29LocationId = Guid.Empty;
@@ -1235,13 +1256,16 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_page_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC00172_A310Trn_PageId, BC00172_A29LocationId, BC00172_n29LocationId, BC00172_A318Trn_PageName, BC00172_A431PageJsonContent, BC00172_A432PageGJSHtml, BC00172_A433PageGJSJson, BC00172_A434PageIsPublished, BC00172_A437PageChildren, BC00172_n437PageChildren
+               BC00172_A310Trn_PageId, BC00172_A29LocationId, BC00172_n29LocationId, BC00172_A318Trn_PageName, BC00172_A431PageJsonContent, BC00172_A432PageGJSHtml, BC00172_A433PageGJSJson, BC00172_A434PageIsPublished, BC00172_A439PageIsContentPage, BC00172_A437PageChildren,
+               BC00172_n437PageChildren
                }
                , new Object[] {
-               BC00173_A310Trn_PageId, BC00173_A29LocationId, BC00173_n29LocationId, BC00173_A318Trn_PageName, BC00173_A431PageJsonContent, BC00173_A432PageGJSHtml, BC00173_A433PageGJSJson, BC00173_A434PageIsPublished, BC00173_A437PageChildren, BC00173_n437PageChildren
+               BC00173_A310Trn_PageId, BC00173_A29LocationId, BC00173_n29LocationId, BC00173_A318Trn_PageName, BC00173_A431PageJsonContent, BC00173_A432PageGJSHtml, BC00173_A433PageGJSJson, BC00173_A434PageIsPublished, BC00173_A439PageIsContentPage, BC00173_A437PageChildren,
+               BC00173_n437PageChildren
                }
                , new Object[] {
-               BC00174_A310Trn_PageId, BC00174_A29LocationId, BC00174_n29LocationId, BC00174_A318Trn_PageName, BC00174_A431PageJsonContent, BC00174_A432PageGJSHtml, BC00174_A433PageGJSJson, BC00174_A434PageIsPublished, BC00174_A437PageChildren, BC00174_n437PageChildren
+               BC00174_A310Trn_PageId, BC00174_A29LocationId, BC00174_n29LocationId, BC00174_A318Trn_PageName, BC00174_A431PageJsonContent, BC00174_A432PageGJSHtml, BC00174_A433PageGJSJson, BC00174_A434PageIsPublished, BC00174_A439PageIsContentPage, BC00174_A437PageChildren,
+               BC00174_n437PageChildren
                }
                , new Object[] {
                BC00175_A310Trn_PageId
@@ -1259,7 +1283,8 @@ namespace GeneXus.Programs {
                BC001710_A319Trn_RowId
                }
                , new Object[] {
-               BC001711_A310Trn_PageId, BC001711_A29LocationId, BC001711_n29LocationId, BC001711_A318Trn_PageName, BC001711_A431PageJsonContent, BC001711_A432PageGJSHtml, BC001711_A433PageGJSJson, BC001711_A434PageIsPublished, BC001711_A437PageChildren, BC001711_n437PageChildren
+               BC001711_A310Trn_PageId, BC001711_A29LocationId, BC001711_n29LocationId, BC001711_A318Trn_PageName, BC001711_A431PageJsonContent, BC001711_A432PageGJSHtml, BC001711_A433PageGJSJson, BC001711_A434PageIsPublished, BC001711_A439PageIsContentPage, BC001711_A437PageChildren,
+               BC001711_n437PageChildren
                }
             }
          );
@@ -1269,6 +1294,9 @@ namespace GeneXus.Programs {
          n29LocationId = false;
          i29LocationId = Guid.NewGuid( );
          n29LocationId = false;
+         Z439PageIsContentPage = false;
+         A439PageIsContentPage = false;
+         i439PageIsContentPage = false;
          Z434PageIsPublished = false;
          A434PageIsPublished = false;
          i434PageIsPublished = false;
@@ -1292,8 +1320,11 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool Z434PageIsPublished ;
       private bool A434PageIsPublished ;
+      private bool Z439PageIsContentPage ;
+      private bool A439PageIsContentPage ;
       private bool n29LocationId ;
       private bool n437PageChildren ;
+      private bool i439PageIsContentPage ;
       private bool i434PageIsPublished ;
       private string Z431PageJsonContent ;
       private string A431PageJsonContent ;
@@ -1324,6 +1355,7 @@ namespace GeneXus.Programs {
       private string[] BC00174_A432PageGJSHtml ;
       private string[] BC00174_A433PageGJSJson ;
       private bool[] BC00174_A434PageIsPublished ;
+      private bool[] BC00174_A439PageIsContentPage ;
       private string[] BC00174_A437PageChildren ;
       private bool[] BC00174_n437PageChildren ;
       private Guid[] BC00175_A310Trn_PageId ;
@@ -1335,6 +1367,7 @@ namespace GeneXus.Programs {
       private string[] BC00173_A432PageGJSHtml ;
       private string[] BC00173_A433PageGJSJson ;
       private bool[] BC00173_A434PageIsPublished ;
+      private bool[] BC00173_A439PageIsContentPage ;
       private string[] BC00173_A437PageChildren ;
       private bool[] BC00173_n437PageChildren ;
       private Guid[] BC00172_A310Trn_PageId ;
@@ -1345,6 +1378,7 @@ namespace GeneXus.Programs {
       private string[] BC00172_A432PageGJSHtml ;
       private string[] BC00172_A433PageGJSJson ;
       private bool[] BC00172_A434PageIsPublished ;
+      private bool[] BC00172_A439PageIsContentPage ;
       private string[] BC00172_A437PageChildren ;
       private bool[] BC00172_n437PageChildren ;
       private Guid[] BC00179_A407TileId ;
@@ -1357,6 +1391,7 @@ namespace GeneXus.Programs {
       private string[] BC001711_A432PageGJSHtml ;
       private string[] BC001711_A433PageGJSJson ;
       private bool[] BC001711_A434PageIsPublished ;
+      private bool[] BC001711_A439PageIsContentPage ;
       private string[] BC001711_A437PageChildren ;
       private bool[] BC001711_n437PageChildren ;
       private SdtTrn_Page bcTrn_Page ;
@@ -1446,6 +1481,7 @@ namespace GeneXus.Programs {
         new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0) ,
         new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0) ,
         new ParDef("PageIsPublished",GXType.Boolean,4,0) ,
+        new ParDef("PageIsContentPage",GXType.Boolean,4,0) ,
         new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true}
         };
         Object[] prmBC00177;
@@ -1456,6 +1492,7 @@ namespace GeneXus.Programs {
         new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0) ,
         new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0) ,
         new ParDef("PageIsPublished",GXType.Boolean,4,0) ,
+        new ParDef("PageIsContentPage",GXType.Boolean,4,0) ,
         new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true} ,
         new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
@@ -1476,16 +1513,16 @@ namespace GeneXus.Programs {
         new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
         def= new CursorDef[] {
-            new CursorDef("BC00172", "SELECT Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageChildren FROM Trn_Page WHERE Trn_PageId = :Trn_PageId  FOR UPDATE OF Trn_Page",true, GxErrorMask.GX_NOMASK, false, this,prmBC00172,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00173", "SELECT Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageChildren FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00173,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00174", "SELECT TM1.Trn_PageId, TM1.LocationId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageChildren FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00174,100, GxCacheFrequency.OFF ,true,false )
+            new CursorDef("BC00172", "SELECT Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren FROM Trn_Page WHERE Trn_PageId = :Trn_PageId  FOR UPDATE OF Trn_Page",true, GxErrorMask.GX_NOMASK, false, this,prmBC00172,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00173", "SELECT Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00173,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00174", "SELECT TM1.Trn_PageId, TM1.LocationId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00174,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC00175", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00175,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00176", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageChildren) VALUES(:Trn_PageId, :LocationId, :Trn_PageName, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageChildren);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00176)
-           ,new CursorDef("BC00177", "SAVEPOINT gxupdate;UPDATE Trn_Page SET LocationId=:LocationId, Trn_PageName=:Trn_PageName, PageJsonContent=:PageJsonContent, PageGJSHtml=:PageGJSHtml, PageGJSJson=:PageGJSJson, PageIsPublished=:PageIsPublished, PageChildren=:PageChildren  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00177)
+           ,new CursorDef("BC00176", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren) VALUES(:Trn_PageId, :LocationId, :Trn_PageName, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, :PageChildren);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00176)
+           ,new CursorDef("BC00177", "SAVEPOINT gxupdate;UPDATE Trn_Page SET LocationId=:LocationId, Trn_PageName=:Trn_PageName, PageJsonContent=:PageJsonContent, PageGJSHtml=:PageGJSHtml, PageGJSJson=:PageGJSJson, PageIsPublished=:PageIsPublished, PageIsContentPage=:PageIsContentPage, PageChildren=:PageChildren  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00177)
            ,new CursorDef("BC00178", "SAVEPOINT gxupdate;DELETE FROM Trn_Page  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00178)
            ,new CursorDef("BC00179", "SELECT TileId FROM Trn_Tile WHERE SG_ToPageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00179,1, GxCacheFrequency.OFF ,true,true )
            ,new CursorDef("BC001710", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001710,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC001711", "SELECT TM1.Trn_PageId, TM1.LocationId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageChildren FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001711,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC001711", "SELECT TM1.Trn_PageId, TM1.LocationId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001711,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1505,8 +1542,9 @@ namespace GeneXus.Programs {
               ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
               ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
               ((bool[]) buf[7])[0] = rslt.getBool(7);
-              ((string[]) buf[8])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[9])[0] = rslt.wasNull(8);
+              ((bool[]) buf[8])[0] = rslt.getBool(8);
+              ((string[]) buf[9])[0] = rslt.getLongVarchar(9);
+              ((bool[]) buf[10])[0] = rslt.wasNull(9);
               return;
            case 1 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -1517,8 +1555,9 @@ namespace GeneXus.Programs {
               ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
               ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
               ((bool[]) buf[7])[0] = rslt.getBool(7);
-              ((string[]) buf[8])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[9])[0] = rslt.wasNull(8);
+              ((bool[]) buf[8])[0] = rslt.getBool(8);
+              ((string[]) buf[9])[0] = rslt.getLongVarchar(9);
+              ((bool[]) buf[10])[0] = rslt.wasNull(9);
               return;
            case 2 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -1529,8 +1568,9 @@ namespace GeneXus.Programs {
               ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
               ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
               ((bool[]) buf[7])[0] = rslt.getBool(7);
-              ((string[]) buf[8])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[9])[0] = rslt.wasNull(8);
+              ((bool[]) buf[8])[0] = rslt.getBool(8);
+              ((string[]) buf[9])[0] = rslt.getLongVarchar(9);
+              ((bool[]) buf[10])[0] = rslt.wasNull(9);
               return;
            case 3 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -1550,8 +1590,9 @@ namespace GeneXus.Programs {
               ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
               ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
               ((bool[]) buf[7])[0] = rslt.getBool(7);
-              ((string[]) buf[8])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[9])[0] = rslt.wasNull(8);
+              ((bool[]) buf[8])[0] = rslt.getBool(8);
+              ((string[]) buf[9])[0] = rslt.getLongVarchar(9);
+              ((bool[]) buf[10])[0] = rslt.wasNull(9);
               return;
      }
   }

@@ -105,7 +105,11 @@ namespace GeneXus.Programs {
          if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
          {
             AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV11PageGJSJson;
-            AV9BC_Trn_Page.gxTpr_Pagejsoncontent = AV12PageJsonContent;
+            if ( AV17PageIsPublished )
+            {
+               AV9BC_Trn_Page.gxTpr_Pagejsoncontent = AV12PageJsonContent;
+               AV9BC_Trn_Page.gxTpr_Pageispublished = AV17PageIsPublished;
+            }
             AV9BC_Trn_Page.gxTpr_Pagegjshtml = AV13PageGJSHtml;
             AV9BC_Trn_Page.Save();
             if ( AV9BC_Trn_Page.Success() )

@@ -574,7 +574,6 @@ namespace GeneXus.Programs {
                Combo_trn_pageid_Selectalltext = cgiGet( "COMBO_TRN_PAGEID_Selectalltext");
                Combo_trn_pageid_Multiplevaluesseparator = cgiGet( "COMBO_TRN_PAGEID_Multiplevaluesseparator");
                Combo_trn_pageid_Addnewoptiontext = cgiGet( "COMBO_TRN_PAGEID_Addnewoptiontext");
-               Combo_trn_pageid_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_TRN_PAGEID_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtTrn_RowId_Internalname), "") == 0 )
                {
@@ -2019,7 +2018,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024114972082", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241161037873", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2035,7 +2034,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_row.js", "?2024114972084", false, true);
+         context.AddJavascriptSource("trn_row.js", "?20241161037874", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2364,7 +2363,6 @@ namespace GeneXus.Programs {
       private int edtavCombotrn_pageid_Visible ;
       private int edtavCombotrn_pageid_Enabled ;
       private int Combo_trn_pageid_Datalistupdateminimumcharacters ;
-      private int Combo_trn_pageid_Gxcontroltype ;
       private int AV24GXV1 ;
       private int idxLst ;
       private string sPrefix ;

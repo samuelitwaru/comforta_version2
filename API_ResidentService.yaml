@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241105084353"
+  version: "20241106083656"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -835,6 +835,12 @@ components:
         Tile:
           description: "SDT_Tile"
           $ref: "#/components/schemas/SDT_Tile"
+        Image:
+          description: "Image"
+          type: "string"
+        Text:
+          description: "Text"
+          type: "string"
 
 
 

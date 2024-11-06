@@ -17,6 +17,7 @@ using GeneXus.XML;
 using GeneXus.Search;
 using GeneXus.Encryption;
 using GeneXus.Http.Client;
+using GeneXus.Http.Server;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 namespace GeneXus.Programs {
@@ -352,6 +353,7 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vBC_TRN_MEDIACOLLECTION", AV21BC_Trn_MediaCollection);
          }
          GxWebStd.gx_hidden_field( context, "vTRN_PAGEID", AV16Trn_PageId.ToString());
+         GxWebStd.gx_hidden_field( context, "APPTOOLBOX1_Current_language", StringUtil.RTrim( Apptoolbox1_Current_language));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -481,6 +483,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* User Defined Control */
+            ucApptoolbox1.SetProperty("Current_Language", Apptoolbox1_Current_language);
             ucApptoolbox1.SetProperty("SDT_Tile", AV9BC_Trn_Tile);
             ucApptoolbox1.SetProperty("SDT_Page", AV14SDT_Page);
             ucApptoolbox1.SetProperty("SDT_Pages", AV31SDT_Pages);
@@ -777,6 +780,7 @@ namespace GeneXus.Programs {
             ajax_req_read_hidden_sdt(cgiGet( "vBC_TRN_THEMECOLLECTION"), AV13BC_Trn_ThemeCollection);
             ajax_req_read_hidden_sdt(cgiGet( "vBC_TRN_MEDIACOLLECTION"), AV21BC_Trn_MediaCollection);
             /* Read saved values. */
+            Apptoolbox1_Current_language = cgiGet( "APPTOOLBOX1_Current_language");
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -799,6 +803,8 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         GX_msglist.addItem(AV39HttpRequest.ServerHost);
+         GX_msglist.addItem(AV39HttpRequest.BaseURL);
          Form.Headerrawhtml = Form.Headerrawhtml+"<link rel=\"stylesheet\" href=\"Resources/UCGrapes/new-design/grapes/grapes.css\">"+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes/new-design/css/styles.css\" />"+"<script src=\"Resources/UCGrapes/new-design/grapes/grapes.js\"></script>";
          /* Using cursor H00472 */
          pr_default.execute(0);
@@ -897,11 +903,15 @@ namespace GeneXus.Programs {
          pr_default.execute(5);
          while ( (pr_default.getStatus(5) != 101) )
          {
+            A40000ProductServiceImage_GXI = H00477_A40000ProductServiceImage_GXI[0];
             A58ProductServiceId = H00477_A58ProductServiceId[0];
             A59ProductServiceName = H00477_A59ProductServiceName[0];
+            A61ProductServiceImage = H00477_A61ProductServiceImage[0];
             AV36SDT_ProductService = new SdtSDT_ProductService(context);
             AV36SDT_ProductService.gxTpr_Productserviceid = A58ProductServiceId;
             AV36SDT_ProductService.gxTpr_Productservicename = A59ProductServiceName;
+            AV36SDT_ProductService.gxTpr_Productserviceimage = A61ProductServiceImage;
+            AV36SDT_ProductService.gxTpr_Productserviceimage_gxi = A40000ProductServiceImage_GXI;
             AV37SDT_ProductServiceCollection.Add(AV36SDT_ProductService, 0);
             pr_default.readNext(5);
          }
@@ -944,6 +954,9 @@ namespace GeneXus.Programs {
             pr_default.readNext(8);
          }
          pr_default.close(8);
+         AV38Current_Language = context.GetLanguage( );
+         Apptoolbox1_Current_language = AV38Current_Language;
+         ucApptoolbox1.SendProperty(context, "", false, Apptoolbox1_Internalname, "Current_Language", Apptoolbox1_Current_language);
       }
 
       protected void nextLoad( )
@@ -997,7 +1010,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411512123525", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411612404189", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1015,7 +1028,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?202411512123525", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?202411612404189", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBox2Render.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -1043,6 +1056,7 @@ namespace GeneXus.Programs {
             disableJsOutput();
          }
          init_default_properties( ) ;
+         Apptoolbox1_Current_language = "english";
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -1104,6 +1118,7 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
+         AV39HttpRequest = new GxHttpRequest( context);
          H00472_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          H00472_A318Trn_PageName = new string[] {""} ;
          A310Trn_PageId = Guid.Empty;
@@ -1144,10 +1159,14 @@ namespace GeneXus.Programs {
          AV11BC_Trn_Template = new SdtTrn_Template(context);
          H00477_A29LocationId = new Guid[] {Guid.Empty} ;
          H00477_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H00477_A40000ProductServiceImage_GXI = new string[] {""} ;
          H00477_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          H00477_A59ProductServiceName = new string[] {""} ;
+         H00477_A61ProductServiceImage = new string[] {""} ;
+         A40000ProductServiceImage_GXI = "";
          A58ProductServiceId = Guid.Empty;
          A59ProductServiceName = "";
+         A61ProductServiceImage = "";
          AV36SDT_ProductService = new SdtSDT_ProductService(context);
          H00478_A409MediaId = new Guid[] {Guid.Empty} ;
          A409MediaId = Guid.Empty;
@@ -1161,6 +1180,7 @@ namespace GeneXus.Programs {
          H004710_n437PageChildren = new bool[] {false} ;
          A437PageChildren = "";
          AV32SDT_PageStructure = new SdtSDT_PageStructure(context);
+         AV38Current_Language = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wp_applicationdesign__default(),
@@ -1182,7 +1202,7 @@ namespace GeneXus.Programs {
                H00476_A278Trn_TemplateId
                }
                , new Object[] {
-               H00477_A29LocationId, H00477_A11OrganisationId, H00477_A58ProductServiceId, H00477_A59ProductServiceName
+               H00477_A29LocationId, H00477_A11OrganisationId, H00477_A40000ProductServiceImage_GXI, H00477_A58ProductServiceId, H00477_A59ProductServiceName, H00477_A61ProductServiceImage
                }
                , new Object[] {
                H00478_A409MediaId
@@ -1231,6 +1251,7 @@ namespace GeneXus.Programs {
       private string bodyStyle ;
       private string GXKey ;
       private string GXEncryptionTmp ;
+      private string Apptoolbox1_Current_language ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divLayoutmaintable_Internalname ;
@@ -1248,6 +1269,7 @@ namespace GeneXus.Programs {
       private string A404TileTextColor ;
       private string A405TileTextAlignment ;
       private string A406TileIconAlignment ;
+      private string AV38Current_Language ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
@@ -1264,7 +1286,9 @@ namespace GeneXus.Programs {
       private string A327Trn_ColName ;
       private string A400TileName ;
       private string A403TileBGImageUrl ;
+      private string A40000ProductServiceImage_GXI ;
       private string A59ProductServiceName ;
+      private string A61ProductServiceImage ;
       private Guid AV16Trn_PageId ;
       private Guid wcpOAV16Trn_PageId ;
       private Guid A310Trn_PageId ;
@@ -1276,6 +1300,7 @@ namespace GeneXus.Programs {
       private Guid A409MediaId ;
       private Guid A247Trn_ThemeId ;
       private GXUserControl ucApptoolbox1 ;
+      private GxHttpRequest AV39HttpRequest ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -1314,8 +1339,10 @@ namespace GeneXus.Programs {
       private SdtTrn_Template AV11BC_Trn_Template ;
       private Guid[] H00477_A29LocationId ;
       private Guid[] H00477_A11OrganisationId ;
+      private string[] H00477_A40000ProductServiceImage_GXI ;
       private Guid[] H00477_A58ProductServiceId ;
       private string[] H00477_A59ProductServiceName ;
+      private string[] H00477_A61ProductServiceImage ;
       private SdtSDT_ProductService AV36SDT_ProductService ;
       private Guid[] H00478_A409MediaId ;
       private SdtTrn_Media AV20BC_Trn_Media ;
@@ -1388,7 +1415,7 @@ namespace GeneXus.Programs {
              ,new CursorDef("H00474", "SELECT T1.Trn_RowId, T1.Trn_ColId, T1.Trn_ColName, T1.TileId, T2.TileName, T2.TileBGColor, T2.TileBGImageUrl, T2.TileTextColor, T2.TileTextAlignment, T2.TileIconAlignment FROM (Trn_Col T1 INNER JOIN Trn_Tile T2 ON T2.TileId = T1.TileId) WHERE T1.Trn_RowId = :Trn_RowId ORDER BY T1.Trn_RowId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("H00475", "SELECT TileName, TileId FROM Trn_Tile ORDER BY TileId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00476", "SELECT Trn_TemplateId FROM Trn_Template ORDER BY Trn_TemplateId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00476,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00477", "SELECT LocationId, OrganisationId, ProductServiceId, ProductServiceName FROM Trn_ProductService ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00477,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("H00477", "SELECT LocationId, OrganisationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceImage FROM Trn_ProductService ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00477,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("H00478", "SELECT MediaId FROM Trn_Media ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00478,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00479", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00479,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H004710", "SELECT Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH004710,100, GxCacheFrequency.OFF ,false,false )
@@ -1435,8 +1462,10 @@ namespace GeneXus.Programs {
              case 5 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((string[]) buf[5])[0] = rslt.getMultimediaFile(6, rslt.getVarchar(3));
                 return;
              case 6 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

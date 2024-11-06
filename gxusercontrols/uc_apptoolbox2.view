@@ -10,7 +10,7 @@
 
 <div id="toolbox-body">
     <div class="toolbox-navbar">
-      <h1>The App toolbox builder</h1>
+      <h3 id="navbar_title"></h3>
       <div class="navbar-buttons">
 	  <div class="edit-actions">
           <button class="btn-transparent" id="undo" title="Undo">
@@ -24,14 +24,14 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="18.818" height="16" viewBox="0 0 18.818 18">
             <path id="Path_993" data-name="Path 993" d="M19.545,5a3.283,3.283,0,0,0-3.273,3.273A3.228,3.228,0,0,0,16.784,10l-2.541,3.177H10.427a3.273,3.273,0,1,0,0,1.636h3.816L16.784,18a3.229,3.229,0,0,0-.511,1.732,3.273,3.273,0,1,0,3.273-3.273,3.207,3.207,0,0,0-1.563.419L15.685,14l2.3-2.873a3.207,3.207,0,0,0,1.563.419,3.273,3.273,0,0,0,0-6.545Zm0,1.636a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,6.636ZM7.273,12.364A1.636,1.636,0,1,1,5.636,14,1.623,1.623,0,0,1,7.273,12.364Zm12.273,5.727a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,18.091Z" transform="translate(-4 -5)"/>
           </svg>          
-          Tree
+          <span id="navbar_tree_label"></span>
         </button>
 
         <button id="publish" class="toolbox-btn toolbox-btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 18">
             <path id="Path_958" data-name="Path 958" d="M13.5,3.594l-.519.507L7.925,9.263l1.038,1.06,3.814-3.9V18.644h1.444V6.429l3.814,3.9,1.038-1.06L14.019,4.1ZM7,20.119v1.475H20V20.119Z" transform="translate(-7 -3.594)" fill="#fff"/>
           </svg>          
-          Publish
+          <span id="navbar_publish_label"></span>
         </button>
       </div>
     </div>
@@ -55,8 +55,12 @@
       <div class="sidebar sidebar-right">
         <div id="tools-section">
           <div class="toolbox-tabs">
-              <button id="pages-button" class="toolbox-tab-button active" data-tab="pages">Pages</button>
-              <button id="templates-button" class="toolbox-tab-button" data-tab="templates">Templates</button>
+              <button id="pages-button" class="toolbox-tab-button active" data-tab="pages">
+		  <span id="sidebar_tabs_pages_label"></span>
+		  </button>
+              <button id="templates-button" class="toolbox-tab-button" data-tab="templates">
+		  <span id="sidebar_tabs_templates_label"></span>
+		  </button>
           </div>
           <div class="toolbox-tab-content active-tab" id="pages-content">
             <div class="sidebar-section theme-section">
@@ -86,25 +90,42 @@
                 placeholder="Enter title"
               />
               <div class="title-style">
-                <div class="text-color-palette" id="text-color-palette">
-                  <div class="color-box"></div>
-                  <div class="color-box"></div>
+                <div class="text-color-palette text-colors" id="text-color-palette">
+                  
                 </div>
   
                 <div class="text-alignment">
                   <div class="align-item">
-                    <input type="radio" id="align-left" name="alignment" value="left" />
-                    <label for="align-left" class="fas fa-align-left"></label>
+                    <input
+                      type="radio"
+                      id="text-align-left"
+                      name="alignment"
+                      value="left"
+                    />
+                    <label for="text-align-left" class="fas fa-align-left"></label>
                   </div>
-                
+
                   <div class="align-item">
-                    <input type="radio" id="align-center" name="alignment" value="center" />
-                    <label for="align-center" class="fas fa-align-center"></label>
+                    <input
+                      type="radio"
+                      id="text-align-center"
+                      name="alignment"
+                      value="center"
+                    />
+                    <label
+                      for="text-align-center"
+                      class="fas fa-align-center"
+                    ></label>
                   </div>
-                
+
                   <div class="align-item">
-                    <input type="radio" id="align-right" name="alignment" value="right" />
-                    <label for="align-right" class="fas fa-align-right"></label>
+                    <input
+                      type="radio"
+                      id="text-align-right"
+                      name="alignment"
+                      value="right"
+                    />
+                    <label for="text-align-right" class="fas fa-align-right"></label>
                   </div>
                 </div>
                 
@@ -117,7 +138,7 @@
             >
               <div class="toolbox-dropdown">
                 <div class="toolbox-dropdown-header" id="selectedOption">
-                  Select Action
+                  <span id="sidebar_select_action_label"></span>
                   <i class="fa fa-angle-down"></i>
                 </div>
 
@@ -136,9 +157,8 @@
                 
               </div>
               <div class="title-style">
-                <div class="text-color-palette" id="icon-color-palette">
-                  <div class="color-box"></div>
-                  <div class="color-box"></div>
+                <div class="text-color-palette icon-colors" id="icon-color-palette">
+                  
                 </div>
 
 		    <div class="text-alignment">
@@ -146,7 +166,7 @@
                     <input
                       type="radio"
                       id="icon-align-left"
-                      name="alignment"
+                      name="icon-alignment"
                       value="left"
                     />
                     <label
@@ -159,7 +179,7 @@
                     <input
                       type="radio"
                       id="icon-align-center"
-                      name="alignment"
+                      name="icon-alignment"
                       value="center"
                     />
                     <label
@@ -172,7 +192,7 @@
                     <input
                       type="radio"
                       id="icon-align-right"
-                      name="alignment"
+                      name="icon-alignment"
                       value="right"
                     />
                     <label
@@ -193,27 +213,41 @@
 
         <div id="mapping-section" style="display: none;">
           <div class="mapping-header">
-            <h3>MAPPING</h3>
-            <button class="add-page" id="create-new-page"><i class="fa fa-plus"></i></button>
+            <h3><span id="sidebar_mapping_title"></span></h3>
           </div>
-          <div class="page-form" id="page-form">
-            <input type="text" class="input-field" id="page-title" placeholder="Page name...">
-            <button class="submit-button" id="page-submit">Submit</button>
-          </div>
-          <h5 style="display: none;" id="current-page-title"></h5>
+          <div class="sidebar-section">
+		<div class="page-form" id="page-form">
+			<input
+				type="text"
+				class="add-page-input"
+				id="page-title"
+				placeholder="Page name..."
+			/>
+			<button
+			class="submit-button add-page-button"
+			id="page-submit"
+			>
+				Add
+			</button>
+		</div>
+          <h5 style="display: none;" id="current-page-title">Home</h5>
           <div id="tree-container" class="tree">
           </div>
+	    </div>
         </div>
       </div>
       <div class="alerts-container" id="alerts-container"></div>
       <div class="context-menu" id="contextMenu">
         <ul>
             <li data-card-id="1" id="delete-bg-image">Delete image</li>
-        </ul>
+        </u
+	  l>
     </div>
     </div>
 	
+    <script src="/Resources/UCGrapes/new-design/locale/locale.js"></script>
     <script src="/Resources/UCGrapes/new-design/js/data.js"></script>
+    <script src="/Resources/UCGrapes/new-design/js/components.js"></script>
     <script src="/Resources/UCGrapes/new-design/js/editor-manager.js"></script>
     <script src="/Resources/UCGrapes/new-design/js/toolbox.js"></script>
 </div>

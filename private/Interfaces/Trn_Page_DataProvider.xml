@@ -68,6 +68,14 @@
               </Property>
             </Properties>
           </Field>
+          <Field name="PageIsContentPage" description="Page Is Content Page">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Boolean</Value>
+              </Property>
+            </Properties>
+          </Field>
           <Field name="LocationId" description="Location Id">
             <Properties>
               <Property>

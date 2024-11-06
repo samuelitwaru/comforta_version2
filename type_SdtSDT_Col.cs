@@ -32,6 +32,10 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtSDT_Col_Colname = "";
 
+			gxTv_SdtSDT_Col_Image = "";
+			gxTv_SdtSDT_Col_Image_gxi = "";
+			gxTv_SdtSDT_Col_Text = "";
+
 		}
 
 		public SdtSDT_Col(IGxContext context)
@@ -68,6 +72,14 @@ namespace GeneXus.Programs
 			{
 				AddObjectProperty("Tile", gxTv_SdtSDT_Col_Tile, false);
 			}
+
+			AddObjectProperty("Image", gxTpr_Image, false);
+			AddObjectProperty("Image_GXI", gxTpr_Image_gxi, false);
+
+
+
+			AddObjectProperty("Text", gxTpr_Text, false);
+
 			return;
 		}
 		#endregion
@@ -137,6 +149,51 @@ namespace GeneXus.Programs
 
 		}
 
+
+		[SoapElement(ElementName="Image")]
+		[XmlElement(ElementName="Image")]
+		[GxUpload()]
+
+		public string gxTpr_Image
+		{
+			get {
+				return gxTv_SdtSDT_Col_Image; 
+			}
+			set {
+				gxTv_SdtSDT_Col_Image = value;
+				SetDirty("Image");
+			}
+		}
+
+
+		[SoapElement(ElementName="Image_GXI" )]
+		[XmlElement(ElementName="Image_GXI" )]
+		public string gxTpr_Image_gxi
+		{
+			get {
+				return gxTv_SdtSDT_Col_Image_gxi ;
+			}
+			set {
+				gxTv_SdtSDT_Col_Image_gxi = value;
+				SetDirty("Image_gxi");
+			}
+		}
+
+		[SoapElement(ElementName="Text")]
+		[XmlElement(ElementName="Text")]
+		public string gxTpr_Text
+		{
+			get {
+				return gxTv_SdtSDT_Col_Text; 
+			}
+			set {
+				gxTv_SdtSDT_Col_Text = value;
+				SetDirty("Text");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -162,6 +219,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_Col_Tile_N = true;
 
+			gxTv_SdtSDT_Col_Image = "";gxTv_SdtSDT_Col_Image_gxi = "";
+			gxTv_SdtSDT_Col_Text = "";
 			return  ;
 		}
 
@@ -179,6 +238,12 @@ namespace GeneXus.Programs
 
 		protected GeneXus.Programs.SdtSDT_Tile gxTv_SdtSDT_Col_Tile = null;
 		protected bool gxTv_SdtSDT_Col_Tile_N;
+		 
+		protected string gxTv_SdtSDT_Col_Image_gxi;
+		protected string gxTv_SdtSDT_Col_Image;
+		 
+
+		protected string gxTv_SdtSDT_Col_Text;
 		 
 
 
@@ -234,6 +299,31 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Tile = value.sdt;
+			}
+		}
+
+		[DataMember(Name="Image", Order=3)]
+		[GxUpload()]
+		public  string gxTpr_Image
+		{
+			get { 
+				return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Image)) ? PathUtil.RelativePath( sdt.gxTpr_Image) : StringUtil.RTrim( sdt.gxTpr_Image_gxi));
+
+			}
+			set { 
+				 sdt.gxTpr_Image = value;
+			}
+		}
+
+		[DataMember(Name="Text", Order=4)]
+		public  string gxTpr_Text
+		{
+			get { 
+				return sdt.gxTpr_Text;
+
+			}
+			set { 
+				 sdt.gxTpr_Text = value;
 			}
 		}
 
