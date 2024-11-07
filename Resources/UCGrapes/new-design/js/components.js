@@ -326,6 +326,7 @@ class MappingComponent {
       const li = document.createElement("li");
       const span = document.createElement("span");
       span.textContent = item.Name;
+      span.id = item.Id;
       li.appendChild(span);
       li.className = this.checkActivePage(item.Id) ? "selected-page" : "";
       span.title = item.Id;
@@ -355,7 +356,8 @@ class MappingComponent {
       span.onclick = () => {
         this.editorManager.setCurrentPageName(item.Name);
         this.editorManager.setCurrentPageId(item.Id);
-
+        let page = this.dataManager.pages.find(page=>page.PageId == item.Id)
+        this.editorManager.setCurrentPage(page)
         const editor = this.editorManager.editor;
 
         editor.DomComponents.clear();
