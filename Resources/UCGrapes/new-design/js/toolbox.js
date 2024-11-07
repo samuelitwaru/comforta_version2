@@ -87,7 +87,7 @@ class ToolBoxManager {
       e.preventDefault();
       let projectData = this.editorManager.editor.getProjectData()
       let htmlData = this.editorManager.editor.getHtml()
-      let pageData = mapTemplateToPageData(
+      let jsonData = mapTemplateToPageData(
         projectData
       );
 
@@ -98,12 +98,12 @@ class ToolBoxManager {
       if (pageId) {
         let data = {
           PageId: pageId,
-          PageJsonContent: JSON.stringify(pageData),
+          PageJsonContent: JSON.stringify(jsonData),
           PageGJSHtml: htmlData,
           PageGJSJson: JSON.stringify(
             projectData
           ),
-          SDT_Page: pageData,
+          SDT_Page: jsonData,
           PageIsPublished: true,
         };
         console.log(data)
