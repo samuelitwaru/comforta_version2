@@ -85,6 +85,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Supplieragbphonecode_Z");
          state.Add("gxTpr_Supplieragbphonenumber_Z");
          state.Add("gxTpr_Supplieragbemail_Z");
+         state.Add("gxTpr_Supplieragbwebsite_Z");
          state.Add("gxTpr_Supplieragbid_N");
          return state ;
       }
@@ -109,6 +110,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode ;
          gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber ;
          gxTv_SdtTrn_SupplierAgb_Supplieragbemail = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbemail ;
+         gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite ;
          gxTv_SdtTrn_SupplierAgb_Mode = sdt.gxTv_SdtTrn_SupplierAgb_Mode ;
          gxTv_SdtTrn_SupplierAgb_Initialized = sdt.gxTv_SdtTrn_SupplierAgb_Initialized ;
          gxTv_SdtTrn_SupplierAgb_Supplieragbid_Z = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbid_Z ;
@@ -127,6 +129,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode_Z = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode_Z ;
          gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber_Z = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber_Z ;
          gxTv_SdtTrn_SupplierAgb_Supplieragbemail_Z = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbemail_Z ;
+         gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z ;
          gxTv_SdtTrn_SupplierAgb_Supplieragbid_N = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbid_N ;
          return  ;
       }
@@ -163,6 +166,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("SupplierAgbPhoneCode", gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode, false, includeNonInitialized);
          AddObjectProperty("SupplierAgbPhoneNumber", gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber, false, includeNonInitialized);
          AddObjectProperty("SupplierAgbEmail", gxTv_SdtTrn_SupplierAgb_Supplieragbemail, false, includeNonInitialized);
+         AddObjectProperty("SupplierAgbWebsite", gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_SupplierAgb_Mode, false, includeNonInitialized);
@@ -183,6 +187,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("SupplierAgbPhoneCode_Z", gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode_Z, false, includeNonInitialized);
             AddObjectProperty("SupplierAgbPhoneNumber_Z", gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber_Z, false, includeNonInitialized);
             AddObjectProperty("SupplierAgbEmail_Z", gxTv_SdtTrn_SupplierAgb_Supplieragbemail_Z, false, includeNonInitialized);
+            AddObjectProperty("SupplierAgbWebsite_Z", gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z, false, includeNonInitialized);
             AddObjectProperty("SupplierAgbId_N", gxTv_SdtTrn_SupplierAgb_Supplieragbid_N, false, includeNonInitialized);
          }
          return  ;
@@ -270,6 +275,11 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_SupplierAgb_Supplieragbemail = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbemail ;
          }
+         if ( sdt.IsDirty("SupplierAgbWebsite") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite = sdt.gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite ;
+         }
          return  ;
       }
 
@@ -302,6 +312,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode_Z_SetNull( );
                this.gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_SupplierAgb_Supplieragbemail_Z_SetNull( );
+               this.gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z_SetNull( );
             }
             gxTv_SdtTrn_SupplierAgb_Supplieragbid = value;
             SetDirty("Supplieragbid");
@@ -545,6 +556,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_SupplierAgb_Supplieragbemail = value;
             SetDirty("Supplieragbemail");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "SupplierAgbWebsite" )]
+      [  XmlElement( ElementName = "SupplierAgbWebsite"   )]
+      public string gxTpr_Supplieragbwebsite
+      {
+         get {
+            return gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite = value;
+            SetDirty("Supplieragbwebsite");
          }
 
       }
@@ -1053,6 +1080,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "SupplierAgbWebsite_Z" )]
+      [  XmlElement( ElementName = "SupplierAgbWebsite_Z"   )]
+      public string gxTpr_Supplieragbwebsite_Z
+      {
+         get {
+            return gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z = value;
+            SetDirty("Supplieragbwebsite_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z_SetNull( )
+      {
+         gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z = "";
+         SetDirty("Supplieragbwebsite_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "SupplierAgbId_N" )]
       [  XmlElement( ElementName = "SupplierAgbId_N"   )]
       public short gxTpr_Supplieragbid_N
@@ -1114,6 +1169,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode = "";
          gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber = "";
          gxTv_SdtTrn_SupplierAgb_Supplieragbemail = "";
+         gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite = "";
          gxTv_SdtTrn_SupplierAgb_Mode = "";
          gxTv_SdtTrn_SupplierAgb_Supplieragbid_Z = Guid.Empty;
          gxTv_SdtTrn_SupplierAgb_Supplieragbnumber_Z = "";
@@ -1131,6 +1187,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode_Z = "";
          gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber_Z = "";
          gxTv_SdtTrn_SupplierAgb_Supplieragbemail_Z = "";
+         gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z = "";
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_supplieragb", "GeneXus.Programs.trn_supplieragb_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -1164,6 +1221,7 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode ;
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber ;
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbemail ;
+      private string gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite ;
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbnumber_Z ;
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbtypename_Z ;
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbname_Z ;
@@ -1177,6 +1235,7 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbphonecode_Z ;
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbphonenumber_Z ;
       private string gxTv_SdtTrn_SupplierAgb_Supplieragbemail_Z ;
+      private string gxTv_SdtTrn_SupplierAgb_Supplieragbwebsite_Z ;
       private Guid gxTv_SdtTrn_SupplierAgb_Supplieragbid ;
       private Guid gxTv_SdtTrn_SupplierAgb_Supplieragbtypeid ;
       private Guid gxTv_SdtTrn_SupplierAgb_Supplieragbid_Z ;
@@ -1419,6 +1478,20 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "SupplierAgbWebsite" , Order = 16 )]
+      [GxSeudo()]
+      public string gxTpr_Supplieragbwebsite
+      {
+         get {
+            return sdt.gxTpr_Supplieragbwebsite ;
+         }
+
+         set {
+            sdt.gxTpr_Supplieragbwebsite = value;
+         }
+
+      }
+
       public SdtTrn_SupplierAgb sdt
       {
          get {
@@ -1440,7 +1513,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 16 )]
+      [DataMember( Name = "gx_md5_hash", Order = 17 )]
       public string Hash
       {
          get {

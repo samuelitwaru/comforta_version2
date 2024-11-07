@@ -182,14 +182,8 @@ namespace GeneXus.Programs {
          AV14BC_Trn_Media.gxTpr_Medianame = AV12MediaName;
          AV14BC_Trn_Media.gxTpr_Mediasize = AV20MediaSize;
          AV14BC_Trn_Media.gxTpr_Mediatype = AV21MediaType;
-         AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, context.GetMessage( "api/media/", ""), context.GetMessage( "media/", "")+AV12MediaName);
-         if ( StringUtil.StartsWith( AV23MediaUrl, context.GetMessage( "http://localhost", "")) )
-         {
-         }
-         else
-         {
-            AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, context.GetMessage( "http://", ""), context.GetMessage( "https://", ""));
-         }
+         AV23MediaUrl = StringUtil.StringReplace( StringUtil.StringReplace( AV8HttpRequest.BaseURL, context.GetMessage( "api/media/", ""), context.GetMessage( "media/", "")+AV12MediaName), context.GetMessage( "http:", ""), context.GetMessage( "https:", ""));
+         new prc_logtofile(context ).execute(  AV23MediaUrl) ;
          AV14BC_Trn_Media.gxTpr_Mediaurl = AV23MediaUrl;
          AV14BC_Trn_Media.Save();
          if ( AV14BC_Trn_Media.Success() )
