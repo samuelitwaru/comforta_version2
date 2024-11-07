@@ -310,7 +310,7 @@ class EditorManager {
 
   createTemplateHTML(isDefault = false) {
     return `
-        <div class="template-wrapper ${isDefault ? "default-template" : ""}"
+        <div ${defaultTileAttrs} class="template-wrapper ${isDefault ? "default-template" : ""}"
               data-gjs-type="template-wrapper"
               data-gjs-droppable="false">
           <div class="template-block"
