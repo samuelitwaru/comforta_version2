@@ -151,6 +151,6 @@ function mapTemplateToPageData(templateData) {
 
     return row;
   });
-
+  console.log(pageData)
   return pageData;
 }

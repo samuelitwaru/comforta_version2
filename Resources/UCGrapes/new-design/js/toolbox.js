@@ -92,6 +92,7 @@ class ToolBoxManager {
       );
 
       console.log(projectData)
+      console.log(htmlData)
 
       let pageId = this.editorManager.getCurrentPageId();
       if (pageId) {
