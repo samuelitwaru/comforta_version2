@@ -102,6 +102,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9BC_Trn_Page.Load(AV8PageId);
+         new prc_logtofile(context ).execute(  AV12PageJsonContent) ;
          if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
          {
             AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV11PageGJSJson;

@@ -803,6 +803,8 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         GX_msglist.addItem(AV39HttpRequest.ServerHost);
+         GX_msglist.addItem(AV39HttpRequest.BaseURL);
          Form.Headerrawhtml = Form.Headerrawhtml+"<link rel=\"stylesheet\" href=\"Resources/UCGrapes/new-design/grapes/grapes.css\">"+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes/new-design/css/styles.css\" />"+"<script src=\"Resources/UCGrapes/new-design/grapes/grapes.js\"></script>";
          /* Using cursor H00472 */
          pr_default.execute(0);
@@ -1008,7 +1010,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411617393071", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411713423731", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1026,7 +1028,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?202411617393072", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?202411713423731", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBox2Render.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -1116,6 +1118,7 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
+         AV39HttpRequest = new GxHttpRequest( context);
          H00472_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          H00472_A318Trn_PageName = new string[] {""} ;
          A310Trn_PageId = Guid.Empty;
@@ -1297,6 +1300,7 @@ namespace GeneXus.Programs {
       private Guid A409MediaId ;
       private Guid A247Trn_ThemeId ;
       private GXUserControl ucApptoolbox1 ;
+      private GxHttpRequest AV39HttpRequest ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
