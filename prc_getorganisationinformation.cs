@@ -105,6 +105,16 @@ namespace GeneXus.Programs {
             AV13OrganisationDetails.gxTpr_Organisationzipcode = A288OrganisationAddressZipCode;
             AV13OrganisationDetails.gxTpr_Organisationaddressline1 = A342OrganisationAddressLine1;
             AV13OrganisationDetails.gxTpr_Organisationaddressline2 = A343OrganisationAddressLine2;
+            /* Using cursor P007R3 */
+            pr_default.execute(1, new Object[] {A11OrganisationId});
+            while ( (pr_default.getStatus(1) != 101) )
+            {
+               A40000OrganisationSettingLogo_GXI = P007R3_A40000OrganisationSettingLogo_GXI[0];
+               A100OrganisationSettingid = P007R3_A100OrganisationSettingid[0];
+               AV13OrganisationDetails.gxTpr_Organisationlogo = A40000OrganisationSettingLogo_GXI;
+               pr_default.readNext(1);
+            }
+            pr_default.close(1);
             /* Exiting from a For First loop. */
             if (true) break;
          }
@@ -164,11 +174,19 @@ namespace GeneXus.Programs {
          A342OrganisationAddressLine1 = "";
          A343OrganisationAddressLine2 = "";
          AV13OrganisationDetails = new SdtSDT_Organisation(context);
+         P007R3_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P007R3_A40000OrganisationSettingLogo_GXI = new string[] {""} ;
+         P007R3_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
+         A40000OrganisationSettingLogo_GXI = "";
+         A100OrganisationSettingid = Guid.Empty;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getorganisationinformation__default(),
             new Object[][] {
                 new Object[] {
                P007R2_A11OrganisationId, P007R2_A13OrganisationName, P007R2_A19OrganisationTypeId, P007R2_A20OrganisationTypeName, P007R2_A12OrganisationKvkNumber, P007R2_A16OrganisationEmail, P007R2_A17OrganisationPhone, P007R2_A18OrganisationVATNumber, P007R2_A331OrganisationAddressCountry, P007R2_A289OrganisationAddressCity,
                P007R2_A288OrganisationAddressZipCode, P007R2_A342OrganisationAddressLine1, P007R2_A343OrganisationAddressLine2
+               }
+               , new Object[] {
+               P007R3_A11OrganisationId, P007R3_A40000OrganisationSettingLogo_GXI, P007R3_A100OrganisationSettingid
                }
             }
          );
@@ -189,9 +207,11 @@ namespace GeneXus.Programs {
       private string A288OrganisationAddressZipCode ;
       private string A342OrganisationAddressLine1 ;
       private string A343OrganisationAddressLine2 ;
+      private string A40000OrganisationSettingLogo_GXI ;
       private Guid AV9organisationId ;
       private Guid A11OrganisationId ;
       private Guid A19OrganisationTypeId ;
+      private Guid A100OrganisationSettingid ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -209,6 +229,9 @@ namespace GeneXus.Programs {
       private string[] P007R2_A342OrganisationAddressLine1 ;
       private string[] P007R2_A343OrganisationAddressLine2 ;
       private SdtSDT_Organisation AV13OrganisationDetails ;
+      private Guid[] P007R3_A11OrganisationId ;
+      private string[] P007R3_A40000OrganisationSettingLogo_GXI ;
+      private Guid[] P007R3_A100OrganisationSettingid ;
       private string aP1_response ;
    }
 
@@ -219,6 +242,7 @@ namespace GeneXus.Programs {
          cursorDefinitions();
          return new Cursor[] {
           new ForEachCursor(def[0])
+         ,new ForEachCursor(def[1])
        };
     }
 
@@ -231,8 +255,13 @@ namespace GeneXus.Programs {
           prmP007R2 = new Object[] {
           new ParDef("AV9organisationId",GXType.UniqueIdentifier,36,0)
           };
+          Object[] prmP007R3;
+          prmP007R3 = new Object[] {
+          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+          };
           def= new CursorDef[] {
-              new CursorDef("P007R2", "SELECT T1.OrganisationId, T1.OrganisationName, T1.OrganisationTypeId, T2.OrganisationTypeName, T1.OrganisationKvkNumber, T1.OrganisationEmail, T1.OrganisationPhone, T1.OrganisationVATNumber, T1.OrganisationAddressCountry, T1.OrganisationAddressCity, T1.OrganisationAddressZipCode, T1.OrganisationAddressLine1, T1.OrganisationAddressLine2 FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId) WHERE T1.OrganisationId = :AV9organisationId ORDER BY T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007R2,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P007R2", "SELECT T1.OrganisationId, T1.OrganisationName, T1.OrganisationTypeId, T2.OrganisationTypeName, T1.OrganisationKvkNumber, T1.OrganisationEmail, T1.OrganisationPhone, T1.OrganisationVATNumber, T1.OrganisationAddressCountry, T1.OrganisationAddressCity, T1.OrganisationAddressZipCode, T1.OrganisationAddressLine1, T1.OrganisationAddressLine2 FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId) WHERE T1.OrganisationId = :AV9organisationId ORDER BY T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007R2,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("P007R3", "SELECT OrganisationId, OrganisationSettingLogo_GXI, OrganisationSettingid FROM Trn_OrganisationSetting WHERE OrganisationId = :OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007R3,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -257,6 +286,11 @@ namespace GeneXus.Programs {
                 ((string[]) buf[10])[0] = rslt.getVarchar(11);
                 ((string[]) buf[11])[0] = rslt.getVarchar(12);
                 ((string[]) buf[12])[0] = rslt.getVarchar(13);
+                return;
+             case 1 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 return;
        }
     }

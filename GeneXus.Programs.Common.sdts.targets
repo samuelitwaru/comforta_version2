@@ -17,6 +17,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AgendaLocation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Col.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Country_SDT_CountryItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ErrorResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Location.cs" />
@@ -33,9 +34,13 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageChildren.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageStructure.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductService.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductServiceSupplierGroup_SDT_ProductServiceSupplierGroupItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ReceivedNotification.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionist.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionists_SDT_ReceptionistsItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_RecurringEventType_SDT_RecurringEventTypeItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Resident.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentAddressBook_SDT_ResidentAddressBookItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Row.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Tile.cs" />

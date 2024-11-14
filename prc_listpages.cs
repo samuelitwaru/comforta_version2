@@ -41,36 +41,45 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( out string aP0_response )
+      public void execute( Guid aP0_LocationId ,
+                           Guid aP1_OrganisationId ,
+                           out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageCollection )
       {
-         this.AV2response = "" ;
+         this.AV2LocationId = aP0_LocationId;
+         this.AV3OrganisationId = aP1_OrganisationId;
+         this.AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2") ;
          initialize();
          ExecuteImpl();
-         aP0_response=this.AV2response;
+         aP2_SDT_PageCollection=this.AV4SDT_PageCollection;
       }
 
-      public string executeUdp( )
+      public GXBaseCollection<SdtSDT_PageStructure> executeUdp( Guid aP0_LocationId ,
+                                                                Guid aP1_OrganisationId )
       {
-         execute(out aP0_response);
-         return AV2response ;
+         execute(aP0_LocationId, aP1_OrganisationId, out aP2_SDT_PageCollection);
+         return AV4SDT_PageCollection ;
       }
 
-      public void executeSubmit( out string aP0_response )
+      public void executeSubmit( Guid aP0_LocationId ,
+                                 Guid aP1_OrganisationId ,
+                                 out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageCollection )
       {
-         this.AV2response = "" ;
+         this.AV2LocationId = aP0_LocationId;
+         this.AV3OrganisationId = aP1_OrganisationId;
+         this.AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2") ;
          SubmitImpl();
-         aP0_response=this.AV2response;
+         aP2_SDT_PageCollection=this.AV4SDT_PageCollection;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(string)AV2response} ;
+         args = new Object[] {(Guid)AV2LocationId,(Guid)AV3OrganisationId,(GXBaseCollection<SdtSDT_PageStructure>)AV4SDT_PageCollection} ;
          ClassLoader.Execute("aprc_listpages","GeneXus.Programs","aprc_listpages", new Object[] {context }, "execute", args);
-         if ( ( args != null ) && ( args.Length == 1 ) )
+         if ( ( args != null ) && ( args.Length == 3 ) )
          {
-            AV2response = (string)(args[0]) ;
+            AV4SDT_PageCollection = (GXBaseCollection<SdtSDT_PageStructure>)(args[2]) ;
          }
          cleanup();
       }
@@ -86,15 +95,17 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV2response = "";
+         AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          /* GeneXus formulas. */
       }
 
-      private string AV2response ;
+      private Guid AV2LocationId ;
+      private Guid AV3OrganisationId ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private GXBaseCollection<SdtSDT_PageStructure> AV4SDT_PageCollection ;
       private Object[] args ;
-      private string aP0_response ;
+      private GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageCollection ;
    }
 
 }

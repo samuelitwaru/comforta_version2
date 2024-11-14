@@ -3,12 +3,6 @@
   <Path>file:///C:/Program Files (x86)/GeneXus/GeneXus18/</Path>
   <Object>
     <ObjCls>0</ObjCls>
-    <ObjName>Trn_Resident</ObjName>
-    <ObjDesc>Trn_Resident</ObjDesc>
-    <ObjLink>trn_resident.aspx</ObjLink>
-  </Object>
-  <Object>
-    <ObjCls>0</ObjCls>
     <ObjName>Trn_NetworkIndividual</ObjName>
     <ObjDesc>Trn_Network Individual</ObjDesc>
     <ObjLink>trn_networkindividual.aspx</ObjLink>
@@ -18,18 +12,6 @@
     <ObjName>Trn_NetworkCompany</ObjName>
     <ObjDesc>Trn_Network Company</ObjDesc>
     <ObjLink>trn_networkcompany.aspx</ObjLink>
-  </Object>
-  <Object>
-    <ObjCls>0</ObjCls>
-    <ObjName>Trn_ResidentType</ObjName>
-    <ObjDesc>Trn_Resident Type</ObjDesc>
-    <ObjLink>trn_residenttype.aspx</ObjLink>
-  </Object>
-  <Object>
-    <ObjCls>0</ObjCls>
-    <ObjName>Trn_MedicalIndication</ObjName>
-    <ObjDesc>Trn_Medical Indication</ObjDesc>
-    <ObjLink>trn_medicalindication.aspx</ObjLink>
   </Object>
   <Object>
     <ObjCls>0</ObjCls>
@@ -117,15 +99,33 @@
   </Object>
   <Object>
     <ObjCls>0</ObjCls>
-    <ObjName>Trn_Row</ObjName>
-    <ObjDesc>Trn_Row</ObjDesc>
-    <ObjLink>trn_row.aspx</ObjLink>
+    <ObjName>Trn_Device</ObjName>
+    <ObjDesc>Trn_Device</ObjDesc>
+    <ObjLink>trn_device.aspx</ObjLink>
   </Object>
   <Object>
     <ObjCls>0</ObjCls>
-    <ObjName>Trn_Col</ObjName>
-    <ObjDesc>Trn_Col</ObjDesc>
-    <ObjLink>trn_col.aspx</ObjLink>
+    <ObjName>Trn_LocationDynamicForm</ObjName>
+    <ObjDesc>Trn_Location Dynamic Form</ObjDesc>
+    <ObjLink>trn_locationdynamicform.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>0</ObjCls>
+    <ObjName>Trn_CallToAction</ObjName>
+    <ObjDesc>Trn_Call To Action</ObjDesc>
+    <ObjLink>trn_calltoaction.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>0</ObjCls>
+    <ObjName>Trn_PreferredAgbSupplier</ObjName>
+    <ObjDesc>Preferred Agb Supplier</ObjDesc>
+    <ObjLink>trn_preferredagbsupplier.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>0</ObjCls>
+    <ObjName>Trn_PreferredGenSupplier</ObjName>
+    <ObjDesc>Preferred Gen Supplier</ObjDesc>
+    <ObjLink>trn_preferredgensupplier.aspx</ObjLink>
   </Object>
   <Object>
     <ObjCls>13</ObjCls>
@@ -142,7 +142,7 @@
   <Object>
     <ObjCls>13</ObjCls>
     <ObjName>GAMHome</ObjName>
-    <ObjDesc>Home</ObjDesc>
+    <ObjDesc>WWP_GAM_Home</ObjDesc>
     <ObjLink>gamhome.aspx</ObjLink>
   </Object>
   <Object>
@@ -160,13 +160,13 @@
   <Object>
     <ObjCls>13</ObjCls>
     <ObjName>Home</ObjName>
-    <ObjDesc>Home</ObjDesc>
+    <ObjDesc>WWP_HomeTitle</ObjDesc>
     <ObjLink>home.aspx</ObjLink>
   </Object>
   <Object>
     <ObjCls>13</ObjCls>
     <ObjName>WorkWithPlus.WWP_ParameterWW</ObjName>
-    <ObjDesc>WorkWithPlus.Parameter</ObjDesc>
+    <ObjDesc>WorkWithPlus.WWP_Parameter_Transaction_Description</ObjDesc>
     <ObjLink>workwithplus.wwp_parameterww.aspx</ObjLink>
   </Object>
   <Object>
@@ -195,18 +195,6 @@
   </Object>
   <Object>
     <ObjCls>13</ObjCls>
-    <ObjName>Trn_ThemeWW</ObjName>
-    <ObjDesc> Trn_Theme</ObjDesc>
-    <ObjLink>trn_themeww.aspx</ObjLink>
-  </Object>
-  <Object>
-    <ObjCls>13</ObjCls>
-    <ObjName>Trn_MediaWW</ObjName>
-    <ObjDesc> Trn_Media</ObjDesc>
-    <ObjLink>trn_mediaww.aspx</ObjLink>
-  </Object>
-  <Object>
-    <ObjCls>13</ObjCls>
     <ObjName>Trn_OrganisationWW</ObjName>
     <ObjDesc> Organisations</ObjDesc>
     <ObjLink>trn_organisationww.aspx</ObjLink>
@@ -214,26 +202,14 @@
   <Object>
     <ObjCls>13</ObjCls>
     <ObjName>Trn_OrganisationTypeWW</ObjName>
-    <ObjDesc> Trn_Organisation Type</ObjDesc>
+    <ObjDesc>Organisation Types</ObjDesc>
     <ObjLink>trn_organisationtypeww.aspx</ObjLink>
   </Object>
   <Object>
     <ObjCls>13</ObjCls>
     <ObjName>Trn_OrganisationSettingWW</ObjName>
-    <ObjDesc> Trn_Organisation Setting</ObjDesc>
+    <ObjDesc>Organisation Settings</ObjDesc>
     <ObjLink>trn_organisationsettingww.aspx</ObjLink>
-  </Object>
-  <Object>
-    <ObjCls>13</ObjCls>
-    <ObjName>WP_ApplicationDesign</ObjName>
-    <ObjDesc>WP_Application Design</ObjDesc>
-    <ObjLink>wp_applicationdesign.aspx</ObjLink>
-  </Object>
-  <Object>
-    <ObjCls>13</ObjCls>
-    <ObjName>Trn_TileWW</ObjName>
-    <ObjDesc> Tile</ObjDesc>
-    <ObjLink>trn_tileww.aspx</ObjLink>
   </Object>
   <Object>
     <ObjCls>13</ObjCls>
@@ -244,7 +220,7 @@
   <Object>
     <ObjCls>13</ObjCls>
     <ObjName>Trn_LocationWW</ObjName>
-    <ObjDesc>Location</ObjDesc>
+    <ObjDesc>Locations</ObjDesc>
     <ObjLink>trn_locationww.aspx</ObjLink>
   </Object>
   <Object>
@@ -285,9 +261,99 @@
   </Object>
   <Object>
     <ObjCls>13</ObjCls>
+    <ObjName>WP_CalendarAgenda</ObjName>
+    <ObjDesc>Agenda</ObjDesc>
+    <ObjLink>wp_calendaragenda.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
     <ObjName>Trn_PageWW</ObjName>
     <ObjDesc> Trn_Page</ObjDesc>
     <ObjLink>trn_pageww.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>Trn_MedicalIndicationWW</ObjName>
+    <ObjDesc> Medical Indications</ObjDesc>
+    <ObjLink>trn_medicalindicationww.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>Trn_ResidentWW</ObjName>
+    <ObjDesc> Residents</ObjDesc>
+    <ObjLink>trn_residentww.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>Trn_ResidentTypeWW</ObjName>
+    <ObjDesc>Resident Types</ObjDesc>
+    <ObjLink>trn_residenttypeww.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>WP_LocationReceptionists</ObjName>
+    <ObjDesc>Location Receptionists</ObjDesc>
+    <ObjLink>wp_locationreceptionists.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>WP_LocationResidents</ObjName>
+    <ObjDesc>Location Residents</ObjDesc>
+    <ObjLink>wp_locationresidents.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>WP_LocationDynamicForm</ObjName>
+    <ObjDesc> Trn_Location Dynamic Form</ObjDesc>
+    <ObjLink>wp_locationdynamicform.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>WP_OrganisationGeneralSuppliers</ObjName>
+    <ObjDesc> General Suppliers</ObjDesc>
+    <ObjLink>wp_organisationgeneralsuppliers.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>WP_OrganisationAGBSuppliers</ObjName>
+    <ObjDesc> Agb Suppliers</ObjDesc>
+    <ObjLink>wp_organisationagbsuppliers.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>Trn_AuditWW</ObjName>
+    <ObjDesc> Trn_Audit</ObjDesc>
+    <ObjLink>trn_auditww.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>Trn_MediaWW</ObjName>
+    <ObjDesc> Trn_Media</ObjDesc>
+    <ObjLink>trn_mediaww.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>Trn_ThemeWW</ObjName>
+    <ObjDesc> Trn_Theme</ObjDesc>
+    <ObjLink>trn_themeww.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>WP_ResidentDynamicForm</ObjName>
+    <ObjDesc>WP_Resident Dynamic Form</ObjDesc>
+    <ObjLink>wp_residentdynamicform.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>WP_Discussion</ObjName>
+    <ObjDesc>Discussions</ObjDesc>
+    <ObjLink>wp_discussion.aspx</ObjLink>
+  </Object>
+  <Object>
+    <ObjCls>13</ObjCls>
+    <ObjName>WP_NotificationPanel</ObjName>
+    <ObjDesc>Notifications</ObjDesc>
+    <ObjLink>wp_notificationpanel.aspx</ObjLink>
   </Object>
   <Object>
     <ObjCls>1</ObjCls>

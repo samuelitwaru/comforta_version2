@@ -38,6 +38,10 @@ namespace GeneXus.Programs.workwithplus
 
 			gxTv_SdtWWP_Calendar_Events_Item_Title = "";
 
+			gxTv_SdtWWP_Calendar_Events_Item_Type = "";
+
+			gxTv_SdtWWP_Calendar_Events_Item_Recurringtype = "";
+
 			gxTv_SdtWWP_Calendar_Events_Item_Classname = "";
 
 			gxTv_SdtWWP_Calendar_Events_Item_Backgroundcolor = "";
@@ -144,6 +148,18 @@ namespace GeneXus.Programs.workwithplus
 
 
 			AddObjectProperty("title", gxTpr_Title, false);
+
+
+			AddObjectProperty("Type", gxTpr_Type, false);
+
+
+			AddObjectProperty("Recurring", gxTpr_Recurring, false);
+
+
+			AddObjectProperty("RecurringType", gxTpr_Recurringtype, false);
+
+
+			AddObjectProperty("AddRSVP", gxTpr_Addrsvp, false);
 
 
 			AddObjectProperty("editable", gxTpr_Editable, false);
@@ -275,6 +291,70 @@ namespace GeneXus.Programs.workwithplus
 			set {
 				gxTv_SdtWWP_Calendar_Events_Item_Title = value;
 				SetDirty("Title");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="Type")]
+		[XmlElement(ElementName="Type")]
+		public string gxTpr_Type
+		{
+			get {
+				return gxTv_SdtWWP_Calendar_Events_Item_Type; 
+			}
+			set {
+				gxTv_SdtWWP_Calendar_Events_Item_Type = value;
+				SetDirty("Type");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="Recurring")]
+		[XmlElement(ElementName="Recurring")]
+		public bool gxTpr_Recurring
+		{
+			get {
+				return gxTv_SdtWWP_Calendar_Events_Item_Recurring; 
+			}
+			set {
+				gxTv_SdtWWP_Calendar_Events_Item_Recurring = value;
+				SetDirty("Recurring");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="RecurringType")]
+		[XmlElement(ElementName="RecurringType")]
+		public string gxTpr_Recurringtype
+		{
+			get {
+				return gxTv_SdtWWP_Calendar_Events_Item_Recurringtype; 
+			}
+			set {
+				gxTv_SdtWWP_Calendar_Events_Item_Recurringtype = value;
+				SetDirty("Recurringtype");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="AddRSVP")]
+		[XmlElement(ElementName="AddRSVP")]
+		public bool gxTpr_Addrsvp
+		{
+			get {
+				return gxTv_SdtWWP_Calendar_Events_Item_Addrsvp; 
+			}
+			set {
+				gxTv_SdtWWP_Calendar_Events_Item_Addrsvp = value;
+				SetDirty("Addrsvp");
 			}
 		}
 
@@ -471,6 +551,10 @@ namespace GeneXus.Programs.workwithplus
 			gxTv_SdtWWP_Calendar_Events_Item_Start = (DateTime)(DateTime.MinValue);
 			gxTv_SdtWWP_Calendar_Events_Item_End = (DateTime)(DateTime.MinValue);
 			gxTv_SdtWWP_Calendar_Events_Item_Title = "";
+			gxTv_SdtWWP_Calendar_Events_Item_Type = "";
+
+			gxTv_SdtWWP_Calendar_Events_Item_Recurringtype = "";
+
 			gxTv_SdtWWP_Calendar_Events_Item_Editable = true;
 			gxTv_SdtWWP_Calendar_Events_Item_Overlap = true;
 			gxTv_SdtWWP_Calendar_Events_Item_Classname = "";
@@ -511,6 +595,18 @@ namespace GeneXus.Programs.workwithplus
 		 
 
 		protected string gxTv_SdtWWP_Calendar_Events_Item_Title;
+		 
+
+		protected string gxTv_SdtWWP_Calendar_Events_Item_Type;
+		 
+
+		protected bool gxTv_SdtWWP_Calendar_Events_Item_Recurring;
+		 
+
+		protected string gxTv_SdtWWP_Calendar_Events_Item_Recurringtype;
+		 
+
+		protected bool gxTv_SdtWWP_Calendar_Events_Item_Addrsvp;
 		 
 
 		protected bool gxTv_SdtWWP_Calendar_Events_Item_Editable;
@@ -617,7 +713,55 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="editable", Order=5)]
+		[DataMember(Name="Type", Order=5)]
+		public  string gxTpr_Type
+		{
+			get { 
+				return sdt.gxTpr_Type;
+
+			}
+			set { 
+				 sdt.gxTpr_Type = value;
+			}
+		}
+
+		[DataMember(Name="Recurring", Order=6)]
+		public bool gxTpr_Recurring
+		{
+			get { 
+				return sdt.gxTpr_Recurring;
+
+			}
+			set { 
+				sdt.gxTpr_Recurring = value;
+			}
+		}
+
+		[DataMember(Name="RecurringType", Order=7)]
+		public  string gxTpr_Recurringtype
+		{
+			get { 
+				return sdt.gxTpr_Recurringtype;
+
+			}
+			set { 
+				 sdt.gxTpr_Recurringtype = value;
+			}
+		}
+
+		[DataMember(Name="AddRSVP", Order=8)]
+		public bool gxTpr_Addrsvp
+		{
+			get { 
+				return sdt.gxTpr_Addrsvp;
+
+			}
+			set { 
+				sdt.gxTpr_Addrsvp = value;
+			}
+		}
+
+		[DataMember(Name="editable", Order=9)]
 		public bool gxTpr_Editable
 		{
 			get { 
@@ -629,7 +773,7 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="overlap", Order=6)]
+		[DataMember(Name="overlap", Order=10)]
 		public bool gxTpr_Overlap
 		{
 			get { 
@@ -641,7 +785,7 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="className", Order=7)]
+		[DataMember(Name="className", Order=11)]
 		public  string gxTpr_Classname
 		{
 			get { 
@@ -653,7 +797,7 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="backgroundColor", Order=8)]
+		[DataMember(Name="backgroundColor", Order=12)]
 		public  string gxTpr_Backgroundcolor
 		{
 			get { 
@@ -665,7 +809,7 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="borderColor", Order=9)]
+		[DataMember(Name="borderColor", Order=13)]
 		public  string gxTpr_Bordercolor
 		{
 			get { 
@@ -677,7 +821,7 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="textColor", Order=10)]
+		[DataMember(Name="textColor", Order=14)]
 		public  string gxTpr_Textcolor
 		{
 			get { 
@@ -689,7 +833,7 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="display", Order=11)]
+		[DataMember(Name="display", Order=15)]
 		public  string gxTpr_Display
 		{
 			get { 
@@ -701,7 +845,7 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="url", Order=12)]
+		[DataMember(Name="url", Order=16)]
 		public  string gxTpr_Url
 		{
 			get { 
@@ -713,7 +857,7 @@ namespace GeneXus.Programs.workwithplus
 			}
 		}
 
-		[DataMember(Name="Actions", Order=13, EmitDefaultValue=false)]
+		[DataMember(Name="Actions", Order=17, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtWWP_Calendar_Events_Item_ActionsItem_RESTInterface> gxTpr_Actions
 		{
 			get {

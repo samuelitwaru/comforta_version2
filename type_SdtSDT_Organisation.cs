@@ -52,6 +52,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_Organisation_Organisationtypename = "";
 
+			gxTv_SdtSDT_Organisation_Organisationlogo = "";
+
 		}
 
 		public SdtSDT_Organisation(IGxContext context)
@@ -116,6 +118,9 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("OrganisationTypeName", gxTpr_Organisationtypename, false);
+
+
+			AddObjectProperty("OrganisationLogo", gxTpr_Organisationlogo, false);
 
 			return;
 		}
@@ -330,6 +335,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="OrganisationLogo")]
+		[XmlElement(ElementName="OrganisationLogo")]
+		public string gxTpr_Organisationlogo
+		{
+			get {
+				return gxTv_SdtSDT_Organisation_Organisationlogo; 
+			}
+			set {
+				gxTv_SdtSDT_Organisation_Organisationlogo = value;
+				SetDirty("Organisationlogo");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -363,6 +384,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Organisation_Organisationaddressline2 = "";
 
 			gxTv_SdtSDT_Organisation_Organisationtypename = "";
+			gxTv_SdtSDT_Organisation_Organisationlogo = "";
 			return  ;
 		}
 
@@ -409,6 +431,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Organisation_Organisationtypename;
+		 
+
+		protected string gxTv_SdtSDT_Organisation_Organisationlogo;
 		 
 
 
@@ -581,6 +606,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Organisationtypename = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationLogo", Order=13)]
+		public  string gxTpr_Organisationlogo
+		{
+			get { 
+				return sdt.gxTpr_Organisationlogo;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationlogo = value;
 			}
 		}
 

@@ -1,0 +1,126 @@
+{
+"ObjectType":"ServiceGroup",
+"Name":"API_ToolBoxService",
+"BasePath":"api",
+"Mappings":
+[
+{
+"PathRegexp":"toolbox/pages/list2",
+"Path":"toolbox/pages/list2",
+"Name":"getpages",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getpages",
+"Implementation":"Prc_GetPages",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/pages",
+"Path":"toolbox/pages",
+"Name":"pagesapi",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_pagesapi",
+"Implementation":"Prc_PagesAPI",
+"Verb":"GET"
+},
+{
+"Verb":"POST",
+"PathRegexp":"media/upload",
+"Path":"media/upload",
+"Name":"uploadmedia",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_uploadmedia",
+"Implementation":"Prc_UploadMedia"
+},
+{
+"PathRegexp":"toolbox/content-pages",
+"Path":"toolbox/content-pages",
+"Name":"contentpagesapi",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_contentpagesapi",
+"Implementation":"Prc_ContentPagesAPI",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/singlepage",
+"Path":"toolbox/singlepage",
+"Name":"getsinglepage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getsinglepage",
+"Implementation":"Prc_GetSinglePage",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/pages/list",
+"Path":"toolbox/pages/list",
+"Name":"listpages",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_listpages",
+"Implementation":"Prc_ListPages",
+"Verb":"GET"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/create-page",
+"Path":"toolbox/create-page",
+"Name":"createpage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_createpage",
+"Implementation":"Prc_CreatePage"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/create-content-page",
+"Path":"toolbox/create-content-page",
+"Name":"createcontentpage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_createcontentpage",
+"Implementation":"Prc_CreateContentPage"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/save-page",
+"Path":"toolbox/save-page",
+"Name":"savepage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_savepage",
+"Implementation":"Prc_SavePage"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/update-page",
+"Path":"toolbox/update-page",
+"Name":"updatepage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updatepage",
+"Implementation":"Prc_UpdatePage"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/add-page-children",
+"Path":"toolbox/add-page-children",
+"Name":"addpagecildren",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_addpagecildren",
+"Implementation":"Prc_AddPageChildren"
+},
+{
+"PathRegexp":"toolbox/update-location-theme",
+"Path":"toolbox/update-location-theme",
+"Verb":"POST",
+"Name":"updatelocationtheme",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updatelocationtheme",
+"Implementation":"Prc_UpdateLocationTheme"
+}]}

@@ -86,6 +86,9 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("PageJsonContent", gxTpr_Pagejsoncontent, false);
 
+
+			AddObjectProperty("PageIsContentPage", gxTpr_Pageiscontentpage, false);
+
 			if (gxTv_SdtSDT_Page_Pagechildren != null)
 			{
 				AddObjectProperty("PageChildren", gxTv_SdtSDT_Page_Pagechildren, false);
@@ -225,6 +228,22 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtSDT_Page_Pagejsoncontent = value;
 				SetDirty("Pagejsoncontent");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="PageIsContentPage")]
+		[XmlElement(ElementName="PageIsContentPage")]
+		public bool gxTpr_Pageiscontentpage
+		{
+			get {
+				return gxTv_SdtSDT_Page_Pageiscontentpage; 
+			}
+			set {
+				gxTv_SdtSDT_Page_Pageiscontentpage = value;
+				SetDirty("Pageiscontentpage");
 			}
 		}
 
@@ -381,6 +400,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Page_Pagegjsjson = "";
 			gxTv_SdtSDT_Page_Pagegjshtml = "";
 			gxTv_SdtSDT_Page_Pagejsoncontent = "";
+			gxTv_SdtSDT_Page_Pageiscontentpage = false;
 
 			gxTv_SdtSDT_Page_Pagechildren_N = true;
 
@@ -417,6 +437,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Page_Pagejsoncontent;
+		 
+
+		protected bool gxTv_SdtSDT_Page_Pageiscontentpage;
 		 
 		protected bool gxTv_SdtSDT_Page_Pagechildren_N;
 		protected GXBaseCollection<GeneXus.Programs.SdtSDT_PageChildren> gxTv_SdtSDT_Page_Pagechildren = null;  
@@ -530,7 +553,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageChildren", Order=7, EmitDefaultValue=false)]
+		[DataMember(Name="PageIsContentPage", Order=7)]
+		public bool gxTpr_Pageiscontentpage
+		{
+			get { 
+				return sdt.gxTpr_Pageiscontentpage;
+
+			}
+			set { 
+				sdt.gxTpr_Pageiscontentpage = value;
+			}
+		}
+
+		[DataMember(Name="PageChildren", Order=8, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_PageChildren_RESTInterface> gxTpr_Pagechildren
 		{
 			get { 
@@ -545,7 +580,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="LocationId", Order=8)]
+		[DataMember(Name="LocationId", Order=9)]
 		public Guid gxTpr_Locationid
 		{
 			get { 
@@ -557,7 +592,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Row", Order=9, EmitDefaultValue=false)]
+		[DataMember(Name="Row", Order=10, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Row_RESTInterface> gxTpr_Row
 		{
 			get { 

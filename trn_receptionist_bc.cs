@@ -140,7 +140,7 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV37Pgmname) ;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV41Pgmname) ;
       }
 
       protected void S112( )
@@ -185,7 +185,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV37Pgmname = "Trn_Receptionist_BC";
+         AV41Pgmname = "Trn_Receptionist_BC";
       }
 
       protected void standaloneModal( )
@@ -1323,7 +1323,7 @@ namespace GeneXus.Programs {
          AV25TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV28WebSession = context.GetSession();
          AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         AV37Pgmname = "";
+         AV41Pgmname = "";
          Z95ReceptionistGAMGUID = "";
          A95ReceptionistGAMGUID = "";
          Z92ReceptionistInitials = "";
@@ -1440,7 +1440,7 @@ namespace GeneXus.Programs {
          );
          Z89ReceptionistId = Guid.NewGuid( );
          A89ReceptionistId = Guid.NewGuid( );
-         AV37Pgmname = "Trn_Receptionist_BC";
+         AV41Pgmname = "Trn_Receptionist_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1455,7 +1455,7 @@ namespace GeneXus.Programs {
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV37Pgmname ;
+      private string AV41Pgmname ;
       private string Z92ReceptionistInitials ;
       private string A92ReceptionistInitials ;
       private string Z94ReceptionistPhone ;

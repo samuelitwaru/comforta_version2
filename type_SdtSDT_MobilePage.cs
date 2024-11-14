@@ -72,6 +72,9 @@ namespace GeneXus.Programs
 			AddObjectProperty("PageIsPublished", gxTpr_Pageispublished, false);
 
 
+			AddObjectProperty("PageIsContentPage", gxTpr_Pageiscontentpage, false);
+
+
 			AddObjectProperty("LocationId", gxTpr_Locationid, false);
 
 			if (gxTv_SdtSDT_MobilePage_Row != null)
@@ -158,6 +161,22 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtSDT_MobilePage_Pageispublished = value;
 				SetDirty("Pageispublished");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="PageIsContentPage")]
+		[XmlElement(ElementName="PageIsContentPage")]
+		public bool gxTpr_Pageiscontentpage
+		{
+			get {
+				return gxTv_SdtSDT_MobilePage_Pageiscontentpage; 
+			}
+			set {
+				gxTv_SdtSDT_MobilePage_Pageiscontentpage = value;
+				SetDirty("Pageiscontentpage");
 			}
 		}
 
@@ -258,6 +277,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_MobilePage_Theme_N = true;
 
 			gxTv_SdtSDT_MobilePage_Pageispublished = false;
+			gxTv_SdtSDT_MobilePage_Pageiscontentpage = false;
 
 
 			gxTv_SdtSDT_MobilePage_Row_N = true;
@@ -282,6 +302,9 @@ namespace GeneXus.Programs
 		 
 
 		protected bool gxTv_SdtSDT_MobilePage_Pageispublished;
+		 
+
+		protected bool gxTv_SdtSDT_MobilePage_Pageiscontentpage;
 		 
 
 		protected Guid gxTv_SdtSDT_MobilePage_Locationid;
@@ -357,7 +380,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="LocationId", Order=4)]
+		[DataMember(Name="PageIsContentPage", Order=4)]
+		public bool gxTpr_Pageiscontentpage
+		{
+			get { 
+				return sdt.gxTpr_Pageiscontentpage;
+
+			}
+			set { 
+				sdt.gxTpr_Pageiscontentpage = value;
+			}
+		}
+
+		[DataMember(Name="LocationId", Order=5)]
 		public Guid gxTpr_Locationid
 		{
 			get { 
@@ -369,7 +404,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Row", Order=5, EmitDefaultValue=false)]
+		[DataMember(Name="Row", Order=6, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Row_RESTInterface> gxTpr_Row
 		{
 			get { 

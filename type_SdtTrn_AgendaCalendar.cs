@@ -70,12 +70,16 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Mode");
          state.Add("gxTpr_Initialized");
          state.Add("gxTpr_Agendacalendarid_Z");
+         state.Add("gxTpr_Locationid_Z");
+         state.Add("gxTpr_Organisationid_Z");
          state.Add("gxTpr_Agendacalendartitle_Z");
          state.Add("gxTpr_Agendacalendarstartdate_Z_Nullable");
          state.Add("gxTpr_Agendacalendarenddate_Z_Nullable");
+         state.Add("gxTpr_Agendacalendartype_Z");
          state.Add("gxTpr_Agendacalendarallday_Z");
-         state.Add("gxTpr_Locationid_Z");
-         state.Add("gxTpr_Organisationid_Z");
+         state.Add("gxTpr_Agendacalendarrecurring_Z");
+         state.Add("gxTpr_Agendacalendarrecurringtype_Z");
+         state.Add("gxTpr_Agendacalendaraddrsvp_Z");
          return state ;
       }
 
@@ -84,21 +88,29 @@ namespace GeneXus.Programs {
          SdtTrn_AgendaCalendar sdt;
          sdt = (SdtTrn_AgendaCalendar)(source);
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarid = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarid ;
+         gxTv_SdtTrn_AgendaCalendar_Locationid = sdt.gxTv_SdtTrn_AgendaCalendar_Locationid ;
+         gxTv_SdtTrn_AgendaCalendar_Organisationid = sdt.gxTv_SdtTrn_AgendaCalendar_Organisationid ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate ;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendartype = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendartype ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday ;
-         gxTv_SdtTrn_AgendaCalendar_Locationid = sdt.gxTv_SdtTrn_AgendaCalendar_Locationid ;
-         gxTv_SdtTrn_AgendaCalendar_Organisationid = sdt.gxTv_SdtTrn_AgendaCalendar_Organisationid ;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring ;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype ;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp ;
          gxTv_SdtTrn_AgendaCalendar_Mode = sdt.gxTv_SdtTrn_AgendaCalendar_Mode ;
          gxTv_SdtTrn_AgendaCalendar_Initialized = sdt.gxTv_SdtTrn_AgendaCalendar_Initialized ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarid_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarid_Z ;
+         gxTv_SdtTrn_AgendaCalendar_Locationid_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Locationid_Z ;
+         gxTv_SdtTrn_AgendaCalendar_Organisationid_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Organisationid_Z ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle_Z ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate_Z ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate_Z ;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z ;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday_Z ;
-         gxTv_SdtTrn_AgendaCalendar_Locationid_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Locationid_Z ;
-         gxTv_SdtTrn_AgendaCalendar_Organisationid_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Organisationid_Z ;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z ;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z ;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z ;
          return  ;
       }
 
@@ -118,6 +130,8 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("AgendaCalendarId", gxTv_SdtTrn_AgendaCalendar_Agendacalendarid, false, includeNonInitialized);
+         AddObjectProperty("LocationId", gxTv_SdtTrn_AgendaCalendar_Locationid, false, includeNonInitialized);
+         AddObjectProperty("OrganisationId", gxTv_SdtTrn_AgendaCalendar_Organisationid, false, includeNonInitialized);
          AddObjectProperty("AgendaCalendarTitle", gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle, false, includeNonInitialized);
          datetime_STZ = gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate;
          sDateCnv = "";
@@ -159,14 +173,18 @@ namespace GeneXus.Programs {
          sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
          sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
          AddObjectProperty("AgendaCalendarEndDate", sDateCnv, false, includeNonInitialized);
+         AddObjectProperty("AgendaCalendarType", gxTv_SdtTrn_AgendaCalendar_Agendacalendartype, false, includeNonInitialized);
          AddObjectProperty("AgendaCalendarAllDay", gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday, false, includeNonInitialized);
-         AddObjectProperty("LocationId", gxTv_SdtTrn_AgendaCalendar_Locationid, false, includeNonInitialized);
-         AddObjectProperty("OrganisationId", gxTv_SdtTrn_AgendaCalendar_Organisationid, false, includeNonInitialized);
+         AddObjectProperty("AgendaCalendarRecurring", gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring, false, includeNonInitialized);
+         AddObjectProperty("AgendaCalendarRecurringType", gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype, false, includeNonInitialized);
+         AddObjectProperty("AgendaCalendarAddRSVP", gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_AgendaCalendar_Mode, false, includeNonInitialized);
             AddObjectProperty("Initialized", gxTv_SdtTrn_AgendaCalendar_Initialized, false, includeNonInitialized);
             AddObjectProperty("AgendaCalendarId_Z", gxTv_SdtTrn_AgendaCalendar_Agendacalendarid_Z, false, includeNonInitialized);
+            AddObjectProperty("LocationId_Z", gxTv_SdtTrn_AgendaCalendar_Locationid_Z, false, includeNonInitialized);
+            AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_AgendaCalendar_Organisationid_Z, false, includeNonInitialized);
             AddObjectProperty("AgendaCalendarTitle_Z", gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle_Z, false, includeNonInitialized);
             datetime_STZ = gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate_Z;
             sDateCnv = "";
@@ -208,9 +226,11 @@ namespace GeneXus.Programs {
             sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
             sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
             AddObjectProperty("AgendaCalendarEndDate_Z", sDateCnv, false, includeNonInitialized);
+            AddObjectProperty("AgendaCalendarType_Z", gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z, false, includeNonInitialized);
             AddObjectProperty("AgendaCalendarAllDay_Z", gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday_Z, false, includeNonInitialized);
-            AddObjectProperty("LocationId_Z", gxTv_SdtTrn_AgendaCalendar_Locationid_Z, false, includeNonInitialized);
-            AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_AgendaCalendar_Organisationid_Z, false, includeNonInitialized);
+            AddObjectProperty("AgendaCalendarRecurring_Z", gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z, false, includeNonInitialized);
+            AddObjectProperty("AgendaCalendarRecurringType_Z", gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z, false, includeNonInitialized);
+            AddObjectProperty("AgendaCalendarAddRSVP_Z", gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z, false, includeNonInitialized);
          }
          return  ;
       }
@@ -221,6 +241,16 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_AgendaCalendar_Agendacalendarid = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarid ;
+         }
+         if ( sdt.IsDirty("LocationId") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Locationid = sdt.gxTv_SdtTrn_AgendaCalendar_Locationid ;
+         }
+         if ( sdt.IsDirty("OrganisationId") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Organisationid = sdt.gxTv_SdtTrn_AgendaCalendar_Organisationid ;
          }
          if ( sdt.IsDirty("AgendaCalendarTitle") )
          {
@@ -237,20 +267,30 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate ;
          }
+         if ( sdt.IsDirty("AgendaCalendarType") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendartype = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendartype ;
+         }
          if ( sdt.IsDirty("AgendaCalendarAllDay") )
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday ;
          }
-         if ( sdt.IsDirty("LocationId") )
+         if ( sdt.IsDirty("AgendaCalendarRecurring") )
          {
             sdtIsNull = 0;
-            gxTv_SdtTrn_AgendaCalendar_Locationid = sdt.gxTv_SdtTrn_AgendaCalendar_Locationid ;
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring ;
          }
-         if ( sdt.IsDirty("OrganisationId") )
+         if ( sdt.IsDirty("AgendaCalendarRecurringType") )
          {
             sdtIsNull = 0;
-            gxTv_SdtTrn_AgendaCalendar_Organisationid = sdt.gxTv_SdtTrn_AgendaCalendar_Organisationid ;
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype ;
+         }
+         if ( sdt.IsDirty("AgendaCalendarAddRSVP") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp = sdt.gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp ;
          }
          return  ;
       }
@@ -269,15 +309,51 @@ namespace GeneXus.Programs {
             {
                gxTv_SdtTrn_AgendaCalendar_Mode = "INS";
                this.gxTv_SdtTrn_AgendaCalendar_Agendacalendarid_Z_SetNull( );
+               this.gxTv_SdtTrn_AgendaCalendar_Locationid_Z_SetNull( );
+               this.gxTv_SdtTrn_AgendaCalendar_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle_Z_SetNull( );
                this.gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate_Z_SetNull( );
                this.gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate_Z_SetNull( );
+               this.gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z_SetNull( );
                this.gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday_Z_SetNull( );
-               this.gxTv_SdtTrn_AgendaCalendar_Locationid_Z_SetNull( );
-               this.gxTv_SdtTrn_AgendaCalendar_Organisationid_Z_SetNull( );
+               this.gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z_SetNull( );
+               this.gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z_SetNull( );
+               this.gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z_SetNull( );
             }
             gxTv_SdtTrn_AgendaCalendar_Agendacalendarid = value;
             SetDirty("Agendacalendarid");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "LocationId" )]
+      [  XmlElement( ElementName = "LocationId"   )]
+      public Guid gxTpr_Locationid
+      {
+         get {
+            return gxTv_SdtTrn_AgendaCalendar_Locationid ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Locationid = value;
+            SetDirty("Locationid");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "OrganisationId" )]
+      [  XmlElement( ElementName = "OrganisationId"   )]
+      public Guid gxTpr_Organisationid
+      {
+         get {
+            return gxTv_SdtTrn_AgendaCalendar_Organisationid ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Organisationid = value;
+            SetDirty("Organisationid");
          }
 
       }
@@ -368,6 +444,22 @@ namespace GeneXus.Programs {
 
       }
 
+      [  SoapElement( ElementName = "AgendaCalendarType" )]
+      [  XmlElement( ElementName = "AgendaCalendarType"   )]
+      public string gxTpr_Agendacalendartype
+      {
+         get {
+            return gxTv_SdtTrn_AgendaCalendar_Agendacalendartype ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendartype = value;
+            SetDirty("Agendacalendartype");
+         }
+
+      }
+
       [  SoapElement( ElementName = "AgendaCalendarAllDay" )]
       [  XmlElement( ElementName = "AgendaCalendarAllDay"   )]
       public bool gxTpr_Agendacalendarallday
@@ -384,34 +476,50 @@ namespace GeneXus.Programs {
 
       }
 
-      [  SoapElement( ElementName = "LocationId" )]
-      [  XmlElement( ElementName = "LocationId"   )]
-      public Guid gxTpr_Locationid
+      [  SoapElement( ElementName = "AgendaCalendarRecurring" )]
+      [  XmlElement( ElementName = "AgendaCalendarRecurring"   )]
+      public bool gxTpr_Agendacalendarrecurring
       {
          get {
-            return gxTv_SdtTrn_AgendaCalendar_Locationid ;
+            return gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring ;
          }
 
          set {
             sdtIsNull = 0;
-            gxTv_SdtTrn_AgendaCalendar_Locationid = value;
-            SetDirty("Locationid");
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring = value;
+            SetDirty("Agendacalendarrecurring");
          }
 
       }
 
-      [  SoapElement( ElementName = "OrganisationId" )]
-      [  XmlElement( ElementName = "OrganisationId"   )]
-      public Guid gxTpr_Organisationid
+      [  SoapElement( ElementName = "AgendaCalendarRecurringType" )]
+      [  XmlElement( ElementName = "AgendaCalendarRecurringType"   )]
+      public string gxTpr_Agendacalendarrecurringtype
       {
          get {
-            return gxTv_SdtTrn_AgendaCalendar_Organisationid ;
+            return gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype ;
          }
 
          set {
             sdtIsNull = 0;
-            gxTv_SdtTrn_AgendaCalendar_Organisationid = value;
-            SetDirty("Organisationid");
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype = value;
+            SetDirty("Agendacalendarrecurringtype");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "AgendaCalendarAddRSVP" )]
+      [  XmlElement( ElementName = "AgendaCalendarAddRSVP"   )]
+      public bool gxTpr_Agendacalendaraddrsvp
+      {
+         get {
+            return gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp = value;
+            SetDirty("Agendacalendaraddrsvp");
          }
 
       }
@@ -496,6 +604,62 @@ namespace GeneXus.Programs {
       }
 
       public bool gxTv_SdtTrn_AgendaCalendar_Agendacalendarid_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "LocationId_Z" )]
+      [  XmlElement( ElementName = "LocationId_Z"   )]
+      public Guid gxTpr_Locationid_Z
+      {
+         get {
+            return gxTv_SdtTrn_AgendaCalendar_Locationid_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Locationid_Z = value;
+            SetDirty("Locationid_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AgendaCalendar_Locationid_Z_SetNull( )
+      {
+         gxTv_SdtTrn_AgendaCalendar_Locationid_Z = Guid.Empty;
+         SetDirty("Locationid_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AgendaCalendar_Locationid_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "OrganisationId_Z" )]
+      [  XmlElement( ElementName = "OrganisationId_Z"   )]
+      public Guid gxTpr_Organisationid_Z
+      {
+         get {
+            return gxTv_SdtTrn_AgendaCalendar_Organisationid_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Organisationid_Z = value;
+            SetDirty("Organisationid_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AgendaCalendar_Organisationid_Z_SetNull( )
+      {
+         gxTv_SdtTrn_AgendaCalendar_Organisationid_Z = Guid.Empty;
+         SetDirty("Organisationid_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AgendaCalendar_Organisationid_Z_IsNull( )
       {
          return false ;
       }
@@ -622,6 +786,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "AgendaCalendarType_Z" )]
+      [  XmlElement( ElementName = "AgendaCalendarType_Z"   )]
+      public string gxTpr_Agendacalendartype_Z
+      {
+         get {
+            return gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z = value;
+            SetDirty("Agendacalendartype_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z_SetNull( )
+      {
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z = "";
+         SetDirty("Agendacalendartype_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "AgendaCalendarAllDay_Z" )]
       [  XmlElement( ElementName = "AgendaCalendarAllDay_Z"   )]
       public bool gxTpr_Agendacalendarallday_Z
@@ -650,58 +842,86 @@ namespace GeneXus.Programs {
          return false ;
       }
 
-      [  SoapElement( ElementName = "LocationId_Z" )]
-      [  XmlElement( ElementName = "LocationId_Z"   )]
-      public Guid gxTpr_Locationid_Z
+      [  SoapElement( ElementName = "AgendaCalendarRecurring_Z" )]
+      [  XmlElement( ElementName = "AgendaCalendarRecurring_Z"   )]
+      public bool gxTpr_Agendacalendarrecurring_Z
       {
          get {
-            return gxTv_SdtTrn_AgendaCalendar_Locationid_Z ;
+            return gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z ;
          }
 
          set {
             sdtIsNull = 0;
-            gxTv_SdtTrn_AgendaCalendar_Locationid_Z = value;
-            SetDirty("Locationid_Z");
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z = value;
+            SetDirty("Agendacalendarrecurring_Z");
          }
 
       }
 
-      public void gxTv_SdtTrn_AgendaCalendar_Locationid_Z_SetNull( )
+      public void gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z_SetNull( )
       {
-         gxTv_SdtTrn_AgendaCalendar_Locationid_Z = Guid.Empty;
-         SetDirty("Locationid_Z");
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z = false;
+         SetDirty("Agendacalendarrecurring_Z");
          return  ;
       }
 
-      public bool gxTv_SdtTrn_AgendaCalendar_Locationid_Z_IsNull( )
+      public bool gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z_IsNull( )
       {
          return false ;
       }
 
-      [  SoapElement( ElementName = "OrganisationId_Z" )]
-      [  XmlElement( ElementName = "OrganisationId_Z"   )]
-      public Guid gxTpr_Organisationid_Z
+      [  SoapElement( ElementName = "AgendaCalendarRecurringType_Z" )]
+      [  XmlElement( ElementName = "AgendaCalendarRecurringType_Z"   )]
+      public string gxTpr_Agendacalendarrecurringtype_Z
       {
          get {
-            return gxTv_SdtTrn_AgendaCalendar_Organisationid_Z ;
+            return gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z ;
          }
 
          set {
             sdtIsNull = 0;
-            gxTv_SdtTrn_AgendaCalendar_Organisationid_Z = value;
-            SetDirty("Organisationid_Z");
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z = value;
+            SetDirty("Agendacalendarrecurringtype_Z");
          }
 
       }
 
-      public void gxTv_SdtTrn_AgendaCalendar_Organisationid_Z_SetNull( )
+      public void gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z_SetNull( )
       {
-         gxTv_SdtTrn_AgendaCalendar_Organisationid_Z = Guid.Empty;
-         SetDirty("Organisationid_Z");
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z = "";
+         SetDirty("Agendacalendarrecurringtype_Z");
          return  ;
       }
 
-      public bool gxTv_SdtTrn_AgendaCalendar_Organisationid_Z_IsNull( )
+      public bool gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "AgendaCalendarAddRSVP_Z" )]
+      [  XmlElement( ElementName = "AgendaCalendarAddRSVP_Z"   )]
+      public bool gxTpr_Agendacalendaraddrsvp_Z
+      {
+         get {
+            return gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z = value;
+            SetDirty("Agendacalendaraddrsvp_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z_SetNull( )
+      {
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z = false;
+         SetDirty("Agendacalendaraddrsvp_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z_IsNull( )
       {
          return false ;
       }
@@ -724,18 +944,22 @@ namespace GeneXus.Programs {
       {
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarid = Guid.Empty;
          sdtIsNull = 1;
+         gxTv_SdtTrn_AgendaCalendar_Locationid = Guid.Empty;
+         gxTv_SdtTrn_AgendaCalendar_Organisationid = Guid.Empty;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle = "";
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate = (DateTime)(DateTime.MinValue);
-         gxTv_SdtTrn_AgendaCalendar_Locationid = Guid.Empty;
-         gxTv_SdtTrn_AgendaCalendar_Organisationid = Guid.Empty;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendartype = "";
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype = "";
          gxTv_SdtTrn_AgendaCalendar_Mode = "";
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarid_Z = Guid.Empty;
+         gxTv_SdtTrn_AgendaCalendar_Locationid_Z = Guid.Empty;
+         gxTv_SdtTrn_AgendaCalendar_Organisationid_Z = Guid.Empty;
          gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle_Z = "";
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarstartdate_Z = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate_Z = (DateTime)(DateTime.MinValue);
-         gxTv_SdtTrn_AgendaCalendar_Locationid_Z = Guid.Empty;
-         gxTv_SdtTrn_AgendaCalendar_Organisationid_Z = Guid.Empty;
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z = "";
+         gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z = "";
          datetime_STZ = (DateTime)(DateTime.MinValue);
          sDateCnv = "";
          sNumToPad = "";
@@ -764,9 +988,17 @@ namespace GeneXus.Programs {
       private DateTime gxTv_SdtTrn_AgendaCalendar_Agendacalendarenddate_Z ;
       private DateTime datetime_STZ ;
       private bool gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday ;
+      private bool gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring ;
+      private bool gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp ;
       private bool gxTv_SdtTrn_AgendaCalendar_Agendacalendarallday_Z ;
+      private bool gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurring_Z ;
+      private bool gxTv_SdtTrn_AgendaCalendar_Agendacalendaraddrsvp_Z ;
       private string gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle ;
+      private string gxTv_SdtTrn_AgendaCalendar_Agendacalendartype ;
+      private string gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype ;
       private string gxTv_SdtTrn_AgendaCalendar_Agendacalendartitle_Z ;
+      private string gxTv_SdtTrn_AgendaCalendar_Agendacalendartype_Z ;
+      private string gxTv_SdtTrn_AgendaCalendar_Agendacalendarrecurringtype_Z ;
       private Guid gxTv_SdtTrn_AgendaCalendar_Agendacalendarid ;
       private Guid gxTv_SdtTrn_AgendaCalendar_Locationid ;
       private Guid gxTv_SdtTrn_AgendaCalendar_Organisationid ;
@@ -801,63 +1033,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "AgendaCalendarTitle" , Order = 1 )]
-      [GxSeudo()]
-      public string gxTpr_Agendacalendartitle
-      {
-         get {
-            return sdt.gxTpr_Agendacalendartitle ;
-         }
-
-         set {
-            sdt.gxTpr_Agendacalendartitle = value;
-         }
-
-      }
-
-      [DataMember( Name = "AgendaCalendarStartDate" , Order = 2 )]
-      [GxSeudo()]
-      public string gxTpr_Agendacalendarstartdate
-      {
-         get {
-            return DateTimeUtil.TToC2( sdt.gxTpr_Agendacalendarstartdate, (IGxContext)(context)) ;
-         }
-
-         set {
-            sdt.gxTpr_Agendacalendarstartdate = DateTimeUtil.CToT2( value, (IGxContext)(context));
-         }
-
-      }
-
-      [DataMember( Name = "AgendaCalendarEndDate" , Order = 3 )]
-      [GxSeudo()]
-      public string gxTpr_Agendacalendarenddate
-      {
-         get {
-            return DateTimeUtil.TToC2( sdt.gxTpr_Agendacalendarenddate, (IGxContext)(context)) ;
-         }
-
-         set {
-            sdt.gxTpr_Agendacalendarenddate = DateTimeUtil.CToT2( value, (IGxContext)(context));
-         }
-
-      }
-
-      [DataMember( Name = "AgendaCalendarAllDay" , Order = 4 )]
-      [GxSeudo()]
-      public bool gxTpr_Agendacalendarallday
-      {
-         get {
-            return sdt.gxTpr_Agendacalendarallday ;
-         }
-
-         set {
-            sdt.gxTpr_Agendacalendarallday = value;
-         }
-
-      }
-
-      [DataMember( Name = "LocationId" , Order = 5 )]
+      [DataMember( Name = "LocationId" , Order = 1 )]
       [GxSeudo()]
       public Guid gxTpr_Locationid
       {
@@ -871,7 +1047,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "OrganisationId" , Order = 6 )]
+      [DataMember( Name = "OrganisationId" , Order = 2 )]
       [GxSeudo()]
       public Guid gxTpr_Organisationid
       {
@@ -881,6 +1057,118 @@ namespace GeneXus.Programs {
 
          set {
             sdt.gxTpr_Organisationid = value;
+         }
+
+      }
+
+      [DataMember( Name = "AgendaCalendarTitle" , Order = 3 )]
+      [GxSeudo()]
+      public string gxTpr_Agendacalendartitle
+      {
+         get {
+            return sdt.gxTpr_Agendacalendartitle ;
+         }
+
+         set {
+            sdt.gxTpr_Agendacalendartitle = value;
+         }
+
+      }
+
+      [DataMember( Name = "AgendaCalendarStartDate" , Order = 4 )]
+      [GxSeudo()]
+      public string gxTpr_Agendacalendarstartdate
+      {
+         get {
+            return DateTimeUtil.TToC2( sdt.gxTpr_Agendacalendarstartdate, (IGxContext)(context)) ;
+         }
+
+         set {
+            sdt.gxTpr_Agendacalendarstartdate = DateTimeUtil.CToT2( value, (IGxContext)(context));
+         }
+
+      }
+
+      [DataMember( Name = "AgendaCalendarEndDate" , Order = 5 )]
+      [GxSeudo()]
+      public string gxTpr_Agendacalendarenddate
+      {
+         get {
+            return DateTimeUtil.TToC2( sdt.gxTpr_Agendacalendarenddate, (IGxContext)(context)) ;
+         }
+
+         set {
+            sdt.gxTpr_Agendacalendarenddate = DateTimeUtil.CToT2( value, (IGxContext)(context));
+         }
+
+      }
+
+      [DataMember( Name = "AgendaCalendarType" , Order = 6 )]
+      [GxSeudo()]
+      public string gxTpr_Agendacalendartype
+      {
+         get {
+            return sdt.gxTpr_Agendacalendartype ;
+         }
+
+         set {
+            sdt.gxTpr_Agendacalendartype = value;
+         }
+
+      }
+
+      [DataMember( Name = "AgendaCalendarAllDay" , Order = 7 )]
+      [GxSeudo()]
+      public bool gxTpr_Agendacalendarallday
+      {
+         get {
+            return sdt.gxTpr_Agendacalendarallday ;
+         }
+
+         set {
+            sdt.gxTpr_Agendacalendarallday = value;
+         }
+
+      }
+
+      [DataMember( Name = "AgendaCalendarRecurring" , Order = 8 )]
+      [GxSeudo()]
+      public bool gxTpr_Agendacalendarrecurring
+      {
+         get {
+            return sdt.gxTpr_Agendacalendarrecurring ;
+         }
+
+         set {
+            sdt.gxTpr_Agendacalendarrecurring = value;
+         }
+
+      }
+
+      [DataMember( Name = "AgendaCalendarRecurringType" , Order = 9 )]
+      [GxSeudo()]
+      public string gxTpr_Agendacalendarrecurringtype
+      {
+         get {
+            return sdt.gxTpr_Agendacalendarrecurringtype ;
+         }
+
+         set {
+            sdt.gxTpr_Agendacalendarrecurringtype = value;
+         }
+
+      }
+
+      [DataMember( Name = "AgendaCalendarAddRSVP" , Order = 10 )]
+      [GxSeudo()]
+      public bool gxTpr_Agendacalendaraddrsvp
+      {
+         get {
+            return sdt.gxTpr_Agendacalendaraddrsvp ;
+         }
+
+         set {
+            sdt.gxTpr_Agendacalendaraddrsvp = value;
          }
 
       }
@@ -906,7 +1194,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 7 )]
+      [DataMember( Name = "gx_md5_hash", Order = 11 )]
       public string Hash
       {
          get {

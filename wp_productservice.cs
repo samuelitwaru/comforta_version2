@@ -406,7 +406,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WP_Product Service", "") ;
+         return context.GetMessage( "Product/Service", "") ;
       }
 
       protected void WB6Z0( )
@@ -527,7 +527,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "WP_Product Service", ""), 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Product/Service", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -1102,7 +1102,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024114992797", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241114339914", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1118,7 +1118,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_productservice.js", "?2024114992797", false, true);
+         context.AddJavascriptSource("wp_productservice.js", "?20241114339914", false, true);
          /* End function include_jscripts */
       }
 
@@ -1149,7 +1149,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = context.GetMessage( "WP_Product Service", "");
+         Form.Caption = context.GetMessage( "Product/Service", "");
          if ( context.isSpaRequest( ) )
          {
             enableJsOutput();

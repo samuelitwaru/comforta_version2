@@ -30,12 +30,6 @@ namespace GeneXus.Programs
 		public SdtSDT_Col( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtSDT_Col_Colname = "";
-
-			gxTv_SdtSDT_Col_Image = "";
-			gxTv_SdtSDT_Col_Image_gxi = "";
-			gxTv_SdtSDT_Col_Text = "";
-
 		}
 
 		public SdtSDT_Col(IGxContext context)
@@ -63,59 +57,15 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("ColId", gxTpr_Colid, false);
-
-
-			AddObjectProperty("ColName", gxTpr_Colname, false);
-
 			if (gxTv_SdtSDT_Col_Tile != null)
 			{
 				AddObjectProperty("Tile", gxTv_SdtSDT_Col_Tile, false);
 			}
-
-			AddObjectProperty("Image", gxTpr_Image, false);
-			AddObjectProperty("Image_GXI", gxTpr_Image_gxi, false);
-
-
-
-			AddObjectProperty("Text", gxTpr_Text, false);
-
 			return;
 		}
 		#endregion
 
 		#region Properties
-
-		[SoapElement(ElementName="ColId")]
-		[XmlElement(ElementName="ColId")]
-		public Guid gxTpr_Colid
-		{
-			get {
-				return gxTv_SdtSDT_Col_Colid; 
-			}
-			set {
-				gxTv_SdtSDT_Col_Colid = value;
-				SetDirty("Colid");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="ColName")]
-		[XmlElement(ElementName="ColName")]
-		public string gxTpr_Colname
-		{
-			get {
-				return gxTv_SdtSDT_Col_Colname; 
-			}
-			set {
-				gxTv_SdtSDT_Col_Colname = value;
-				SetDirty("Colname");
-			}
-		}
-
-
 
 		[SoapElement(ElementName="Tile")]
 		[XmlElement(ElementName="Tile")]
@@ -149,54 +99,11 @@ namespace GeneXus.Programs
 
 		}
 
-
-		[SoapElement(ElementName="Image")]
-		[XmlElement(ElementName="Image")]
-		[GxUpload()]
-
-		public string gxTpr_Image
-		{
-			get {
-				return gxTv_SdtSDT_Col_Image; 
-			}
-			set {
-				gxTv_SdtSDT_Col_Image = value;
-				SetDirty("Image");
-			}
-		}
-
-
-		[SoapElement(ElementName="Image_GXI" )]
-		[XmlElement(ElementName="Image_GXI" )]
-		public string gxTpr_Image_gxi
-		{
-			get {
-				return gxTv_SdtSDT_Col_Image_gxi ;
-			}
-			set {
-				gxTv_SdtSDT_Col_Image_gxi = value;
-				SetDirty("Image_gxi");
-			}
-		}
-
-		[SoapElement(ElementName="Text")]
-		[XmlElement(ElementName="Text")]
-		public string gxTpr_Text
-		{
-			get {
-				return gxTv_SdtSDT_Col_Text; 
-			}
-			set {
-				gxTv_SdtSDT_Col_Text = value;
-				SetDirty("Text");
-			}
-		}
-
-
-
 		public override bool ShouldSerializeSdtJson()
 		{
-			return true;
+			return (
+				 ShouldSerializegxTpr_Tile_Json()||  
+				false);
 		}
 
 
@@ -215,12 +122,8 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
-			gxTv_SdtSDT_Col_Colname = "";
-
 			gxTv_SdtSDT_Col_Tile_N = true;
 
-			gxTv_SdtSDT_Col_Image = "";gxTv_SdtSDT_Col_Image_gxi = "";
-			gxTv_SdtSDT_Col_Text = "";
 			return  ;
 		}
 
@@ -230,20 +133,8 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected Guid gxTv_SdtSDT_Col_Colid;
-		 
-
-		protected string gxTv_SdtSDT_Col_Colname;
-		 
-
 		protected GeneXus.Programs.SdtSDT_Tile gxTv_SdtSDT_Col_Tile = null;
 		protected bool gxTv_SdtSDT_Col_Tile_N;
-		 
-		protected string gxTv_SdtSDT_Col_Image_gxi;
-		protected string gxTv_SdtSDT_Col_Image;
-		 
-
-		protected string gxTv_SdtSDT_Col_Text;
 		 
 
 
@@ -263,31 +154,7 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="ColId", Order=0)]
-		public Guid gxTpr_Colid
-		{
-			get { 
-				return sdt.gxTpr_Colid;
-
-			}
-			set { 
-				sdt.gxTpr_Colid = value;
-			}
-		}
-
-		[DataMember(Name="ColName", Order=1)]
-		public  string gxTpr_Colname
-		{
-			get { 
-				return sdt.gxTpr_Colname;
-
-			}
-			set { 
-				 sdt.gxTpr_Colname = value;
-			}
-		}
-
-		[DataMember(Name="Tile", Order=2, EmitDefaultValue=false)]
+		[DataMember(Name="Tile", Order=0, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtSDT_Tile_RESTInterface gxTpr_Tile
 		{
 			get { 
@@ -299,31 +166,6 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Tile = value.sdt;
-			}
-		}
-
-		[DataMember(Name="Image", Order=3)]
-		[GxUpload()]
-		public  string gxTpr_Image
-		{
-			get { 
-				return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Image)) ? PathUtil.RelativePath( sdt.gxTpr_Image) : StringUtil.RTrim( sdt.gxTpr_Image_gxi));
-
-			}
-			set { 
-				 sdt.gxTpr_Image = value;
-			}
-		}
-
-		[DataMember(Name="Text", Order=4)]
-		public  string gxTpr_Text
-		{
-			get { 
-				return sdt.gxTpr_Text;
-
-			}
-			set { 
-				 sdt.gxTpr_Text = value;
 			}
 		}
 

@@ -63,6 +63,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Modified");
          state.Add("gxTpr_Initialized");
          state.Add("gxTpr_Iconid_Z");
+         state.Add("gxTpr_Iconcategory_Z");
          state.Add("gxTpr_Iconname_Z");
          return state ;
       }
@@ -72,12 +73,14 @@ namespace GeneXus.Programs {
          SdtTrn_Theme_Icon sdt;
          sdt = (SdtTrn_Theme_Icon)(source);
          gxTv_SdtTrn_Theme_Icon_Iconid = sdt.gxTv_SdtTrn_Theme_Icon_Iconid ;
+         gxTv_SdtTrn_Theme_Icon_Iconcategory = sdt.gxTv_SdtTrn_Theme_Icon_Iconcategory ;
          gxTv_SdtTrn_Theme_Icon_Iconname = sdt.gxTv_SdtTrn_Theme_Icon_Iconname ;
          gxTv_SdtTrn_Theme_Icon_Iconsvg = sdt.gxTv_SdtTrn_Theme_Icon_Iconsvg ;
          gxTv_SdtTrn_Theme_Icon_Mode = sdt.gxTv_SdtTrn_Theme_Icon_Mode ;
          gxTv_SdtTrn_Theme_Icon_Modified = sdt.gxTv_SdtTrn_Theme_Icon_Modified ;
          gxTv_SdtTrn_Theme_Icon_Initialized = sdt.gxTv_SdtTrn_Theme_Icon_Initialized ;
          gxTv_SdtTrn_Theme_Icon_Iconid_Z = sdt.gxTv_SdtTrn_Theme_Icon_Iconid_Z ;
+         gxTv_SdtTrn_Theme_Icon_Iconcategory_Z = sdt.gxTv_SdtTrn_Theme_Icon_Iconcategory_Z ;
          gxTv_SdtTrn_Theme_Icon_Iconname_Z = sdt.gxTv_SdtTrn_Theme_Icon_Iconname_Z ;
          return  ;
       }
@@ -98,6 +101,7 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("IconId", gxTv_SdtTrn_Theme_Icon_Iconid, false, includeNonInitialized);
+         AddObjectProperty("IconCategory", gxTv_SdtTrn_Theme_Icon_Iconcategory, false, includeNonInitialized);
          AddObjectProperty("IconName", gxTv_SdtTrn_Theme_Icon_Iconname, false, includeNonInitialized);
          AddObjectProperty("IconSVG", gxTv_SdtTrn_Theme_Icon_Iconsvg, false, includeNonInitialized);
          if ( includeState )
@@ -106,6 +110,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("Modified", gxTv_SdtTrn_Theme_Icon_Modified, false, includeNonInitialized);
             AddObjectProperty("Initialized", gxTv_SdtTrn_Theme_Icon_Initialized, false, includeNonInitialized);
             AddObjectProperty("IconId_Z", gxTv_SdtTrn_Theme_Icon_Iconid_Z, false, includeNonInitialized);
+            AddObjectProperty("IconCategory_Z", gxTv_SdtTrn_Theme_Icon_Iconcategory_Z, false, includeNonInitialized);
             AddObjectProperty("IconName_Z", gxTv_SdtTrn_Theme_Icon_Iconname_Z, false, includeNonInitialized);
          }
          return  ;
@@ -117,6 +122,11 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_Theme_Icon_Iconid = sdt.gxTv_SdtTrn_Theme_Icon_Iconid ;
+         }
+         if ( sdt.IsDirty("IconCategory") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Icon_Iconcategory = sdt.gxTv_SdtTrn_Theme_Icon_Iconcategory ;
          }
          if ( sdt.IsDirty("IconName") )
          {
@@ -144,6 +154,23 @@ namespace GeneXus.Programs {
             gxTv_SdtTrn_Theme_Icon_Iconid = value;
             gxTv_SdtTrn_Theme_Icon_Modified = 1;
             SetDirty("Iconid");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "IconCategory" )]
+      [  XmlElement( ElementName = "IconCategory"   )]
+      public string gxTpr_Iconcategory
+      {
+         get {
+            return gxTv_SdtTrn_Theme_Icon_Iconcategory ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Icon_Iconcategory = value;
+            gxTv_SdtTrn_Theme_Icon_Modified = 1;
+            SetDirty("Iconcategory");
          }
 
       }
@@ -296,6 +323,35 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "IconCategory_Z" )]
+      [  XmlElement( ElementName = "IconCategory_Z"   )]
+      public string gxTpr_Iconcategory_Z
+      {
+         get {
+            return gxTv_SdtTrn_Theme_Icon_Iconcategory_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Icon_Iconcategory_Z = value;
+            gxTv_SdtTrn_Theme_Icon_Modified = 1;
+            SetDirty("Iconcategory_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Theme_Icon_Iconcategory_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Theme_Icon_Iconcategory_Z = "";
+         SetDirty("Iconcategory_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Theme_Icon_Iconcategory_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "IconName_Z" )]
       [  XmlElement( ElementName = "IconName_Z"   )]
       public string gxTpr_Iconname_Z
@@ -343,10 +399,12 @@ namespace GeneXus.Programs {
       {
          gxTv_SdtTrn_Theme_Icon_Iconid = Guid.Empty;
          sdtIsNull = 1;
+         gxTv_SdtTrn_Theme_Icon_Iconcategory = "";
          gxTv_SdtTrn_Theme_Icon_Iconname = "";
          gxTv_SdtTrn_Theme_Icon_Iconsvg = "";
          gxTv_SdtTrn_Theme_Icon_Mode = "";
          gxTv_SdtTrn_Theme_Icon_Iconid_Z = Guid.Empty;
+         gxTv_SdtTrn_Theme_Icon_Iconcategory_Z = "";
          gxTv_SdtTrn_Theme_Icon_Iconname_Z = "";
          return  ;
       }
@@ -359,7 +417,9 @@ namespace GeneXus.Programs {
       private short sdtIsNull ;
       private short gxTv_SdtTrn_Theme_Icon_Modified ;
       private short gxTv_SdtTrn_Theme_Icon_Initialized ;
+      private string gxTv_SdtTrn_Theme_Icon_Iconcategory ;
       private string gxTv_SdtTrn_Theme_Icon_Mode ;
+      private string gxTv_SdtTrn_Theme_Icon_Iconcategory_Z ;
       private string gxTv_SdtTrn_Theme_Icon_Iconsvg ;
       private string gxTv_SdtTrn_Theme_Icon_Iconname ;
       private string gxTv_SdtTrn_Theme_Icon_Iconname_Z ;
@@ -393,7 +453,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "IconName" , Order = 1 )]
+      [DataMember( Name = "IconCategory" , Order = 1 )]
+      [GxSeudo()]
+      public string gxTpr_Iconcategory
+      {
+         get {
+            return StringUtil.RTrim( sdt.gxTpr_Iconcategory) ;
+         }
+
+         set {
+            sdt.gxTpr_Iconcategory = value;
+         }
+
+      }
+
+      [DataMember( Name = "IconName" , Order = 2 )]
       [GxSeudo()]
       public string gxTpr_Iconname
       {
@@ -407,7 +481,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "IconSVG" , Order = 2 )]
+      [DataMember( Name = "IconSVG" , Order = 3 )]
       public string gxTpr_Iconsvg
       {
          get {

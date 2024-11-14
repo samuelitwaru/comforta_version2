@@ -232,12 +232,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV8WWPContext) ;
          AV9TrnContext.FromXml(AV10WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV9TrnContext.gxTpr_Transactionname, AV19Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV9TrnContext.gxTpr_Transactionname, AV22Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV20GXV1 = 1;
-            while ( AV20GXV1 <= AV9TrnContext.gxTpr_Attributes.Count )
+            AV23GXV1 = 1;
+            while ( AV23GXV1 <= AV9TrnContext.gxTpr_Attributes.Count )
             {
-               AV13TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV9TrnContext.gxTpr_Attributes.Item(AV20GXV1));
+               AV13TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV9TrnContext.gxTpr_Attributes.Item(AV23GXV1));
                if ( StringUtil.StrCmp(AV13TrnContextAtt.gxTpr_Attributename, "WWPFormId") == 0 )
                {
                   AV11Insert_WWPFormId = (short)(Math.Round(NumberUtil.Val( AV13TrnContextAtt.gxTpr_Attributevalue, "."), 18, MidpointRounding.ToEven));
@@ -250,7 +250,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                {
                   AV16Insert_WWPUserExtendedId = AV13TrnContextAtt.gxTpr_Attributevalue;
                }
-               AV20GXV1 = (int)(AV20GXV1+1);
+               AV23GXV1 = (int)(AV23GXV1+1);
             }
          }
       }
@@ -259,6 +259,20 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          /* After Trn Routine */
          returnInSub = false;
+         AV17FormInstanceIdString = StringUtil.Trim( StringUtil.Str( (decimal)(A214WWPFormInstanceId), 6, 0));
+         AV18FormLink = formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV19WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(A214WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim("DSP"))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode"}) ;
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-plus NotificationFontIconSuccess", ""),  context.GetMessage( "New Form Response", ""),  context.GetMessage( "A dynamic form has been filled", ""),  context.GetMessage( "A dynamic form has been filled", ""),  AV18FormLink,  "",  "",  true) ;
+         }
+         else if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-pencil-alt NotificationFontIconWarning", ""),  context.GetMessage( "Form Response Updated", ""),  context.GetMessage( "A dynamic form has been updated", ""),  context.GetMessage( "A dynamic form has been updated", ""),  AV18FormLink,  "",  "",  true) ;
+         }
+         else if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-trash-alt NotificationFontIconDanger", ""),  context.GetMessage( "Form Response Deleted", ""),  context.GetMessage( "A dynamic form has been deleted", ""),  context.GetMessage( "A dynamic form has been delete", ""),  AV18FormLink,  "",  "",  true) ;
+         }
       }
 
       protected void ZM0U42( short GX_JID )
@@ -296,7 +310,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void standaloneNotModal( )
       {
-         AV19Pgmname = "WorkWithPlus.DynamicForms.WWP_FormInstance_BC";
+         AV22Pgmname = "WorkWithPlus.DynamicForms.WWP_FormInstance_BC";
          Gx_BScreen = 0;
          Gx_date = DateTimeUtil.Today( context);
       }
@@ -2190,9 +2204,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV9TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV10WebSession = context.GetSession();
-         AV19Pgmname = "";
+         AV22Pgmname = "";
          AV13TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV16Insert_WWPUserExtendedId = "";
+         AV17FormInstanceIdString = "";
+         AV18FormLink = "";
+         AV19WWPFormReferenceName = "";
          Z239WWPFormInstanceDate = DateTime.MinValue;
          A239WWPFormInstanceDate = DateTime.MinValue;
          Z112WWPUserExtendedId = "";
@@ -2478,7 +2495,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
             }
          );
-         AV19Pgmname = "WorkWithPlus.DynamicForms.WWP_FormInstance_BC";
+         AV22Pgmname = "WorkWithPlus.DynamicForms.WWP_FormInstance_BC";
          Z239WWPFormInstanceDate = DateTime.MinValue;
          A239WWPFormInstanceDate = DateTime.MinValue;
          i239WWPFormInstanceDate = DateTime.MinValue;
@@ -2523,15 +2540,16 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private int Z214WWPFormInstanceId ;
       private int A214WWPFormInstanceId ;
       private int nGXsfl_43_idx=1 ;
-      private int AV20GXV1 ;
+      private int AV23GXV1 ;
       private decimal Z222WWPFormInstanceElemNumeric ;
       private decimal A222WWPFormInstanceElemNumeric ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
       private string sMode42 ;
-      private string AV19Pgmname ;
+      private string AV22Pgmname ;
       private string AV16Insert_WWPUserExtendedId ;
+      private string AV17FormInstanceIdString ;
       private string Z112WWPUserExtendedId ;
       private string A112WWPUserExtendedId ;
       private string GXt_char1 ;
@@ -2568,6 +2586,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string A229WWPFormElementTitle ;
       private string Z236WWPFormElementMetadata ;
       private string A236WWPFormElementMetadata ;
+      private string AV18FormLink ;
+      private string AV19WWPFormReferenceName ;
       private string Z209WWPFormTitle ;
       private string A209WWPFormTitle ;
       private string Z113WWPUserExtendedFullName ;

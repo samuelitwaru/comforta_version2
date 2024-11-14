@@ -84,6 +84,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Supplieragbid_Z");
          state.Add("gxTpr_Supplieragbname_Z");
          state.Add("gxTpr_Productserviceimage_gxi_Z");
+         state.Add("gxTpr_Productserviceid_N");
          state.Add("gxTpr_Suppliergenid_N");
          state.Add("gxTpr_Supplieragbid_N");
          return state ;
@@ -121,6 +122,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_ProductService_Supplieragbid_Z = sdt.gxTv_SdtTrn_ProductService_Supplieragbid_Z ;
          gxTv_SdtTrn_ProductService_Supplieragbname_Z = sdt.gxTv_SdtTrn_ProductService_Supplieragbname_Z ;
          gxTv_SdtTrn_ProductService_Productserviceimage_gxi_Z = sdt.gxTv_SdtTrn_ProductService_Productserviceimage_gxi_Z ;
+         gxTv_SdtTrn_ProductService_Productserviceid_N = sdt.gxTv_SdtTrn_ProductService_Productserviceid_N ;
          gxTv_SdtTrn_ProductService_Suppliergenid_N = sdt.gxTv_SdtTrn_ProductService_Suppliergenid_N ;
          gxTv_SdtTrn_ProductService_Supplieragbid_N = sdt.gxTv_SdtTrn_ProductService_Supplieragbid_N ;
          return  ;
@@ -142,6 +144,7 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("ProductServiceId", gxTv_SdtTrn_ProductService_Productserviceid, false, includeNonInitialized);
+         AddObjectProperty("ProductServiceId_N", gxTv_SdtTrn_ProductService_Productserviceid_N, false, includeNonInitialized);
          AddObjectProperty("LocationId", gxTv_SdtTrn_ProductService_Locationid, false, includeNonInitialized);
          AddObjectProperty("OrganisationId", gxTv_SdtTrn_ProductService_Organisationid, false, includeNonInitialized);
          AddObjectProperty("ProductServiceName", gxTv_SdtTrn_ProductService_Productservicename, false, includeNonInitialized);
@@ -173,6 +176,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("SupplierAgbId_Z", gxTv_SdtTrn_ProductService_Supplieragbid_Z, false, includeNonInitialized);
             AddObjectProperty("SupplierAgbName_Z", gxTv_SdtTrn_ProductService_Supplieragbname_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceImage_GXI_Z", gxTv_SdtTrn_ProductService_Productserviceimage_gxi_Z, false, includeNonInitialized);
+            AddObjectProperty("ProductServiceId_N", gxTv_SdtTrn_ProductService_Productserviceid_N, false, includeNonInitialized);
             AddObjectProperty("SupplierGenId_N", gxTv_SdtTrn_ProductService_Suppliergenid_N, false, includeNonInitialized);
             AddObjectProperty("SupplierAgbId_N", gxTv_SdtTrn_ProductService_Supplieragbid_N, false, includeNonInitialized);
          }
@@ -949,6 +953,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ProductServiceId_N" )]
+      [  XmlElement( ElementName = "ProductServiceId_N"   )]
+      public short gxTpr_Productserviceid_N
+      {
+         get {
+            return gxTv_SdtTrn_ProductService_Productserviceid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_ProductService_Productserviceid_N = value;
+            SetDirty("Productserviceid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_ProductService_Productserviceid_N_SetNull( )
+      {
+         gxTv_SdtTrn_ProductService_Productserviceid_N = 0;
+         SetDirty("Productserviceid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_ProductService_Productserviceid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "SupplierGenId_N" )]
       [  XmlElement( ElementName = "SupplierGenId_N"   )]
       public short gxTpr_Suppliergenid_N
@@ -1065,6 +1097,7 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_ProductService_Initialized ;
+      private short gxTv_SdtTrn_ProductService_Productserviceid_N ;
       private short gxTv_SdtTrn_ProductService_Suppliergenid_N ;
       private short gxTv_SdtTrn_ProductService_Supplieragbid_N ;
       private string gxTv_SdtTrn_ProductService_Productservicetilename ;

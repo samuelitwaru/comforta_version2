@@ -31,23 +31,32 @@ class ToolBoxManager {
       pages.forEach((page) => {
         if (page.PageName === "Home") {
           this.editorManager.pageId = page.PageId;
-          console.log(page)
+          console.log(page);
           this.editorManager.setCurrentPage(page);
           this.editorManager.editor.trigger("load");
         }
       });
     });
-
-    
     this.loadTheme();
     this.listThemesInSelectField();
     this.colorPalette();
-    this.loadTiles();
+    this.ctaColorPalette();
+    // this.pageContentCtas();
+    this.loadThemeIcons();
     this.loadPageTemplates();
     
-    this.actionList = new ActionListComponent(this.editorManager, this.dataManager, this.currentLanguage, this)
-    
-    this.mediaComponent = new MediaComponent(this.dataManager, this.editorManager, this)
+    this.actionList = new ActionListComponent(
+      this.editorManager,
+      this.dataManager,
+      this.currentLanguage,
+      this
+    );
+
+    this.mediaComponent = new MediaComponent(
+      this.dataManager,
+      this.editorManager,
+      this
+    );
     const tabButtons = document.querySelectorAll(".toolbox-tab-button");
     const tabContents = document.querySelectorAll(".toolbox-tab-content");
     tabButtons.forEach((button) => {
@@ -71,6 +80,12 @@ class ToolBoxManager {
     const mappingSection = document.getElementById("mapping-section");
     const toolsSection = document.getElementById("tools-section");
 
+    this.mappingComponent = new MappingComponent(
+      this.dataManager,
+      this.editorManager,
+      this
+    );
+
     mappingButton.addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -80,16 +95,14 @@ class ToolBoxManager {
       mappingSection.style.display =
         mappingSection.style.display === "block" ? "none" : "block";
 
-        this.mappingComponent = new MappingComponent(this.dataManager, this.editorManager, this)
+      this.mappingComponent.init();
     });
 
     publishButton.onclick = (e) => {
       e.preventDefault();
-      let projectData = this.editorManager.editor.getProjectData()
-      let htmlData = this.editorManager.editor.getHtml()
-      let jsonData = mapTemplateToPageData(
-        projectData
-      );
+      let projectData = this.editorManager.editor.getProjectData();
+      let htmlData = this.editorManager.editor.getHtml();
+      let jsonData = mapTemplateToPageData(projectData);
 
       let pageId = this.editorManager.getCurrentPageId();
       if (pageId) {
@@ -97,13 +110,11 @@ class ToolBoxManager {
           PageId: pageId,
           PageJsonContent: JSON.stringify(jsonData),
           PageGJSHtml: htmlData,
-          PageGJSJson: JSON.stringify(
-            projectData
-          ),
+          PageGJSJson: JSON.stringify(projectData),
           SDT_Page: jsonData,
           PageIsPublished: true,
         };
-        console.log(data)
+        console.log(data);
         this.dataManager.updatePage(data).then((res) => {
           this.displayAlertMessage("Page Save Successfully", "success");
         });
@@ -258,22 +269,27 @@ class ToolBoxManager {
   }
 
   listThemesInSelectField() {
-    console.log(this.themes);
     const themeSelect = document.getElementById("theme-select");
 
     this.themes.forEach((theme) => {
+      console.log('theme',theme)
       const option = document.createElement("option");
       option.value = theme.name;
       option.textContent = theme.name;
+      option.id = theme.id
 
       themeSelect.appendChild(option);
     });
 
     themeSelect.addEventListener("change", (e) => {
       const themeName = e.target.value;
-
+      // update location theme
+      this.dataManager.selectedTheme = this.themes.find(theme=>theme.name=themeName)
+      this.dataManager.updateLocationTheme()
+      
       if (this.setTheme(themeName)) {
         this.themeColorPalette(this.currentTheme.colors);
+
         localStorage.setItem("selectedTheme", themeName);
 
         const message = this.currentLanguage.getTranslation(
@@ -307,6 +323,19 @@ class ToolBoxManager {
 
     this.currentTheme = theme;
     this.applyTheme();
+
+    // TODO: Apply theme attribute to json out output (research on editor methods to do this)
+    let wrapper = this.editorManager.editor.getWrapper();
+    wrapper.addAttributes({ theme: theme.name });
+    console.log("Theme is: ", theme);
+    this.icons = theme.icons.map((icon) => {
+      return {
+        name: icon.IconName,
+        svg: icon.IconSVG,
+        category: icon.IconCategory,
+      };
+    });
+    this.loadThemeIcons();
 
     this.themeColorPalette(this.currentTheme.colors);
     localStorage.setItem("selectedTheme", themeName);
@@ -436,12 +465,10 @@ class ToolBoxManager {
   }
 
   colorPalette() {
-    const textColorPaletteContainer = document.getElementById(
-      "text-color-palette"
-    );
-    const iconColorPaletteContainer = document.getElementById(
-      "icon-color-palette"
-    );
+    const textColorPaletteContainer =
+      document.getElementById("text-color-palette");
+    const iconColorPaletteContainer =
+      document.getElementById("icon-color-palette");
 
     // Fixed color values
     const colorValues = {
@@ -518,6 +545,230 @@ class ToolBoxManager {
     });
   }
 
+  ctaColorPalette() {
+    const tctaColorPaletteContainer =
+      document.getElementById("cta-color-palette");
+    // Fixed color values
+    const colorValues = {
+      color1: "#4C9155",
+      color2: "#5068A8",
+      color3: "#EEA622",
+      color4: "#FF6C37",
+    };
+    
+    // Create options for text color palette
+    console.log(colorValues)
+    Object.entries(colorValues).forEach(([colorName, colorValue]) => {
+      const alignItem = document.createElement("div");
+      alignItem.className = "color-item";
+      const radioInput = document.createElement("input");
+      radioInput.type = "radio";
+      radioInput.id = `cta-color-${colorName}`;
+      radioInput.name = "cta-color";
+      radioInput.value = colorName;
+      
+      const colorBox = document.createElement("label");
+      colorBox.className = "color-box";
+      colorBox.setAttribute("for", `cta-color-${colorName}`);
+      colorBox.style.backgroundColor = colorValue;
+      colorBox.setAttribute("data-tile-cta-color", colorValue);
+      
+      alignItem.appendChild(radioInput);
+      alignItem.appendChild(colorBox);
+      tctaColorPaletteContainer.appendChild(alignItem);
+
+      radioInput.onclick = () => {
+        this.editorManager.selectedComponent.addStyle({
+          color: colorValue,
+        });
+        this.setAttributeToSelected("tile-cta-color", colorValue);
+      };
+    });
+    
+  }
+
+  pageContentCtas(callToActions) {
+    const contentPageCtas = document.getElementById("call-to-actions");
+
+    const renderCtas = () => {
+      contentPageCtas.innerHTML = "";
+
+      callToActions.forEach((cta) => {
+        const ctaItem = document.createElement("div");
+        ctaItem.classList.add("call-to-action-item");
+        ctaItem.title = cta.CallToActionName;
+
+        let iconHtml = "";
+        switch (cta.CallToActionType) {
+          case "Phone":
+            iconHtml = '<i class="fa fa-phone-volume"></i>';
+            const phoneComponent = `
+            <div class="cta-container-child">
+              <div class="cta-button" ${defaultConstraints}>
+                <i class="fas fa-phone-alt" ${defaultConstraints}></i>
+                <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
+              </div>
+              <div class="cta-label" ${defaultConstraints}>${cta.CallToActionName}</div>
+              </div>
+            `;
+            ctaItem.onclick = (e) => {
+              e.preventDefault();
+              const websiteLinkComponent = this.editorManager.editor
+                .getWrapper()
+                .find(".cta-button-container")[0];
+
+              if (websiteLinkComponent) {
+                websiteLinkComponent.append(phoneComponent);
+                // this.setAttributeToSelected("tile-icon", icon.svg);
+              }
+            };
+            break;
+
+          case "Email":
+            iconHtml = '<i class="fa fa-envelope"></i>';
+            const emailComponent = `
+          <div class="cta-container-child">
+            <div class="cta-button" ${defaultConstraints}>
+              <i class="fas fa-envelope" ${defaultConstraints}></i>
+              <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
+            </div>
+            <div class="cta-label" ${defaultConstraints}>${cta.CallToActionName}</div>
+            </div>
+            `;
+            ctaItem.onclick = (e) => {
+              e.preventDefault();
+              const websiteLinkComponent = this.editorManager.editor
+                .getWrapper()
+                .find(".cta-button-container")[0];
+
+              if (websiteLinkComponent) {
+                websiteLinkComponent.append(emailComponent);
+                // this.setAttributeToSelected("tile-icon", icon.svg);
+              }
+            };
+            break;
+
+          case "SiteUrl":
+            iconHtml = '<i class="fa fa-link"></i>';
+            const linkComponent = `
+              <div
+                class="container-row"
+                data-gjs-type="template-wrapper"
+                data-gjs-draggable="true"
+                data-gjs-selectable="false"
+                data-gjs-editable="false"
+                data-gjs-droppable="false"
+                data-gjs-highlightable="true"
+                data-gjs-hoverable="true"
+              >
+                <div
+                  class="template-wrapper"
+                  data-gjs-type="template-wrapper"
+                  data-gjs-draggable="false"
+                  data-gjs-selectable="false"
+                  data-gjs-editable="false"
+                  data-gjs-droppable="false"
+                  data-gjs-highlightable="true"
+                  data-gjs-hoverable="true"
+                  style="display: flex; width: 100%"
+                >
+                  <div
+                    class=""
+                    ${defaultConstraints}
+                    style="flex: 1; padding: 0; height: auto"
+                  >
+                    <div class="cta-button-container" ${defaultConstraints}>
+                      <button class="cta-main-button" ${defaultConstraints} data-gjs-selectable="true">
+                      ${cta.CallToActionName}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            ctaItem.onclick = (e) => {
+              e.preventDefault();
+
+              const websiteLinkComponent = this.editorManager.editor
+                .getWrapper()
+                .find(".container-column")[0];
+
+              if (websiteLinkComponent) {
+                websiteLinkComponent.append(linkComponent);
+                // this.setAttributeToSelected("tile-icon", icon.svg);
+              }
+            };
+            break;
+
+          case "Form":
+            iconHtml = '<i class="fa fa-file"></i>';
+            const formComponent = `
+              <div
+                class="container-row"
+                data-gjs-type="template-wrapper"
+                data-gjs-draggable="true"
+                data-gjs-selectable="false"
+                data-gjs-editable="false"
+                data-gjs-droppable="false"
+                data-gjs-highlightable="true"
+                data-gjs-hoverable="true"
+              >
+                <div
+                  class="template-wrapper"
+                  data-gjs-type="template-wrapper"
+                  data-gjs-draggable="false"
+                  data-gjs-selectable="false"
+                  data-gjs-editable="false"
+                  data-gjs-droppable="false"
+                  data-gjs-highlightable="true"
+                  data-gjs-hoverable="true"
+                  style="display: flex; width: 100%"
+                >
+                  <div
+                    class=""
+                    ${defaultConstraints}
+                    style="flex: 1; padding: 0; height: auto"
+                  >
+                    <div class="cta-button-container" ${defaultConstraints}>
+                      <button class="cta-main-button" ${defaultConstraints} data-gjs-selectable="true">
+                      ${cta.CallToActionName}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            ctaItem.onclick = (e) => {
+              e.preventDefault();
+              const websiteLinkComponent = this.editorManager.editor
+                .getWrapper()
+                .find(".container-column")[0];
+
+              if (websiteLinkComponent) {
+                websiteLinkComponent.append(formComponent);
+                // this.setAttributeToSelected("tile-icon", icon.svg);
+              }
+            };
+            break;
+
+          default:
+            iconHtml = '<i class="fa fa-question"></i>';
+            ctaItem.onclick = (e) => {
+              e.preventDefault();
+              console.log(`Unknown action type for ${cta.CallToActionName}`);
+            };
+        }
+
+        ctaItem.innerHTML = `${iconHtml}`;
+
+        // Append to the container
+        contentPageCtas.appendChild(ctaItem);
+      });
+    };
+
+    renderCtas();
+  }
+
   setupColorRadios(radioGroup, colorValues, type) {
     Object.keys(colorValues).forEach((colorKey, index) => {
       const radio = radioGroup[index];
@@ -557,42 +808,65 @@ class ToolBoxManager {
     });
   }
 
-  loadTiles() {
-    const tileIcons = document.getElementById("icons-list");
+  loadThemeIcons() {
+    const themeIcons = document.getElementById("icons-list");
+    const themeIconCategory = document.getElementById("theme_icon_category");
 
-    this.icons.forEach((icon) => {
-      const iconItem = document.createElement("div");
-      iconItem.classList.add("icon");
-      iconItem.innerHTML = `
-          ${icon.svg}
-          <span class="icon-title">${icon.name}</span>
-      `;
+    // Set default category
+    let selectedCategory = "General";
 
-      iconItem.onclick = () => {
-        if (this.editorManager.selectedTemplateWrapper) {
-          const templateBlock = this.editorManager.selectedTemplateWrapper.querySelector(
-            ".template-block"
-          );
+    // Add event listener for category changes
+    themeIconCategory.addEventListener("change", (e) => {
+      selectedCategory = e.target.value;
+      renderIcons();
+    });
 
-          if (templateBlock) {
-            const iconComponent = this.editorManager.editor
-              .getSelected()
-              .find(".tile-icon")[0];
-            if (iconComponent) {
-              iconComponent.components(icon.svg);
-              this.setAttributeToSelected("tile-icon", icon.svg);
+    const renderIcons = () => {
+      // Clear existing icons
+      themeIcons.innerHTML = "";
+
+      // Filter icons based on selected category
+      const filteredIcons = this.icons.filter(
+        (icon) => icon.category === selectedCategory
+      );
+
+      // Render filtered icons
+      filteredIcons.forEach((icon) => {
+        const iconItem = document.createElement("div");
+        iconItem.classList.add("icon");
+        iconItem.title = icon.name;
+
+        const displayName =
+          icon.name.length > 7 ? icon.name.slice(0, 7) + "..." : icon.name;
+
+        iconItem.innerHTML = `
+                ${icon.svg}
+                <span class="icon-title">${displayName}</span>
+            `;
+
+        iconItem.onclick = () => {
+          if (this.editorManager.selectedTemplateWrapper) {
+            const templateBlock =
+              this.editorManager.selectedTemplateWrapper.querySelector(
+                ".template-block"
+              );
+
+            if (templateBlock) {
+              const iconComponent = this.editorManager.editor
+                .getSelected()
+                .find(".tile-icon")[0];
+
+              if (iconComponent) {
+                iconComponent.components(icon.svg);
+                this.setAttributeToSelected("tile-icon", icon.svg);
+              }
+            } else {
+              const message = this.currentLanguage.getTranslation(
+                "no_tile_selected_error_message"
+              );
+              const status = "error";
+              this.displayAlertMessage(message, status);
             }
-            // const titleComponent = this.editorManager.editor
-            //   .getSelected()
-            //   .find(".tile-title-section")[0];
-            // if (titleComponent) {
-            //   titleComponent.components(icon.name);
-
-            //   const sidebarInputTitle = document.getElementById("tile-title");
-            //   if (sidebarInputTitle) {
-            //     sidebarInputTitle.textContent = icon.name;
-            //   }
-            // }
           } else {
             const message = this.currentLanguage.getTranslation(
               "no_tile_selected_error_message"
@@ -600,17 +874,14 @@ class ToolBoxManager {
             const status = "error";
             this.displayAlertMessage(message, status);
           }
-        } else {
-          const message = this.currentLanguage.getTranslation(
-            "no_tile_selected_error_message"
-          );
-          const status = "error";
-          this.displayAlertMessage(message, status);
-        }
-      };
+        };
 
-      tileIcons.appendChild(iconItem);
-    });
+        themeIcons.appendChild(iconItem);
+      });
+    };
+
+    // Initial render with default category
+    renderIcons();
   }
 
   loadPageTemplates() {
@@ -659,8 +930,6 @@ class ToolBoxManager {
       pageTemplates.appendChild(blockElement);
     });
   }
-
-  
 
   popupModal() {
     const popup = document.createElement("div");
@@ -833,6 +1102,38 @@ class ToolBoxManager {
       // Set background style for the selected option
       selectedOptionElement.style.background = "#f0f0f0";
     }
+  }
+
+  resetPropertySection() {
+    const themeSection = document.querySelector(".theme-section");
+    const titleSection = document.querySelector(".title-section");
+    const customSelectContainer = document.querySelector(
+      ".custom-select-container"
+    );
+    const servicesSection = document.querySelector(".services-section");
+    const contentPageSection = document.querySelector(".content-page-section");
+
+    if (themeSection) themeSection.style.display = "block";
+    if (titleSection) titleSection.style.display = "block";
+    if (customSelectContainer) customSelectContainer.style.display = "block";
+    if (servicesSection) servicesSection.style.display = "block";
+    if (contentPageSection) contentPageSection.style.display = "none";
+  }
+
+  updatePropertySection() {
+    const themeSection = document.querySelector(".theme-section");
+    const titleSection = document.querySelector(".title-section");
+    const customSelectContainer = document.querySelector(
+      ".custom-select-container"
+    );
+    const servicesSection = document.querySelector(".services-section");
+    const contentPageSection = document.querySelector(".content-page-section");
+
+    if (themeSection) themeSection.style.display = "none";
+    if (titleSection) titleSection.style.display = "none";
+    if (customSelectContainer) customSelectContainer.style.display = "none";
+    if (servicesSection) servicesSection.style.display = "none";
+    if (contentPageSection) contentPageSection.style.display = "block";
   }
 }
 

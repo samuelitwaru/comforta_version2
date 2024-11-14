@@ -56,6 +56,12 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residentphone = "";
 
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonecode = "";
+
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonenumber = "";
+
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephone = "";
+
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residentbsnnumber = "";
 
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename = "";
@@ -142,16 +148,25 @@ namespace GeneXus.Programs
 			AddObjectProperty("ResidentPhone", gxTpr_Residentphone, false);
 
 
+			AddObjectProperty("ResidentHomePhoneCode", gxTpr_Residenthomephonecode, false);
+
+
+			AddObjectProperty("ResidentHomePhoneNumber", gxTpr_Residenthomephonenumber, false);
+
+
+			AddObjectProperty("ResidentHomePhone", gxTpr_Residenthomephone, false);
+
+
 			AddObjectProperty("ResidentBsnNumber", gxTpr_Residentbsnnumber, false);
 
 
 			AddObjectProperty("ResidentTypeId", gxTpr_Residenttypeid, false);
 
 
-			AddObjectProperty("ResidentTypeName", gxTpr_Residenttypename, false);
-
-
 			AddObjectProperty("MedicalIndicationId", gxTpr_Medicalindicationid, false);
+
+
+			AddObjectProperty("ResidentTypeName", gxTpr_Residenttypename, false);
 
 			return;
 		}
@@ -410,6 +425,54 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="ResidentHomePhoneCode")]
+		[XmlElement(ElementName="ResidentHomePhoneCode")]
+		public string gxTpr_Residenthomephonecode
+		{
+			get {
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonecode; 
+			}
+			set {
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonecode = value;
+				SetDirty("Residenthomephonecode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ResidentHomePhoneNumber")]
+		[XmlElement(ElementName="ResidentHomePhoneNumber")]
+		public string gxTpr_Residenthomephonenumber
+		{
+			get {
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonenumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonenumber = value;
+				SetDirty("Residenthomephonenumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ResidentHomePhone")]
+		[XmlElement(ElementName="ResidentHomePhone")]
+		public string gxTpr_Residenthomephone
+		{
+			get {
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephone; 
+			}
+			set {
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephone = value;
+				SetDirty("Residenthomephone");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="ResidentBsnNumber")]
 		[XmlElement(ElementName="ResidentBsnNumber")]
 		public string gxTpr_Residentbsnnumber
@@ -442,22 +505,6 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="ResidentTypeName")]
-		[XmlElement(ElementName="ResidentTypeName")]
-		public string gxTpr_Residenttypename
-		{
-			get {
-				return gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename; 
-			}
-			set {
-				gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename = value;
-				SetDirty("Residenttypename");
-			}
-		}
-
-
-
-
 		[SoapElement(ElementName="MedicalIndicationId")]
 		[XmlElement(ElementName="MedicalIndicationId")]
 		public Guid gxTpr_Medicalindicationid
@@ -468,6 +515,22 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Medicalindicationid = value;
 				SetDirty("Medicalindicationid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ResidentTypeName")]
+		[XmlElement(ElementName="ResidentTypeName")]
+		public string gxTpr_Residenttypename
+		{
+			get {
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename; 
+			}
+			set {
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename = value;
+				SetDirty("Residenttypename");
 			}
 		}
 
@@ -509,10 +572,13 @@ namespace GeneXus.Programs
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residentphonecode = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residentphonenumber = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residentphone = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonecode = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonenumber = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephone = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residentbsnnumber = "";
 
-			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename = "";
 
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename = "";
 			sDateCnv = "";
 			sNumToPad = "";
 			return  ;
@@ -571,16 +637,25 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residentphone;
 		 
 
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonecode;
+		 
+
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephonenumber;
+		 
+
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenthomephone;
+		 
+
 		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residentbsnnumber;
 		 
 
 		protected Guid gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypeid;
 		 
 
-		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename;
+		protected Guid gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Medicalindicationid;
 		 
 
-		protected Guid gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Medicalindicationid;
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step1_Residenttypename;
 		 
 
 
@@ -780,7 +855,43 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ResidentBsnNumber", Order=15)]
+		[DataMember(Name="ResidentHomePhoneCode", Order=15)]
+		public  string gxTpr_Residenthomephonecode
+		{
+			get { 
+				return sdt.gxTpr_Residenthomephonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Residenthomephonecode = value;
+			}
+		}
+
+		[DataMember(Name="ResidentHomePhoneNumber", Order=16)]
+		public  string gxTpr_Residenthomephonenumber
+		{
+			get { 
+				return sdt.gxTpr_Residenthomephonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Residenthomephonenumber = value;
+			}
+		}
+
+		[DataMember(Name="ResidentHomePhone", Order=17)]
+		public  string gxTpr_Residenthomephone
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Residenthomephone);
+
+			}
+			set { 
+				 sdt.gxTpr_Residenthomephone = value;
+			}
+		}
+
+		[DataMember(Name="ResidentBsnNumber", Order=18)]
 		public  string gxTpr_Residentbsnnumber
 		{
 			get { 
@@ -792,7 +903,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ResidentTypeId", Order=16)]
+		[DataMember(Name="ResidentTypeId", Order=19)]
 		public Guid gxTpr_Residenttypeid
 		{
 			get { 
@@ -804,19 +915,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ResidentTypeName", Order=17)]
-		public  string gxTpr_Residenttypename
-		{
-			get { 
-				return sdt.gxTpr_Residenttypename;
-
-			}
-			set { 
-				 sdt.gxTpr_Residenttypename = value;
-			}
-		}
-
-		[DataMember(Name="MedicalIndicationId", Order=18)]
+		[DataMember(Name="MedicalIndicationId", Order=20)]
 		public Guid gxTpr_Medicalindicationid
 		{
 			get { 
@@ -825,6 +924,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Medicalindicationid = value;
+			}
+		}
+
+		[DataMember(Name="ResidentTypeName", Order=21)]
+		public  string gxTpr_Residenttypename
+		{
+			get { 
+				return sdt.gxTpr_Residenttypename;
+
+			}
+			set { 
+				 sdt.gxTpr_Residenttypename = value;
 			}
 		}
 

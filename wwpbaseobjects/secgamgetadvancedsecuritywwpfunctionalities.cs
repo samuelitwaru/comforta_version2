@@ -93,10 +93,43 @@ namespace GeneXus.Programs.wwpbaseobjects {
          returnInSub = false;
          Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
          Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_manager_Insert";
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitydsc = "Insert";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_organisation_Insert";
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitydsc = "Insert";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_resident_Delete";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
          Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_resident_Insert";
          Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
          Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_location_Insert";
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitydsc = "Insert";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_productservice_Insert";
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitydsc = "Insert";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
          Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_receptionist_Insert";
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitydsc = "Invite";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_receptionistview_Execute";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_receptionist_Update";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_receptionist_Delete";
+         Gxm2secgamfunctionalitiestoload = new GeneXus.Programs.wwpbaseobjects.SdtSecGAMFunctionalitiesToLoad(context);
+         Gxm3rootcol.Add(Gxm2secgamfunctionalitiestoload, 0);
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitykey = "trn_loacationdynamicform_Insert";
+         Gxm2secgamfunctionalitiestoload.gxTpr_Secgamfunctionalitydsc = "Insert";
       }
 
       public override void cleanup( )

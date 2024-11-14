@@ -57,8 +57,8 @@ class ActionListComponent {
     this.dataManager
       .getPagesService()
       .then((pages) => {
-       
-        this.pageOptions = this.mapPageNamesToOptions(pages);
+        console.log('ActionList', pages)
+        this.pageOptions = this.mapPageNamesToOptions(pages.filter(page=>page.Name!="Home"));
         
         this.categoryData.forEach((category) => {
           if (category.name === "Page") {
@@ -179,6 +179,7 @@ class ActionListComponent {
     // Handle selecting an option and displaying it in the header
     document.querySelectorAll(".category-content li").forEach((item) => {
       item.addEventListener("click", function () {
+        
         dropdownHeader.textContent = `${
           this.closest(".category").dataset.category
         }, ${this.textContent}`;
@@ -202,6 +203,11 @@ class ActionListComponent {
                 this.textContent
               }`
             );
+
+            if (self.selectedObject == 'Service/Product Page'){
+              self.createContentPage(this.id)
+            }
+
           }
 
           if (titleComponent) {
@@ -244,22 +250,49 @@ class ActionListComponent {
       });
     });
   }
+
+  createContentPage(pageId) {
+    let self = this
+    this.dataManager.createContentPage(pageId).then(res=>{
+      this.dataManager.getPages().then(pages=>{
+        let treePages = pages.map(page=>{return {Id:page.PageId, Name:page.PageName}})
+        console.log(self.toolBoxManager)
+        const newTree = self.toolBoxManager.mappingComponent.createTree(treePages, true); // Set isRoot to true if it's the root
+        self.toolBoxManager.mappingComponent.treeContainer.appendChild(newTree);
+      })
+    })
+  }
 }
 
 class MappingComponent {
   treeContainer = document.getElementById("tree-container");
-  createPageButton = document.getElementById("page-submit");
 
   constructor(dataManager, editorManager, toolBoxManager) {
     this.dataManager = dataManager;
     this.editorManager = editorManager;
     this.toolBoxManager = toolBoxManager;
-    this.init();
   }
 
   init() {
-    let self = this;
     this.clearMappings();
+    this.loadPageTree();
+
+    const createPageButton = document.getElementById("page-submit");
+    const pageInput = document.getElementById("page-title");
+
+    // Enable/Disable create button based on input
+    pageInput.addEventListener("input", () => {
+      createPageButton.disabled = !pageInput.value.trim();
+    });
+
+    // Create new page
+    createPageButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.handleCreatePage(pageInput, createPageButton);
+    });
+  }
+
+  loadPageTree() {
     this.dataManager
       .getPagesService()
       .then((pages) => {
@@ -268,48 +301,20 @@ class MappingComponent {
       .catch((error) => {
         console.error("Error fetching pages:", error);
       });
+  }
 
-    // Create new page
-    this.createPageButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      const pageFormSection = document.getElementById("page-form");
-      pageFormSection.style.display = "block";
-      const pageInput = document.getElementById("page-title");
-      const pageSubmit = document.getElementById("page-submit");
+  handleCreatePage(pageInput, createPageButton) {
+    const pageTitle = pageInput.value.trim();
+    if (pageTitle) {
+      createPageButton.disabled = true;
+      this.dataManager.createNewPage(pageTitle).then((res) => {
+        pageInput.value = "";
 
-      pageSubmit.disabled = true;
-
-      pageInput.addEventListener("input", () => {
-        pageSubmit.disabled = !pageInput.value.trim();
+        // Refresh the tree
+        this.clearMappings();
+        this.loadPageTree();
       });
-
-      pageSubmit.addEventListener("click", (e) => {
-        e.preventDefault();
-        const pageTitle = pageInput.value.trim();
-        if (pageTitle) {
-          // Additional check to ensure value exists
-          this.dataManager.createNewPage(pageTitle).then((res) => {
-            const pageInput = document.getElementById("page-title");
-            pageInput.value = "";
-
-            this.dataManager
-              .getPagesService()
-              .then((pages) => {
-                // Clear the current tree structure
-                const treeContainer = document.getElementById("tree-container"); // Assuming tree is rendered here
-                treeContainer.innerHTML = ""; // Clear existing nodes
-
-                // Re-create the tree with updated pages data
-                const newTree = self.createTree(pages, true); // Set isRoot to true if it's the root
-                treeContainer.appendChild(newTree); // Append the new tree structure to the container
-              })
-              .catch((error) => {
-                console.error("Error fetching pages:", error);
-              });
-          });
-        }
-      });
-    });
+    }
   }
 
   clearMappings() {
@@ -322,7 +327,7 @@ class MappingComponent {
     const ul = document.createElement("ul");
     if (!isRoot) ul.style.display = "block";
 
-    data.forEach((item, index) => {
+    data.forEach((item) => {
       const li = document.createElement("li");
       const span = document.createElement("span");
       span.textContent = item.Name;
@@ -330,69 +335,69 @@ class MappingComponent {
       li.appendChild(span);
       li.className = this.checkActivePage(item.Id) ? "selected-page" : "";
       span.title = item.Id;
-      let pageTile = document.createElement("span");
-      pageTile.textContent = item.Name;
+
       if (item.Children && item.Children.length > 0) {
         const childrenContainer = this.createTree(item.Children); // Recursively create children
         li.appendChild(childrenContainer);
 
         let childToggle = document.createElement("span");
-
         childToggle.textContent = " + ";
         span.style.cursor = "pointer";
 
         childToggle.onclick = () => {
           childrenContainer.style.display =
             childrenContainer.style.display === "none" ? "block" : "none";
-
           childToggle.textContent =
             childrenContainer.style.display === "none" ? " + " : " - ";
         };
 
-        //span.appendChild(pageTile)
         span.appendChild(childToggle);
       }
-      //else {
-      span.onclick = () => {
-        this.editorManager.setCurrentPageName(item.Name);
-        this.editorManager.setCurrentPageId(item.Id);
-        let page = this.dataManager.pages.find(page=>page.PageId == item.Id)
-        this.editorManager.setCurrentPage(page)
-        const editor = this.editorManager.editor;
 
-        editor.DomComponents.clear();
-        this.editorManager.templateComponent = null;
-        editor.trigger("load");
-
-        document.querySelectorAll(".selected-page").forEach((el) => {
-          el.classList.remove("selected-page");
-        });
-
-        span.closest("li").classList.add("selected-page");
-        const mainPage = document.getElementById("current-page-title");
-        mainPage.textContent = this.updateActivePageName();
-
-        const message = `${item.Name} Page loaded successfully`;
-        const status = "success";
-        this.toolBoxManager.displayAlertMessage(message, status);
-      };
-      //}
+      span.onclick = () => this.handlePageSelection(item, span);
       ul.appendChild(li);
     });
+
     return ul;
+  }
+
+  handlePageSelection(item, span) {
+    this.editorManager.setCurrentPageName(item.Name);
+    this.editorManager.setCurrentPageId(item.Id);
+
+    let page = this.dataManager.pages.find(page => page.PageId === item.Id);
+    this.editorManager.setCurrentPage(page);
+
+    const editor = this.editorManager.editor;
+    editor.DomComponents.clear();
+    this.editorManager.templateComponent = null;
+    editor.trigger("load");
+
+    document.querySelectorAll(".selected-page").forEach((el) => {
+      el.classList.remove("selected-page");
+    });
+
+    span.closest("li").classList.add("selected-page");
+    const mainPage = document.getElementById("current-page-title");
+    mainPage.textContent = this.updateActivePageName();
+
+    this.displayMessage(`${item.Name} Page loaded successfully`, "success");
   }
 
   checkActivePage(id) {
     const pageId = localStorage.getItem("pageId");
-    if (pageId === id) {
-      return true;
-    }
+    return pageId === id;
   }
 
   updateActivePageName() {
     return this.editorManager.getCurrentPageName();
   }
+
+  displayMessage(message, status) {
+    this.toolBoxManager.displayAlertMessage(message, status);
+  }
 }
+
 
 class MediaComponent {
     constructor (dataManager, editorManager, toolBoxManager) {

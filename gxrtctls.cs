@@ -70,23 +70,25 @@ namespace GeneXus.Programs {
          /* Output device settings */
          AV2Status = 0;
          Console.WriteLine( context.GetMessage( "=== Starting run time controls", "") );
-         Console.WriteLine( context.GetMessage( "Checking that table Trn_AgendaCalendar does NOT contain records.", "") );
+         Console.WriteLine( context.GetMessage( "Checking that table Trn_Page does NOT contain records.", "") );
          AV3NotFound = 0;
          AV4GXLvl5 = 0;
          /* Using cursor LTCTLS2 */
          pr_default.execute(0);
          while ( (pr_default.getStatus(0) != 101) )
          {
-            A29LocationId = LTCTLS2_A29LocationId[0];
-            A303AgendaCalendarId = LTCTLS2_A303AgendaCalendarId[0];
+            A58ProductServiceId = LTCTLS2_A58ProductServiceId[0];
+            n58ProductServiceId = LTCTLS2_n58ProductServiceId[0];
+            A310Trn_PageId = LTCTLS2_A310Trn_PageId[0];
             AV4GXLvl5 = 1;
             AV5GXLvl8 = 0;
             /* Using cursor LTCTLS3 */
-            pr_default.execute(1, new Object[] {A29LocationId});
+            pr_default.execute(1, new Object[] {n58ProductServiceId, A58ProductServiceId});
             while ( (pr_default.getStatus(1) != 101) )
             {
                A11OrganisationId = LTCTLS3_A11OrganisationId[0];
-               if ( A11OrganisationId == Guid.Empty )
+               A29LocationId = LTCTLS3_A29LocationId[0];
+               if ( ( A29LocationId == Guid.Empty ) && ( A11OrganisationId == Guid.Empty ) )
                {
                   AV5GXLvl8 = 1;
                }
@@ -96,7 +98,7 @@ namespace GeneXus.Programs {
             if ( AV5GXLvl8 == 0 )
             {
                AV2Status = 1;
-               Console.WriteLine( context.GetMessage( "Fail: Table Trn_AgendaCalendar has records but referenced key value in table Trn_Location does _not_ exist.", "") );
+               Console.WriteLine( context.GetMessage( "Fail: Table Trn_Page has records but referenced key value in table Trn_ProductService does _not_ exist.", "") );
                Console.WriteLine( context.GetMessage( "Recovery: See recovery information for reorganization message rgz0029.", "") );
                AV3NotFound = 1;
             }
@@ -110,12 +112,12 @@ namespace GeneXus.Programs {
          pr_default.close(0);
          if ( AV4GXLvl5 == 0 )
          {
-            Console.WriteLine( context.GetMessage( "Success: Table Trn_AgendaCalendar does NOT have records.", "") );
+            Console.WriteLine( context.GetMessage( "Success: Table Trn_Page does NOT have records.", "") );
             AV3NotFound = 1;
          }
          if ( AV3NotFound == 0 )
          {
-            Console.WriteLine( context.GetMessage( "Success: Table Trn_AgendaCalendarhas records but all referenced key values in table Trn_Location exist.", "") );
+            Console.WriteLine( context.GetMessage( "Success: Table Trn_Pagehas records but all referenced key values in table Trn_ProductService exist.", "") );
          }
          Console.WriteLine( "====================" );
          Console.WriteLine( context.GetMessage( "=== End of run time controls", "") );
@@ -134,20 +136,24 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         LTCTLS2_A29LocationId = new Guid[] {Guid.Empty} ;
-         LTCTLS2_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
-         A29LocationId = Guid.Empty;
-         A303AgendaCalendarId = Guid.Empty;
-         LTCTLS3_A29LocationId = new Guid[] {Guid.Empty} ;
+         LTCTLS2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         LTCTLS2_n58ProductServiceId = new bool[] {false} ;
+         LTCTLS2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         A58ProductServiceId = Guid.Empty;
+         A310Trn_PageId = Guid.Empty;
+         LTCTLS3_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         LTCTLS3_n58ProductServiceId = new bool[] {false} ;
          LTCTLS3_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         LTCTLS3_A29LocationId = new Guid[] {Guid.Empty} ;
          A11OrganisationId = Guid.Empty;
+         A29LocationId = Guid.Empty;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.gxrtctls__default(),
             new Object[][] {
                 new Object[] {
-               LTCTLS2_A29LocationId, LTCTLS2_A303AgendaCalendarId
+               LTCTLS2_A58ProductServiceId, LTCTLS2_n58ProductServiceId, LTCTLS2_A310Trn_PageId
                }
                , new Object[] {
-               LTCTLS3_A29LocationId, LTCTLS3_A11OrganisationId
+               LTCTLS3_A58ProductServiceId, LTCTLS3_A11OrganisationId, LTCTLS3_A29LocationId
                }
             }
          );
@@ -158,16 +164,21 @@ namespace GeneXus.Programs {
       private short AV3NotFound ;
       private short AV4GXLvl5 ;
       private short AV5GXLvl8 ;
-      private Guid A29LocationId ;
-      private Guid A303AgendaCalendarId ;
+      private bool n58ProductServiceId ;
+      private Guid A58ProductServiceId ;
+      private Guid A310Trn_PageId ;
       private Guid A11OrganisationId ;
+      private Guid A29LocationId ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
-      private Guid[] LTCTLS2_A29LocationId ;
-      private Guid[] LTCTLS2_A303AgendaCalendarId ;
-      private Guid[] LTCTLS3_A29LocationId ;
+      private Guid[] LTCTLS2_A58ProductServiceId ;
+      private bool[] LTCTLS2_n58ProductServiceId ;
+      private Guid[] LTCTLS2_A310Trn_PageId ;
+      private Guid[] LTCTLS3_A58ProductServiceId ;
+      private bool[] LTCTLS3_n58ProductServiceId ;
       private Guid[] LTCTLS3_A11OrganisationId ;
+      private Guid[] LTCTLS3_A29LocationId ;
       private short aP0_Status ;
    }
 
@@ -192,11 +203,11 @@ namespace GeneXus.Programs {
           };
           Object[] prmLTCTLS3;
           prmLTCTLS3 = new Object[] {
-          new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
+          new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true}
           };
           def= new CursorDef[] {
-              new CursorDef("LTCTLS2", "SELECT DISTINCT LocationId, AgendaCalendarId FROM Trn_AgendaCalendar ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmLTCTLS2,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("LTCTLS3", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE LocationId = :LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmLTCTLS3,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("LTCTLS2", "SELECT DISTINCT ProductServiceId, Trn_PageId FROM Trn_Page ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmLTCTLS2,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("LTCTLS3", "SELECT ProductServiceId, OrganisationId, LocationId FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmLTCTLS3,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -209,11 +220,13 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 return;
        }
     }

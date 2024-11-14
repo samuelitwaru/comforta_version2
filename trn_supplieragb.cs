@@ -245,6 +245,7 @@ namespace GeneXus.Programs {
 
       protected override void createObjects( )
       {
+         cmbSupplierAgbWebsite = new GXCombobox();
       }
 
       protected override bool IntegratedSecurityEnabled
@@ -311,6 +312,16 @@ namespace GeneXus.Programs {
 
       protected void fix_multi_value_controls( )
       {
+         if ( cmbSupplierAgbWebsite.ItemCount > 0 )
+         {
+            A440SupplierAgbWebsite = cmbSupplierAgbWebsite.getValidValue(A440SupplierAgbWebsite);
+            AssignAttri("", false, "A440SupplierAgbWebsite", A440SupplierAgbWebsite);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
+            cmbSupplierAgbWebsite.CurrentValue = StringUtil.RTrim( A440SupplierAgbWebsite);
+            AssignProp("", false, cmbSupplierAgbWebsite_Internalname, "Values", cmbSupplierAgbWebsite.ToJavascriptSource(), true);
+         }
       }
 
       protected void Draw( )
@@ -391,6 +402,7 @@ namespace GeneXus.Programs {
          ucCombo_supplieragbtypeid.SetProperty("Caption", Combo_supplieragbtypeid_Caption);
          ucCombo_supplieragbtypeid.SetProperty("Cls", Combo_supplieragbtypeid_Cls);
          ucCombo_supplieragbtypeid.SetProperty("EmptyItem", Combo_supplieragbtypeid_Emptyitem);
+         ucCombo_supplieragbtypeid.SetProperty("IncludeAddNewOption", Combo_supplieragbtypeid_Includeaddnewoption);
          ucCombo_supplieragbtypeid.SetProperty("DropDownOptionsData", AV15SupplierAgbTypeId_Data);
          ucCombo_supplieragbtypeid.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_supplieragbtypeid_Internalname, "COMBO_SUPPLIERAGBTYPEIDContainer");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -555,14 +567,16 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtSupplierAgbWebsite_Internalname+"\"", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbSupplierAgbWebsite_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtSupplierAgbWebsite_Internalname, context.GetMessage( "Website", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, cmbSupplierAgbWebsite_Internalname, context.GetMessage( "Website", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
-         /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtSupplierAgbWebsite_Internalname, A440SupplierAgbWebsite, StringUtil.RTrim( context.localUtil.Format( A440SupplierAgbWebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,77);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierAgbWebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierAgbWebsite_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, 0, 0, 0, 0, -1, -1, true, "Website", "start", true, "", "HLP_Trn_SupplierAgb.htm");
+         /* ComboBox */
+         GxWebStd.gx_combobox_ctrl1( context, cmbSupplierAgbWebsite, cmbSupplierAgbWebsite_Internalname, StringUtil.RTrim( A440SupplierAgbWebsite), 1, cmbSupplierAgbWebsite_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "svchar", "", 1, cmbSupplierAgbWebsite.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,77);\"", "", true, 0, "HLP_Trn_SupplierAgb.htm");
+         cmbSupplierAgbWebsite.CurrentValue = StringUtil.RTrim( A440SupplierAgbWebsite);
+         AssignProp("", false, cmbSupplierAgbWebsite_Internalname, "Values", (string)(cmbSupplierAgbWebsite.ToJavascriptSource()), true);
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -830,7 +844,7 @@ namespace GeneXus.Programs {
                Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AV13Insert_SupplierAgbTypeId = StringUtil.StrToGuid( cgiGet( "vINSERT_SUPPLIERAGBTYPEID"));
                A291SupplierAgbTypeName = cgiGet( "SUPPLIERAGBTYPENAME");
-               AV30Pgmname = cgiGet( "vPGMNAME");
+               AV31Pgmname = cgiGet( "vPGMNAME");
                Combo_supplieragbtypeid_Objectcall = cgiGet( "COMBO_SUPPLIERAGBTYPEID_Objectcall");
                Combo_supplieragbtypeid_Class = cgiGet( "COMBO_SUPPLIERAGBTYPEID_Class");
                Combo_supplieragbtypeid_Icontype = cgiGet( "COMBO_SUPPLIERAGBTYPEID_Icontype");
@@ -871,6 +885,7 @@ namespace GeneXus.Programs {
                Combo_supplieragbtypeid_Selectalltext = cgiGet( "COMBO_SUPPLIERAGBTYPEID_Selectalltext");
                Combo_supplieragbtypeid_Multiplevaluesseparator = cgiGet( "COMBO_SUPPLIERAGBTYPEID_Multiplevaluesseparator");
                Combo_supplieragbtypeid_Addnewoptiontext = cgiGet( "COMBO_SUPPLIERAGBTYPEID_Addnewoptiontext");
+               Combo_supplieragbtypeid_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_SUPPLIERAGBTYPEID_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_supplieragbphonecode_Objectcall = cgiGet( "COMBO_SUPPLIERAGBPHONECODE_Objectcall");
                Combo_supplieragbphonecode_Class = cgiGet( "COMBO_SUPPLIERAGBPHONECODE_Class");
                Combo_supplieragbphonecode_Icontype = cgiGet( "COMBO_SUPPLIERAGBPHONECODE_Icontype");
@@ -911,6 +926,7 @@ namespace GeneXus.Programs {
                Combo_supplieragbphonecode_Selectalltext = cgiGet( "COMBO_SUPPLIERAGBPHONECODE_Selectalltext");
                Combo_supplieragbphonecode_Multiplevaluesseparator = cgiGet( "COMBO_SUPPLIERAGBPHONECODE_Multiplevaluesseparator");
                Combo_supplieragbphonecode_Addnewoptiontext = cgiGet( "COMBO_SUPPLIERAGBPHONECODE_Addnewoptiontext");
+               Combo_supplieragbphonecode_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_SUPPLIERAGBPHONECODE_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_supplieragbaddresscountry_Objectcall = cgiGet( "COMBO_SUPPLIERAGBADDRESSCOUNTRY_Objectcall");
                Combo_supplieragbaddresscountry_Class = cgiGet( "COMBO_SUPPLIERAGBADDRESSCOUNTRY_Class");
                Combo_supplieragbaddresscountry_Icontype = cgiGet( "COMBO_SUPPLIERAGBADDRESSCOUNTRY_Icontype");
@@ -951,6 +967,7 @@ namespace GeneXus.Programs {
                Combo_supplieragbaddresscountry_Selectalltext = cgiGet( "COMBO_SUPPLIERAGBADDRESSCOUNTRY_Selectalltext");
                Combo_supplieragbaddresscountry_Multiplevaluesseparator = cgiGet( "COMBO_SUPPLIERAGBADDRESSCOUNTRY_Multiplevaluesseparator");
                Combo_supplieragbaddresscountry_Addnewoptiontext = cgiGet( "COMBO_SUPPLIERAGBADDRESSCOUNTRY_Addnewoptiontext");
+               Combo_supplieragbaddresscountry_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_SUPPLIERAGBADDRESSCOUNTRY_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtSupplierAgbTypeId_Internalname), "") == 0 )
                {
@@ -987,7 +1004,8 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A378SupplierAgbPhoneNumber", A378SupplierAgbPhoneNumber);
                A57SupplierAgbEmail = cgiGet( edtSupplierAgbEmail_Internalname);
                AssignAttri("", false, "A57SupplierAgbEmail", A57SupplierAgbEmail);
-               A440SupplierAgbWebsite = cgiGet( edtSupplierAgbWebsite_Internalname);
+               cmbSupplierAgbWebsite.CurrentValue = cgiGet( cmbSupplierAgbWebsite_Internalname);
+               A440SupplierAgbWebsite = cgiGet( cmbSupplierAgbWebsite_Internalname);
                AssignAttri("", false, "A440SupplierAgbWebsite", A440SupplierAgbWebsite);
                A333SupplierAgbAddressLine1 = cgiGet( edtSupplierAgbAddressLine1_Internalname);
                AssignAttri("", false, "A333SupplierAgbAddressLine1", A333SupplierAgbAddressLine1);
@@ -1351,13 +1369,13 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV30Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV31Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV31GXV1 = 1;
-            AssignAttri("", false, "AV31GXV1", StringUtil.LTrimStr( (decimal)(AV31GXV1), 8, 0));
-            while ( AV31GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
+            AV32GXV1 = 1;
+            AssignAttri("", false, "AV32GXV1", StringUtil.LTrimStr( (decimal)(AV32GXV1), 8, 0));
+            while ( AV32GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
             {
-               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV31GXV1));
+               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV32GXV1));
                if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "SupplierAgbTypeId") == 0 )
                {
                   AV13Insert_SupplierAgbTypeId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
@@ -1372,8 +1390,8 @@ namespace GeneXus.Programs {
                      ucCombo_supplieragbtypeid.SendProperty(context, "", false, Combo_supplieragbtypeid_Internalname, "Enabled", StringUtil.BoolToStr( Combo_supplieragbtypeid_Enabled));
                   }
                }
-               AV31GXV1 = (int)(AV31GXV1+1);
-               AssignAttri("", false, "AV31GXV1", StringUtil.LTrimStr( (decimal)(AV31GXV1), 8, 0));
+               AV32GXV1 = (int)(AV32GXV1+1);
+               AssignAttri("", false, "AV32GXV1", StringUtil.LTrimStr( (decimal)(AV32GXV1), 8, 0));
             }
          }
          edtSupplierAgbId_Visible = 0;
@@ -1420,9 +1438,39 @@ namespace GeneXus.Programs {
       {
          /* Combo_supplieragbtypeid_Onoptionclicked Routine */
          returnInSub = false;
-         AV20ComboSupplierAgbTypeId = StringUtil.StrToGuid( Combo_supplieragbtypeid_Selectedvalue_get);
-         AssignAttri("", false, "AV20ComboSupplierAgbTypeId", AV20ComboSupplierAgbTypeId.ToString());
+         if ( StringUtil.StrCmp(Combo_supplieragbtypeid_Selectedvalue_get, "<#NEW#>") == 0 )
+         {
+            AV30DefaultSupplierAgbTypeName = Combo_supplieragbtypeid_Selectedtext_get;
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            {
+               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+            }
+            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXEncryptionTmp = "wp_createnewsupplieragbtype.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(A283SupplierAgbTypeId.ToString()) + "," + UrlEncode(StringUtil.RTrim(AV30DefaultSupplierAgbTypeName));
+            context.PopUp(formatLink("wp_createnewsupplieragbtype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
+         }
+         else if ( StringUtil.StrCmp(Combo_supplieragbtypeid_Selectedvalue_get, "<#POPUP_CLOSED#>") == 0 )
+         {
+            GXt_objcol_SdtDVB_SDTComboData_Item3 = AV15SupplierAgbTypeId_Data;
+            new trn_supplieragbloaddvcombo(context ).execute(  "SupplierAgbTypeId",  "NEW",  AV7SupplierAgbId, out  AV17ComboSelectedValue, out  AV18ComboSelectedText, out  GXt_objcol_SdtDVB_SDTComboData_Item3) ;
+            AV15SupplierAgbTypeId_Data = GXt_objcol_SdtDVB_SDTComboData_Item3;
+            AV17ComboSelectedValue = AV12WebSession.Get("SUPPLIERAGBTYPEID");
+            AV12WebSession.Remove("SUPPLIERAGBTYPEID");
+            Combo_supplieragbtypeid_Selectedvalue_set = AV17ComboSelectedValue;
+            ucCombo_supplieragbtypeid.SendProperty(context, "", false, Combo_supplieragbtypeid_Internalname, "SelectedValue_set", Combo_supplieragbtypeid_Selectedvalue_set);
+            AV20ComboSupplierAgbTypeId = StringUtil.StrToGuid( AV17ComboSelectedValue);
+            AssignAttri("", false, "AV20ComboSupplierAgbTypeId", AV20ComboSupplierAgbTypeId.ToString());
+         }
+         else
+         {
+            AV20ComboSupplierAgbTypeId = StringUtil.StrToGuid( Combo_supplieragbtypeid_Selectedvalue_get);
+            AssignAttri("", false, "AV20ComboSupplierAgbTypeId", AV20ComboSupplierAgbTypeId.ToString());
+            GXt_objcol_SdtDVB_SDTComboData_Item3 = AV15SupplierAgbTypeId_Data;
+            new trn_supplieragbloaddvcombo(context ).execute(  "SupplierAgbTypeId",  "NEW",  AV7SupplierAgbId, out  AV17ComboSelectedValue, out  AV18ComboSelectedText, out  GXt_objcol_SdtDVB_SDTComboData_Item3) ;
+            AV15SupplierAgbTypeId_Data = GXt_objcol_SdtDVB_SDTComboData_Item3;
+         }
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV15SupplierAgbTypeId_Data", AV15SupplierAgbTypeId_Data);
       }
 
       protected void S132( )
@@ -1465,6 +1513,10 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOSUPPLIERAGBTYPEID' Routine */
          returnInSub = false;
+         GXt_boolean4 = false;
+         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "<Check_Is_Authenticated>", out  GXt_boolean4) ;
+         Combo_supplieragbtypeid_Includeaddnewoption = GXt_boolean4;
+         ucCombo_supplieragbtypeid.SendProperty(context, "", false, Combo_supplieragbtypeid_Internalname, "IncludeAddNewOption", StringUtil.BoolToStr( Combo_supplieragbtypeid_Includeaddnewoption));
          GXt_objcol_SdtDVB_SDTComboData_Item3 = AV15SupplierAgbTypeId_Data;
          new trn_supplieragbloaddvcombo(context ).execute(  "SupplierAgbTypeId",  Gx_mode,  AV7SupplierAgbId, out  AV17ComboSelectedValue, out  AV18ComboSelectedText, out  GXt_objcol_SdtDVB_SDTComboData_Item3) ;
          AV15SupplierAgbTypeId_Data = GXt_objcol_SdtDVB_SDTComboData_Item3;
@@ -1546,8 +1598,8 @@ namespace GeneXus.Programs {
       {
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
-         AV30Pgmname = "Trn_SupplierAgb";
-         AssignAttri("", false, "AV30Pgmname", AV30Pgmname);
+         AV31Pgmname = "Trn_SupplierAgb";
+         AssignAttri("", false, "AV31Pgmname", AV31Pgmname);
          bttBtntrn_delete_Enabled = 0;
          AssignProp("", false, bttBtntrn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtntrn_delete_Enabled), 5, 0), true);
          if ( ! (Guid.Empty==AV7SupplierAgbId) )
@@ -1794,7 +1846,7 @@ namespace GeneXus.Programs {
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid website format", ""), context.GetMessage( "Supplier Agb Website", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "SUPPLIERAGBWEBSITE");
             AnyError = 1;
-            GX_FocusControl = edtSupplierAgbWebsite_Internalname;
+            GX_FocusControl = cmbSupplierAgbWebsite_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
       }
@@ -2539,8 +2591,8 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtSupplierAgbPhoneNumber_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbPhoneNumber_Enabled), 5, 0), true);
          edtSupplierAgbEmail_Enabled = 0;
          AssignProp("", false, edtSupplierAgbEmail_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbEmail_Enabled), 5, 0), true);
-         edtSupplierAgbWebsite_Enabled = 0;
-         AssignProp("", false, edtSupplierAgbWebsite_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbWebsite_Enabled), 5, 0), true);
+         cmbSupplierAgbWebsite.Enabled = 0;
+         AssignProp("", false, cmbSupplierAgbWebsite_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbSupplierAgbWebsite.Enabled), 5, 0), true);
          edtSupplierAgbAddressLine1_Enabled = 0;
          AssignProp("", false, edtSupplierAgbAddressLine1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbAddressLine1_Enabled), 5, 0), true);
          edtSupplierAgbAddressLine2_Enabled = 0;
@@ -2740,12 +2792,13 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vINSERT_SUPPLIERAGBTYPEID", AV13Insert_SupplierAgbTypeId.ToString());
          GxWebStd.gx_hidden_field( context, "SUPPLIERAGBTYPENAME", A291SupplierAgbTypeName);
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV30Pgmname));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV31Pgmname));
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBTYPEID_Objectcall", StringUtil.RTrim( Combo_supplieragbtypeid_Objectcall));
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBTYPEID_Cls", StringUtil.RTrim( Combo_supplieragbtypeid_Cls));
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBTYPEID_Selectedvalue_set", StringUtil.RTrim( Combo_supplieragbtypeid_Selectedvalue_set));
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBTYPEID_Enabled", StringUtil.BoolToStr( Combo_supplieragbtypeid_Enabled));
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBTYPEID_Emptyitem", StringUtil.BoolToStr( Combo_supplieragbtypeid_Emptyitem));
+         GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBTYPEID_Includeaddnewoption", StringUtil.BoolToStr( Combo_supplieragbtypeid_Includeaddnewoption));
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBPHONECODE_Objectcall", StringUtil.RTrim( Combo_supplieragbphonecode_Objectcall));
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBPHONECODE_Cls", StringUtil.RTrim( Combo_supplieragbphonecode_Cls));
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERAGBPHONECODE_Selectedvalue_set", StringUtil.RTrim( Combo_supplieragbphonecode_Selectedvalue_set));
@@ -2917,7 +2970,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411710384918", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411143352379", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2933,7 +2986,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragb.js", "?202411710384919", false, true);
+         context.AddJavascriptSource("trn_supplieragb.js", "?202411143352381", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2963,7 +3016,7 @@ namespace GeneXus.Programs {
          tblTablemergedsupplieragbphonecode_Internalname = "TABLEMERGEDSUPPLIERAGBPHONECODE";
          divTablesplittedsupplieragbphonecode_Internalname = "TABLESPLITTEDSUPPLIERAGBPHONECODE";
          edtSupplierAgbEmail_Internalname = "SUPPLIERAGBEMAIL";
-         edtSupplierAgbWebsite_Internalname = "SUPPLIERAGBWEBSITE";
+         cmbSupplierAgbWebsite_Internalname = "SUPPLIERAGBWEBSITE";
          divUnnamedtable1_Internalname = "UNNAMEDTABLE1";
          grpUnnamedgroup2_Internalname = "UNNAMEDGROUP2";
          edtSupplierAgbAddressLine1_Internalname = "SUPPLIERAGBADDRESSLINE1";
@@ -3045,8 +3098,8 @@ namespace GeneXus.Programs {
          edtSupplierAgbAddressLine2_Enabled = 1;
          edtSupplierAgbAddressLine1_Jsonclick = "";
          edtSupplierAgbAddressLine1_Enabled = 1;
-         edtSupplierAgbWebsite_Jsonclick = "";
-         edtSupplierAgbWebsite_Enabled = 1;
+         cmbSupplierAgbWebsite_Jsonclick = "";
+         cmbSupplierAgbWebsite.Enabled = 1;
          edtSupplierAgbEmail_Jsonclick = "";
          edtSupplierAgbEmail_Enabled = 1;
          edtSupplierAgbPhoneNumber_Jsonclick = "";
@@ -3069,6 +3122,7 @@ namespace GeneXus.Programs {
          edtSupplierAgbTypeId_Jsonclick = "";
          edtSupplierAgbTypeId_Enabled = 1;
          edtSupplierAgbTypeId_Visible = 1;
+         Combo_supplieragbtypeid_Includeaddnewoption = Convert.ToBoolean( -1);
          Combo_supplieragbtypeid_Emptyitem = Convert.ToBoolean( 0);
          Combo_supplieragbtypeid_Cls = "ExtendedCombo Attribute";
          Combo_supplieragbtypeid_Enabled = Convert.ToBoolean( -1);
@@ -3106,6 +3160,17 @@ namespace GeneXus.Programs {
 
       protected void init_web_controls( )
       {
+         cmbSupplierAgbWebsite.Name = "SUPPLIERAGBWEBSITE";
+         cmbSupplierAgbWebsite.WebTags = "";
+         cmbSupplierAgbWebsite.addItem("Health", context.GetMessage( "Health", ""), 0);
+         cmbSupplierAgbWebsite.addItem("General", context.GetMessage( "General", ""), 0);
+         cmbSupplierAgbWebsite.addItem("Services", context.GetMessage( "Services", ""), 0);
+         cmbSupplierAgbWebsite.addItem("Living", context.GetMessage( "Living", ""), 0);
+         if ( cmbSupplierAgbWebsite.ItemCount > 0 )
+         {
+            A440SupplierAgbWebsite = cmbSupplierAgbWebsite.getValidValue(A440SupplierAgbWebsite);
+            AssignAttri("", false, "A440SupplierAgbWebsite", A440SupplierAgbWebsite);
+         }
          /* End function init_web_controls */
       }
 
@@ -3184,8 +3249,8 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7SupplierAgbId","fld":"vSUPPLIERAGBID","hsh":true}]}""");
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7SupplierAgbId","fld":"vSUPPLIERAGBID","hsh":true}]}""");
          setEventMetadata("AFTER TRN","""{"handler":"E13072","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
-         setEventMetadata("COMBO_SUPPLIERAGBTYPEID.ONOPTIONCLICKED","""{"handler":"E12072","iparms":[{"av":"Combo_supplieragbtypeid_Selectedvalue_get","ctrl":"COMBO_SUPPLIERAGBTYPEID","prop":"SelectedValue_get"}]""");
-         setEventMetadata("COMBO_SUPPLIERAGBTYPEID.ONOPTIONCLICKED",""","oparms":[{"av":"AV20ComboSupplierAgbTypeId","fld":"vCOMBOSUPPLIERAGBTYPEID"}]}""");
+         setEventMetadata("COMBO_SUPPLIERAGBTYPEID.ONOPTIONCLICKED","""{"handler":"E12072","iparms":[{"av":"Combo_supplieragbtypeid_Selectedvalue_get","ctrl":"COMBO_SUPPLIERAGBTYPEID","prop":"SelectedValue_get"},{"av":"Combo_supplieragbtypeid_Selectedtext_get","ctrl":"COMBO_SUPPLIERAGBTYPEID","prop":"SelectedText_get"},{"av":"A283SupplierAgbTypeId","fld":"SUPPLIERAGBTYPEID"},{"av":"AV7SupplierAgbId","fld":"vSUPPLIERAGBID","hsh":true}]""");
+         setEventMetadata("COMBO_SUPPLIERAGBTYPEID.ONOPTIONCLICKED",""","oparms":[{"av":"Combo_supplieragbtypeid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERAGBTYPEID","prop":"SelectedValue_set"},{"av":"AV15SupplierAgbTypeId_Data","fld":"vSUPPLIERAGBTYPEID_DATA"},{"av":"AV20ComboSupplierAgbTypeId","fld":"vCOMBOSUPPLIERAGBTYPEID"}]}""");
          setEventMetadata("VALID_SUPPLIERAGBTYPEID","""{"handler":"Valid_Supplieragbtypeid","iparms":[{"av":"A283SupplierAgbTypeId","fld":"SUPPLIERAGBTYPEID"},{"av":"A291SupplierAgbTypeName","fld":"SUPPLIERAGBTYPENAME"}]""");
          setEventMetadata("VALID_SUPPLIERAGBTYPEID",""","oparms":[{"av":"A291SupplierAgbTypeName","fld":"SUPPLIERAGBTYPENAME"}]}""");
          setEventMetadata("VALID_SUPPLIERAGBNUMBER","""{"handler":"Valid_Supplieragbnumber","iparms":[]}""");
@@ -3247,6 +3312,7 @@ namespace GeneXus.Programs {
          Combo_supplieragbaddresscountry_Selectedvalue_get = "";
          Combo_supplieragbphonecode_Selectedvalue_get = "";
          Combo_supplieragbtypeid_Selectedvalue_get = "";
+         Combo_supplieragbtypeid_Selectedtext_get = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          A377SupplierAgbPhoneCode = "";
@@ -3258,6 +3324,7 @@ namespace GeneXus.Programs {
          PreviousCaption = "";
          Form = new GXWebForm();
          GX_FocusControl = "";
+         A440SupplierAgbWebsite = "";
          ClassString = "";
          StyleString = "";
          lblTextblocksupplieragbtypeid_Jsonclick = "";
@@ -3275,7 +3342,6 @@ namespace GeneXus.Programs {
          AV16DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV27SupplierAgbPhoneCode_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          A57SupplierAgbEmail = "";
-         A440SupplierAgbWebsite = "";
          A333SupplierAgbAddressLine1 = "";
          A334SupplierAgbAddressLine2 = "";
          A299SupplierAgbAddressCity = "";
@@ -3295,7 +3361,7 @@ namespace GeneXus.Programs {
          A56SupplierAgbPhone = "";
          AV13Insert_SupplierAgbTypeId = Guid.Empty;
          A291SupplierAgbTypeName = "";
-         AV30Pgmname = "";
+         AV31Pgmname = "";
          Combo_supplieragbtypeid_Objectcall = "";
          Combo_supplieragbtypeid_Class = "";
          Combo_supplieragbtypeid_Icontype = "";
@@ -3303,7 +3369,6 @@ namespace GeneXus.Programs {
          Combo_supplieragbtypeid_Tooltip = "";
          Combo_supplieragbtypeid_Selectedvalue_set = "";
          Combo_supplieragbtypeid_Selectedtext_set = "";
-         Combo_supplieragbtypeid_Selectedtext_get = "";
          Combo_supplieragbtypeid_Gamoauthtoken = "";
          Combo_supplieragbtypeid_Ddointernalname = "";
          Combo_supplieragbtypeid_Titlecontrolalign = "";
@@ -3390,6 +3455,8 @@ namespace GeneXus.Programs {
          AV12WebSession = context.GetSession();
          AV14TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV26defaultCountryPhoneCode = "";
+         AV30DefaultSupplierAgbTypeName = "";
+         GXEncryptionTmp = "";
          AV17ComboSelectedValue = "";
          AV18ComboSelectedText = "";
          GXt_objcol_SdtDVB_SDTComboData_Item3 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
@@ -3463,7 +3530,6 @@ namespace GeneXus.Programs {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         GXEncryptionTmp = "";
          GXt_char2 = "";
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_supplieragb__gam(),
             new Object[][] {
@@ -3519,7 +3585,7 @@ namespace GeneXus.Programs {
          n49SupplierAgbId = false;
          A49SupplierAgbId = Guid.NewGuid( );
          n49SupplierAgbId = false;
-         AV30Pgmname = "Trn_SupplierAgb";
+         AV31Pgmname = "Trn_SupplierAgb";
       }
 
       private short GxWebError ;
@@ -3529,6 +3595,7 @@ namespace GeneXus.Programs {
       private short nKeyPressed ;
       private short Gx_BScreen ;
       private short RcdFound11 ;
+      private short gxcookieaux ;
       private short gxajaxcallmode ;
       private int trnEnded ;
       private int edtSupplierAgbTypeId_Visible ;
@@ -3541,7 +3608,6 @@ namespace GeneXus.Programs {
       private int edtSupplierAgbPhoneCode_Enabled ;
       private int edtSupplierAgbPhoneNumber_Enabled ;
       private int edtSupplierAgbEmail_Enabled ;
-      private int edtSupplierAgbWebsite_Enabled ;
       private int edtSupplierAgbAddressLine1_Enabled ;
       private int edtSupplierAgbAddressLine2_Enabled ;
       private int edtSupplierAgbAddressCity_Enabled ;
@@ -3564,9 +3630,12 @@ namespace GeneXus.Programs {
       private int edtSupplierAgbPhone_Visible ;
       private int edtSupplierAgbPhone_Enabled ;
       private int Combo_supplieragbtypeid_Datalistupdateminimumcharacters ;
+      private int Combo_supplieragbtypeid_Gxcontroltype ;
       private int Combo_supplieragbphonecode_Datalistupdateminimumcharacters ;
+      private int Combo_supplieragbphonecode_Gxcontroltype ;
       private int Combo_supplieragbaddresscountry_Datalistupdateminimumcharacters ;
-      private int AV31GXV1 ;
+      private int Combo_supplieragbaddresscountry_Gxcontroltype ;
+      private int AV32GXV1 ;
       private int idxLst ;
       private string sPrefix ;
       private string wcpOGx_mode ;
@@ -3574,6 +3643,7 @@ namespace GeneXus.Programs {
       private string Combo_supplieragbaddresscountry_Selectedvalue_get ;
       private string Combo_supplieragbphonecode_Selectedvalue_get ;
       private string Combo_supplieragbtypeid_Selectedvalue_get ;
+      private string Combo_supplieragbtypeid_Selectedtext_get ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string GXKey ;
@@ -3583,6 +3653,7 @@ namespace GeneXus.Programs {
       private string PreviousCaption ;
       private string GX_FocusControl ;
       private string edtSupplierAgbTypeId_Internalname ;
+      private string cmbSupplierAgbWebsite_Internalname ;
       private string divLayoutmaintable_Internalname ;
       private string divLayoutmaintable_Class ;
       private string divTablemain_Internalname ;
@@ -3622,8 +3693,7 @@ namespace GeneXus.Programs {
       private string edtSupplierAgbPhoneNumber_Jsonclick ;
       private string edtSupplierAgbEmail_Internalname ;
       private string edtSupplierAgbEmail_Jsonclick ;
-      private string edtSupplierAgbWebsite_Internalname ;
-      private string edtSupplierAgbWebsite_Jsonclick ;
+      private string cmbSupplierAgbWebsite_Jsonclick ;
       private string grpUnnamedgroup4_Internalname ;
       private string divUnnamedtable3_Internalname ;
       private string edtSupplierAgbAddressLine1_Internalname ;
@@ -3664,7 +3734,7 @@ namespace GeneXus.Programs {
       private string A56SupplierAgbPhone ;
       private string edtSupplierAgbPhone_Internalname ;
       private string edtSupplierAgbPhone_Jsonclick ;
-      private string AV30Pgmname ;
+      private string AV31Pgmname ;
       private string Combo_supplieragbtypeid_Objectcall ;
       private string Combo_supplieragbtypeid_Class ;
       private string Combo_supplieragbtypeid_Icontype ;
@@ -3672,7 +3742,6 @@ namespace GeneXus.Programs {
       private string Combo_supplieragbtypeid_Tooltip ;
       private string Combo_supplieragbtypeid_Selectedvalue_set ;
       private string Combo_supplieragbtypeid_Selectedtext_set ;
-      private string Combo_supplieragbtypeid_Selectedtext_get ;
       private string Combo_supplieragbtypeid_Gamoauthtoken ;
       private string Combo_supplieragbtypeid_Ddointernalname ;
       private string Combo_supplieragbtypeid_Titlecontrolalign ;
@@ -3754,15 +3823,16 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
+      private string GXEncryptionTmp ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
-      private string GXEncryptionTmp ;
       private string GXt_char2 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbErr ;
       private bool Combo_supplieragbtypeid_Emptyitem ;
+      private bool Combo_supplieragbtypeid_Includeaddnewoption ;
       private bool Combo_supplieragbphonecode_Emptyitem ;
       private bool Combo_supplieragbaddresscountry_Emptyitem ;
       private bool Combo_supplieragbtypeid_Enabled ;
@@ -3772,7 +3842,6 @@ namespace GeneXus.Programs {
       private bool Combo_supplieragbtypeid_Hasdescription ;
       private bool Combo_supplieragbtypeid_Includeonlyselectedoption ;
       private bool Combo_supplieragbtypeid_Includeselectalloption ;
-      private bool Combo_supplieragbtypeid_Includeaddnewoption ;
       private bool Combo_supplieragbphonecode_Enabled ;
       private bool Combo_supplieragbphonecode_Visible ;
       private bool Combo_supplieragbphonecode_Allowmultipleselection ;
@@ -3791,6 +3860,7 @@ namespace GeneXus.Programs {
       private bool Combo_supplieragbaddresscountry_Includeaddnewoption ;
       private bool n49SupplierAgbId ;
       private bool returnInSub ;
+      private bool GXt_boolean4 ;
       private bool Gx_longc ;
       private string Z332SupplierAGBAddressCountry ;
       private string Z377SupplierAgbPhoneCode ;
@@ -3807,12 +3877,12 @@ namespace GeneXus.Programs {
       private string Z440SupplierAgbWebsite ;
       private string A377SupplierAgbPhoneCode ;
       private string A378SupplierAgbPhoneNumber ;
+      private string A440SupplierAgbWebsite ;
       private string A50SupplierAgbNumber ;
       private string A51SupplierAgbName ;
       private string A52SupplierAgbKvkNumber ;
       private string A55SupplierAgbContactName ;
       private string A57SupplierAgbEmail ;
-      private string A440SupplierAgbWebsite ;
       private string A333SupplierAgbAddressLine1 ;
       private string A334SupplierAgbAddressLine2 ;
       private string A299SupplierAgbAddressCity ;
@@ -3822,6 +3892,7 @@ namespace GeneXus.Programs {
       private string AV24ComboSupplierAGBAddressCountry ;
       private string A291SupplierAgbTypeName ;
       private string AV26defaultCountryPhoneCode ;
+      private string AV30DefaultSupplierAgbTypeName ;
       private string AV17ComboSelectedValue ;
       private string AV18ComboSelectedText ;
       private string Z291SupplierAgbTypeName ;
@@ -3842,6 +3913,7 @@ namespace GeneXus.Programs {
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private GXCombobox cmbSupplierAgbWebsite ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV15SupplierAgbTypeId_Data ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV16DDO_TitleSettingsIcons ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV27SupplierAgbPhoneCode_Data ;

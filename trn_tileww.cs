@@ -157,32 +157,28 @@ namespace GeneXus.Programs {
          AV13OrderedBy = (short)(Math.Round(NumberUtil.Val( GetPar( "OrderedBy"), "."), 18, MidpointRounding.ToEven));
          AV14OrderedDsc = StringUtil.StrToBool( GetPar( "OrderedDsc"));
          AV19ManageFiltersExecutionStep = (short)(Math.Round(NumberUtil.Val( GetPar( "ManageFiltersExecutionStep"), "."), 18, MidpointRounding.ToEven));
-         AV98Pgmname = GetPar( "Pgmname");
+         AV52Pgmname = GetPar( "Pgmname");
          AV15FilterFullText = GetPar( "FilterFullText");
-         AV79TFTileName = GetPar( "TFTileName");
-         AV80TFTileName_Sel = GetPar( "TFTileName_Sel");
-         AV83TFTileBGColor = GetPar( "TFTileBGColor");
-         AV84TFTileBGColor_Sel = GetPar( "TFTileBGColor_Sel");
-         AV85TFTileBGImageUrl = GetPar( "TFTileBGImageUrl");
-         AV86TFTileBGImageUrl_Sel = GetPar( "TFTileBGImageUrl_Sel");
-         AV87TFTileTextColor = GetPar( "TFTileTextColor");
-         AV88TFTileTextColor_Sel = GetPar( "TFTileTextColor_Sel");
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV90TFTileTextAlignment_Sels);
-         AV81TFTileIcon = GetPar( "TFTileIcon");
-         AV82TFTileIcon_Sel = GetPar( "TFTileIcon_Sel");
-         ajax_req_read_hidden_sdt(GetNextPar( ), AV92TFTileIconAlignment_Sels);
-         AV28TFProductServiceName = GetPar( "TFProductServiceName");
-         AV29TFProductServiceName_Sel = GetPar( "TFProductServiceName_Sel");
-         AV30TFProductServiceDescription = GetPar( "TFProductServiceDescription");
-         AV31TFProductServiceDescription_Sel = GetPar( "TFProductServiceDescription_Sel");
-         AV93TFSG_ToPageName = GetPar( "TFSG_ToPageName");
-         AV94TFSG_ToPageName_Sel = GetPar( "TFSG_ToPageName_Sel");
-         AV45IsAuthorized_Display = StringUtil.StrToBool( GetPar( "IsAuthorized_Display"));
-         AV47IsAuthorized_Update = StringUtil.StrToBool( GetPar( "IsAuthorized_Update"));
+         AV20TFTileName = GetPar( "TFTileName");
+         AV21TFTileName_Sel = GetPar( "TFTileName_Sel");
+         AV22TFTileBGColor = GetPar( "TFTileBGColor");
+         AV23TFTileBGColor_Sel = GetPar( "TFTileBGColor_Sel");
+         AV24TFTileBGImageUrl = GetPar( "TFTileBGImageUrl");
+         AV25TFTileBGImageUrl_Sel = GetPar( "TFTileBGImageUrl_Sel");
+         AV26TFTileTextColor = GetPar( "TFTileTextColor");
+         AV27TFTileTextColor_Sel = GetPar( "TFTileTextColor_Sel");
+         ajax_req_read_hidden_sdt(GetNextPar( ), AV29TFTileTextAlignment_Sels);
+         AV30TFTileIcon = GetPar( "TFTileIcon");
+         AV31TFTileIcon_Sel = GetPar( "TFTileIcon_Sel");
+         ajax_req_read_hidden_sdt(GetNextPar( ), AV33TFTileIconAlignment_Sels);
+         AV34TFTileIconColor = GetPar( "TFTileIconColor");
+         AV35TFTileIconColor_Sel = GetPar( "TFTileIconColor_Sel");
+         AV36TFTileAction = GetPar( "TFTileAction");
+         AV37TFTileAction_Sel = GetPar( "TFTileAction_Sel");
+         AV47IsAuthorized_Display = StringUtil.StrToBool( GetPar( "IsAuthorized_Display"));
+         AV48IsAuthorized_Update = StringUtil.StrToBool( GetPar( "IsAuthorized_Update"));
          AV49IsAuthorized_Delete = StringUtil.StrToBool( GetPar( "IsAuthorized_Delete"));
-         AV95IsAuthorized_TileName = StringUtil.StrToBool( GetPar( "IsAuthorized_TileName"));
-         AV42IsAuthorized_ProductServiceName = StringUtil.StrToBool( GetPar( "IsAuthorized_ProductServiceName"));
-         AV96IsAuthorized_SG_ToPageName = StringUtil.StrToBool( GetPar( "IsAuthorized_SG_ToPageName"));
+         AV45IsAuthorized_TileName = StringUtil.StrToBool( GetPar( "IsAuthorized_TileName"));
          AV50IsAuthorized_Insert = StringUtil.StrToBool( GetPar( "IsAuthorized_Insert"));
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
@@ -190,7 +186,7 @@ namespace GeneXus.Programs {
             GxWebError = 1;
             return  ;
          }
-         gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV98Pgmname, AV15FilterFullText, AV79TFTileName, AV80TFTileName_Sel, AV83TFTileBGColor, AV84TFTileBGColor_Sel, AV85TFTileBGImageUrl, AV86TFTileBGImageUrl_Sel, AV87TFTileTextColor, AV88TFTileTextColor_Sel, AV90TFTileTextAlignment_Sels, AV81TFTileIcon, AV82TFTileIcon_Sel, AV92TFTileIconAlignment_Sels, AV28TFProductServiceName, AV29TFProductServiceName_Sel, AV30TFProductServiceDescription, AV31TFProductServiceDescription_Sel, AV93TFSG_ToPageName, AV94TFSG_ToPageName_Sel, AV45IsAuthorized_Display, AV47IsAuthorized_Update, AV49IsAuthorized_Delete, AV95IsAuthorized_TileName, AV42IsAuthorized_ProductServiceName, AV96IsAuthorized_SG_ToPageName, AV50IsAuthorized_Insert) ;
+         gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV52Pgmname, AV15FilterFullText, AV20TFTileName, AV21TFTileName_Sel, AV22TFTileBGColor, AV23TFTileBGColor_Sel, AV24TFTileBGImageUrl, AV25TFTileBGImageUrl_Sel, AV26TFTileTextColor, AV27TFTileTextColor_Sel, AV29TFTileTextAlignment_Sels, AV30TFTileIcon, AV31TFTileIcon_Sel, AV33TFTileIconAlignment_Sels, AV34TFTileIconColor, AV35TFTileIconColor_Sel, AV36TFTileAction, AV37TFTileAction_Sel, AV47IsAuthorized_Display, AV48IsAuthorized_Update, AV49IsAuthorized_Delete, AV45IsAuthorized_TileName, AV50IsAuthorized_Insert) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGrid_refresh_invoke */
       }
@@ -258,11 +254,11 @@ namespace GeneXus.Programs {
 
       public override short ExecuteStartEvent( )
       {
-         PA5Z2( ) ;
+         PA842( ) ;
          gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
          if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
          {
-            START5Z2( ) ;
+            START842( ) ;
          }
          return gxajaxcallmode ;
       }
@@ -359,20 +355,16 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV98Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV98Pgmname, "")), context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISPLAY", AV45IsAuthorized_Display);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV45IsAuthorized_Display, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_UPDATE", AV47IsAuthorized_Update);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV47IsAuthorized_Update, context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV52Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV52Pgmname, "")), context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISPLAY", AV47IsAuthorized_Display);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV47IsAuthorized_Display, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_UPDATE", AV48IsAuthorized_Update);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV48IsAuthorized_Update, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DELETE", AV49IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV49IsAuthorized_Delete, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_TILENAME", AV95IsAuthorized_TileName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_TILENAME", GetSecureSignedToken( "", AV95IsAuthorized_TileName, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_PRODUCTSERVICENAME", AV42IsAuthorized_ProductServiceName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_PRODUCTSERVICENAME", GetSecureSignedToken( "", AV42IsAuthorized_ProductServiceName, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_SG_TOPAGENAME", AV96IsAuthorized_SG_ToPageName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_SG_TOPAGENAME", GetSecureSignedToken( "", AV96IsAuthorized_SG_ToPageName, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_TILENAME", AV45IsAuthorized_TileName);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_TILENAME", GetSecureSignedToken( "", AV45IsAuthorized_TileName, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV50IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV50IsAuthorized_Insert, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -394,66 +386,60 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vMANAGEFILTERSDATA", AV17ManageFiltersData);
          }
-         GxWebStd.gx_hidden_field( context, "vGRIDCURRENTPAGE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV38GridCurrentPage), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, "vGRIDPAGECOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV39GridPageCount), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, "vGRIDAPPLIEDFILTERS", AV40GridAppliedFilters);
+         GxWebStd.gx_hidden_field( context, "vGRIDCURRENTPAGE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42GridCurrentPage), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vGRIDPAGECOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV43GridPageCount), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vGRIDAPPLIEDFILTERS", AV44GridAppliedFilters);
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vDDO_TITLESETTINGSICONS", AV34DDO_TitleSettingsIcons);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vDDO_TITLESETTINGSICONS", AV38DDO_TitleSettingsIcons);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vDDO_TITLESETTINGSICONS", AV34DDO_TitleSettingsIcons);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vDDO_TITLESETTINGSICONS", AV38DDO_TitleSettingsIcons);
          }
          GxWebStd.gx_hidden_field( context, "vMANAGEFILTERSEXECUTIONSTEP", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19ManageFiltersExecutionStep), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV98Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV98Pgmname, "")), context));
-         GxWebStd.gx_hidden_field( context, "vTFTILENAME", AV79TFTileName);
-         GxWebStd.gx_hidden_field( context, "vTFTILENAME_SEL", AV80TFTileName_Sel);
-         GxWebStd.gx_hidden_field( context, "vTFTILEBGCOLOR", StringUtil.RTrim( AV83TFTileBGColor));
-         GxWebStd.gx_hidden_field( context, "vTFTILEBGCOLOR_SEL", StringUtil.RTrim( AV84TFTileBGColor_Sel));
-         GxWebStd.gx_hidden_field( context, "vTFTILEBGIMAGEURL", AV85TFTileBGImageUrl);
-         GxWebStd.gx_hidden_field( context, "vTFTILEBGIMAGEURL_SEL", AV86TFTileBGImageUrl_Sel);
-         GxWebStd.gx_hidden_field( context, "vTFTILETEXTCOLOR", StringUtil.RTrim( AV87TFTileTextColor));
-         GxWebStd.gx_hidden_field( context, "vTFTILETEXTCOLOR_SEL", StringUtil.RTrim( AV88TFTileTextColor_Sel));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV52Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV52Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vTFTILENAME", AV20TFTileName);
+         GxWebStd.gx_hidden_field( context, "vTFTILENAME_SEL", AV21TFTileName_Sel);
+         GxWebStd.gx_hidden_field( context, "vTFTILEBGCOLOR", StringUtil.RTrim( AV22TFTileBGColor));
+         GxWebStd.gx_hidden_field( context, "vTFTILEBGCOLOR_SEL", StringUtil.RTrim( AV23TFTileBGColor_Sel));
+         GxWebStd.gx_hidden_field( context, "vTFTILEBGIMAGEURL", AV24TFTileBGImageUrl);
+         GxWebStd.gx_hidden_field( context, "vTFTILEBGIMAGEURL_SEL", AV25TFTileBGImageUrl_Sel);
+         GxWebStd.gx_hidden_field( context, "vTFTILETEXTCOLOR", StringUtil.RTrim( AV26TFTileTextColor));
+         GxWebStd.gx_hidden_field( context, "vTFTILETEXTCOLOR_SEL", StringUtil.RTrim( AV27TFTileTextColor_Sel));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vTFTILETEXTALIGNMENT_SELS", AV90TFTileTextAlignment_Sels);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vTFTILETEXTALIGNMENT_SELS", AV29TFTileTextAlignment_Sels);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTFTILETEXTALIGNMENT_SELS", AV90TFTileTextAlignment_Sels);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTFTILETEXTALIGNMENT_SELS", AV29TFTileTextAlignment_Sels);
          }
-         GxWebStd.gx_hidden_field( context, "vTFTILEICON", StringUtil.RTrim( AV81TFTileIcon));
-         GxWebStd.gx_hidden_field( context, "vTFTILEICON_SEL", StringUtil.RTrim( AV82TFTileIcon_Sel));
+         GxWebStd.gx_hidden_field( context, "vTFTILEICON", StringUtil.RTrim( AV30TFTileIcon));
+         GxWebStd.gx_hidden_field( context, "vTFTILEICON_SEL", StringUtil.RTrim( AV31TFTileIcon_Sel));
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vTFTILEICONALIGNMENT_SELS", AV92TFTileIconAlignment_Sels);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vTFTILEICONALIGNMENT_SELS", AV33TFTileIconAlignment_Sels);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTFTILEICONALIGNMENT_SELS", AV92TFTileIconAlignment_Sels);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTFTILEICONALIGNMENT_SELS", AV33TFTileIconAlignment_Sels);
          }
-         GxWebStd.gx_hidden_field( context, "vTFPRODUCTSERVICENAME", AV28TFProductServiceName);
-         GxWebStd.gx_hidden_field( context, "vTFPRODUCTSERVICENAME_SEL", AV29TFProductServiceName_Sel);
-         GxWebStd.gx_hidden_field( context, "vTFPRODUCTSERVICEDESCRIPTION", AV30TFProductServiceDescription);
-         GxWebStd.gx_hidden_field( context, "vTFPRODUCTSERVICEDESCRIPTION_SEL", AV31TFProductServiceDescription_Sel);
-         GxWebStd.gx_hidden_field( context, "vTFSG_TOPAGENAME", AV93TFSG_ToPageName);
-         GxWebStd.gx_hidden_field( context, "vTFSG_TOPAGENAME_SEL", AV94TFSG_ToPageName_Sel);
+         GxWebStd.gx_hidden_field( context, "vTFTILEICONCOLOR", StringUtil.RTrim( AV34TFTileIconColor));
+         GxWebStd.gx_hidden_field( context, "vTFTILEICONCOLOR_SEL", StringUtil.RTrim( AV35TFTileIconColor_Sel));
+         GxWebStd.gx_hidden_field( context, "vTFTILEACTION", AV36TFTileAction);
+         GxWebStd.gx_hidden_field( context, "vTFTILEACTION_SEL", AV37TFTileAction_Sel);
          GxWebStd.gx_hidden_field( context, "vORDEREDBY", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13OrderedBy), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_boolean_hidden_field( context, "vORDEREDDSC", AV14OrderedDsc);
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISPLAY", AV45IsAuthorized_Display);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV45IsAuthorized_Display, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_UPDATE", AV47IsAuthorized_Update);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV47IsAuthorized_Update, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISPLAY", AV47IsAuthorized_Display);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV47IsAuthorized_Display, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_UPDATE", AV48IsAuthorized_Update);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV48IsAuthorized_Update, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DELETE", AV49IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV49IsAuthorized_Delete, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_TILENAME", AV95IsAuthorized_TileName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_TILENAME", GetSecureSignedToken( "", AV95IsAuthorized_TileName, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_PRODUCTSERVICENAME", AV42IsAuthorized_ProductServiceName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_PRODUCTSERVICENAME", GetSecureSignedToken( "", AV42IsAuthorized_ProductServiceName, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_SG_TOPAGENAME", AV96IsAuthorized_SG_ToPageName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_SG_TOPAGENAME", GetSecureSignedToken( "", AV96IsAuthorized_SG_ToPageName, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_TILENAME", AV45IsAuthorized_TileName);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_TILENAME", GetSecureSignedToken( "", AV45IsAuthorized_TileName, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGRIDSTATE", AV11GridState);
@@ -462,8 +448,8 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vGRIDSTATE", AV11GridState);
          }
-         GxWebStd.gx_hidden_field( context, "vTFTILETEXTALIGNMENT_SELSJSON", AV89TFTileTextAlignment_SelsJson);
-         GxWebStd.gx_hidden_field( context, "vTFTILEICONALIGNMENT_SELSJSON", AV91TFTileIconAlignment_SelsJson);
+         GxWebStd.gx_hidden_field( context, "vTFTILETEXTALIGNMENT_SELSJSON", AV28TFTileTextAlignment_SelsJson);
+         GxWebStd.gx_hidden_field( context, "vTFTILEICONALIGNMENT_SELSJSON", AV32TFTileIconAlignment_SelsJson);
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV50IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV50IsAuthorized_Insert, context));
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
@@ -578,14 +564,14 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<div") ;
             GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
             context.WriteHtmlText( ">") ;
-            WE5Z2( ) ;
+            WE842( ) ;
             context.WriteHtmlText( "</div>") ;
          }
       }
 
       public override void DispatchEvents( )
       {
-         EVT5Z2( ) ;
+         EVT842( ) ;
       }
 
       public override bool HasEnterEvent( )
@@ -613,7 +599,7 @@ namespace GeneXus.Programs {
          return context.GetMessage( " Tile", "") ;
       }
 
-      protected void WB5Z0( )
+      protected void WB840( )
       {
          if ( context.isAjaxRequest( ) )
          {
@@ -784,9 +770,9 @@ namespace GeneXus.Programs {
             ucGridpaginationbar.SetProperty("Caption", Gridpaginationbar_Caption);
             ucGridpaginationbar.SetProperty("EmptyGridCaption", Gridpaginationbar_Emptygridcaption);
             ucGridpaginationbar.SetProperty("RowsPerPageCaption", Gridpaginationbar_Rowsperpagecaption);
-            ucGridpaginationbar.SetProperty("CurrentPage", AV38GridCurrentPage);
-            ucGridpaginationbar.SetProperty("PageCount", AV39GridPageCount);
-            ucGridpaginationbar.SetProperty("AppliedFilters", AV40GridAppliedFilters);
+            ucGridpaginationbar.SetProperty("CurrentPage", AV42GridCurrentPage);
+            ucGridpaginationbar.SetProperty("PageCount", AV43GridPageCount);
+            ucGridpaginationbar.SetProperty("AppliedFilters", AV44GridAppliedFilters);
             ucGridpaginationbar.Render(context, "dvelop.dvpaginationbar", Gridpaginationbar_Internalname, "GRIDPAGINATIONBARContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -821,7 +807,7 @@ namespace GeneXus.Programs {
             ucDdo_grid.SetProperty("AllowMultipleSelection", Ddo_grid_Allowmultipleselection);
             ucDdo_grid.SetProperty("DataListFixedValues", Ddo_grid_Datalistfixedvalues);
             ucDdo_grid.SetProperty("DataListProc", Ddo_grid_Datalistproc);
-            ucDdo_grid.SetProperty("DropDownOptionsTitleSettingsIcons", AV34DDO_TitleSettingsIcons);
+            ucDdo_grid.SetProperty("DropDownOptionsTitleSettingsIcons", AV38DDO_TitleSettingsIcons);
             ucDdo_grid.Render(context, "dvelop.gxbootstrap.ddogridtitlesettingsm", Ddo_grid_Internalname, "DDO_GRIDContainer");
             /* User Defined Control */
             ucGrid_empowerer.SetProperty("HasTitleSettings", Grid_empowerer_Hastitlesettings);
@@ -831,10 +817,10 @@ namespace GeneXus.Programs {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
-               GxWebStd.gx_hidden_field( context, "W0065"+"", StringUtil.RTrim( WebComp_Wwpaux_wc_Component));
+               GxWebStd.gx_hidden_field( context, "W0059"+"", StringUtil.RTrim( WebComp_Wwpaux_wc_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
-               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0065"+""+"\""+"") ;
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0059"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
                if ( bGXsfl_37_Refreshing )
                {
@@ -842,7 +828,7 @@ namespace GeneXus.Programs {
                   {
                      if ( StringUtil.StrCmp(StringUtil.Lower( OldWwpaux_wc), StringUtil.Lower( WebComp_Wwpaux_wc_Component)) != 0 )
                      {
-                        context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0065"+"");
+                        context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0059"+"");
                      }
                      WebComp_Wwpaux_wc.componentdraw();
                      if ( StringUtil.StrCmp(StringUtil.Lower( OldWwpaux_wc), StringUtil.Lower( WebComp_Wwpaux_wc_Component)) != 0 )
@@ -893,7 +879,7 @@ namespace GeneXus.Programs {
          wbLoad = true;
       }
 
-      protected void START5Z2( )
+      protected void START842( )
       {
          wbLoad = false;
          wbEnd = 0;
@@ -913,16 +899,16 @@ namespace GeneXus.Programs {
          {
          }
          wbErr = false;
-         STRUP5Z0( ) ;
+         STRUP840( ) ;
       }
 
-      protected void WS5Z2( )
+      protected void WS842( )
       {
-         START5Z2( ) ;
-         EVT5Z2( ) ;
+         START842( ) ;
+         EVT842( ) ;
       }
 
-      protected void EVT5Z2( )
+      protected void EVT842( )
       {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
@@ -954,42 +940,42 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Ddo_managefilters.Onoptionclicked */
-                              E115Z2 ();
+                              E11842 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "GRIDPAGINATIONBAR.CHANGEPAGE") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Gridpaginationbar.Changepage */
-                              E125Z2 ();
+                              E12842 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "GRIDPAGINATIONBAR.CHANGEROWSPERPAGE") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Gridpaginationbar.Changerowsperpage */
-                              E135Z2 ();
+                              E13842 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "DDC_SUBSCRIPTIONS.ONLOADCOMPONENT") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Ddc_subscriptions.Onloadcomponent */
-                              E145Z2 ();
+                              E14842 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "DDO_GRID.ONOPTIONCLICKED") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Ddo_grid.Onoptionclicked */
-                              E155Z2 ();
+                              E15842 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'DOINSERT'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'DoInsert' */
-                              E165Z2 ();
+                              E16842 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
@@ -1022,24 +1008,12 @@ namespace GeneXus.Programs {
                               cmbTileIconAlignment.Name = cmbTileIconAlignment_Internalname;
                               cmbTileIconAlignment.CurrentValue = cgiGet( cmbTileIconAlignment_Internalname);
                               A406TileIconAlignment = cgiGet( cmbTileIconAlignment_Internalname);
-                              A58ProductServiceId = StringUtil.StrToGuid( cgiGet( edtProductServiceId_Internalname));
-                              n58ProductServiceId = false;
-                              A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
-                              n11OrganisationId = false;
-                              A29LocationId = StringUtil.StrToGuid( cgiGet( edtLocationId_Internalname));
-                              n29LocationId = false;
-                              A59ProductServiceName = cgiGet( edtProductServiceName_Internalname);
-                              A60ProductServiceDescription = cgiGet( edtProductServiceDescription_Internalname);
-                              A61ProductServiceImage = cgiGet( edtProductServiceImage_Internalname);
-                              AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-                              AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-                              A329SG_ToPageId = StringUtil.StrToGuid( cgiGet( edtSG_ToPageId_Internalname));
-                              n329SG_ToPageId = false;
-                              A330SG_ToPageName = cgiGet( edtSG_ToPageName_Internalname);
+                              A438TileIconColor = cgiGet( edtTileIconColor_Internalname);
+                              A436TileAction = cgiGet( edtTileAction_Internalname);
                               cmbavActiongroup.Name = cmbavActiongroup_Internalname;
                               cmbavActiongroup.CurrentValue = cgiGet( cmbavActiongroup_Internalname);
-                              AV78ActionGroup = (short)(Math.Round(NumberUtil.Val( cgiGet( cmbavActiongroup_Internalname), "."), 18, MidpointRounding.ToEven));
-                              AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV78ActionGroup), 4, 0));
+                              AV46ActionGroup = (short)(Math.Round(NumberUtil.Val( cgiGet( cmbavActiongroup_Internalname), "."), 18, MidpointRounding.ToEven));
+                              AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV46ActionGroup), 4, 0));
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
                               {
@@ -1049,27 +1023,27 @@ namespace GeneXus.Programs {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E175Z2 ();
+                                    E17842 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Refresh */
-                                    E185Z2 ();
+                                    E18842 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "GRID.LOAD") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Grid.Load */
-                                    E195Z2 ();
+                                    E19842 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "VACTIONGROUP.CLICK") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
-                                    E205Z2 ();
+                                    E20842 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -1111,9 +1085,9 @@ namespace GeneXus.Programs {
                         sEvtType = StringUtil.Left( sEvt, 4);
                         sEvt = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-4));
                         nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
-                        if ( nCmpId == 65 )
+                        if ( nCmpId == 59 )
                         {
-                           OldWwpaux_wc = cgiGet( "W0065");
+                           OldWwpaux_wc = cgiGet( "W0059");
                            if ( ( StringUtil.Len( OldWwpaux_wc) == 0 ) || ( StringUtil.StrCmp(OldWwpaux_wc, WebComp_Wwpaux_wc_Component) != 0 ) )
                            {
                               WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", OldWwpaux_wc, new Object[] {context} );
@@ -1123,7 +1097,7 @@ namespace GeneXus.Programs {
                            }
                            if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
                            {
-                              WebComp_Wwpaux_wc.componentprocess("W0065", "", sEvt);
+                              WebComp_Wwpaux_wc.componentprocess("W0059", "", sEvt);
                            }
                            WebComp_Wwpaux_wc_Component = OldWwpaux_wc;
                         }
@@ -1135,7 +1109,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void WE5Z2( )
+      protected void WE842( )
       {
          if ( ! GxWebStd.gx_redirect( context) )
          {
@@ -1151,7 +1125,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void PA5Z2( )
+      protected void PA842( )
       {
          if ( nDonePA == 0 )
          {
@@ -1206,38 +1180,34 @@ namespace GeneXus.Programs {
                                        short AV13OrderedBy ,
                                        bool AV14OrderedDsc ,
                                        short AV19ManageFiltersExecutionStep ,
-                                       string AV98Pgmname ,
+                                       string AV52Pgmname ,
                                        string AV15FilterFullText ,
-                                       string AV79TFTileName ,
-                                       string AV80TFTileName_Sel ,
-                                       string AV83TFTileBGColor ,
-                                       string AV84TFTileBGColor_Sel ,
-                                       string AV85TFTileBGImageUrl ,
-                                       string AV86TFTileBGImageUrl_Sel ,
-                                       string AV87TFTileTextColor ,
-                                       string AV88TFTileTextColor_Sel ,
-                                       GxSimpleCollection<string> AV90TFTileTextAlignment_Sels ,
-                                       string AV81TFTileIcon ,
-                                       string AV82TFTileIcon_Sel ,
-                                       GxSimpleCollection<string> AV92TFTileIconAlignment_Sels ,
-                                       string AV28TFProductServiceName ,
-                                       string AV29TFProductServiceName_Sel ,
-                                       string AV30TFProductServiceDescription ,
-                                       string AV31TFProductServiceDescription_Sel ,
-                                       string AV93TFSG_ToPageName ,
-                                       string AV94TFSG_ToPageName_Sel ,
-                                       bool AV45IsAuthorized_Display ,
-                                       bool AV47IsAuthorized_Update ,
+                                       string AV20TFTileName ,
+                                       string AV21TFTileName_Sel ,
+                                       string AV22TFTileBGColor ,
+                                       string AV23TFTileBGColor_Sel ,
+                                       string AV24TFTileBGImageUrl ,
+                                       string AV25TFTileBGImageUrl_Sel ,
+                                       string AV26TFTileTextColor ,
+                                       string AV27TFTileTextColor_Sel ,
+                                       GxSimpleCollection<string> AV29TFTileTextAlignment_Sels ,
+                                       string AV30TFTileIcon ,
+                                       string AV31TFTileIcon_Sel ,
+                                       GxSimpleCollection<string> AV33TFTileIconAlignment_Sels ,
+                                       string AV34TFTileIconColor ,
+                                       string AV35TFTileIconColor_Sel ,
+                                       string AV36TFTileAction ,
+                                       string AV37TFTileAction_Sel ,
+                                       bool AV47IsAuthorized_Display ,
+                                       bool AV48IsAuthorized_Update ,
                                        bool AV49IsAuthorized_Delete ,
-                                       bool AV95IsAuthorized_TileName ,
-                                       bool AV42IsAuthorized_ProductServiceName ,
-                                       bool AV96IsAuthorized_SG_ToPageName ,
+                                       bool AV45IsAuthorized_TileName ,
                                        bool AV50IsAuthorized_Insert )
       {
          initialize_formulas( ) ;
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
-         RF5Z2( ) ;
+         RF842( ) ;
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
          send_integrity_footer_hashes( ) ;
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -1266,7 +1236,7 @@ namespace GeneXus.Programs {
       public void Refresh( )
       {
          send_integrity_hashes( ) ;
-         RF5Z2( ) ;
+         RF842( ) ;
          if ( isFullAjaxMode( ) )
          {
             send_integrity_footer_hashes( ) ;
@@ -1276,127 +1246,94 @@ namespace GeneXus.Programs {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         AV98Pgmname = "Trn_TileWW";
+         AV52Pgmname = "Trn_TileWW";
       }
 
       protected int subGridclient_rec_count_fnc( )
       {
-         AV99Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
-         AV100Trn_tilewwds_2_tftilename = AV79TFTileName;
-         AV101Trn_tilewwds_3_tftilename_sel = AV80TFTileName_Sel;
-         AV102Trn_tilewwds_4_tftilebgcolor = AV83TFTileBGColor;
-         AV103Trn_tilewwds_5_tftilebgcolor_sel = AV84TFTileBGColor_Sel;
-         AV104Trn_tilewwds_6_tftilebgimageurl = AV85TFTileBGImageUrl;
-         AV105Trn_tilewwds_7_tftilebgimageurl_sel = AV86TFTileBGImageUrl_Sel;
-         AV106Trn_tilewwds_8_tftiletextcolor = AV87TFTileTextColor;
-         AV107Trn_tilewwds_9_tftiletextcolor_sel = AV88TFTileTextColor_Sel;
-         AV108Trn_tilewwds_10_tftiletextalignment_sels = AV90TFTileTextAlignment_Sels;
-         AV109Trn_tilewwds_11_tftileicon = AV81TFTileIcon;
-         AV110Trn_tilewwds_12_tftileicon_sel = AV82TFTileIcon_Sel;
-         AV111Trn_tilewwds_13_tftileiconalignment_sels = AV92TFTileIconAlignment_Sels;
-         AV112Trn_tilewwds_14_tfproductservicename = AV28TFProductServiceName;
-         AV113Trn_tilewwds_15_tfproductservicename_sel = AV29TFProductServiceName_Sel;
-         AV114Trn_tilewwds_16_tfproductservicedescription = AV30TFProductServiceDescription;
-         AV115Trn_tilewwds_17_tfproductservicedescription_sel = AV31TFProductServiceDescription_Sel;
-         AV116Trn_tilewwds_18_tfsg_topagename = AV93TFSG_ToPageName;
-         AV117Trn_tilewwds_19_tfsg_topagename_sel = AV94TFSG_ToPageName_Sel;
+         AV53Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
+         AV54Trn_tilewwds_2_tftilename = AV20TFTileName;
+         AV55Trn_tilewwds_3_tftilename_sel = AV21TFTileName_Sel;
+         AV56Trn_tilewwds_4_tftilebgcolor = AV22TFTileBGColor;
+         AV57Trn_tilewwds_5_tftilebgcolor_sel = AV23TFTileBGColor_Sel;
+         AV58Trn_tilewwds_6_tftilebgimageurl = AV24TFTileBGImageUrl;
+         AV59Trn_tilewwds_7_tftilebgimageurl_sel = AV25TFTileBGImageUrl_Sel;
+         AV60Trn_tilewwds_8_tftiletextcolor = AV26TFTileTextColor;
+         AV61Trn_tilewwds_9_tftiletextcolor_sel = AV27TFTileTextColor_Sel;
+         AV62Trn_tilewwds_10_tftiletextalignment_sels = AV29TFTileTextAlignment_Sels;
+         AV63Trn_tilewwds_11_tftileicon = AV30TFTileIcon;
+         AV64Trn_tilewwds_12_tftileicon_sel = AV31TFTileIcon_Sel;
+         AV65Trn_tilewwds_13_tftileiconalignment_sels = AV33TFTileIconAlignment_Sels;
+         AV66Trn_tilewwds_14_tftileiconcolor = AV34TFTileIconColor;
+         AV67Trn_tilewwds_15_tftileiconcolor_sel = AV35TFTileIconColor_Sel;
+         AV68Trn_tilewwds_16_tftileaction = AV36TFTileAction;
+         AV69Trn_tilewwds_17_tftileaction_sel = AV37TFTileAction_Sel;
          GRID_nRecordCount = 0;
          pr_default.dynParam(0, new Object[]{ new Object[]{
                                               A405TileTextAlignment ,
-                                              AV108Trn_tilewwds_10_tftiletextalignment_sels ,
+                                              AV62Trn_tilewwds_10_tftiletextalignment_sels ,
                                               A406TileIconAlignment ,
-                                              AV111Trn_tilewwds_13_tftileiconalignment_sels ,
-                                              AV101Trn_tilewwds_3_tftilename_sel ,
-                                              AV100Trn_tilewwds_2_tftilename ,
-                                              AV103Trn_tilewwds_5_tftilebgcolor_sel ,
-                                              AV102Trn_tilewwds_4_tftilebgcolor ,
-                                              AV105Trn_tilewwds_7_tftilebgimageurl_sel ,
-                                              AV104Trn_tilewwds_6_tftilebgimageurl ,
-                                              AV107Trn_tilewwds_9_tftiletextcolor_sel ,
-                                              AV106Trn_tilewwds_8_tftiletextcolor ,
-                                              AV108Trn_tilewwds_10_tftiletextalignment_sels.Count ,
-                                              AV110Trn_tilewwds_12_tftileicon_sel ,
-                                              AV109Trn_tilewwds_11_tftileicon ,
-                                              AV111Trn_tilewwds_13_tftileiconalignment_sels.Count ,
-                                              AV113Trn_tilewwds_15_tfproductservicename_sel ,
-                                              AV112Trn_tilewwds_14_tfproductservicename ,
-                                              AV115Trn_tilewwds_17_tfproductservicedescription_sel ,
-                                              AV114Trn_tilewwds_16_tfproductservicedescription ,
-                                              AV117Trn_tilewwds_19_tfsg_topagename_sel ,
-                                              AV116Trn_tilewwds_18_tfsg_topagename ,
+                                              AV65Trn_tilewwds_13_tftileiconalignment_sels ,
+                                              AV55Trn_tilewwds_3_tftilename_sel ,
+                                              AV54Trn_tilewwds_2_tftilename ,
+                                              AV57Trn_tilewwds_5_tftilebgcolor_sel ,
+                                              AV56Trn_tilewwds_4_tftilebgcolor ,
+                                              AV59Trn_tilewwds_7_tftilebgimageurl_sel ,
+                                              AV58Trn_tilewwds_6_tftilebgimageurl ,
+                                              AV61Trn_tilewwds_9_tftiletextcolor_sel ,
+                                              AV60Trn_tilewwds_8_tftiletextcolor ,
+                                              AV62Trn_tilewwds_10_tftiletextalignment_sels.Count ,
+                                              AV64Trn_tilewwds_12_tftileicon_sel ,
+                                              AV63Trn_tilewwds_11_tftileicon ,
+                                              AV65Trn_tilewwds_13_tftileiconalignment_sels.Count ,
+                                              AV67Trn_tilewwds_15_tftileiconcolor_sel ,
+                                              AV66Trn_tilewwds_14_tftileiconcolor ,
+                                              AV69Trn_tilewwds_17_tftileaction_sel ,
+                                              AV68Trn_tilewwds_16_tftileaction ,
                                               A400TileName ,
                                               A402TileBGColor ,
                                               A403TileBGImageUrl ,
                                               A404TileTextColor ,
                                               A401TileIcon ,
-                                              A59ProductServiceName ,
-                                              A60ProductServiceDescription ,
-                                              A330SG_ToPageName ,
+                                              A438TileIconColor ,
+                                              A436TileAction ,
                                               AV13OrderedBy ,
                                               AV14OrderedDsc ,
-                                              AV99Trn_tilewwds_1_filterfulltext } ,
+                                              AV53Trn_tilewwds_1_filterfulltext } ,
                                               new int[]{
                                               TypeConstants.INT, TypeConstants.INT, TypeConstants.BOOLEAN, TypeConstants.BOOLEAN, TypeConstants.BOOLEAN, TypeConstants.SHORT, TypeConstants.BOOLEAN
                                               }
          });
-         lV100Trn_tilewwds_2_tftilename = StringUtil.Concat( StringUtil.RTrim( AV100Trn_tilewwds_2_tftilename), "%", "");
-         lV102Trn_tilewwds_4_tftilebgcolor = StringUtil.PadR( StringUtil.RTrim( AV102Trn_tilewwds_4_tftilebgcolor), 20, "%");
-         lV104Trn_tilewwds_6_tftilebgimageurl = StringUtil.Concat( StringUtil.RTrim( AV104Trn_tilewwds_6_tftilebgimageurl), "%", "");
-         lV106Trn_tilewwds_8_tftiletextcolor = StringUtil.PadR( StringUtil.RTrim( AV106Trn_tilewwds_8_tftiletextcolor), 20, "%");
-         lV109Trn_tilewwds_11_tftileicon = StringUtil.PadR( StringUtil.RTrim( AV109Trn_tilewwds_11_tftileicon), 20, "%");
-         lV112Trn_tilewwds_14_tfproductservicename = StringUtil.Concat( StringUtil.RTrim( AV112Trn_tilewwds_14_tfproductservicename), "%", "");
-         lV114Trn_tilewwds_16_tfproductservicedescription = StringUtil.Concat( StringUtil.RTrim( AV114Trn_tilewwds_16_tfproductservicedescription), "%", "");
-         lV116Trn_tilewwds_18_tfsg_topagename = StringUtil.Concat( StringUtil.RTrim( AV116Trn_tilewwds_18_tfsg_topagename), "%", "");
-         /* Using cursor H005Z2 */
-         pr_default.execute(0, new Object[] {lV100Trn_tilewwds_2_tftilename, AV101Trn_tilewwds_3_tftilename_sel, lV102Trn_tilewwds_4_tftilebgcolor, AV103Trn_tilewwds_5_tftilebgcolor_sel, lV104Trn_tilewwds_6_tftilebgimageurl, AV105Trn_tilewwds_7_tftilebgimageurl_sel, lV106Trn_tilewwds_8_tftiletextcolor, AV107Trn_tilewwds_9_tftiletextcolor_sel, lV109Trn_tilewwds_11_tftileicon, AV110Trn_tilewwds_12_tftileicon_sel, lV112Trn_tilewwds_14_tfproductservicename, AV113Trn_tilewwds_15_tfproductservicename_sel, lV114Trn_tilewwds_16_tfproductservicedescription, AV115Trn_tilewwds_17_tfproductservicedescription_sel, lV116Trn_tilewwds_18_tfsg_topagename, AV117Trn_tilewwds_19_tfsg_topagename_sel});
+         lV54Trn_tilewwds_2_tftilename = StringUtil.Concat( StringUtil.RTrim( AV54Trn_tilewwds_2_tftilename), "%", "");
+         lV56Trn_tilewwds_4_tftilebgcolor = StringUtil.PadR( StringUtil.RTrim( AV56Trn_tilewwds_4_tftilebgcolor), 20, "%");
+         lV58Trn_tilewwds_6_tftilebgimageurl = StringUtil.Concat( StringUtil.RTrim( AV58Trn_tilewwds_6_tftilebgimageurl), "%", "");
+         lV60Trn_tilewwds_8_tftiletextcolor = StringUtil.PadR( StringUtil.RTrim( AV60Trn_tilewwds_8_tftiletextcolor), 20, "%");
+         lV63Trn_tilewwds_11_tftileicon = StringUtil.PadR( StringUtil.RTrim( AV63Trn_tilewwds_11_tftileicon), 20, "%");
+         lV66Trn_tilewwds_14_tftileiconcolor = StringUtil.PadR( StringUtil.RTrim( AV66Trn_tilewwds_14_tftileiconcolor), 20, "%");
+         lV68Trn_tilewwds_16_tftileaction = StringUtil.Concat( StringUtil.RTrim( AV68Trn_tilewwds_16_tftileaction), "%", "");
+         /* Using cursor H00842 */
+         pr_default.execute(0, new Object[] {lV54Trn_tilewwds_2_tftilename, AV55Trn_tilewwds_3_tftilename_sel, lV56Trn_tilewwds_4_tftilebgcolor, AV57Trn_tilewwds_5_tftilebgcolor_sel, lV58Trn_tilewwds_6_tftilebgimageurl, AV59Trn_tilewwds_7_tftilebgimageurl_sel, lV60Trn_tilewwds_8_tftiletextcolor, AV61Trn_tilewwds_9_tftiletextcolor_sel, lV63Trn_tilewwds_11_tftileicon, AV64Trn_tilewwds_12_tftileicon_sel, lV66Trn_tilewwds_14_tftileiconcolor, AV67Trn_tilewwds_15_tftileiconcolor_sel, lV68Trn_tilewwds_16_tftileaction, AV69Trn_tilewwds_17_tftileaction_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
-            A330SG_ToPageName = H005Z2_A330SG_ToPageName[0];
-            A329SG_ToPageId = H005Z2_A329SG_ToPageId[0];
-            n329SG_ToPageId = H005Z2_n329SG_ToPageId[0];
-            A40000ProductServiceImage_GXI = H005Z2_A40000ProductServiceImage_GXI[0];
-            AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-            AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-            A60ProductServiceDescription = H005Z2_A60ProductServiceDescription[0];
-            A59ProductServiceName = H005Z2_A59ProductServiceName[0];
-            A29LocationId = H005Z2_A29LocationId[0];
-            n29LocationId = H005Z2_n29LocationId[0];
-            A11OrganisationId = H005Z2_A11OrganisationId[0];
-            n11OrganisationId = H005Z2_n11OrganisationId[0];
-            A58ProductServiceId = H005Z2_A58ProductServiceId[0];
-            n58ProductServiceId = H005Z2_n58ProductServiceId[0];
-            A406TileIconAlignment = H005Z2_A406TileIconAlignment[0];
-            A401TileIcon = H005Z2_A401TileIcon[0];
-            n401TileIcon = H005Z2_n401TileIcon[0];
-            A405TileTextAlignment = H005Z2_A405TileTextAlignment[0];
-            A404TileTextColor = H005Z2_A404TileTextColor[0];
-            A403TileBGImageUrl = H005Z2_A403TileBGImageUrl[0];
-            n403TileBGImageUrl = H005Z2_n403TileBGImageUrl[0];
-            A402TileBGColor = H005Z2_A402TileBGColor[0];
-            n402TileBGColor = H005Z2_n402TileBGColor[0];
-            A400TileName = H005Z2_A400TileName[0];
-            A407TileId = H005Z2_A407TileId[0];
-            A61ProductServiceImage = H005Z2_A61ProductServiceImage[0];
-            AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-            AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-            A330SG_ToPageName = H005Z2_A330SG_ToPageName[0];
-            A29LocationId = H005Z2_A29LocationId[0];
-            n29LocationId = H005Z2_n29LocationId[0];
-            A40000ProductServiceImage_GXI = H005Z2_A40000ProductServiceImage_GXI[0];
-            AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-            AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-            A60ProductServiceDescription = H005Z2_A60ProductServiceDescription[0];
-            A59ProductServiceName = H005Z2_A59ProductServiceName[0];
-            A61ProductServiceImage = H005Z2_A61ProductServiceImage[0];
-            AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-            AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV99Trn_tilewwds_1_filterfulltext)) || ( ( StringUtil.Like( A400TileName , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A402TileBGColor , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A403TileBGImageUrl , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 1000 , "%"),  ' ' ) ) || ( StringUtil.Like( A404TileTextColor , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( "center", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) &&
-            ( StringUtil.StrCmp(A405TileTextAlignment, "center") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "left", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A405TileTextAlignment, "left") == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( "right", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A405TileTextAlignment, "right") == 0 ) ) || ( StringUtil.Like( A401TileIcon , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( context.GetMessage( "center", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A406TileIconAlignment, "center") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "left", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) &&
-            ( StringUtil.StrCmp(A406TileIconAlignment, "left") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "right", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A406TileIconAlignment, "right") == 0 ) ) ||
-            ( StringUtil.Like( A59ProductServiceName , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A60ProductServiceDescription , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 2097152 , "%"),  ' ' ) ) || ( StringUtil.Like( A330SG_ToPageName , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
+            A436TileAction = H00842_A436TileAction[0];
+            A438TileIconColor = H00842_A438TileIconColor[0];
+            A406TileIconAlignment = H00842_A406TileIconAlignment[0];
+            A401TileIcon = H00842_A401TileIcon[0];
+            n401TileIcon = H00842_n401TileIcon[0];
+            A405TileTextAlignment = H00842_A405TileTextAlignment[0];
+            A404TileTextColor = H00842_A404TileTextColor[0];
+            A403TileBGImageUrl = H00842_A403TileBGImageUrl[0];
+            n403TileBGImageUrl = H00842_n403TileBGImageUrl[0];
+            A402TileBGColor = H00842_A402TileBGColor[0];
+            n402TileBGColor = H00842_n402TileBGColor[0];
+            A400TileName = H00842_A400TileName[0];
+            A407TileId = H00842_A407TileId[0];
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_tilewwds_1_filterfulltext)) || ( ( StringUtil.Like( A400TileName , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A402TileBGColor , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A403TileBGImageUrl , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 1000 , "%"),  ' ' ) ) || ( StringUtil.Like( A404TileTextColor , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( "center", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) &&
+            ( StringUtil.StrCmp(A405TileTextAlignment, "center") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "left", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A405TileTextAlignment, "left") == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( "right", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A405TileTextAlignment, "right") == 0 ) ) || ( StringUtil.Like( A401TileIcon , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( context.GetMessage( "center", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A406TileIconAlignment, "center") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "left", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) &&
+            ( StringUtil.StrCmp(A406TileIconAlignment, "left") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "right", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A406TileIconAlignment, "right") == 0 ) ) || ( StringUtil.Like( A438TileIconColor , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A436TileAction , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 2097152 , "%"),  ' ' ) ) )
             )
             {
                GRID_nRecordCount = (long)(GRID_nRecordCount+1);
@@ -1409,7 +1346,7 @@ namespace GeneXus.Programs {
          return (int)(GRID_nRecordCount) ;
       }
 
-      protected void RF5Z2( )
+      protected void RF842( )
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
@@ -1419,7 +1356,7 @@ namespace GeneXus.Programs {
          }
          wbStart = 37;
          /* Execute user event: Refresh */
-         E185Z2 ();
+         E18842 ();
          nGXsfl_37_idx = 1;
          sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
          SubsflControlProps_372( ) ;
@@ -1451,52 +1388,48 @@ namespace GeneXus.Programs {
             SubsflControlProps_372( ) ;
             pr_default.dynParam(1, new Object[]{ new Object[]{
                                                  A405TileTextAlignment ,
-                                                 AV108Trn_tilewwds_10_tftiletextalignment_sels ,
+                                                 AV62Trn_tilewwds_10_tftiletextalignment_sels ,
                                                  A406TileIconAlignment ,
-                                                 AV111Trn_tilewwds_13_tftileiconalignment_sels ,
-                                                 AV101Trn_tilewwds_3_tftilename_sel ,
-                                                 AV100Trn_tilewwds_2_tftilename ,
-                                                 AV103Trn_tilewwds_5_tftilebgcolor_sel ,
-                                                 AV102Trn_tilewwds_4_tftilebgcolor ,
-                                                 AV105Trn_tilewwds_7_tftilebgimageurl_sel ,
-                                                 AV104Trn_tilewwds_6_tftilebgimageurl ,
-                                                 AV107Trn_tilewwds_9_tftiletextcolor_sel ,
-                                                 AV106Trn_tilewwds_8_tftiletextcolor ,
-                                                 AV108Trn_tilewwds_10_tftiletextalignment_sels.Count ,
-                                                 AV110Trn_tilewwds_12_tftileicon_sel ,
-                                                 AV109Trn_tilewwds_11_tftileicon ,
-                                                 AV111Trn_tilewwds_13_tftileiconalignment_sels.Count ,
-                                                 AV113Trn_tilewwds_15_tfproductservicename_sel ,
-                                                 AV112Trn_tilewwds_14_tfproductservicename ,
-                                                 AV115Trn_tilewwds_17_tfproductservicedescription_sel ,
-                                                 AV114Trn_tilewwds_16_tfproductservicedescription ,
-                                                 AV117Trn_tilewwds_19_tfsg_topagename_sel ,
-                                                 AV116Trn_tilewwds_18_tfsg_topagename ,
+                                                 AV65Trn_tilewwds_13_tftileiconalignment_sels ,
+                                                 AV55Trn_tilewwds_3_tftilename_sel ,
+                                                 AV54Trn_tilewwds_2_tftilename ,
+                                                 AV57Trn_tilewwds_5_tftilebgcolor_sel ,
+                                                 AV56Trn_tilewwds_4_tftilebgcolor ,
+                                                 AV59Trn_tilewwds_7_tftilebgimageurl_sel ,
+                                                 AV58Trn_tilewwds_6_tftilebgimageurl ,
+                                                 AV61Trn_tilewwds_9_tftiletextcolor_sel ,
+                                                 AV60Trn_tilewwds_8_tftiletextcolor ,
+                                                 AV62Trn_tilewwds_10_tftiletextalignment_sels.Count ,
+                                                 AV64Trn_tilewwds_12_tftileicon_sel ,
+                                                 AV63Trn_tilewwds_11_tftileicon ,
+                                                 AV65Trn_tilewwds_13_tftileiconalignment_sels.Count ,
+                                                 AV67Trn_tilewwds_15_tftileiconcolor_sel ,
+                                                 AV66Trn_tilewwds_14_tftileiconcolor ,
+                                                 AV69Trn_tilewwds_17_tftileaction_sel ,
+                                                 AV68Trn_tilewwds_16_tftileaction ,
                                                  A400TileName ,
                                                  A402TileBGColor ,
                                                  A403TileBGImageUrl ,
                                                  A404TileTextColor ,
                                                  A401TileIcon ,
-                                                 A59ProductServiceName ,
-                                                 A60ProductServiceDescription ,
-                                                 A330SG_ToPageName ,
+                                                 A438TileIconColor ,
+                                                 A436TileAction ,
                                                  AV13OrderedBy ,
                                                  AV14OrderedDsc ,
-                                                 AV99Trn_tilewwds_1_filterfulltext } ,
+                                                 AV53Trn_tilewwds_1_filterfulltext } ,
                                                  new int[]{
                                                  TypeConstants.INT, TypeConstants.INT, TypeConstants.BOOLEAN, TypeConstants.BOOLEAN, TypeConstants.BOOLEAN, TypeConstants.SHORT, TypeConstants.BOOLEAN
                                                  }
             });
-            lV100Trn_tilewwds_2_tftilename = StringUtil.Concat( StringUtil.RTrim( AV100Trn_tilewwds_2_tftilename), "%", "");
-            lV102Trn_tilewwds_4_tftilebgcolor = StringUtil.PadR( StringUtil.RTrim( AV102Trn_tilewwds_4_tftilebgcolor), 20, "%");
-            lV104Trn_tilewwds_6_tftilebgimageurl = StringUtil.Concat( StringUtil.RTrim( AV104Trn_tilewwds_6_tftilebgimageurl), "%", "");
-            lV106Trn_tilewwds_8_tftiletextcolor = StringUtil.PadR( StringUtil.RTrim( AV106Trn_tilewwds_8_tftiletextcolor), 20, "%");
-            lV109Trn_tilewwds_11_tftileicon = StringUtil.PadR( StringUtil.RTrim( AV109Trn_tilewwds_11_tftileicon), 20, "%");
-            lV112Trn_tilewwds_14_tfproductservicename = StringUtil.Concat( StringUtil.RTrim( AV112Trn_tilewwds_14_tfproductservicename), "%", "");
-            lV114Trn_tilewwds_16_tfproductservicedescription = StringUtil.Concat( StringUtil.RTrim( AV114Trn_tilewwds_16_tfproductservicedescription), "%", "");
-            lV116Trn_tilewwds_18_tfsg_topagename = StringUtil.Concat( StringUtil.RTrim( AV116Trn_tilewwds_18_tfsg_topagename), "%", "");
-            /* Using cursor H005Z3 */
-            pr_default.execute(1, new Object[] {lV100Trn_tilewwds_2_tftilename, AV101Trn_tilewwds_3_tftilename_sel, lV102Trn_tilewwds_4_tftilebgcolor, AV103Trn_tilewwds_5_tftilebgcolor_sel, lV104Trn_tilewwds_6_tftilebgimageurl, AV105Trn_tilewwds_7_tftilebgimageurl_sel, lV106Trn_tilewwds_8_tftiletextcolor, AV107Trn_tilewwds_9_tftiletextcolor_sel, lV109Trn_tilewwds_11_tftileicon, AV110Trn_tilewwds_12_tftileicon_sel, lV112Trn_tilewwds_14_tfproductservicename, AV113Trn_tilewwds_15_tfproductservicename_sel, lV114Trn_tilewwds_16_tfproductservicedescription, AV115Trn_tilewwds_17_tfproductservicedescription_sel, lV116Trn_tilewwds_18_tfsg_topagename, AV117Trn_tilewwds_19_tfsg_topagename_sel});
+            lV54Trn_tilewwds_2_tftilename = StringUtil.Concat( StringUtil.RTrim( AV54Trn_tilewwds_2_tftilename), "%", "");
+            lV56Trn_tilewwds_4_tftilebgcolor = StringUtil.PadR( StringUtil.RTrim( AV56Trn_tilewwds_4_tftilebgcolor), 20, "%");
+            lV58Trn_tilewwds_6_tftilebgimageurl = StringUtil.Concat( StringUtil.RTrim( AV58Trn_tilewwds_6_tftilebgimageurl), "%", "");
+            lV60Trn_tilewwds_8_tftiletextcolor = StringUtil.PadR( StringUtil.RTrim( AV60Trn_tilewwds_8_tftiletextcolor), 20, "%");
+            lV63Trn_tilewwds_11_tftileicon = StringUtil.PadR( StringUtil.RTrim( AV63Trn_tilewwds_11_tftileicon), 20, "%");
+            lV66Trn_tilewwds_14_tftileiconcolor = StringUtil.PadR( StringUtil.RTrim( AV66Trn_tilewwds_14_tftileiconcolor), 20, "%");
+            lV68Trn_tilewwds_16_tftileaction = StringUtil.Concat( StringUtil.RTrim( AV68Trn_tilewwds_16_tftileaction), "%", "");
+            /* Using cursor H00843 */
+            pr_default.execute(1, new Object[] {lV54Trn_tilewwds_2_tftilename, AV55Trn_tilewwds_3_tftilename_sel, lV56Trn_tilewwds_4_tftilebgcolor, AV57Trn_tilewwds_5_tftilebgcolor_sel, lV58Trn_tilewwds_6_tftilebgimageurl, AV59Trn_tilewwds_7_tftilebgimageurl_sel, lV60Trn_tilewwds_8_tftiletextcolor, AV61Trn_tilewwds_9_tftiletextcolor_sel, lV63Trn_tilewwds_11_tftileicon, AV64Trn_tilewwds_12_tftileicon_sel, lV66Trn_tilewwds_14_tftileiconcolor, AV67Trn_tilewwds_15_tftileiconcolor_sel, lV68Trn_tilewwds_16_tftileaction, AV69Trn_tilewwds_17_tftileaction_sel});
             nGXsfl_37_idx = 1;
             sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
             SubsflControlProps_372( ) ;
@@ -1504,56 +1437,29 @@ namespace GeneXus.Programs {
             GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, ".", "")));
             while ( ( (pr_default.getStatus(1) != 101) ) && ( ( ( subGrid_Rows == 0 ) || ( GRID_nCurrentRecord < GRID_nFirstRecordOnPage + subGrid_fnc_Recordsperpage( ) ) ) ) )
             {
-               A330SG_ToPageName = H005Z3_A330SG_ToPageName[0];
-               A329SG_ToPageId = H005Z3_A329SG_ToPageId[0];
-               n329SG_ToPageId = H005Z3_n329SG_ToPageId[0];
-               A40000ProductServiceImage_GXI = H005Z3_A40000ProductServiceImage_GXI[0];
-               AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-               AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-               A60ProductServiceDescription = H005Z3_A60ProductServiceDescription[0];
-               A59ProductServiceName = H005Z3_A59ProductServiceName[0];
-               A29LocationId = H005Z3_A29LocationId[0];
-               n29LocationId = H005Z3_n29LocationId[0];
-               A11OrganisationId = H005Z3_A11OrganisationId[0];
-               n11OrganisationId = H005Z3_n11OrganisationId[0];
-               A58ProductServiceId = H005Z3_A58ProductServiceId[0];
-               n58ProductServiceId = H005Z3_n58ProductServiceId[0];
-               A406TileIconAlignment = H005Z3_A406TileIconAlignment[0];
-               A401TileIcon = H005Z3_A401TileIcon[0];
-               n401TileIcon = H005Z3_n401TileIcon[0];
-               A405TileTextAlignment = H005Z3_A405TileTextAlignment[0];
-               A404TileTextColor = H005Z3_A404TileTextColor[0];
-               A403TileBGImageUrl = H005Z3_A403TileBGImageUrl[0];
-               n403TileBGImageUrl = H005Z3_n403TileBGImageUrl[0];
-               A402TileBGColor = H005Z3_A402TileBGColor[0];
-               n402TileBGColor = H005Z3_n402TileBGColor[0];
-               A400TileName = H005Z3_A400TileName[0];
-               A407TileId = H005Z3_A407TileId[0];
-               A61ProductServiceImage = H005Z3_A61ProductServiceImage[0];
-               AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-               AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-               A330SG_ToPageName = H005Z3_A330SG_ToPageName[0];
-               A29LocationId = H005Z3_A29LocationId[0];
-               n29LocationId = H005Z3_n29LocationId[0];
-               A40000ProductServiceImage_GXI = H005Z3_A40000ProductServiceImage_GXI[0];
-               AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-               AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-               A60ProductServiceDescription = H005Z3_A60ProductServiceDescription[0];
-               A59ProductServiceName = H005Z3_A59ProductServiceName[0];
-               A61ProductServiceImage = H005Z3_A61ProductServiceImage[0];
-               AssignProp("", false, edtProductServiceImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.convertURL( context.PathToRelativeUrl( A61ProductServiceImage))), !bGXsfl_37_Refreshing);
-               AssignProp("", false, edtProductServiceImage_Internalname, "SrcSet", context.GetImageSrcSet( A61ProductServiceImage), true);
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV99Trn_tilewwds_1_filterfulltext)) || ( ( StringUtil.Like( A400TileName , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A402TileBGColor , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-               ( StringUtil.Like( A403TileBGImageUrl , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 1000 , "%"),  ' ' ) ) || ( StringUtil.Like( A404TileTextColor , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( "center", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) &&
-               ( StringUtil.StrCmp(A405TileTextAlignment, "center") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "left", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A405TileTextAlignment, "left") == 0 ) ) ||
-               ( StringUtil.Like( context.GetMessage( "right", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A405TileTextAlignment, "right") == 0 ) ) || ( StringUtil.Like( A401TileIcon , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-               ( StringUtil.Like( context.GetMessage( "center", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A406TileIconAlignment, "center") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "left", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) &&
-               ( StringUtil.StrCmp(A406TileIconAlignment, "left") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "right", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV99Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A406TileIconAlignment, "right") == 0 ) ) ||
-               ( StringUtil.Like( A59ProductServiceName , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A60ProductServiceDescription , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 2097152 , "%"),  ' ' ) ) || ( StringUtil.Like( A330SG_ToPageName , StringUtil.PadR( "%" + AV99Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
+               A436TileAction = H00843_A436TileAction[0];
+               A438TileIconColor = H00843_A438TileIconColor[0];
+               A406TileIconAlignment = H00843_A406TileIconAlignment[0];
+               A401TileIcon = H00843_A401TileIcon[0];
+               n401TileIcon = H00843_n401TileIcon[0];
+               A405TileTextAlignment = H00843_A405TileTextAlignment[0];
+               A404TileTextColor = H00843_A404TileTextColor[0];
+               A403TileBGImageUrl = H00843_A403TileBGImageUrl[0];
+               n403TileBGImageUrl = H00843_n403TileBGImageUrl[0];
+               A402TileBGColor = H00843_A402TileBGColor[0];
+               n402TileBGColor = H00843_n402TileBGColor[0];
+               A400TileName = H00843_A400TileName[0];
+               A407TileId = H00843_A407TileId[0];
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_tilewwds_1_filterfulltext)) || ( ( StringUtil.Like( A400TileName , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A402TileBGColor , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+               ( StringUtil.Like( A403TileBGImageUrl , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 1000 , "%"),  ' ' ) ) || ( StringUtil.Like( A404TileTextColor , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( "center", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) &&
+               ( StringUtil.StrCmp(A405TileTextAlignment, "center") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "left", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A405TileTextAlignment, "left") == 0 ) ) ||
+               ( StringUtil.Like( context.GetMessage( "right", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A405TileTextAlignment, "right") == 0 ) ) || ( StringUtil.Like( A401TileIcon , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+               ( StringUtil.Like( context.GetMessage( "center", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A406TileIconAlignment, "center") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "left", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) &&
+               ( StringUtil.StrCmp(A406TileIconAlignment, "left") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "right", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV53Trn_tilewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A406TileIconAlignment, "right") == 0 ) ) || ( StringUtil.Like( A438TileIconColor , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A436TileAction , StringUtil.PadR( "%" + AV53Trn_tilewwds_1_filterfulltext , 2097152 , "%"),  ' ' ) ) )
                )
                {
                   /* Execute user event: Grid.Load */
-                  E195Z2 ();
+                  E19842 ();
                }
                pr_default.readNext(1);
             }
@@ -1561,27 +1467,23 @@ namespace GeneXus.Programs {
             GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, ".", "")));
             pr_default.close(1);
             wbEnd = 37;
-            WB5Z0( ) ;
+            WB840( ) ;
          }
          bGXsfl_37_Refreshing = true;
       }
 
-      protected void send_integrity_lvl_hashes5Z2( )
+      protected void send_integrity_lvl_hashes842( )
       {
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV98Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV98Pgmname, "")), context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISPLAY", AV45IsAuthorized_Display);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV45IsAuthorized_Display, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_UPDATE", AV47IsAuthorized_Update);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV47IsAuthorized_Update, context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV52Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV52Pgmname, "")), context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISPLAY", AV47IsAuthorized_Display);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV47IsAuthorized_Display, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_UPDATE", AV48IsAuthorized_Update);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV48IsAuthorized_Update, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DELETE", AV49IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV49IsAuthorized_Delete, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_TILENAME", AV95IsAuthorized_TileName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_TILENAME", GetSecureSignedToken( "", AV95IsAuthorized_TileName, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_PRODUCTSERVICENAME", AV42IsAuthorized_ProductServiceName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_PRODUCTSERVICENAME", GetSecureSignedToken( "", AV42IsAuthorized_ProductServiceName, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_SG_TOPAGENAME", AV96IsAuthorized_SG_ToPageName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_SG_TOPAGENAME", GetSecureSignedToken( "", AV96IsAuthorized_SG_ToPageName, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_TILENAME", AV45IsAuthorized_TileName);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_TILENAME", GetSecureSignedToken( "", AV45IsAuthorized_TileName, context));
          GxWebStd.gx_hidden_field( context, "gxhash_TILEID"+"_"+sGXsfl_37_idx, GetSecureSignedToken( sGXsfl_37_idx, A407TileId, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV50IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV50IsAuthorized_Insert, context));
@@ -1621,30 +1523,28 @@ namespace GeneXus.Programs {
 
       protected short subgrid_firstpage( )
       {
-         AV99Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
-         AV100Trn_tilewwds_2_tftilename = AV79TFTileName;
-         AV101Trn_tilewwds_3_tftilename_sel = AV80TFTileName_Sel;
-         AV102Trn_tilewwds_4_tftilebgcolor = AV83TFTileBGColor;
-         AV103Trn_tilewwds_5_tftilebgcolor_sel = AV84TFTileBGColor_Sel;
-         AV104Trn_tilewwds_6_tftilebgimageurl = AV85TFTileBGImageUrl;
-         AV105Trn_tilewwds_7_tftilebgimageurl_sel = AV86TFTileBGImageUrl_Sel;
-         AV106Trn_tilewwds_8_tftiletextcolor = AV87TFTileTextColor;
-         AV107Trn_tilewwds_9_tftiletextcolor_sel = AV88TFTileTextColor_Sel;
-         AV108Trn_tilewwds_10_tftiletextalignment_sels = AV90TFTileTextAlignment_Sels;
-         AV109Trn_tilewwds_11_tftileicon = AV81TFTileIcon;
-         AV110Trn_tilewwds_12_tftileicon_sel = AV82TFTileIcon_Sel;
-         AV111Trn_tilewwds_13_tftileiconalignment_sels = AV92TFTileIconAlignment_Sels;
-         AV112Trn_tilewwds_14_tfproductservicename = AV28TFProductServiceName;
-         AV113Trn_tilewwds_15_tfproductservicename_sel = AV29TFProductServiceName_Sel;
-         AV114Trn_tilewwds_16_tfproductservicedescription = AV30TFProductServiceDescription;
-         AV115Trn_tilewwds_17_tfproductservicedescription_sel = AV31TFProductServiceDescription_Sel;
-         AV116Trn_tilewwds_18_tfsg_topagename = AV93TFSG_ToPageName;
-         AV117Trn_tilewwds_19_tfsg_topagename_sel = AV94TFSG_ToPageName_Sel;
+         AV53Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
+         AV54Trn_tilewwds_2_tftilename = AV20TFTileName;
+         AV55Trn_tilewwds_3_tftilename_sel = AV21TFTileName_Sel;
+         AV56Trn_tilewwds_4_tftilebgcolor = AV22TFTileBGColor;
+         AV57Trn_tilewwds_5_tftilebgcolor_sel = AV23TFTileBGColor_Sel;
+         AV58Trn_tilewwds_6_tftilebgimageurl = AV24TFTileBGImageUrl;
+         AV59Trn_tilewwds_7_tftilebgimageurl_sel = AV25TFTileBGImageUrl_Sel;
+         AV60Trn_tilewwds_8_tftiletextcolor = AV26TFTileTextColor;
+         AV61Trn_tilewwds_9_tftiletextcolor_sel = AV27TFTileTextColor_Sel;
+         AV62Trn_tilewwds_10_tftiletextalignment_sels = AV29TFTileTextAlignment_Sels;
+         AV63Trn_tilewwds_11_tftileicon = AV30TFTileIcon;
+         AV64Trn_tilewwds_12_tftileicon_sel = AV31TFTileIcon_Sel;
+         AV65Trn_tilewwds_13_tftileiconalignment_sels = AV33TFTileIconAlignment_Sels;
+         AV66Trn_tilewwds_14_tftileiconcolor = AV34TFTileIconColor;
+         AV67Trn_tilewwds_15_tftileiconcolor_sel = AV35TFTileIconColor_Sel;
+         AV68Trn_tilewwds_16_tftileaction = AV36TFTileAction;
+         AV69Trn_tilewwds_17_tftileaction_sel = AV37TFTileAction_Sel;
          GRID_nFirstRecordOnPage = 0;
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV98Pgmname, AV15FilterFullText, AV79TFTileName, AV80TFTileName_Sel, AV83TFTileBGColor, AV84TFTileBGColor_Sel, AV85TFTileBGImageUrl, AV86TFTileBGImageUrl_Sel, AV87TFTileTextColor, AV88TFTileTextColor_Sel, AV90TFTileTextAlignment_Sels, AV81TFTileIcon, AV82TFTileIcon_Sel, AV92TFTileIconAlignment_Sels, AV28TFProductServiceName, AV29TFProductServiceName_Sel, AV30TFProductServiceDescription, AV31TFProductServiceDescription_Sel, AV93TFSG_ToPageName, AV94TFSG_ToPageName_Sel, AV45IsAuthorized_Display, AV47IsAuthorized_Update, AV49IsAuthorized_Delete, AV95IsAuthorized_TileName, AV42IsAuthorized_ProductServiceName, AV96IsAuthorized_SG_ToPageName, AV50IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV52Pgmname, AV15FilterFullText, AV20TFTileName, AV21TFTileName_Sel, AV22TFTileBGColor, AV23TFTileBGColor_Sel, AV24TFTileBGImageUrl, AV25TFTileBGImageUrl_Sel, AV26TFTileTextColor, AV27TFTileTextColor_Sel, AV29TFTileTextAlignment_Sels, AV30TFTileIcon, AV31TFTileIcon_Sel, AV33TFTileIconAlignment_Sels, AV34TFTileIconColor, AV35TFTileIconColor_Sel, AV36TFTileAction, AV37TFTileAction_Sel, AV47IsAuthorized_Display, AV48IsAuthorized_Update, AV49IsAuthorized_Delete, AV45IsAuthorized_TileName, AV50IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1652,25 +1552,23 @@ namespace GeneXus.Programs {
 
       protected short subgrid_nextpage( )
       {
-         AV99Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
-         AV100Trn_tilewwds_2_tftilename = AV79TFTileName;
-         AV101Trn_tilewwds_3_tftilename_sel = AV80TFTileName_Sel;
-         AV102Trn_tilewwds_4_tftilebgcolor = AV83TFTileBGColor;
-         AV103Trn_tilewwds_5_tftilebgcolor_sel = AV84TFTileBGColor_Sel;
-         AV104Trn_tilewwds_6_tftilebgimageurl = AV85TFTileBGImageUrl;
-         AV105Trn_tilewwds_7_tftilebgimageurl_sel = AV86TFTileBGImageUrl_Sel;
-         AV106Trn_tilewwds_8_tftiletextcolor = AV87TFTileTextColor;
-         AV107Trn_tilewwds_9_tftiletextcolor_sel = AV88TFTileTextColor_Sel;
-         AV108Trn_tilewwds_10_tftiletextalignment_sels = AV90TFTileTextAlignment_Sels;
-         AV109Trn_tilewwds_11_tftileicon = AV81TFTileIcon;
-         AV110Trn_tilewwds_12_tftileicon_sel = AV82TFTileIcon_Sel;
-         AV111Trn_tilewwds_13_tftileiconalignment_sels = AV92TFTileIconAlignment_Sels;
-         AV112Trn_tilewwds_14_tfproductservicename = AV28TFProductServiceName;
-         AV113Trn_tilewwds_15_tfproductservicename_sel = AV29TFProductServiceName_Sel;
-         AV114Trn_tilewwds_16_tfproductservicedescription = AV30TFProductServiceDescription;
-         AV115Trn_tilewwds_17_tfproductservicedescription_sel = AV31TFProductServiceDescription_Sel;
-         AV116Trn_tilewwds_18_tfsg_topagename = AV93TFSG_ToPageName;
-         AV117Trn_tilewwds_19_tfsg_topagename_sel = AV94TFSG_ToPageName_Sel;
+         AV53Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
+         AV54Trn_tilewwds_2_tftilename = AV20TFTileName;
+         AV55Trn_tilewwds_3_tftilename_sel = AV21TFTileName_Sel;
+         AV56Trn_tilewwds_4_tftilebgcolor = AV22TFTileBGColor;
+         AV57Trn_tilewwds_5_tftilebgcolor_sel = AV23TFTileBGColor_Sel;
+         AV58Trn_tilewwds_6_tftilebgimageurl = AV24TFTileBGImageUrl;
+         AV59Trn_tilewwds_7_tftilebgimageurl_sel = AV25TFTileBGImageUrl_Sel;
+         AV60Trn_tilewwds_8_tftiletextcolor = AV26TFTileTextColor;
+         AV61Trn_tilewwds_9_tftiletextcolor_sel = AV27TFTileTextColor_Sel;
+         AV62Trn_tilewwds_10_tftiletextalignment_sels = AV29TFTileTextAlignment_Sels;
+         AV63Trn_tilewwds_11_tftileicon = AV30TFTileIcon;
+         AV64Trn_tilewwds_12_tftileicon_sel = AV31TFTileIcon_Sel;
+         AV65Trn_tilewwds_13_tftileiconalignment_sels = AV33TFTileIconAlignment_Sels;
+         AV66Trn_tilewwds_14_tftileiconcolor = AV34TFTileIconColor;
+         AV67Trn_tilewwds_15_tftileiconcolor_sel = AV35TFTileIconColor_Sel;
+         AV68Trn_tilewwds_16_tftileaction = AV36TFTileAction;
+         AV69Trn_tilewwds_17_tftileaction_sel = AV37TFTileAction_Sel;
          if ( GRID_nEOF == 0 )
          {
             GRID_nFirstRecordOnPage = (long)(GRID_nFirstRecordOnPage+subGrid_fnc_Recordsperpage( ));
@@ -1679,7 +1577,7 @@ namespace GeneXus.Programs {
          GridContainer.AddObjectProperty("GRID_nFirstRecordOnPage", GRID_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV98Pgmname, AV15FilterFullText, AV79TFTileName, AV80TFTileName_Sel, AV83TFTileBGColor, AV84TFTileBGColor_Sel, AV85TFTileBGImageUrl, AV86TFTileBGImageUrl_Sel, AV87TFTileTextColor, AV88TFTileTextColor_Sel, AV90TFTileTextAlignment_Sels, AV81TFTileIcon, AV82TFTileIcon_Sel, AV92TFTileIconAlignment_Sels, AV28TFProductServiceName, AV29TFProductServiceName_Sel, AV30TFProductServiceDescription, AV31TFProductServiceDescription_Sel, AV93TFSG_ToPageName, AV94TFSG_ToPageName_Sel, AV45IsAuthorized_Display, AV47IsAuthorized_Update, AV49IsAuthorized_Delete, AV95IsAuthorized_TileName, AV42IsAuthorized_ProductServiceName, AV96IsAuthorized_SG_ToPageName, AV50IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV52Pgmname, AV15FilterFullText, AV20TFTileName, AV21TFTileName_Sel, AV22TFTileBGColor, AV23TFTileBGColor_Sel, AV24TFTileBGImageUrl, AV25TFTileBGImageUrl_Sel, AV26TFTileTextColor, AV27TFTileTextColor_Sel, AV29TFTileTextAlignment_Sels, AV30TFTileIcon, AV31TFTileIcon_Sel, AV33TFTileIconAlignment_Sels, AV34TFTileIconColor, AV35TFTileIconColor_Sel, AV36TFTileAction, AV37TFTileAction_Sel, AV47IsAuthorized_Display, AV48IsAuthorized_Update, AV49IsAuthorized_Delete, AV45IsAuthorized_TileName, AV50IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((GRID_nEOF==0) ? 0 : 2)) ;
@@ -1687,25 +1585,23 @@ namespace GeneXus.Programs {
 
       protected short subgrid_previouspage( )
       {
-         AV99Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
-         AV100Trn_tilewwds_2_tftilename = AV79TFTileName;
-         AV101Trn_tilewwds_3_tftilename_sel = AV80TFTileName_Sel;
-         AV102Trn_tilewwds_4_tftilebgcolor = AV83TFTileBGColor;
-         AV103Trn_tilewwds_5_tftilebgcolor_sel = AV84TFTileBGColor_Sel;
-         AV104Trn_tilewwds_6_tftilebgimageurl = AV85TFTileBGImageUrl;
-         AV105Trn_tilewwds_7_tftilebgimageurl_sel = AV86TFTileBGImageUrl_Sel;
-         AV106Trn_tilewwds_8_tftiletextcolor = AV87TFTileTextColor;
-         AV107Trn_tilewwds_9_tftiletextcolor_sel = AV88TFTileTextColor_Sel;
-         AV108Trn_tilewwds_10_tftiletextalignment_sels = AV90TFTileTextAlignment_Sels;
-         AV109Trn_tilewwds_11_tftileicon = AV81TFTileIcon;
-         AV110Trn_tilewwds_12_tftileicon_sel = AV82TFTileIcon_Sel;
-         AV111Trn_tilewwds_13_tftileiconalignment_sels = AV92TFTileIconAlignment_Sels;
-         AV112Trn_tilewwds_14_tfproductservicename = AV28TFProductServiceName;
-         AV113Trn_tilewwds_15_tfproductservicename_sel = AV29TFProductServiceName_Sel;
-         AV114Trn_tilewwds_16_tfproductservicedescription = AV30TFProductServiceDescription;
-         AV115Trn_tilewwds_17_tfproductservicedescription_sel = AV31TFProductServiceDescription_Sel;
-         AV116Trn_tilewwds_18_tfsg_topagename = AV93TFSG_ToPageName;
-         AV117Trn_tilewwds_19_tfsg_topagename_sel = AV94TFSG_ToPageName_Sel;
+         AV53Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
+         AV54Trn_tilewwds_2_tftilename = AV20TFTileName;
+         AV55Trn_tilewwds_3_tftilename_sel = AV21TFTileName_Sel;
+         AV56Trn_tilewwds_4_tftilebgcolor = AV22TFTileBGColor;
+         AV57Trn_tilewwds_5_tftilebgcolor_sel = AV23TFTileBGColor_Sel;
+         AV58Trn_tilewwds_6_tftilebgimageurl = AV24TFTileBGImageUrl;
+         AV59Trn_tilewwds_7_tftilebgimageurl_sel = AV25TFTileBGImageUrl_Sel;
+         AV60Trn_tilewwds_8_tftiletextcolor = AV26TFTileTextColor;
+         AV61Trn_tilewwds_9_tftiletextcolor_sel = AV27TFTileTextColor_Sel;
+         AV62Trn_tilewwds_10_tftiletextalignment_sels = AV29TFTileTextAlignment_Sels;
+         AV63Trn_tilewwds_11_tftileicon = AV30TFTileIcon;
+         AV64Trn_tilewwds_12_tftileicon_sel = AV31TFTileIcon_Sel;
+         AV65Trn_tilewwds_13_tftileiconalignment_sels = AV33TFTileIconAlignment_Sels;
+         AV66Trn_tilewwds_14_tftileiconcolor = AV34TFTileIconColor;
+         AV67Trn_tilewwds_15_tftileiconcolor_sel = AV35TFTileIconColor_Sel;
+         AV68Trn_tilewwds_16_tftileaction = AV36TFTileAction;
+         AV69Trn_tilewwds_17_tftileaction_sel = AV37TFTileAction_Sel;
          if ( GRID_nFirstRecordOnPage >= subGrid_fnc_Recordsperpage( ) )
          {
             GRID_nFirstRecordOnPage = (long)(GRID_nFirstRecordOnPage-subGrid_fnc_Recordsperpage( ));
@@ -1717,7 +1613,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV98Pgmname, AV15FilterFullText, AV79TFTileName, AV80TFTileName_Sel, AV83TFTileBGColor, AV84TFTileBGColor_Sel, AV85TFTileBGImageUrl, AV86TFTileBGImageUrl_Sel, AV87TFTileTextColor, AV88TFTileTextColor_Sel, AV90TFTileTextAlignment_Sels, AV81TFTileIcon, AV82TFTileIcon_Sel, AV92TFTileIconAlignment_Sels, AV28TFProductServiceName, AV29TFProductServiceName_Sel, AV30TFProductServiceDescription, AV31TFProductServiceDescription_Sel, AV93TFSG_ToPageName, AV94TFSG_ToPageName_Sel, AV45IsAuthorized_Display, AV47IsAuthorized_Update, AV49IsAuthorized_Delete, AV95IsAuthorized_TileName, AV42IsAuthorized_ProductServiceName, AV96IsAuthorized_SG_ToPageName, AV50IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV52Pgmname, AV15FilterFullText, AV20TFTileName, AV21TFTileName_Sel, AV22TFTileBGColor, AV23TFTileBGColor_Sel, AV24TFTileBGImageUrl, AV25TFTileBGImageUrl_Sel, AV26TFTileTextColor, AV27TFTileTextColor_Sel, AV29TFTileTextAlignment_Sels, AV30TFTileIcon, AV31TFTileIcon_Sel, AV33TFTileIconAlignment_Sels, AV34TFTileIconColor, AV35TFTileIconColor_Sel, AV36TFTileAction, AV37TFTileAction_Sel, AV47IsAuthorized_Display, AV48IsAuthorized_Update, AV49IsAuthorized_Delete, AV45IsAuthorized_TileName, AV50IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1725,25 +1621,23 @@ namespace GeneXus.Programs {
 
       protected short subgrid_lastpage( )
       {
-         AV99Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
-         AV100Trn_tilewwds_2_tftilename = AV79TFTileName;
-         AV101Trn_tilewwds_3_tftilename_sel = AV80TFTileName_Sel;
-         AV102Trn_tilewwds_4_tftilebgcolor = AV83TFTileBGColor;
-         AV103Trn_tilewwds_5_tftilebgcolor_sel = AV84TFTileBGColor_Sel;
-         AV104Trn_tilewwds_6_tftilebgimageurl = AV85TFTileBGImageUrl;
-         AV105Trn_tilewwds_7_tftilebgimageurl_sel = AV86TFTileBGImageUrl_Sel;
-         AV106Trn_tilewwds_8_tftiletextcolor = AV87TFTileTextColor;
-         AV107Trn_tilewwds_9_tftiletextcolor_sel = AV88TFTileTextColor_Sel;
-         AV108Trn_tilewwds_10_tftiletextalignment_sels = AV90TFTileTextAlignment_Sels;
-         AV109Trn_tilewwds_11_tftileicon = AV81TFTileIcon;
-         AV110Trn_tilewwds_12_tftileicon_sel = AV82TFTileIcon_Sel;
-         AV111Trn_tilewwds_13_tftileiconalignment_sels = AV92TFTileIconAlignment_Sels;
-         AV112Trn_tilewwds_14_tfproductservicename = AV28TFProductServiceName;
-         AV113Trn_tilewwds_15_tfproductservicename_sel = AV29TFProductServiceName_Sel;
-         AV114Trn_tilewwds_16_tfproductservicedescription = AV30TFProductServiceDescription;
-         AV115Trn_tilewwds_17_tfproductservicedescription_sel = AV31TFProductServiceDescription_Sel;
-         AV116Trn_tilewwds_18_tfsg_topagename = AV93TFSG_ToPageName;
-         AV117Trn_tilewwds_19_tfsg_topagename_sel = AV94TFSG_ToPageName_Sel;
+         AV53Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
+         AV54Trn_tilewwds_2_tftilename = AV20TFTileName;
+         AV55Trn_tilewwds_3_tftilename_sel = AV21TFTileName_Sel;
+         AV56Trn_tilewwds_4_tftilebgcolor = AV22TFTileBGColor;
+         AV57Trn_tilewwds_5_tftilebgcolor_sel = AV23TFTileBGColor_Sel;
+         AV58Trn_tilewwds_6_tftilebgimageurl = AV24TFTileBGImageUrl;
+         AV59Trn_tilewwds_7_tftilebgimageurl_sel = AV25TFTileBGImageUrl_Sel;
+         AV60Trn_tilewwds_8_tftiletextcolor = AV26TFTileTextColor;
+         AV61Trn_tilewwds_9_tftiletextcolor_sel = AV27TFTileTextColor_Sel;
+         AV62Trn_tilewwds_10_tftiletextalignment_sels = AV29TFTileTextAlignment_Sels;
+         AV63Trn_tilewwds_11_tftileicon = AV30TFTileIcon;
+         AV64Trn_tilewwds_12_tftileicon_sel = AV31TFTileIcon_Sel;
+         AV65Trn_tilewwds_13_tftileiconalignment_sels = AV33TFTileIconAlignment_Sels;
+         AV66Trn_tilewwds_14_tftileiconcolor = AV34TFTileIconColor;
+         AV67Trn_tilewwds_15_tftileiconcolor_sel = AV35TFTileIconColor_Sel;
+         AV68Trn_tilewwds_16_tftileaction = AV36TFTileAction;
+         AV69Trn_tilewwds_17_tftileaction_sel = AV37TFTileAction_Sel;
          GRID_nRecordCount = subGrid_fnc_Recordcount( );
          if ( GRID_nRecordCount > subGrid_fnc_Recordsperpage( ) )
          {
@@ -1763,7 +1657,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV98Pgmname, AV15FilterFullText, AV79TFTileName, AV80TFTileName_Sel, AV83TFTileBGColor, AV84TFTileBGColor_Sel, AV85TFTileBGImageUrl, AV86TFTileBGImageUrl_Sel, AV87TFTileTextColor, AV88TFTileTextColor_Sel, AV90TFTileTextAlignment_Sels, AV81TFTileIcon, AV82TFTileIcon_Sel, AV92TFTileIconAlignment_Sels, AV28TFProductServiceName, AV29TFProductServiceName_Sel, AV30TFProductServiceDescription, AV31TFProductServiceDescription_Sel, AV93TFSG_ToPageName, AV94TFSG_ToPageName_Sel, AV45IsAuthorized_Display, AV47IsAuthorized_Update, AV49IsAuthorized_Delete, AV95IsAuthorized_TileName, AV42IsAuthorized_ProductServiceName, AV96IsAuthorized_SG_ToPageName, AV50IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV52Pgmname, AV15FilterFullText, AV20TFTileName, AV21TFTileName_Sel, AV22TFTileBGColor, AV23TFTileBGColor_Sel, AV24TFTileBGImageUrl, AV25TFTileBGImageUrl_Sel, AV26TFTileTextColor, AV27TFTileTextColor_Sel, AV29TFTileTextAlignment_Sels, AV30TFTileIcon, AV31TFTileIcon_Sel, AV33TFTileIconAlignment_Sels, AV34TFTileIconColor, AV35TFTileIconColor_Sel, AV36TFTileAction, AV37TFTileAction_Sel, AV47IsAuthorized_Display, AV48IsAuthorized_Update, AV49IsAuthorized_Delete, AV45IsAuthorized_TileName, AV50IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1771,25 +1665,23 @@ namespace GeneXus.Programs {
 
       protected int subgrid_gotopage( int nPageNo )
       {
-         AV99Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
-         AV100Trn_tilewwds_2_tftilename = AV79TFTileName;
-         AV101Trn_tilewwds_3_tftilename_sel = AV80TFTileName_Sel;
-         AV102Trn_tilewwds_4_tftilebgcolor = AV83TFTileBGColor;
-         AV103Trn_tilewwds_5_tftilebgcolor_sel = AV84TFTileBGColor_Sel;
-         AV104Trn_tilewwds_6_tftilebgimageurl = AV85TFTileBGImageUrl;
-         AV105Trn_tilewwds_7_tftilebgimageurl_sel = AV86TFTileBGImageUrl_Sel;
-         AV106Trn_tilewwds_8_tftiletextcolor = AV87TFTileTextColor;
-         AV107Trn_tilewwds_9_tftiletextcolor_sel = AV88TFTileTextColor_Sel;
-         AV108Trn_tilewwds_10_tftiletextalignment_sels = AV90TFTileTextAlignment_Sels;
-         AV109Trn_tilewwds_11_tftileicon = AV81TFTileIcon;
-         AV110Trn_tilewwds_12_tftileicon_sel = AV82TFTileIcon_Sel;
-         AV111Trn_tilewwds_13_tftileiconalignment_sels = AV92TFTileIconAlignment_Sels;
-         AV112Trn_tilewwds_14_tfproductservicename = AV28TFProductServiceName;
-         AV113Trn_tilewwds_15_tfproductservicename_sel = AV29TFProductServiceName_Sel;
-         AV114Trn_tilewwds_16_tfproductservicedescription = AV30TFProductServiceDescription;
-         AV115Trn_tilewwds_17_tfproductservicedescription_sel = AV31TFProductServiceDescription_Sel;
-         AV116Trn_tilewwds_18_tfsg_topagename = AV93TFSG_ToPageName;
-         AV117Trn_tilewwds_19_tfsg_topagename_sel = AV94TFSG_ToPageName_Sel;
+         AV53Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
+         AV54Trn_tilewwds_2_tftilename = AV20TFTileName;
+         AV55Trn_tilewwds_3_tftilename_sel = AV21TFTileName_Sel;
+         AV56Trn_tilewwds_4_tftilebgcolor = AV22TFTileBGColor;
+         AV57Trn_tilewwds_5_tftilebgcolor_sel = AV23TFTileBGColor_Sel;
+         AV58Trn_tilewwds_6_tftilebgimageurl = AV24TFTileBGImageUrl;
+         AV59Trn_tilewwds_7_tftilebgimageurl_sel = AV25TFTileBGImageUrl_Sel;
+         AV60Trn_tilewwds_8_tftiletextcolor = AV26TFTileTextColor;
+         AV61Trn_tilewwds_9_tftiletextcolor_sel = AV27TFTileTextColor_Sel;
+         AV62Trn_tilewwds_10_tftiletextalignment_sels = AV29TFTileTextAlignment_Sels;
+         AV63Trn_tilewwds_11_tftileicon = AV30TFTileIcon;
+         AV64Trn_tilewwds_12_tftileicon_sel = AV31TFTileIcon_Sel;
+         AV65Trn_tilewwds_13_tftileiconalignment_sels = AV33TFTileIconAlignment_Sels;
+         AV66Trn_tilewwds_14_tftileiconcolor = AV34TFTileIconColor;
+         AV67Trn_tilewwds_15_tftileiconcolor_sel = AV35TFTileIconColor_Sel;
+         AV68Trn_tilewwds_16_tftileaction = AV36TFTileAction;
+         AV69Trn_tilewwds_17_tftileaction_sel = AV37TFTileAction_Sel;
          if ( nPageNo > 0 )
          {
             GRID_nFirstRecordOnPage = (long)(subGrid_fnc_Recordsperpage( )*(nPageNo-1));
@@ -1801,7 +1693,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV98Pgmname, AV15FilterFullText, AV79TFTileName, AV80TFTileName_Sel, AV83TFTileBGColor, AV84TFTileBGColor_Sel, AV85TFTileBGImageUrl, AV86TFTileBGImageUrl_Sel, AV87TFTileTextColor, AV88TFTileTextColor_Sel, AV90TFTileTextAlignment_Sels, AV81TFTileIcon, AV82TFTileIcon_Sel, AV92TFTileIconAlignment_Sels, AV28TFProductServiceName, AV29TFProductServiceName_Sel, AV30TFProductServiceDescription, AV31TFProductServiceDescription_Sel, AV93TFSG_ToPageName, AV94TFSG_ToPageName_Sel, AV45IsAuthorized_Display, AV47IsAuthorized_Update, AV49IsAuthorized_Delete, AV95IsAuthorized_TileName, AV42IsAuthorized_ProductServiceName, AV96IsAuthorized_SG_ToPageName, AV50IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV19ManageFiltersExecutionStep, AV52Pgmname, AV15FilterFullText, AV20TFTileName, AV21TFTileName_Sel, AV22TFTileBGColor, AV23TFTileBGColor_Sel, AV24TFTileBGImageUrl, AV25TFTileBGImageUrl_Sel, AV26TFTileTextColor, AV27TFTileTextColor_Sel, AV29TFTileTextAlignment_Sels, AV30TFTileIcon, AV31TFTileIcon_Sel, AV33TFTileIconAlignment_Sels, AV34TFTileIconColor, AV35TFTileIconColor_Sel, AV36TFTileAction, AV37TFTileAction_Sel, AV47IsAuthorized_Display, AV48IsAuthorized_Update, AV49IsAuthorized_Delete, AV45IsAuthorized_TileName, AV50IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1809,7 +1701,7 @@ namespace GeneXus.Programs {
 
       protected void before_start_formulas( )
       {
-         AV98Pgmname = "Trn_TileWW";
+         AV52Pgmname = "Trn_TileWW";
          edtTileId_Enabled = 0;
          edtTileName_Enabled = 0;
          edtTileBGColor_Enabled = 0;
@@ -1818,37 +1710,31 @@ namespace GeneXus.Programs {
          cmbTileTextAlignment.Enabled = 0;
          edtTileIcon_Enabled = 0;
          cmbTileIconAlignment.Enabled = 0;
-         edtProductServiceId_Enabled = 0;
-         edtOrganisationId_Enabled = 0;
-         edtLocationId_Enabled = 0;
-         edtProductServiceName_Enabled = 0;
-         edtProductServiceDescription_Enabled = 0;
-         edtProductServiceImage_Enabled = 0;
-         edtSG_ToPageId_Enabled = 0;
-         edtSG_ToPageName_Enabled = 0;
+         edtTileIconColor_Enabled = 0;
+         edtTileAction_Enabled = 0;
          fix_multi_value_controls( ) ;
       }
 
-      protected void STRUP5Z0( )
+      protected void STRUP840( )
       {
          /* Before Start, stand alone formulas. */
          before_start_formulas( ) ;
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E175Z2 ();
+         E17842 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( "vMANAGEFILTERSDATA"), AV17ManageFiltersData);
-            ajax_req_read_hidden_sdt(cgiGet( "vDDO_TITLESETTINGSICONS"), AV34DDO_TitleSettingsIcons);
+            ajax_req_read_hidden_sdt(cgiGet( "vDDO_TITLESETTINGSICONS"), AV38DDO_TitleSettingsIcons);
             /* Read saved values. */
             nRC_GXsfl_37 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_37"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            AV38GridCurrentPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDCURRENTPAGE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            AV39GridPageCount = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDPAGECOUNT"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            AV40GridAppliedFilters = cgiGet( "vGRIDAPPLIEDFILTERS");
+            AV42GridCurrentPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDCURRENTPAGE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AV43GridPageCount = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDPAGECOUNT"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AV44GridAppliedFilters = cgiGet( "vGRIDAPPLIEDFILTERS");
             GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
@@ -1933,22 +1819,12 @@ namespace GeneXus.Programs {
                cmbTileIconAlignment.Name = cmbTileIconAlignment_Internalname;
                cmbTileIconAlignment.CurrentValue = cgiGet( cmbTileIconAlignment_Internalname);
                A406TileIconAlignment = cgiGet( cmbTileIconAlignment_Internalname);
-               A58ProductServiceId = StringUtil.StrToGuid( cgiGet( edtProductServiceId_Internalname));
-               n58ProductServiceId = false;
-               A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
-               n11OrganisationId = false;
-               A29LocationId = StringUtil.StrToGuid( cgiGet( edtLocationId_Internalname));
-               n29LocationId = false;
-               A59ProductServiceName = cgiGet( edtProductServiceName_Internalname);
-               A60ProductServiceDescription = cgiGet( edtProductServiceDescription_Internalname);
-               A61ProductServiceImage = cgiGet( edtProductServiceImage_Internalname);
-               A329SG_ToPageId = StringUtil.StrToGuid( cgiGet( edtSG_ToPageId_Internalname));
-               n329SG_ToPageId = false;
-               A330SG_ToPageName = cgiGet( edtSG_ToPageName_Internalname);
+               A438TileIconColor = cgiGet( edtTileIconColor_Internalname);
+               A436TileAction = cgiGet( edtTileAction_Internalname);
                cmbavActiongroup.Name = cmbavActiongroup_Internalname;
                cmbavActiongroup.CurrentValue = cgiGet( cmbavActiongroup_Internalname);
-               AV78ActionGroup = (short)(Math.Round(NumberUtil.Val( cgiGet( cmbavActiongroup_Internalname), "."), 18, MidpointRounding.ToEven));
-               AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV78ActionGroup), 4, 0));
+               AV46ActionGroup = (short)(Math.Round(NumberUtil.Val( cgiGet( cmbavActiongroup_Internalname), "."), 18, MidpointRounding.ToEven));
+               AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV46ActionGroup), 4, 0));
             }
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -1971,7 +1847,7 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E175Z2 ();
+         E17842 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1979,7 +1855,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E175Z2( )
+      protected void E17842( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1999,25 +1875,15 @@ namespace GeneXus.Programs {
          }
          Ddc_subscriptions_Titlecontrolidtoreplace = bttBtnsubscriptions_Internalname;
          ucDdc_subscriptions.SendProperty(context, "", false, Ddc_subscriptions_Internalname, "TitleControlIdToReplace", Ddc_subscriptions_Titlecontrolidtoreplace);
-         GXt_boolean1 = AV95IsAuthorized_TileName;
+         GXt_boolean1 = AV45IsAuthorized_TileName;
          new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_tileview_Execute", out  GXt_boolean1) ;
-         AV95IsAuthorized_TileName = GXt_boolean1;
-         AssignAttri("", false, "AV95IsAuthorized_TileName", AV95IsAuthorized_TileName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_TILENAME", GetSecureSignedToken( "", AV95IsAuthorized_TileName, context));
-         GXt_boolean1 = AV42IsAuthorized_ProductServiceName;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_productserviceview_Execute", out  GXt_boolean1) ;
-         AV42IsAuthorized_ProductServiceName = GXt_boolean1;
-         AssignAttri("", false, "AV42IsAuthorized_ProductServiceName", AV42IsAuthorized_ProductServiceName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_PRODUCTSERVICENAME", GetSecureSignedToken( "", AV42IsAuthorized_ProductServiceName, context));
-         GXt_boolean1 = AV96IsAuthorized_SG_ToPageName;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_pageview_Execute", out  GXt_boolean1) ;
-         AV96IsAuthorized_SG_ToPageName = GXt_boolean1;
-         AssignAttri("", false, "AV96IsAuthorized_SG_ToPageName", AV96IsAuthorized_SG_ToPageName);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_SG_TOPAGENAME", GetSecureSignedToken( "", AV96IsAuthorized_SG_ToPageName, context));
-         AV35GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).get(out  AV36GAMErrors);
+         AV45IsAuthorized_TileName = GXt_boolean1;
+         AssignAttri("", false, "AV45IsAuthorized_TileName", AV45IsAuthorized_TileName);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_TILENAME", GetSecureSignedToken( "", AV45IsAuthorized_TileName, context));
+         AV39GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).get(out  AV40GAMErrors);
          Ddo_grid_Gridinternalname = subGrid_Internalname;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "GridInternalName", Ddo_grid_Gridinternalname);
-         Ddo_grid_Gamoauthtoken = AV35GAMSession.gxTpr_Token;
+         Ddo_grid_Gamoauthtoken = AV39GAMSession.gxTpr_Token;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "GAMOAuthToken", Ddo_grid_Gamoauthtoken);
          Form.Caption = context.GetMessage( " Tile", "");
          AssignProp("", false, "FORM", "Caption", Form.Caption, true);
@@ -2047,14 +1913,14 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2 = AV34DDO_TitleSettingsIcons;
+         GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2 = AV38DDO_TitleSettingsIcons;
          new GeneXus.Programs.wwpbaseobjects.getwwptitlesettingsicons(context ).execute( out  GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2) ;
-         AV34DDO_TitleSettingsIcons = GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2;
+         AV38DDO_TitleSettingsIcons = GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2;
          Gridpaginationbar_Rowsperpageselectedvalue = subGrid_Rows;
          ucGridpaginationbar.SendProperty(context, "", false, Gridpaginationbar_Internalname, "RowsPerPageSelectedValue", StringUtil.LTrimStr( (decimal)(Gridpaginationbar_Rowsperpageselectedvalue), 9, 0));
       }
 
-      protected void E185Z2( )
+      protected void E18842( )
       {
          if ( gx_refresh_fired )
          {
@@ -2095,39 +1961,37 @@ namespace GeneXus.Programs {
             returnInSub = true;
             if (true) return;
          }
-         AV38GridCurrentPage = subGrid_fnc_Currentpage( );
-         AssignAttri("", false, "AV38GridCurrentPage", StringUtil.LTrimStr( (decimal)(AV38GridCurrentPage), 10, 0));
-         AV39GridPageCount = subGrid_fnc_Pagecount( );
-         AssignAttri("", false, "AV39GridPageCount", StringUtil.LTrimStr( (decimal)(AV39GridPageCount), 10, 0));
-         GXt_char3 = AV40GridAppliedFilters;
-         new GeneXus.Programs.wwpbaseobjects.wwp_getappliedfiltersdescription(context ).execute(  AV98Pgmname, out  GXt_char3) ;
-         AV40GridAppliedFilters = GXt_char3;
-         AssignAttri("", false, "AV40GridAppliedFilters", AV40GridAppliedFilters);
-         AV99Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
-         AV100Trn_tilewwds_2_tftilename = AV79TFTileName;
-         AV101Trn_tilewwds_3_tftilename_sel = AV80TFTileName_Sel;
-         AV102Trn_tilewwds_4_tftilebgcolor = AV83TFTileBGColor;
-         AV103Trn_tilewwds_5_tftilebgcolor_sel = AV84TFTileBGColor_Sel;
-         AV104Trn_tilewwds_6_tftilebgimageurl = AV85TFTileBGImageUrl;
-         AV105Trn_tilewwds_7_tftilebgimageurl_sel = AV86TFTileBGImageUrl_Sel;
-         AV106Trn_tilewwds_8_tftiletextcolor = AV87TFTileTextColor;
-         AV107Trn_tilewwds_9_tftiletextcolor_sel = AV88TFTileTextColor_Sel;
-         AV108Trn_tilewwds_10_tftiletextalignment_sels = AV90TFTileTextAlignment_Sels;
-         AV109Trn_tilewwds_11_tftileicon = AV81TFTileIcon;
-         AV110Trn_tilewwds_12_tftileicon_sel = AV82TFTileIcon_Sel;
-         AV111Trn_tilewwds_13_tftileiconalignment_sels = AV92TFTileIconAlignment_Sels;
-         AV112Trn_tilewwds_14_tfproductservicename = AV28TFProductServiceName;
-         AV113Trn_tilewwds_15_tfproductservicename_sel = AV29TFProductServiceName_Sel;
-         AV114Trn_tilewwds_16_tfproductservicedescription = AV30TFProductServiceDescription;
-         AV115Trn_tilewwds_17_tfproductservicedescription_sel = AV31TFProductServiceDescription_Sel;
-         AV116Trn_tilewwds_18_tfsg_topagename = AV93TFSG_ToPageName;
-         AV117Trn_tilewwds_19_tfsg_topagename_sel = AV94TFSG_ToPageName_Sel;
+         AV42GridCurrentPage = subGrid_fnc_Currentpage( );
+         AssignAttri("", false, "AV42GridCurrentPage", StringUtil.LTrimStr( (decimal)(AV42GridCurrentPage), 10, 0));
+         AV43GridPageCount = subGrid_fnc_Pagecount( );
+         AssignAttri("", false, "AV43GridPageCount", StringUtil.LTrimStr( (decimal)(AV43GridPageCount), 10, 0));
+         GXt_char3 = AV44GridAppliedFilters;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getappliedfiltersdescription(context ).execute(  AV52Pgmname, out  GXt_char3) ;
+         AV44GridAppliedFilters = GXt_char3;
+         AssignAttri("", false, "AV44GridAppliedFilters", AV44GridAppliedFilters);
+         AV53Trn_tilewwds_1_filterfulltext = AV15FilterFullText;
+         AV54Trn_tilewwds_2_tftilename = AV20TFTileName;
+         AV55Trn_tilewwds_3_tftilename_sel = AV21TFTileName_Sel;
+         AV56Trn_tilewwds_4_tftilebgcolor = AV22TFTileBGColor;
+         AV57Trn_tilewwds_5_tftilebgcolor_sel = AV23TFTileBGColor_Sel;
+         AV58Trn_tilewwds_6_tftilebgimageurl = AV24TFTileBGImageUrl;
+         AV59Trn_tilewwds_7_tftilebgimageurl_sel = AV25TFTileBGImageUrl_Sel;
+         AV60Trn_tilewwds_8_tftiletextcolor = AV26TFTileTextColor;
+         AV61Trn_tilewwds_9_tftiletextcolor_sel = AV27TFTileTextColor_Sel;
+         AV62Trn_tilewwds_10_tftiletextalignment_sels = AV29TFTileTextAlignment_Sels;
+         AV63Trn_tilewwds_11_tftileicon = AV30TFTileIcon;
+         AV64Trn_tilewwds_12_tftileicon_sel = AV31TFTileIcon_Sel;
+         AV65Trn_tilewwds_13_tftileiconalignment_sels = AV33TFTileIconAlignment_Sels;
+         AV66Trn_tilewwds_14_tftileiconcolor = AV34TFTileIconColor;
+         AV67Trn_tilewwds_15_tftileiconcolor_sel = AV35TFTileIconColor_Sel;
+         AV68Trn_tilewwds_16_tftileaction = AV36TFTileAction;
+         AV69Trn_tilewwds_17_tftileaction_sel = AV37TFTileAction_Sel;
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
       }
 
-      protected void E125Z2( )
+      protected void E12842( )
       {
          /* Gridpaginationbar_Changepage Routine */
          returnInSub = false;
@@ -2141,12 +2005,12 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV37PageToGo = (int)(Math.Round(NumberUtil.Val( Gridpaginationbar_Selectedpage, "."), 18, MidpointRounding.ToEven));
-            subgrid_gotopage( AV37PageToGo) ;
+            AV41PageToGo = (int)(Math.Round(NumberUtil.Val( Gridpaginationbar_Selectedpage, "."), 18, MidpointRounding.ToEven));
+            subgrid_gotopage( AV41PageToGo) ;
          }
       }
 
-      protected void E135Z2( )
+      protected void E13842( )
       {
          /* Gridpaginationbar_Changerowsperpage Routine */
          returnInSub = false;
@@ -2156,7 +2020,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E155Z2( )
+      protected void E15842( )
       {
          /* Ddo_grid_Onoptionclicked Routine */
          returnInSub = false;
@@ -2179,80 +2043,73 @@ namespace GeneXus.Programs {
          {
             if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileName") == 0 )
             {
-               AV79TFTileName = Ddo_grid_Filteredtext_get;
-               AssignAttri("", false, "AV79TFTileName", AV79TFTileName);
-               AV80TFTileName_Sel = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV80TFTileName_Sel", AV80TFTileName_Sel);
+               AV20TFTileName = Ddo_grid_Filteredtext_get;
+               AssignAttri("", false, "AV20TFTileName", AV20TFTileName);
+               AV21TFTileName_Sel = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV21TFTileName_Sel", AV21TFTileName_Sel);
             }
             else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileBGColor") == 0 )
             {
-               AV83TFTileBGColor = Ddo_grid_Filteredtext_get;
-               AssignAttri("", false, "AV83TFTileBGColor", AV83TFTileBGColor);
-               AV84TFTileBGColor_Sel = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV84TFTileBGColor_Sel", AV84TFTileBGColor_Sel);
+               AV22TFTileBGColor = Ddo_grid_Filteredtext_get;
+               AssignAttri("", false, "AV22TFTileBGColor", AV22TFTileBGColor);
+               AV23TFTileBGColor_Sel = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV23TFTileBGColor_Sel", AV23TFTileBGColor_Sel);
             }
             else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileBGImageUrl") == 0 )
             {
-               AV85TFTileBGImageUrl = Ddo_grid_Filteredtext_get;
-               AssignAttri("", false, "AV85TFTileBGImageUrl", AV85TFTileBGImageUrl);
-               AV86TFTileBGImageUrl_Sel = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV86TFTileBGImageUrl_Sel", AV86TFTileBGImageUrl_Sel);
+               AV24TFTileBGImageUrl = Ddo_grid_Filteredtext_get;
+               AssignAttri("", false, "AV24TFTileBGImageUrl", AV24TFTileBGImageUrl);
+               AV25TFTileBGImageUrl_Sel = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV25TFTileBGImageUrl_Sel", AV25TFTileBGImageUrl_Sel);
             }
             else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileTextColor") == 0 )
             {
-               AV87TFTileTextColor = Ddo_grid_Filteredtext_get;
-               AssignAttri("", false, "AV87TFTileTextColor", AV87TFTileTextColor);
-               AV88TFTileTextColor_Sel = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV88TFTileTextColor_Sel", AV88TFTileTextColor_Sel);
+               AV26TFTileTextColor = Ddo_grid_Filteredtext_get;
+               AssignAttri("", false, "AV26TFTileTextColor", AV26TFTileTextColor);
+               AV27TFTileTextColor_Sel = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV27TFTileTextColor_Sel", AV27TFTileTextColor_Sel);
             }
             else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileTextAlignment") == 0 )
             {
-               AV89TFTileTextAlignment_SelsJson = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV89TFTileTextAlignment_SelsJson", AV89TFTileTextAlignment_SelsJson);
-               AV90TFTileTextAlignment_Sels.FromJSonString(AV89TFTileTextAlignment_SelsJson, null);
+               AV28TFTileTextAlignment_SelsJson = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV28TFTileTextAlignment_SelsJson", AV28TFTileTextAlignment_SelsJson);
+               AV29TFTileTextAlignment_Sels.FromJSonString(AV28TFTileTextAlignment_SelsJson, null);
             }
             else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileIcon") == 0 )
             {
-               AV81TFTileIcon = Ddo_grid_Filteredtext_get;
-               AssignAttri("", false, "AV81TFTileIcon", AV81TFTileIcon);
-               AV82TFTileIcon_Sel = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV82TFTileIcon_Sel", AV82TFTileIcon_Sel);
+               AV30TFTileIcon = Ddo_grid_Filteredtext_get;
+               AssignAttri("", false, "AV30TFTileIcon", AV30TFTileIcon);
+               AV31TFTileIcon_Sel = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV31TFTileIcon_Sel", AV31TFTileIcon_Sel);
             }
             else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileIconAlignment") == 0 )
             {
-               AV91TFTileIconAlignment_SelsJson = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV91TFTileIconAlignment_SelsJson", AV91TFTileIconAlignment_SelsJson);
-               AV92TFTileIconAlignment_Sels.FromJSonString(AV91TFTileIconAlignment_SelsJson, null);
+               AV32TFTileIconAlignment_SelsJson = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV32TFTileIconAlignment_SelsJson", AV32TFTileIconAlignment_SelsJson);
+               AV33TFTileIconAlignment_Sels.FromJSonString(AV32TFTileIconAlignment_SelsJson, null);
             }
-            else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "ProductServiceName") == 0 )
+            else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileIconColor") == 0 )
             {
-               AV28TFProductServiceName = Ddo_grid_Filteredtext_get;
-               AssignAttri("", false, "AV28TFProductServiceName", AV28TFProductServiceName);
-               AV29TFProductServiceName_Sel = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV29TFProductServiceName_Sel", AV29TFProductServiceName_Sel);
+               AV34TFTileIconColor = Ddo_grid_Filteredtext_get;
+               AssignAttri("", false, "AV34TFTileIconColor", AV34TFTileIconColor);
+               AV35TFTileIconColor_Sel = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV35TFTileIconColor_Sel", AV35TFTileIconColor_Sel);
             }
-            else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "ProductServiceDescription") == 0 )
+            else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "TileAction") == 0 )
             {
-               AV30TFProductServiceDescription = Ddo_grid_Filteredtext_get;
-               AssignAttri("", false, "AV30TFProductServiceDescription", AV30TFProductServiceDescription);
-               AV31TFProductServiceDescription_Sel = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV31TFProductServiceDescription_Sel", AV31TFProductServiceDescription_Sel);
-            }
-            else if ( StringUtil.StrCmp(Ddo_grid_Selectedcolumn, "SG_ToPageName") == 0 )
-            {
-               AV93TFSG_ToPageName = Ddo_grid_Filteredtext_get;
-               AssignAttri("", false, "AV93TFSG_ToPageName", AV93TFSG_ToPageName);
-               AV94TFSG_ToPageName_Sel = Ddo_grid_Selectedvalue_get;
-               AssignAttri("", false, "AV94TFSG_ToPageName_Sel", AV94TFSG_ToPageName_Sel);
+               AV36TFTileAction = Ddo_grid_Filteredtext_get;
+               AssignAttri("", false, "AV36TFTileAction", AV36TFTileAction);
+               AV37TFTileAction_Sel = Ddo_grid_Selectedvalue_get;
+               AssignAttri("", false, "AV37TFTileAction_Sel", AV37TFTileAction_Sel);
             }
             subgrid_firstpage( ) ;
          }
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV92TFTileIconAlignment_Sels", AV92TFTileIconAlignment_Sels);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV90TFTileTextAlignment_Sels", AV90TFTileTextAlignment_Sels);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV33TFTileIconAlignment_Sels", AV33TFTileIconAlignment_Sels);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV29TFTileTextAlignment_Sels", AV29TFTileTextAlignment_Sels);
       }
 
-      private void E195Z2( )
+      private void E19842( )
       {
          if ( ( subGrid_Islastpage == 1 ) || ( subGrid_Rows == 0 ) || ( ( GRID_nCurrentRecord >= GRID_nFirstRecordOnPage ) && ( GRID_nCurrentRecord < GRID_nFirstRecordOnPage + subGrid_fnc_Recordsperpage( ) ) ) )
          {
@@ -2260,11 +2117,11 @@ namespace GeneXus.Programs {
             returnInSub = false;
             cmbavActiongroup.removeAllItems();
             cmbavActiongroup.addItem("0", ";fas fa-bars", 0);
-            if ( AV45IsAuthorized_Display )
+            if ( AV47IsAuthorized_Display )
             {
                cmbavActiongroup.addItem("1", StringUtil.Format( "%1;%2", context.GetMessage( "GXM_display", ""), "fa fa-search", "", "", "", "", "", "", ""), 0);
             }
-            if ( AV47IsAuthorized_Update )
+            if ( AV48IsAuthorized_Update )
             {
                cmbavActiongroup.addItem("2", StringUtil.Format( "%1;%2", context.GetMessage( "GXM_update", ""), "fa fa-pen", "", "", "", "", "", "", ""), 0);
             }
@@ -2280,7 +2137,7 @@ namespace GeneXus.Programs {
             {
                cmbavActiongroup_Class = "ConvertToDDO";
             }
-            if ( AV95IsAuthorized_TileName )
+            if ( AV45IsAuthorized_TileName )
             {
                if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
                {
@@ -2292,26 +2149,6 @@ namespace GeneXus.Programs {
             }
             edtTileBGImageUrl_Linktarget = "_blank";
             edtTileBGImageUrl_Link = A403TileBGImageUrl;
-            if ( AV42IsAuthorized_ProductServiceName )
-            {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-               }
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-               GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
-               edtProductServiceName_Link = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
-            }
-            if ( AV96IsAuthorized_SG_ToPageName )
-            {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-               }
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-               GXEncryptionTmp = "trn_pageview.aspx"+UrlEncode(A329SG_ToPageId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
-               edtSG_ToPageName_Link = formatLink("trn_pageview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
-            }
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -2327,10 +2164,10 @@ namespace GeneXus.Programs {
             DoAjaxLoad(37, GridRow);
          }
          /*  Sending Event outputs  */
-         cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV78ActionGroup), 4, 0));
+         cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV46ActionGroup), 4, 0));
       }
 
-      protected void E115Z2( )
+      protected void E11842( )
       {
          /* Ddo_managefilters_Onoptionclicked Routine */
          returnInSub = false;
@@ -2359,7 +2196,7 @@ namespace GeneXus.Programs {
                gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
             }
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("Trn_TileWWFilters")) + "," + UrlEncode(StringUtil.RTrim(AV98Pgmname+"GridState"));
+            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("Trn_TileWWFilters")) + "," + UrlEncode(StringUtil.RTrim(AV52Pgmname+"GridState"));
             context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV19ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV19ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV19ManageFiltersExecutionStep), 1, 0));
@@ -2396,7 +2233,7 @@ namespace GeneXus.Programs {
                   returnInSub = true;
                   if (true) return;
                }
-               new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV98Pgmname+"GridState",  AV18ManageFiltersXml) ;
+               new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV52Pgmname+"GridState",  AV18ManageFiltersXml) ;
                AV11GridState.FromXml(AV18ManageFiltersXml, null, "", "");
                AV13OrderedBy = AV11GridState.gxTpr_Orderedby;
                AssignAttri("", false, "AV13OrderedBy", StringUtil.LTrimStr( (decimal)(AV13OrderedBy), 4, 0));
@@ -2421,16 +2258,16 @@ namespace GeneXus.Programs {
          }
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV90TFTileTextAlignment_Sels", AV90TFTileTextAlignment_Sels);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV92TFTileIconAlignment_Sels", AV92TFTileIconAlignment_Sels);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV29TFTileTextAlignment_Sels", AV29TFTileTextAlignment_Sels);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV33TFTileIconAlignment_Sels", AV33TFTileIconAlignment_Sels);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
       }
 
-      protected void E205Z2( )
+      protected void E20842( )
       {
          /* Actiongroup_Click Routine */
          returnInSub = false;
-         if ( AV78ActionGroup == 1 )
+         if ( AV46ActionGroup == 1 )
          {
             /* Execute user subroutine: 'DO DISPLAY' */
             S192 ();
@@ -2440,7 +2277,7 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( AV78ActionGroup == 2 )
+         else if ( AV46ActionGroup == 2 )
          {
             /* Execute user subroutine: 'DO UPDATE' */
             S202 ();
@@ -2450,7 +2287,7 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( AV78ActionGroup == 3 )
+         else if ( AV46ActionGroup == 3 )
          {
             /* Execute user subroutine: 'DO DELETE' */
             S212 ();
@@ -2460,16 +2297,16 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         AV78ActionGroup = 0;
-         AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV78ActionGroup), 4, 0));
+         AV46ActionGroup = 0;
+         AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV46ActionGroup), 4, 0));
          /*  Sending Event outputs  */
-         cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV78ActionGroup), 4, 0));
+         cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV46ActionGroup), 4, 0));
          AssignProp("", false, cmbavActiongroup_Internalname, "Values", cmbavActiongroup.ToJavascriptSource(), true);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
       }
 
-      protected void E165Z2( )
+      protected void E16842( )
       {
          /* 'DoInsert' Routine */
          returnInSub = false;
@@ -2494,7 +2331,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
       }
 
-      protected void E145Z2( )
+      protected void E14842( )
       {
          /* Ddc_subscriptions_Onloadcomponent Routine */
          returnInSub = false;
@@ -2513,12 +2350,12 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
          {
             WebComp_Wwpaux_wc.setjustcreated();
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0065",(string)"",(string)"Trn_Tile",(short)1,(string)"",(string)""});
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0059",(string)"",(string)"Trn_Tile",(short)1,(string)"",(string)""});
             WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
          {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0065"+"");
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0059"+"");
             WebComp_Wwpaux_wc.componentdraw();
             context.httpAjaxContext.ajax_rspEndCmp();
          }
@@ -2537,16 +2374,16 @@ namespace GeneXus.Programs {
       {
          /* 'CHECKSECURITYFORACTIONS' Routine */
          returnInSub = false;
-         GXt_boolean1 = AV45IsAuthorized_Display;
+         GXt_boolean1 = AV47IsAuthorized_Display;
          new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_tileview_Execute", out  GXt_boolean1) ;
-         AV45IsAuthorized_Display = GXt_boolean1;
-         AssignAttri("", false, "AV45IsAuthorized_Display", AV45IsAuthorized_Display);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV45IsAuthorized_Display, context));
-         GXt_boolean1 = AV47IsAuthorized_Update;
+         AV47IsAuthorized_Display = GXt_boolean1;
+         AssignAttri("", false, "AV47IsAuthorized_Display", AV47IsAuthorized_Display);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV47IsAuthorized_Display, context));
+         GXt_boolean1 = AV48IsAuthorized_Update;
          new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_page_Update", out  GXt_boolean1) ;
-         AV47IsAuthorized_Update = GXt_boolean1;
-         AssignAttri("", false, "AV47IsAuthorized_Update", AV47IsAuthorized_Update);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV47IsAuthorized_Update, context));
+         AV48IsAuthorized_Update = GXt_boolean1;
+         AssignAttri("", false, "AV48IsAuthorized_Update", AV48IsAuthorized_Update);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV48IsAuthorized_Update, context));
          GXt_boolean1 = AV49IsAuthorized_Delete;
          new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_page_Delete", out  GXt_boolean1) ;
          AV49IsAuthorized_Delete = GXt_boolean1;
@@ -2584,40 +2421,36 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV15FilterFullText = "";
          AssignAttri("", false, "AV15FilterFullText", AV15FilterFullText);
-         AV79TFTileName = "";
-         AssignAttri("", false, "AV79TFTileName", AV79TFTileName);
-         AV80TFTileName_Sel = "";
-         AssignAttri("", false, "AV80TFTileName_Sel", AV80TFTileName_Sel);
-         AV83TFTileBGColor = "";
-         AssignAttri("", false, "AV83TFTileBGColor", AV83TFTileBGColor);
-         AV84TFTileBGColor_Sel = "";
-         AssignAttri("", false, "AV84TFTileBGColor_Sel", AV84TFTileBGColor_Sel);
-         AV85TFTileBGImageUrl = "";
-         AssignAttri("", false, "AV85TFTileBGImageUrl", AV85TFTileBGImageUrl);
-         AV86TFTileBGImageUrl_Sel = "";
-         AssignAttri("", false, "AV86TFTileBGImageUrl_Sel", AV86TFTileBGImageUrl_Sel);
-         AV87TFTileTextColor = "";
-         AssignAttri("", false, "AV87TFTileTextColor", AV87TFTileTextColor);
-         AV88TFTileTextColor_Sel = "";
-         AssignAttri("", false, "AV88TFTileTextColor_Sel", AV88TFTileTextColor_Sel);
-         AV90TFTileTextAlignment_Sels = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV81TFTileIcon = "";
-         AssignAttri("", false, "AV81TFTileIcon", AV81TFTileIcon);
-         AV82TFTileIcon_Sel = "";
-         AssignAttri("", false, "AV82TFTileIcon_Sel", AV82TFTileIcon_Sel);
-         AV92TFTileIconAlignment_Sels = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV28TFProductServiceName = "";
-         AssignAttri("", false, "AV28TFProductServiceName", AV28TFProductServiceName);
-         AV29TFProductServiceName_Sel = "";
-         AssignAttri("", false, "AV29TFProductServiceName_Sel", AV29TFProductServiceName_Sel);
-         AV30TFProductServiceDescription = "";
-         AssignAttri("", false, "AV30TFProductServiceDescription", AV30TFProductServiceDescription);
-         AV31TFProductServiceDescription_Sel = "";
-         AssignAttri("", false, "AV31TFProductServiceDescription_Sel", AV31TFProductServiceDescription_Sel);
-         AV93TFSG_ToPageName = "";
-         AssignAttri("", false, "AV93TFSG_ToPageName", AV93TFSG_ToPageName);
-         AV94TFSG_ToPageName_Sel = "";
-         AssignAttri("", false, "AV94TFSG_ToPageName_Sel", AV94TFSG_ToPageName_Sel);
+         AV20TFTileName = "";
+         AssignAttri("", false, "AV20TFTileName", AV20TFTileName);
+         AV21TFTileName_Sel = "";
+         AssignAttri("", false, "AV21TFTileName_Sel", AV21TFTileName_Sel);
+         AV22TFTileBGColor = "";
+         AssignAttri("", false, "AV22TFTileBGColor", AV22TFTileBGColor);
+         AV23TFTileBGColor_Sel = "";
+         AssignAttri("", false, "AV23TFTileBGColor_Sel", AV23TFTileBGColor_Sel);
+         AV24TFTileBGImageUrl = "";
+         AssignAttri("", false, "AV24TFTileBGImageUrl", AV24TFTileBGImageUrl);
+         AV25TFTileBGImageUrl_Sel = "";
+         AssignAttri("", false, "AV25TFTileBGImageUrl_Sel", AV25TFTileBGImageUrl_Sel);
+         AV26TFTileTextColor = "";
+         AssignAttri("", false, "AV26TFTileTextColor", AV26TFTileTextColor);
+         AV27TFTileTextColor_Sel = "";
+         AssignAttri("", false, "AV27TFTileTextColor_Sel", AV27TFTileTextColor_Sel);
+         AV29TFTileTextAlignment_Sels = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+         AV30TFTileIcon = "";
+         AssignAttri("", false, "AV30TFTileIcon", AV30TFTileIcon);
+         AV31TFTileIcon_Sel = "";
+         AssignAttri("", false, "AV31TFTileIcon_Sel", AV31TFTileIcon_Sel);
+         AV33TFTileIconAlignment_Sels = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+         AV34TFTileIconColor = "";
+         AssignAttri("", false, "AV34TFTileIconColor", AV34TFTileIconColor);
+         AV35TFTileIconColor_Sel = "";
+         AssignAttri("", false, "AV35TFTileIconColor_Sel", AV35TFTileIconColor_Sel);
+         AV36TFTileAction = "";
+         AssignAttri("", false, "AV36TFTileAction", AV36TFTileAction);
+         AV37TFTileAction_Sel = "";
+         AssignAttri("", false, "AV37TFTileAction_Sel", AV37TFTileAction_Sel);
          Ddo_grid_Selectedvalue_set = "";
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedValue_set", Ddo_grid_Selectedvalue_set);
          Ddo_grid_Filteredtext_set = "";
@@ -2628,7 +2461,7 @@ namespace GeneXus.Programs {
       {
          /* 'DO DISPLAY' Routine */
          returnInSub = false;
-         if ( AV45IsAuthorized_Display )
+         if ( AV47IsAuthorized_Display )
          {
             if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
             {
@@ -2650,7 +2483,7 @@ namespace GeneXus.Programs {
       {
          /* 'DO UPDATE' Routine */
          returnInSub = false;
-         if ( AV47IsAuthorized_Update )
+         if ( AV48IsAuthorized_Update )
          {
             if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
             {
@@ -2694,13 +2527,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(AV16Session.Get(AV98Pgmname+"GridState"), "") == 0 )
+         if ( StringUtil.StrCmp(AV16Session.Get(AV52Pgmname+"GridState"), "") == 0 )
          {
-            AV11GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  AV98Pgmname+"GridState"), null, "", "");
+            AV11GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  AV52Pgmname+"GridState"), null, "", "");
          }
          else
          {
-            AV11GridState.FromXml(AV16Session.Get(AV98Pgmname+"GridState"), null, "", "");
+            AV11GridState.FromXml(AV16Session.Get(AV52Pgmname+"GridState"), null, "", "");
          }
          AV13OrderedBy = AV11GridState.gxTpr_Orderedby;
          AssignAttri("", false, "AV13OrderedBy", StringUtil.LTrimStr( (decimal)(AV13OrderedBy), 4, 0));
@@ -2732,10 +2565,10 @@ namespace GeneXus.Programs {
       {
          /* 'LOADREGFILTERSSTATE' Routine */
          returnInSub = false;
-         AV118GXV1 = 1;
-         while ( AV118GXV1 <= AV11GridState.gxTpr_Filtervalues.Count )
+         AV70GXV1 = 1;
+         while ( AV70GXV1 <= AV11GridState.gxTpr_Filtervalues.Count )
          {
-            AV12GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV11GridState.gxTpr_Filtervalues.Item(AV118GXV1));
+            AV12GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV11GridState.gxTpr_Filtervalues.Item(AV70GXV1));
             if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV15FilterFullText = AV12GridStateFilterValue.gxTpr_Value;
@@ -2743,137 +2576,123 @@ namespace GeneXus.Programs {
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILENAME") == 0 )
             {
-               AV79TFTileName = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV79TFTileName", AV79TFTileName);
+               AV20TFTileName = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV20TFTileName", AV20TFTileName);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILENAME_SEL") == 0 )
             {
-               AV80TFTileName_Sel = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV80TFTileName_Sel", AV80TFTileName_Sel);
+               AV21TFTileName_Sel = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV21TFTileName_Sel", AV21TFTileName_Sel);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEBGCOLOR") == 0 )
             {
-               AV83TFTileBGColor = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV83TFTileBGColor", AV83TFTileBGColor);
+               AV22TFTileBGColor = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV22TFTileBGColor", AV22TFTileBGColor);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEBGCOLOR_SEL") == 0 )
             {
-               AV84TFTileBGColor_Sel = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV84TFTileBGColor_Sel", AV84TFTileBGColor_Sel);
+               AV23TFTileBGColor_Sel = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV23TFTileBGColor_Sel", AV23TFTileBGColor_Sel);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEBGIMAGEURL") == 0 )
             {
-               AV85TFTileBGImageUrl = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV85TFTileBGImageUrl", AV85TFTileBGImageUrl);
+               AV24TFTileBGImageUrl = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV24TFTileBGImageUrl", AV24TFTileBGImageUrl);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEBGIMAGEURL_SEL") == 0 )
             {
-               AV86TFTileBGImageUrl_Sel = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV86TFTileBGImageUrl_Sel", AV86TFTileBGImageUrl_Sel);
+               AV25TFTileBGImageUrl_Sel = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV25TFTileBGImageUrl_Sel", AV25TFTileBGImageUrl_Sel);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILETEXTCOLOR") == 0 )
             {
-               AV87TFTileTextColor = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV87TFTileTextColor", AV87TFTileTextColor);
+               AV26TFTileTextColor = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV26TFTileTextColor", AV26TFTileTextColor);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILETEXTCOLOR_SEL") == 0 )
             {
-               AV88TFTileTextColor_Sel = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV88TFTileTextColor_Sel", AV88TFTileTextColor_Sel);
+               AV27TFTileTextColor_Sel = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV27TFTileTextColor_Sel", AV27TFTileTextColor_Sel);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILETEXTALIGNMENT_SEL") == 0 )
             {
-               AV89TFTileTextAlignment_SelsJson = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV89TFTileTextAlignment_SelsJson", AV89TFTileTextAlignment_SelsJson);
-               AV90TFTileTextAlignment_Sels.FromJSonString(AV89TFTileTextAlignment_SelsJson, null);
+               AV28TFTileTextAlignment_SelsJson = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV28TFTileTextAlignment_SelsJson", AV28TFTileTextAlignment_SelsJson);
+               AV29TFTileTextAlignment_Sels.FromJSonString(AV28TFTileTextAlignment_SelsJson, null);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEICON") == 0 )
             {
-               AV81TFTileIcon = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV81TFTileIcon", AV81TFTileIcon);
+               AV30TFTileIcon = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV30TFTileIcon", AV30TFTileIcon);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEICON_SEL") == 0 )
             {
-               AV82TFTileIcon_Sel = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV82TFTileIcon_Sel", AV82TFTileIcon_Sel);
+               AV31TFTileIcon_Sel = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV31TFTileIcon_Sel", AV31TFTileIcon_Sel);
             }
             else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEICONALIGNMENT_SEL") == 0 )
             {
-               AV91TFTileIconAlignment_SelsJson = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV91TFTileIconAlignment_SelsJson", AV91TFTileIconAlignment_SelsJson);
-               AV92TFTileIconAlignment_Sels.FromJSonString(AV91TFTileIconAlignment_SelsJson, null);
+               AV32TFTileIconAlignment_SelsJson = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV32TFTileIconAlignment_SelsJson", AV32TFTileIconAlignment_SelsJson);
+               AV33TFTileIconAlignment_Sels.FromJSonString(AV32TFTileIconAlignment_SelsJson, null);
             }
-            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFPRODUCTSERVICENAME") == 0 )
+            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEICONCOLOR") == 0 )
             {
-               AV28TFProductServiceName = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV28TFProductServiceName", AV28TFProductServiceName);
+               AV34TFTileIconColor = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV34TFTileIconColor", AV34TFTileIconColor);
             }
-            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFPRODUCTSERVICENAME_SEL") == 0 )
+            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEICONCOLOR_SEL") == 0 )
             {
-               AV29TFProductServiceName_Sel = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV29TFProductServiceName_Sel", AV29TFProductServiceName_Sel);
+               AV35TFTileIconColor_Sel = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV35TFTileIconColor_Sel", AV35TFTileIconColor_Sel);
             }
-            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFPRODUCTSERVICEDESCRIPTION") == 0 )
+            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEACTION") == 0 )
             {
-               AV30TFProductServiceDescription = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV30TFProductServiceDescription", AV30TFProductServiceDescription);
+               AV36TFTileAction = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV36TFTileAction", AV36TFTileAction);
             }
-            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFPRODUCTSERVICEDESCRIPTION_SEL") == 0 )
+            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFTILEACTION_SEL") == 0 )
             {
-               AV31TFProductServiceDescription_Sel = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV31TFProductServiceDescription_Sel", AV31TFProductServiceDescription_Sel);
+               AV37TFTileAction_Sel = AV12GridStateFilterValue.gxTpr_Value;
+               AssignAttri("", false, "AV37TFTileAction_Sel", AV37TFTileAction_Sel);
             }
-            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFSG_TOPAGENAME") == 0 )
-            {
-               AV93TFSG_ToPageName = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV93TFSG_ToPageName", AV93TFSG_ToPageName);
-            }
-            else if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "TFSG_TOPAGENAME_SEL") == 0 )
-            {
-               AV94TFSG_ToPageName_Sel = AV12GridStateFilterValue.gxTpr_Value;
-               AssignAttri("", false, "AV94TFSG_ToPageName_Sel", AV94TFSG_ToPageName_Sel);
-            }
-            AV118GXV1 = (int)(AV118GXV1+1);
+            AV70GXV1 = (int)(AV70GXV1+1);
          }
          GXt_char3 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV80TFTileName_Sel)),  AV80TFTileName_Sel, out  GXt_char3) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV21TFTileName_Sel)),  AV21TFTileName_Sel, out  GXt_char3) ;
          GXt_char5 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV84TFTileBGColor_Sel)),  AV84TFTileBGColor_Sel, out  GXt_char5) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV23TFTileBGColor_Sel)),  AV23TFTileBGColor_Sel, out  GXt_char5) ;
          GXt_char6 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV86TFTileBGImageUrl_Sel)),  AV86TFTileBGImageUrl_Sel, out  GXt_char6) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV25TFTileBGImageUrl_Sel)),  AV25TFTileBGImageUrl_Sel, out  GXt_char6) ;
          GXt_char7 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV88TFTileTextColor_Sel)),  AV88TFTileTextColor_Sel, out  GXt_char7) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV27TFTileTextColor_Sel)),  AV27TFTileTextColor_Sel, out  GXt_char7) ;
          GXt_char8 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  (AV90TFTileTextAlignment_Sels.Count==0),  AV89TFTileTextAlignment_SelsJson, out  GXt_char8) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  (AV29TFTileTextAlignment_Sels.Count==0),  AV28TFTileTextAlignment_SelsJson, out  GXt_char8) ;
          GXt_char9 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV82TFTileIcon_Sel)),  AV82TFTileIcon_Sel, out  GXt_char9) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV31TFTileIcon_Sel)),  AV31TFTileIcon_Sel, out  GXt_char9) ;
          GXt_char10 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  (AV92TFTileIconAlignment_Sels.Count==0),  AV91TFTileIconAlignment_SelsJson, out  GXt_char10) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  (AV33TFTileIconAlignment_Sels.Count==0),  AV32TFTileIconAlignment_SelsJson, out  GXt_char10) ;
          GXt_char11 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV29TFProductServiceName_Sel)),  AV29TFProductServiceName_Sel, out  GXt_char11) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV35TFTileIconColor_Sel)),  AV35TFTileIconColor_Sel, out  GXt_char11) ;
          GXt_char12 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV31TFProductServiceDescription_Sel)),  AV31TFProductServiceDescription_Sel, out  GXt_char12) ;
-         GXt_char13 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV94TFSG_ToPageName_Sel)),  AV94TFSG_ToPageName_Sel, out  GXt_char13) ;
-         Ddo_grid_Selectedvalue_set = "|"+GXt_char3+"|"+GXt_char5+"|"+GXt_char6+"|"+GXt_char7+"|"+GXt_char8+"|"+GXt_char9+"|"+GXt_char10+"||||"+GXt_char11+"|"+GXt_char12+"||"+GXt_char13;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV37TFTileAction_Sel)),  AV37TFTileAction_Sel, out  GXt_char12) ;
+         Ddo_grid_Selectedvalue_set = "|"+GXt_char3+"|"+GXt_char5+"|"+GXt_char6+"|"+GXt_char7+"|"+GXt_char8+"|"+GXt_char9+"|"+GXt_char10+"|"+GXt_char11+"|"+GXt_char12;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedValue_set", Ddo_grid_Selectedvalue_set);
-         GXt_char13 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV79TFTileName)),  AV79TFTileName, out  GXt_char13) ;
          GXt_char12 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV83TFTileBGColor)),  AV83TFTileBGColor, out  GXt_char12) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV20TFTileName)),  AV20TFTileName, out  GXt_char12) ;
          GXt_char11 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV85TFTileBGImageUrl)),  AV85TFTileBGImageUrl, out  GXt_char11) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV22TFTileBGColor)),  AV22TFTileBGColor, out  GXt_char11) ;
          GXt_char10 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV87TFTileTextColor)),  AV87TFTileTextColor, out  GXt_char10) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV24TFTileBGImageUrl)),  AV24TFTileBGImageUrl, out  GXt_char10) ;
          GXt_char9 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV81TFTileIcon)),  AV81TFTileIcon, out  GXt_char9) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV26TFTileTextColor)),  AV26TFTileTextColor, out  GXt_char9) ;
          GXt_char8 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV28TFProductServiceName)),  AV28TFProductServiceName, out  GXt_char8) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV30TFTileIcon)),  AV30TFTileIcon, out  GXt_char8) ;
          GXt_char7 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV30TFProductServiceDescription)),  AV30TFProductServiceDescription, out  GXt_char7) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV34TFTileIconColor)),  AV34TFTileIconColor, out  GXt_char7) ;
          GXt_char6 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV93TFSG_ToPageName)),  AV93TFSG_ToPageName, out  GXt_char6) ;
-         Ddo_grid_Filteredtext_set = "|"+GXt_char13+"|"+GXt_char12+"|"+GXt_char11+"|"+GXt_char10+"||"+GXt_char9+"|||||"+GXt_char8+"|"+GXt_char7+"||"+GXt_char6;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV36TFTileAction)),  AV36TFTileAction, out  GXt_char6) ;
+         Ddo_grid_Filteredtext_set = "|"+GXt_char12+"|"+GXt_char11+"|"+GXt_char10+"|"+GXt_char9+"||"+GXt_char8+"||"+GXt_char7+"|"+GXt_char6;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "FilteredText_set", Ddo_grid_Filteredtext_set);
       }
 
@@ -2881,26 +2700,25 @@ namespace GeneXus.Programs {
       {
          /* 'SAVEGRIDSTATE' Routine */
          returnInSub = false;
-         AV11GridState.FromXml(AV16Session.Get(AV98Pgmname+"GridState"), null, "", "");
+         AV11GridState.FromXml(AV16Session.Get(AV52Pgmname+"GridState"), null, "", "");
          AV11GridState.gxTpr_Orderedby = AV13OrderedBy;
          AV11GridState.gxTpr_Ordereddsc = AV14OrderedDsc;
          AV11GridState.gxTpr_Filtervalues.Clear();
          new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "FILTERFULLTEXT",  context.GetMessage( "WWP_FullTextFilterDescription", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV15FilterFullText)),  0,  AV15FilterFullText,  AV15FilterFullText,  false,  "",  "") ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILENAME",  context.GetMessage( "Name", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV79TFTileName)),  0,  AV79TFTileName,  AV79TFTileName,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV80TFTileName_Sel)),  AV80TFTileName_Sel,  AV80TFTileName_Sel) ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILEBGCOLOR",  context.GetMessage( "BGColor", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV83TFTileBGColor)),  0,  AV83TFTileBGColor,  AV83TFTileBGColor,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV84TFTileBGColor_Sel)),  AV84TFTileBGColor_Sel,  AV84TFTileBGColor_Sel) ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILEBGIMAGEURL",  context.GetMessage( "BGImage Url", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV85TFTileBGImageUrl)),  0,  AV85TFTileBGImageUrl,  AV85TFTileBGImageUrl,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV86TFTileBGImageUrl_Sel)),  AV86TFTileBGImageUrl_Sel,  AV86TFTileBGImageUrl_Sel) ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILETEXTCOLOR",  context.GetMessage( "Text Color", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV87TFTileTextColor)),  0,  AV87TFTileTextColor,  AV87TFTileTextColor,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV88TFTileTextColor_Sel)),  AV88TFTileTextColor_Sel,  AV88TFTileTextColor_Sel) ;
-         AV97AuxText = ((AV90TFTileTextAlignment_Sels.Count==1) ? "["+AV90TFTileTextAlignment_Sels.GetString(1)+"]" : context.GetMessage( "WWP_FilterValueDescription_MultipleValues", ""));
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "TFTILETEXTALIGNMENT_SEL",  context.GetMessage( "Text Alignment", ""),  !(AV90TFTileTextAlignment_Sels.Count==0),  0,  AV90TFTileTextAlignment_Sels.ToJSonString(false),  ((StringUtil.StrCmp(AV97AuxText, "")==0) ? "" : StringUtil.StringReplace( StringUtil.StringReplace( StringUtil.StringReplace( AV97AuxText, "[center]", context.GetMessage( "center", "")), "[left]", context.GetMessage( "left", "")), "[right]", context.GetMessage( "right", ""))),  false,  "",  "") ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILEICON",  context.GetMessage( "Icon", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV81TFTileIcon)),  0,  AV81TFTileIcon,  AV81TFTileIcon,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV82TFTileIcon_Sel)),  AV82TFTileIcon_Sel,  AV82TFTileIcon_Sel) ;
-         AV97AuxText = ((AV92TFTileIconAlignment_Sels.Count==1) ? "["+AV92TFTileIconAlignment_Sels.GetString(1)+"]" : context.GetMessage( "WWP_FilterValueDescription_MultipleValues", ""));
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "TFTILEICONALIGNMENT_SEL",  context.GetMessage( "Icon Alignment", ""),  !(AV92TFTileIconAlignment_Sels.Count==0),  0,  AV92TFTileIconAlignment_Sels.ToJSonString(false),  ((StringUtil.StrCmp(AV97AuxText, "")==0) ? "" : StringUtil.StringReplace( StringUtil.StringReplace( StringUtil.StringReplace( AV97AuxText, "[center]", context.GetMessage( "center", "")), "[left]", context.GetMessage( "left", "")), "[right]", context.GetMessage( "right", ""))),  false,  "",  "") ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFPRODUCTSERVICENAME",  context.GetMessage( "Service Name", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV28TFProductServiceName)),  0,  AV28TFProductServiceName,  AV28TFProductServiceName,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV29TFProductServiceName_Sel)),  AV29TFProductServiceName_Sel,  AV29TFProductServiceName_Sel) ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFPRODUCTSERVICEDESCRIPTION",  context.GetMessage( "Service Description", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV30TFProductServiceDescription)),  0,  AV30TFProductServiceDescription,  AV30TFProductServiceDescription,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV31TFProductServiceDescription_Sel)),  AV31TFProductServiceDescription_Sel,  AV31TFProductServiceDescription_Sel) ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFSG_TOPAGENAME",  context.GetMessage( "Page Name", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV93TFSG_ToPageName)),  0,  AV93TFSG_ToPageName,  AV93TFSG_ToPageName,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV94TFSG_ToPageName_Sel)),  AV94TFSG_ToPageName_Sel,  AV94TFSG_ToPageName_Sel) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILENAME",  context.GetMessage( "Name", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV20TFTileName)),  0,  AV20TFTileName,  AV20TFTileName,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV21TFTileName_Sel)),  AV21TFTileName_Sel,  AV21TFTileName_Sel) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILEBGCOLOR",  context.GetMessage( "BGColor", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV22TFTileBGColor)),  0,  AV22TFTileBGColor,  AV22TFTileBGColor,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV23TFTileBGColor_Sel)),  AV23TFTileBGColor_Sel,  AV23TFTileBGColor_Sel) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILEBGIMAGEURL",  context.GetMessage( "BGImage Url", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV24TFTileBGImageUrl)),  0,  AV24TFTileBGImageUrl,  AV24TFTileBGImageUrl,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV25TFTileBGImageUrl_Sel)),  AV25TFTileBGImageUrl_Sel,  AV25TFTileBGImageUrl_Sel) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILETEXTCOLOR",  context.GetMessage( "Text Color", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV26TFTileTextColor)),  0,  AV26TFTileTextColor,  AV26TFTileTextColor,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV27TFTileTextColor_Sel)),  AV27TFTileTextColor_Sel,  AV27TFTileTextColor_Sel) ;
+         AV51AuxText = ((AV29TFTileTextAlignment_Sels.Count==1) ? "["+AV29TFTileTextAlignment_Sels.GetString(1)+"]" : context.GetMessage( "WWP_FilterValueDescription_MultipleValues", ""));
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "TFTILETEXTALIGNMENT_SEL",  context.GetMessage( "Text Alignment", ""),  !(AV29TFTileTextAlignment_Sels.Count==0),  0,  AV29TFTileTextAlignment_Sels.ToJSonString(false),  ((StringUtil.StrCmp(AV51AuxText, "")==0) ? "" : StringUtil.StringReplace( StringUtil.StringReplace( StringUtil.StringReplace( AV51AuxText, "[center]", context.GetMessage( "center", "")), "[left]", context.GetMessage( "left", "")), "[right]", context.GetMessage( "right", ""))),  false,  "",  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILEICON",  context.GetMessage( "Icon", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV30TFTileIcon)),  0,  AV30TFTileIcon,  AV30TFTileIcon,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV31TFTileIcon_Sel)),  AV31TFTileIcon_Sel,  AV31TFTileIcon_Sel) ;
+         AV51AuxText = ((AV33TFTileIconAlignment_Sels.Count==1) ? "["+AV33TFTileIconAlignment_Sels.GetString(1)+"]" : context.GetMessage( "WWP_FilterValueDescription_MultipleValues", ""));
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "TFTILEICONALIGNMENT_SEL",  context.GetMessage( "Icon Alignment", ""),  !(AV33TFTileIconAlignment_Sels.Count==0),  0,  AV33TFTileIconAlignment_Sels.ToJSonString(false),  ((StringUtil.StrCmp(AV51AuxText, "")==0) ? "" : StringUtil.StringReplace( StringUtil.StringReplace( StringUtil.StringReplace( AV51AuxText, "[center]", context.GetMessage( "center", "")), "[left]", context.GetMessage( "left", "")), "[right]", context.GetMessage( "right", ""))),  false,  "",  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILEICONCOLOR",  context.GetMessage( "Icon Color", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV34TFTileIconColor)),  0,  AV34TFTileIconColor,  AV34TFTileIconColor,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV35TFTileIconColor_Sel)),  AV35TFTileIconColor_Sel,  AV35TFTileIconColor_Sel) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFTILEACTION",  context.GetMessage( "Action", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV36TFTileAction)),  0,  AV36TFTileAction,  AV36TFTileAction,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV37TFTileAction_Sel)),  AV37TFTileAction_Sel,  AV37TFTileAction_Sel) ;
          AV11GridState.gxTpr_Pagesize = StringUtil.Str( (decimal)(subGrid_Rows), 10, 0);
          AV11GridState.gxTpr_Currentpage = (short)(subGrid_fnc_Currentpage( ));
-         new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV98Pgmname+"GridState",  AV11GridState.ToXml(false, true, "", "")) ;
+         new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV52Pgmname+"GridState",  AV11GridState.ToXml(false, true, "", "")) ;
       }
 
       protected void S122( )
@@ -2908,7 +2726,7 @@ namespace GeneXus.Programs {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
          AV9TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
-         AV9TrnContext.gxTpr_Callerobject = AV98Pgmname;
+         AV9TrnContext.gxTpr_Callerobject = AV52Pgmname;
          AV9TrnContext.gxTpr_Callerondelete = true;
          AV9TrnContext.gxTpr_Callerurl = AV8HTTPRequest.ScriptName+"?"+AV8HTTPRequest.QueryString;
          AV9TrnContext.gxTpr_Transactionname = "Trn_Tile";
@@ -2930,9 +2748,9 @@ namespace GeneXus.Programs {
          nGotPars = (short)(1);
          nGXWrapped = (short)(1);
          context.SetWrapped(true);
-         PA5Z2( ) ;
-         WS5Z2( ) ;
-         WE5Z2( ) ;
+         PA842( ) ;
+         WS842( ) ;
+         WE842( ) ;
          cleanup();
          context.SetWrapped(false);
          context.GX_msglist = BackMsgLst;
@@ -2962,7 +2780,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411610372549", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024119613759", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2978,7 +2796,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_tileww.js", "?202411610372551", false, true);
+         context.AddJavascriptSource("trn_tileww.js", "?2024119613760", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3006,14 +2824,8 @@ namespace GeneXus.Programs {
          cmbTileTextAlignment_Internalname = "TILETEXTALIGNMENT_"+sGXsfl_37_idx;
          edtTileIcon_Internalname = "TILEICON_"+sGXsfl_37_idx;
          cmbTileIconAlignment_Internalname = "TILEICONALIGNMENT_"+sGXsfl_37_idx;
-         edtProductServiceId_Internalname = "PRODUCTSERVICEID_"+sGXsfl_37_idx;
-         edtOrganisationId_Internalname = "ORGANISATIONID_"+sGXsfl_37_idx;
-         edtLocationId_Internalname = "LOCATIONID_"+sGXsfl_37_idx;
-         edtProductServiceName_Internalname = "PRODUCTSERVICENAME_"+sGXsfl_37_idx;
-         edtProductServiceDescription_Internalname = "PRODUCTSERVICEDESCRIPTION_"+sGXsfl_37_idx;
-         edtProductServiceImage_Internalname = "PRODUCTSERVICEIMAGE_"+sGXsfl_37_idx;
-         edtSG_ToPageId_Internalname = "SG_TOPAGEID_"+sGXsfl_37_idx;
-         edtSG_ToPageName_Internalname = "SG_TOPAGENAME_"+sGXsfl_37_idx;
+         edtTileIconColor_Internalname = "TILEICONCOLOR_"+sGXsfl_37_idx;
+         edtTileAction_Internalname = "TILEACTION_"+sGXsfl_37_idx;
          cmbavActiongroup_Internalname = "vACTIONGROUP_"+sGXsfl_37_idx;
       }
 
@@ -3027,14 +2839,8 @@ namespace GeneXus.Programs {
          cmbTileTextAlignment_Internalname = "TILETEXTALIGNMENT_"+sGXsfl_37_fel_idx;
          edtTileIcon_Internalname = "TILEICON_"+sGXsfl_37_fel_idx;
          cmbTileIconAlignment_Internalname = "TILEICONALIGNMENT_"+sGXsfl_37_fel_idx;
-         edtProductServiceId_Internalname = "PRODUCTSERVICEID_"+sGXsfl_37_fel_idx;
-         edtOrganisationId_Internalname = "ORGANISATIONID_"+sGXsfl_37_fel_idx;
-         edtLocationId_Internalname = "LOCATIONID_"+sGXsfl_37_fel_idx;
-         edtProductServiceName_Internalname = "PRODUCTSERVICENAME_"+sGXsfl_37_fel_idx;
-         edtProductServiceDescription_Internalname = "PRODUCTSERVICEDESCRIPTION_"+sGXsfl_37_fel_idx;
-         edtProductServiceImage_Internalname = "PRODUCTSERVICEIMAGE_"+sGXsfl_37_fel_idx;
-         edtSG_ToPageId_Internalname = "SG_TOPAGEID_"+sGXsfl_37_fel_idx;
-         edtSG_ToPageName_Internalname = "SG_TOPAGENAME_"+sGXsfl_37_fel_idx;
+         edtTileIconColor_Internalname = "TILEICONCOLOR_"+sGXsfl_37_fel_idx;
+         edtTileAction_Internalname = "TILEACTION_"+sGXsfl_37_fel_idx;
          cmbavActiongroup_Internalname = "vACTIONGROUP_"+sGXsfl_37_fel_idx;
       }
 
@@ -3042,7 +2848,7 @@ namespace GeneXus.Programs {
       {
          sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
          SubsflControlProps_372( ) ;
-         WB5Z0( ) ;
+         WB840( ) ;
          if ( ( subGrid_Rows * 1 == 0 ) || ( nGXsfl_37_idx <= subGrid_fnc_Recordsperpage( ) * 1 ) )
          {
             GridRow = GXWebRow.GetNew(context,GridContainer);
@@ -3109,7 +2915,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileId_Internalname,A407TileId.ToString(),A407TileId.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)37,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileId_Internalname,A407TileId.ToString(),A407TileId.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)37,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3125,7 +2931,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileBGColor_Internalname,StringUtil.RTrim( A402TileBGColor),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileBGColor_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileBGColor_Internalname,StringUtil.RTrim( A402TileBGColor),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileBGColor_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3133,7 +2939,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileBGImageUrl_Internalname,(string)A403TileBGImageUrl,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)edtTileBGImageUrl_Link,(string)edtTileBGImageUrl_Linktarget,(string)"",(string)"",(string)edtTileBGImageUrl_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"url",(string)"",(short)570,(string)"px",(short)17,(string)"px",(short)1000,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)0,(bool)true,(string)"GeneXus\\Url",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileBGImageUrl_Internalname,(string)A403TileBGImageUrl,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)edtTileBGImageUrl_Link,(string)edtTileBGImageUrl_Linktarget,(string)"",(string)"",(string)edtTileBGImageUrl_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"url",(string)"",(short)570,(string)"px",(short)17,(string)"px",(short)1000,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)0,(bool)true,(string)"GeneXus\\Url",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3141,7 +2947,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileTextColor_Internalname,StringUtil.RTrim( A404TileTextColor),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileTextColor_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileTextColor_Internalname,StringUtil.RTrim( A404TileTextColor),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileTextColor_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3161,7 +2967,7 @@ namespace GeneXus.Programs {
                }
             }
             /* ComboBox */
-            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbTileTextAlignment,(string)cmbTileTextAlignment_Internalname,StringUtil.RTrim( A405TileTextAlignment),(short)1,(string)cmbTileTextAlignment_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,(short)0,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"WWColumn",(string)"",(string)"",(string)"",(bool)true,(short)0});
+            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbTileTextAlignment,(string)cmbTileTextAlignment_Internalname,StringUtil.RTrim( A405TileTextAlignment),(short)1,(string)cmbTileTextAlignment_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,(short)0,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"WWColumn hidden-xs",(string)"",(string)"",(string)"",(bool)true,(short)0});
             cmbTileTextAlignment.CurrentValue = StringUtil.RTrim( A405TileTextAlignment);
             AssignProp("", false, cmbTileTextAlignment_Internalname, "Values", (string)(cmbTileTextAlignment.ToJavascriptSource()), !bGXsfl_37_Refreshing);
             /* Subfile cell */
@@ -3171,7 +2977,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileIcon_Internalname,StringUtil.RTrim( A401TileIcon),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileIcon_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileIcon_Internalname,StringUtil.RTrim( A401TileIcon),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileIcon_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3191,33 +2997,17 @@ namespace GeneXus.Programs {
                }
             }
             /* ComboBox */
-            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbTileIconAlignment,(string)cmbTileIconAlignment_Internalname,StringUtil.RTrim( A406TileIconAlignment),(short)1,(string)cmbTileIconAlignment_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,(short)0,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"WWColumn",(string)"",(string)"",(string)"",(bool)true,(short)0});
+            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbTileIconAlignment,(string)cmbTileIconAlignment_Internalname,StringUtil.RTrim( A406TileIconAlignment),(short)1,(string)cmbTileIconAlignment_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"char",(string)"",(short)-1,(short)0,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"WWColumn hidden-xs",(string)"",(string)"",(string)"",(bool)true,(short)0});
             cmbTileIconAlignment.CurrentValue = StringUtil.RTrim( A406TileIconAlignment);
             AssignProp("", false, cmbTileIconAlignment_Internalname, "Values", (string)(cmbTileIconAlignment.ToJavascriptSource()), !bGXsfl_37_Refreshing);
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtProductServiceId_Internalname,A58ProductServiceId.ToString(),A58ProductServiceId.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtProductServiceId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)37,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
-            /* Subfile cell */
-            if ( GridContainer.GetWrapped() == 1 )
-            {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
-            }
-            /* Single line edit */
-            ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationId_Internalname,A11OrganisationId.ToString(),A11OrganisationId.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)37,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
-            /* Subfile cell */
-            if ( GridContainer.GetWrapped() == 1 )
-            {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
-            }
-            /* Single line edit */
-            ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtLocationId_Internalname,A29LocationId.ToString(),A29LocationId.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtLocationId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)37,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileIconColor_Internalname,StringUtil.RTrim( A438TileIconColor),(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileIconColor_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3225,48 +3015,13 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtProductServiceName_Internalname,(string)A59ProductServiceName,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)edtProductServiceName_Link,(string)"",(string)"",(string)"",(string)edtProductServiceName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
-            /* Subfile cell */
-            if ( GridContainer.GetWrapped() == 1 )
-            {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
-            }
-            /* Single line edit */
-            ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtProductServiceDescription_Internalname,(string)A60ProductServiceDescription,(string)A60ProductServiceDescription,(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtProductServiceDescription_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)37,(short)0,(short)0,(short)-1,(bool)true,(string)"LongDescription",(string)"start",(bool)false,(string)""});
-            /* Subfile cell */
-            if ( GridContainer.GetWrapped() == 1 )
-            {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
-            }
-            /* Static Bitmap Variable */
-            ClassString = "Attribute";
-            StyleString = "";
-            A61ProductServiceImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage))&&String.IsNullOrEmpty(StringUtil.RTrim( A40000ProductServiceImage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)));
-            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( A61ProductServiceImage)) ? A40000ProductServiceImage_GXI : context.PathToRelativeUrl( A61ProductServiceImage));
-            GridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtProductServiceImage_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)0,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)0,(string)"",(string)"",(string)StyleString,(string)ClassString,(string)"WWColumn",(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)1,(bool)A61ProductServiceImage_IsBlob,(bool)true,context.GetImageSrcSet( sImgUrl)});
-            /* Subfile cell */
-            if ( GridContainer.GetWrapped() == 1 )
-            {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
-            }
-            /* Single line edit */
-            ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtSG_ToPageId_Internalname,A329SG_ToPageId.ToString(),A329SG_ToPageId.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtSG_ToPageId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)37,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
-            /* Subfile cell */
-            if ( GridContainer.GetWrapped() == 1 )
-            {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
-            }
-            /* Single line edit */
-            ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtSG_ToPageName_Internalname,(string)A330SG_ToPageName,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)edtSG_ToPageName_Link,(string)"",(string)"",(string)"",(string)edtSG_ToPageName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtTileAction_Internalname,(string)A436TileAction,(string)A436TileAction,(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtTileAction_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)37,(short)0,(short)0,(short)-1,(bool)true,(string)"LongDescription",(string)"start",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
             }
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'',false,'" + sGXsfl_37_idx + "',37)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'" + sGXsfl_37_idx + "',37)\"";
             if ( ( cmbavActiongroup.ItemCount == 0 ) && isAjaxCallMode( ) )
             {
                GXCCtl = "vACTIONGROUP_" + sGXsfl_37_idx;
@@ -3274,15 +3029,15 @@ namespace GeneXus.Programs {
                cmbavActiongroup.WebTags = "";
                if ( cmbavActiongroup.ItemCount > 0 )
                {
-                  AV78ActionGroup = (short)(Math.Round(NumberUtil.Val( cmbavActiongroup.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV78ActionGroup), 4, 0))), "."), 18, MidpointRounding.ToEven));
-                  AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV78ActionGroup), 4, 0));
+                  AV46ActionGroup = (short)(Math.Round(NumberUtil.Val( cmbavActiongroup.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV46ActionGroup), 4, 0))), "."), 18, MidpointRounding.ToEven));
+                  AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV46ActionGroup), 4, 0));
                }
             }
             /* ComboBox */
-            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavActiongroup,(string)cmbavActiongroup_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(AV78ActionGroup), 4, 0)),(short)1,(string)cmbavActiongroup_Jsonclick,(short)5,"'"+""+"'"+",false,"+"'"+"EVACTIONGROUP.CLICK."+sGXsfl_37_idx+"'",(string)"int",(string)"",(short)-1,(short)1,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)cmbavActiongroup_Class,(string)"WWActionGroupColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,54);\"",(string)"",(bool)true,(short)0});
-            cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV78ActionGroup), 4, 0));
+            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavActiongroup,(string)cmbavActiongroup_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(AV46ActionGroup), 4, 0)),(short)1,(string)cmbavActiongroup_Jsonclick,(short)5,"'"+""+"'"+",false,"+"'"+"EVACTIONGROUP.CLICK."+sGXsfl_37_idx+"'",(string)"int",(string)"",(short)-1,(short)1,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)cmbavActiongroup_Class,(string)"WWActionGroupColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"",(string)"",(bool)true,(short)0});
+            cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV46ActionGroup), 4, 0));
             AssignProp("", false, cmbavActiongroup_Internalname, "Values", (string)(cmbavActiongroup.ToJavascriptSource()), !bGXsfl_37_Refreshing);
-            send_integrity_lvl_hashes5Z2( ) ;
+            send_integrity_lvl_hashes842( ) ;
             GridContainer.AddRow(GridRow);
             nGXsfl_37_idx = ((subGrid_Islastpage==1)&&(nGXsfl_37_idx+1>subGrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_37_idx+1);
             sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
@@ -3318,8 +3073,8 @@ namespace GeneXus.Programs {
          cmbavActiongroup.WebTags = "";
          if ( cmbavActiongroup.ItemCount > 0 )
          {
-            AV78ActionGroup = (short)(Math.Round(NumberUtil.Val( cmbavActiongroup.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV78ActionGroup), 4, 0))), "."), 18, MidpointRounding.ToEven));
-            AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV78ActionGroup), 4, 0));
+            AV46ActionGroup = (short)(Math.Round(NumberUtil.Val( cmbavActiongroup.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV46ActionGroup), 4, 0))), "."), 18, MidpointRounding.ToEven));
+            AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV46ActionGroup), 4, 0));
          }
          /* End function init_web_controls */
       }
@@ -3385,29 +3140,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Icon Alignment", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Service Id", "")) ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Id", "")) ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Id", "")) ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.SendWebValue( context.GetMessage( "Icon Color", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Service Name", "")) ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Service Description", "")) ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Service Image", "")) ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Page Id", "")) ;
-            context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "Page Name", "")) ;
+            context.SendWebValue( context.GetMessage( "Action", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+cmbavActiongroup_Class+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "") ;
@@ -3463,33 +3200,13 @@ namespace GeneXus.Programs {
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( A406TileIconAlignment)));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A58ProductServiceId.ToString()));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( A438TileIconColor)));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A11OrganisationId.ToString()));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A436TileAction));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A29LocationId.ToString()));
-            GridContainer.AddColumnProperties(GridColumn);
-            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A59ProductServiceName));
-            GridColumn.AddObjectProperty("Link", StringUtil.RTrim( edtProductServiceName_Link));
-            GridContainer.AddColumnProperties(GridColumn);
-            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A60ProductServiceDescription));
-            GridContainer.AddColumnProperties(GridColumn);
-            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", context.convertURL( A61ProductServiceImage));
-            GridContainer.AddColumnProperties(GridColumn);
-            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A329SG_ToPageId.ToString()));
-            GridContainer.AddColumnProperties(GridColumn);
-            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A330SG_ToPageName));
-            GridColumn.AddObjectProperty("Link", StringUtil.RTrim( edtSG_ToPageName_Link));
-            GridContainer.AddColumnProperties(GridColumn);
-            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.LTrim( StringUtil.NToC( (decimal)(AV78ActionGroup), 4, 0, ".", ""))));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.LTrim( StringUtil.NToC( (decimal)(AV46ActionGroup), 4, 0, ".", ""))));
             GridColumn.AddObjectProperty("Class", StringUtil.RTrim( cmbavActiongroup_Class));
             GridContainer.AddColumnProperties(GridColumn);
             GridContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Selectedindex), 4, 0, ".", "")));
@@ -3521,14 +3238,8 @@ namespace GeneXus.Programs {
          cmbTileTextAlignment_Internalname = "TILETEXTALIGNMENT";
          edtTileIcon_Internalname = "TILEICON";
          cmbTileIconAlignment_Internalname = "TILEICONALIGNMENT";
-         edtProductServiceId_Internalname = "PRODUCTSERVICEID";
-         edtOrganisationId_Internalname = "ORGANISATIONID";
-         edtLocationId_Internalname = "LOCATIONID";
-         edtProductServiceName_Internalname = "PRODUCTSERVICENAME";
-         edtProductServiceDescription_Internalname = "PRODUCTSERVICEDESCRIPTION";
-         edtProductServiceImage_Internalname = "PRODUCTSERVICEIMAGE";
-         edtSG_ToPageId_Internalname = "SG_TOPAGEID";
-         edtSG_ToPageName_Internalname = "SG_TOPAGENAME";
+         edtTileIconColor_Internalname = "TILEICONCOLOR";
+         edtTileAction_Internalname = "TILEACTION";
          cmbavActiongroup_Internalname = "vACTIONGROUP";
          Gridpaginationbar_Internalname = "GRIDPAGINATIONBAR";
          divGridtablewithpaginationbar_Internalname = "GRIDTABLEWITHPAGINATIONBAR";
@@ -3557,15 +3268,8 @@ namespace GeneXus.Programs {
          subGrid_Header = "";
          cmbavActiongroup_Jsonclick = "";
          cmbavActiongroup_Class = "ConvertToDDO";
-         edtSG_ToPageName_Jsonclick = "";
-         edtSG_ToPageName_Link = "";
-         edtSG_ToPageId_Jsonclick = "";
-         edtProductServiceDescription_Jsonclick = "";
-         edtProductServiceName_Jsonclick = "";
-         edtProductServiceName_Link = "";
-         edtLocationId_Jsonclick = "";
-         edtOrganisationId_Jsonclick = "";
-         edtProductServiceId_Jsonclick = "";
+         edtTileAction_Jsonclick = "";
+         edtTileIconColor_Jsonclick = "";
          cmbTileIconAlignment_Jsonclick = "";
          edtTileIcon_Jsonclick = "";
          cmbTileTextAlignment_Jsonclick = "";
@@ -3579,14 +3283,8 @@ namespace GeneXus.Programs {
          edtTileId_Jsonclick = "";
          subGrid_Class = "GridWithPaginationBar WorkWithSelection WorkWith";
          subGrid_Backcolorstyle = 0;
-         edtSG_ToPageName_Enabled = 0;
-         edtSG_ToPageId_Enabled = 0;
-         edtProductServiceImage_Enabled = 0;
-         edtProductServiceDescription_Enabled = 0;
-         edtProductServiceName_Enabled = 0;
-         edtLocationId_Enabled = 0;
-         edtOrganisationId_Enabled = 0;
-         edtProductServiceId_Enabled = 0;
+         edtTileAction_Enabled = 0;
+         edtTileIconColor_Enabled = 0;
          cmbTileIconAlignment.Enabled = 0;
          edtTileIcon_Enabled = 0;
          cmbTileTextAlignment.Enabled = 0;
@@ -3602,15 +3300,15 @@ namespace GeneXus.Programs {
          bttBtninsert_Visible = 1;
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Ddo_grid_Datalistproc = "Trn_TileWWGetFilterData";
-         Ddo_grid_Datalistfixedvalues = "|||||center:center,left:left,right:right||center:center,left:left,right:right|||||||";
-         Ddo_grid_Allowmultipleselection = "|||||T||T|||||||";
-         Ddo_grid_Datalisttype = "|Dynamic|Dynamic|Dynamic|Dynamic|FixedValues|Dynamic|FixedValues||||Dynamic|Dynamic||Dynamic";
-         Ddo_grid_Includedatalist = "|T|T|T|T|T|T|T||||T|T||T";
-         Ddo_grid_Filtertype = "|Character|Character|Character|Character||Character|||||Character|Character||Character";
-         Ddo_grid_Includefilter = "|T|T|T|T||T|||||T|T||T";
+         Ddo_grid_Datalistfixedvalues = "|||||center:center,left:left,right:right||center:center,left:left,right:right||";
+         Ddo_grid_Allowmultipleselection = "|||||T||T||";
+         Ddo_grid_Datalisttype = "|Dynamic|Dynamic|Dynamic|Dynamic|FixedValues|Dynamic|FixedValues|Dynamic|Dynamic";
+         Ddo_grid_Includedatalist = "|T|T|T|T|T|T|T|T|T";
+         Ddo_grid_Filtertype = "|Character|Character|Character|Character||Character||Character|Character";
+         Ddo_grid_Includefilter = "|T|T|T|T||T||T|T";
          Ddo_grid_Includesortasc = "T";
-         Ddo_grid_Columnssortvalues = "2|1|3|4|5|6|7|8|9|10|11|12|13|14|15";
-         Ddo_grid_Columnids = "0:TileId|1:TileName|2:TileBGColor|3:TileBGImageUrl|4:TileTextColor|5:TileTextAlignment|6:TileIcon|7:TileIconAlignment|8:ProductServiceId|9:OrganisationId|10:LocationId|11:ProductServiceName|12:ProductServiceDescription|14:SG_ToPageId|15:SG_ToPageName";
+         Ddo_grid_Columnssortvalues = "2|1|3|4|5|6|7|8|9|10";
+         Ddo_grid_Columnids = "0:TileId|1:TileName|2:TileBGColor|3:TileBGImageUrl|4:TileTextColor|5:TileTextAlignment|6:TileIcon|7:TileIconAlignment|8:TileIconColor|9:TileAction";
          Ddo_grid_Gridinternalname = "";
          Ddc_subscriptions_Titlecontrolidtoreplace = "";
          Ddc_subscriptions_Cls = "ColumnsSelector";
@@ -3659,22 +3357,22 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV98Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV95IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV42IsAuthorized_ProductServiceName","fld":"vISAUTHORIZED_PRODUCTSERVICENAME","hsh":true},{"av":"AV96IsAuthorized_SG_ToPageName","fld":"vISAUTHORIZED_SG_TOPAGENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV38GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV39GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV40GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E125Z2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV98Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV95IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV42IsAuthorized_ProductServiceName","fld":"vISAUTHORIZED_PRODUCTSERVICENAME","hsh":true},{"av":"AV96IsAuthorized_SG_ToPageName","fld":"vISAUTHORIZED_SG_TOPAGENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E135Z2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV98Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV95IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV42IsAuthorized_ProductServiceName","fld":"vISAUTHORIZED_PRODUCTSERVICENAME","hsh":true},{"av":"AV96IsAuthorized_SG_ToPageName","fld":"vISAUTHORIZED_SG_TOPAGENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV52Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV42GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV43GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV44GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E12842","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV52Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E13842","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV52Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
          setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE",""","oparms":[{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]}""");
-         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E155Z2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV98Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV95IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV42IsAuthorized_ProductServiceName","fld":"vISAUTHORIZED_PRODUCTSERVICENAME","hsh":true},{"av":"AV96IsAuthorized_SG_ToPageName","fld":"vISAUTHORIZED_SG_TOPAGENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"}]""");
-         setEventMetadata("DDO_GRID.ONOPTIONCLICKED",""","oparms":[{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV91TFTileIconAlignment_SelsJson","fld":"vTFTILEICONALIGNMENT_SELSJSON"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV89TFTileTextAlignment_SelsJson","fld":"vTFTILETEXTALIGNMENT_SELSJSON"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"}]}""");
-         setEventMetadata("GRID.LOAD","""{"handler":"E195Z2","iparms":[{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV95IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"A407TileId","fld":"TILEID","hsh":true},{"av":"A403TileBGImageUrl","fld":"TILEBGIMAGEURL"},{"av":"AV42IsAuthorized_ProductServiceName","fld":"vISAUTHORIZED_PRODUCTSERVICENAME","hsh":true},{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV96IsAuthorized_SG_ToPageName","fld":"vISAUTHORIZED_SG_TOPAGENAME","hsh":true},{"av":"A329SG_ToPageId","fld":"SG_TOPAGEID"}]""");
-         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV78ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"edtTileName_Link","ctrl":"TILENAME","prop":"Link"},{"av":"edtTileBGImageUrl_Linktarget","ctrl":"TILEBGIMAGEURL","prop":"Linktarget"},{"av":"edtTileBGImageUrl_Link","ctrl":"TILEBGIMAGEURL","prop":"Link"},{"av":"edtProductServiceName_Link","ctrl":"PRODUCTSERVICENAME","prop":"Link"},{"av":"edtSG_ToPageName_Link","ctrl":"SG_TOPAGENAME","prop":"Link"}]}""");
-         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E115Z2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV98Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV95IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV42IsAuthorized_ProductServiceName","fld":"vISAUTHORIZED_PRODUCTSERVICENAME","hsh":true},{"av":"AV96IsAuthorized_SG_ToPageName","fld":"vISAUTHORIZED_SG_TOPAGENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV89TFTileTextAlignment_SelsJson","fld":"vTFTILETEXTALIGNMENT_SELSJSON"},{"av":"AV91TFTileIconAlignment_SelsJson","fld":"vTFTILEICONALIGNMENT_SELSJSON"}]""");
-         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV91TFTileIconAlignment_SelsJson","fld":"vTFTILEICONALIGNMENT_SELSJSON"},{"av":"AV89TFTileTextAlignment_SelsJson","fld":"vTFTILETEXTALIGNMENT_SELSJSON"},{"av":"AV38GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV39GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV40GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
-         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E205Z2","iparms":[{"av":"cmbavActiongroup"},{"av":"AV78ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV98Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV95IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV42IsAuthorized_ProductServiceName","fld":"vISAUTHORIZED_PRODUCTSERVICENAME","hsh":true},{"av":"AV96IsAuthorized_SG_ToPageName","fld":"vISAUTHORIZED_SG_TOPAGENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A407TileId","fld":"TILEID","hsh":true}]""");
-         setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV78ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV38GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV39GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV40GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("'DOINSERT'","""{"handler":"E165Z2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV98Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV79TFTileName","fld":"vTFTILENAME"},{"av":"AV80TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV83TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV84TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV85TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV86TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV87TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV88TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV90TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV81TFTileIcon","fld":"vTFTILEICON"},{"av":"AV82TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV92TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV28TFProductServiceName","fld":"vTFPRODUCTSERVICENAME"},{"av":"AV29TFProductServiceName_Sel","fld":"vTFPRODUCTSERVICENAME_SEL"},{"av":"AV30TFProductServiceDescription","fld":"vTFPRODUCTSERVICEDESCRIPTION"},{"av":"AV31TFProductServiceDescription_Sel","fld":"vTFPRODUCTSERVICEDESCRIPTION_SEL"},{"av":"AV93TFSG_ToPageName","fld":"vTFSG_TOPAGENAME"},{"av":"AV94TFSG_ToPageName_Sel","fld":"vTFSG_TOPAGENAME_SEL"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV95IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV42IsAuthorized_ProductServiceName","fld":"vISAUTHORIZED_PRODUCTSERVICENAME","hsh":true},{"av":"AV96IsAuthorized_SG_ToPageName","fld":"vISAUTHORIZED_SG_TOPAGENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A407TileId","fld":"TILEID","hsh":true}]""");
-         setEventMetadata("'DOINSERT'",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV38GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV39GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV40GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV45IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV47IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E145Z2","iparms":[]""");
+         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E15842","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV52Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"}]""");
+         setEventMetadata("DDO_GRID.ONOPTIONCLICKED",""","oparms":[{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV32TFTileIconAlignment_SelsJson","fld":"vTFTILEICONALIGNMENT_SELSJSON"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV28TFTileTextAlignment_SelsJson","fld":"vTFTILETEXTALIGNMENT_SELSJSON"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"}]}""");
+         setEventMetadata("GRID.LOAD","""{"handler":"E19842","iparms":[{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"A407TileId","fld":"TILEID","hsh":true},{"av":"A403TileBGImageUrl","fld":"TILEBGIMAGEURL"}]""");
+         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV46ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"edtTileName_Link","ctrl":"TILENAME","prop":"Link"},{"av":"edtTileBGImageUrl_Linktarget","ctrl":"TILEBGIMAGEURL","prop":"Linktarget"},{"av":"edtTileBGImageUrl_Link","ctrl":"TILEBGIMAGEURL","prop":"Link"}]}""");
+         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E11842","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV52Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV28TFTileTextAlignment_SelsJson","fld":"vTFTILETEXTALIGNMENT_SELSJSON"},{"av":"AV32TFTileIconAlignment_SelsJson","fld":"vTFTILEICONALIGNMENT_SELSJSON"}]""");
+         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV32TFTileIconAlignment_SelsJson","fld":"vTFTILEICONALIGNMENT_SELSJSON"},{"av":"AV28TFTileTextAlignment_SelsJson","fld":"vTFTILETEXTALIGNMENT_SELSJSON"},{"av":"AV42GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV43GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV44GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
+         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E20842","iparms":[{"av":"cmbavActiongroup"},{"av":"AV46ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV52Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A407TileId","fld":"TILEID","hsh":true}]""");
+         setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV46ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV42GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV43GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV44GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
+         setEventMetadata("'DOINSERT'","""{"handler":"E16842","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV52Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFTileName","fld":"vTFTILENAME"},{"av":"AV21TFTileName_Sel","fld":"vTFTILENAME_SEL"},{"av":"AV22TFTileBGColor","fld":"vTFTILEBGCOLOR"},{"av":"AV23TFTileBGColor_Sel","fld":"vTFTILEBGCOLOR_SEL"},{"av":"AV24TFTileBGImageUrl","fld":"vTFTILEBGIMAGEURL"},{"av":"AV25TFTileBGImageUrl_Sel","fld":"vTFTILEBGIMAGEURL_SEL"},{"av":"AV26TFTileTextColor","fld":"vTFTILETEXTCOLOR"},{"av":"AV27TFTileTextColor_Sel","fld":"vTFTILETEXTCOLOR_SEL"},{"av":"AV29TFTileTextAlignment_Sels","fld":"vTFTILETEXTALIGNMENT_SELS"},{"av":"AV30TFTileIcon","fld":"vTFTILEICON"},{"av":"AV31TFTileIcon_Sel","fld":"vTFTILEICON_SEL"},{"av":"AV33TFTileIconAlignment_Sels","fld":"vTFTILEICONALIGNMENT_SELS"},{"av":"AV34TFTileIconColor","fld":"vTFTILEICONCOLOR"},{"av":"AV35TFTileIconColor_Sel","fld":"vTFTILEICONCOLOR_SEL"},{"av":"AV36TFTileAction","fld":"vTFTILEACTION"},{"av":"AV37TFTileAction_Sel","fld":"vTFTILEACTION_SEL"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_TileName","fld":"vISAUTHORIZED_TILENAME","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A407TileId","fld":"TILEID","hsh":true}]""");
+         setEventMetadata("'DOINSERT'",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV42GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV43GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV44GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV47IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV48IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV49IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV50IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
+         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E14842","iparms":[]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
          setEventMetadata("VALID_TILENAME","""{"handler":"Valid_Tilename","iparms":[]}""");
          setEventMetadata("VALID_TILEBGCOLOR","""{"handler":"Valid_Tilebgcolor","iparms":[]}""");
@@ -3683,13 +3381,8 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_TILETEXTALIGNMENT","""{"handler":"Valid_Tiletextalignment","iparms":[]}""");
          setEventMetadata("VALID_TILEICON","""{"handler":"Valid_Tileicon","iparms":[]}""");
          setEventMetadata("VALID_TILEICONALIGNMENT","""{"handler":"Valid_Tileiconalignment","iparms":[]}""");
-         setEventMetadata("VALID_PRODUCTSERVICEID","""{"handler":"Valid_Productserviceid","iparms":[]}""");
-         setEventMetadata("VALID_ORGANISATIONID","""{"handler":"Valid_Organisationid","iparms":[]}""");
-         setEventMetadata("VALID_LOCATIONID","""{"handler":"Valid_Locationid","iparms":[]}""");
-         setEventMetadata("VALID_PRODUCTSERVICENAME","""{"handler":"Valid_Productservicename","iparms":[]}""");
-         setEventMetadata("VALID_PRODUCTSERVICEDESCRIPTION","""{"handler":"Valid_Productservicedescription","iparms":[]}""");
-         setEventMetadata("VALID_SG_TOPAGEID","""{"handler":"Valid_Sg_topageid","iparms":[]}""");
-         setEventMetadata("VALID_SG_TOPAGENAME","""{"handler":"Valid_Sg_topagename","iparms":[]}""");
+         setEventMetadata("VALID_TILEICONCOLOR","""{"handler":"Valid_Tileiconcolor","iparms":[]}""");
+         setEventMetadata("VALID_TILEACTION","""{"handler":"Valid_Tileaction","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Actiongroup","iparms":[]}""");
          return  ;
       }
@@ -3713,36 +3406,34 @@ namespace GeneXus.Programs {
          Ddo_managefilters_Activeeventkey = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
-         AV98Pgmname = "";
+         AV52Pgmname = "";
          AV15FilterFullText = "";
-         AV79TFTileName = "";
-         AV80TFTileName_Sel = "";
-         AV83TFTileBGColor = "";
-         AV84TFTileBGColor_Sel = "";
-         AV85TFTileBGImageUrl = "";
-         AV86TFTileBGImageUrl_Sel = "";
-         AV87TFTileTextColor = "";
-         AV88TFTileTextColor_Sel = "";
-         AV90TFTileTextAlignment_Sels = new GxSimpleCollection<string>();
-         AV81TFTileIcon = "";
-         AV82TFTileIcon_Sel = "";
-         AV92TFTileIconAlignment_Sels = new GxSimpleCollection<string>();
-         AV28TFProductServiceName = "";
-         AV29TFProductServiceName_Sel = "";
-         AV30TFProductServiceDescription = "";
-         AV31TFProductServiceDescription_Sel = "";
-         AV93TFSG_ToPageName = "";
-         AV94TFSG_ToPageName_Sel = "";
+         AV20TFTileName = "";
+         AV21TFTileName_Sel = "";
+         AV22TFTileBGColor = "";
+         AV23TFTileBGColor_Sel = "";
+         AV24TFTileBGImageUrl = "";
+         AV25TFTileBGImageUrl_Sel = "";
+         AV26TFTileTextColor = "";
+         AV27TFTileTextColor_Sel = "";
+         AV29TFTileTextAlignment_Sels = new GxSimpleCollection<string>();
+         AV30TFTileIcon = "";
+         AV31TFTileIcon_Sel = "";
+         AV33TFTileIconAlignment_Sels = new GxSimpleCollection<string>();
+         AV34TFTileIconColor = "";
+         AV35TFTileIconColor_Sel = "";
+         AV36TFTileAction = "";
+         AV37TFTileAction_Sel = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
          AV17ManageFiltersData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item>( context, "Item", "");
-         AV40GridAppliedFilters = "";
-         AV34DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
+         AV44GridAppliedFilters = "";
+         AV38DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV11GridState = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState(context);
-         AV89TFTileTextAlignment_SelsJson = "";
-         AV91TFTileIconAlignment_SelsJson = "";
+         AV28TFTileTextAlignment_SelsJson = "";
+         AV32TFTileIconAlignment_SelsJson = "";
          Ddo_grid_Caption = "";
          Ddo_grid_Filteredtext_set = "";
          Ddo_grid_Selectedvalue_set = "";
@@ -3779,94 +3470,62 @@ namespace GeneXus.Programs {
          A405TileTextAlignment = "";
          A401TileIcon = "";
          A406TileIconAlignment = "";
-         A58ProductServiceId = Guid.Empty;
-         A11OrganisationId = Guid.Empty;
-         A29LocationId = Guid.Empty;
-         A59ProductServiceName = "";
-         A60ProductServiceDescription = "";
-         A61ProductServiceImage = "";
-         A40000ProductServiceImage_GXI = "";
-         A329SG_ToPageId = Guid.Empty;
-         A330SG_ToPageName = "";
-         AV99Trn_tilewwds_1_filterfulltext = "";
-         AV100Trn_tilewwds_2_tftilename = "";
-         AV101Trn_tilewwds_3_tftilename_sel = "";
-         AV102Trn_tilewwds_4_tftilebgcolor = "";
-         AV103Trn_tilewwds_5_tftilebgcolor_sel = "";
-         AV104Trn_tilewwds_6_tftilebgimageurl = "";
-         AV105Trn_tilewwds_7_tftilebgimageurl_sel = "";
-         AV106Trn_tilewwds_8_tftiletextcolor = "";
-         AV107Trn_tilewwds_9_tftiletextcolor_sel = "";
-         AV108Trn_tilewwds_10_tftiletextalignment_sels = new GxSimpleCollection<string>();
-         AV109Trn_tilewwds_11_tftileicon = "";
-         AV110Trn_tilewwds_12_tftileicon_sel = "";
-         AV111Trn_tilewwds_13_tftileiconalignment_sels = new GxSimpleCollection<string>();
-         AV112Trn_tilewwds_14_tfproductservicename = "";
-         AV113Trn_tilewwds_15_tfproductservicename_sel = "";
-         AV114Trn_tilewwds_16_tfproductservicedescription = "";
-         AV115Trn_tilewwds_17_tfproductservicedescription_sel = "";
-         AV116Trn_tilewwds_18_tfsg_topagename = "";
-         AV117Trn_tilewwds_19_tfsg_topagename_sel = "";
-         lV99Trn_tilewwds_1_filterfulltext = "";
-         lV100Trn_tilewwds_2_tftilename = "";
-         lV102Trn_tilewwds_4_tftilebgcolor = "";
-         lV104Trn_tilewwds_6_tftilebgimageurl = "";
-         lV106Trn_tilewwds_8_tftiletextcolor = "";
-         lV109Trn_tilewwds_11_tftileicon = "";
-         lV112Trn_tilewwds_14_tfproductservicename = "";
-         lV114Trn_tilewwds_16_tfproductservicedescription = "";
-         lV116Trn_tilewwds_18_tfsg_topagename = "";
-         H005Z2_A330SG_ToPageName = new string[] {""} ;
-         H005Z2_A329SG_ToPageId = new Guid[] {Guid.Empty} ;
-         H005Z2_n329SG_ToPageId = new bool[] {false} ;
-         H005Z2_A40000ProductServiceImage_GXI = new string[] {""} ;
-         H005Z2_A60ProductServiceDescription = new string[] {""} ;
-         H005Z2_A59ProductServiceName = new string[] {""} ;
-         H005Z2_A29LocationId = new Guid[] {Guid.Empty} ;
-         H005Z2_n29LocationId = new bool[] {false} ;
-         H005Z2_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         H005Z2_n11OrganisationId = new bool[] {false} ;
-         H005Z2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
-         H005Z2_n58ProductServiceId = new bool[] {false} ;
-         H005Z2_A406TileIconAlignment = new string[] {""} ;
-         H005Z2_A401TileIcon = new string[] {""} ;
-         H005Z2_n401TileIcon = new bool[] {false} ;
-         H005Z2_A405TileTextAlignment = new string[] {""} ;
-         H005Z2_A404TileTextColor = new string[] {""} ;
-         H005Z2_A403TileBGImageUrl = new string[] {""} ;
-         H005Z2_n403TileBGImageUrl = new bool[] {false} ;
-         H005Z2_A402TileBGColor = new string[] {""} ;
-         H005Z2_n402TileBGColor = new bool[] {false} ;
-         H005Z2_A400TileName = new string[] {""} ;
-         H005Z2_A407TileId = new Guid[] {Guid.Empty} ;
-         H005Z2_A61ProductServiceImage = new string[] {""} ;
-         H005Z3_A330SG_ToPageName = new string[] {""} ;
-         H005Z3_A329SG_ToPageId = new Guid[] {Guid.Empty} ;
-         H005Z3_n329SG_ToPageId = new bool[] {false} ;
-         H005Z3_A40000ProductServiceImage_GXI = new string[] {""} ;
-         H005Z3_A60ProductServiceDescription = new string[] {""} ;
-         H005Z3_A59ProductServiceName = new string[] {""} ;
-         H005Z3_A29LocationId = new Guid[] {Guid.Empty} ;
-         H005Z3_n29LocationId = new bool[] {false} ;
-         H005Z3_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         H005Z3_n11OrganisationId = new bool[] {false} ;
-         H005Z3_A58ProductServiceId = new Guid[] {Guid.Empty} ;
-         H005Z3_n58ProductServiceId = new bool[] {false} ;
-         H005Z3_A406TileIconAlignment = new string[] {""} ;
-         H005Z3_A401TileIcon = new string[] {""} ;
-         H005Z3_n401TileIcon = new bool[] {false} ;
-         H005Z3_A405TileTextAlignment = new string[] {""} ;
-         H005Z3_A404TileTextColor = new string[] {""} ;
-         H005Z3_A403TileBGImageUrl = new string[] {""} ;
-         H005Z3_n403TileBGImageUrl = new bool[] {false} ;
-         H005Z3_A402TileBGColor = new string[] {""} ;
-         H005Z3_n402TileBGColor = new bool[] {false} ;
-         H005Z3_A400TileName = new string[] {""} ;
-         H005Z3_A407TileId = new Guid[] {Guid.Empty} ;
-         H005Z3_A61ProductServiceImage = new string[] {""} ;
+         A438TileIconColor = "";
+         A436TileAction = "";
+         AV53Trn_tilewwds_1_filterfulltext = "";
+         AV54Trn_tilewwds_2_tftilename = "";
+         AV55Trn_tilewwds_3_tftilename_sel = "";
+         AV56Trn_tilewwds_4_tftilebgcolor = "";
+         AV57Trn_tilewwds_5_tftilebgcolor_sel = "";
+         AV58Trn_tilewwds_6_tftilebgimageurl = "";
+         AV59Trn_tilewwds_7_tftilebgimageurl_sel = "";
+         AV60Trn_tilewwds_8_tftiletextcolor = "";
+         AV61Trn_tilewwds_9_tftiletextcolor_sel = "";
+         AV62Trn_tilewwds_10_tftiletextalignment_sels = new GxSimpleCollection<string>();
+         AV63Trn_tilewwds_11_tftileicon = "";
+         AV64Trn_tilewwds_12_tftileicon_sel = "";
+         AV65Trn_tilewwds_13_tftileiconalignment_sels = new GxSimpleCollection<string>();
+         AV66Trn_tilewwds_14_tftileiconcolor = "";
+         AV67Trn_tilewwds_15_tftileiconcolor_sel = "";
+         AV68Trn_tilewwds_16_tftileaction = "";
+         AV69Trn_tilewwds_17_tftileaction_sel = "";
+         lV53Trn_tilewwds_1_filterfulltext = "";
+         lV54Trn_tilewwds_2_tftilename = "";
+         lV56Trn_tilewwds_4_tftilebgcolor = "";
+         lV58Trn_tilewwds_6_tftilebgimageurl = "";
+         lV60Trn_tilewwds_8_tftiletextcolor = "";
+         lV63Trn_tilewwds_11_tftileicon = "";
+         lV66Trn_tilewwds_14_tftileiconcolor = "";
+         lV68Trn_tilewwds_16_tftileaction = "";
+         H00842_A436TileAction = new string[] {""} ;
+         H00842_A438TileIconColor = new string[] {""} ;
+         H00842_A406TileIconAlignment = new string[] {""} ;
+         H00842_A401TileIcon = new string[] {""} ;
+         H00842_n401TileIcon = new bool[] {false} ;
+         H00842_A405TileTextAlignment = new string[] {""} ;
+         H00842_A404TileTextColor = new string[] {""} ;
+         H00842_A403TileBGImageUrl = new string[] {""} ;
+         H00842_n403TileBGImageUrl = new bool[] {false} ;
+         H00842_A402TileBGColor = new string[] {""} ;
+         H00842_n402TileBGColor = new bool[] {false} ;
+         H00842_A400TileName = new string[] {""} ;
+         H00842_A407TileId = new Guid[] {Guid.Empty} ;
+         H00843_A436TileAction = new string[] {""} ;
+         H00843_A438TileIconColor = new string[] {""} ;
+         H00843_A406TileIconAlignment = new string[] {""} ;
+         H00843_A401TileIcon = new string[] {""} ;
+         H00843_n401TileIcon = new bool[] {false} ;
+         H00843_A405TileTextAlignment = new string[] {""} ;
+         H00843_A404TileTextColor = new string[] {""} ;
+         H00843_A403TileBGImageUrl = new string[] {""} ;
+         H00843_n403TileBGImageUrl = new bool[] {false} ;
+         H00843_A402TileBGColor = new string[] {""} ;
+         H00843_n402TileBGColor = new bool[] {false} ;
+         H00843_A400TileName = new string[] {""} ;
+         H00843_A407TileId = new Guid[] {Guid.Empty} ;
          AV8HTTPRequest = new GxHttpRequest( context);
-         AV35GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context);
-         AV36GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
+         AV39GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context);
+         AV40GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          GXEncryptionTmp = "";
@@ -3877,7 +3536,6 @@ namespace GeneXus.Programs {
          AV12GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
          GXt_char3 = "";
          GXt_char5 = "";
-         GXt_char13 = "";
          GXt_char12 = "";
          GXt_char11 = "";
          GXt_char10 = "";
@@ -3885,33 +3543,30 @@ namespace GeneXus.Programs {
          GXt_char8 = "";
          GXt_char7 = "";
          GXt_char6 = "";
-         AV97AuxText = "";
+         AV51AuxText = "";
          AV9TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subGrid_Linesclass = "";
          ROClassString = "";
          GXCCtl = "";
-         sImgUrl = "";
          GridColumn = new GXWebColumn();
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_tileww__default(),
             new Object[][] {
                 new Object[] {
-               H005Z2_A330SG_ToPageName, H005Z2_A329SG_ToPageId, H005Z2_n329SG_ToPageId, H005Z2_A40000ProductServiceImage_GXI, H005Z2_A60ProductServiceDescription, H005Z2_A59ProductServiceName, H005Z2_A29LocationId, H005Z2_n29LocationId, H005Z2_A11OrganisationId, H005Z2_n11OrganisationId,
-               H005Z2_A58ProductServiceId, H005Z2_n58ProductServiceId, H005Z2_A406TileIconAlignment, H005Z2_A401TileIcon, H005Z2_n401TileIcon, H005Z2_A405TileTextAlignment, H005Z2_A404TileTextColor, H005Z2_A403TileBGImageUrl, H005Z2_n403TileBGImageUrl, H005Z2_A402TileBGColor,
-               H005Z2_n402TileBGColor, H005Z2_A400TileName, H005Z2_A407TileId, H005Z2_A61ProductServiceImage
+               H00842_A436TileAction, H00842_A438TileIconColor, H00842_A406TileIconAlignment, H00842_A401TileIcon, H00842_n401TileIcon, H00842_A405TileTextAlignment, H00842_A404TileTextColor, H00842_A403TileBGImageUrl, H00842_n403TileBGImageUrl, H00842_A402TileBGColor,
+               H00842_n402TileBGColor, H00842_A400TileName, H00842_A407TileId
                }
                , new Object[] {
-               H005Z3_A330SG_ToPageName, H005Z3_A329SG_ToPageId, H005Z3_n329SG_ToPageId, H005Z3_A40000ProductServiceImage_GXI, H005Z3_A60ProductServiceDescription, H005Z3_A59ProductServiceName, H005Z3_A29LocationId, H005Z3_n29LocationId, H005Z3_A11OrganisationId, H005Z3_n11OrganisationId,
-               H005Z3_A58ProductServiceId, H005Z3_n58ProductServiceId, H005Z3_A406TileIconAlignment, H005Z3_A401TileIcon, H005Z3_n401TileIcon, H005Z3_A405TileTextAlignment, H005Z3_A404TileTextColor, H005Z3_A403TileBGImageUrl, H005Z3_n403TileBGImageUrl, H005Z3_A402TileBGColor,
-               H005Z3_n402TileBGColor, H005Z3_A400TileName, H005Z3_A407TileId, H005Z3_A61ProductServiceImage
+               H00843_A436TileAction, H00843_A438TileIconColor, H00843_A406TileIconAlignment, H00843_A401TileIcon, H00843_n401TileIcon, H00843_A405TileTextAlignment, H00843_A404TileTextColor, H00843_A403TileBGImageUrl, H00843_n403TileBGImageUrl, H00843_A402TileBGColor,
+               H00843_n402TileBGColor, H00843_A400TileName, H00843_A407TileId
                }
             }
          );
          WebComp_Wwpaux_wc = new GeneXus.Http.GXNullWebComponent();
-         AV98Pgmname = "Trn_TileWW";
+         AV52Pgmname = "Trn_TileWW";
          /* GeneXus formulas. */
-         AV98Pgmname = "Trn_TileWW";
+         AV52Pgmname = "Trn_TileWW";
       }
 
       private short GRID_nEOF ;
@@ -3922,7 +3577,7 @@ namespace GeneXus.Programs {
       private short gxajaxcallmode ;
       private short wbEnd ;
       private short wbStart ;
-      private short AV78ActionGroup ;
+      private short AV46ActionGroup ;
       private short nCmpId ;
       private short nDonePA ;
       private short gxcookieaux ;
@@ -3944,24 +3599,18 @@ namespace GeneXus.Programs {
       private int bttBtnsubscriptions_Visible ;
       private int edtavFilterfulltext_Enabled ;
       private int subGrid_Islastpage ;
-      private int AV108Trn_tilewwds_10_tftiletextalignment_sels_Count ;
-      private int AV111Trn_tilewwds_13_tftileiconalignment_sels_Count ;
+      private int AV62Trn_tilewwds_10_tftiletextalignment_sels_Count ;
+      private int AV65Trn_tilewwds_13_tftileiconalignment_sels_Count ;
       private int edtTileId_Enabled ;
       private int edtTileName_Enabled ;
       private int edtTileBGColor_Enabled ;
       private int edtTileBGImageUrl_Enabled ;
       private int edtTileTextColor_Enabled ;
       private int edtTileIcon_Enabled ;
-      private int edtProductServiceId_Enabled ;
-      private int edtOrganisationId_Enabled ;
-      private int edtLocationId_Enabled ;
-      private int edtProductServiceName_Enabled ;
-      private int edtProductServiceDescription_Enabled ;
-      private int edtProductServiceImage_Enabled ;
-      private int edtSG_ToPageId_Enabled ;
-      private int edtSG_ToPageName_Enabled ;
-      private int AV37PageToGo ;
-      private int AV118GXV1 ;
+      private int edtTileIconColor_Enabled ;
+      private int edtTileAction_Enabled ;
+      private int AV41PageToGo ;
+      private int AV70GXV1 ;
       private int idxLst ;
       private int subGrid_Backcolor ;
       private int subGrid_Allbackcolor ;
@@ -3970,8 +3619,8 @@ namespace GeneXus.Programs {
       private int subGrid_Selectioncolor ;
       private int subGrid_Hoveringcolor ;
       private long GRID_nFirstRecordOnPage ;
-      private long AV38GridCurrentPage ;
-      private long AV39GridPageCount ;
+      private long AV42GridCurrentPage ;
+      private long AV43GridPageCount ;
       private long GRID_nCurrentRecord ;
       private long GRID_nRecordCount ;
       private string Gridpaginationbar_Selectedpage ;
@@ -3983,13 +3632,15 @@ namespace GeneXus.Programs {
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sGXsfl_37_idx="0001" ;
-      private string AV98Pgmname ;
-      private string AV83TFTileBGColor ;
-      private string AV84TFTileBGColor_Sel ;
-      private string AV87TFTileTextColor ;
-      private string AV88TFTileTextColor_Sel ;
-      private string AV81TFTileIcon ;
-      private string AV82TFTileIcon_Sel ;
+      private string AV52Pgmname ;
+      private string AV22TFTileBGColor ;
+      private string AV23TFTileBGColor_Sel ;
+      private string AV26TFTileTextColor ;
+      private string AV27TFTileTextColor_Sel ;
+      private string AV30TFTileIcon ;
+      private string AV31TFTileIcon_Sel ;
+      private string AV34TFTileIconColor ;
+      private string AV35TFTileIconColor_Sel ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -4079,34 +3730,29 @@ namespace GeneXus.Programs {
       private string edtTileIcon_Internalname ;
       private string cmbTileIconAlignment_Internalname ;
       private string A406TileIconAlignment ;
-      private string edtProductServiceId_Internalname ;
-      private string edtOrganisationId_Internalname ;
-      private string edtLocationId_Internalname ;
-      private string edtProductServiceName_Internalname ;
-      private string edtProductServiceDescription_Internalname ;
-      private string edtProductServiceImage_Internalname ;
-      private string edtSG_ToPageId_Internalname ;
-      private string edtSG_ToPageName_Internalname ;
+      private string A438TileIconColor ;
+      private string edtTileIconColor_Internalname ;
+      private string edtTileAction_Internalname ;
       private string cmbavActiongroup_Internalname ;
-      private string AV102Trn_tilewwds_4_tftilebgcolor ;
-      private string AV103Trn_tilewwds_5_tftilebgcolor_sel ;
-      private string AV106Trn_tilewwds_8_tftiletextcolor ;
-      private string AV107Trn_tilewwds_9_tftiletextcolor_sel ;
-      private string AV109Trn_tilewwds_11_tftileicon ;
-      private string AV110Trn_tilewwds_12_tftileicon_sel ;
-      private string lV102Trn_tilewwds_4_tftilebgcolor ;
-      private string lV106Trn_tilewwds_8_tftiletextcolor ;
-      private string lV109Trn_tilewwds_11_tftileicon ;
+      private string AV56Trn_tilewwds_4_tftilebgcolor ;
+      private string AV57Trn_tilewwds_5_tftilebgcolor_sel ;
+      private string AV60Trn_tilewwds_8_tftiletextcolor ;
+      private string AV61Trn_tilewwds_9_tftiletextcolor_sel ;
+      private string AV63Trn_tilewwds_11_tftileicon ;
+      private string AV64Trn_tilewwds_12_tftileicon_sel ;
+      private string AV66Trn_tilewwds_14_tftileiconcolor ;
+      private string AV67Trn_tilewwds_15_tftileiconcolor_sel ;
+      private string lV56Trn_tilewwds_4_tftilebgcolor ;
+      private string lV60Trn_tilewwds_8_tftiletextcolor ;
+      private string lV63Trn_tilewwds_11_tftileicon ;
+      private string lV66Trn_tilewwds_14_tftileiconcolor ;
       private string cmbavActiongroup_Class ;
       private string edtTileName_Link ;
       private string GXEncryptionTmp ;
       private string edtTileBGImageUrl_Linktarget ;
       private string edtTileBGImageUrl_Link ;
-      private string edtProductServiceName_Link ;
-      private string edtSG_ToPageName_Link ;
       private string GXt_char3 ;
       private string GXt_char5 ;
-      private string GXt_char13 ;
       private string GXt_char12 ;
       private string GXt_char11 ;
       private string GXt_char10 ;
@@ -4127,25 +3773,17 @@ namespace GeneXus.Programs {
       private string cmbTileTextAlignment_Jsonclick ;
       private string edtTileIcon_Jsonclick ;
       private string cmbTileIconAlignment_Jsonclick ;
-      private string edtProductServiceId_Jsonclick ;
-      private string edtOrganisationId_Jsonclick ;
-      private string edtLocationId_Jsonclick ;
-      private string edtProductServiceName_Jsonclick ;
-      private string edtProductServiceDescription_Jsonclick ;
-      private string sImgUrl ;
-      private string edtSG_ToPageId_Jsonclick ;
-      private string edtSG_ToPageName_Jsonclick ;
+      private string edtTileIconColor_Jsonclick ;
+      private string edtTileAction_Jsonclick ;
       private string cmbavActiongroup_Jsonclick ;
       private string subGrid_Header ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV14OrderedDsc ;
-      private bool AV45IsAuthorized_Display ;
-      private bool AV47IsAuthorized_Update ;
+      private bool AV47IsAuthorized_Display ;
+      private bool AV48IsAuthorized_Update ;
       private bool AV49IsAuthorized_Delete ;
-      private bool AV95IsAuthorized_TileName ;
-      private bool AV42IsAuthorized_ProductServiceName ;
-      private bool AV96IsAuthorized_SG_ToPageName ;
+      private bool AV45IsAuthorized_TileName ;
       private bool AV50IsAuthorized_Insert ;
       private bool Gridpaginationbar_Showfirst ;
       private bool Gridpaginationbar_Showprevious ;
@@ -4160,61 +3798,38 @@ namespace GeneXus.Programs {
       private bool n402TileBGColor ;
       private bool n403TileBGImageUrl ;
       private bool n401TileIcon ;
-      private bool n58ProductServiceId ;
-      private bool n11OrganisationId ;
-      private bool n29LocationId ;
-      private bool n329SG_ToPageId ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool gx_refresh_fired ;
       private bool bDynCreated_Wwpaux_wc ;
       private bool GXt_boolean1 ;
-      private bool A61ProductServiceImage_IsBlob ;
-      private string AV89TFTileTextAlignment_SelsJson ;
-      private string AV91TFTileIconAlignment_SelsJson ;
-      private string A60ProductServiceDescription ;
+      private string AV28TFTileTextAlignment_SelsJson ;
+      private string AV32TFTileIconAlignment_SelsJson ;
+      private string A436TileAction ;
       private string AV18ManageFiltersXml ;
       private string AV15FilterFullText ;
-      private string AV79TFTileName ;
-      private string AV80TFTileName_Sel ;
-      private string AV85TFTileBGImageUrl ;
-      private string AV86TFTileBGImageUrl_Sel ;
-      private string AV28TFProductServiceName ;
-      private string AV29TFProductServiceName_Sel ;
-      private string AV30TFProductServiceDescription ;
-      private string AV31TFProductServiceDescription_Sel ;
-      private string AV93TFSG_ToPageName ;
-      private string AV94TFSG_ToPageName_Sel ;
-      private string AV40GridAppliedFilters ;
+      private string AV20TFTileName ;
+      private string AV21TFTileName_Sel ;
+      private string AV24TFTileBGImageUrl ;
+      private string AV25TFTileBGImageUrl_Sel ;
+      private string AV36TFTileAction ;
+      private string AV37TFTileAction_Sel ;
+      private string AV44GridAppliedFilters ;
       private string A400TileName ;
       private string A403TileBGImageUrl ;
-      private string A59ProductServiceName ;
-      private string A40000ProductServiceImage_GXI ;
-      private string A330SG_ToPageName ;
-      private string AV99Trn_tilewwds_1_filterfulltext ;
-      private string AV100Trn_tilewwds_2_tftilename ;
-      private string AV101Trn_tilewwds_3_tftilename_sel ;
-      private string AV104Trn_tilewwds_6_tftilebgimageurl ;
-      private string AV105Trn_tilewwds_7_tftilebgimageurl_sel ;
-      private string AV112Trn_tilewwds_14_tfproductservicename ;
-      private string AV113Trn_tilewwds_15_tfproductservicename_sel ;
-      private string AV114Trn_tilewwds_16_tfproductservicedescription ;
-      private string AV115Trn_tilewwds_17_tfproductservicedescription_sel ;
-      private string AV116Trn_tilewwds_18_tfsg_topagename ;
-      private string AV117Trn_tilewwds_19_tfsg_topagename_sel ;
-      private string lV99Trn_tilewwds_1_filterfulltext ;
-      private string lV100Trn_tilewwds_2_tftilename ;
-      private string lV104Trn_tilewwds_6_tftilebgimageurl ;
-      private string lV112Trn_tilewwds_14_tfproductservicename ;
-      private string lV114Trn_tilewwds_16_tfproductservicedescription ;
-      private string lV116Trn_tilewwds_18_tfsg_topagename ;
-      private string AV97AuxText ;
-      private string A61ProductServiceImage ;
+      private string AV53Trn_tilewwds_1_filterfulltext ;
+      private string AV54Trn_tilewwds_2_tftilename ;
+      private string AV55Trn_tilewwds_3_tftilename_sel ;
+      private string AV58Trn_tilewwds_6_tftilebgimageurl ;
+      private string AV59Trn_tilewwds_7_tftilebgimageurl_sel ;
+      private string AV68Trn_tilewwds_16_tftileaction ;
+      private string AV69Trn_tilewwds_17_tftileaction_sel ;
+      private string lV53Trn_tilewwds_1_filterfulltext ;
+      private string lV54Trn_tilewwds_2_tftilename ;
+      private string lV58Trn_tilewwds_6_tftilebgimageurl ;
+      private string lV68Trn_tilewwds_16_tftileaction ;
+      private string AV51AuxText ;
       private Guid A407TileId ;
-      private Guid A58ProductServiceId ;
-      private Guid A11OrganisationId ;
-      private Guid A29LocationId ;
-      private Guid A329SG_ToPageId ;
       private IGxSession AV16Session ;
       private GXWebComponent WebComp_Wwpaux_wc ;
       private GXWebGrid GridContainer ;
@@ -4232,64 +3847,42 @@ namespace GeneXus.Programs {
       private GXCombobox cmbTileTextAlignment ;
       private GXCombobox cmbTileIconAlignment ;
       private GXCombobox cmbavActiongroup ;
-      private GxSimpleCollection<string> AV90TFTileTextAlignment_Sels ;
-      private GxSimpleCollection<string> AV92TFTileIconAlignment_Sels ;
+      private GxSimpleCollection<string> AV29TFTileTextAlignment_Sels ;
+      private GxSimpleCollection<string> AV33TFTileIconAlignment_Sels ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item> AV17ManageFiltersData ;
-      private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV34DDO_TitleSettingsIcons ;
+      private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV38DDO_TitleSettingsIcons ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV11GridState ;
-      private GxSimpleCollection<string> AV108Trn_tilewwds_10_tftiletextalignment_sels ;
-      private GxSimpleCollection<string> AV111Trn_tilewwds_13_tftileiconalignment_sels ;
+      private GxSimpleCollection<string> AV62Trn_tilewwds_10_tftiletextalignment_sels ;
+      private GxSimpleCollection<string> AV65Trn_tilewwds_13_tftileiconalignment_sels ;
       private IDataStoreProvider pr_default ;
-      private string[] H005Z2_A330SG_ToPageName ;
-      private Guid[] H005Z2_A329SG_ToPageId ;
-      private bool[] H005Z2_n329SG_ToPageId ;
-      private string[] H005Z2_A40000ProductServiceImage_GXI ;
-      private string[] H005Z2_A60ProductServiceDescription ;
-      private string[] H005Z2_A59ProductServiceName ;
-      private Guid[] H005Z2_A29LocationId ;
-      private bool[] H005Z2_n29LocationId ;
-      private Guid[] H005Z2_A11OrganisationId ;
-      private bool[] H005Z2_n11OrganisationId ;
-      private Guid[] H005Z2_A58ProductServiceId ;
-      private bool[] H005Z2_n58ProductServiceId ;
-      private string[] H005Z2_A406TileIconAlignment ;
-      private string[] H005Z2_A401TileIcon ;
-      private bool[] H005Z2_n401TileIcon ;
-      private string[] H005Z2_A405TileTextAlignment ;
-      private string[] H005Z2_A404TileTextColor ;
-      private string[] H005Z2_A403TileBGImageUrl ;
-      private bool[] H005Z2_n403TileBGImageUrl ;
-      private string[] H005Z2_A402TileBGColor ;
-      private bool[] H005Z2_n402TileBGColor ;
-      private string[] H005Z2_A400TileName ;
-      private Guid[] H005Z2_A407TileId ;
-      private string[] H005Z2_A61ProductServiceImage ;
-      private string[] H005Z3_A330SG_ToPageName ;
-      private Guid[] H005Z3_A329SG_ToPageId ;
-      private bool[] H005Z3_n329SG_ToPageId ;
-      private string[] H005Z3_A40000ProductServiceImage_GXI ;
-      private string[] H005Z3_A60ProductServiceDescription ;
-      private string[] H005Z3_A59ProductServiceName ;
-      private Guid[] H005Z3_A29LocationId ;
-      private bool[] H005Z3_n29LocationId ;
-      private Guid[] H005Z3_A11OrganisationId ;
-      private bool[] H005Z3_n11OrganisationId ;
-      private Guid[] H005Z3_A58ProductServiceId ;
-      private bool[] H005Z3_n58ProductServiceId ;
-      private string[] H005Z3_A406TileIconAlignment ;
-      private string[] H005Z3_A401TileIcon ;
-      private bool[] H005Z3_n401TileIcon ;
-      private string[] H005Z3_A405TileTextAlignment ;
-      private string[] H005Z3_A404TileTextColor ;
-      private string[] H005Z3_A403TileBGImageUrl ;
-      private bool[] H005Z3_n403TileBGImageUrl ;
-      private string[] H005Z3_A402TileBGColor ;
-      private bool[] H005Z3_n402TileBGColor ;
-      private string[] H005Z3_A400TileName ;
-      private Guid[] H005Z3_A407TileId ;
-      private string[] H005Z3_A61ProductServiceImage ;
-      private GeneXus.Programs.genexussecurity.SdtGAMSession AV35GAMSession ;
-      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV36GAMErrors ;
+      private string[] H00842_A436TileAction ;
+      private string[] H00842_A438TileIconColor ;
+      private string[] H00842_A406TileIconAlignment ;
+      private string[] H00842_A401TileIcon ;
+      private bool[] H00842_n401TileIcon ;
+      private string[] H00842_A405TileTextAlignment ;
+      private string[] H00842_A404TileTextColor ;
+      private string[] H00842_A403TileBGImageUrl ;
+      private bool[] H00842_n403TileBGImageUrl ;
+      private string[] H00842_A402TileBGColor ;
+      private bool[] H00842_n402TileBGColor ;
+      private string[] H00842_A400TileName ;
+      private Guid[] H00842_A407TileId ;
+      private string[] H00843_A436TileAction ;
+      private string[] H00843_A438TileIconColor ;
+      private string[] H00843_A406TileIconAlignment ;
+      private string[] H00843_A401TileIcon ;
+      private bool[] H00843_n401TileIcon ;
+      private string[] H00843_A405TileTextAlignment ;
+      private string[] H00843_A404TileTextColor ;
+      private string[] H00843_A403TileBGImageUrl ;
+      private bool[] H00843_n403TileBGImageUrl ;
+      private string[] H00843_A402TileBGColor ;
+      private bool[] H00843_n402TileBGColor ;
+      private string[] H00843_A400TileName ;
+      private Guid[] H00843_A407TileId ;
+      private GeneXus.Programs.genexussecurity.SdtGAMSession AV39GAMSession ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV40GAMErrors ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons2 ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item> GXt_objcol_SdtDVB_SDTDropDownOptionsData_Item4 ;
@@ -4301,672 +3894,546 @@ namespace GeneXus.Programs {
 
    public class trn_tileww__default : DataStoreHelperBase, IDataStoreHelper
    {
-      protected Object[] conditional_H005Z2( IGxContext context ,
+      protected Object[] conditional_H00842( IGxContext context ,
                                              string A405TileTextAlignment ,
-                                             GxSimpleCollection<string> AV108Trn_tilewwds_10_tftiletextalignment_sels ,
+                                             GxSimpleCollection<string> AV62Trn_tilewwds_10_tftiletextalignment_sels ,
                                              string A406TileIconAlignment ,
-                                             GxSimpleCollection<string> AV111Trn_tilewwds_13_tftileiconalignment_sels ,
-                                             string AV101Trn_tilewwds_3_tftilename_sel ,
-                                             string AV100Trn_tilewwds_2_tftilename ,
-                                             string AV103Trn_tilewwds_5_tftilebgcolor_sel ,
-                                             string AV102Trn_tilewwds_4_tftilebgcolor ,
-                                             string AV105Trn_tilewwds_7_tftilebgimageurl_sel ,
-                                             string AV104Trn_tilewwds_6_tftilebgimageurl ,
-                                             string AV107Trn_tilewwds_9_tftiletextcolor_sel ,
-                                             string AV106Trn_tilewwds_8_tftiletextcolor ,
-                                             int AV108Trn_tilewwds_10_tftiletextalignment_sels_Count ,
-                                             string AV110Trn_tilewwds_12_tftileicon_sel ,
-                                             string AV109Trn_tilewwds_11_tftileicon ,
-                                             int AV111Trn_tilewwds_13_tftileiconalignment_sels_Count ,
-                                             string AV113Trn_tilewwds_15_tfproductservicename_sel ,
-                                             string AV112Trn_tilewwds_14_tfproductservicename ,
-                                             string AV115Trn_tilewwds_17_tfproductservicedescription_sel ,
-                                             string AV114Trn_tilewwds_16_tfproductservicedescription ,
-                                             string AV117Trn_tilewwds_19_tfsg_topagename_sel ,
-                                             string AV116Trn_tilewwds_18_tfsg_topagename ,
+                                             GxSimpleCollection<string> AV65Trn_tilewwds_13_tftileiconalignment_sels ,
+                                             string AV55Trn_tilewwds_3_tftilename_sel ,
+                                             string AV54Trn_tilewwds_2_tftilename ,
+                                             string AV57Trn_tilewwds_5_tftilebgcolor_sel ,
+                                             string AV56Trn_tilewwds_4_tftilebgcolor ,
+                                             string AV59Trn_tilewwds_7_tftilebgimageurl_sel ,
+                                             string AV58Trn_tilewwds_6_tftilebgimageurl ,
+                                             string AV61Trn_tilewwds_9_tftiletextcolor_sel ,
+                                             string AV60Trn_tilewwds_8_tftiletextcolor ,
+                                             int AV62Trn_tilewwds_10_tftiletextalignment_sels_Count ,
+                                             string AV64Trn_tilewwds_12_tftileicon_sel ,
+                                             string AV63Trn_tilewwds_11_tftileicon ,
+                                             int AV65Trn_tilewwds_13_tftileiconalignment_sels_Count ,
+                                             string AV67Trn_tilewwds_15_tftileiconcolor_sel ,
+                                             string AV66Trn_tilewwds_14_tftileiconcolor ,
+                                             string AV69Trn_tilewwds_17_tftileaction_sel ,
+                                             string AV68Trn_tilewwds_16_tftileaction ,
                                              string A400TileName ,
                                              string A402TileBGColor ,
                                              string A403TileBGImageUrl ,
                                              string A404TileTextColor ,
                                              string A401TileIcon ,
-                                             string A59ProductServiceName ,
-                                             string A60ProductServiceDescription ,
-                                             string A330SG_ToPageName ,
+                                             string A438TileIconColor ,
+                                             string A436TileAction ,
                                              short AV13OrderedBy ,
                                              bool AV14OrderedDsc ,
-                                             string AV99Trn_tilewwds_1_filterfulltext )
+                                             string AV53Trn_tilewwds_1_filterfulltext )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int14 = new short[16];
-         Object[] GXv_Object15 = new Object[2];
-         scmdbuf = "SELECT T2.Trn_PageName AS SG_ToPageName, T1.SG_ToPageId AS SG_ToPageId, T3.ProductServiceImage_GXI, T3.ProductServiceDescription, T3.ProductServiceName, T2.LocationId, T1.OrganisationId, T1.ProductServiceId, T1.TileIconAlignment, T1.TileIcon, T1.TileTextAlignment, T1.TileTextColor, T1.TileBGImageUrl, T1.TileBGColor, T1.TileName, T1.TileId, T3.ProductServiceImage FROM ((Trn_Tile T1 LEFT JOIN Trn_Page T2 ON T2.Trn_PageId = T1.SG_ToPageId) LEFT JOIN Trn_ProductService T3 ON T3.ProductServiceId = T1.ProductServiceId AND T3.LocationId = T2.LocationId AND T3.OrganisationId = T1.OrganisationId)";
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV101Trn_tilewwds_3_tftilename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV100Trn_tilewwds_2_tftilename)) ) )
+         short[] GXv_int13 = new short[14];
+         Object[] GXv_Object14 = new Object[2];
+         scmdbuf = "SELECT TileAction, TileIconColor, TileIconAlignment, TileIcon, TileTextAlignment, TileTextColor, TileBGImageUrl, TileBGColor, TileName, TileId FROM Trn_Tile";
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_tilewwds_3_tftilename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_tilewwds_2_tftilename)) ) )
          {
-            AddWhere(sWhereString, "(T1.TileName like :lV100Trn_tilewwds_2_tftilename)");
+            AddWhere(sWhereString, "(TileName like :lV54Trn_tilewwds_2_tftilename)");
          }
          else
          {
-            GXv_int14[0] = 1;
+            GXv_int13[0] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV101Trn_tilewwds_3_tftilename_sel)) && ! ( StringUtil.StrCmp(AV101Trn_tilewwds_3_tftilename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_tilewwds_3_tftilename_sel)) && ! ( StringUtil.StrCmp(AV55Trn_tilewwds_3_tftilename_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.TileName = ( :AV101Trn_tilewwds_3_tftilename_sel))");
-         }
-         else
-         {
-            GXv_int14[1] = 1;
-         }
-         if ( StringUtil.StrCmp(AV101Trn_tilewwds_3_tftilename_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.TileName))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV103Trn_tilewwds_5_tftilebgcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV102Trn_tilewwds_4_tftilebgcolor)) ) )
-         {
-            AddWhere(sWhereString, "(T1.TileBGColor like :lV102Trn_tilewwds_4_tftilebgcolor)");
+            AddWhere(sWhereString, "(TileName = ( :AV55Trn_tilewwds_3_tftilename_sel))");
          }
          else
          {
-            GXv_int14[2] = 1;
+            GXv_int13[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV103Trn_tilewwds_5_tftilebgcolor_sel)) && ! ( StringUtil.StrCmp(AV103Trn_tilewwds_5_tftilebgcolor_sel, "<#Empty#>") == 0 ) )
+         if ( StringUtil.StrCmp(AV55Trn_tilewwds_3_tftilename_sel, "<#Empty#>") == 0 )
          {
-            AddWhere(sWhereString, "(T1.TileBGColor = ( :AV103Trn_tilewwds_5_tftilebgcolor_sel))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from TileName))=0))");
          }
-         else
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_tilewwds_5_tftilebgcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_tilewwds_4_tftilebgcolor)) ) )
          {
-            GXv_int14[3] = 1;
-         }
-         if ( StringUtil.StrCmp(AV103Trn_tilewwds_5_tftilebgcolor_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "(T1.TileBGColor IS NULL or (char_length(trim(trailing ' ' from T1.TileBGColor))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV105Trn_tilewwds_7_tftilebgimageurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV104Trn_tilewwds_6_tftilebgimageurl)) ) )
-         {
-            AddWhere(sWhereString, "(T1.TileBGImageUrl like :lV104Trn_tilewwds_6_tftilebgimageurl)");
+            AddWhere(sWhereString, "(TileBGColor like :lV56Trn_tilewwds_4_tftilebgcolor)");
          }
          else
          {
-            GXv_int14[4] = 1;
+            GXv_int13[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV105Trn_tilewwds_7_tftilebgimageurl_sel)) && ! ( StringUtil.StrCmp(AV105Trn_tilewwds_7_tftilebgimageurl_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_tilewwds_5_tftilebgcolor_sel)) && ! ( StringUtil.StrCmp(AV57Trn_tilewwds_5_tftilebgcolor_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.TileBGImageUrl = ( :AV105Trn_tilewwds_7_tftilebgimageurl_sel))");
-         }
-         else
-         {
-            GXv_int14[5] = 1;
-         }
-         if ( StringUtil.StrCmp(AV105Trn_tilewwds_7_tftilebgimageurl_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "(T1.TileBGImageUrl IS NULL or (char_length(trim(trailing ' ' from T1.TileBGImageUrl))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV107Trn_tilewwds_9_tftiletextcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV106Trn_tilewwds_8_tftiletextcolor)) ) )
-         {
-            AddWhere(sWhereString, "(T1.TileTextColor like :lV106Trn_tilewwds_8_tftiletextcolor)");
+            AddWhere(sWhereString, "(TileBGColor = ( :AV57Trn_tilewwds_5_tftilebgcolor_sel))");
          }
          else
          {
-            GXv_int14[6] = 1;
+            GXv_int13[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV107Trn_tilewwds_9_tftiletextcolor_sel)) && ! ( StringUtil.StrCmp(AV107Trn_tilewwds_9_tftiletextcolor_sel, "<#Empty#>") == 0 ) )
+         if ( StringUtil.StrCmp(AV57Trn_tilewwds_5_tftilebgcolor_sel, "<#Empty#>") == 0 )
          {
-            AddWhere(sWhereString, "(T1.TileTextColor = ( :AV107Trn_tilewwds_9_tftiletextcolor_sel))");
+            AddWhere(sWhereString, "(TileBGColor IS NULL or (char_length(trim(trailing ' ' from TileBGColor))=0))");
          }
-         else
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_tilewwds_7_tftilebgimageurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_tilewwds_6_tftilebgimageurl)) ) )
          {
-            GXv_int14[7] = 1;
-         }
-         if ( StringUtil.StrCmp(AV107Trn_tilewwds_9_tftiletextcolor_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.TileTextColor))=0))");
-         }
-         if ( AV108Trn_tilewwds_10_tftiletextalignment_sels_Count > 0 )
-         {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV108Trn_tilewwds_10_tftiletextalignment_sels, "T1.TileTextAlignment IN (", ")")+")");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV110Trn_tilewwds_12_tftileicon_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV109Trn_tilewwds_11_tftileicon)) ) )
-         {
-            AddWhere(sWhereString, "(T1.TileIcon like :lV109Trn_tilewwds_11_tftileicon)");
+            AddWhere(sWhereString, "(TileBGImageUrl like :lV58Trn_tilewwds_6_tftilebgimageurl)");
          }
          else
          {
-            GXv_int14[8] = 1;
+            GXv_int13[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV110Trn_tilewwds_12_tftileicon_sel)) && ! ( StringUtil.StrCmp(AV110Trn_tilewwds_12_tftileicon_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_tilewwds_7_tftilebgimageurl_sel)) && ! ( StringUtil.StrCmp(AV59Trn_tilewwds_7_tftilebgimageurl_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.TileIcon = ( :AV110Trn_tilewwds_12_tftileicon_sel))");
-         }
-         else
-         {
-            GXv_int14[9] = 1;
-         }
-         if ( StringUtil.StrCmp(AV110Trn_tilewwds_12_tftileicon_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "(T1.TileIcon IS NULL or (char_length(trim(trailing ' ' from T1.TileIcon))=0))");
-         }
-         if ( AV111Trn_tilewwds_13_tftileiconalignment_sels_Count > 0 )
-         {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV111Trn_tilewwds_13_tftileiconalignment_sels, "T1.TileIconAlignment IN (", ")")+")");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV113Trn_tilewwds_15_tfproductservicename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV112Trn_tilewwds_14_tfproductservicename)) ) )
-         {
-            AddWhere(sWhereString, "(T3.ProductServiceName like :lV112Trn_tilewwds_14_tfproductservicename)");
+            AddWhere(sWhereString, "(TileBGImageUrl = ( :AV59Trn_tilewwds_7_tftilebgimageurl_sel))");
          }
          else
          {
-            GXv_int14[10] = 1;
+            GXv_int13[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV113Trn_tilewwds_15_tfproductservicename_sel)) && ! ( StringUtil.StrCmp(AV113Trn_tilewwds_15_tfproductservicename_sel, "<#Empty#>") == 0 ) )
+         if ( StringUtil.StrCmp(AV59Trn_tilewwds_7_tftilebgimageurl_sel, "<#Empty#>") == 0 )
          {
-            AddWhere(sWhereString, "(T3.ProductServiceName = ( :AV113Trn_tilewwds_15_tfproductservicename_sel))");
+            AddWhere(sWhereString, "(TileBGImageUrl IS NULL or (char_length(trim(trailing ' ' from TileBGImageUrl))=0))");
          }
-         else
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_tilewwds_9_tftiletextcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_tilewwds_8_tftiletextcolor)) ) )
          {
-            GXv_int14[11] = 1;
-         }
-         if ( StringUtil.StrCmp(AV113Trn_tilewwds_15_tfproductservicename_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T3.ProductServiceName))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV115Trn_tilewwds_17_tfproductservicedescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV114Trn_tilewwds_16_tfproductservicedescription)) ) )
-         {
-            AddWhere(sWhereString, "(T3.ProductServiceDescription like :lV114Trn_tilewwds_16_tfproductservicedescription)");
+            AddWhere(sWhereString, "(TileTextColor like :lV60Trn_tilewwds_8_tftiletextcolor)");
          }
          else
          {
-            GXv_int14[12] = 1;
+            GXv_int13[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV115Trn_tilewwds_17_tfproductservicedescription_sel)) && ! ( StringUtil.StrCmp(AV115Trn_tilewwds_17_tfproductservicedescription_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_tilewwds_9_tftiletextcolor_sel)) && ! ( StringUtil.StrCmp(AV61Trn_tilewwds_9_tftiletextcolor_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T3.ProductServiceDescription = ( :AV115Trn_tilewwds_17_tfproductservicedescription_sel))");
-         }
-         else
-         {
-            GXv_int14[13] = 1;
-         }
-         if ( StringUtil.StrCmp(AV115Trn_tilewwds_17_tfproductservicedescription_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T3.ProductServiceDescription))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV117Trn_tilewwds_19_tfsg_topagename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV116Trn_tilewwds_18_tfsg_topagename)) ) )
-         {
-            AddWhere(sWhereString, "(T2.Trn_PageName like :lV116Trn_tilewwds_18_tfsg_topagename)");
+            AddWhere(sWhereString, "(TileTextColor = ( :AV61Trn_tilewwds_9_tftiletextcolor_sel))");
          }
          else
          {
-            GXv_int14[14] = 1;
+            GXv_int13[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV117Trn_tilewwds_19_tfsg_topagename_sel)) && ! ( StringUtil.StrCmp(AV117Trn_tilewwds_19_tfsg_topagename_sel, "<#Empty#>") == 0 ) )
+         if ( StringUtil.StrCmp(AV61Trn_tilewwds_9_tftiletextcolor_sel, "<#Empty#>") == 0 )
          {
-            AddWhere(sWhereString, "(T2.Trn_PageName = ( :AV117Trn_tilewwds_19_tfsg_topagename_sel))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from TileTextColor))=0))");
+         }
+         if ( AV62Trn_tilewwds_10_tftiletextalignment_sels_Count > 0 )
+         {
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV62Trn_tilewwds_10_tftiletextalignment_sels, "TileTextAlignment IN (", ")")+")");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_tilewwds_12_tftileicon_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_tilewwds_11_tftileicon)) ) )
+         {
+            AddWhere(sWhereString, "(TileIcon like :lV63Trn_tilewwds_11_tftileicon)");
          }
          else
          {
-            GXv_int14[15] = 1;
+            GXv_int13[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV117Trn_tilewwds_19_tfsg_topagename_sel, "<#Empty#>") == 0 )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_tilewwds_12_tftileicon_sel)) && ! ( StringUtil.StrCmp(AV64Trn_tilewwds_12_tftileicon_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.Trn_PageName IS NULL or (char_length(trim(trailing ' ' from T2.Trn_PageName))=0))");
+            AddWhere(sWhereString, "(TileIcon = ( :AV64Trn_tilewwds_12_tftileicon_sel))");
+         }
+         else
+         {
+            GXv_int13[9] = 1;
+         }
+         if ( StringUtil.StrCmp(AV64Trn_tilewwds_12_tftileicon_sel, "<#Empty#>") == 0 )
+         {
+            AddWhere(sWhereString, "(TileIcon IS NULL or (char_length(trim(trailing ' ' from TileIcon))=0))");
+         }
+         if ( AV65Trn_tilewwds_13_tftileiconalignment_sels_Count > 0 )
+         {
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV65Trn_tilewwds_13_tftileiconalignment_sels, "TileIconAlignment IN (", ")")+")");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_tilewwds_15_tftileiconcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_tilewwds_14_tftileiconcolor)) ) )
+         {
+            AddWhere(sWhereString, "(TileIconColor like :lV66Trn_tilewwds_14_tftileiconcolor)");
+         }
+         else
+         {
+            GXv_int13[10] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_tilewwds_15_tftileiconcolor_sel)) && ! ( StringUtil.StrCmp(AV67Trn_tilewwds_15_tftileiconcolor_sel, "<#Empty#>") == 0 ) )
+         {
+            AddWhere(sWhereString, "(TileIconColor = ( :AV67Trn_tilewwds_15_tftileiconcolor_sel))");
+         }
+         else
+         {
+            GXv_int13[11] = 1;
+         }
+         if ( StringUtil.StrCmp(AV67Trn_tilewwds_15_tftileiconcolor_sel, "<#Empty#>") == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from TileIconColor))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_tilewwds_17_tftileaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_tilewwds_16_tftileaction)) ) )
+         {
+            AddWhere(sWhereString, "(TileAction like :lV68Trn_tilewwds_16_tftileaction)");
+         }
+         else
+         {
+            GXv_int13[12] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_tilewwds_17_tftileaction_sel)) && ! ( StringUtil.StrCmp(AV69Trn_tilewwds_17_tftileaction_sel, "<#Empty#>") == 0 ) )
+         {
+            AddWhere(sWhereString, "(TileAction = ( :AV69Trn_tilewwds_17_tftileaction_sel))");
+         }
+         else
+         {
+            GXv_int13[13] = 1;
+         }
+         if ( StringUtil.StrCmp(AV69Trn_tilewwds_17_tftileaction_sel, "<#Empty#>") == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from TileAction))=0))");
          }
          scmdbuf += sWhereString;
          if ( ( AV13OrderedBy == 1 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileName, T1.TileId";
+            scmdbuf += " ORDER BY TileName, TileId";
          }
          else if ( ( AV13OrderedBy == 1 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileName DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileName DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 2 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileId";
+            scmdbuf += " ORDER BY TileId";
          }
          else if ( ( AV13OrderedBy == 2 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileId DESC";
+            scmdbuf += " ORDER BY TileId DESC";
          }
          else if ( ( AV13OrderedBy == 3 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileBGColor, T1.TileId";
+            scmdbuf += " ORDER BY TileBGColor, TileId";
          }
          else if ( ( AV13OrderedBy == 3 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileBGColor DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileBGColor DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 4 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileBGImageUrl, T1.TileId";
+            scmdbuf += " ORDER BY TileBGImageUrl, TileId";
          }
          else if ( ( AV13OrderedBy == 4 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileBGImageUrl DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileBGImageUrl DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 5 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileTextColor, T1.TileId";
+            scmdbuf += " ORDER BY TileTextColor, TileId";
          }
          else if ( ( AV13OrderedBy == 5 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileTextColor DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileTextColor DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 6 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileTextAlignment, T1.TileId";
+            scmdbuf += " ORDER BY TileTextAlignment, TileId";
          }
          else if ( ( AV13OrderedBy == 6 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileTextAlignment DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileTextAlignment DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 7 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileIcon, T1.TileId";
+            scmdbuf += " ORDER BY TileIcon, TileId";
          }
          else if ( ( AV13OrderedBy == 7 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileIcon DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileIcon DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 8 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileIconAlignment, T1.TileId";
+            scmdbuf += " ORDER BY TileIconAlignment, TileId";
          }
          else if ( ( AV13OrderedBy == 8 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileIconAlignment DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileIconAlignment DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 9 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.ProductServiceId, T1.TileId";
+            scmdbuf += " ORDER BY TileIconColor, TileId";
          }
          else if ( ( AV13OrderedBy == 9 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.ProductServiceId DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileIconColor DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 10 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.OrganisationId, T1.TileId";
+            scmdbuf += " ORDER BY TileAction, TileId";
          }
          else if ( ( AV13OrderedBy == 10 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.OrganisationId DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileAction DESC, TileId";
          }
-         else if ( ( AV13OrderedBy == 11 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T2.LocationId, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 11 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T2.LocationId DESC, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 12 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T3.ProductServiceName, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 12 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T3.ProductServiceName DESC, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 13 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T3.ProductServiceDescription, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 13 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T3.ProductServiceDescription DESC, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 14 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T1.SG_ToPageId, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 14 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T1.SG_ToPageId DESC, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 15 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T2.Trn_PageName, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 15 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T2.Trn_PageName DESC, T1.TileId";
-         }
-         GXv_Object15[0] = scmdbuf;
-         GXv_Object15[1] = GXv_int14;
-         return GXv_Object15 ;
+         GXv_Object14[0] = scmdbuf;
+         GXv_Object14[1] = GXv_int13;
+         return GXv_Object14 ;
       }
 
-      protected Object[] conditional_H005Z3( IGxContext context ,
+      protected Object[] conditional_H00843( IGxContext context ,
                                              string A405TileTextAlignment ,
-                                             GxSimpleCollection<string> AV108Trn_tilewwds_10_tftiletextalignment_sels ,
+                                             GxSimpleCollection<string> AV62Trn_tilewwds_10_tftiletextalignment_sels ,
                                              string A406TileIconAlignment ,
-                                             GxSimpleCollection<string> AV111Trn_tilewwds_13_tftileiconalignment_sels ,
-                                             string AV101Trn_tilewwds_3_tftilename_sel ,
-                                             string AV100Trn_tilewwds_2_tftilename ,
-                                             string AV103Trn_tilewwds_5_tftilebgcolor_sel ,
-                                             string AV102Trn_tilewwds_4_tftilebgcolor ,
-                                             string AV105Trn_tilewwds_7_tftilebgimageurl_sel ,
-                                             string AV104Trn_tilewwds_6_tftilebgimageurl ,
-                                             string AV107Trn_tilewwds_9_tftiletextcolor_sel ,
-                                             string AV106Trn_tilewwds_8_tftiletextcolor ,
-                                             int AV108Trn_tilewwds_10_tftiletextalignment_sels_Count ,
-                                             string AV110Trn_tilewwds_12_tftileicon_sel ,
-                                             string AV109Trn_tilewwds_11_tftileicon ,
-                                             int AV111Trn_tilewwds_13_tftileiconalignment_sels_Count ,
-                                             string AV113Trn_tilewwds_15_tfproductservicename_sel ,
-                                             string AV112Trn_tilewwds_14_tfproductservicename ,
-                                             string AV115Trn_tilewwds_17_tfproductservicedescription_sel ,
-                                             string AV114Trn_tilewwds_16_tfproductservicedescription ,
-                                             string AV117Trn_tilewwds_19_tfsg_topagename_sel ,
-                                             string AV116Trn_tilewwds_18_tfsg_topagename ,
+                                             GxSimpleCollection<string> AV65Trn_tilewwds_13_tftileiconalignment_sels ,
+                                             string AV55Trn_tilewwds_3_tftilename_sel ,
+                                             string AV54Trn_tilewwds_2_tftilename ,
+                                             string AV57Trn_tilewwds_5_tftilebgcolor_sel ,
+                                             string AV56Trn_tilewwds_4_tftilebgcolor ,
+                                             string AV59Trn_tilewwds_7_tftilebgimageurl_sel ,
+                                             string AV58Trn_tilewwds_6_tftilebgimageurl ,
+                                             string AV61Trn_tilewwds_9_tftiletextcolor_sel ,
+                                             string AV60Trn_tilewwds_8_tftiletextcolor ,
+                                             int AV62Trn_tilewwds_10_tftiletextalignment_sels_Count ,
+                                             string AV64Trn_tilewwds_12_tftileicon_sel ,
+                                             string AV63Trn_tilewwds_11_tftileicon ,
+                                             int AV65Trn_tilewwds_13_tftileiconalignment_sels_Count ,
+                                             string AV67Trn_tilewwds_15_tftileiconcolor_sel ,
+                                             string AV66Trn_tilewwds_14_tftileiconcolor ,
+                                             string AV69Trn_tilewwds_17_tftileaction_sel ,
+                                             string AV68Trn_tilewwds_16_tftileaction ,
                                              string A400TileName ,
                                              string A402TileBGColor ,
                                              string A403TileBGImageUrl ,
                                              string A404TileTextColor ,
                                              string A401TileIcon ,
-                                             string A59ProductServiceName ,
-                                             string A60ProductServiceDescription ,
-                                             string A330SG_ToPageName ,
+                                             string A438TileIconColor ,
+                                             string A436TileAction ,
                                              short AV13OrderedBy ,
                                              bool AV14OrderedDsc ,
-                                             string AV99Trn_tilewwds_1_filterfulltext )
+                                             string AV53Trn_tilewwds_1_filterfulltext )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int16 = new short[16];
-         Object[] GXv_Object17 = new Object[2];
-         scmdbuf = "SELECT T2.Trn_PageName AS SG_ToPageName, T1.SG_ToPageId AS SG_ToPageId, T3.ProductServiceImage_GXI, T3.ProductServiceDescription, T3.ProductServiceName, T2.LocationId, T1.OrganisationId, T1.ProductServiceId, T1.TileIconAlignment, T1.TileIcon, T1.TileTextAlignment, T1.TileTextColor, T1.TileBGImageUrl, T1.TileBGColor, T1.TileName, T1.TileId, T3.ProductServiceImage FROM ((Trn_Tile T1 LEFT JOIN Trn_Page T2 ON T2.Trn_PageId = T1.SG_ToPageId) LEFT JOIN Trn_ProductService T3 ON T3.ProductServiceId = T1.ProductServiceId AND T3.LocationId = T2.LocationId AND T3.OrganisationId = T1.OrganisationId)";
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV101Trn_tilewwds_3_tftilename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV100Trn_tilewwds_2_tftilename)) ) )
+         short[] GXv_int15 = new short[14];
+         Object[] GXv_Object16 = new Object[2];
+         scmdbuf = "SELECT TileAction, TileIconColor, TileIconAlignment, TileIcon, TileTextAlignment, TileTextColor, TileBGImageUrl, TileBGColor, TileName, TileId FROM Trn_Tile";
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_tilewwds_3_tftilename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_tilewwds_2_tftilename)) ) )
          {
-            AddWhere(sWhereString, "(T1.TileName like :lV100Trn_tilewwds_2_tftilename)");
+            AddWhere(sWhereString, "(TileName like :lV54Trn_tilewwds_2_tftilename)");
          }
          else
          {
-            GXv_int16[0] = 1;
+            GXv_int15[0] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV101Trn_tilewwds_3_tftilename_sel)) && ! ( StringUtil.StrCmp(AV101Trn_tilewwds_3_tftilename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_tilewwds_3_tftilename_sel)) && ! ( StringUtil.StrCmp(AV55Trn_tilewwds_3_tftilename_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.TileName = ( :AV101Trn_tilewwds_3_tftilename_sel))");
-         }
-         else
-         {
-            GXv_int16[1] = 1;
-         }
-         if ( StringUtil.StrCmp(AV101Trn_tilewwds_3_tftilename_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.TileName))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV103Trn_tilewwds_5_tftilebgcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV102Trn_tilewwds_4_tftilebgcolor)) ) )
-         {
-            AddWhere(sWhereString, "(T1.TileBGColor like :lV102Trn_tilewwds_4_tftilebgcolor)");
+            AddWhere(sWhereString, "(TileName = ( :AV55Trn_tilewwds_3_tftilename_sel))");
          }
          else
          {
-            GXv_int16[2] = 1;
+            GXv_int15[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV103Trn_tilewwds_5_tftilebgcolor_sel)) && ! ( StringUtil.StrCmp(AV103Trn_tilewwds_5_tftilebgcolor_sel, "<#Empty#>") == 0 ) )
+         if ( StringUtil.StrCmp(AV55Trn_tilewwds_3_tftilename_sel, "<#Empty#>") == 0 )
          {
-            AddWhere(sWhereString, "(T1.TileBGColor = ( :AV103Trn_tilewwds_5_tftilebgcolor_sel))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from TileName))=0))");
          }
-         else
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_tilewwds_5_tftilebgcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_tilewwds_4_tftilebgcolor)) ) )
          {
-            GXv_int16[3] = 1;
-         }
-         if ( StringUtil.StrCmp(AV103Trn_tilewwds_5_tftilebgcolor_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "(T1.TileBGColor IS NULL or (char_length(trim(trailing ' ' from T1.TileBGColor))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV105Trn_tilewwds_7_tftilebgimageurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV104Trn_tilewwds_6_tftilebgimageurl)) ) )
-         {
-            AddWhere(sWhereString, "(T1.TileBGImageUrl like :lV104Trn_tilewwds_6_tftilebgimageurl)");
+            AddWhere(sWhereString, "(TileBGColor like :lV56Trn_tilewwds_4_tftilebgcolor)");
          }
          else
          {
-            GXv_int16[4] = 1;
+            GXv_int15[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV105Trn_tilewwds_7_tftilebgimageurl_sel)) && ! ( StringUtil.StrCmp(AV105Trn_tilewwds_7_tftilebgimageurl_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_tilewwds_5_tftilebgcolor_sel)) && ! ( StringUtil.StrCmp(AV57Trn_tilewwds_5_tftilebgcolor_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.TileBGImageUrl = ( :AV105Trn_tilewwds_7_tftilebgimageurl_sel))");
-         }
-         else
-         {
-            GXv_int16[5] = 1;
-         }
-         if ( StringUtil.StrCmp(AV105Trn_tilewwds_7_tftilebgimageurl_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "(T1.TileBGImageUrl IS NULL or (char_length(trim(trailing ' ' from T1.TileBGImageUrl))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV107Trn_tilewwds_9_tftiletextcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV106Trn_tilewwds_8_tftiletextcolor)) ) )
-         {
-            AddWhere(sWhereString, "(T1.TileTextColor like :lV106Trn_tilewwds_8_tftiletextcolor)");
+            AddWhere(sWhereString, "(TileBGColor = ( :AV57Trn_tilewwds_5_tftilebgcolor_sel))");
          }
          else
          {
-            GXv_int16[6] = 1;
+            GXv_int15[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV107Trn_tilewwds_9_tftiletextcolor_sel)) && ! ( StringUtil.StrCmp(AV107Trn_tilewwds_9_tftiletextcolor_sel, "<#Empty#>") == 0 ) )
+         if ( StringUtil.StrCmp(AV57Trn_tilewwds_5_tftilebgcolor_sel, "<#Empty#>") == 0 )
          {
-            AddWhere(sWhereString, "(T1.TileTextColor = ( :AV107Trn_tilewwds_9_tftiletextcolor_sel))");
+            AddWhere(sWhereString, "(TileBGColor IS NULL or (char_length(trim(trailing ' ' from TileBGColor))=0))");
          }
-         else
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_tilewwds_7_tftilebgimageurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_tilewwds_6_tftilebgimageurl)) ) )
          {
-            GXv_int16[7] = 1;
-         }
-         if ( StringUtil.StrCmp(AV107Trn_tilewwds_9_tftiletextcolor_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.TileTextColor))=0))");
-         }
-         if ( AV108Trn_tilewwds_10_tftiletextalignment_sels_Count > 0 )
-         {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV108Trn_tilewwds_10_tftiletextalignment_sels, "T1.TileTextAlignment IN (", ")")+")");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV110Trn_tilewwds_12_tftileicon_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV109Trn_tilewwds_11_tftileicon)) ) )
-         {
-            AddWhere(sWhereString, "(T1.TileIcon like :lV109Trn_tilewwds_11_tftileicon)");
+            AddWhere(sWhereString, "(TileBGImageUrl like :lV58Trn_tilewwds_6_tftilebgimageurl)");
          }
          else
          {
-            GXv_int16[8] = 1;
+            GXv_int15[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV110Trn_tilewwds_12_tftileicon_sel)) && ! ( StringUtil.StrCmp(AV110Trn_tilewwds_12_tftileicon_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_tilewwds_7_tftilebgimageurl_sel)) && ! ( StringUtil.StrCmp(AV59Trn_tilewwds_7_tftilebgimageurl_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.TileIcon = ( :AV110Trn_tilewwds_12_tftileicon_sel))");
-         }
-         else
-         {
-            GXv_int16[9] = 1;
-         }
-         if ( StringUtil.StrCmp(AV110Trn_tilewwds_12_tftileicon_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "(T1.TileIcon IS NULL or (char_length(trim(trailing ' ' from T1.TileIcon))=0))");
-         }
-         if ( AV111Trn_tilewwds_13_tftileiconalignment_sels_Count > 0 )
-         {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV111Trn_tilewwds_13_tftileiconalignment_sels, "T1.TileIconAlignment IN (", ")")+")");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV113Trn_tilewwds_15_tfproductservicename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV112Trn_tilewwds_14_tfproductservicename)) ) )
-         {
-            AddWhere(sWhereString, "(T3.ProductServiceName like :lV112Trn_tilewwds_14_tfproductservicename)");
+            AddWhere(sWhereString, "(TileBGImageUrl = ( :AV59Trn_tilewwds_7_tftilebgimageurl_sel))");
          }
          else
          {
-            GXv_int16[10] = 1;
+            GXv_int15[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV113Trn_tilewwds_15_tfproductservicename_sel)) && ! ( StringUtil.StrCmp(AV113Trn_tilewwds_15_tfproductservicename_sel, "<#Empty#>") == 0 ) )
+         if ( StringUtil.StrCmp(AV59Trn_tilewwds_7_tftilebgimageurl_sel, "<#Empty#>") == 0 )
          {
-            AddWhere(sWhereString, "(T3.ProductServiceName = ( :AV113Trn_tilewwds_15_tfproductservicename_sel))");
+            AddWhere(sWhereString, "(TileBGImageUrl IS NULL or (char_length(trim(trailing ' ' from TileBGImageUrl))=0))");
          }
-         else
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_tilewwds_9_tftiletextcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_tilewwds_8_tftiletextcolor)) ) )
          {
-            GXv_int16[11] = 1;
-         }
-         if ( StringUtil.StrCmp(AV113Trn_tilewwds_15_tfproductservicename_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T3.ProductServiceName))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV115Trn_tilewwds_17_tfproductservicedescription_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV114Trn_tilewwds_16_tfproductservicedescription)) ) )
-         {
-            AddWhere(sWhereString, "(T3.ProductServiceDescription like :lV114Trn_tilewwds_16_tfproductservicedescription)");
+            AddWhere(sWhereString, "(TileTextColor like :lV60Trn_tilewwds_8_tftiletextcolor)");
          }
          else
          {
-            GXv_int16[12] = 1;
+            GXv_int15[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV115Trn_tilewwds_17_tfproductservicedescription_sel)) && ! ( StringUtil.StrCmp(AV115Trn_tilewwds_17_tfproductservicedescription_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_tilewwds_9_tftiletextcolor_sel)) && ! ( StringUtil.StrCmp(AV61Trn_tilewwds_9_tftiletextcolor_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T3.ProductServiceDescription = ( :AV115Trn_tilewwds_17_tfproductservicedescription_sel))");
-         }
-         else
-         {
-            GXv_int16[13] = 1;
-         }
-         if ( StringUtil.StrCmp(AV115Trn_tilewwds_17_tfproductservicedescription_sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T3.ProductServiceDescription))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV117Trn_tilewwds_19_tfsg_topagename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV116Trn_tilewwds_18_tfsg_topagename)) ) )
-         {
-            AddWhere(sWhereString, "(T2.Trn_PageName like :lV116Trn_tilewwds_18_tfsg_topagename)");
+            AddWhere(sWhereString, "(TileTextColor = ( :AV61Trn_tilewwds_9_tftiletextcolor_sel))");
          }
          else
          {
-            GXv_int16[14] = 1;
+            GXv_int15[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV117Trn_tilewwds_19_tfsg_topagename_sel)) && ! ( StringUtil.StrCmp(AV117Trn_tilewwds_19_tfsg_topagename_sel, "<#Empty#>") == 0 ) )
+         if ( StringUtil.StrCmp(AV61Trn_tilewwds_9_tftiletextcolor_sel, "<#Empty#>") == 0 )
          {
-            AddWhere(sWhereString, "(T2.Trn_PageName = ( :AV117Trn_tilewwds_19_tfsg_topagename_sel))");
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from TileTextColor))=0))");
+         }
+         if ( AV62Trn_tilewwds_10_tftiletextalignment_sels_Count > 0 )
+         {
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV62Trn_tilewwds_10_tftiletextalignment_sels, "TileTextAlignment IN (", ")")+")");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_tilewwds_12_tftileicon_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_tilewwds_11_tftileicon)) ) )
+         {
+            AddWhere(sWhereString, "(TileIcon like :lV63Trn_tilewwds_11_tftileicon)");
          }
          else
          {
-            GXv_int16[15] = 1;
+            GXv_int15[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV117Trn_tilewwds_19_tfsg_topagename_sel, "<#Empty#>") == 0 )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_tilewwds_12_tftileicon_sel)) && ! ( StringUtil.StrCmp(AV64Trn_tilewwds_12_tftileicon_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.Trn_PageName IS NULL or (char_length(trim(trailing ' ' from T2.Trn_PageName))=0))");
+            AddWhere(sWhereString, "(TileIcon = ( :AV64Trn_tilewwds_12_tftileicon_sel))");
+         }
+         else
+         {
+            GXv_int15[9] = 1;
+         }
+         if ( StringUtil.StrCmp(AV64Trn_tilewwds_12_tftileicon_sel, "<#Empty#>") == 0 )
+         {
+            AddWhere(sWhereString, "(TileIcon IS NULL or (char_length(trim(trailing ' ' from TileIcon))=0))");
+         }
+         if ( AV65Trn_tilewwds_13_tftileiconalignment_sels_Count > 0 )
+         {
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV65Trn_tilewwds_13_tftileiconalignment_sels, "TileIconAlignment IN (", ")")+")");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_tilewwds_15_tftileiconcolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_tilewwds_14_tftileiconcolor)) ) )
+         {
+            AddWhere(sWhereString, "(TileIconColor like :lV66Trn_tilewwds_14_tftileiconcolor)");
+         }
+         else
+         {
+            GXv_int15[10] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_tilewwds_15_tftileiconcolor_sel)) && ! ( StringUtil.StrCmp(AV67Trn_tilewwds_15_tftileiconcolor_sel, "<#Empty#>") == 0 ) )
+         {
+            AddWhere(sWhereString, "(TileIconColor = ( :AV67Trn_tilewwds_15_tftileiconcolor_sel))");
+         }
+         else
+         {
+            GXv_int15[11] = 1;
+         }
+         if ( StringUtil.StrCmp(AV67Trn_tilewwds_15_tftileiconcolor_sel, "<#Empty#>") == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from TileIconColor))=0))");
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_tilewwds_17_tftileaction_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_tilewwds_16_tftileaction)) ) )
+         {
+            AddWhere(sWhereString, "(TileAction like :lV68Trn_tilewwds_16_tftileaction)");
+         }
+         else
+         {
+            GXv_int15[12] = 1;
+         }
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_tilewwds_17_tftileaction_sel)) && ! ( StringUtil.StrCmp(AV69Trn_tilewwds_17_tftileaction_sel, "<#Empty#>") == 0 ) )
+         {
+            AddWhere(sWhereString, "(TileAction = ( :AV69Trn_tilewwds_17_tftileaction_sel))");
+         }
+         else
+         {
+            GXv_int15[13] = 1;
+         }
+         if ( StringUtil.StrCmp(AV69Trn_tilewwds_17_tftileaction_sel, "<#Empty#>") == 0 )
+         {
+            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from TileAction))=0))");
          }
          scmdbuf += sWhereString;
          if ( ( AV13OrderedBy == 1 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileName, T1.TileId";
+            scmdbuf += " ORDER BY TileName, TileId";
          }
          else if ( ( AV13OrderedBy == 1 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileName DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileName DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 2 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileId";
+            scmdbuf += " ORDER BY TileId";
          }
          else if ( ( AV13OrderedBy == 2 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileId DESC";
+            scmdbuf += " ORDER BY TileId DESC";
          }
          else if ( ( AV13OrderedBy == 3 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileBGColor, T1.TileId";
+            scmdbuf += " ORDER BY TileBGColor, TileId";
          }
          else if ( ( AV13OrderedBy == 3 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileBGColor DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileBGColor DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 4 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileBGImageUrl, T1.TileId";
+            scmdbuf += " ORDER BY TileBGImageUrl, TileId";
          }
          else if ( ( AV13OrderedBy == 4 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileBGImageUrl DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileBGImageUrl DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 5 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileTextColor, T1.TileId";
+            scmdbuf += " ORDER BY TileTextColor, TileId";
          }
          else if ( ( AV13OrderedBy == 5 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileTextColor DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileTextColor DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 6 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileTextAlignment, T1.TileId";
+            scmdbuf += " ORDER BY TileTextAlignment, TileId";
          }
          else if ( ( AV13OrderedBy == 6 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileTextAlignment DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileTextAlignment DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 7 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileIcon, T1.TileId";
+            scmdbuf += " ORDER BY TileIcon, TileId";
          }
          else if ( ( AV13OrderedBy == 7 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileIcon DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileIcon DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 8 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.TileIconAlignment, T1.TileId";
+            scmdbuf += " ORDER BY TileIconAlignment, TileId";
          }
          else if ( ( AV13OrderedBy == 8 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.TileIconAlignment DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileIconAlignment DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 9 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.ProductServiceId, T1.TileId";
+            scmdbuf += " ORDER BY TileIconColor, TileId";
          }
          else if ( ( AV13OrderedBy == 9 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.ProductServiceId DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileIconColor DESC, TileId";
          }
          else if ( ( AV13OrderedBy == 10 ) && ! AV14OrderedDsc )
          {
-            scmdbuf += " ORDER BY T1.OrganisationId, T1.TileId";
+            scmdbuf += " ORDER BY TileAction, TileId";
          }
          else if ( ( AV13OrderedBy == 10 ) && ( AV14OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY T1.OrganisationId DESC, T1.TileId";
+            scmdbuf += " ORDER BY TileAction DESC, TileId";
          }
-         else if ( ( AV13OrderedBy == 11 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T2.LocationId, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 11 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T2.LocationId DESC, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 12 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T3.ProductServiceName, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 12 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T3.ProductServiceName DESC, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 13 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T3.ProductServiceDescription, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 13 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T3.ProductServiceDescription DESC, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 14 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T1.SG_ToPageId, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 14 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T1.SG_ToPageId DESC, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 15 ) && ! AV14OrderedDsc )
-         {
-            scmdbuf += " ORDER BY T2.Trn_PageName, T1.TileId";
-         }
-         else if ( ( AV13OrderedBy == 15 ) && ( AV14OrderedDsc ) )
-         {
-            scmdbuf += " ORDER BY T2.Trn_PageName DESC, T1.TileId";
-         }
-         GXv_Object17[0] = scmdbuf;
-         GXv_Object17[1] = GXv_int16;
-         return GXv_Object17 ;
+         GXv_Object16[0] = scmdbuf;
+         GXv_Object16[1] = GXv_int15;
+         return GXv_Object16 ;
       }
 
       public override Object [] getDynamicStatement( int cursor ,
@@ -4976,9 +4443,9 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_H005Z2(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (GxSimpleCollection<string>)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (int)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (int)dynConstraints[15] , (string)dynConstraints[16] , (string)dynConstraints[17] , (string)dynConstraints[18] , (string)dynConstraints[19] , (string)dynConstraints[20] , (string)dynConstraints[21] , (string)dynConstraints[22] , (string)dynConstraints[23] , (string)dynConstraints[24] , (string)dynConstraints[25] , (string)dynConstraints[26] , (string)dynConstraints[27] , (string)dynConstraints[28] , (string)dynConstraints[29] , (short)dynConstraints[30] , (bool)dynConstraints[31] , (string)dynConstraints[32] );
+                     return conditional_H00842(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (GxSimpleCollection<string>)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (int)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (int)dynConstraints[15] , (string)dynConstraints[16] , (string)dynConstraints[17] , (string)dynConstraints[18] , (string)dynConstraints[19] , (string)dynConstraints[20] , (string)dynConstraints[21] , (string)dynConstraints[22] , (string)dynConstraints[23] , (string)dynConstraints[24] , (string)dynConstraints[25] , (string)dynConstraints[26] , (short)dynConstraints[27] , (bool)dynConstraints[28] , (string)dynConstraints[29] );
                case 1 :
-                     return conditional_H005Z3(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (GxSimpleCollection<string>)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (int)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (int)dynConstraints[15] , (string)dynConstraints[16] , (string)dynConstraints[17] , (string)dynConstraints[18] , (string)dynConstraints[19] , (string)dynConstraints[20] , (string)dynConstraints[21] , (string)dynConstraints[22] , (string)dynConstraints[23] , (string)dynConstraints[24] , (string)dynConstraints[25] , (string)dynConstraints[26] , (string)dynConstraints[27] , (string)dynConstraints[28] , (string)dynConstraints[29] , (short)dynConstraints[30] , (bool)dynConstraints[31] , (string)dynConstraints[32] );
+                     return conditional_H00843(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (GxSimpleCollection<string>)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (int)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (int)dynConstraints[15] , (string)dynConstraints[16] , (string)dynConstraints[17] , (string)dynConstraints[18] , (string)dynConstraints[19] , (string)dynConstraints[20] , (string)dynConstraints[21] , (string)dynConstraints[22] , (string)dynConstraints[23] , (string)dynConstraints[24] , (string)dynConstraints[25] , (string)dynConstraints[26] , (short)dynConstraints[27] , (bool)dynConstraints[28] , (string)dynConstraints[29] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -4997,47 +4464,43 @@ namespace GeneXus.Programs {
     {
        if ( def == null )
        {
-          Object[] prmH005Z2;
-          prmH005Z2 = new Object[] {
-          new ParDef("lV100Trn_tilewwds_2_tftilename",GXType.VarChar,100,0) ,
-          new ParDef("AV101Trn_tilewwds_3_tftilename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV102Trn_tilewwds_4_tftilebgcolor",GXType.Char,20,0) ,
-          new ParDef("AV103Trn_tilewwds_5_tftilebgcolor_sel",GXType.Char,20,0) ,
-          new ParDef("lV104Trn_tilewwds_6_tftilebgimageurl",GXType.VarChar,1000,0) ,
-          new ParDef("AV105Trn_tilewwds_7_tftilebgimageurl_sel",GXType.VarChar,1000,0) ,
-          new ParDef("lV106Trn_tilewwds_8_tftiletextcolor",GXType.Char,20,0) ,
-          new ParDef("AV107Trn_tilewwds_9_tftiletextcolor_sel",GXType.Char,20,0) ,
-          new ParDef("lV109Trn_tilewwds_11_tftileicon",GXType.Char,20,0) ,
-          new ParDef("AV110Trn_tilewwds_12_tftileicon_sel",GXType.Char,20,0) ,
-          new ParDef("lV112Trn_tilewwds_14_tfproductservicename",GXType.VarChar,100,0) ,
-          new ParDef("AV113Trn_tilewwds_15_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV114Trn_tilewwds_16_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV115Trn_tilewwds_17_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
-          new ParDef("lV116Trn_tilewwds_18_tfsg_topagename",GXType.VarChar,100,0) ,
-          new ParDef("AV117Trn_tilewwds_19_tfsg_topagename_sel",GXType.VarChar,100,0)
+          Object[] prmH00842;
+          prmH00842 = new Object[] {
+          new ParDef("lV54Trn_tilewwds_2_tftilename",GXType.VarChar,100,0) ,
+          new ParDef("AV55Trn_tilewwds_3_tftilename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV56Trn_tilewwds_4_tftilebgcolor",GXType.Char,20,0) ,
+          new ParDef("AV57Trn_tilewwds_5_tftilebgcolor_sel",GXType.Char,20,0) ,
+          new ParDef("lV58Trn_tilewwds_6_tftilebgimageurl",GXType.VarChar,1000,0) ,
+          new ParDef("AV59Trn_tilewwds_7_tftilebgimageurl_sel",GXType.VarChar,1000,0) ,
+          new ParDef("lV60Trn_tilewwds_8_tftiletextcolor",GXType.Char,20,0) ,
+          new ParDef("AV61Trn_tilewwds_9_tftiletextcolor_sel",GXType.Char,20,0) ,
+          new ParDef("lV63Trn_tilewwds_11_tftileicon",GXType.Char,20,0) ,
+          new ParDef("AV64Trn_tilewwds_12_tftileicon_sel",GXType.Char,20,0) ,
+          new ParDef("lV66Trn_tilewwds_14_tftileiconcolor",GXType.Char,20,0) ,
+          new ParDef("AV67Trn_tilewwds_15_tftileiconcolor_sel",GXType.Char,20,0) ,
+          new ParDef("lV68Trn_tilewwds_16_tftileaction",GXType.VarChar,200,0) ,
+          new ParDef("AV69Trn_tilewwds_17_tftileaction_sel",GXType.VarChar,200,0)
           };
-          Object[] prmH005Z3;
-          prmH005Z3 = new Object[] {
-          new ParDef("lV100Trn_tilewwds_2_tftilename",GXType.VarChar,100,0) ,
-          new ParDef("AV101Trn_tilewwds_3_tftilename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV102Trn_tilewwds_4_tftilebgcolor",GXType.Char,20,0) ,
-          new ParDef("AV103Trn_tilewwds_5_tftilebgcolor_sel",GXType.Char,20,0) ,
-          new ParDef("lV104Trn_tilewwds_6_tftilebgimageurl",GXType.VarChar,1000,0) ,
-          new ParDef("AV105Trn_tilewwds_7_tftilebgimageurl_sel",GXType.VarChar,1000,0) ,
-          new ParDef("lV106Trn_tilewwds_8_tftiletextcolor",GXType.Char,20,0) ,
-          new ParDef("AV107Trn_tilewwds_9_tftiletextcolor_sel",GXType.Char,20,0) ,
-          new ParDef("lV109Trn_tilewwds_11_tftileicon",GXType.Char,20,0) ,
-          new ParDef("AV110Trn_tilewwds_12_tftileicon_sel",GXType.Char,20,0) ,
-          new ParDef("lV112Trn_tilewwds_14_tfproductservicename",GXType.VarChar,100,0) ,
-          new ParDef("AV113Trn_tilewwds_15_tfproductservicename_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV114Trn_tilewwds_16_tfproductservicedescription",GXType.VarChar,200,0) ,
-          new ParDef("AV115Trn_tilewwds_17_tfproductservicedescription_sel",GXType.VarChar,200,0) ,
-          new ParDef("lV116Trn_tilewwds_18_tfsg_topagename",GXType.VarChar,100,0) ,
-          new ParDef("AV117Trn_tilewwds_19_tfsg_topagename_sel",GXType.VarChar,100,0)
+          Object[] prmH00843;
+          prmH00843 = new Object[] {
+          new ParDef("lV54Trn_tilewwds_2_tftilename",GXType.VarChar,100,0) ,
+          new ParDef("AV55Trn_tilewwds_3_tftilename_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV56Trn_tilewwds_4_tftilebgcolor",GXType.Char,20,0) ,
+          new ParDef("AV57Trn_tilewwds_5_tftilebgcolor_sel",GXType.Char,20,0) ,
+          new ParDef("lV58Trn_tilewwds_6_tftilebgimageurl",GXType.VarChar,1000,0) ,
+          new ParDef("AV59Trn_tilewwds_7_tftilebgimageurl_sel",GXType.VarChar,1000,0) ,
+          new ParDef("lV60Trn_tilewwds_8_tftiletextcolor",GXType.Char,20,0) ,
+          new ParDef("AV61Trn_tilewwds_9_tftiletextcolor_sel",GXType.Char,20,0) ,
+          new ParDef("lV63Trn_tilewwds_11_tftileicon",GXType.Char,20,0) ,
+          new ParDef("AV64Trn_tilewwds_12_tftileicon_sel",GXType.Char,20,0) ,
+          new ParDef("lV66Trn_tilewwds_14_tftileiconcolor",GXType.Char,20,0) ,
+          new ParDef("AV67Trn_tilewwds_15_tftileiconcolor_sel",GXType.Char,20,0) ,
+          new ParDef("lV68Trn_tilewwds_16_tftileaction",GXType.VarChar,200,0) ,
+          new ParDef("AV69Trn_tilewwds_17_tftileaction_sel",GXType.VarChar,200,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H005Z2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005Z2,11, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H005Z3", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005Z3,11, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("H00842", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00842,11, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00843", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00843,11, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -5049,56 +4512,34 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((bool[]) buf[2])[0] = rslt.wasNull(2);
-                ((string[]) buf[3])[0] = rslt.getMultimediaUri(3);
-                ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(6);
-                ((bool[]) buf[7])[0] = rslt.wasNull(6);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(7);
-                ((bool[]) buf[9])[0] = rslt.wasNull(7);
-                ((Guid[]) buf[10])[0] = rslt.getGuid(8);
-                ((bool[]) buf[11])[0] = rslt.wasNull(8);
-                ((string[]) buf[12])[0] = rslt.getString(9, 20);
-                ((string[]) buf[13])[0] = rslt.getString(10, 20);
-                ((bool[]) buf[14])[0] = rslt.wasNull(10);
-                ((string[]) buf[15])[0] = rslt.getString(11, 20);
-                ((string[]) buf[16])[0] = rslt.getString(12, 20);
-                ((string[]) buf[17])[0] = rslt.getVarchar(13);
-                ((bool[]) buf[18])[0] = rslt.wasNull(13);
-                ((string[]) buf[19])[0] = rslt.getString(14, 20);
-                ((bool[]) buf[20])[0] = rslt.wasNull(14);
-                ((string[]) buf[21])[0] = rslt.getVarchar(15);
-                ((Guid[]) buf[22])[0] = rslt.getGuid(16);
-                ((string[]) buf[23])[0] = rslt.getMultimediaFile(17, rslt.getVarchar(3));
+                ((string[]) buf[0])[0] = rslt.getLongVarchar(1);
+                ((string[]) buf[1])[0] = rslt.getString(2, 20);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((bool[]) buf[4])[0] = rslt.wasNull(4);
+                ((string[]) buf[5])[0] = rslt.getString(5, 20);
+                ((string[]) buf[6])[0] = rslt.getString(6, 20);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((bool[]) buf[8])[0] = rslt.wasNull(7);
+                ((string[]) buf[9])[0] = rslt.getString(8, 20);
+                ((bool[]) buf[10])[0] = rslt.wasNull(8);
+                ((string[]) buf[11])[0] = rslt.getVarchar(9);
+                ((Guid[]) buf[12])[0] = rslt.getGuid(10);
                 return;
              case 1 :
-                ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((bool[]) buf[2])[0] = rslt.wasNull(2);
-                ((string[]) buf[3])[0] = rslt.getMultimediaUri(3);
-                ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(6);
-                ((bool[]) buf[7])[0] = rslt.wasNull(6);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(7);
-                ((bool[]) buf[9])[0] = rslt.wasNull(7);
-                ((Guid[]) buf[10])[0] = rslt.getGuid(8);
-                ((bool[]) buf[11])[0] = rslt.wasNull(8);
-                ((string[]) buf[12])[0] = rslt.getString(9, 20);
-                ((string[]) buf[13])[0] = rslt.getString(10, 20);
-                ((bool[]) buf[14])[0] = rslt.wasNull(10);
-                ((string[]) buf[15])[0] = rslt.getString(11, 20);
-                ((string[]) buf[16])[0] = rslt.getString(12, 20);
-                ((string[]) buf[17])[0] = rslt.getVarchar(13);
-                ((bool[]) buf[18])[0] = rslt.wasNull(13);
-                ((string[]) buf[19])[0] = rslt.getString(14, 20);
-                ((bool[]) buf[20])[0] = rslt.wasNull(14);
-                ((string[]) buf[21])[0] = rslt.getVarchar(15);
-                ((Guid[]) buf[22])[0] = rslt.getGuid(16);
-                ((string[]) buf[23])[0] = rslt.getMultimediaFile(17, rslt.getVarchar(3));
+                ((string[]) buf[0])[0] = rslt.getLongVarchar(1);
+                ((string[]) buf[1])[0] = rslt.getString(2, 20);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((bool[]) buf[4])[0] = rslt.wasNull(4);
+                ((string[]) buf[5])[0] = rslt.getString(5, 20);
+                ((string[]) buf[6])[0] = rslt.getString(6, 20);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((bool[]) buf[8])[0] = rslt.wasNull(7);
+                ((string[]) buf[9])[0] = rslt.getString(8, 20);
+                ((bool[]) buf[10])[0] = rslt.wasNull(8);
+                ((string[]) buf[11])[0] = rslt.getVarchar(9);
+                ((Guid[]) buf[12])[0] = rslt.getGuid(10);
                 return;
        }
     }

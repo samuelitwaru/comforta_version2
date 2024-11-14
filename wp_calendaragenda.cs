@@ -1835,7 +1835,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411499209", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241114339392", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1851,7 +1851,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_calendaragenda.js", "?202411499209", false, true);
+         context.AddJavascriptSource("wp_calendaragenda.js", "?20241114339393", false, true);
          context.AddJavascriptSource("DVelop/Calendar/index.global.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Calendar/WWPCalendarRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/locales.js", "", false, true);
@@ -1947,7 +1947,7 @@ namespace GeneXus.Programs {
          Createevent_modal_Bodytype = "WebComponent";
          Createevent_modal_Confirmtype = "";
          Createevent_modal_Title = context.GetMessage( "Event", "");
-         Createevent_modal_Width = "400";
+         Createevent_modal_Width = "600";
          Dvelop_confirmpanel_btndummydelete_Confirmtype = "1";
          Dvelop_confirmpanel_btndummydelete_Yesbuttonposition = "left";
          Dvelop_confirmpanel_btndummydelete_Cancelbuttoncaption = "WWP_ConfirmTextCancel";

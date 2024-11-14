@@ -841,33 +841,30 @@ namespace GeneXus.Programs.wwpbaseobjects {
             context.WriteHtmlText( "<tbody>") ;
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td data-align=\"center\"  style=\""+CSSHelper.Prettify( "text-align:-khtml-center;text-align:-moz-center;text-align:-webkit-center")+"\" class='PopupContentCell'>") ;
-            /* Control Group */
-            GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_WWPBaseObjects/SaveFilterAs.htm");
-            wb_table3_9_1B2( true) ;
+            wb_table3_8_1B2( true) ;
          }
          else
          {
-            wb_table3_9_1B2( false) ;
+            wb_table3_8_1B2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table3_9_1B2e( bool wbgen )
+      protected void wb_table3_8_1B2e( bool wbgen )
       {
          if ( wbgen )
          {
-            context.WriteHtmlText( "</fieldset>") ;
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td>") ;
             /* Div Control */
             GxWebStd.gx_div_start( context, divActiongroup_actions_Internalname, 1, 0, "px", 0, "px", "ActionGroupRightHTML", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'',false,'',0)\"";
             ClassString = "btn btn-default ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "WWP_SaveButtonCaption", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/SaveFilterAs.htm");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
             ClassString = "btn btn-default ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/SaveFilterAs.htm");
@@ -892,7 +889,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
       }
 
-      protected void wb_table3_9_1B2( bool wbgen )
+      protected void wb_table3_8_1B2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -907,18 +904,18 @@ namespace GeneXus.Programs.wwpbaseobjects {
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td class='RequiredDataContentCell'>") ;
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavFiltername_Internalname, AV8FilterName, StringUtil.RTrim( context.localUtil.Format( AV8FilterName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFiltername_Jsonclick, 0, "AttributeManageFilters", "", "", "", "", 1, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WWPBaseObjects/SaveFilterAs.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavFiltername_Internalname, AV8FilterName, StringUtil.RTrim( context.localUtil.Format( AV8FilterName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,13);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFiltername_Jsonclick, 0, "AttributeManageFilters", "", "", "", "", 1, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WWPBaseObjects/SaveFilterAs.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             context.WriteHtmlText( "</tbody>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table3_9_1B2e( true) ;
+            wb_table3_8_1B2e( true) ;
          }
          else
          {
-            wb_table3_9_1B2e( false) ;
+            wb_table3_8_1B2e( false) ;
          }
       }
 
@@ -968,7 +965,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024114981594", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411143374970", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -984,7 +981,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/savefilteras.js", "?2024114981594", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/savefilteras.js", "?202411143374971", false, true);
          context.AddJavascriptSource("DVelop/DVMessage/pnotify.custom.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVMessage/DVMessageRender.js", "", false, true);
@@ -1001,7 +998,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          lblTextblockfiltername_Internalname = "TEXTBLOCKFILTERNAME";
          edtavFiltername_Internalname = "vFILTERNAME";
          tblTablecontent_Internalname = "TABLECONTENT";
-         grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
          bttBtnenter_Internalname = "BTNENTER";
          bttBtncancel_Internalname = "BTNCANCEL";
          divActiongroup_actions_Internalname = "ACTIONGROUP_ACTIONS";
@@ -1119,7 +1115,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string tblLayoutmaintable_Internalname ;
       private string sStyleString ;
       private string tblTablemain_Internalname ;
-      private string grpUnnamedgroup1_Internalname ;
       private string divActiongroup_actions_Internalname ;
       private string TempTags ;
       private string ClassString ;

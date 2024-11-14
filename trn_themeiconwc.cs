@@ -844,6 +844,7 @@ namespace GeneXus.Programs {
                               sGXsfl_15_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_15_idx), 4, 0), 4, "0");
                               SubsflControlProps_152( ) ;
                               A261IconId = StringUtil.StrToGuid( cgiGet( edtIconId_Internalname));
+                              A443IconCategory = cgiGet( edtIconCategory_Internalname);
                               A262IconName = cgiGet( edtIconName_Internalname);
                               A263IconSVG = cgiGet( edtIconSVG_Internalname);
                               sEvtType = StringUtil.Right( sEvt, 1);
@@ -1169,6 +1170,7 @@ namespace GeneXus.Programs {
                AssignAttri(sPrefix, false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
                A263IconSVG = H007V2_A263IconSVG[0];
                A262IconName = H007V2_A262IconName[0];
+               A443IconCategory = H007V2_A443IconCategory[0];
                A261IconId = H007V2_A261IconId[0];
                /* Execute user event: Grid.Load */
                E167V2 ();
@@ -1336,6 +1338,7 @@ namespace GeneXus.Programs {
       {
          AV23Pgmname = "Trn_ThemeIconWC";
          edtIconId_Enabled = 0;
+         edtIconCategory_Enabled = 0;
          edtIconName_Enabled = 0;
          edtIconSVG_Enabled = 0;
          edtTrn_ThemeId_Enabled = 0;
@@ -1841,7 +1844,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241149763", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111433749", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1857,7 +1860,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_themeiconwc.js", "?20241149763", false, true);
+         context.AddJavascriptSource("trn_themeiconwc.js", "?20241114337410", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -1872,6 +1875,7 @@ namespace GeneXus.Programs {
       protected void SubsflControlProps_152( )
       {
          edtIconId_Internalname = sPrefix+"ICONID_"+sGXsfl_15_idx;
+         edtIconCategory_Internalname = sPrefix+"ICONCATEGORY_"+sGXsfl_15_idx;
          edtIconName_Internalname = sPrefix+"ICONNAME_"+sGXsfl_15_idx;
          edtIconSVG_Internalname = sPrefix+"ICONSVG_"+sGXsfl_15_idx;
       }
@@ -1879,6 +1883,7 @@ namespace GeneXus.Programs {
       protected void SubsflControlProps_fel_152( )
       {
          edtIconId_Internalname = sPrefix+"ICONID_"+sGXsfl_15_fel_idx;
+         edtIconCategory_Internalname = sPrefix+"ICONCATEGORY_"+sGXsfl_15_fel_idx;
          edtIconName_Internalname = sPrefix+"ICONNAME_"+sGXsfl_15_fel_idx;
          edtIconSVG_Internalname = sPrefix+"ICONSVG_"+sGXsfl_15_fel_idx;
       }
@@ -1962,7 +1967,15 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconName_Internalname,(string)A262IconName,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconCategory_Internalname,StringUtil.RTrim( A443IconCategory),(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconCategory_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"IconCategory",(string)"start",(bool)true,(string)""});
+            /* Subfile cell */
+            if ( GridContainer.GetWrapped() == 1 )
+            {
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+            }
+            /* Single line edit */
+            ROClassString = "Attribute";
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconName_Internalname,(string)A262IconName,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -2026,6 +2039,9 @@ namespace GeneXus.Programs {
             context.SendWebValue( context.GetMessage( "Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.SendWebValue( context.GetMessage( "Category", "")) ;
+            context.WriteHtmlTextNl( "</th>") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Name", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
@@ -2058,6 +2074,9 @@ namespace GeneXus.Programs {
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A261IconId.ToString()));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( A443IconCategory)));
+            GridContainer.AddColumnProperties(GridColumn);
+            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A262IconName));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
@@ -2076,6 +2095,7 @@ namespace GeneXus.Programs {
       protected void init_default_properties( )
       {
          edtIconId_Internalname = sPrefix+"ICONID";
+         edtIconCategory_Internalname = sPrefix+"ICONCATEGORY";
          edtIconName_Internalname = sPrefix+"ICONNAME";
          edtIconSVG_Internalname = sPrefix+"ICONSVG";
          Gridpaginationbar_Internalname = sPrefix+"GRIDPAGINATIONBAR";
@@ -2109,20 +2129,22 @@ namespace GeneXus.Programs {
          subGrid_Header = "";
          edtIconSVG_Jsonclick = "";
          edtIconName_Jsonclick = "";
+         edtIconCategory_Jsonclick = "";
          edtIconId_Jsonclick = "";
          subGrid_Class = "GridWithPaginationBar WorkWith";
          subGrid_Backcolorstyle = 0;
          edtTrn_ThemeId_Enabled = 0;
          edtIconSVG_Enabled = 0;
          edtIconName_Enabled = 0;
+         edtIconCategory_Enabled = 0;
          edtIconId_Enabled = 0;
          subGrid_Sortable = 0;
          edtTrn_ThemeId_Jsonclick = "";
          edtTrn_ThemeId_Visible = 1;
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Ddo_grid_Includesortasc = "T";
-         Ddo_grid_Columnssortvalues = "1|2|3";
-         Ddo_grid_Columnids = "0:IconId|1:IconName|2:IconSVG";
+         Ddo_grid_Columnssortvalues = "1|2|3|4";
+         Ddo_grid_Columnids = "0:IconId|1:IconCategory|2:IconName|3:IconSVG";
          Ddo_grid_Gridinternalname = "";
          Gridpaginationbar_Rowsperpagecaption = "WWP_PagingRowsPerPage";
          Gridpaginationbar_Emptygridcaption = "WWP_PagingEmptyGridCaption";
@@ -2216,12 +2238,14 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          A261IconId = Guid.Empty;
+         A443IconCategory = "";
          A262IconName = "";
          A263IconSVG = "";
          GXDecQS = "";
          H007V2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          H007V2_A263IconSVG = new string[] {""} ;
          H007V2_A262IconName = new string[] {""} ;
+         H007V2_A443IconCategory = new string[] {""} ;
          H007V2_A261IconId = new Guid[] {Guid.Empty} ;
          H007V3_AGRID_nRecordCount = new long[1] ;
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
@@ -2242,7 +2266,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_themeiconwc__default(),
             new Object[][] {
                 new Object[] {
-               H007V2_A247Trn_ThemeId, H007V2_A263IconSVG, H007V2_A262IconName, H007V2_A261IconId
+               H007V2_A247Trn_ThemeId, H007V2_A263IconSVG, H007V2_A262IconName, H007V2_A443IconCategory, H007V2_A261IconId
                }
                , new Object[] {
                H007V3_AGRID_nRecordCount
@@ -2283,6 +2307,7 @@ namespace GeneXus.Programs {
       private int GXPagingFrom2 ;
       private int GXPagingTo2 ;
       private int edtIconId_Enabled ;
+      private int edtIconCategory_Enabled ;
       private int edtIconName_Enabled ;
       private int edtIconSVG_Enabled ;
       private int edtTrn_ThemeId_Enabled ;
@@ -2351,6 +2376,8 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string edtIconId_Internalname ;
+      private string A443IconCategory ;
+      private string edtIconCategory_Internalname ;
       private string edtIconName_Internalname ;
       private string edtIconSVG_Internalname ;
       private string GXDecQS ;
@@ -2361,6 +2388,7 @@ namespace GeneXus.Programs {
       private string subGrid_Linesclass ;
       private string ROClassString ;
       private string edtIconId_Jsonclick ;
+      private string edtIconCategory_Jsonclick ;
       private string edtIconName_Jsonclick ;
       private string edtIconSVG_Jsonclick ;
       private string subGrid_Header ;
@@ -2403,6 +2431,7 @@ namespace GeneXus.Programs {
       private Guid[] H007V2_A247Trn_ThemeId ;
       private string[] H007V2_A263IconSVG ;
       private string[] H007V2_A262IconName ;
+      private string[] H007V2_A443IconCategory ;
       private Guid[] H007V2_A261IconId ;
       private long[] H007V3_AGRID_nRecordCount ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
@@ -2429,7 +2458,7 @@ namespace GeneXus.Programs {
          string sSelectString;
          string sFromString;
          string sOrderString;
-         sSelectString = " Trn_ThemeId, IconSVG, IconName, IconId";
+         sSelectString = " Trn_ThemeId, IconSVG, IconName, IconCategory, IconId";
          sFromString = " FROM Trn_ThemeIcon";
          sOrderString = "";
          AddWhere(sWhereString, "(Trn_ThemeId = :AV8Trn_ThemeId)");
@@ -2443,17 +2472,25 @@ namespace GeneXus.Programs {
          }
          else if ( ( AV14OrderedBy == 2 ) && ! AV15OrderedDsc )
          {
-            sOrderString += " ORDER BY Trn_ThemeId, IconName, IconId";
+            sOrderString += " ORDER BY Trn_ThemeId, IconCategory, IconId";
          }
          else if ( ( AV14OrderedBy == 2 ) && ( AV15OrderedDsc ) )
          {
-            sOrderString += " ORDER BY Trn_ThemeId DESC, IconName DESC, IconId";
+            sOrderString += " ORDER BY Trn_ThemeId DESC, IconCategory DESC, IconId";
          }
          else if ( ( AV14OrderedBy == 3 ) && ! AV15OrderedDsc )
          {
-            sOrderString += " ORDER BY Trn_ThemeId, IconSVG, IconId";
+            sOrderString += " ORDER BY Trn_ThemeId, IconName, IconId";
          }
          else if ( ( AV14OrderedBy == 3 ) && ( AV15OrderedDsc ) )
+         {
+            sOrderString += " ORDER BY Trn_ThemeId DESC, IconName DESC, IconId";
+         }
+         else if ( ( AV14OrderedBy == 4 ) && ! AV15OrderedDsc )
+         {
+            sOrderString += " ORDER BY Trn_ThemeId, IconSVG, IconId";
+         }
+         else if ( ( AV14OrderedBy == 4 ) && ( AV15OrderedDsc ) )
          {
             sOrderString += " ORDER BY Trn_ThemeId DESC, IconSVG DESC, IconId";
          }
@@ -2501,6 +2538,14 @@ namespace GeneXus.Programs {
             scmdbuf += "";
          }
          else if ( ( AV14OrderedBy == 3 ) && ( AV15OrderedDsc ) )
+         {
+            scmdbuf += "";
+         }
+         else if ( ( AV14OrderedBy == 4 ) && ! AV15OrderedDsc )
+         {
+            scmdbuf += "";
+         }
+         else if ( ( AV14OrderedBy == 4 ) && ( AV15OrderedDsc ) )
          {
             scmdbuf += "";
          }
@@ -2569,7 +2614,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 return;
              case 1 :
                 ((long[]) buf[0])[0] = rslt.getLong(1);

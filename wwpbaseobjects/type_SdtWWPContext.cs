@@ -30,9 +30,33 @@ namespace GeneXus.Programs.wwpbaseobjects
 		public SdtWWPContext( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtWWPContext_Userid = "";
+			gxTv_SdtWWPContext_Gamuserguid = "";
 
-			gxTv_SdtWWPContext_Username = "";
+			gxTv_SdtWWPContext_Gamusername = "";
+
+			gxTv_SdtWWPContext_Gamuserfirstname = "";
+
+			gxTv_SdtWWPContext_Gamuserlastname = "";
+
+			gxTv_SdtWWPContext_Gamuseremail = "";
+
+			gxTv_SdtWWPContext_Organisationname = "";
+
+			gxTv_SdtWWPContext_Locationname = "";
+
+			gxTv_SdtWWPContext_Organisationsettinglogo = "";
+			gxTv_SdtWWPContext_Organisationsettinglogo_gxi = "";
+			gxTv_SdtWWPContext_Organisationsettingfavicon = "";
+			gxTv_SdtWWPContext_Organisationsettingfavicon_gxi = "";
+			gxTv_SdtWWPContext_Organisationsettingbasecolor = "";
+
+			gxTv_SdtWWPContext_Organisationsettingfontsize = "";
+
+			gxTv_SdtWWPContext_Organisationsettinglanguage = "";
+
+			gxTv_SdtWWPContext_Organisationsettingtrnmode = "";
+
+			gxTv_SdtWWPContext_Footertext = "";
 
 		}
 
@@ -61,16 +85,102 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("UserId", gxTpr_Userid, false);
+			AddObjectProperty("GAMUserGUID", gxTpr_Gamuserguid, false);
 
 
-			AddObjectProperty("UserName", gxTpr_Username, false);
+			AddObjectProperty("GAMUserName", gxTpr_Gamusername, false);
+
+
+			AddObjectProperty("GAMUserFirstName", gxTpr_Gamuserfirstname, false);
+
+
+			AddObjectProperty("GAMUserLastName", gxTpr_Gamuserlastname, false);
+
+
+			AddObjectProperty("GAMUserEmail", gxTpr_Gamuseremail, false);
+
+
+			AddObjectProperty("isComfortaAdmin", gxTpr_Iscomfortaadmin, false);
+
+
+			AddObjectProperty("isOrganisationManager", gxTpr_Isorganisationmanager, false);
+
+
+			AddObjectProperty("isReceptionist", gxTpr_Isreceptionist, false);
+
+
+			AddObjectProperty("isResident", gxTpr_Isresident, false);
+
+
+			AddObjectProperty("isRootAdmin", gxTpr_Isrootadmin, false);
 
 
 			AddObjectProperty("OrganisationId", gxTpr_Organisationid, false);
 
 
+			AddObjectProperty("OrganisationName", gxTpr_Organisationname, false);
+
+
+			AddObjectProperty("OrganisationTypeId", gxTpr_Organisationtypeid, false);
+
+
 			AddObjectProperty("LocationId", gxTpr_Locationid, false);
+
+
+			AddObjectProperty("LocationName", gxTpr_Locationname, false);
+
+
+			AddObjectProperty("OrganisationSettingid", gxTpr_Organisationsettingid, false);
+
+
+			AddObjectProperty("OrganisationSettingLogo", gxTpr_Organisationsettinglogo, false);
+			AddObjectProperty("OrganisationSettingLogo_GXI", gxTpr_Organisationsettinglogo_gxi, false);
+
+
+
+			AddObjectProperty("OrganisationSettingFavicon", gxTpr_Organisationsettingfavicon, false);
+			AddObjectProperty("OrganisationSettingFavicon_GXI", gxTpr_Organisationsettingfavicon_gxi, false);
+
+
+
+			AddObjectProperty("OrganisationSettingBaseColor", gxTpr_Organisationsettingbasecolor, false);
+
+
+			AddObjectProperty("OrganisationSettingFontSize", gxTpr_Organisationsettingfontsize, false);
+
+
+			AddObjectProperty("OrganisationSettingLanguage", gxTpr_Organisationsettinglanguage, false);
+
+
+			AddObjectProperty("OrganisationSettingTrnMode", gxTpr_Organisationsettingtrnmode, false);
+
+
+			AddObjectProperty("ManagerId", gxTpr_Managerid, false);
+
+
+			AddObjectProperty("ManagerIsMainManager", gxTpr_Managerismainmanager, false);
+
+
+			AddObjectProperty("ManagerIsActive", gxTpr_Managerisactive, false);
+
+
+			AddObjectProperty("ReceptionistId", gxTpr_Receptionistid, false);
+
+
+			AddObjectProperty("ReceptionistIsActive", gxTpr_Receptionistisactive, false);
+
+
+			AddObjectProperty("ResidentId", gxTpr_Residentid, false);
+
+			if (gxTv_SdtWWPContext_Filtereddashboarditems != null)
+			{
+				AddObjectProperty("FilteredDashboardItems", gxTv_SdtWWPContext_Filtereddashboarditems, false);
+			}
+
+			AddObjectProperty("FooterText", gxTpr_Footertext, false);
+
+
+			AddObjectProperty("IsContextSet", gxTpr_Iscontextset, false);
 
 			return;
 		}
@@ -78,32 +188,160 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		#region Properties
 
-		[SoapElement(ElementName="UserId")]
-		[XmlElement(ElementName="UserId")]
-		public string gxTpr_Userid
+		[SoapElement(ElementName="GAMUserGUID")]
+		[XmlElement(ElementName="GAMUserGUID")]
+		public string gxTpr_Gamuserguid
 		{
 			get {
-				return gxTv_SdtWWPContext_Userid; 
+				return gxTv_SdtWWPContext_Gamuserguid; 
 			}
 			set {
-				gxTv_SdtWWPContext_Userid = value;
-				SetDirty("Userid");
+				gxTv_SdtWWPContext_Gamuserguid = value;
+				SetDirty("Gamuserguid");
 			}
 		}
 
 
 
 
-		[SoapElement(ElementName="UserName")]
-		[XmlElement(ElementName="UserName")]
-		public string gxTpr_Username
+		[SoapElement(ElementName="GAMUserName")]
+		[XmlElement(ElementName="GAMUserName")]
+		public string gxTpr_Gamusername
 		{
 			get {
-				return gxTv_SdtWWPContext_Username; 
+				return gxTv_SdtWWPContext_Gamusername; 
 			}
 			set {
-				gxTv_SdtWWPContext_Username = value;
-				SetDirty("Username");
+				gxTv_SdtWWPContext_Gamusername = value;
+				SetDirty("Gamusername");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="GAMUserFirstName")]
+		[XmlElement(ElementName="GAMUserFirstName")]
+		public string gxTpr_Gamuserfirstname
+		{
+			get {
+				return gxTv_SdtWWPContext_Gamuserfirstname; 
+			}
+			set {
+				gxTv_SdtWWPContext_Gamuserfirstname = value;
+				SetDirty("Gamuserfirstname");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="GAMUserLastName")]
+		[XmlElement(ElementName="GAMUserLastName")]
+		public string gxTpr_Gamuserlastname
+		{
+			get {
+				return gxTv_SdtWWPContext_Gamuserlastname; 
+			}
+			set {
+				gxTv_SdtWWPContext_Gamuserlastname = value;
+				SetDirty("Gamuserlastname");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="GAMUserEmail")]
+		[XmlElement(ElementName="GAMUserEmail")]
+		public string gxTpr_Gamuseremail
+		{
+			get {
+				return gxTv_SdtWWPContext_Gamuseremail; 
+			}
+			set {
+				gxTv_SdtWWPContext_Gamuseremail = value;
+				SetDirty("Gamuseremail");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="isComfortaAdmin")]
+		[XmlElement(ElementName="isComfortaAdmin")]
+		public bool gxTpr_Iscomfortaadmin
+		{
+			get {
+				return gxTv_SdtWWPContext_Iscomfortaadmin; 
+			}
+			set {
+				gxTv_SdtWWPContext_Iscomfortaadmin = value;
+				SetDirty("Iscomfortaadmin");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="isOrganisationManager")]
+		[XmlElement(ElementName="isOrganisationManager")]
+		public bool gxTpr_Isorganisationmanager
+		{
+			get {
+				return gxTv_SdtWWPContext_Isorganisationmanager; 
+			}
+			set {
+				gxTv_SdtWWPContext_Isorganisationmanager = value;
+				SetDirty("Isorganisationmanager");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="isReceptionist")]
+		[XmlElement(ElementName="isReceptionist")]
+		public bool gxTpr_Isreceptionist
+		{
+			get {
+				return gxTv_SdtWWPContext_Isreceptionist; 
+			}
+			set {
+				gxTv_SdtWWPContext_Isreceptionist = value;
+				SetDirty("Isreceptionist");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="isResident")]
+		[XmlElement(ElementName="isResident")]
+		public bool gxTpr_Isresident
+		{
+			get {
+				return gxTv_SdtWWPContext_Isresident; 
+			}
+			set {
+				gxTv_SdtWWPContext_Isresident = value;
+				SetDirty("Isresident");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="isRootAdmin")]
+		[XmlElement(ElementName="isRootAdmin")]
+		public bool gxTpr_Isrootadmin
+		{
+			get {
+				return gxTv_SdtWWPContext_Isrootadmin; 
+			}
+			set {
+				gxTv_SdtWWPContext_Isrootadmin = value;
+				SetDirty("Isrootadmin");
 			}
 		}
 
@@ -126,6 +364,38 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 
 
+		[SoapElement(ElementName="OrganisationName")]
+		[XmlElement(ElementName="OrganisationName")]
+		public string gxTpr_Organisationname
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationname; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationname = value;
+				SetDirty("Organisationname");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationTypeId")]
+		[XmlElement(ElementName="OrganisationTypeId")]
+		public Guid gxTpr_Organisationtypeid
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationtypeid; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationtypeid = value;
+				SetDirty("Organisationtypeid");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="LocationId")]
 		[XmlElement(ElementName="LocationId")]
 		public Guid gxTpr_Locationid
@@ -136,6 +406,341 @@ namespace GeneXus.Programs.wwpbaseobjects
 			set {
 				gxTv_SdtWWPContext_Locationid = value;
 				SetDirty("Locationid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationName")]
+		[XmlElement(ElementName="LocationName")]
+		public string gxTpr_Locationname
+		{
+			get {
+				return gxTv_SdtWWPContext_Locationname; 
+			}
+			set {
+				gxTv_SdtWWPContext_Locationname = value;
+				SetDirty("Locationname");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationSettingid")]
+		[XmlElement(ElementName="OrganisationSettingid")]
+		public Guid gxTpr_Organisationsettingid
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettingid; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettingid = value;
+				SetDirty("Organisationsettingid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationSettingLogo")]
+		[XmlElement(ElementName="OrganisationSettingLogo")]
+		[GxUpload()]
+
+		public string gxTpr_Organisationsettinglogo
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettinglogo; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettinglogo = value;
+				SetDirty("Organisationsettinglogo");
+			}
+		}
+
+
+		[SoapElement(ElementName="OrganisationSettingLogo_GXI" )]
+		[XmlElement(ElementName="OrganisationSettingLogo_GXI" )]
+		public string gxTpr_Organisationsettinglogo_gxi
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettinglogo_gxi ;
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettinglogo_gxi = value;
+				SetDirty("Organisationsettinglogo_gxi");
+			}
+		}
+
+		[SoapElement(ElementName="OrganisationSettingFavicon")]
+		[XmlElement(ElementName="OrganisationSettingFavicon")]
+		[GxUpload()]
+
+		public string gxTpr_Organisationsettingfavicon
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettingfavicon; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettingfavicon = value;
+				SetDirty("Organisationsettingfavicon");
+			}
+		}
+
+
+		[SoapElement(ElementName="OrganisationSettingFavicon_GXI" )]
+		[XmlElement(ElementName="OrganisationSettingFavicon_GXI" )]
+		public string gxTpr_Organisationsettingfavicon_gxi
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettingfavicon_gxi ;
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettingfavicon_gxi = value;
+				SetDirty("Organisationsettingfavicon_gxi");
+			}
+		}
+
+		[SoapElement(ElementName="OrganisationSettingBaseColor")]
+		[XmlElement(ElementName="OrganisationSettingBaseColor")]
+		public string gxTpr_Organisationsettingbasecolor
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettingbasecolor; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettingbasecolor = value;
+				SetDirty("Organisationsettingbasecolor");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationSettingFontSize")]
+		[XmlElement(ElementName="OrganisationSettingFontSize")]
+		public string gxTpr_Organisationsettingfontsize
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettingfontsize; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettingfontsize = value;
+				SetDirty("Organisationsettingfontsize");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationSettingLanguage")]
+		[XmlElement(ElementName="OrganisationSettingLanguage")]
+		public string gxTpr_Organisationsettinglanguage
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettinglanguage; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettinglanguage = value;
+				SetDirty("Organisationsettinglanguage");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationSettingTrnMode")]
+		[XmlElement(ElementName="OrganisationSettingTrnMode")]
+		public string gxTpr_Organisationsettingtrnmode
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationsettingtrnmode; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationsettingtrnmode = value;
+				SetDirty("Organisationsettingtrnmode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerId")]
+		[XmlElement(ElementName="ManagerId")]
+		public Guid gxTpr_Managerid
+		{
+			get {
+				return gxTv_SdtWWPContext_Managerid; 
+			}
+			set {
+				gxTv_SdtWWPContext_Managerid = value;
+				SetDirty("Managerid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerIsMainManager")]
+		[XmlElement(ElementName="ManagerIsMainManager")]
+		public bool gxTpr_Managerismainmanager
+		{
+			get {
+				return gxTv_SdtWWPContext_Managerismainmanager; 
+			}
+			set {
+				gxTv_SdtWWPContext_Managerismainmanager = value;
+				SetDirty("Managerismainmanager");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerIsActive")]
+		[XmlElement(ElementName="ManagerIsActive")]
+		public bool gxTpr_Managerisactive
+		{
+			get {
+				return gxTv_SdtWWPContext_Managerisactive; 
+			}
+			set {
+				gxTv_SdtWWPContext_Managerisactive = value;
+				SetDirty("Managerisactive");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ReceptionistId")]
+		[XmlElement(ElementName="ReceptionistId")]
+		public Guid gxTpr_Receptionistid
+		{
+			get {
+				return gxTv_SdtWWPContext_Receptionistid; 
+			}
+			set {
+				gxTv_SdtWWPContext_Receptionistid = value;
+				SetDirty("Receptionistid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ReceptionistIsActive")]
+		[XmlElement(ElementName="ReceptionistIsActive")]
+		public bool gxTpr_Receptionistisactive
+		{
+			get {
+				return gxTv_SdtWWPContext_Receptionistisactive; 
+			}
+			set {
+				gxTv_SdtWWPContext_Receptionistisactive = value;
+				SetDirty("Receptionistisactive");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ResidentId")]
+		[XmlElement(ElementName="ResidentId")]
+		public Guid gxTpr_Residentid
+		{
+			get {
+				return gxTv_SdtWWPContext_Residentid; 
+			}
+			set {
+				gxTv_SdtWWPContext_Residentid = value;
+				SetDirty("Residentid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="FilteredDashboardItems" )]
+		[XmlArray(ElementName="FilteredDashboardItems"  )]
+		[XmlArrayItemAttribute(ElementName="HomeModulesSDTItem" , IsNullable=false )]
+		public GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> gxTpr_Filtereddashboarditems_GXBaseCollection
+		{
+			get {
+				if ( gxTv_SdtWWPContext_Filtereddashboarditems == null )
+				{
+					gxTv_SdtWWPContext_Filtereddashboarditems = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDT", "");
+				}
+				return gxTv_SdtWWPContext_Filtereddashboarditems;
+			}
+			set {
+				gxTv_SdtWWPContext_Filtereddashboarditems_N = false;
+				gxTv_SdtWWPContext_Filtereddashboarditems = value;
+			}
+		}
+
+		[XmlIgnore]
+		public GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> gxTpr_Filtereddashboarditems
+		{
+			get {
+				if ( gxTv_SdtWWPContext_Filtereddashboarditems == null )
+				{
+					gxTv_SdtWWPContext_Filtereddashboarditems = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDT", "");
+				}
+				gxTv_SdtWWPContext_Filtereddashboarditems_N = false;
+				return gxTv_SdtWWPContext_Filtereddashboarditems ;
+			}
+			set {
+				gxTv_SdtWWPContext_Filtereddashboarditems_N = false;
+				gxTv_SdtWWPContext_Filtereddashboarditems = value;
+				SetDirty("Filtereddashboarditems");
+			}
+		}
+
+		public void gxTv_SdtWWPContext_Filtereddashboarditems_SetNull()
+		{
+			gxTv_SdtWWPContext_Filtereddashboarditems_N = true;
+			gxTv_SdtWWPContext_Filtereddashboarditems = null;
+		}
+
+		public bool gxTv_SdtWWPContext_Filtereddashboarditems_IsNull()
+		{
+			return gxTv_SdtWWPContext_Filtereddashboarditems == null;
+		}
+		public bool ShouldSerializegxTpr_Filtereddashboarditems_GXBaseCollection_Json()
+		{
+			return gxTv_SdtWWPContext_Filtereddashboarditems != null && gxTv_SdtWWPContext_Filtereddashboarditems.Count > 0;
+
+		}
+
+
+		[SoapElement(ElementName="FooterText")]
+		[XmlElement(ElementName="FooterText")]
+		public string gxTpr_Footertext
+		{
+			get {
+				return gxTv_SdtWWPContext_Footertext; 
+			}
+			set {
+				gxTv_SdtWWPContext_Footertext = value;
+				SetDirty("Footertext");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="IsContextSet")]
+		[XmlElement(ElementName="IsContextSet")]
+		public bool gxTpr_Iscontextset
+		{
+			get {
+				return gxTv_SdtWWPContext_Iscontextset; 
+			}
+			set {
+				gxTv_SdtWWPContext_Iscontextset = value;
+				SetDirty("Iscontextset");
 			}
 		}
 
@@ -162,10 +767,39 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		public void initialize( )
 		{
-			gxTv_SdtWWPContext_Userid = "";
-			gxTv_SdtWWPContext_Username = "";
+			gxTv_SdtWWPContext_Gamuserguid = "";
+			gxTv_SdtWWPContext_Gamusername = "";
+			gxTv_SdtWWPContext_Gamuserfirstname = "";
+			gxTv_SdtWWPContext_Gamuserlastname = "";
+			gxTv_SdtWWPContext_Gamuseremail = "";
+			gxTv_SdtWWPContext_Iscomfortaadmin = false;
+			gxTv_SdtWWPContext_Isorganisationmanager = false;
+			gxTv_SdtWWPContext_Isreceptionist = false;
+			gxTv_SdtWWPContext_Isresident = false;
+			gxTv_SdtWWPContext_Isrootadmin = false;
+
+			gxTv_SdtWWPContext_Organisationname = "";
 
 
+			gxTv_SdtWWPContext_Locationname = "";
+
+			gxTv_SdtWWPContext_Organisationsettinglogo = "";gxTv_SdtWWPContext_Organisationsettinglogo_gxi = "";
+			gxTv_SdtWWPContext_Organisationsettingfavicon = "";gxTv_SdtWWPContext_Organisationsettingfavicon_gxi = "";
+			gxTv_SdtWWPContext_Organisationsettingbasecolor = "";
+			gxTv_SdtWWPContext_Organisationsettingfontsize = "";
+			gxTv_SdtWWPContext_Organisationsettinglanguage = "";
+			gxTv_SdtWWPContext_Organisationsettingtrnmode = "";
+
+			gxTv_SdtWWPContext_Managerismainmanager = false;
+
+
+
+
+
+			gxTv_SdtWWPContext_Filtereddashboarditems_N = true;
+
+			gxTv_SdtWWPContext_Footertext = "";
+			gxTv_SdtWWPContext_Iscontextset = false;
 			return  ;
 		}
 
@@ -175,16 +809,96 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		#region Declaration
 
-		protected string gxTv_SdtWWPContext_Userid;
+		protected string gxTv_SdtWWPContext_Gamuserguid;
 		 
 
-		protected string gxTv_SdtWWPContext_Username;
+		protected string gxTv_SdtWWPContext_Gamusername;
+		 
+
+		protected string gxTv_SdtWWPContext_Gamuserfirstname;
+		 
+
+		protected string gxTv_SdtWWPContext_Gamuserlastname;
+		 
+
+		protected string gxTv_SdtWWPContext_Gamuseremail;
+		 
+
+		protected bool gxTv_SdtWWPContext_Iscomfortaadmin;
+		 
+
+		protected bool gxTv_SdtWWPContext_Isorganisationmanager;
+		 
+
+		protected bool gxTv_SdtWWPContext_Isreceptionist;
+		 
+
+		protected bool gxTv_SdtWWPContext_Isresident;
+		 
+
+		protected bool gxTv_SdtWWPContext_Isrootadmin;
 		 
 
 		protected Guid gxTv_SdtWWPContext_Organisationid;
 		 
 
+		protected string gxTv_SdtWWPContext_Organisationname;
+		 
+
+		protected Guid gxTv_SdtWWPContext_Organisationtypeid;
+		 
+
 		protected Guid gxTv_SdtWWPContext_Locationid;
+		 
+
+		protected string gxTv_SdtWWPContext_Locationname;
+		 
+
+		protected Guid gxTv_SdtWWPContext_Organisationsettingid;
+		 
+		protected string gxTv_SdtWWPContext_Organisationsettinglogo_gxi;
+		protected string gxTv_SdtWWPContext_Organisationsettinglogo;
+		 
+		protected string gxTv_SdtWWPContext_Organisationsettingfavicon_gxi;
+		protected string gxTv_SdtWWPContext_Organisationsettingfavicon;
+		 
+
+		protected string gxTv_SdtWWPContext_Organisationsettingbasecolor;
+		 
+
+		protected string gxTv_SdtWWPContext_Organisationsettingfontsize;
+		 
+
+		protected string gxTv_SdtWWPContext_Organisationsettinglanguage;
+		 
+
+		protected string gxTv_SdtWWPContext_Organisationsettingtrnmode;
+		 
+
+		protected Guid gxTv_SdtWWPContext_Managerid;
+		 
+
+		protected bool gxTv_SdtWWPContext_Managerismainmanager;
+		 
+
+		protected bool gxTv_SdtWWPContext_Managerisactive;
+		 
+
+		protected Guid gxTv_SdtWWPContext_Receptionistid;
+		 
+
+		protected bool gxTv_SdtWWPContext_Receptionistisactive;
+		 
+
+		protected Guid gxTv_SdtWWPContext_Residentid;
+		 
+		protected bool gxTv_SdtWWPContext_Filtereddashboarditems_N;
+		protected GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> gxTv_SdtWWPContext_Filtereddashboarditems = null;  
+
+		protected string gxTv_SdtWWPContext_Footertext;
+		 
+
+		protected bool gxTv_SdtWWPContext_Iscontextset;
 		 
 
 
@@ -204,31 +918,127 @@ namespace GeneXus.Programs.wwpbaseobjects
 		}
 
 		#region Rest Properties
-		[DataMember(Name="UserId", Order=0)]
-		public  string gxTpr_Userid
+		[DataMember(Name="GAMUserGUID", Order=0)]
+		public  string gxTpr_Gamuserguid
 		{
 			get { 
-				return sdt.gxTpr_Userid;
+				return StringUtil.RTrim( sdt.gxTpr_Gamuserguid);
 
 			}
 			set { 
-				 sdt.gxTpr_Userid = value;
+				 sdt.gxTpr_Gamuserguid = value;
 			}
 		}
 
-		[DataMember(Name="UserName", Order=1)]
-		public  string gxTpr_Username
+		[DataMember(Name="GAMUserName", Order=1)]
+		public  string gxTpr_Gamusername
 		{
 			get { 
-				return sdt.gxTpr_Username;
+				return sdt.gxTpr_Gamusername;
 
 			}
 			set { 
-				 sdt.gxTpr_Username = value;
+				 sdt.gxTpr_Gamusername = value;
 			}
 		}
 
-		[DataMember(Name="OrganisationId", Order=2)]
+		[DataMember(Name="GAMUserFirstName", Order=2)]
+		public  string gxTpr_Gamuserfirstname
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Gamuserfirstname);
+
+			}
+			set { 
+				 sdt.gxTpr_Gamuserfirstname = value;
+			}
+		}
+
+		[DataMember(Name="GAMUserLastName", Order=3)]
+		public  string gxTpr_Gamuserlastname
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Gamuserlastname);
+
+			}
+			set { 
+				 sdt.gxTpr_Gamuserlastname = value;
+			}
+		}
+
+		[DataMember(Name="GAMUserEmail", Order=4)]
+		public  string gxTpr_Gamuseremail
+		{
+			get { 
+				return sdt.gxTpr_Gamuseremail;
+
+			}
+			set { 
+				 sdt.gxTpr_Gamuseremail = value;
+			}
+		}
+
+		[DataMember(Name="isComfortaAdmin", Order=5)]
+		public bool gxTpr_Iscomfortaadmin
+		{
+			get { 
+				return sdt.gxTpr_Iscomfortaadmin;
+
+			}
+			set { 
+				sdt.gxTpr_Iscomfortaadmin = value;
+			}
+		}
+
+		[DataMember(Name="isOrganisationManager", Order=6)]
+		public bool gxTpr_Isorganisationmanager
+		{
+			get { 
+				return sdt.gxTpr_Isorganisationmanager;
+
+			}
+			set { 
+				sdt.gxTpr_Isorganisationmanager = value;
+			}
+		}
+
+		[DataMember(Name="isReceptionist", Order=7)]
+		public bool gxTpr_Isreceptionist
+		{
+			get { 
+				return sdt.gxTpr_Isreceptionist;
+
+			}
+			set { 
+				sdt.gxTpr_Isreceptionist = value;
+			}
+		}
+
+		[DataMember(Name="isResident", Order=8)]
+		public bool gxTpr_Isresident
+		{
+			get { 
+				return sdt.gxTpr_Isresident;
+
+			}
+			set { 
+				sdt.gxTpr_Isresident = value;
+			}
+		}
+
+		[DataMember(Name="isRootAdmin", Order=9)]
+		public bool gxTpr_Isrootadmin
+		{
+			get { 
+				return sdt.gxTpr_Isrootadmin;
+
+			}
+			set { 
+				sdt.gxTpr_Isrootadmin = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationId", Order=10)]
 		public Guid gxTpr_Organisationid
 		{
 			get { 
@@ -240,7 +1050,31 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="LocationId", Order=3)]
+		[DataMember(Name="OrganisationName", Order=11)]
+		public  string gxTpr_Organisationname
+		{
+			get { 
+				return sdt.gxTpr_Organisationname;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationname = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationTypeId", Order=12)]
+		public Guid gxTpr_Organisationtypeid
+		{
+			get { 
+				return sdt.gxTpr_Organisationtypeid;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationtypeid = value;
+			}
+		}
+
+		[DataMember(Name="LocationId", Order=13)]
 		public Guid gxTpr_Locationid
 		{
 			get { 
@@ -249,6 +1083,215 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 			set { 
 				sdt.gxTpr_Locationid = value;
+			}
+		}
+
+		[DataMember(Name="LocationName", Order=14)]
+		public  string gxTpr_Locationname
+		{
+			get { 
+				return sdt.gxTpr_Locationname;
+
+			}
+			set { 
+				 sdt.gxTpr_Locationname = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationSettingid", Order=15)]
+		public Guid gxTpr_Organisationsettingid
+		{
+			get { 
+				return sdt.gxTpr_Organisationsettingid;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationsettingid = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationSettingLogo", Order=16)]
+		[GxUpload()]
+		public  string gxTpr_Organisationsettinglogo
+		{
+			get { 
+				return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Organisationsettinglogo)) ? PathUtil.RelativePath( sdt.gxTpr_Organisationsettinglogo) : StringUtil.RTrim( sdt.gxTpr_Organisationsettinglogo_gxi));
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationsettinglogo = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationSettingFavicon", Order=17)]
+		[GxUpload()]
+		public  string gxTpr_Organisationsettingfavicon
+		{
+			get { 
+				return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Organisationsettingfavicon)) ? PathUtil.RelativePath( sdt.gxTpr_Organisationsettingfavicon) : StringUtil.RTrim( sdt.gxTpr_Organisationsettingfavicon_gxi));
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationsettingfavicon = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationSettingBaseColor", Order=18)]
+		public  string gxTpr_Organisationsettingbasecolor
+		{
+			get { 
+				return sdt.gxTpr_Organisationsettingbasecolor;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationsettingbasecolor = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationSettingFontSize", Order=19)]
+		public  string gxTpr_Organisationsettingfontsize
+		{
+			get { 
+				return sdt.gxTpr_Organisationsettingfontsize;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationsettingfontsize = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationSettingLanguage", Order=20)]
+		public  string gxTpr_Organisationsettinglanguage
+		{
+			get { 
+				return sdt.gxTpr_Organisationsettinglanguage;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationsettinglanguage = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationSettingTrnMode", Order=21)]
+		public  string gxTpr_Organisationsettingtrnmode
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Organisationsettingtrnmode);
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationsettingtrnmode = value;
+			}
+		}
+
+		[DataMember(Name="ManagerId", Order=22)]
+		public Guid gxTpr_Managerid
+		{
+			get { 
+				return sdt.gxTpr_Managerid;
+
+			}
+			set { 
+				sdt.gxTpr_Managerid = value;
+			}
+		}
+
+		[DataMember(Name="ManagerIsMainManager", Order=23)]
+		public bool gxTpr_Managerismainmanager
+		{
+			get { 
+				return sdt.gxTpr_Managerismainmanager;
+
+			}
+			set { 
+				sdt.gxTpr_Managerismainmanager = value;
+			}
+		}
+
+		[DataMember(Name="ManagerIsActive", Order=24)]
+		public bool gxTpr_Managerisactive
+		{
+			get { 
+				return sdt.gxTpr_Managerisactive;
+
+			}
+			set { 
+				sdt.gxTpr_Managerisactive = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistId", Order=25)]
+		public Guid gxTpr_Receptionistid
+		{
+			get { 
+				return sdt.gxTpr_Receptionistid;
+
+			}
+			set { 
+				sdt.gxTpr_Receptionistid = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistIsActive", Order=26)]
+		public bool gxTpr_Receptionistisactive
+		{
+			get { 
+				return sdt.gxTpr_Receptionistisactive;
+
+			}
+			set { 
+				sdt.gxTpr_Receptionistisactive = value;
+			}
+		}
+
+		[DataMember(Name="ResidentId", Order=27)]
+		public Guid gxTpr_Residentid
+		{
+			get { 
+				return sdt.gxTpr_Residentid;
+
+			}
+			set { 
+				sdt.gxTpr_Residentid = value;
+			}
+		}
+
+		[DataMember(Name="FilteredDashboardItems", Order=28, EmitDefaultValue=false)]
+		public  GxGenericCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem_RESTInterface> gxTpr_Filtereddashboarditems
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Filtereddashboarditems_GXBaseCollection_Json())
+					return new GxGenericCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem_RESTInterface>(sdt.gxTpr_Filtereddashboarditems);
+				else
+					return null;
+
+			}
+			set { 
+				value.LoadCollection(sdt.gxTpr_Filtereddashboarditems);
+			}
+		}
+
+		[DataMember(Name="FooterText", Order=29)]
+		public  string gxTpr_Footertext
+		{
+			get { 
+				return sdt.gxTpr_Footertext;
+
+			}
+			set { 
+				 sdt.gxTpr_Footertext = value;
+			}
+		}
+
+		[DataMember(Name="IsContextSet", Order=30)]
+		public bool gxTpr_Iscontextset
+		{
+			get { 
+				return sdt.gxTpr_Iscontextset;
+
+			}
+			set { 
+				sdt.gxTpr_Iscontextset = value;
 			}
 		}
 

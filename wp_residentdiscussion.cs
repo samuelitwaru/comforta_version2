@@ -753,9 +753,10 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         AV8LocationId = StringUtil.StrToGuid( context.GetMessage( "45f091ad-dc47-4686-8c55-1a76245b87ec", ""));
+         AV12WWPEntityName = context.GetMessage( "Discussion", "");
+         AV8LocationId = StringUtil.StrToGuid( context.GetMessage( "0e0e3981-c5b9-40df-97e6-9bc3805f37fc", ""));
          AssignAttri("", false, "AV8LocationId", AV8LocationId.ToString());
-         AV11WebSession.Set(context.GetMessage( "DiscussionResidentId", ""), context.GetMessage( "11a575df-c74d-4d0e-99e4-107218dd52a9", ""));
+         AV11WebSession.Set(context.GetMessage( "DiscussionResidentId", ""), context.GetMessage( "de9af801-006f-48f0-988c-34e0925315cb", ""));
          /* Object Property */
          if ( true )
          {
@@ -777,8 +778,8 @@ namespace GeneXus.Programs {
             }
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
             GXEncryptionTmp = "wp_residentdiscussion.aspx"+UrlEncode(AV8LocationId.ToString());
-            WebComp_Discussioncomponent.componentprepare(new Object[] {(string)"W0015",(string)"",context.GetMessage( "WP_Discuss", ""),StringUtil.Trim( AV8LocationId.ToString()),context.GetMessage( "Discussion", ""),formatLink("wp_residentdiscussion.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
-            WebComp_Discussioncomponent.componentbind(new Object[] {(string)""+""+"",(string)""+""+""+""+"",(string)""+""+"",(string)""+"",(string)""+""});
+            WebComp_Discussioncomponent.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV12WWPEntityName,StringUtil.Trim( AV8LocationId.ToString()),context.GetMessage( "Discussion", ""),formatLink("wp_residentdiscussion.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
+            WebComp_Discussioncomponent.componentbind(new Object[] {(string)"",(string)""+""+""+""+"",(string)""+""+"",(string)""+"",(string)""+""});
          }
       }
 
@@ -842,7 +843,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411422471323", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411143393238", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -858,7 +859,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdiscussion.js", "?202411422471323", false, true);
+         context.AddJavascriptSource("wp_residentdiscussion.js", "?202411143393238", false, true);
          /* End function include_jscripts */
       }
 
@@ -938,6 +939,7 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
+         AV12WWPEntityName = "";
          AV11WebSession = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -986,6 +988,7 @@ namespace GeneXus.Programs {
       private bool bDynCreated_Discussioncomponent ;
       private string AV9ResidentId ;
       private string wcpOAV9ResidentId ;
+      private string AV12WWPEntityName ;
       private Guid AV8LocationId ;
       private Guid wcpOAV8LocationId ;
       private GXWebComponent WebComp_Discussioncomponent ;

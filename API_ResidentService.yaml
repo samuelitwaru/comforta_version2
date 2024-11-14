@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241107074053"
+  version: "20241114040210"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -12,8 +12,6 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.LoginWithQrCode"
       summary: "Login Resident Account (QR Code)"
-      security: 
-        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -38,8 +36,6 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetResidentInformation"
       summary: "Get Resident Information"
-      security: 
-        - oAuthGXGAM: []
       parameters:
         - name: "Userid"
           in: "query"
@@ -65,8 +61,6 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetOrganisationInformation"
       summary: "Get Organisation Information"
-      security: 
-        - oAuthGXGAM: []
       parameters:
         - name: "Organisationid"
           in: "query"
@@ -92,8 +86,6 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetLocationInformation"
       summary: "Get Location Information"
-      security: 
-        - oAuthGXGAM: []
       parameters:
         - name: "Locationid"
           in: "query"
@@ -119,8 +111,6 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.RegisterDevice"
       summary: "Register Resident Device Information"
-      security: 
-        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -146,8 +136,6 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.SendNotification"
       summary: "Send Push Notification"
-      security: 
-        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -167,221 +155,12 @@ paths:
         404:
           description: "Not found"
 
-  /toolbox/pages:
-    get:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.GetPagesInformation"
-      summary: "Get Pages Information"
-      security: 
-        - oAuthGXGAM: []
-      parameters:
-        - name: "Trn_Pageid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/SDT_Page"  
-
-        404:
-          description: "Not found"
-
-  /media/upload:
-    post:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.UploadMedia"
-      summary: "UploadMedia"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UploadMediaInput"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_Media"  
-
-        404:
-          description: "Not found"
-
-  /toolbox/pages/list2:
-    get:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.GetPages"
-      summary: "Get Pages"
-      security: 
-        - oAuthGXGAM: []
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/SDT_Page"  
-
-        404:
-          description: "Not found"
-
-  /toolbox/pages/list:
-    get:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.ListPages"
-      summary: "Get Pages"
-      security: 
-        - oAuthGXGAM: []
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/SDT_PageStructure"  
-
-        404:
-          description: "Not found"
-
-  /toolbox/create-page:
-    post:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.CreatePage"
-      summary: "Create Page"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreatePageInput"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                type: "string"
-
-
-        404:
-          description: "Not found"
-
-  /toolbox/save-page:
-    post:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.SavePage"
-      summary: "Save Page"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SavePageInput"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                type: "string"
-
-
-        404:
-          description: "Not found"
-
-  /toolbox/update-page:
-    post:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.UpdatePage"
-      summary: "Update Page"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdatePageInput"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                type: "string"
-
-
-        404:
-          description: "Not found"
-
-  /toolbox/add-page-children:
-    post:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.AddPageCildren"
-      summary: "Add Page CHildren"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AddPageCildrenInput"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                type: "string"
-
-
-        404:
-          description: "Not found"
-
   /location/agenda:
     post:
       tags:
         - API_ResidentService  
       operationId: "API_ResidentService.AgendaLocation"
       summary: "Location Agenda"
-      security: 
-        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -408,8 +187,6 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.SendDynamicForm"
       summary: "Send Test Dynamic form"
-      security: 
-        - oAuthGXGAM: []
       
       responses:
         200:
@@ -423,17 +200,44 @@ paths:
         404:
           description: "Not found"
 
-components:
-  securitySchemes:
-    oAuthGXGAM:
-      type: oauth2
-      description: GAM OAuth 2
-      flows:
-        password:          
-          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
-          scopes: 
-            fullcontrol: Full access
+  /productservice:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ProductSericeAPI"
+      summary: "ProductService API"
+      parameters:
+        - name: "Productserviceid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_ProductService"  
 
+        404:
+          description: "Not found"
+
+components:
   schemas:
     LoginWithQrCodeInput:  
       properties:
@@ -466,72 +270,12 @@ components:
         message:
           type: "string"
 
-
-    UploadMediaInput:  
-      properties:
-        MediaId:
-          type: "string"
-          format: "uuid"
-        MediaName:
-          type: "string"
-        MediaImageData:
-          type: "string"
-        MediaSize:
-          type: "integer"
-          format: "int64"
-        MediaType:
-          type: "string"
-
-
-
-    CreatePageInput:  
-      properties:
-        PageName:
-          type: "string"
-
-    SavePageInput:  
-      properties:
-        PageId:
-          type: "string"
-          format: "uuid"
-        PageJsonContent:
-          type: "string"
-        PageGJSHtml:
-          type: "string"
-        PageGJSJson:
-          type: "string"
-        SDT_Page:
-          description: "SDT_Page"
-          $ref: "#/components/schemas/SDT_Page"
-
-    UpdatePageInput:  
-      properties:
-        PageId:
-          type: "string"
-          format: "uuid"
-        PageJsonContent:
-          type: "string"
-        PageGJSHtml:
-          type: "string"
-        PageGJSJson:
-          type: "string"
-        PageIsPublished:
-          type: "boolean"
-
-    AddPageCildrenInput:  
-      properties:
-        ParentPageId:
-          type: "string"
-          format: "uuid"
-        ChildPageId:
-          type: "string"
-          format: "uuid"
-
     AgendaLocationInput:  
       properties:
         locationId:
           type: "string"
           format: "uuid"
+
 
   
     SDT_LoginResidentResponse:
@@ -666,6 +410,9 @@ components:
         OrganisationTypeName:
           description: "Organisation Type Name"
           type: "string"
+        OrganisationLogo:
+          description: "Organisation Logo"
+          type: "string"
 
 
 
@@ -709,89 +456,6 @@ components:
 
 
 
-    SDT_Page:
-      properties:
-        PageId:
-          description: "Page Id"
-          type: "string"
-          format: "uuid"
-        PageName:
-          description: "Page Name"
-          type: "string"
-        Theme:
-          description: "SDT_Theme"
-          $ref: "#/components/schemas/SDT_Theme"
-        PageIsPublished:
-          description: "Page Is Published"
-          type: "boolean"
-        PageGJSJson:
-          description: "Page GJSJson"
-          type: "string"
-        PageGJSHtml:
-          description: "Page GJSHtml"
-          type: "string"
-        PageJsonContent:
-          description: "Page Json Content"
-          type: "string"
-        PageChildren:
-          description: "SDT_Page Children"
-          type: array
-          items:
-            $ref: "#/components/schemas/SDT_PageChildren"
-        LocationId:
-          description: "Location Id"
-          type: "string"
-          format: "uuid"
-        Row:
-          description: "SDT_Row"
-          type: array
-          items:
-            $ref: "#/components/schemas/SDT_Row"
-
-
-
-    Trn_Media:
-      properties:
-        MediaId:
-          description: "Media Id"
-          type: "string"
-          format: "uuid"
-        MediaName:
-          description: "Media Name"
-          type: "string"
-        MediaImage:
-          description: "Media Image"
-          type: "string"
-        MediaSize:
-          description: "Media Size"
-          type: "integer"
-          format: "int64"
-        MediaType:
-          description: "Media Type"
-          type: "string"
-        MediaUrl:
-          description: "Media Url"
-          type: "string"
-
-
-
-    SDT_PageStructure:
-      properties:
-        Id:
-          description: "Id"
-          type: "string"
-          format: "uuid"
-        Name:
-          description: "Name"
-          type: "string"
-        Children:
-          description: "SDT_Page Children"
-          type: array
-          items:
-            $ref: "#/components/schemas/SDT_PageChildren"
-
-
-
     SDT_AgendaLocation:
       properties:
         AgendaCalendarId:
@@ -823,127 +487,151 @@ components:
 
 
 
-    SDT_Col:
+    SDT_ProductService:
       properties:
-        ColId:
-          description: "Col Id"
+        ProductServiceId:
+          description: "Product Service Id"
           type: "string"
           format: "uuid"
-        ColName:
-          description: "Col Name"
-          type: "string"
-        Tile:
-          description: "SDT_Tile"
-          $ref: "#/components/schemas/SDT_Tile"
-        Image:
-          description: "Image"
-          type: "string"
-        Text:
-          description: "Text"
-          type: "string"
-
-
-
-    SDT_PageChildren:
-      properties:
-        Id:
-          description: "Id"
+        LocationId:
+          description: "Location Id"
           type: "string"
           format: "uuid"
-        Name:
-          description: "Name"
-          type: "string"
-
-
-
-    SDT_Row:
-      properties:
-        RowId:
-          description: "Row Id"
+        OrganisationId:
+          description: "Organisation Id"
           type: "string"
           format: "uuid"
-        RowName:
-          description: "Row Name"
+        ProductServiceName:
+          description: "Product Service Name"
           type: "string"
-        Col:
-          description: "SDT_Col"
+        ProductServiceTileName:
+          description: "Product Service Tile Name"
+          type: "string"
+        ProductServiceDescription:
+          description: "Product Service Description"
+          type: "string"
+        ProductServiceClass:
+          description: "Product Service Class"
+          type: "string"
+        ProductServiceImage:
+          description: "Product Service Image"
+          type: "string"
+        ProductServiceGroup:
+          description: "Product Service Group"
+          type: "string"
+        SupplierGenId:
+          description: "Supplier Gen Id"
+          type: "string"
+          format: "uuid"
+        SupplierGenCompanyName:
+          description: "Company Name"
+          type: "string"
+        SupplierAgbId:
+          description: "Supplier Agb Id"
+          type: "string"
+          format: "uuid"
+        SupplierAgbName:
+          description: "Supplier Agb Name"
+          type: "string"
+        CallToActions:
+          description: "SDT_Call To Action"
           type: array
           items:
-            $ref: "#/components/schemas/SDT_Col"
+            $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
 
 
 
-    SDT_Theme:
+    SDT_CallToAction_SDT_CallToActionItem:
       properties:
-        Trn_ThemeId:
-          description: "Trn_Theme Id"
+        CallToActionId:
+          description: "Call To Action Id"
           type: "string"
           format: "uuid"
-        Trn_ThemeName:
-          description: "Trn_Theme Name"
+        OrganisationId:
+          description: "Organisation Id"
           type: "string"
-        Trn_ThemeFontFamily:
-          description: "Trn_Theme Font Family"
+          format: "uuid"
+        LocationId:
+          description: "Location Id"
           type: "string"
-        Trn_ThemeFontSize:
-          description: "Trn_Theme Font Size"
+          format: "uuid"
+        ProductServiceId:
+          description: "Product Service Id"
+          type: "string"
+          format: "uuid"
+        CallToActionName:
+          description: "Call To Action Name"
+          type: "string"
+        CallToActionType:
+          description: "Call To Action Type"
+          type: "string"
+        CallToActionPhone:
+          description: "Call To Action Phone"
+          type: "string"
+        CallToActionPhoneCode:
+          description: "Call To Action Phone Code"
+          type: "string"
+        CallToActionPhoneNumber:
+          description: "Call To Action Phone Number"
+          type: "string"
+        CallToActionUrl:
+          description: "Call To Action Url"
+          type: "string"
+        CallToActionEmail:
+          description: "Call To Action Email"
+          type: "string"
+        LocationDynamicFormId:
+          description: "Location Dynamic Form Id"
+          type: "string"
+          format: "uuid"
+        WWPFormId:
+          description: "WWPForm Id"
           type: "integer"
           format: "int32"
-
-
-
-    SDT_Tile:
-      properties:
-        TileId:
-          description: "Tile Id"
-          type: "string"
-          format: "uuid"
-        TileName:
-          description: "Tile Name"
-          type: "string"
-        TileText:
-          description: "Tile Text"
-          type: "string"
-        TileTextColor:
-          description: "Tile Text Color"
-          type: "string"
-        TileTextAlignment:
-          description: "Tile Text Alignment"
-          type: "string"
-        TileIcon:
-          description: "Tile Icon"
-          type: "string"
-        TileIconColor:
-          description: "Tile Icon Color"
-          type: "string"
-        TileIconAlignment:
-          description: "Tile Icon Alignment"
-          type: "string"
-        TileBGColor:
-          description: "Tile BGColor"
-          type: "string"
-        TileBGImageUrl:
-          description: "Tile BGImage Url"
-          type: "string"
-        TileBGImageOpacity:
-          description: "Tile BGImage Opacity"
+        WWPFormVersionNumber:
+          description: "WWPForm Version Number"
           type: "integer"
           format: "int32"
-        TileAction:
-          description: "SDT_Tile Action"
-          $ref: "#/components/schemas/SDT_TileAction"
-
-
-
-    SDT_TileAction:
-      properties:
-        ObjectType:
-          description: "Object Type"
+        WWPFormReferenceName:
+          description: "WWPForm Reference Name"
           type: "string"
-        ObjectId:
-          description: "Object Id"
+        WWPFormTitle:
+          description: "WWPForm Title"
           type: "string"
-          format: "uuid"
+        WWPFormDate:
+          description: "WWPForm Date"
+          type: "string"
+          format: "date-time"
+        WWPFormIsWizard:
+          description: "WWPForm Is Wizard"
+          type: "boolean"
+        WWPFormResume:
+          description: "WWPForm Resume"
+          type: "integer"
+          format: "int32"
+        WWPFormResumeMessage:
+          description: "WWPForm Resume Message"
+          type: "string"
+        WWPFormValidations:
+          description: "WWPForm Validations"
+          type: "string"
+        WWPFormInstantiated:
+          description: "WWPForm Instantiated"
+          type: "boolean"
+        WWPFormLatestVersionNumber:
+          description: "WWPForm Latest Version Number"
+          type: "integer"
+          format: "int32"
+        WWPFormType:
+          description: "WWPForm Type"
+          type: "integer"
+          format: "int32"
+        WWPFormSectionRefElements:
+          description: "WWPForm Section Ref Elements"
+          type: "string"
+        WWPFormIsForDynamicValidations:
+          description: "WWPForm Is For Dynamic Validations"
+          type: "boolean"
 
 
 

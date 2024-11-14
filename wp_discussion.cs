@@ -715,6 +715,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         AV9WWPEntityName = context.GetMessage( "Discussion", "");
          GXt_guid1 = AV8LocationId;
          new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
          AV8LocationId = GXt_guid1;
@@ -733,8 +734,8 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Component1_Component) != 0 )
          {
             WebComp_Component1.setjustcreated();
-            WebComp_Component1.componentprepare(new Object[] {(string)"W0015",(string)"",context.GetMessage( "WP_Discuss", ""),StringUtil.Trim( AV8LocationId.ToString()),context.GetMessage( "Discussion", ""),formatLink("wp_discussion.aspx") });
-            WebComp_Component1.componentbind(new Object[] {(string)""+""+"",(string)""+""+""+""+"",(string)""+""+"",(string)""+""+""});
+            WebComp_Component1.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV9WWPEntityName,StringUtil.Trim( AV8LocationId.ToString()),context.GetMessage( "Discussion", ""),formatLink("wp_discussion.aspx") });
+            WebComp_Component1.componentbind(new Object[] {(string)"",(string)""+""+""+""+"",(string)""+""+"",(string)""+""+""});
          }
       }
 
@@ -794,7 +795,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024114994468", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241114340325", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -810,7 +811,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_discussion.js", "?2024114994468", false, true);
+         context.AddJavascriptSource("wp_discussion.js", "?20241114340325", false, true);
          /* End function include_jscripts */
       }
 
@@ -886,6 +887,7 @@ namespace GeneXus.Programs {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV9WWPEntityName = "";
          AV8LocationId = Guid.Empty;
          GXt_guid1 = Guid.Empty;
          BackMsgLst = new msglist();
@@ -931,6 +933,7 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool bDynCreated_Component1 ;
+      private string AV9WWPEntityName ;
       private Guid AV8LocationId ;
       private Guid GXt_guid1 ;
       private GXWebComponent WebComp_Component1 ;

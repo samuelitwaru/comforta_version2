@@ -76,14 +76,6 @@
               </Property>
             </Properties>
           </Field>
-          <Field name="LocationId" description="Location Id">
-            <Properties>
-              <Property>
-                <Name>Type</Name>
-                <Value>GUID</Value>
-              </Property>
-            </Properties>
-          </Field>
           <Field name="PageChildren" description="Page Children">
             <Properties>
               <Property>
@@ -93,6 +85,30 @@
               <Property>
                 <Name>Length</Name>
                 <Value>2097152</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="ProductServiceId" description="Product Service Id">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>GUID</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="OrganisationId" description="Organisation Id">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>GUID</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="LocationId" description="Location Id">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>GUID</Value>
               </Property>
             </Properties>
           </Field>

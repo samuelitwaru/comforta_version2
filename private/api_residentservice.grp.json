@@ -65,86 +65,6 @@
 "Implementation":"Prc_SendNotification"
 },
 {
-"PathRegexp":"toolbox/pages",
-"Path":"toolbox/pages",
-"Name":"getpagesinformation",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_getpagesinformation",
-"Implementation":"Prc_PagesAPI",
-"Verb":"GET"
-},
-{
-"Verb":"POST",
-"PathRegexp":"media/upload",
-"Path":"media/upload",
-"Name":"uploadmedia",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_uploadmedia",
-"Implementation":"Prc_UploadMedia"
-},
-{
-"PathRegexp":"toolbox/pages/list2",
-"Path":"toolbox/pages/list2",
-"Name":"getpages",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_getpages",
-"Implementation":"Prc_GetPages",
-"Verb":"GET"
-},
-{
-"PathRegexp":"toolbox/pages/list",
-"Path":"toolbox/pages/list",
-"Name":"listpages",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_listpages",
-"Implementation":"Prc_ListPages",
-"Verb":"GET"
-},
-{
-"Verb":"POST",
-"PathRegexp":"toolbox/create-page",
-"Path":"toolbox/create-page",
-"Name":"createpage",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_createpage",
-"Implementation":"Prc_CreatePage"
-},
-{
-"Verb":"POST",
-"PathRegexp":"toolbox/save-page",
-"Path":"toolbox/save-page",
-"Name":"savepage",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_savepage",
-"Implementation":"Prc_SavePage"
-},
-{
-"Verb":"POST",
-"PathRegexp":"toolbox/update-page",
-"Path":"toolbox/update-page",
-"Name":"updatepage",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_updatepage",
-"Implementation":"Prc_UpdatePage"
-},
-{
-"Verb":"POST",
-"PathRegexp":"toolbox/add-page-children",
-"Path":"toolbox/add-page-children",
-"Name":"addpagecildren",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_addpagecildren",
-"Implementation":"Prc_AddPageChildren"
-},
-{
 "PathRegexp":"location/agenda",
 "Path":"location/agenda",
 "Verb":"POST",
@@ -162,5 +82,15 @@
 "VariableAlias": [],
 "ServiceMethod":"gxep_senddynamicform",
 "Implementation":"Prc_DynamicFormAPI",
+"Verb":"GET"
+},
+{
+"PathRegexp":"productservice",
+"Path":"productservice",
+"Name":"productsericeapi",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_productsericeapi",
+"Implementation":"Prc_ProductServiceAPI",
 "Verb":"GET"
 }]}

@@ -136,9 +136,9 @@ namespace GeneXus.Programs {
 
       protected void gxnrGrid_newrow_invoke( )
       {
-         nRC_GXsfl_37 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_37"), "."), 18, MidpointRounding.ToEven));
-         nGXsfl_37_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_37_idx"), "."), 18, MidpointRounding.ToEven));
-         sGXsfl_37_idx = GetPar( "sGXsfl_37_idx");
+         nRC_GXsfl_39 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_39"), "."), 18, MidpointRounding.ToEven));
+         nGXsfl_39_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_39_idx"), "."), 18, MidpointRounding.ToEven));
+         sGXsfl_39_idx = GetPar( "sGXsfl_39_idx");
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
          {
@@ -156,7 +156,8 @@ namespace GeneXus.Programs {
          AV14OrderedDsc = StringUtil.StrToBool( GetPar( "OrderedDsc"));
          AV15FilterFullText = GetPar( "FilterFullText");
          AV19ManageFiltersExecutionStep = (short)(Math.Round(NumberUtil.Val( GetPar( "ManageFiltersExecutionStep"), "."), 18, MidpointRounding.ToEven));
-         AV44Pgmname = GetPar( "Pgmname");
+         ajax_req_read_hidden_sdt(GetNextPar( ), AV47ColumnsSelector);
+         AV49Pgmname = GetPar( "Pgmname");
          AV20TFOrganisationSettingBaseColor = GetPar( "TFOrganisationSettingBaseColor");
          AV21TFOrganisationSettingBaseColor_Sel = GetPar( "TFOrganisationSettingBaseColor_Sel");
          AV22TFOrganisationSettingFontSize = GetPar( "TFOrganisationSettingFontSize");
@@ -166,7 +167,6 @@ namespace GeneXus.Programs {
          AV35IsAuthorized_Display = StringUtil.StrToBool( GetPar( "IsAuthorized_Display"));
          AV37IsAuthorized_Update = StringUtil.StrToBool( GetPar( "IsAuthorized_Update"));
          AV39IsAuthorized_Delete = StringUtil.StrToBool( GetPar( "IsAuthorized_Delete"));
-         AV33IsAuthorized_OrganisationSettingBaseColor = StringUtil.StrToBool( GetPar( "IsAuthorized_OrganisationSettingBaseColor"));
          AV40IsAuthorized_Insert = StringUtil.StrToBool( GetPar( "IsAuthorized_Insert"));
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
@@ -174,7 +174,7 @@ namespace GeneXus.Programs {
             GxWebError = 1;
             return  ;
          }
-         gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV44Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV33IsAuthorized_OrganisationSettingBaseColor, AV40IsAuthorized_Insert) ;
+         gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV47ColumnsSelector, AV49Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV40IsAuthorized_Insert) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGrid_refresh_invoke */
       }
@@ -305,6 +305,9 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/GridEmpowerer/GridEmpowererRender.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
@@ -346,16 +349,14 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV44Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV44Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV49Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV49Pgmname, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISPLAY", AV35IsAuthorized_Display);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV35IsAuthorized_Display, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_UPDATE", AV37IsAuthorized_Update);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV37IsAuthorized_Update, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DELETE", AV39IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV39IsAuthorized_Delete, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", AV33IsAuthorized_OrganisationSettingBaseColor);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", GetSecureSignedToken( "", AV33IsAuthorized_OrganisationSettingBaseColor, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV40IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV40IsAuthorized_Insert, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -369,7 +370,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GXH_vFILTERFULLTEXT", AV15FilterFullText);
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_37", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_37), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_39", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_39), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vMANAGEFILTERSDATA", AV17ManageFiltersData);
@@ -397,9 +398,17 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vORGANISATIONSETTINGLANGUAGE_DATA", AV41OrganisationSettingLanguage_Data);
          }
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vCOLUMNSSELECTOR", AV47ColumnsSelector);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vCOLUMNSSELECTOR", AV47ColumnsSelector);
+         }
          GxWebStd.gx_hidden_field( context, "vMANAGEFILTERSEXECUTIONSTEP", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19ManageFiltersExecutionStep), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV44Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV44Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV49Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV49Pgmname, "")), context));
          GxWebStd.gx_hidden_field( context, "vTFORGANISATIONSETTINGBASECOLOR", AV20TFOrganisationSettingBaseColor);
          GxWebStd.gx_hidden_field( context, "vTFORGANISATIONSETTINGBASECOLOR_SEL", AV21TFOrganisationSettingBaseColor_Sel);
          GxWebStd.gx_hidden_field( context, "vTFORGANISATIONSETTINGFONTSIZE", AV22TFOrganisationSettingFontSize);
@@ -414,8 +423,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV37IsAuthorized_Update, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DELETE", AV39IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV39IsAuthorized_Delete, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", AV33IsAuthorized_OrganisationSettingBaseColor);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", GetSecureSignedToken( "", AV33IsAuthorized_OrganisationSettingBaseColor, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vGRIDSTATE", AV11GridState);
@@ -473,14 +480,24 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Columnids", StringUtil.RTrim( Ddo_grid_Columnids));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Columnssortvalues", StringUtil.RTrim( Ddo_grid_Columnssortvalues));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includesortasc", StringUtil.RTrim( Ddo_grid_Includesortasc));
+         GxWebStd.gx_hidden_field( context, "DDO_GRID_Fixable", StringUtil.RTrim( Ddo_grid_Fixable));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Sortedstatus", StringUtil.RTrim( Ddo_grid_Sortedstatus));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includefilter", StringUtil.RTrim( Ddo_grid_Includefilter));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Filtertype", StringUtil.RTrim( Ddo_grid_Filtertype));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includedatalist", StringUtil.RTrim( Ddo_grid_Includedatalist));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Datalisttype", StringUtil.RTrim( Ddo_grid_Datalisttype));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Datalistproc", StringUtil.RTrim( Ddo_grid_Datalistproc));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Icontype", StringUtil.RTrim( Ddo_gridcolumnsselector_Icontype));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Icon", StringUtil.RTrim( Ddo_gridcolumnsselector_Icon));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Caption", StringUtil.RTrim( Ddo_gridcolumnsselector_Caption));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Tooltip", StringUtil.RTrim( Ddo_gridcolumnsselector_Tooltip));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Cls", StringUtil.RTrim( Ddo_gridcolumnsselector_Cls));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Dropdownoptionstype", StringUtil.RTrim( Ddo_gridcolumnsselector_Dropdownoptionstype));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Gridinternalname", StringUtil.RTrim( Ddo_gridcolumnsselector_Gridinternalname));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Titlecontrolidtoreplace", StringUtil.RTrim( Ddo_gridcolumnsselector_Titlecontrolidtoreplace));
          GxWebStd.gx_hidden_field( context, "GRID_EMPOWERER_Gridinternalname", StringUtil.RTrim( Grid_empowerer_Gridinternalname));
          GxWebStd.gx_hidden_field( context, "GRID_EMPOWERER_Hastitlesettings", StringUtil.BoolToStr( Grid_empowerer_Hastitlesettings));
+         GxWebStd.gx_hidden_field( context, "GRID_EMPOWERER_Hascolumnsselector", StringUtil.BoolToStr( Grid_empowerer_Hascolumnsselector));
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "GRIDPAGINATIONBAR_Selectedpage", StringUtil.RTrim( Gridpaginationbar_Selectedpage));
          GxWebStd.gx_hidden_field( context, "GRIDPAGINATIONBAR_Rowsperpageselectedvalue", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gridpaginationbar_Rowsperpageselectedvalue), 9, 0, ".", "")));
@@ -488,6 +505,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Selectedvalue_get", StringUtil.RTrim( Ddo_grid_Selectedvalue_get));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Selectedcolumn", StringUtil.RTrim( Ddo_grid_Selectedcolumn));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Filteredtext_get", StringUtil.RTrim( Ddo_grid_Filteredtext_get));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Columnsselectorvalues", StringUtil.RTrim( Ddo_gridcolumnsselector_Columnsselectorvalues));
          GxWebStd.gx_hidden_field( context, "DDO_MANAGEFILTERS_Activeeventkey", StringUtil.RTrim( Ddo_managefilters_Activeeventkey));
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "GRIDPAGINATIONBAR_Selectedpage", StringUtil.RTrim( Gridpaginationbar_Selectedpage));
@@ -496,6 +514,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Selectedvalue_get", StringUtil.RTrim( Ddo_grid_Selectedvalue_get));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Selectedcolumn", StringUtil.RTrim( Ddo_grid_Selectedcolumn));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Filteredtext_get", StringUtil.RTrim( Ddo_grid_Filteredtext_get));
+         GxWebStd.gx_hidden_field( context, "DDO_GRIDCOLUMNSSELECTOR_Columnsselectorvalues", StringUtil.RTrim( Ddo_gridcolumnsselector_Columnsselectorvalues));
          GxWebStd.gx_hidden_field( context, "DDO_MANAGEFILTERS_Activeeventkey", StringUtil.RTrim( Ddo_managefilters_Activeeventkey));
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
       }
@@ -626,14 +645,21 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'',false,'',0)\"";
             ClassString = "Button ButtonColor";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtninsert_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(37), 2, 0)+","+"null"+");", context.GetMessage( "GXM_insert", ""), bttBtninsert_Jsonclick, 5, context.GetMessage( "GXM_insert", ""), "", StyleString, ClassString, bttBtninsert_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOINSERT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingWW.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtninsert_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(39), 2, 0)+","+"null"+");", context.GetMessage( "GXM_insert", ""), bttBtninsert_Jsonclick, 5, context.GetMessage( "GXM_insert", ""), "", StyleString, ClassString, bttBtninsert_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOINSERT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingWW.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'',false,'',0)\"";
+            ClassString = "hidden-xs";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttBtneditcolumns_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(39), 2, 0)+","+"null"+");", context.GetMessage( "WWP_EditColumnsCaption", ""), bttBtneditcolumns_Jsonclick, 0, context.GetMessage( "WWP_EditColumnsTooltip", ""), "", StyleString, ClassString, 1, 0, "standard", "'"+""+"'"+",false,"+"'"+""+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingWW.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnsubscriptions_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(37), 2, 0)+","+"null"+");", "", bttBtnsubscriptions_Jsonclick, 0, context.GetMessage( "WWP_Subscriptions_Tooltip", ""), "", StyleString, ClassString, bttBtnsubscriptions_Visible, 0, "standard", "'"+""+"'"+",false,"+"'"+""+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingWW.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnsubscriptions_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(39), 2, 0)+","+"null"+");", "", bttBtnsubscriptions_Jsonclick, 0, context.GetMessage( "WWP_Subscriptions_Tooltip", ""), "", StyleString, ClassString, bttBtnsubscriptions_Visible, 0, "standard", "'"+""+"'"+",false,"+"'"+""+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingWW.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -665,8 +691,8 @@ namespace GeneXus.Programs {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavFilterfulltext_Internalname, context.GetMessage( "Filter Full Text", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'" + sGXsfl_37_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavFilterfulltext_Internalname, AV15FilterFullText, StringUtil.RTrim( context.localUtil.Format( AV15FilterFullText, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,28);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_Search", ""), edtavFilterfulltext_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavFilterfulltext_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "WWPFullTextFilter", "start", true, "", "HLP_Trn_OrganisationSettingWW.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 30,'',false,'" + sGXsfl_39_idx + "',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavFilterfulltext_Internalname, AV15FilterFullText, StringUtil.RTrim( context.localUtil.Format( AV15FilterFullText, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,30);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_Search", ""), edtavFilterfulltext_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavFilterfulltext_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "WWPFullTextFilter", "start", true, "", "HLP_Trn_OrganisationSettingWW.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -699,12 +725,12 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /*  Grid Control  */
             GridContainer.SetWrapped(nGXWrapped);
-            StartGridControl37( ) ;
+            StartGridControl39( ) ;
          }
-         if ( wbEnd == 37 )
+         if ( wbEnd == 39 )
          {
             wbEnd = 0;
-            nRC_GXsfl_37 = (int)(nGXsfl_37_idx-1);
+            nRC_GXsfl_39 = (int)(nGXsfl_39_idx-1);
             if ( GridContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "</table>") ;
@@ -794,6 +820,7 @@ namespace GeneXus.Programs {
             ucDdo_grid.SetProperty("ColumnIds", Ddo_grid_Columnids);
             ucDdo_grid.SetProperty("ColumnsSortValues", Ddo_grid_Columnssortvalues);
             ucDdo_grid.SetProperty("IncludeSortASC", Ddo_grid_Includesortasc);
+            ucDdo_grid.SetProperty("Fixable", Ddo_grid_Fixable);
             ucDdo_grid.SetProperty("IncludeFilter", Ddo_grid_Includefilter);
             ucDdo_grid.SetProperty("FilterType", Ddo_grid_Filtertype);
             ucDdo_grid.SetProperty("IncludeDataList", Ddo_grid_Includedatalist);
@@ -802,25 +829,36 @@ namespace GeneXus.Programs {
             ucDdo_grid.SetProperty("DropDownOptionsTitleSettingsIcons", AV26DDO_TitleSettingsIcons);
             ucDdo_grid.Render(context, "dvelop.gxbootstrap.ddogridtitlesettingsm", Ddo_grid_Internalname, "DDO_GRIDContainer");
             /* User Defined Control */
+            ucDdo_gridcolumnsselector.SetProperty("IconType", Ddo_gridcolumnsselector_Icontype);
+            ucDdo_gridcolumnsselector.SetProperty("Icon", Ddo_gridcolumnsselector_Icon);
+            ucDdo_gridcolumnsselector.SetProperty("Caption", Ddo_gridcolumnsselector_Caption);
+            ucDdo_gridcolumnsselector.SetProperty("Tooltip", Ddo_gridcolumnsselector_Tooltip);
+            ucDdo_gridcolumnsselector.SetProperty("Cls", Ddo_gridcolumnsselector_Cls);
+            ucDdo_gridcolumnsselector.SetProperty("DropDownOptionsType", Ddo_gridcolumnsselector_Dropdownoptionstype);
+            ucDdo_gridcolumnsselector.SetProperty("DropDownOptionsTitleSettingsIcons", AV26DDO_TitleSettingsIcons);
+            ucDdo_gridcolumnsselector.SetProperty("DropDownOptionsData", AV47ColumnsSelector);
+            ucDdo_gridcolumnsselector.Render(context, "dvelop.gxbootstrap.ddogridcolumnsselector", Ddo_gridcolumnsselector_Internalname, "DDO_GRIDCOLUMNSSELECTORContainer");
+            /* User Defined Control */
             ucGrid_empowerer.SetProperty("HasTitleSettings", Grid_empowerer_Hastitlesettings);
+            ucGrid_empowerer.SetProperty("HasColumnsSelector", Grid_empowerer_Hascolumnsselector);
             ucGrid_empowerer.Render(context, "wwp.gridempowerer", Grid_empowerer_Internalname, "GRID_EMPOWERERContainer");
             /* Div Control */
             GxWebStd.gx_div_start( context, divDiv_wwpauxwc_Internalname, 1, 0, "px", 0, "px", "Invisible", "start", "top", "", "", "div");
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
-               GxWebStd.gx_hidden_field( context, "W0057"+"", StringUtil.RTrim( WebComp_Wwpaux_wc_Component));
+               GxWebStd.gx_hidden_field( context, "W0060"+"", StringUtil.RTrim( WebComp_Wwpaux_wc_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
-               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0057"+""+"\""+"") ;
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0060"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
-               if ( bGXsfl_37_Refreshing )
+               if ( bGXsfl_39_Refreshing )
                {
                   if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
                   {
                      if ( StringUtil.StrCmp(StringUtil.Lower( OldWwpaux_wc), StringUtil.Lower( WebComp_Wwpaux_wc_Component)) != 0 )
                      {
-                        context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0057"+"");
+                        context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0060"+"");
                      }
                      WebComp_Wwpaux_wc.componentdraw();
                      if ( StringUtil.StrCmp(StringUtil.Lower( OldWwpaux_wc), StringUtil.Lower( WebComp_Wwpaux_wc_Component)) != 0 )
@@ -838,7 +876,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
          }
-         if ( wbEnd == 37 )
+         if ( wbEnd == 39 )
          {
             wbEnd = 0;
             if ( isFullAjaxMode( ) )
@@ -962,12 +1000,19 @@ namespace GeneXus.Programs {
                               /* Execute user event: Ddo_grid.Onoptionclicked */
                               E153X2 ();
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Ddo_gridcolumnsselector.Oncolumnschanged */
+                              E163X2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "'DOINSERT'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'DoInsert' */
-                              E163X2 ();
+                              E173X2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
@@ -982,16 +1027,16 @@ namespace GeneXus.Programs {
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
                            if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "GRID.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 18), "VACTIONGROUP.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 18), "VACTIONGROUP.CLICK") == 0 ) )
                            {
-                              nGXsfl_37_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
-                              sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
-                              SubsflControlProps_372( ) ;
+                              nGXsfl_39_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
+                              sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
+                              SubsflControlProps_392( ) ;
                               A100OrganisationSettingid = StringUtil.StrToGuid( cgiGet( edtOrganisationSettingid_Internalname));
                               A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
                               A101OrganisationSettingLogo = cgiGet( edtOrganisationSettingLogo_Internalname);
-                              AssignProp("", false, edtOrganisationSettingLogo_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo)) ? A40000OrganisationSettingLogo_GXI : context.convertURL( context.PathToRelativeUrl( A101OrganisationSettingLogo))), !bGXsfl_37_Refreshing);
+                              AssignProp("", false, edtOrganisationSettingLogo_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo)) ? A40000OrganisationSettingLogo_GXI : context.convertURL( context.PathToRelativeUrl( A101OrganisationSettingLogo))), !bGXsfl_39_Refreshing);
                               AssignProp("", false, edtOrganisationSettingLogo_Internalname, "SrcSet", context.GetImageSrcSet( A101OrganisationSettingLogo), true);
                               A102OrganisationSettingFavicon = cgiGet( edtOrganisationSettingFavicon_Internalname);
-                              AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)) ? A40001OrganisationSettingFavicon_GXI : context.convertURL( context.PathToRelativeUrl( A102OrganisationSettingFavicon))), !bGXsfl_37_Refreshing);
+                              AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)) ? A40001OrganisationSettingFavicon_GXI : context.convertURL( context.PathToRelativeUrl( A102OrganisationSettingFavicon))), !bGXsfl_39_Refreshing);
                               AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "SrcSet", context.GetImageSrcSet( A102OrganisationSettingFavicon), true);
                               A103OrganisationSettingBaseColor = cgiGet( edtOrganisationSettingBaseColor_Internalname);
                               A104OrganisationSettingFontSize = cgiGet( edtOrganisationSettingFontSize_Internalname);
@@ -1009,27 +1054,27 @@ namespace GeneXus.Programs {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E173X2 ();
+                                    E183X2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Refresh */
-                                    E183X2 ();
+                                    E193X2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "GRID.LOAD") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Grid.Load */
-                                    E193X2 ();
+                                    E203X2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "VACTIONGROUP.CLICK") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
-                                    E203X2 ();
+                                    E213X2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -1076,9 +1121,9 @@ namespace GeneXus.Programs {
                         sEvtType = StringUtil.Left( sEvt, 4);
                         sEvt = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-4));
                         nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
-                        if ( nCmpId == 57 )
+                        if ( nCmpId == 60 )
                         {
-                           OldWwpaux_wc = cgiGet( "W0057");
+                           OldWwpaux_wc = cgiGet( "W0060");
                            if ( ( StringUtil.Len( OldWwpaux_wc) == 0 ) || ( StringUtil.StrCmp(OldWwpaux_wc, WebComp_Wwpaux_wc_Component) != 0 ) )
                            {
                               WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", OldWwpaux_wc, new Object[] {context} );
@@ -1088,7 +1133,7 @@ namespace GeneXus.Programs {
                            }
                            if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
                            {
-                              WebComp_Wwpaux_wc.componentprocess("W0057", "", sEvt);
+                              WebComp_Wwpaux_wc.componentprocess("W0060", "", sEvt);
                            }
                            WebComp_Wwpaux_wc_Component = OldWwpaux_wc;
                         }
@@ -1155,13 +1200,13 @@ namespace GeneXus.Programs {
       protected void gxnrGrid_newrow( )
       {
          GxWebStd.set_html_headers( context, 0, "", "");
-         SubsflControlProps_372( ) ;
-         while ( nGXsfl_37_idx <= nRC_GXsfl_37 )
+         SubsflControlProps_392( ) ;
+         while ( nGXsfl_39_idx <= nRC_GXsfl_39 )
          {
-            sendrow_372( ) ;
-            nGXsfl_37_idx = ((subGrid_Islastpage==1)&&(nGXsfl_37_idx+1>subGrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_37_idx+1);
-            sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
-            SubsflControlProps_372( ) ;
+            sendrow_392( ) ;
+            nGXsfl_39_idx = ((subGrid_Islastpage==1)&&(nGXsfl_39_idx+1>subGrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_39_idx+1);
+            sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
+            SubsflControlProps_392( ) ;
          }
          AddString( context.httpAjaxContext.getJSONContainerResponse( GridContainer)) ;
          /* End function gxnrGrid_newrow */
@@ -1172,7 +1217,8 @@ namespace GeneXus.Programs {
                                        bool AV14OrderedDsc ,
                                        string AV15FilterFullText ,
                                        short AV19ManageFiltersExecutionStep ,
-                                       string AV44Pgmname ,
+                                       GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector AV47ColumnsSelector ,
+                                       string AV49Pgmname ,
                                        string AV20TFOrganisationSettingBaseColor ,
                                        string AV21TFOrganisationSettingBaseColor_Sel ,
                                        string AV22TFOrganisationSettingFontSize ,
@@ -1182,7 +1228,6 @@ namespace GeneXus.Programs {
                                        bool AV35IsAuthorized_Display ,
                                        bool AV37IsAuthorized_Update ,
                                        bool AV39IsAuthorized_Delete ,
-                                       bool AV33IsAuthorized_OrganisationSettingBaseColor ,
                                        bool AV40IsAuthorized_Insert )
       {
          initialize_formulas( ) ;
@@ -1227,7 +1272,7 @@ namespace GeneXus.Programs {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         AV44Pgmname = "Trn_OrganisationSettingWW";
+         AV49Pgmname = "Trn_OrganisationSettingWW";
       }
 
       protected void RF3X2( )
@@ -1238,13 +1283,13 @@ namespace GeneXus.Programs {
          {
             GridContainer.ClearRows();
          }
-         wbStart = 37;
+         wbStart = 39;
          /* Execute user event: Refresh */
-         E183X2 ();
-         nGXsfl_37_idx = 1;
-         sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
-         SubsflControlProps_372( ) ;
-         bGXsfl_37_Refreshing = true;
+         E193X2 ();
+         nGXsfl_39_idx = 1;
+         sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
+         SubsflControlProps_392( ) ;
+         bGXsfl_39_Refreshing = true;
          GridContainer.AddObjectProperty("GridName", "Grid");
          GridContainer.AddObjectProperty("CmpContext", "");
          GridContainer.AddObjectProperty("InMasterPage", "false");
@@ -1269,17 +1314,17 @@ namespace GeneXus.Programs {
          gxdyncontrolsrefreshing = false;
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
-            SubsflControlProps_372( ) ;
+            SubsflControlProps_392( ) ;
             GXPagingFrom2 = (int)(((subGrid_Rows==0) ? 0 : GRID_nFirstRecordOnPage));
             GXPagingTo2 = ((subGrid_Rows==0) ? 10000 : subGrid_fnc_Recordsperpage( )+1);
             pr_default.dynParam(0, new Object[]{ new Object[]{
-                                                 AV45Trn_organisationsettingwwds_1_filterfulltext ,
-                                                 AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ,
-                                                 AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ,
-                                                 AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ,
-                                                 AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize ,
-                                                 AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ,
-                                                 AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage ,
+                                                 AV50Trn_organisationsettingwwds_1_filterfulltext ,
+                                                 AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ,
+                                                 AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ,
+                                                 AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ,
+                                                 AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize ,
+                                                 AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ,
+                                                 AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage ,
                                                  A103OrganisationSettingBaseColor ,
                                                  A104OrganisationSettingFontSize ,
                                                  A105OrganisationSettingLanguage ,
@@ -1289,62 +1334,60 @@ namespace GeneXus.Programs {
                                                  TypeConstants.SHORT, TypeConstants.BOOLEAN
                                                  }
             });
-            lV45Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV45Trn_organisationsettingwwds_1_filterfulltext), "%", "");
-            lV45Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV45Trn_organisationsettingwwds_1_filterfulltext), "%", "");
-            lV45Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV45Trn_organisationsettingwwds_1_filterfulltext), "%", "");
-            lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = StringUtil.Concat( StringUtil.RTrim( AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor), "%", "");
-            lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = StringUtil.Concat( StringUtil.RTrim( AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize), "%", "");
-            lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = StringUtil.Concat( StringUtil.RTrim( AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage), "%", "");
+            lV50Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext), "%", "");
+            lV50Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext), "%", "");
+            lV50Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext), "%", "");
+            lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = StringUtil.Concat( StringUtil.RTrim( AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor), "%", "");
+            lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = StringUtil.Concat( StringUtil.RTrim( AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize), "%", "");
+            lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = StringUtil.Concat( StringUtil.RTrim( AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage), "%", "");
             /* Using cursor H003X2 */
-            pr_default.execute(0, new Object[] {lV45Trn_organisationsettingwwds_1_filterfulltext, lV45Trn_organisationsettingwwds_1_filterfulltext, lV45Trn_organisationsettingwwds_1_filterfulltext, lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor, AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize, AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage, AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, GXPagingFrom2, GXPagingTo2, GXPagingTo2});
-            nGXsfl_37_idx = 1;
-            sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
-            SubsflControlProps_372( ) ;
+            pr_default.execute(0, new Object[] {lV50Trn_organisationsettingwwds_1_filterfulltext, lV50Trn_organisationsettingwwds_1_filterfulltext, lV50Trn_organisationsettingwwds_1_filterfulltext, lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor, AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize, AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage, AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, GXPagingFrom2, GXPagingTo2, GXPagingTo2});
+            nGXsfl_39_idx = 1;
+            sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
+            SubsflControlProps_392( ) ;
             while ( ( (pr_default.getStatus(0) != 101) ) && ( ( ( subGrid_Rows == 0 ) || ( GRID_nCurrentRecord < subGrid_fnc_Recordsperpage( ) ) ) ) )
             {
                A105OrganisationSettingLanguage = H003X2_A105OrganisationSettingLanguage[0];
                A104OrganisationSettingFontSize = H003X2_A104OrganisationSettingFontSize[0];
                A103OrganisationSettingBaseColor = H003X2_A103OrganisationSettingBaseColor[0];
                A40001OrganisationSettingFavicon_GXI = H003X2_A40001OrganisationSettingFavicon_GXI[0];
-               AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)) ? A40001OrganisationSettingFavicon_GXI : context.convertURL( context.PathToRelativeUrl( A102OrganisationSettingFavicon))), !bGXsfl_37_Refreshing);
+               AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)) ? A40001OrganisationSettingFavicon_GXI : context.convertURL( context.PathToRelativeUrl( A102OrganisationSettingFavicon))), !bGXsfl_39_Refreshing);
                AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "SrcSet", context.GetImageSrcSet( A102OrganisationSettingFavicon), true);
                A40000OrganisationSettingLogo_GXI = H003X2_A40000OrganisationSettingLogo_GXI[0];
-               AssignProp("", false, edtOrganisationSettingLogo_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo)) ? A40000OrganisationSettingLogo_GXI : context.convertURL( context.PathToRelativeUrl( A101OrganisationSettingLogo))), !bGXsfl_37_Refreshing);
+               AssignProp("", false, edtOrganisationSettingLogo_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo)) ? A40000OrganisationSettingLogo_GXI : context.convertURL( context.PathToRelativeUrl( A101OrganisationSettingLogo))), !bGXsfl_39_Refreshing);
                AssignProp("", false, edtOrganisationSettingLogo_Internalname, "SrcSet", context.GetImageSrcSet( A101OrganisationSettingLogo), true);
                A11OrganisationId = H003X2_A11OrganisationId[0];
                A100OrganisationSettingid = H003X2_A100OrganisationSettingid[0];
                A102OrganisationSettingFavicon = H003X2_A102OrganisationSettingFavicon[0];
-               AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)) ? A40001OrganisationSettingFavicon_GXI : context.convertURL( context.PathToRelativeUrl( A102OrganisationSettingFavicon))), !bGXsfl_37_Refreshing);
+               AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)) ? A40001OrganisationSettingFavicon_GXI : context.convertURL( context.PathToRelativeUrl( A102OrganisationSettingFavicon))), !bGXsfl_39_Refreshing);
                AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "SrcSet", context.GetImageSrcSet( A102OrganisationSettingFavicon), true);
                A101OrganisationSettingLogo = H003X2_A101OrganisationSettingLogo[0];
-               AssignProp("", false, edtOrganisationSettingLogo_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo)) ? A40000OrganisationSettingLogo_GXI : context.convertURL( context.PathToRelativeUrl( A101OrganisationSettingLogo))), !bGXsfl_37_Refreshing);
+               AssignProp("", false, edtOrganisationSettingLogo_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo)) ? A40000OrganisationSettingLogo_GXI : context.convertURL( context.PathToRelativeUrl( A101OrganisationSettingLogo))), !bGXsfl_39_Refreshing);
                AssignProp("", false, edtOrganisationSettingLogo_Internalname, "SrcSet", context.GetImageSrcSet( A101OrganisationSettingLogo), true);
                /* Execute user event: Grid.Load */
-               E193X2 ();
+               E203X2 ();
                pr_default.readNext(0);
             }
             GRID_nEOF = (short)(((pr_default.getStatus(0) == 101) ? 1 : 0));
             GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, ".", "")));
             pr_default.close(0);
-            wbEnd = 37;
+            wbEnd = 39;
             WB3X0( ) ;
          }
-         bGXsfl_37_Refreshing = true;
+         bGXsfl_39_Refreshing = true;
       }
 
       protected void send_integrity_lvl_hashes3X2( )
       {
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV44Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV44Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV49Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV49Pgmname, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISPLAY", AV35IsAuthorized_Display);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV35IsAuthorized_Display, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_UPDATE", AV37IsAuthorized_Update);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV37IsAuthorized_Update, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DELETE", AV39IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV39IsAuthorized_Delete, context));
-         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", AV33IsAuthorized_OrganisationSettingBaseColor);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", GetSecureSignedToken( "", AV33IsAuthorized_OrganisationSettingBaseColor, context));
-         GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONSETTINGID"+"_"+sGXsfl_37_idx, GetSecureSignedToken( sGXsfl_37_idx, A100OrganisationSettingid, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONSETTINGID"+"_"+sGXsfl_39_idx, GetSecureSignedToken( sGXsfl_39_idx, A100OrganisationSettingid, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV40IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV40IsAuthorized_Insert, context));
       }
@@ -1361,21 +1404,21 @@ namespace GeneXus.Programs {
 
       protected int subGrid_fnc_Recordcount( )
       {
-         AV45Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
-         AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
-         AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
-         AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
-         AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
-         AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
-         AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
+         AV50Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
+         AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
+         AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
+         AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
+         AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
+         AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
+         AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
          pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              AV45Trn_organisationsettingwwds_1_filterfulltext ,
-                                              AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ,
-                                              AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ,
-                                              AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ,
-                                              AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize ,
-                                              AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ,
-                                              AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage ,
+                                              AV50Trn_organisationsettingwwds_1_filterfulltext ,
+                                              AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ,
+                                              AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ,
+                                              AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ,
+                                              AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize ,
+                                              AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ,
+                                              AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage ,
                                               A103OrganisationSettingBaseColor ,
                                               A104OrganisationSettingFontSize ,
                                               A105OrganisationSettingLanguage ,
@@ -1385,14 +1428,14 @@ namespace GeneXus.Programs {
                                               TypeConstants.SHORT, TypeConstants.BOOLEAN
                                               }
          });
-         lV45Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV45Trn_organisationsettingwwds_1_filterfulltext), "%", "");
-         lV45Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV45Trn_organisationsettingwwds_1_filterfulltext), "%", "");
-         lV45Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV45Trn_organisationsettingwwds_1_filterfulltext), "%", "");
-         lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = StringUtil.Concat( StringUtil.RTrim( AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor), "%", "");
-         lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = StringUtil.Concat( StringUtil.RTrim( AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize), "%", "");
-         lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = StringUtil.Concat( StringUtil.RTrim( AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage), "%", "");
+         lV50Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext), "%", "");
+         lV50Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext), "%", "");
+         lV50Trn_organisationsettingwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext), "%", "");
+         lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = StringUtil.Concat( StringUtil.RTrim( AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor), "%", "");
+         lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = StringUtil.Concat( StringUtil.RTrim( AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize), "%", "");
+         lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = StringUtil.Concat( StringUtil.RTrim( AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage), "%", "");
          /* Using cursor H003X3 */
-         pr_default.execute(1, new Object[] {lV45Trn_organisationsettingwwds_1_filterfulltext, lV45Trn_organisationsettingwwds_1_filterfulltext, lV45Trn_organisationsettingwwds_1_filterfulltext, lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor, AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize, AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage, AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel});
+         pr_default.execute(1, new Object[] {lV50Trn_organisationsettingwwds_1_filterfulltext, lV50Trn_organisationsettingwwds_1_filterfulltext, lV50Trn_organisationsettingwwds_1_filterfulltext, lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor, AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize, AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage, AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel});
          GRID_nRecordCount = H003X3_AGRID_nRecordCount[0];
          pr_default.close(1);
          return (int)(GRID_nRecordCount) ;
@@ -1417,18 +1460,18 @@ namespace GeneXus.Programs {
 
       protected short subgrid_firstpage( )
       {
-         AV45Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
-         AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
-         AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
-         AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
-         AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
-         AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
-         AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
+         AV50Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
+         AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
+         AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
+         AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
+         AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
+         AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
+         AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
          GRID_nFirstRecordOnPage = 0;
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV44Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV33IsAuthorized_OrganisationSettingBaseColor, AV40IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV47ColumnsSelector, AV49Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV40IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1436,13 +1479,13 @@ namespace GeneXus.Programs {
 
       protected short subgrid_nextpage( )
       {
-         AV45Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
-         AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
-         AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
-         AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
-         AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
-         AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
-         AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
+         AV50Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
+         AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
+         AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
+         AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
+         AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
+         AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
+         AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
          GRID_nRecordCount = subGrid_fnc_Recordcount( );
          if ( ( GRID_nRecordCount >= subGrid_fnc_Recordsperpage( ) ) && ( GRID_nEOF == 0 ) )
          {
@@ -1456,7 +1499,7 @@ namespace GeneXus.Programs {
          GridContainer.AddObjectProperty("GRID_nFirstRecordOnPage", GRID_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV44Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV33IsAuthorized_OrganisationSettingBaseColor, AV40IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV47ColumnsSelector, AV49Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV40IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((GRID_nEOF==0) ? 0 : 2)) ;
@@ -1464,13 +1507,13 @@ namespace GeneXus.Programs {
 
       protected short subgrid_previouspage( )
       {
-         AV45Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
-         AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
-         AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
-         AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
-         AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
-         AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
-         AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
+         AV50Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
+         AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
+         AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
+         AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
+         AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
+         AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
+         AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
          if ( GRID_nFirstRecordOnPage >= subGrid_fnc_Recordsperpage( ) )
          {
             GRID_nFirstRecordOnPage = (long)(GRID_nFirstRecordOnPage-subGrid_fnc_Recordsperpage( ));
@@ -1482,7 +1525,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV44Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV33IsAuthorized_OrganisationSettingBaseColor, AV40IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV47ColumnsSelector, AV49Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV40IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1490,13 +1533,13 @@ namespace GeneXus.Programs {
 
       protected short subgrid_lastpage( )
       {
-         AV45Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
-         AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
-         AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
-         AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
-         AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
-         AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
-         AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
+         AV50Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
+         AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
+         AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
+         AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
+         AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
+         AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
+         AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
          GRID_nRecordCount = subGrid_fnc_Recordcount( );
          if ( GRID_nRecordCount > subGrid_fnc_Recordsperpage( ) )
          {
@@ -1516,7 +1559,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV44Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV33IsAuthorized_OrganisationSettingBaseColor, AV40IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV47ColumnsSelector, AV49Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV40IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1524,13 +1567,13 @@ namespace GeneXus.Programs {
 
       protected int subgrid_gotopage( int nPageNo )
       {
-         AV45Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
-         AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
-         AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
-         AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
-         AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
-         AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
-         AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
+         AV50Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
+         AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
+         AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
+         AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
+         AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
+         AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
+         AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
          if ( nPageNo > 0 )
          {
             GRID_nFirstRecordOnPage = (long)(subGrid_fnc_Recordsperpage( )*(nPageNo-1));
@@ -1542,7 +1585,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV44Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV33IsAuthorized_OrganisationSettingBaseColor, AV40IsAuthorized_Insert) ;
+            gxgrGrid_refresh( subGrid_Rows, AV13OrderedBy, AV14OrderedDsc, AV15FilterFullText, AV19ManageFiltersExecutionStep, AV47ColumnsSelector, AV49Pgmname, AV20TFOrganisationSettingBaseColor, AV21TFOrganisationSettingBaseColor_Sel, AV22TFOrganisationSettingFontSize, AV23TFOrganisationSettingFontSize_Sel, AV24TFOrganisationSettingLanguage, AV25TFOrganisationSettingLanguage_Sel, AV35IsAuthorized_Display, AV37IsAuthorized_Update, AV39IsAuthorized_Delete, AV40IsAuthorized_Insert) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1550,7 +1593,7 @@ namespace GeneXus.Programs {
 
       protected void before_start_formulas( )
       {
-         AV44Pgmname = "Trn_OrganisationSettingWW";
+         AV49Pgmname = "Trn_OrganisationSettingWW";
          edtOrganisationSettingid_Enabled = 0;
          edtOrganisationId_Enabled = 0;
          edtOrganisationSettingLogo_Enabled = 0;
@@ -1568,7 +1611,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E173X2 ();
+         E183X2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -1577,8 +1620,9 @@ namespace GeneXus.Programs {
             ajax_req_read_hidden_sdt(cgiGet( "vMANAGEFILTERSDATA"), AV17ManageFiltersData);
             ajax_req_read_hidden_sdt(cgiGet( "vDDO_TITLESETTINGSICONS"), AV26DDO_TitleSettingsIcons);
             ajax_req_read_hidden_sdt(cgiGet( "vORGANISATIONSETTINGLANGUAGE_DATA"), AV41OrganisationSettingLanguage_Data);
+            ajax_req_read_hidden_sdt(cgiGet( "vCOLUMNSSELECTOR"), AV47ColumnsSelector);
             /* Read saved values. */
-            nRC_GXsfl_37 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_37"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_39 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_39"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV30GridCurrentPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDCURRENTPAGE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV31GridPageCount = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDPAGECOUNT"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV32GridAppliedFilters = cgiGet( "vGRIDAPPLIEDFILTERS");
@@ -1630,14 +1674,24 @@ namespace GeneXus.Programs {
             Ddo_grid_Columnids = cgiGet( "DDO_GRID_Columnids");
             Ddo_grid_Columnssortvalues = cgiGet( "DDO_GRID_Columnssortvalues");
             Ddo_grid_Includesortasc = cgiGet( "DDO_GRID_Includesortasc");
+            Ddo_grid_Fixable = cgiGet( "DDO_GRID_Fixable");
             Ddo_grid_Sortedstatus = cgiGet( "DDO_GRID_Sortedstatus");
             Ddo_grid_Includefilter = cgiGet( "DDO_GRID_Includefilter");
             Ddo_grid_Filtertype = cgiGet( "DDO_GRID_Filtertype");
             Ddo_grid_Includedatalist = cgiGet( "DDO_GRID_Includedatalist");
             Ddo_grid_Datalisttype = cgiGet( "DDO_GRID_Datalisttype");
             Ddo_grid_Datalistproc = cgiGet( "DDO_GRID_Datalistproc");
+            Ddo_gridcolumnsselector_Icontype = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Icontype");
+            Ddo_gridcolumnsselector_Icon = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Icon");
+            Ddo_gridcolumnsselector_Caption = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Caption");
+            Ddo_gridcolumnsselector_Tooltip = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Tooltip");
+            Ddo_gridcolumnsselector_Cls = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Cls");
+            Ddo_gridcolumnsselector_Dropdownoptionstype = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Dropdownoptionstype");
+            Ddo_gridcolumnsselector_Gridinternalname = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Gridinternalname");
+            Ddo_gridcolumnsselector_Titlecontrolidtoreplace = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Titlecontrolidtoreplace");
             Grid_empowerer_Gridinternalname = cgiGet( "GRID_EMPOWERER_Gridinternalname");
             Grid_empowerer_Hastitlesettings = StringUtil.StrToBool( cgiGet( "GRID_EMPOWERER_Hastitlesettings"));
+            Grid_empowerer_Hascolumnsselector = StringUtil.StrToBool( cgiGet( "GRID_EMPOWERER_Hascolumnsselector"));
             subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             Gridpaginationbar_Selectedpage = cgiGet( "GRIDPAGINATIONBAR_Selectedpage");
@@ -1646,6 +1700,7 @@ namespace GeneXus.Programs {
             Ddo_grid_Selectedvalue_get = cgiGet( "DDO_GRID_Selectedvalue_get");
             Ddo_grid_Selectedcolumn = cgiGet( "DDO_GRID_Selectedcolumn");
             Ddo_grid_Filteredtext_get = cgiGet( "DDO_GRID_Filteredtext_get");
+            Ddo_gridcolumnsselector_Columnsselectorvalues = cgiGet( "DDO_GRIDCOLUMNSSELECTOR_Columnsselectorvalues");
             Ddo_managefilters_Activeeventkey = cgiGet( "DDO_MANAGEFILTERS_Activeeventkey");
             subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
@@ -1653,10 +1708,10 @@ namespace GeneXus.Programs {
             AV15FilterFullText = cgiGet( edtavFilterfulltext_Internalname);
             AssignAttri("", false, "AV15FilterFullText", AV15FilterFullText);
             /* Read subfile selected row values. */
-            nGXsfl_37_idx = (int)(Math.Round(context.localUtil.CToN( cgiGet( subGrid_Internalname+"_ROW"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
-            SubsflControlProps_372( ) ;
-            if ( nGXsfl_37_idx > 0 )
+            nGXsfl_39_idx = (int)(Math.Round(context.localUtil.CToN( cgiGet( subGrid_Internalname+"_ROW"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
+            SubsflControlProps_392( ) ;
+            if ( nGXsfl_39_idx > 0 )
             {
                A100OrganisationSettingid = StringUtil.StrToGuid( cgiGet( edtOrganisationSettingid_Internalname));
                A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
@@ -1695,7 +1750,7 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E173X2 ();
+         E183X2 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1703,7 +1758,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E173X2( )
+      protected void E183X2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1723,6 +1778,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          Grid_empowerer_Gridinternalname = subGrid_Internalname;
          ucGrid_empowerer.SendProperty(context, "", false, Grid_empowerer_Internalname, "GridInternalName", Grid_empowerer_Gridinternalname);
+         Ddo_gridcolumnsselector_Gridinternalname = subGrid_Internalname;
+         ucDdo_gridcolumnsselector.SendProperty(context, "", false, Ddo_gridcolumnsselector_Internalname, "GridInternalName", Ddo_gridcolumnsselector_Gridinternalname);
          if ( StringUtil.StrCmp(AV8HTTPRequest.Method, "GET") == 0 )
          {
             /* Execute user subroutine: 'LOADSAVEDFILTERS' */
@@ -1735,11 +1792,6 @@ namespace GeneXus.Programs {
          }
          Ddc_subscriptions_Titlecontrolidtoreplace = bttBtnsubscriptions_Internalname;
          ucDdc_subscriptions.SendProperty(context, "", false, Ddc_subscriptions_Internalname, "TitleControlIdToReplace", Ddc_subscriptions_Titlecontrolidtoreplace);
-         GXt_boolean2 = AV33IsAuthorized_OrganisationSettingBaseColor;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsettingview_Execute", out  GXt_boolean2) ;
-         AV33IsAuthorized_OrganisationSettingBaseColor = GXt_boolean2;
-         AssignAttri("", false, "AV33IsAuthorized_OrganisationSettingBaseColor", AV33IsAuthorized_OrganisationSettingBaseColor);
-         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", GetSecureSignedToken( "", AV33IsAuthorized_OrganisationSettingBaseColor, context));
          AV27GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).get(out  AV28GAMErrors);
          Ddo_grid_Gridinternalname = subGrid_Internalname;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "GridInternalName", Ddo_grid_Gridinternalname);
@@ -1776,11 +1828,13 @@ namespace GeneXus.Programs {
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = AV26DDO_TitleSettingsIcons;
          new GeneXus.Programs.wwpbaseobjects.getwwptitlesettingsicons(context ).execute( out  GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1) ;
          AV26DDO_TitleSettingsIcons = GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1;
+         Ddo_gridcolumnsselector_Titlecontrolidtoreplace = bttBtneditcolumns_Internalname;
+         ucDdo_gridcolumnsselector.SendProperty(context, "", false, Ddo_gridcolumnsselector_Internalname, "TitleControlIdToReplace", Ddo_gridcolumnsselector_Titlecontrolidtoreplace);
          Gridpaginationbar_Rowsperpageselectedvalue = subGrid_Rows;
          ucGridpaginationbar.SendProperty(context, "", false, Gridpaginationbar_Internalname, "RowsPerPageSelectedValue", StringUtil.LTrimStr( (decimal)(Gridpaginationbar_Rowsperpageselectedvalue), 9, 0));
       }
 
-      protected void E183X2( )
+      protected void E193X2( )
       {
          if ( gx_refresh_fired )
          {
@@ -1821,22 +1875,52 @@ namespace GeneXus.Programs {
             returnInSub = true;
             if (true) return;
          }
+         if ( StringUtil.StrCmp(AV16Session.Get("Trn_OrganisationSettingWWColumnsSelector"), "") != 0 )
+         {
+            AV45ColumnsSelectorXML = AV16Session.Get("Trn_OrganisationSettingWWColumnsSelector");
+            AV47ColumnsSelector.FromXml(AV45ColumnsSelectorXML, null, "", "");
+         }
+         else
+         {
+            /* Execute user subroutine: 'INITIALIZECOLUMNSSELECTOR' */
+            S182 ();
+            if ( returnInSub )
+            {
+               returnInSub = true;
+               if (true) return;
+            }
+         }
+         edtOrganisationSettingid_Visible = (((GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector_Column)AV47ColumnsSelector.gxTpr_Columns.Item(1)).gxTpr_Isvisible ? 1 : 0);
+         AssignProp("", false, edtOrganisationSettingid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingid_Visible), 5, 0), !bGXsfl_39_Refreshing);
+         edtOrganisationId_Visible = (((GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector_Column)AV47ColumnsSelector.gxTpr_Columns.Item(2)).gxTpr_Isvisible ? 1 : 0);
+         AssignProp("", false, edtOrganisationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Visible), 5, 0), !bGXsfl_39_Refreshing);
+         edtOrganisationSettingLogo_Visible = (((GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector_Column)AV47ColumnsSelector.gxTpr_Columns.Item(3)).gxTpr_Isvisible ? 1 : 0);
+         AssignProp("", false, edtOrganisationSettingLogo_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingLogo_Visible), 5, 0), !bGXsfl_39_Refreshing);
+         edtOrganisationSettingFavicon_Visible = (((GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector_Column)AV47ColumnsSelector.gxTpr_Columns.Item(4)).gxTpr_Isvisible ? 1 : 0);
+         AssignProp("", false, edtOrganisationSettingFavicon_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingFavicon_Visible), 5, 0), !bGXsfl_39_Refreshing);
+         edtOrganisationSettingBaseColor_Visible = (((GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector_Column)AV47ColumnsSelector.gxTpr_Columns.Item(5)).gxTpr_Isvisible ? 1 : 0);
+         AssignProp("", false, edtOrganisationSettingBaseColor_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingBaseColor_Visible), 5, 0), !bGXsfl_39_Refreshing);
+         edtOrganisationSettingFontSize_Visible = (((GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector_Column)AV47ColumnsSelector.gxTpr_Columns.Item(6)).gxTpr_Isvisible ? 1 : 0);
+         AssignProp("", false, edtOrganisationSettingFontSize_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingFontSize_Visible), 5, 0), !bGXsfl_39_Refreshing);
+         edtOrganisationSettingLanguage_Visible = (((GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector_Column)AV47ColumnsSelector.gxTpr_Columns.Item(7)).gxTpr_Isvisible ? 1 : 0);
+         AssignProp("", false, edtOrganisationSettingLanguage_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingLanguage_Visible), 5, 0), !bGXsfl_39_Refreshing);
          AV30GridCurrentPage = subGrid_fnc_Currentpage( );
          AssignAttri("", false, "AV30GridCurrentPage", StringUtil.LTrimStr( (decimal)(AV30GridCurrentPage), 10, 0));
          AV31GridPageCount = subGrid_fnc_Pagecount( );
          AssignAttri("", false, "AV31GridPageCount", StringUtil.LTrimStr( (decimal)(AV31GridPageCount), 10, 0));
-         GXt_char3 = AV32GridAppliedFilters;
-         new GeneXus.Programs.wwpbaseobjects.wwp_getappliedfiltersdescription(context ).execute(  AV44Pgmname, out  GXt_char3) ;
-         AV32GridAppliedFilters = GXt_char3;
+         GXt_char2 = AV32GridAppliedFilters;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getappliedfiltersdescription(context ).execute(  AV49Pgmname, out  GXt_char2) ;
+         AV32GridAppliedFilters = GXt_char2;
          AssignAttri("", false, "AV32GridAppliedFilters", AV32GridAppliedFilters);
-         AV45Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
-         AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
-         AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
-         AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
-         AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
-         AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
-         AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
+         AV50Trn_organisationsettingwwds_1_filterfulltext = AV15FilterFullText;
+         AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = AV20TFOrganisationSettingBaseColor;
+         AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = AV21TFOrganisationSettingBaseColor_Sel;
+         AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = AV22TFOrganisationSettingFontSize;
+         AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = AV23TFOrganisationSettingFontSize_Sel;
+         AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = AV24TFOrganisationSettingLanguage;
+         AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = AV25TFOrganisationSettingLanguage_Sel;
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV47ColumnsSelector", AV47ColumnsSelector);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
       }
@@ -1917,7 +2001,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      private void E193X2( )
+      private void E203X2( )
       {
          /* Grid_Load Routine */
          returnInSub = false;
@@ -1943,29 +2027,33 @@ namespace GeneXus.Programs {
          {
             cmbavActiongroup_Class = "ConvertToDDO";
          }
-         if ( AV33IsAuthorized_OrganisationSettingBaseColor )
-         {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-            GXEncryptionTmp = "trn_organisationsettingview.aspx"+UrlEncode(A100OrganisationSettingid.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
-            edtOrganisationSettingBaseColor_Link = formatLink("trn_organisationsettingview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
-         }
          /* Load Method */
          if ( wbStart != -1 )
          {
-            wbStart = 37;
+            wbStart = 39;
          }
-         sendrow_372( ) ;
+         sendrow_392( ) ;
          GRID_nCurrentRecord = (long)(GRID_nCurrentRecord+1);
-         if ( isFullAjaxMode( ) && ! bGXsfl_37_Refreshing )
+         if ( isFullAjaxMode( ) && ! bGXsfl_39_Refreshing )
          {
-            DoAjaxLoad(37, GridRow);
+            DoAjaxLoad(39, GridRow);
          }
          /*  Sending Event outputs  */
          cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV43ActionGroup), 4, 0));
+      }
+
+      protected void E163X2( )
+      {
+         /* Ddo_gridcolumnsselector_Oncolumnschanged Routine */
+         returnInSub = false;
+         AV45ColumnsSelectorXML = Ddo_gridcolumnsselector_Columnsselectorvalues;
+         AV47ColumnsSelector.FromJSonString(AV45ColumnsSelectorXML, null);
+         new GeneXus.Programs.wwpbaseobjects.savecolumnsselectorstate(context ).execute(  "Trn_OrganisationSettingWWColumnsSelector",  (String.IsNullOrEmpty(StringUtil.RTrim( AV45ColumnsSelectorXML)) ? "" : AV47ColumnsSelector.ToXml(false, true, "", ""))) ;
+         context.DoAjaxRefresh();
+         /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV47ColumnsSelector", AV47ColumnsSelector);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
       }
 
       protected void E113X2( )
@@ -1975,7 +2063,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Ddo_managefilters_Activeeventkey, "<#Clean#>") == 0 )
          {
             /* Execute user subroutine: 'CLEANFILTERS' */
-            S182 ();
+            S192 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -1997,7 +2085,7 @@ namespace GeneXus.Programs {
                gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
             }
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("Trn_OrganisationSettingWWFilters")) + "," + UrlEncode(StringUtil.RTrim(AV44Pgmname+"GridState"));
+            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("Trn_OrganisationSettingWWFilters")) + "," + UrlEncode(StringUtil.RTrim(AV49Pgmname+"GridState"));
             context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV19ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV19ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV19ManageFiltersExecutionStep), 1, 0));
@@ -2018,9 +2106,9 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXt_char3 = AV18ManageFiltersXml;
-            new GeneXus.Programs.wwpbaseobjects.getfilterbyname(context ).execute(  "Trn_OrganisationSettingWWFilters",  Ddo_managefilters_Activeeventkey, out  GXt_char3) ;
-            AV18ManageFiltersXml = GXt_char3;
+            GXt_char2 = AV18ManageFiltersXml;
+            new GeneXus.Programs.wwpbaseobjects.getfilterbyname(context ).execute(  "Trn_OrganisationSettingWWFilters",  Ddo_managefilters_Activeeventkey, out  GXt_char2) ;
+            AV18ManageFiltersXml = GXt_char2;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV18ManageFiltersXml)) )
             {
                GX_msglist.addItem(context.GetMessage( "WWP_FilterNotExist", ""));
@@ -2028,13 +2116,13 @@ namespace GeneXus.Programs {
             else
             {
                /* Execute user subroutine: 'CLEANFILTERS' */
-               S182 ();
+               S192 ();
                if ( returnInSub )
                {
                   returnInSub = true;
                   if (true) return;
                }
-               new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV44Pgmname+"GridState",  AV18ManageFiltersXml) ;
+               new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV49Pgmname+"GridState",  AV18ManageFiltersXml) ;
                AV11GridState.FromXml(AV18ManageFiltersXml, null, "", "");
                AV13OrderedBy = AV11GridState.gxTpr_Orderedby;
                AssignAttri("", false, "AV13OrderedBy", StringUtil.LTrimStr( (decimal)(AV13OrderedBy), 4, 0));
@@ -2048,7 +2136,7 @@ namespace GeneXus.Programs {
                   if (true) return;
                }
                /* Execute user subroutine: 'LOADREGFILTERSSTATE' */
-               S192 ();
+               S202 ();
                if ( returnInSub )
                {
                   returnInSub = true;
@@ -2059,17 +2147,18 @@ namespace GeneXus.Programs {
          }
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV47ColumnsSelector", AV47ColumnsSelector);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
       }
 
-      protected void E203X2( )
+      protected void E213X2( )
       {
          /* Actiongroup_Click Routine */
          returnInSub = false;
          if ( AV43ActionGroup == 1 )
          {
             /* Execute user subroutine: 'DO DISPLAY' */
-            S202 ();
+            S212 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2079,7 +2168,7 @@ namespace GeneXus.Programs {
          else if ( AV43ActionGroup == 2 )
          {
             /* Execute user subroutine: 'DO UPDATE' */
-            S212 ();
+            S222 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2089,7 +2178,7 @@ namespace GeneXus.Programs {
          else if ( AV43ActionGroup == 3 )
          {
             /* Execute user subroutine: 'DO DELETE' */
-            S222 ();
+            S232 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2101,11 +2190,12 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
          cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV43ActionGroup), 4, 0));
          AssignProp("", false, cmbavActiongroup_Internalname, "Values", cmbavActiongroup.ToJavascriptSource(), true);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV47ColumnsSelector", AV47ColumnsSelector);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
       }
 
-      protected void E163X2( )
+      protected void E173X2( )
       {
          /* 'DoInsert' Routine */
          returnInSub = false;
@@ -2126,6 +2216,7 @@ namespace GeneXus.Programs {
             context.DoAjaxRefresh();
          }
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV47ColumnsSelector", AV47ColumnsSelector);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV17ManageFiltersData", AV17ManageFiltersData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
       }
@@ -2149,12 +2240,12 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
          {
             WebComp_Wwpaux_wc.setjustcreated();
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0057",(string)"",(string)"Trn_OrganisationSetting",(short)1,(string)"",(string)""});
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0060",(string)"",(string)"Trn_OrganisationSetting",(short)1,(string)"",(string)""});
             WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
          {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0057"+"");
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0060"+"");
             WebComp_Wwpaux_wc.componentdraw();
             context.httpAjaxContext.ajax_rspEndCmp();
          }
@@ -2169,28 +2260,50 @@ namespace GeneXus.Programs {
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SortedStatus", Ddo_grid_Sortedstatus);
       }
 
+      protected void S182( )
+      {
+         /* 'INITIALIZECOLUMNSSELECTOR' Routine */
+         returnInSub = false;
+         AV47ColumnsSelector = new GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector(context);
+         new GeneXus.Programs.wwpbaseobjects.wwp_columnsselector_add(context ).execute( ref  AV47ColumnsSelector,  "OrganisationSettingid",  "",  "Settingid",  true,  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_columnsselector_add(context ).execute( ref  AV47ColumnsSelector,  "OrganisationId",  "",  "Organisation Id",  true,  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_columnsselector_add(context ).execute( ref  AV47ColumnsSelector,  "OrganisationSettingLogo",  "",  "Setting Logo",  true,  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_columnsselector_add(context ).execute( ref  AV47ColumnsSelector,  "OrganisationSettingFavicon",  "",  "Setting Favicon",  true,  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_columnsselector_add(context ).execute( ref  AV47ColumnsSelector,  "OrganisationSettingBaseColor",  "",  "Base Color",  true,  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_columnsselector_add(context ).execute( ref  AV47ColumnsSelector,  "OrganisationSettingFontSize",  "",  "Font Size",  true,  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_columnsselector_add(context ).execute( ref  AV47ColumnsSelector,  "OrganisationSettingLanguage",  "",  "Setting Language",  true,  "") ;
+         GXt_char2 = AV46UserCustomValue;
+         new GeneXus.Programs.wwpbaseobjects.loadcolumnsselectorstate(context ).execute(  "Trn_OrganisationSettingWWColumnsSelector", out  GXt_char2) ;
+         AV46UserCustomValue = GXt_char2;
+         if ( ! ( String.IsNullOrEmpty(StringUtil.RTrim( AV46UserCustomValue)) ) )
+         {
+            AV48ColumnsSelectorAux.FromXml(AV46UserCustomValue, null, "", "");
+            new GeneXus.Programs.wwpbaseobjects.wwp_columnselector_updatecolumns(context ).execute( ref  AV48ColumnsSelectorAux, ref  AV47ColumnsSelector) ;
+         }
+      }
+
       protected void S162( )
       {
          /* 'CHECKSECURITYFORACTIONS' Routine */
          returnInSub = false;
-         GXt_boolean2 = AV35IsAuthorized_Display;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsettingview_Execute", out  GXt_boolean2) ;
-         AV35IsAuthorized_Display = GXt_boolean2;
+         GXt_boolean3 = AV35IsAuthorized_Display;
+         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsettingview_Execute", out  GXt_boolean3) ;
+         AV35IsAuthorized_Display = GXt_boolean3;
          AssignAttri("", false, "AV35IsAuthorized_Display", AV35IsAuthorized_Display);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISPLAY", GetSecureSignedToken( "", AV35IsAuthorized_Display, context));
-         GXt_boolean2 = AV37IsAuthorized_Update;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsetting_Update", out  GXt_boolean2) ;
-         AV37IsAuthorized_Update = GXt_boolean2;
+         GXt_boolean3 = AV37IsAuthorized_Update;
+         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsetting_Update", out  GXt_boolean3) ;
+         AV37IsAuthorized_Update = GXt_boolean3;
          AssignAttri("", false, "AV37IsAuthorized_Update", AV37IsAuthorized_Update);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( "", AV37IsAuthorized_Update, context));
-         GXt_boolean2 = AV39IsAuthorized_Delete;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsetting_Delete", out  GXt_boolean2) ;
-         AV39IsAuthorized_Delete = GXt_boolean2;
+         GXt_boolean3 = AV39IsAuthorized_Delete;
+         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsetting_Delete", out  GXt_boolean3) ;
+         AV39IsAuthorized_Delete = GXt_boolean3;
          AssignAttri("", false, "AV39IsAuthorized_Delete", AV39IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV39IsAuthorized_Delete, context));
-         GXt_boolean2 = AV40IsAuthorized_Insert;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsetting_Insert", out  GXt_boolean2) ;
-         AV40IsAuthorized_Insert = GXt_boolean2;
+         GXt_boolean3 = AV40IsAuthorized_Insert;
+         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsetting_Insert", out  GXt_boolean3) ;
+         AV40IsAuthorized_Insert = GXt_boolean3;
          AssignAttri("", false, "AV40IsAuthorized_Insert", AV40IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV40IsAuthorized_Insert, context));
          if ( ! ( AV40IsAuthorized_Insert ) )
@@ -2214,7 +2327,7 @@ namespace GeneXus.Programs {
          AV17ManageFiltersData = GXt_objcol_SdtDVB_SDTDropDownOptionsData_Item4;
       }
 
-      protected void S182( )
+      protected void S192( )
       {
          /* 'CLEANFILTERS' Routine */
          returnInSub = false;
@@ -2238,7 +2351,7 @@ namespace GeneXus.Programs {
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "FilteredText_set", Ddo_grid_Filteredtext_set);
       }
 
-      protected void S202( )
+      protected void S212( )
       {
          /* 'DO DISPLAY' Routine */
          returnInSub = false;
@@ -2260,7 +2373,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S212( )
+      protected void S222( )
       {
          /* 'DO UPDATE' Routine */
          returnInSub = false;
@@ -2282,7 +2395,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S222( )
+      protected void S232( )
       {
          /* 'DO DELETE' Routine */
          returnInSub = false;
@@ -2308,13 +2421,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(AV16Session.Get(AV44Pgmname+"GridState"), "") == 0 )
+         if ( StringUtil.StrCmp(AV16Session.Get(AV49Pgmname+"GridState"), "") == 0 )
          {
-            AV11GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  AV44Pgmname+"GridState"), null, "", "");
+            AV11GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  AV49Pgmname+"GridState"), null, "", "");
          }
          else
          {
-            AV11GridState.FromXml(AV16Session.Get(AV44Pgmname+"GridState"), null, "", "");
+            AV11GridState.FromXml(AV16Session.Get(AV49Pgmname+"GridState"), null, "", "");
          }
          AV13OrderedBy = AV11GridState.gxTpr_Orderedby;
          AssignAttri("", false, "AV13OrderedBy", StringUtil.LTrimStr( (decimal)(AV13OrderedBy), 4, 0));
@@ -2328,7 +2441,7 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          /* Execute user subroutine: 'LOADREGFILTERSSTATE' */
-         S192 ();
+         S202 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -2342,14 +2455,14 @@ namespace GeneXus.Programs {
          subgrid_gotopage( AV11GridState.gxTpr_Currentpage) ;
       }
 
-      protected void S192( )
+      protected void S202( )
       {
          /* 'LOADREGFILTERSSTATE' Routine */
          returnInSub = false;
-         AV52GXV1 = 1;
-         while ( AV52GXV1 <= AV11GridState.gxTpr_Filtervalues.Count )
+         AV57GXV1 = 1;
+         while ( AV57GXV1 <= AV11GridState.gxTpr_Filtervalues.Count )
          {
-            AV12GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV11GridState.gxTpr_Filtervalues.Item(AV52GXV1));
+            AV12GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV11GridState.gxTpr_Filtervalues.Item(AV57GXV1));
             if ( StringUtil.StrCmp(AV12GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV15FilterFullText = AV12GridStateFilterValue.gxTpr_Value;
@@ -2385,23 +2498,23 @@ namespace GeneXus.Programs {
                AV25TFOrganisationSettingLanguage_Sel = AV12GridStateFilterValue.gxTpr_Value;
                AssignAttri("", false, "AV25TFOrganisationSettingLanguage_Sel", AV25TFOrganisationSettingLanguage_Sel);
             }
-            AV52GXV1 = (int)(AV52GXV1+1);
+            AV57GXV1 = (int)(AV57GXV1+1);
          }
-         GXt_char3 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV21TFOrganisationSettingBaseColor_Sel)),  AV21TFOrganisationSettingBaseColor_Sel, out  GXt_char3) ;
+         GXt_char2 = "";
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV21TFOrganisationSettingBaseColor_Sel)),  AV21TFOrganisationSettingBaseColor_Sel, out  GXt_char2) ;
          GXt_char5 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV23TFOrganisationSettingFontSize_Sel)),  AV23TFOrganisationSettingFontSize_Sel, out  GXt_char5) ;
          GXt_char6 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV25TFOrganisationSettingLanguage_Sel)),  AV25TFOrganisationSettingLanguage_Sel, out  GXt_char6) ;
-         Ddo_grid_Selectedvalue_set = "||"+GXt_char3+"|"+GXt_char5+"|"+GXt_char6;
+         Ddo_grid_Selectedvalue_set = "||||"+GXt_char2+"|"+GXt_char5+"|"+GXt_char6;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedValue_set", Ddo_grid_Selectedvalue_set);
          GXt_char6 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV20TFOrganisationSettingBaseColor)),  AV20TFOrganisationSettingBaseColor, out  GXt_char6) ;
          GXt_char5 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV22TFOrganisationSettingFontSize)),  AV22TFOrganisationSettingFontSize, out  GXt_char5) ;
-         GXt_char3 = "";
-         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV24TFOrganisationSettingLanguage)),  AV24TFOrganisationSettingLanguage, out  GXt_char3) ;
-         Ddo_grid_Filteredtext_set = "||"+GXt_char6+"|"+GXt_char5+"|"+GXt_char3;
+         GXt_char2 = "";
+         new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV24TFOrganisationSettingLanguage)),  AV24TFOrganisationSettingLanguage, out  GXt_char2) ;
+         Ddo_grid_Filteredtext_set = "||||"+GXt_char6+"|"+GXt_char5+"|"+GXt_char2;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "FilteredText_set", Ddo_grid_Filteredtext_set);
       }
 
@@ -2409,7 +2522,7 @@ namespace GeneXus.Programs {
       {
          /* 'SAVEGRIDSTATE' Routine */
          returnInSub = false;
-         AV11GridState.FromXml(AV16Session.Get(AV44Pgmname+"GridState"), null, "", "");
+         AV11GridState.FromXml(AV16Session.Get(AV49Pgmname+"GridState"), null, "", "");
          AV11GridState.gxTpr_Orderedby = AV13OrderedBy;
          AV11GridState.gxTpr_Ordereddsc = AV14OrderedDsc;
          AV11GridState.gxTpr_Filtervalues.Clear();
@@ -2419,7 +2532,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV11GridState,  "TFORGANISATIONSETTINGLANGUAGE",  context.GetMessage( "Setting Language", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV24TFOrganisationSettingLanguage)),  0,  AV24TFOrganisationSettingLanguage,  AV24TFOrganisationSettingLanguage,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV25TFOrganisationSettingLanguage_Sel)),  AV25TFOrganisationSettingLanguage_Sel,  AV25TFOrganisationSettingLanguage_Sel) ;
          AV11GridState.gxTpr_Pagesize = StringUtil.Str( (decimal)(subGrid_Rows), 10, 0);
          AV11GridState.gxTpr_Currentpage = (short)(subGrid_fnc_Currentpage( ));
-         new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV44Pgmname+"GridState",  AV11GridState.ToXml(false, true, "", "")) ;
+         new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV49Pgmname+"GridState",  AV11GridState.ToXml(false, true, "", "")) ;
       }
 
       protected void S132( )
@@ -2427,7 +2540,7 @@ namespace GeneXus.Programs {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
          AV9TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
-         AV9TrnContext.gxTpr_Callerobject = AV44Pgmname;
+         AV9TrnContext.gxTpr_Callerobject = AV49Pgmname;
          AV9TrnContext.gxTpr_Callerondelete = true;
          AV9TrnContext.gxTpr_Callerurl = AV8HTTPRequest.ScriptName+"?"+AV8HTTPRequest.QueryString;
          AV9TrnContext.gxTpr_Transactionname = "Trn_OrganisationSetting";
@@ -2487,7 +2600,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411499046", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411143384681", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2503,7 +2616,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsettingww.js", "?202411499047", false, true);
+         context.AddJavascriptSource("trn_organisationsettingww.js", "?202411143384683", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2519,41 +2632,44 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/GridEmpowerer/GridEmpowererRender.js", "", false, true);
          /* End function include_jscripts */
       }
 
-      protected void SubsflControlProps_372( )
+      protected void SubsflControlProps_392( )
       {
-         edtOrganisationSettingid_Internalname = "ORGANISATIONSETTINGID_"+sGXsfl_37_idx;
-         edtOrganisationId_Internalname = "ORGANISATIONID_"+sGXsfl_37_idx;
-         edtOrganisationSettingLogo_Internalname = "ORGANISATIONSETTINGLOGO_"+sGXsfl_37_idx;
-         edtOrganisationSettingFavicon_Internalname = "ORGANISATIONSETTINGFAVICON_"+sGXsfl_37_idx;
-         edtOrganisationSettingBaseColor_Internalname = "ORGANISATIONSETTINGBASECOLOR_"+sGXsfl_37_idx;
-         edtOrganisationSettingFontSize_Internalname = "ORGANISATIONSETTINGFONTSIZE_"+sGXsfl_37_idx;
-         edtOrganisationSettingLanguage_Internalname = "ORGANISATIONSETTINGLANGUAGE_"+sGXsfl_37_idx;
-         cmbavActiongroup_Internalname = "vACTIONGROUP_"+sGXsfl_37_idx;
+         edtOrganisationSettingid_Internalname = "ORGANISATIONSETTINGID_"+sGXsfl_39_idx;
+         edtOrganisationId_Internalname = "ORGANISATIONID_"+sGXsfl_39_idx;
+         edtOrganisationSettingLogo_Internalname = "ORGANISATIONSETTINGLOGO_"+sGXsfl_39_idx;
+         edtOrganisationSettingFavicon_Internalname = "ORGANISATIONSETTINGFAVICON_"+sGXsfl_39_idx;
+         edtOrganisationSettingBaseColor_Internalname = "ORGANISATIONSETTINGBASECOLOR_"+sGXsfl_39_idx;
+         edtOrganisationSettingFontSize_Internalname = "ORGANISATIONSETTINGFONTSIZE_"+sGXsfl_39_idx;
+         edtOrganisationSettingLanguage_Internalname = "ORGANISATIONSETTINGLANGUAGE_"+sGXsfl_39_idx;
+         cmbavActiongroup_Internalname = "vACTIONGROUP_"+sGXsfl_39_idx;
       }
 
-      protected void SubsflControlProps_fel_372( )
+      protected void SubsflControlProps_fel_392( )
       {
-         edtOrganisationSettingid_Internalname = "ORGANISATIONSETTINGID_"+sGXsfl_37_fel_idx;
-         edtOrganisationId_Internalname = "ORGANISATIONID_"+sGXsfl_37_fel_idx;
-         edtOrganisationSettingLogo_Internalname = "ORGANISATIONSETTINGLOGO_"+sGXsfl_37_fel_idx;
-         edtOrganisationSettingFavicon_Internalname = "ORGANISATIONSETTINGFAVICON_"+sGXsfl_37_fel_idx;
-         edtOrganisationSettingBaseColor_Internalname = "ORGANISATIONSETTINGBASECOLOR_"+sGXsfl_37_fel_idx;
-         edtOrganisationSettingFontSize_Internalname = "ORGANISATIONSETTINGFONTSIZE_"+sGXsfl_37_fel_idx;
-         edtOrganisationSettingLanguage_Internalname = "ORGANISATIONSETTINGLANGUAGE_"+sGXsfl_37_fel_idx;
-         cmbavActiongroup_Internalname = "vACTIONGROUP_"+sGXsfl_37_fel_idx;
+         edtOrganisationSettingid_Internalname = "ORGANISATIONSETTINGID_"+sGXsfl_39_fel_idx;
+         edtOrganisationId_Internalname = "ORGANISATIONID_"+sGXsfl_39_fel_idx;
+         edtOrganisationSettingLogo_Internalname = "ORGANISATIONSETTINGLOGO_"+sGXsfl_39_fel_idx;
+         edtOrganisationSettingFavicon_Internalname = "ORGANISATIONSETTINGFAVICON_"+sGXsfl_39_fel_idx;
+         edtOrganisationSettingBaseColor_Internalname = "ORGANISATIONSETTINGBASECOLOR_"+sGXsfl_39_fel_idx;
+         edtOrganisationSettingFontSize_Internalname = "ORGANISATIONSETTINGFONTSIZE_"+sGXsfl_39_fel_idx;
+         edtOrganisationSettingLanguage_Internalname = "ORGANISATIONSETTINGLANGUAGE_"+sGXsfl_39_fel_idx;
+         cmbavActiongroup_Internalname = "vACTIONGROUP_"+sGXsfl_39_fel_idx;
       }
 
-      protected void sendrow_372( )
+      protected void sendrow_392( )
       {
-         sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
-         SubsflControlProps_372( ) ;
+         sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
+         SubsflControlProps_392( ) ;
          WB3X0( ) ;
-         if ( ( subGrid_Rows * 1 == 0 ) || ( nGXsfl_37_idx <= subGrid_fnc_Recordsperpage( ) * 1 ) )
+         if ( ( subGrid_Rows * 1 == 0 ) || ( nGXsfl_39_idx <= subGrid_fnc_Recordsperpage( ) * 1 ) )
          {
             GridRow = GXWebRow.GetNew(context,GridContainer);
             if ( subGrid_Backcolorstyle == 0 )
@@ -2589,7 +2705,7 @@ namespace GeneXus.Programs {
             {
                /* Report style subfile background logic. */
                subGrid_Backstyle = 1;
-               if ( ((int)((nGXsfl_37_idx) % (2))) == 0 )
+               if ( ((int)((nGXsfl_39_idx) % (2))) == 0 )
                {
                   subGrid_Backcolor = (int)(0x0);
                   if ( StringUtil.StrCmp(subGrid_Class, "") != 0 )
@@ -2610,79 +2726,79 @@ namespace GeneXus.Programs {
             {
                context.WriteHtmlText( "<tr ") ;
                context.WriteHtmlText( " class=\""+"GridWithPaginationBar WorkWithSelection WorkWith"+"\" style=\""+""+"\"") ;
-               context.WriteHtmlText( " gxrow=\""+sGXsfl_37_idx+"\">") ;
+               context.WriteHtmlText( " gxrow=\""+sGXsfl_39_idx+"\">") ;
             }
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
-            }
-            /* Single line edit */
-            ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingid_Internalname,A100OrganisationSettingid.ToString(),A100OrganisationSettingid.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationSettingid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)37,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
-            /* Subfile cell */
-            if ( GridContainer.GetWrapped() == 1 )
-            {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+((edtOrganisationSettingid_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationId_Internalname,A11OrganisationId.ToString(),A11OrganisationId.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)37,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingid_Internalname,A100OrganisationSettingid.ToString(),A100OrganisationSettingid.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationSettingid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(int)edtOrganisationSettingid_Visible,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)39,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+((edtOrganisationId_Visible==0) ? "display:none;" : "")+"\">") ;
+            }
+            /* Single line edit */
+            ROClassString = "Attribute";
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationId_Internalname,A11OrganisationId.ToString(),A11OrganisationId.ToString(),(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(int)edtOrganisationId_Visible,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)39,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
+            /* Subfile cell */
+            if ( GridContainer.GetWrapped() == 1 )
+            {
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+((edtOrganisationSettingLogo_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Static Bitmap Variable */
             ClassString = "Attribute";
             StyleString = "";
             A101OrganisationSettingLogo_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo))&&String.IsNullOrEmpty(StringUtil.RTrim( A40000OrganisationSettingLogo_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo)));
             sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( A101OrganisationSettingLogo)) ? A40000OrganisationSettingLogo_GXI : context.PathToRelativeUrl( A101OrganisationSettingLogo));
-            GridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingLogo_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)0,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)0,(string)"",(string)"",(string)StyleString,(string)ClassString,(string)"WWColumn hidden-xs",(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)1,(bool)A101OrganisationSettingLogo_IsBlob,(bool)true,context.GetImageSrcSet( sImgUrl)});
+            GridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingLogo_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtOrganisationSettingLogo_Visible,(short)0,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)0,(string)"",(string)"",(string)StyleString,(string)ClassString,(string)"WWColumn hidden-xs",(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)1,(bool)A101OrganisationSettingLogo_IsBlob,(bool)true,context.GetImageSrcSet( sImgUrl)});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+""+"\""+" style=\""+((edtOrganisationSettingFavicon_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Static Bitmap Variable */
             ClassString = "Attribute";
             StyleString = "";
             A102OrganisationSettingFavicon_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon))&&String.IsNullOrEmpty(StringUtil.RTrim( A40001OrganisationSettingFavicon_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)));
             sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)) ? A40001OrganisationSettingFavicon_GXI : context.PathToRelativeUrl( A102OrganisationSettingFavicon));
-            GridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingFavicon_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(short)-1,(short)0,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)0,(string)"",(string)"",(string)StyleString,(string)ClassString,(string)"WWColumn hidden-xs",(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)1,(bool)A102OrganisationSettingFavicon_IsBlob,(bool)true,context.GetImageSrcSet( sImgUrl)});
+            GridRow.AddColumnProperties("bitmap", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingFavicon_Internalname,(string)sImgUrl,(string)"",(string)"",(string)"",context.GetTheme( ),(int)edtOrganisationSettingFavicon_Visible,(short)0,(string)"",(string)"",(short)0,(short)-1,(short)0,(string)"px",(short)0,(string)"px",(short)0,(short)0,(short)0,(string)"",(string)"",(string)StyleString,(string)ClassString,(string)"WWColumn hidden-xs",(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)1,(bool)A102OrganisationSettingFavicon_IsBlob,(bool)true,context.GetImageSrcSet( sImgUrl)});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtOrganisationSettingBaseColor_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingBaseColor_Internalname,(string)A103OrganisationSettingBaseColor,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)edtOrganisationSettingBaseColor_Link,(string)"",(string)"",(string)"",(string)edtOrganisationSettingBaseColor_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingBaseColor_Internalname,(string)A103OrganisationSettingBaseColor,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationSettingBaseColor_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(int)edtOrganisationSettingBaseColor_Visible,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)39,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtOrganisationSettingFontSize_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingFontSize_Internalname,(string)A104OrganisationSettingFontSize,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationSettingFontSize_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)37,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingFontSize_Internalname,(string)A104OrganisationSettingFontSize,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationSettingFontSize_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(int)edtOrganisationSettingFontSize_Visible,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)39,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+((edtOrganisationSettingLanguage_Visible==0) ? "display:none;" : "")+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingLanguage_Internalname,(string)A105OrganisationSettingLanguage,(string)A105OrganisationSettingLanguage,(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationSettingLanguage_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)37,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtOrganisationSettingLanguage_Internalname,(string)A105OrganisationSettingLanguage,(string)A105OrganisationSettingLanguage,(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtOrganisationSettingLanguage_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(int)edtOrganisationSettingLanguage_Visible,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)39,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
             }
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 45,'',false,'" + sGXsfl_37_idx + "',37)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 47,'',false,'" + sGXsfl_39_idx + "',39)\"";
             if ( ( cmbavActiongroup.ItemCount == 0 ) && isAjaxCallMode( ) )
             {
-               GXCCtl = "vACTIONGROUP_" + sGXsfl_37_idx;
+               GXCCtl = "vACTIONGROUP_" + sGXsfl_39_idx;
                cmbavActiongroup.Name = GXCCtl;
                cmbavActiongroup.WebTags = "";
                if ( cmbavActiongroup.ItemCount > 0 )
@@ -2692,21 +2808,21 @@ namespace GeneXus.Programs {
                }
             }
             /* ComboBox */
-            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavActiongroup,(string)cmbavActiongroup_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(AV43ActionGroup), 4, 0)),(short)1,(string)cmbavActiongroup_Jsonclick,(short)5,"'"+""+"'"+",false,"+"'"+"EVACTIONGROUP.CLICK."+sGXsfl_37_idx+"'",(string)"int",(string)"",(short)-1,(short)1,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)cmbavActiongroup_Class,(string)"WWActionGroupColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,45);\"",(string)"",(bool)true,(short)0});
+            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavActiongroup,(string)cmbavActiongroup_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(AV43ActionGroup), 4, 0)),(short)1,(string)cmbavActiongroup_Jsonclick,(short)5,"'"+""+"'"+",false,"+"'"+"EVACTIONGROUP.CLICK."+sGXsfl_39_idx+"'",(string)"int",(string)"",(short)-1,(short)1,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)cmbavActiongroup_Class,(string)"WWActionGroupColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,47);\"",(string)"",(bool)true,(short)0});
             cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV43ActionGroup), 4, 0));
-            AssignProp("", false, cmbavActiongroup_Internalname, "Values", (string)(cmbavActiongroup.ToJavascriptSource()), !bGXsfl_37_Refreshing);
+            AssignProp("", false, cmbavActiongroup_Internalname, "Values", (string)(cmbavActiongroup.ToJavascriptSource()), !bGXsfl_39_Refreshing);
             send_integrity_lvl_hashes3X2( ) ;
             GridContainer.AddRow(GridRow);
-            nGXsfl_37_idx = ((subGrid_Islastpage==1)&&(nGXsfl_37_idx+1>subGrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_37_idx+1);
-            sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
-            SubsflControlProps_372( ) ;
+            nGXsfl_39_idx = ((subGrid_Islastpage==1)&&(nGXsfl_39_idx+1>subGrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_39_idx+1);
+            sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
+            SubsflControlProps_392( ) ;
          }
-         /* End function sendrow_372 */
+         /* End function sendrow_392 */
       }
 
       protected void init_web_controls( )
       {
-         GXCCtl = "vACTIONGROUP_" + sGXsfl_37_idx;
+         GXCCtl = "vACTIONGROUP_" + sGXsfl_39_idx;
          cmbavActiongroup.Name = GXCCtl;
          cmbavActiongroup.WebTags = "";
          if ( cmbavActiongroup.ItemCount > 0 )
@@ -2717,11 +2833,11 @@ namespace GeneXus.Programs {
          /* End function init_web_controls */
       }
 
-      protected void StartGridControl37( )
+      protected void StartGridControl39( )
       {
          if ( GridContainer.GetWrapped() == 1 )
          {
-            context.WriteHtmlText( "<div id=\""+"GridContainer"+"DivS\" data-gxgridid=\"37\">") ;
+            context.WriteHtmlText( "<div id=\""+"GridContainer"+"DivS\" data-gxgridid=\"39\">") ;
             sStyleString = "";
             GxWebStd.gx_table_start( context, subGrid_Internalname, subGrid_Internalname, "", "GridWithPaginationBar WorkWithSelection WorkWith", 0, "", "", 1, 2, sStyleString, "", "", 0);
             /* Subfile titles */
@@ -2754,25 +2870,25 @@ namespace GeneXus.Programs {
                   }
                }
             }
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtOrganisationSettingid_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Settingid", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtOrganisationId_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Organisation Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtOrganisationSettingLogo_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Setting Logo", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtOrganisationSettingFavicon_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Setting Favicon", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtOrganisationSettingBaseColor_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Base Color", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtOrganisationSettingFontSize_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Font Size", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtOrganisationSettingLanguage_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( context.GetMessage( "Setting Language", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+cmbavActiongroup_Class+"\" "+" style=\""+""+""+"\" "+">") ;
@@ -2803,25 +2919,31 @@ namespace GeneXus.Programs {
             GridContainer.AddObjectProperty("InMasterPage", "false");
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A100OrganisationSettingid.ToString()));
+            GridColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtOrganisationSettingid_Visible), 5, 0, ".", "")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A11OrganisationId.ToString()));
+            GridColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtOrganisationId_Visible), 5, 0, ".", "")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", context.convertURL( A101OrganisationSettingLogo));
+            GridColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtOrganisationSettingLogo_Visible), 5, 0, ".", "")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", context.convertURL( A102OrganisationSettingFavicon));
+            GridColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtOrganisationSettingFavicon_Visible), 5, 0, ".", "")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A103OrganisationSettingBaseColor));
-            GridColumn.AddObjectProperty("Link", StringUtil.RTrim( edtOrganisationSettingBaseColor_Link));
+            GridColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtOrganisationSettingBaseColor_Visible), 5, 0, ".", "")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A104OrganisationSettingFontSize));
+            GridColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtOrganisationSettingFontSize_Visible), 5, 0, ".", "")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A105OrganisationSettingLanguage));
+            GridColumn.AddObjectProperty("Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtOrganisationSettingLanguage_Visible), 5, 0, ".", "")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.LTrim( StringUtil.NToC( (decimal)(AV43ActionGroup), 4, 0, ".", ""))));
@@ -2840,6 +2962,7 @@ namespace GeneXus.Programs {
       protected void init_default_properties( )
       {
          bttBtninsert_Internalname = "BTNINSERT";
+         bttBtneditcolumns_Internalname = "BTNEDITCOLUMNS";
          bttBtnsubscriptions_Internalname = "BTNSUBSCRIPTIONS";
          divTableactions_Internalname = "TABLEACTIONS";
          Ddo_managefilters_Internalname = "DDO_MANAGEFILTERS";
@@ -2862,6 +2985,7 @@ namespace GeneXus.Programs {
          Ddc_subscriptions_Internalname = "DDC_SUBSCRIPTIONS";
          Combo_organisationsettinglanguage_Internalname = "COMBO_ORGANISATIONSETTINGLANGUAGE";
          Ddo_grid_Internalname = "DDO_GRID";
+         Ddo_gridcolumnsselector_Internalname = "DDO_GRIDCOLUMNSSELECTOR";
          Grid_empowerer_Internalname = "GRID_EMPOWERER";
          divDiv_wwpauxwc_Internalname = "DIV_WWPAUXWC";
          divHtml_bottomauxiliarcontrols_Internalname = "HTML_BOTTOMAUXILIARCONTROLS";
@@ -2887,11 +3011,17 @@ namespace GeneXus.Programs {
          edtOrganisationSettingLanguage_Jsonclick = "";
          edtOrganisationSettingFontSize_Jsonclick = "";
          edtOrganisationSettingBaseColor_Jsonclick = "";
-         edtOrganisationSettingBaseColor_Link = "";
          edtOrganisationId_Jsonclick = "";
          edtOrganisationSettingid_Jsonclick = "";
          subGrid_Class = "GridWithPaginationBar WorkWithSelection WorkWith";
          subGrid_Backcolorstyle = 0;
+         edtOrganisationSettingLanguage_Visible = -1;
+         edtOrganisationSettingFontSize_Visible = -1;
+         edtOrganisationSettingBaseColor_Visible = -1;
+         edtOrganisationSettingFavicon_Visible = -1;
+         edtOrganisationSettingLogo_Visible = -1;
+         edtOrganisationId_Visible = -1;
+         edtOrganisationSettingid_Visible = -1;
          edtOrganisationSettingLanguage_Enabled = 0;
          edtOrganisationSettingFontSize_Enabled = 0;
          edtOrganisationSettingBaseColor_Enabled = 0;
@@ -2905,15 +3035,24 @@ namespace GeneXus.Programs {
          edtavFilterfulltext_Enabled = 1;
          bttBtnsubscriptions_Visible = 1;
          bttBtninsert_Visible = 1;
+         Grid_empowerer_Hascolumnsselector = Convert.ToBoolean( -1);
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
+         Ddo_gridcolumnsselector_Titlecontrolidtoreplace = "";
+         Ddo_gridcolumnsselector_Dropdownoptionstype = "GridColumnsSelector";
+         Ddo_gridcolumnsselector_Cls = "ColumnsSelector hidden-xs";
+         Ddo_gridcolumnsselector_Tooltip = "WWP_EditColumnsTooltip";
+         Ddo_gridcolumnsselector_Caption = context.GetMessage( "WWP_EditColumnsCaption", "");
+         Ddo_gridcolumnsselector_Icon = "fas fa-cog";
+         Ddo_gridcolumnsselector_Icontype = "FontIcon";
          Ddo_grid_Datalistproc = "Trn_OrganisationSettingWWGetFilterData";
-         Ddo_grid_Datalisttype = "||Dynamic|Dynamic|Dynamic";
-         Ddo_grid_Includedatalist = "||T|T|T";
-         Ddo_grid_Filtertype = "||Character|Character|Character";
-         Ddo_grid_Includefilter = "||T|T|T";
-         Ddo_grid_Includesortasc = "T";
-         Ddo_grid_Columnssortvalues = "2|3|1|4|5";
-         Ddo_grid_Columnids = "0:OrganisationSettingid|1:OrganisationId|4:OrganisationSettingBaseColor|5:OrganisationSettingFontSize|6:OrganisationSettingLanguage";
+         Ddo_grid_Datalisttype = "||||Dynamic|Dynamic|Dynamic";
+         Ddo_grid_Includedatalist = "||||T|T|T";
+         Ddo_grid_Filtertype = "||||Character|Character|Character";
+         Ddo_grid_Includefilter = "||||T|T|T";
+         Ddo_grid_Fixable = "T";
+         Ddo_grid_Includesortasc = "T|T|||T|T|T";
+         Ddo_grid_Columnssortvalues = "2|3|||1|4|5";
+         Ddo_grid_Columnids = "0:OrganisationSettingid|1:OrganisationId|2:OrganisationSettingLogo|3:OrganisationSettingFavicon|4:OrganisationSettingBaseColor|5:OrganisationSettingFontSize|6:OrganisationSettingLanguage";
          Ddo_grid_Gridinternalname = "";
          Combo_organisationsettinglanguage_Emptyitemtext = "Select Languages";
          Combo_organisationsettinglanguage_Multiplevaluestype = "Tags";
@@ -2971,21 +3110,23 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV44Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E123X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV44Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E133X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV44Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E123X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E133X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
          setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE",""","oparms":[{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]}""");
-         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E153X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV44Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"}]""");
+         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E153X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"}]""");
          setEventMetadata("DDO_GRID.ONOPTIONCLICKED",""","oparms":[{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"}]}""");
-         setEventMetadata("GRID.LOAD","""{"handler":"E193X2","iparms":[{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true}]""");
-         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"edtOrganisationSettingBaseColor_Link","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Link"}]}""");
-         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E113X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV44Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]""");
-         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
-         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E203X2","iparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV44Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true}]""");
-         setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("'DOINSERT'","""{"handler":"E163X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV44Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true}]""");
-         setEventMetadata("'DOINSERT'",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
+         setEventMetadata("GRID.LOAD","""{"handler":"E203X2","iparms":[{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true}]""");
+         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"}]}""");
+         setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED","""{"handler":"E163X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_gridcolumnsselector_Columnsselectorvalues","ctrl":"DDO_GRIDCOLUMNSSELECTOR","prop":"ColumnsSelectorValues"}]""");
+         setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED",""","oparms":[{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
+         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E113X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]""");
+         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
+         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E213X2","iparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true}]""");
+         setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
+         setEventMetadata("'DOINSERT'","""{"handler":"E173X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true}]""");
+         setEventMetadata("'DOINSERT'",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E143X2","iparms":[]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Actiongroup","iparms":[]}""");
@@ -3008,11 +3149,13 @@ namespace GeneXus.Programs {
          Ddo_grid_Selectedvalue_get = "";
          Ddo_grid_Selectedcolumn = "";
          Ddo_grid_Filteredtext_get = "";
+         Ddo_gridcolumnsselector_Columnsselectorvalues = "";
          Ddo_managefilters_Activeeventkey = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          AV15FilterFullText = "";
-         AV44Pgmname = "";
+         AV47ColumnsSelector = new GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector(context);
+         AV49Pgmname = "";
          AV20TFOrganisationSettingBaseColor = "";
          AV21TFOrganisationSettingBaseColor_Sel = "";
          AV22TFOrganisationSettingFontSize = "";
@@ -3033,6 +3176,7 @@ namespace GeneXus.Programs {
          Ddo_grid_Selectedvalue_set = "";
          Ddo_grid_Gamoauthtoken = "";
          Ddo_grid_Sortedstatus = "";
+         Ddo_gridcolumnsselector_Gridinternalname = "";
          Grid_empowerer_Gridinternalname = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
@@ -3041,6 +3185,7 @@ namespace GeneXus.Programs {
          ClassString = "";
          StyleString = "";
          bttBtninsert_Jsonclick = "";
+         bttBtneditcolumns_Jsonclick = "";
          bttBtnsubscriptions_Jsonclick = "";
          ucDdo_managefilters = new GXUserControl();
          Ddo_managefilters_Caption = "";
@@ -3050,6 +3195,7 @@ namespace GeneXus.Programs {
          ucDdc_subscriptions = new GXUserControl();
          ucCombo_organisationsettinglanguage = new GXUserControl();
          ucDdo_grid = new GXUserControl();
+         ucDdo_gridcolumnsselector = new GXUserControl();
          ucGrid_empowerer = new GXUserControl();
          WebComp_Wwpaux_wc_Component = "";
          OldWwpaux_wc = "";
@@ -3066,17 +3212,17 @@ namespace GeneXus.Programs {
          A103OrganisationSettingBaseColor = "";
          A104OrganisationSettingFontSize = "";
          A105OrganisationSettingLanguage = "";
-         lV45Trn_organisationsettingwwds_1_filterfulltext = "";
-         lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = "";
-         lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = "";
-         lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = "";
-         AV45Trn_organisationsettingwwds_1_filterfulltext = "";
-         AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = "";
-         AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = "";
-         AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = "";
-         AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize = "";
-         AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = "";
-         AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage = "";
+         lV50Trn_organisationsettingwwds_1_filterfulltext = "";
+         lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = "";
+         lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = "";
+         lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = "";
+         AV50Trn_organisationsettingwwds_1_filterfulltext = "";
+         AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel = "";
+         AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor = "";
+         AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel = "";
+         AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize = "";
+         AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel = "";
+         AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage = "";
          H003X2_A105OrganisationSettingLanguage = new string[] {""} ;
          H003X2_A104OrganisationSettingFontSize = new string[] {""} ;
          H003X2_A103OrganisationSettingBaseColor = new string[] {""} ;
@@ -3092,15 +3238,18 @@ namespace GeneXus.Programs {
          AV28GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         GXEncryptionTmp = "";
-         GridRow = new GXWebRow();
-         AV18ManageFiltersXml = "";
-         GXt_objcol_SdtDVB_SDTDropDownOptionsData_Item4 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item>( context, "Item", "");
          AV16Session = context.GetSession();
+         AV45ColumnsSelectorXML = "";
+         GridRow = new GXWebRow();
+         GXEncryptionTmp = "";
+         AV18ManageFiltersXml = "";
+         AV46UserCustomValue = "";
+         AV48ColumnsSelectorAux = new GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector(context);
+         GXt_objcol_SdtDVB_SDTDropDownOptionsData_Item4 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item>( context, "Item", "");
          AV12GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
          GXt_char6 = "";
          GXt_char5 = "";
-         GXt_char3 = "";
+         GXt_char2 = "";
          AV9TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -3120,9 +3269,9 @@ namespace GeneXus.Programs {
             }
          );
          WebComp_Wwpaux_wc = new GeneXus.Http.GXNullWebComponent();
-         AV44Pgmname = "Trn_OrganisationSettingWW";
+         AV49Pgmname = "Trn_OrganisationSettingWW";
          /* GeneXus formulas. */
-         AV44Pgmname = "Trn_OrganisationSettingWW";
+         AV49Pgmname = "Trn_OrganisationSettingWW";
       }
 
       private short GRID_nEOF ;
@@ -3148,8 +3297,8 @@ namespace GeneXus.Programs {
       private short subGrid_Collapsed ;
       private int subGrid_Rows ;
       private int Gridpaginationbar_Rowsperpageselectedvalue ;
-      private int nRC_GXsfl_37 ;
-      private int nGXsfl_37_idx=1 ;
+      private int nRC_GXsfl_39 ;
+      private int nGXsfl_39_idx=1 ;
       private int Gridpaginationbar_Pagestoshow ;
       private int bttBtninsert_Visible ;
       private int bttBtnsubscriptions_Visible ;
@@ -3164,8 +3313,15 @@ namespace GeneXus.Programs {
       private int edtOrganisationSettingBaseColor_Enabled ;
       private int edtOrganisationSettingFontSize_Enabled ;
       private int edtOrganisationSettingLanguage_Enabled ;
+      private int edtOrganisationSettingid_Visible ;
+      private int edtOrganisationId_Visible ;
+      private int edtOrganisationSettingLogo_Visible ;
+      private int edtOrganisationSettingFavicon_Visible ;
+      private int edtOrganisationSettingBaseColor_Visible ;
+      private int edtOrganisationSettingFontSize_Visible ;
+      private int edtOrganisationSettingLanguage_Visible ;
       private int AV29PageToGo ;
-      private int AV52GXV1 ;
+      private int AV57GXV1 ;
       private int idxLst ;
       private int subGrid_Backcolor ;
       private int subGrid_Allbackcolor ;
@@ -3183,11 +3339,12 @@ namespace GeneXus.Programs {
       private string Ddo_grid_Selectedvalue_get ;
       private string Ddo_grid_Selectedcolumn ;
       private string Ddo_grid_Filteredtext_get ;
+      private string Ddo_gridcolumnsselector_Columnsselectorvalues ;
       private string Ddo_managefilters_Activeeventkey ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
-      private string sGXsfl_37_idx="0001" ;
-      private string AV44Pgmname ;
+      private string sGXsfl_39_idx="0001" ;
+      private string AV49Pgmname ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -3226,12 +3383,21 @@ namespace GeneXus.Programs {
       private string Ddo_grid_Columnids ;
       private string Ddo_grid_Columnssortvalues ;
       private string Ddo_grid_Includesortasc ;
+      private string Ddo_grid_Fixable ;
       private string Ddo_grid_Sortedstatus ;
       private string Ddo_grid_Includefilter ;
       private string Ddo_grid_Filtertype ;
       private string Ddo_grid_Includedatalist ;
       private string Ddo_grid_Datalisttype ;
       private string Ddo_grid_Datalistproc ;
+      private string Ddo_gridcolumnsselector_Icontype ;
+      private string Ddo_gridcolumnsselector_Icon ;
+      private string Ddo_gridcolumnsselector_Caption ;
+      private string Ddo_gridcolumnsselector_Tooltip ;
+      private string Ddo_gridcolumnsselector_Cls ;
+      private string Ddo_gridcolumnsselector_Dropdownoptionstype ;
+      private string Ddo_gridcolumnsselector_Gridinternalname ;
+      private string Ddo_gridcolumnsselector_Titlecontrolidtoreplace ;
       private string Grid_empowerer_Gridinternalname ;
       private string GX_FocusControl ;
       private string sPrefix ;
@@ -3245,6 +3411,8 @@ namespace GeneXus.Programs {
       private string StyleString ;
       private string bttBtninsert_Internalname ;
       private string bttBtninsert_Jsonclick ;
+      private string bttBtneditcolumns_Internalname ;
+      private string bttBtneditcolumns_Jsonclick ;
       private string bttBtnsubscriptions_Internalname ;
       private string bttBtnsubscriptions_Jsonclick ;
       private string divTablerightheader_Internalname ;
@@ -3262,6 +3430,7 @@ namespace GeneXus.Programs {
       private string Combo_organisationsettinglanguage_Caption ;
       private string Combo_organisationsettinglanguage_Internalname ;
       private string Ddo_grid_Internalname ;
+      private string Ddo_gridcolumnsselector_Internalname ;
       private string Grid_empowerer_Internalname ;
       private string divDiv_wwpauxwc_Internalname ;
       private string WebComp_Wwpaux_wc_Component ;
@@ -3279,12 +3448,11 @@ namespace GeneXus.Programs {
       private string edtOrganisationSettingLanguage_Internalname ;
       private string cmbavActiongroup_Internalname ;
       private string cmbavActiongroup_Class ;
-      private string edtOrganisationSettingBaseColor_Link ;
       private string GXEncryptionTmp ;
       private string GXt_char6 ;
       private string GXt_char5 ;
-      private string GXt_char3 ;
-      private string sGXsfl_37_fel_idx="0001" ;
+      private string GXt_char2 ;
+      private string sGXsfl_39_fel_idx="0001" ;
       private string subGrid_Class ;
       private string subGrid_Linesclass ;
       private string ROClassString ;
@@ -3303,7 +3471,6 @@ namespace GeneXus.Programs {
       private bool AV35IsAuthorized_Display ;
       private bool AV37IsAuthorized_Update ;
       private bool AV39IsAuthorized_Delete ;
-      private bool AV33IsAuthorized_OrganisationSettingBaseColor ;
       private bool AV40IsAuthorized_Insert ;
       private bool Gridpaginationbar_Showfirst ;
       private bool Gridpaginationbar_Showprevious ;
@@ -3314,19 +3481,22 @@ namespace GeneXus.Programs {
       private bool Combo_organisationsettinglanguage_Isgriditem ;
       private bool Combo_organisationsettinglanguage_Includeonlyselectedoption ;
       private bool Grid_empowerer_Hastitlesettings ;
+      private bool Grid_empowerer_Hascolumnsselector ;
       private bool wbLoad ;
-      private bool bGXsfl_37_Refreshing=false ;
+      private bool bGXsfl_39_Refreshing=false ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool gx_refresh_fired ;
       private bool bDynCreated_Wwpaux_wc ;
-      private bool GXt_boolean2 ;
+      private bool GXt_boolean3 ;
       private bool A101OrganisationSettingLogo_IsBlob ;
       private bool A102OrganisationSettingFavicon_IsBlob ;
       private string A105OrganisationSettingLanguage ;
+      private string AV45ColumnsSelectorXML ;
       private string AV18ManageFiltersXml ;
+      private string AV46UserCustomValue ;
       private string AV15FilterFullText ;
       private string AV20TFOrganisationSettingBaseColor ;
       private string AV21TFOrganisationSettingBaseColor_Sel ;
@@ -3339,17 +3509,17 @@ namespace GeneXus.Programs {
       private string A40001OrganisationSettingFavicon_GXI ;
       private string A103OrganisationSettingBaseColor ;
       private string A104OrganisationSettingFontSize ;
-      private string lV45Trn_organisationsettingwwds_1_filterfulltext ;
-      private string lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ;
-      private string lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize ;
-      private string lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage ;
-      private string AV45Trn_organisationsettingwwds_1_filterfulltext ;
-      private string AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ;
-      private string AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ;
-      private string AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ;
-      private string AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize ;
-      private string AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ;
-      private string AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage ;
+      private string lV50Trn_organisationsettingwwds_1_filterfulltext ;
+      private string lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ;
+      private string lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize ;
+      private string lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage ;
+      private string AV50Trn_organisationsettingwwds_1_filterfulltext ;
+      private string AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ;
+      private string AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ;
+      private string AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ;
+      private string AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize ;
+      private string AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ;
+      private string AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage ;
       private string A101OrganisationSettingLogo ;
       private string A102OrganisationSettingFavicon ;
       private Guid A100OrganisationSettingid ;
@@ -3364,12 +3534,14 @@ namespace GeneXus.Programs {
       private GXUserControl ucDdc_subscriptions ;
       private GXUserControl ucCombo_organisationsettinglanguage ;
       private GXUserControl ucDdo_grid ;
+      private GXUserControl ucDdo_gridcolumnsselector ;
       private GXUserControl ucGrid_empowerer ;
       private GxHttpRequest AV8HTTPRequest ;
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavActiongroup ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector AV47ColumnsSelector ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item> AV17ManageFiltersData ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV26DDO_TitleSettingsIcons ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV41OrganisationSettingLanguage_Data ;
@@ -3389,6 +3561,7 @@ namespace GeneXus.Programs {
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV28GAMErrors ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector AV48ColumnsSelectorAux ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item> GXt_objcol_SdtDVB_SDTDropDownOptionsData_Item4 ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV12GridStateFilterValue ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV9TrnContext ;
@@ -3399,13 +3572,13 @@ namespace GeneXus.Programs {
    public class trn_organisationsettingww__default : DataStoreHelperBase, IDataStoreHelper
    {
       protected Object[] conditional_H003X2( IGxContext context ,
-                                             string AV45Trn_organisationsettingwwds_1_filterfulltext ,
-                                             string AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ,
-                                             string AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ,
-                                             string AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ,
-                                             string AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize ,
-                                             string AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ,
-                                             string AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage ,
+                                             string AV50Trn_organisationsettingwwds_1_filterfulltext ,
+                                             string AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ,
+                                             string AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ,
+                                             string AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ,
+                                             string AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize ,
+                                             string AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ,
+                                             string AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage ,
                                              string A103OrganisationSettingBaseColor ,
                                              string A104OrganisationSettingFontSize ,
                                              string A105OrganisationSettingLanguage ,
@@ -3422,9 +3595,9 @@ namespace GeneXus.Programs {
          sSelectString = " OrganisationSettingLanguage, OrganisationSettingFontSize, OrganisationSettingBaseColor, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationId, OrganisationSettingid, OrganisationSettingFavicon, OrganisationSettingLogo";
          sFromString = " FROM Trn_OrganisationSetting";
          sOrderString = "";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_organisationsettingwwds_1_filterfulltext)) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV45Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV45Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV45Trn_organisationsettingwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext))");
          }
          else
          {
@@ -3432,63 +3605,63 @@ namespace GeneXus.Programs {
             GXv_int7[1] = 1;
             GXv_int7[2] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingBaseColor like :lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolo)");
+            AddWhere(sWhereString, "(OrganisationSettingBaseColor like :lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolo)");
          }
          else
          {
             GXv_int7[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ! ( StringUtil.StrCmp(AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ! ( StringUtil.StrCmp(AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingBaseColor = ( :AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolo))");
+            AddWhere(sWhereString, "(OrganisationSettingBaseColor = ( :AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolo))");
          }
          else
          {
             GXv_int7[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, "<#Empty#>") == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from OrganisationSettingBaseColor))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingFontSize like :lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize)");
+            AddWhere(sWhereString, "(OrganisationSettingFontSize like :lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize)");
          }
          else
          {
             GXv_int7[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ! ( StringUtil.StrCmp(AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ! ( StringUtil.StrCmp(AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingFontSize = ( :AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize))");
+            AddWhere(sWhereString, "(OrganisationSettingFontSize = ( :AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize))");
          }
          else
          {
             GXv_int7[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, "<#Empty#>") == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from OrganisationSettingFontSize))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingLanguage like :lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage)");
+            AddWhere(sWhereString, "(OrganisationSettingLanguage like :lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage)");
          }
          else
          {
             GXv_int7[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ! ( StringUtil.StrCmp(AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ! ( StringUtil.StrCmp(AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingLanguage = ( :AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage))");
+            AddWhere(sWhereString, "(OrganisationSettingLanguage = ( :AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage))");
          }
          else
          {
             GXv_int7[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, "<#Empty#>") == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from OrganisationSettingLanguage))=0))");
          }
@@ -3543,13 +3716,13 @@ namespace GeneXus.Programs {
       }
 
       protected Object[] conditional_H003X3( IGxContext context ,
-                                             string AV45Trn_organisationsettingwwds_1_filterfulltext ,
-                                             string AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ,
-                                             string AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ,
-                                             string AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ,
-                                             string AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize ,
-                                             string AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ,
-                                             string AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage ,
+                                             string AV50Trn_organisationsettingwwds_1_filterfulltext ,
+                                             string AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel ,
+                                             string AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor ,
+                                             string AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel ,
+                                             string AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize ,
+                                             string AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel ,
+                                             string AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage ,
                                              string A103OrganisationSettingBaseColor ,
                                              string A104OrganisationSettingFontSize ,
                                              string A105OrganisationSettingLanguage ,
@@ -3561,9 +3734,9 @@ namespace GeneXus.Programs {
          short[] GXv_int9 = new short[9];
          Object[] GXv_Object10 = new Object[2];
          scmdbuf = "SELECT COUNT(*) FROM Trn_OrganisationSetting";
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_organisationsettingwwds_1_filterfulltext)) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV45Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV45Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV45Trn_organisationsettingwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext))");
          }
          else
          {
@@ -3571,63 +3744,63 @@ namespace GeneXus.Programs {
             GXv_int9[1] = 1;
             GXv_int9[2] = 1;
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolor)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingBaseColor like :lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolo)");
+            AddWhere(sWhereString, "(OrganisationSettingBaseColor like :lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolo)");
          }
          else
          {
             GXv_int9[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ! ( StringUtil.StrCmp(AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ! ( StringUtil.StrCmp(AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingBaseColor = ( :AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolo))");
+            AddWhere(sWhereString, "(OrganisationSettingBaseColor = ( :AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolo))");
          }
          else
          {
             GXv_int9[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel, "<#Empty#>") == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from OrganisationSettingBaseColor))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingFontSize like :lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize)");
+            AddWhere(sWhereString, "(OrganisationSettingFontSize like :lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize)");
          }
          else
          {
             GXv_int9[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ! ( StringUtil.StrCmp(AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ! ( StringUtil.StrCmp(AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingFontSize = ( :AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize))");
+            AddWhere(sWhereString, "(OrganisationSettingFontSize = ( :AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize))");
          }
          else
          {
             GXv_int9[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel, "<#Empty#>") == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from OrganisationSettingFontSize))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingLanguage like :lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage)");
+            AddWhere(sWhereString, "(OrganisationSettingLanguage like :lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage)");
          }
          else
          {
             GXv_int9[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ! ( StringUtil.StrCmp(AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ! ( StringUtil.StrCmp(AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, "<#Empty#>") == 0 ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingLanguage = ( :AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage))");
+            AddWhere(sWhereString, "(OrganisationSettingLanguage = ( :AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage))");
          }
          else
          {
             GXv_int9[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel, "<#Empty#>") == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from OrganisationSettingLanguage))=0))");
          }
@@ -3711,30 +3884,30 @@ namespace GeneXus.Programs {
        {
           Object[] prmH003X2;
           prmH003X2 = new Object[] {
-          new ParDef("lV45Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV45Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV45Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolo",GXType.VarChar,40,0) ,
-          new ParDef("AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolo",GXType.VarChar,40,0) ,
-          new ParDef("lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize",GXType.VarChar,40,0) ,
-          new ParDef("AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize",GXType.VarChar,40,0) ,
-          new ParDef("lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage",GXType.VarChar,200,0) ,
-          new ParDef("AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage",GXType.VarChar,200,0) ,
+          new ParDef("lV50Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV50Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV50Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolo",GXType.VarChar,40,0) ,
+          new ParDef("AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolo",GXType.VarChar,40,0) ,
+          new ParDef("lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize",GXType.VarChar,40,0) ,
+          new ParDef("AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize",GXType.VarChar,40,0) ,
+          new ParDef("lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage",GXType.VarChar,200,0) ,
+          new ParDef("AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage",GXType.VarChar,200,0) ,
           new ParDef("GXPagingFrom2",GXType.Int32,9,0) ,
           new ParDef("GXPagingTo2",GXType.Int32,9,0) ,
           new ParDef("GXPagingTo2",GXType.Int32,9,0)
           };
           Object[] prmH003X3;
           prmH003X3 = new Object[] {
-          new ParDef("lV45Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV45Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV45Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV46Trn_organisationsettingwwds_2_tforganisationsettingbasecolo",GXType.VarChar,40,0) ,
-          new ParDef("AV47Trn_organisationsettingwwds_3_tforganisationsettingbasecolo",GXType.VarChar,40,0) ,
-          new ParDef("lV48Trn_organisationsettingwwds_4_tforganisationsettingfontsize",GXType.VarChar,40,0) ,
-          new ParDef("AV49Trn_organisationsettingwwds_5_tforganisationsettingfontsize",GXType.VarChar,40,0) ,
-          new ParDef("lV50Trn_organisationsettingwwds_6_tforganisationsettinglanguage",GXType.VarChar,200,0) ,
-          new ParDef("AV51Trn_organisationsettingwwds_7_tforganisationsettinglanguage",GXType.VarChar,200,0)
+          new ParDef("lV50Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV50Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV50Trn_organisationsettingwwds_1_filterfulltext",GXType.VarChar,100,0) ,
+          new ParDef("lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolo",GXType.VarChar,40,0) ,
+          new ParDef("AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolo",GXType.VarChar,40,0) ,
+          new ParDef("lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize",GXType.VarChar,40,0) ,
+          new ParDef("AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize",GXType.VarChar,40,0) ,
+          new ParDef("lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage",GXType.VarChar,200,0) ,
+          new ParDef("AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage",GXType.VarChar,200,0)
           };
           def= new CursorDef[] {
               new CursorDef("H003X2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003X2,11, GxCacheFrequency.OFF ,true,false )

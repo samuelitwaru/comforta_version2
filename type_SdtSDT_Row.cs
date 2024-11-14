@@ -30,8 +30,6 @@ namespace GeneXus.Programs
 		public SdtSDT_Row( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtSDT_Row_Rowname = "";
-
 		}
 
 		public SdtSDT_Row(IGxContext context)
@@ -59,11 +57,6 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("RowId", gxTpr_Rowid, false);
-
-
-			AddObjectProperty("RowName", gxTpr_Rowname, false);
-
 			if (gxTv_SdtSDT_Row_Col != null)
 			{
 				AddObjectProperty("Col", gxTv_SdtSDT_Row_Col, false);
@@ -73,38 +66,6 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Properties
-
-		[SoapElement(ElementName="RowId")]
-		[XmlElement(ElementName="RowId")]
-		public Guid gxTpr_Rowid
-		{
-			get {
-				return gxTv_SdtSDT_Row_Rowid; 
-			}
-			set {
-				gxTv_SdtSDT_Row_Rowid = value;
-				SetDirty("Rowid");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="RowName")]
-		[XmlElement(ElementName="RowName")]
-		public string gxTpr_Rowname
-		{
-			get {
-				return gxTv_SdtSDT_Row_Rowname; 
-			}
-			set {
-				gxTv_SdtSDT_Row_Rowname = value;
-				SetDirty("Rowname");
-			}
-		}
-
-
-
 
 		[SoapElement(ElementName="Col" )]
 		[XmlArray(ElementName="Col"  )]
@@ -160,7 +121,9 @@ namespace GeneXus.Programs
 
 		public override bool ShouldSerializeSdtJson()
 		{
-			return true;
+			return (
+				 ShouldSerializegxTpr_Col_GXBaseCollection_Json()||  
+				false);
 		}
 
 
@@ -179,8 +142,6 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
-			gxTv_SdtSDT_Row_Rowname = "";
-
 			gxTv_SdtSDT_Row_Col_N = true;
 
 			return  ;
@@ -192,11 +153,6 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected Guid gxTv_SdtSDT_Row_Rowid;
-		 
-
-		protected string gxTv_SdtSDT_Row_Rowname;
-		 
 		protected bool gxTv_SdtSDT_Row_Col_N;
 		protected GXBaseCollection<GeneXus.Programs.SdtSDT_Col> gxTv_SdtSDT_Row_Col = null;  
 
@@ -217,31 +173,7 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="RowId", Order=0)]
-		public Guid gxTpr_Rowid
-		{
-			get { 
-				return sdt.gxTpr_Rowid;
-
-			}
-			set { 
-				sdt.gxTpr_Rowid = value;
-			}
-		}
-
-		[DataMember(Name="RowName", Order=1)]
-		public  string gxTpr_Rowname
-		{
-			get { 
-				return sdt.gxTpr_Rowname;
-
-			}
-			set { 
-				 sdt.gxTpr_Rowname = value;
-			}
-		}
-
-		[DataMember(Name="Col", Order=2, EmitDefaultValue=false)]
+		[DataMember(Name="Col", Order=0, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Col_RESTInterface> gxTpr_Col
 		{
 			get { 

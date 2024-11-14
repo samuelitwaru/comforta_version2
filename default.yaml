@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241107074053"
+  version: "20241114040209"
 servers:
-  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
+  - url: https://staging.comforta.yukon.software//rest
 paths:
   /Trn_AuditLoadDVCombo:
     post:
@@ -95,29 +95,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_ColLoadDVComboOutput"
-        404:
-          description: "Not found"
-  /Trn_ColWWGetFilterData:
-    post:
-      tags:
-        - Trn_ColWWGetFilterData
-      operationId: "Trn_ColWWGetFilterData"
-      summary: "Trn_Col WWGet Filter Data"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_ColWWGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_ColWWGetFilterDataOutput"
         404:
           description: "Not found"
   /Trn_LocationWWGetFilterData:
@@ -488,52 +465,6 @@ paths:
                 $ref: "#/components/schemas/Trn_ResidentWWGetFilterDataOutput"
         404:
           description: "Not found"
-  /Trn_RowLoadDVCombo:
-    post:
-      tags:
-        - Trn_RowLoadDVCombo
-      operationId: "Trn_RowLoadDVCombo"
-      summary: "Trn_Row Load DVCombo"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_RowLoadDVComboInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_RowLoadDVComboOutput"
-        404:
-          description: "Not found"
-  /Trn_RowWWGetFilterData:
-    post:
-      tags:
-        - Trn_RowWWGetFilterData
-      operationId: "Trn_RowWWGetFilterData"
-      summary: "Trn_Row WWGet Filter Data"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_RowWWGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_RowWWGetFilterDataOutput"
-        404:
-          description: "Not found"
   /Trn_SupplierAgbLoadDVCombo:
     post:
       tags:
@@ -716,94 +647,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_ThemeWWGetFilterDataOutput"
-        404:
-          description: "Not found"
-  /Trn_TileLoadDVCombo:
-    post:
-      tags:
-        - Trn_TileLoadDVCombo
-      operationId: "Trn_TileLoadDVCombo"
-      summary: "Trn_Tile Load DVCombo"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_TileLoadDVComboInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_TileLoadDVComboOutput"
-        404:
-          description: "Not found"
-  /Trn_TileWWGetFilterData:
-    post:
-      tags:
-        - Trn_TileWWGetFilterData
-      operationId: "Trn_TileWWGetFilterData"
-      summary: "Trn_Tile WWGet Filter Data"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_TileWWGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_TileWWGetFilterDataOutput"
-        404:
-          description: "Not found"
-  /WC_ColsGetFilterData:
-    post:
-      tags:
-        - WC_ColsGetFilterData
-      operationId: "WC_ColsGetFilterData"
-      summary: "WC_Cols Get Filter Data"
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WC_ColsGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WC_ColsGetFilterDataOutput"
-        404:
-          description: "Not found"
-  /WC_RowsGetFilterData:
-    post:
-      tags:
-        - WC_RowsGetFilterData
-      operationId: "WC_RowsGetFilterData"
-      summary: "WC_Rows Get Filter Data"
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WC_RowsGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WC_RowsGetFilterDataOutput"
         404:
           description: "Not found"
   /WorkWithPlus/DynamicForms/WWP_DF_DynamicComboBox_WCLoadDVCombo:
@@ -1205,7 +1048,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
+          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
   schemas:
@@ -1240,14 +1083,6 @@ components:
         SelectedText:
           type: "string"
         Combo_DataJson:
-          type: "string"
-    Trn_ColWWGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
           type: "string"
     Trn_LocationWWGetFilterDataOutput:
       properties:
@@ -1378,22 +1213,6 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
-    Trn_RowLoadDVComboOutput:
-      properties:
-        SelectedValue:
-          type: "string"
-        SelectedText:
-          type: "string"
-        Combo_DataJson:
-          type: "string"
-    Trn_RowWWGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
     Trn_SupplierAgbLoadDVComboOutput:
       properties:
         SelectedValue:
@@ -1457,38 +1276,6 @@ components:
         OptionIndexesJson:
           type: "string"
     Trn_ThemeWWGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
-    Trn_TileLoadDVComboOutput:
-      properties:
-        SelectedValue:
-          type: "string"
-        SelectedText:
-          type: "string"
-        Combo_DataJson:
-          type: "string"
-    Trn_TileWWGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
-    WC_ColsGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
-    WC_RowsGetFilterDataOutput:
       properties:
         OptionsJson:
           type: "string"
@@ -1611,14 +1398,6 @@ components:
           type: "string"
           format: "uuid"
         SearchTxtParms:
-          type: "string"
-    Trn_ColWWGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
           type: "string"
     Trn_LocationWWGetFilterDataInput:  
       properties:
@@ -1776,27 +1555,6 @@ components:
           type: "string"
         SearchTxtTo:
           type: "string"
-    Trn_RowLoadDVComboInput:  
-      properties:
-        ComboName:
-          type: "string"
-        TrnMode:
-          type: "string"
-        IsDynamicCall:
-          type: "boolean"
-        Trn_RowId:
-          type: "string"
-          format: "uuid"
-        SearchTxtParms:
-          type: "string"
-    Trn_RowWWGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
     Trn_SupplierAgbLoadDVComboInput:  
       properties:
         ComboName:
@@ -1856,43 +1614,6 @@ components:
         SearchTxtTo:
           type: "string"
     Trn_ThemeWWGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
-    Trn_TileLoadDVComboInput:  
-      properties:
-        ComboName:
-          type: "string"
-        TrnMode:
-          type: "string"
-        IsDynamicCall:
-          type: "boolean"
-        TileId:
-          type: "string"
-          format: "uuid"
-        SearchTxtParms:
-          type: "string"
-    Trn_TileWWGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
-    WC_ColsGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
-    WC_RowsGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"
@@ -2024,24 +1745,122 @@ components:
           description: "Organisation Id"
           type: "string"
           format: "uuid"
-    SDT_Col:
+    SDT_CallToAction_SDT_CallToActionItem:
       properties:
-        ColId:
-          description: "Col Id"
+        CallToActionId:
+          description: "Call To Action Id"
           type: "string"
           format: "uuid"
-        ColName:
-          description: "Col Name"
+        OrganisationId:
+          description: "Organisation Id"
           type: "string"
+          format: "uuid"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        ProductServiceId:
+          description: "Product Service Id"
+          type: "string"
+          format: "uuid"
+        CallToActionName:
+          description: "Call To Action Name"
+          type: "string"
+        CallToActionType:
+          description: "Call To Action Type"
+          type: "string"
+        CallToActionPhone:
+          description: "Call To Action Phone"
+          type: "string"
+        CallToActionPhoneCode:
+          description: "Call To Action Phone Code"
+          type: "string"
+        CallToActionPhoneNumber:
+          description: "Call To Action Phone Number"
+          type: "string"
+        CallToActionUrl:
+          description: "Call To Action Url"
+          type: "string"
+        CallToActionEmail:
+          description: "Call To Action Email"
+          type: "string"
+        LocationDynamicFormId:
+          description: "Location Dynamic Form Id"
+          type: "string"
+          format: "uuid"
+        WWPFormId:
+          description: "WWPForm Id"
+          type: "integer"
+          format: "int32"
+        WWPFormVersionNumber:
+          description: "WWPForm Version Number"
+          type: "integer"
+          format: "int32"
+        WWPFormReferenceName:
+          description: "WWPForm Reference Name"
+          type: "string"
+        WWPFormTitle:
+          description: "WWPForm Title"
+          type: "string"
+        WWPFormDate:
+          description: "WWPForm Date"
+          type: "string"
+          format: "date-time"
+        WWPFormIsWizard:
+          description: "WWPForm Is Wizard"
+          type: "boolean"
+        WWPFormResume:
+          description: "WWPForm Resume"
+          type: "integer"
+          format: "int32"
+        WWPFormResumeMessage:
+          description: "WWPForm Resume Message"
+          type: "string"
+        WWPFormValidations:
+          description: "WWPForm Validations"
+          type: "string"
+        WWPFormInstantiated:
+          description: "WWPForm Instantiated"
+          type: "boolean"
+        WWPFormLatestVersionNumber:
+          description: "WWPForm Latest Version Number"
+          type: "integer"
+          format: "int32"
+        WWPFormType:
+          description: "WWPForm Type"
+          type: "integer"
+          format: "int32"
+        WWPFormSectionRefElements:
+          description: "WWPForm Section Ref Elements"
+          type: "string"
+        WWPFormIsForDynamicValidations:
+          description: "WWPForm Is For Dynamic Validations"
+          type: "boolean"
+    SDT_Col:
+      properties:
         Tile:
           description: "SDT_Tile"
           $ref: "#/components/schemas/SDT_Tile"
-        Image:
-          description: "Image"
+    SDT_ContentPage:
+      properties:
+        PageId:
+          description: "Page Id"
           type: "string"
-        Text:
-          description: "Text"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
           type: "string"
+        ProductServiceImage:
+          description: "Product Service Image"
+          type: "string"
+        ProductServiceDescription:
+          description: "Product Service Description"
+          type: "string"
+        CallToAction:
+          description: "SDT_Call To Action"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
     SDT_Location:
       properties:
         LocationId:
@@ -2100,6 +1919,33 @@ components:
         user_guid:
           description: "user_guid"
           type: "string"
+    SDT_MobilePage:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
+        PageIsPublished:
+          description: "Page Is Published"
+          type: "boolean"
+        PageIsContentPage:
+          description: "Page Is Content Page"
+          type: "boolean"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        Row:
+          description: "SDT_Row"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Row"
     SDT_Organisation:
       properties:
         OrganisationId:
@@ -2143,6 +1989,9 @@ components:
         OrganisationTypeName:
           description: "Organisation Type Name"
           type: "string"
+        OrganisationLogo:
+          description: "Organisation Logo"
+          type: "string"
     SDT_Page:
       properties:
         PageId:
@@ -2167,6 +2016,9 @@ components:
         PageJsonContent:
           description: "Page Json Content"
           type: "string"
+        PageIsContentPage:
+          description: "Page Is Content Page"
+          type: "boolean"
         PageChildren:
           description: "SDT_Page Children"
           type: array
@@ -2204,6 +2056,57 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_PageChildren"
+    SDT_ProductService:
+      properties:
+        ProductServiceId:
+          description: "Product Service Id"
+          type: "string"
+          format: "uuid"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        ProductServiceName:
+          description: "Product Service Name"
+          type: "string"
+        ProductServiceTileName:
+          description: "Product Service Tile Name"
+          type: "string"
+        ProductServiceDescription:
+          description: "Product Service Description"
+          type: "string"
+        ProductServiceClass:
+          description: "Product Service Class"
+          type: "string"
+        ProductServiceImage:
+          description: "Product Service Image"
+          type: "string"
+        ProductServiceGroup:
+          description: "Product Service Group"
+          type: "string"
+        SupplierGenId:
+          description: "Supplier Gen Id"
+          type: "string"
+          format: "uuid"
+        SupplierGenCompanyName:
+          description: "Company Name"
+          type: "string"
+        SupplierAgbId:
+          description: "Supplier Agb Id"
+          type: "string"
+          format: "uuid"
+        SupplierAgbName:
+          description: "Supplier Agb Name"
+          type: "string"
+        CallToActions:
+          description: "SDT_Call To Action"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
     SDT_Resident:
       properties:
         ResidentId:
@@ -2268,13 +2171,6 @@ components:
           type: "string"
     SDT_Row:
       properties:
-        RowId:
-          description: "Row Id"
-          type: "string"
-          format: "uuid"
-        RowName:
-          description: "Row Name"
-          type: "string"
         Col:
           description: "SDT_Col"
           type: array

@@ -123,12 +123,12 @@ namespace GeneXus.Programs {
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV8WWPContext) ;
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV31Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV32Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV32GXV1 = 1;
-            while ( AV32GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
+            AV33GXV1 = 1;
+            while ( AV33GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
             {
-               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV32GXV1));
+               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV33GXV1));
                if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "SupplierGenTypeId") == 0 )
                {
                   AV13Insert_SupplierGenTypeId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
@@ -137,7 +137,7 @@ namespace GeneXus.Programs {
                {
                   AV28Insert_OrganisationId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV32GXV1 = (int)(AV32GXV1+1);
+               AV33GXV1 = (int)(AV33GXV1+1);
             }
          }
          GXt_guid1 = AV30OrganisationId;
@@ -206,7 +206,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV31Pgmname = "Trn_SupplierGen_BC";
+         AV32Pgmname = "Trn_SupplierGen_BC";
       }
 
       protected void standaloneModal( )
@@ -1408,7 +1408,7 @@ namespace GeneXus.Programs {
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
-         AV31Pgmname = "";
+         AV32Pgmname = "";
          AV14TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV13Insert_SupplierGenTypeId = Guid.Empty;
          AV28Insert_OrganisationId = Guid.Empty;
@@ -1578,7 +1578,7 @@ namespace GeneXus.Programs {
          n42SupplierGenId = false;
          A42SupplierGenId = Guid.NewGuid( );
          n42SupplierGenId = false;
-         AV31Pgmname = "Trn_SupplierGen_BC";
+         AV32Pgmname = "Trn_SupplierGen_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1590,11 +1590,11 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound9 ;
       private int trnEnded ;
-      private int AV32GXV1 ;
+      private int AV33GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV31Pgmname ;
+      private string AV32Pgmname ;
       private string Z48SupplierGenContactPhone ;
       private string A48SupplierGenContactPhone ;
       private string GXt_char2 ;

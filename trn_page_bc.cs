@@ -46,11 +46,11 @@ namespace GeneXus.Programs {
 
       public void GetInsDefault( )
       {
-         ReadRow1768( ) ;
+         ReadRow1789( ) ;
          standaloneNotModal( ) ;
-         InitializeNonKey1768( ) ;
+         InitializeNonKey1789( ) ;
          standaloneModal( ) ;
-         AddRow1768( ) ;
+         AddRow1789( ) ;
          Gx_mode = "INS";
          return  ;
       }
@@ -94,20 +94,22 @@ namespace GeneXus.Programs {
 
       protected void CONFIRM_170( )
       {
-         BeforeValidate1768( ) ;
+         BeforeValidate1789( ) ;
          if ( AnyError == 0 )
          {
             if ( IsDlt( ) )
             {
-               OnDeleteControls1768( ) ;
+               OnDeleteControls1789( ) ;
             }
             else
             {
-               CheckExtendedTable1768( ) ;
+               CheckExtendedTable1789( ) ;
                if ( AnyError == 0 )
                {
+                  ZM1789( 11) ;
+                  ZM1789( 12) ;
                }
-               CloseExtendedTableCursors1768( ) ;
+               CloseExtendedTableCursors1789( ) ;
             }
          }
          if ( AnyError == 0 )
@@ -119,8 +121,6 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV8WWPContext) ;
-         AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
       }
 
       protected void E11172( )
@@ -129,19 +129,26 @@ namespace GeneXus.Programs {
          returnInSub = false;
       }
 
-      protected void ZM1768( short GX_JID )
+      protected void ZM1789( short GX_JID )
       {
-         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
-            Z29LocationId = A29LocationId;
             Z318Trn_PageName = A318Trn_PageName;
             Z434PageIsPublished = A434PageIsPublished;
             Z439PageIsContentPage = A439PageIsContentPage;
+            Z11OrganisationId = A11OrganisationId;
+            Z29LocationId = A29LocationId;
+            Z58ProductServiceId = A58ProductServiceId;
          }
-         if ( GX_JID == -7 )
+         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
+         {
+         }
+         if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
+         {
+         }
+         if ( GX_JID == -9 )
          {
             Z310Trn_PageId = A310Trn_PageId;
-            Z29LocationId = A29LocationId;
             Z318Trn_PageName = A318Trn_PageName;
             Z431PageJsonContent = A431PageJsonContent;
             Z432PageGJSHtml = A432PageGJSHtml;
@@ -149,6 +156,9 @@ namespace GeneXus.Programs {
             Z434PageIsPublished = A434PageIsPublished;
             Z439PageIsContentPage = A439PageIsContentPage;
             Z437PageChildren = A437PageChildren;
+            Z11OrganisationId = A11OrganisationId;
+            Z29LocationId = A29LocationId;
+            Z58ProductServiceId = A58ProductServiceId;
          }
       }
 
@@ -159,11 +169,6 @@ namespace GeneXus.Programs {
 
       protected void standaloneModal( )
       {
-         if ( IsIns( )  && (Guid.Empty==A29LocationId) )
-         {
-            A29LocationId = Guid.NewGuid( );
-            n29LocationId = false;
-         }
          if ( IsIns( )  && (Guid.Empty==A310Trn_PageId) )
          {
             A310Trn_PageId = Guid.NewGuid( );
@@ -181,59 +186,95 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void Load1768( )
+      protected void Load1789( )
       {
-         /* Using cursor BC00174 */
-         pr_default.execute(2, new Object[] {A310Trn_PageId});
-         if ( (pr_default.getStatus(2) != 101) )
+         /* Using cursor BC00176 */
+         pr_default.execute(4, new Object[] {A310Trn_PageId});
+         if ( (pr_default.getStatus(4) != 101) )
          {
-            RcdFound68 = 1;
-            A29LocationId = BC00174_A29LocationId[0];
-            n29LocationId = BC00174_n29LocationId[0];
-            A318Trn_PageName = BC00174_A318Trn_PageName[0];
-            A431PageJsonContent = BC00174_A431PageJsonContent[0];
-            A432PageGJSHtml = BC00174_A432PageGJSHtml[0];
-            A433PageGJSJson = BC00174_A433PageGJSJson[0];
-            A434PageIsPublished = BC00174_A434PageIsPublished[0];
-            A439PageIsContentPage = BC00174_A439PageIsContentPage[0];
-            A437PageChildren = BC00174_A437PageChildren[0];
-            n437PageChildren = BC00174_n437PageChildren[0];
-            ZM1768( -7) ;
+            RcdFound89 = 1;
+            A318Trn_PageName = BC00176_A318Trn_PageName[0];
+            A431PageJsonContent = BC00176_A431PageJsonContent[0];
+            A432PageGJSHtml = BC00176_A432PageGJSHtml[0];
+            A433PageGJSJson = BC00176_A433PageGJSJson[0];
+            A434PageIsPublished = BC00176_A434PageIsPublished[0];
+            A439PageIsContentPage = BC00176_A439PageIsContentPage[0];
+            A437PageChildren = BC00176_A437PageChildren[0];
+            n437PageChildren = BC00176_n437PageChildren[0];
+            A11OrganisationId = BC00176_A11OrganisationId[0];
+            A29LocationId = BC00176_A29LocationId[0];
+            A58ProductServiceId = BC00176_A58ProductServiceId[0];
+            n58ProductServiceId = BC00176_n58ProductServiceId[0];
+            ZM1789( -9) ;
          }
-         pr_default.close(2);
-         OnLoadActions1768( ) ;
+         pr_default.close(4);
+         OnLoadActions1789( ) ;
       }
 
-      protected void OnLoadActions1768( )
+      protected void OnLoadActions1789( )
       {
       }
 
-      protected void CheckExtendedTable1768( )
+      protected void CheckExtendedTable1789( )
       {
          standaloneModal( ) ;
+         /* Using cursor BC00177 */
+         pr_default.execute(5, new Object[] {A318Trn_PageName, A310Trn_PageId});
+         if ( (pr_default.getStatus(5) != 101) )
+         {
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Page Name", "")}), 1, "");
+            AnyError = 1;
+         }
+         pr_default.close(5);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( A318Trn_PageName)) )
+         {
+            GX_msglist.addItem(context.GetMessage( "Page name cannot be empty.", ""), 1, "");
+            AnyError = 1;
+         }
+         /* Using cursor BC00175 */
+         pr_default.execute(3, new Object[] {n58ProductServiceId, A58ProductServiceId, A29LocationId, A11OrganisationId});
+         if ( (pr_default.getStatus(3) == 101) )
+         {
+            if ( ! ( (Guid.Empty==A58ProductServiceId) || (Guid.Empty==A29LocationId) || (Guid.Empty==A11OrganisationId) ) )
+            {
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_ProductService", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               AnyError = 1;
+            }
+         }
+         pr_default.close(3);
+         /* Using cursor BC00174 */
+         pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
+         if ( (pr_default.getStatus(2) == 101) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            AnyError = 1;
+         }
+         pr_default.close(2);
       }
 
-      protected void CloseExtendedTableCursors1768( )
+      protected void CloseExtendedTableCursors1789( )
       {
+         pr_default.close(3);
+         pr_default.close(2);
       }
 
       protected void enableDisable( )
       {
       }
 
-      protected void GetKey1768( )
+      protected void GetKey1789( )
       {
-         /* Using cursor BC00175 */
-         pr_default.execute(3, new Object[] {A310Trn_PageId});
-         if ( (pr_default.getStatus(3) != 101) )
+         /* Using cursor BC00178 */
+         pr_default.execute(6, new Object[] {A310Trn_PageId});
+         if ( (pr_default.getStatus(6) != 101) )
          {
-            RcdFound68 = 1;
+            RcdFound89 = 1;
          }
          else
          {
-            RcdFound68 = 0;
+            RcdFound89 = 0;
          }
-         pr_default.close(3);
+         pr_default.close(6);
       }
 
       protected void getByPrimaryKey( )
@@ -242,11 +283,9 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A310Trn_PageId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1768( 7) ;
-            RcdFound68 = 1;
+            ZM1789( 9) ;
+            RcdFound89 = 1;
             A310Trn_PageId = BC00173_A310Trn_PageId[0];
-            A29LocationId = BC00173_A29LocationId[0];
-            n29LocationId = BC00173_n29LocationId[0];
             A318Trn_PageName = BC00173_A318Trn_PageName[0];
             A431PageJsonContent = BC00173_A431PageJsonContent[0];
             A432PageGJSHtml = BC00173_A432PageGJSHtml[0];
@@ -255,34 +294,38 @@ namespace GeneXus.Programs {
             A439PageIsContentPage = BC00173_A439PageIsContentPage[0];
             A437PageChildren = BC00173_A437PageChildren[0];
             n437PageChildren = BC00173_n437PageChildren[0];
+            A11OrganisationId = BC00173_A11OrganisationId[0];
+            A29LocationId = BC00173_A29LocationId[0];
+            A58ProductServiceId = BC00173_A58ProductServiceId[0];
+            n58ProductServiceId = BC00173_n58ProductServiceId[0];
             Z310Trn_PageId = A310Trn_PageId;
-            sMode68 = Gx_mode;
+            sMode89 = Gx_mode;
             Gx_mode = "DSP";
             standaloneModal( ) ;
-            Load1768( ) ;
+            Load1789( ) ;
             if ( AnyError == 1 )
             {
-               RcdFound68 = 0;
-               InitializeNonKey1768( ) ;
+               RcdFound89 = 0;
+               InitializeNonKey1789( ) ;
             }
-            Gx_mode = sMode68;
+            Gx_mode = sMode89;
          }
          else
          {
-            RcdFound68 = 0;
-            InitializeNonKey1768( ) ;
-            sMode68 = Gx_mode;
+            RcdFound89 = 0;
+            InitializeNonKey1789( ) ;
+            sMode89 = Gx_mode;
             Gx_mode = "DSP";
             standaloneModal( ) ;
-            Gx_mode = sMode68;
+            Gx_mode = sMode89;
          }
          pr_default.close(1);
       }
 
       protected void getEqualNoModal( )
       {
-         GetKey1768( ) ;
-         if ( RcdFound68 == 0 )
+         GetKey1789( ) ;
+         if ( RcdFound89 == 0 )
          {
             Gx_mode = "INS";
          }
@@ -308,7 +351,7 @@ namespace GeneXus.Programs {
          insert_Check( ) ;
       }
 
-      protected void CheckOptimisticConcurrency1768( )
+      protected void CheckOptimisticConcurrency1789( )
       {
          if ( ! IsIns( ) )
          {
@@ -320,7 +363,12 @@ namespace GeneXus.Programs {
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(0) == 101) || ( Z29LocationId != BC00172_A29LocationId[0] ) || ( StringUtil.StrCmp(Z318Trn_PageName, BC00172_A318Trn_PageName[0]) != 0 ) || ( Z434PageIsPublished != BC00172_A434PageIsPublished[0] ) || ( Z439PageIsContentPage != BC00172_A439PageIsContentPage[0] ) )
+            Gx_longc = false;
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z318Trn_PageName, BC00172_A318Trn_PageName[0]) != 0 ) || ( Z434PageIsPublished != BC00172_A434PageIsPublished[0] ) || ( Z439PageIsContentPage != BC00172_A439PageIsContentPage[0] ) || ( Z11OrganisationId != BC00172_A11OrganisationId[0] ) || ( Z29LocationId != BC00172_A29LocationId[0] ) )
+            {
+               Gx_longc = true;
+            }
+            if ( Gx_longc || ( Z58ProductServiceId != BC00172_A58ProductServiceId[0] ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Page"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -329,30 +377,30 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void Insert1768( )
+      protected void Insert1789( )
       {
-         BeforeValidate1768( ) ;
+         BeforeValidate1789( ) ;
          if ( AnyError == 0 )
          {
-            CheckExtendedTable1768( ) ;
+            CheckExtendedTable1789( ) ;
          }
          if ( AnyError == 0 )
          {
-            ZM1768( 0) ;
-            CheckOptimisticConcurrency1768( ) ;
+            ZM1789( 0) ;
+            CheckOptimisticConcurrency1789( ) ;
             if ( AnyError == 0 )
             {
-               AfterConfirm1768( ) ;
+               AfterConfirm1789( ) ;
                if ( AnyError == 0 )
                {
-                  BeforeInsert1768( ) ;
+                  BeforeInsert1789( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC00176 */
-                     pr_default.execute(4, new Object[] {A310Trn_PageId, n29LocationId, A29LocationId, A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, A439PageIsContentPage, n437PageChildren, A437PageChildren});
-                     pr_default.close(4);
+                     /* Using cursor BC00179 */
+                     pr_default.execute(7, new Object[] {A310Trn_PageId, A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, A439PageIsContentPage, n437PageChildren, A437PageChildren, A11OrganisationId, A29LocationId, n58ProductServiceId, A58ProductServiceId});
+                     pr_default.close(7);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
-                     if ( (pr_default.getStatus(4) == 1) )
+                     if ( (pr_default.getStatus(7) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
                         AnyError = 1;
@@ -378,41 +426,41 @@ namespace GeneXus.Programs {
             }
             else
             {
-               Load1768( ) ;
+               Load1789( ) ;
             }
-            EndLevel1768( ) ;
+            EndLevel1789( ) ;
          }
-         CloseExtendedTableCursors1768( ) ;
+         CloseExtendedTableCursors1789( ) ;
       }
 
-      protected void Update1768( )
+      protected void Update1789( )
       {
-         BeforeValidate1768( ) ;
+         BeforeValidate1789( ) ;
          if ( AnyError == 0 )
          {
-            CheckExtendedTable1768( ) ;
+            CheckExtendedTable1789( ) ;
          }
          if ( AnyError == 0 )
          {
-            CheckOptimisticConcurrency1768( ) ;
+            CheckOptimisticConcurrency1789( ) ;
             if ( AnyError == 0 )
             {
-               AfterConfirm1768( ) ;
+               AfterConfirm1789( ) ;
                if ( AnyError == 0 )
                {
-                  BeforeUpdate1768( ) ;
+                  BeforeUpdate1789( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC00177 */
-                     pr_default.execute(5, new Object[] {n29LocationId, A29LocationId, A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, A439PageIsContentPage, n437PageChildren, A437PageChildren, A310Trn_PageId});
-                     pr_default.close(5);
+                     /* Using cursor BC001710 */
+                     pr_default.execute(8, new Object[] {A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, A439PageIsContentPage, n437PageChildren, A437PageChildren, A11OrganisationId, A29LocationId, n58ProductServiceId, A58ProductServiceId, A310Trn_PageId});
+                     pr_default.close(8);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
-                     if ( (pr_default.getStatus(5) == 103) )
+                     if ( (pr_default.getStatus(8) == 103) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Page"}), "RecordIsLocked", 1, "");
                         AnyError = 1;
                      }
-                     DeferredUpdate1768( ) ;
+                     DeferredUpdate1789( ) ;
                      if ( AnyError == 0 )
                      {
                         /* Start of After( update) rules */
@@ -432,36 +480,36 @@ namespace GeneXus.Programs {
                   }
                }
             }
-            EndLevel1768( ) ;
+            EndLevel1789( ) ;
          }
-         CloseExtendedTableCursors1768( ) ;
+         CloseExtendedTableCursors1789( ) ;
       }
 
-      protected void DeferredUpdate1768( )
+      protected void DeferredUpdate1789( )
       {
       }
 
       protected void delete( )
       {
          Gx_mode = "DLT";
-         BeforeValidate1768( ) ;
+         BeforeValidate1789( ) ;
          if ( AnyError == 0 )
          {
-            CheckOptimisticConcurrency1768( ) ;
+            CheckOptimisticConcurrency1789( ) ;
          }
          if ( AnyError == 0 )
          {
-            OnDeleteControls1768( ) ;
-            AfterConfirm1768( ) ;
+            OnDeleteControls1789( ) ;
+            AfterConfirm1789( ) ;
             if ( AnyError == 0 )
             {
-               BeforeDelete1768( ) ;
+               BeforeDelete1789( ) ;
                if ( AnyError == 0 )
                {
                   /* No cascading delete specified. */
-                  /* Using cursor BC00178 */
-                  pr_default.execute(6, new Object[] {A310Trn_PageId});
-                  pr_default.close(6);
+                  /* Using cursor BC001711 */
+                  pr_default.execute(9, new Object[] {A310Trn_PageId});
+                  pr_default.close(9);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
                   if ( AnyError == 0 )
                   {
@@ -481,38 +529,19 @@ namespace GeneXus.Programs {
                }
             }
          }
-         sMode68 = Gx_mode;
+         sMode89 = Gx_mode;
          Gx_mode = "DLT";
-         EndLevel1768( ) ;
-         Gx_mode = sMode68;
+         EndLevel1789( ) ;
+         Gx_mode = sMode89;
       }
 
-      protected void OnDeleteControls1768( )
+      protected void OnDeleteControls1789( )
       {
          standaloneModal( ) ;
          /* No delete mode formulas found. */
-         if ( AnyError == 0 )
-         {
-            /* Using cursor BC00179 */
-            pr_default.execute(7, new Object[] {A310Trn_PageId});
-            if ( (pr_default.getStatus(7) != 101) )
-            {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Tile", "")}), "CannotDeleteReferencedRecord", 1, "");
-               AnyError = 1;
-            }
-            pr_default.close(7);
-            /* Using cursor BC001710 */
-            pr_default.execute(8, new Object[] {A310Trn_PageId});
-            if ( (pr_default.getStatus(8) != 101) )
-            {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Row", "")}), "CannotDeleteReferencedRecord", 1, "");
-               AnyError = 1;
-            }
-            pr_default.close(8);
-         }
       }
 
-      protected void EndLevel1768( )
+      protected void EndLevel1789( )
       {
          if ( ! IsIns( ) )
          {
@@ -520,7 +549,7 @@ namespace GeneXus.Programs {
          }
          if ( AnyError == 0 )
          {
-            BeforeComplete1768( ) ;
+            BeforeComplete1789( ) ;
          }
          if ( AnyError == 0 )
          {
@@ -538,114 +567,118 @@ namespace GeneXus.Programs {
          }
       }
 
-      public void ScanKeyStart1768( )
+      public void ScanKeyStart1789( )
       {
          /* Scan By routine */
-         /* Using cursor BC001711 */
-         pr_default.execute(9, new Object[] {A310Trn_PageId});
-         RcdFound68 = 0;
-         if ( (pr_default.getStatus(9) != 101) )
+         /* Using cursor BC001712 */
+         pr_default.execute(10, new Object[] {A310Trn_PageId});
+         RcdFound89 = 0;
+         if ( (pr_default.getStatus(10) != 101) )
          {
-            RcdFound68 = 1;
-            A310Trn_PageId = BC001711_A310Trn_PageId[0];
-            A29LocationId = BC001711_A29LocationId[0];
-            n29LocationId = BC001711_n29LocationId[0];
-            A318Trn_PageName = BC001711_A318Trn_PageName[0];
-            A431PageJsonContent = BC001711_A431PageJsonContent[0];
-            A432PageGJSHtml = BC001711_A432PageGJSHtml[0];
-            A433PageGJSJson = BC001711_A433PageGJSJson[0];
-            A434PageIsPublished = BC001711_A434PageIsPublished[0];
-            A439PageIsContentPage = BC001711_A439PageIsContentPage[0];
-            A437PageChildren = BC001711_A437PageChildren[0];
-            n437PageChildren = BC001711_n437PageChildren[0];
+            RcdFound89 = 1;
+            A310Trn_PageId = BC001712_A310Trn_PageId[0];
+            A318Trn_PageName = BC001712_A318Trn_PageName[0];
+            A431PageJsonContent = BC001712_A431PageJsonContent[0];
+            A432PageGJSHtml = BC001712_A432PageGJSHtml[0];
+            A433PageGJSJson = BC001712_A433PageGJSJson[0];
+            A434PageIsPublished = BC001712_A434PageIsPublished[0];
+            A439PageIsContentPage = BC001712_A439PageIsContentPage[0];
+            A437PageChildren = BC001712_A437PageChildren[0];
+            n437PageChildren = BC001712_n437PageChildren[0];
+            A11OrganisationId = BC001712_A11OrganisationId[0];
+            A29LocationId = BC001712_A29LocationId[0];
+            A58ProductServiceId = BC001712_A58ProductServiceId[0];
+            n58ProductServiceId = BC001712_n58ProductServiceId[0];
          }
          /* Load Subordinate Levels */
       }
 
-      protected void ScanKeyNext1768( )
+      protected void ScanKeyNext1789( )
       {
          /* Scan next routine */
-         pr_default.readNext(9);
-         RcdFound68 = 0;
-         ScanKeyLoad1768( ) ;
+         pr_default.readNext(10);
+         RcdFound89 = 0;
+         ScanKeyLoad1789( ) ;
       }
 
-      protected void ScanKeyLoad1768( )
+      protected void ScanKeyLoad1789( )
       {
-         sMode68 = Gx_mode;
+         sMode89 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(9) != 101) )
+         if ( (pr_default.getStatus(10) != 101) )
          {
-            RcdFound68 = 1;
-            A310Trn_PageId = BC001711_A310Trn_PageId[0];
-            A29LocationId = BC001711_A29LocationId[0];
-            n29LocationId = BC001711_n29LocationId[0];
-            A318Trn_PageName = BC001711_A318Trn_PageName[0];
-            A431PageJsonContent = BC001711_A431PageJsonContent[0];
-            A432PageGJSHtml = BC001711_A432PageGJSHtml[0];
-            A433PageGJSJson = BC001711_A433PageGJSJson[0];
-            A434PageIsPublished = BC001711_A434PageIsPublished[0];
-            A439PageIsContentPage = BC001711_A439PageIsContentPage[0];
-            A437PageChildren = BC001711_A437PageChildren[0];
-            n437PageChildren = BC001711_n437PageChildren[0];
+            RcdFound89 = 1;
+            A310Trn_PageId = BC001712_A310Trn_PageId[0];
+            A318Trn_PageName = BC001712_A318Trn_PageName[0];
+            A431PageJsonContent = BC001712_A431PageJsonContent[0];
+            A432PageGJSHtml = BC001712_A432PageGJSHtml[0];
+            A433PageGJSJson = BC001712_A433PageGJSJson[0];
+            A434PageIsPublished = BC001712_A434PageIsPublished[0];
+            A439PageIsContentPage = BC001712_A439PageIsContentPage[0];
+            A437PageChildren = BC001712_A437PageChildren[0];
+            n437PageChildren = BC001712_n437PageChildren[0];
+            A11OrganisationId = BC001712_A11OrganisationId[0];
+            A29LocationId = BC001712_A29LocationId[0];
+            A58ProductServiceId = BC001712_A58ProductServiceId[0];
+            n58ProductServiceId = BC001712_n58ProductServiceId[0];
          }
-         Gx_mode = sMode68;
+         Gx_mode = sMode89;
       }
 
-      protected void ScanKeyEnd1768( )
+      protected void ScanKeyEnd1789( )
       {
-         pr_default.close(9);
+         pr_default.close(10);
       }
 
-      protected void AfterConfirm1768( )
+      protected void AfterConfirm1789( )
       {
          /* After Confirm Rules */
       }
 
-      protected void BeforeInsert1768( )
+      protected void BeforeInsert1789( )
       {
          /* Before Insert Rules */
       }
 
-      protected void BeforeUpdate1768( )
+      protected void BeforeUpdate1789( )
       {
          /* Before Update Rules */
       }
 
-      protected void BeforeDelete1768( )
+      protected void BeforeDelete1789( )
       {
          /* Before Delete Rules */
       }
 
-      protected void BeforeComplete1768( )
+      protected void BeforeComplete1789( )
       {
          /* Before Complete Rules */
       }
 
-      protected void BeforeValidate1768( )
+      protected void BeforeValidate1789( )
       {
          /* Before Validate Rules */
       }
 
-      protected void DisableAttributes1768( )
+      protected void DisableAttributes1789( )
       {
       }
 
-      protected void send_integrity_lvl_hashes1768( )
+      protected void send_integrity_lvl_hashes1789( )
       {
       }
 
-      protected void AddRow1768( )
+      protected void AddRow1789( )
       {
-         VarsToRow68( bcTrn_Page) ;
+         VarsToRow89( bcTrn_Page) ;
       }
 
-      protected void ReadRow1768( )
+      protected void ReadRow1789( )
       {
-         RowToVars68( bcTrn_Page, 1) ;
+         RowToVars89( bcTrn_Page, 1) ;
       }
 
-      protected void InitializeNonKey1768( )
+      protected void InitializeNonKey1789( )
       {
          A318Trn_PageName = "";
          A431PageJsonContent = "";
@@ -653,26 +686,28 @@ namespace GeneXus.Programs {
          A433PageGJSJson = "";
          A437PageChildren = "";
          n437PageChildren = false;
-         A29LocationId = Guid.NewGuid( );
-         n29LocationId = false;
+         A58ProductServiceId = Guid.Empty;
+         n58ProductServiceId = false;
+         A11OrganisationId = Guid.Empty;
+         A29LocationId = Guid.Empty;
          A434PageIsPublished = false;
          A439PageIsContentPage = false;
-         Z29LocationId = Guid.Empty;
          Z318Trn_PageName = "";
          Z434PageIsPublished = false;
          Z439PageIsContentPage = false;
+         Z11OrganisationId = Guid.Empty;
+         Z29LocationId = Guid.Empty;
+         Z58ProductServiceId = Guid.Empty;
       }
 
-      protected void InitAll1768( )
+      protected void InitAll1789( )
       {
          A310Trn_PageId = Guid.NewGuid( );
-         InitializeNonKey1768( ) ;
+         InitializeNonKey1789( ) ;
       }
 
       protected void StandaloneModalInsert( )
       {
-         A29LocationId = i29LocationId;
-         n29LocationId = false;
          A439PageIsContentPage = i439PageIsContentPage;
          A434PageIsPublished = i434PageIsPublished;
       }
@@ -697,58 +732,66 @@ namespace GeneXus.Programs {
          return ((StringUtil.StrCmp(Gx_mode, "DSP")==0) ? true : false) ;
       }
 
-      public void VarsToRow68( SdtTrn_Page obj68 )
+      public void VarsToRow89( SdtTrn_Page obj89 )
       {
-         obj68.gxTpr_Mode = Gx_mode;
-         obj68.gxTpr_Trn_pagename = A318Trn_PageName;
-         obj68.gxTpr_Pagejsoncontent = A431PageJsonContent;
-         obj68.gxTpr_Pagegjshtml = A432PageGJSHtml;
-         obj68.gxTpr_Pagegjsjson = A433PageGJSJson;
-         obj68.gxTpr_Pagechildren = A437PageChildren;
-         obj68.gxTpr_Locationid = A29LocationId;
-         obj68.gxTpr_Pageispublished = A434PageIsPublished;
-         obj68.gxTpr_Pageiscontentpage = A439PageIsContentPage;
-         obj68.gxTpr_Trn_pageid = A310Trn_PageId;
-         obj68.gxTpr_Trn_pageid_Z = Z310Trn_PageId;
-         obj68.gxTpr_Trn_pagename_Z = Z318Trn_PageName;
-         obj68.gxTpr_Pageispublished_Z = Z434PageIsPublished;
-         obj68.gxTpr_Pageiscontentpage_Z = Z439PageIsContentPage;
-         obj68.gxTpr_Locationid_Z = Z29LocationId;
-         obj68.gxTpr_Locationid_N = (short)(Convert.ToInt16(n29LocationId));
-         obj68.gxTpr_Pagechildren_N = (short)(Convert.ToInt16(n437PageChildren));
-         obj68.gxTpr_Mode = Gx_mode;
+         obj89.gxTpr_Mode = Gx_mode;
+         obj89.gxTpr_Trn_pagename = A318Trn_PageName;
+         obj89.gxTpr_Pagejsoncontent = A431PageJsonContent;
+         obj89.gxTpr_Pagegjshtml = A432PageGJSHtml;
+         obj89.gxTpr_Pagegjsjson = A433PageGJSJson;
+         obj89.gxTpr_Pagechildren = A437PageChildren;
+         obj89.gxTpr_Productserviceid = A58ProductServiceId;
+         obj89.gxTpr_Organisationid = A11OrganisationId;
+         obj89.gxTpr_Locationid = A29LocationId;
+         obj89.gxTpr_Pageispublished = A434PageIsPublished;
+         obj89.gxTpr_Pageiscontentpage = A439PageIsContentPage;
+         obj89.gxTpr_Trn_pageid = A310Trn_PageId;
+         obj89.gxTpr_Trn_pageid_Z = Z310Trn_PageId;
+         obj89.gxTpr_Trn_pagename_Z = Z318Trn_PageName;
+         obj89.gxTpr_Pageispublished_Z = Z434PageIsPublished;
+         obj89.gxTpr_Pageiscontentpage_Z = Z439PageIsContentPage;
+         obj89.gxTpr_Productserviceid_Z = Z58ProductServiceId;
+         obj89.gxTpr_Organisationid_Z = Z11OrganisationId;
+         obj89.gxTpr_Locationid_Z = Z29LocationId;
+         obj89.gxTpr_Pagechildren_N = (short)(Convert.ToInt16(n437PageChildren));
+         obj89.gxTpr_Productserviceid_N = (short)(Convert.ToInt16(n58ProductServiceId));
+         obj89.gxTpr_Mode = Gx_mode;
          return  ;
       }
 
-      public void KeyVarsToRow68( SdtTrn_Page obj68 )
+      public void KeyVarsToRow89( SdtTrn_Page obj89 )
       {
-         obj68.gxTpr_Trn_pageid = A310Trn_PageId;
+         obj89.gxTpr_Trn_pageid = A310Trn_PageId;
          return  ;
       }
 
-      public void RowToVars68( SdtTrn_Page obj68 ,
+      public void RowToVars89( SdtTrn_Page obj89 ,
                                int forceLoad )
       {
-         Gx_mode = obj68.gxTpr_Mode;
-         A318Trn_PageName = obj68.gxTpr_Trn_pagename;
-         A431PageJsonContent = obj68.gxTpr_Pagejsoncontent;
-         A432PageGJSHtml = obj68.gxTpr_Pagegjshtml;
-         A433PageGJSJson = obj68.gxTpr_Pagegjsjson;
-         A437PageChildren = obj68.gxTpr_Pagechildren;
+         Gx_mode = obj89.gxTpr_Mode;
+         A318Trn_PageName = obj89.gxTpr_Trn_pagename;
+         A431PageJsonContent = obj89.gxTpr_Pagejsoncontent;
+         A432PageGJSHtml = obj89.gxTpr_Pagegjshtml;
+         A433PageGJSJson = obj89.gxTpr_Pagegjsjson;
+         A437PageChildren = obj89.gxTpr_Pagechildren;
          n437PageChildren = false;
-         A29LocationId = obj68.gxTpr_Locationid;
-         n29LocationId = false;
-         A434PageIsPublished = obj68.gxTpr_Pageispublished;
-         A439PageIsContentPage = obj68.gxTpr_Pageiscontentpage;
-         A310Trn_PageId = obj68.gxTpr_Trn_pageid;
-         Z310Trn_PageId = obj68.gxTpr_Trn_pageid_Z;
-         Z318Trn_PageName = obj68.gxTpr_Trn_pagename_Z;
-         Z434PageIsPublished = obj68.gxTpr_Pageispublished_Z;
-         Z439PageIsContentPage = obj68.gxTpr_Pageiscontentpage_Z;
-         Z29LocationId = obj68.gxTpr_Locationid_Z;
-         n29LocationId = (bool)(Convert.ToBoolean(obj68.gxTpr_Locationid_N));
-         n437PageChildren = (bool)(Convert.ToBoolean(obj68.gxTpr_Pagechildren_N));
-         Gx_mode = obj68.gxTpr_Mode;
+         A58ProductServiceId = obj89.gxTpr_Productserviceid;
+         n58ProductServiceId = false;
+         A11OrganisationId = obj89.gxTpr_Organisationid;
+         A29LocationId = obj89.gxTpr_Locationid;
+         A434PageIsPublished = obj89.gxTpr_Pageispublished;
+         A439PageIsContentPage = obj89.gxTpr_Pageiscontentpage;
+         A310Trn_PageId = obj89.gxTpr_Trn_pageid;
+         Z310Trn_PageId = obj89.gxTpr_Trn_pageid_Z;
+         Z318Trn_PageName = obj89.gxTpr_Trn_pagename_Z;
+         Z434PageIsPublished = obj89.gxTpr_Pageispublished_Z;
+         Z439PageIsContentPage = obj89.gxTpr_Pageiscontentpage_Z;
+         Z58ProductServiceId = obj89.gxTpr_Productserviceid_Z;
+         Z11OrganisationId = obj89.gxTpr_Organisationid_Z;
+         Z29LocationId = obj89.gxTpr_Locationid_Z;
+         n437PageChildren = (bool)(Convert.ToBoolean(obj89.gxTpr_Pagechildren_N));
+         n58ProductServiceId = (bool)(Convert.ToBoolean(obj89.gxTpr_Productserviceid_N));
+         Gx_mode = obj89.gxTpr_Mode;
          return  ;
       }
 
@@ -759,9 +802,9 @@ namespace GeneXus.Programs {
          A310Trn_PageId = (Guid)getParm(obj,0);
          AnyError = 0;
          context.GX_msglist.removeAllItems();
-         InitializeNonKey1768( ) ;
-         ScanKeyStart1768( ) ;
-         if ( RcdFound68 == 0 )
+         InitializeNonKey1789( ) ;
+         ScanKeyStart1789( ) ;
+         if ( RcdFound89 == 0 )
          {
             Gx_mode = "INS";
          }
@@ -770,11 +813,11 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z310Trn_PageId = A310Trn_PageId;
          }
-         ZM1768( -7) ;
-         OnLoadActions1768( ) ;
-         AddRow1768( ) ;
-         ScanKeyEnd1768( ) ;
-         if ( RcdFound68 == 0 )
+         ZM1789( -9) ;
+         OnLoadActions1789( ) ;
+         AddRow1789( ) ;
+         ScanKeyEnd1789( ) ;
+         if ( RcdFound89 == 0 )
          {
             GX_msglist.addItem(context.GetMessage( "GXM_keynfound", ""), "PrimaryKeyNotFound", 1, "");
             AnyError = 1;
@@ -788,9 +831,9 @@ namespace GeneXus.Programs {
          context.GX_msglist.removeAllItems();
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
-         RowToVars68( bcTrn_Page, 0) ;
-         ScanKeyStart1768( ) ;
-         if ( RcdFound68 == 0 )
+         RowToVars89( bcTrn_Page, 0) ;
+         ScanKeyStart1789( ) ;
+         if ( RcdFound89 == 0 )
          {
             Gx_mode = "INS";
          }
@@ -799,11 +842,11 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z310Trn_PageId = A310Trn_PageId;
          }
-         ZM1768( -7) ;
-         OnLoadActions1768( ) ;
-         AddRow1768( ) ;
-         ScanKeyEnd1768( ) ;
-         if ( RcdFound68 == 0 )
+         ZM1789( -9) ;
+         OnLoadActions1789( ) ;
+         AddRow1789( ) ;
+         ScanKeyEnd1789( ) ;
+         if ( RcdFound89 == 0 )
          {
             GX_msglist.addItem(context.GetMessage( "GXM_keynfound", ""), "PrimaryKeyNotFound", 1, "");
             AnyError = 1;
@@ -813,15 +856,15 @@ namespace GeneXus.Programs {
 
       protected void SaveImpl( )
       {
-         GetKey1768( ) ;
+         GetKey1789( ) ;
          if ( IsIns( ) )
          {
             /* Insert record */
-            Insert1768( ) ;
+            Insert1789( ) ;
          }
          else
          {
-            if ( RcdFound68 == 1 )
+            if ( RcdFound89 == 1 )
             {
                if ( A310Trn_PageId != Z310Trn_PageId )
                {
@@ -838,7 +881,7 @@ namespace GeneXus.Programs {
                {
                   Gx_mode = "UPD";
                   /* Update record */
-                  Update1768( ) ;
+                  Update1789( ) ;
                }
             }
             else
@@ -861,7 +904,7 @@ namespace GeneXus.Programs {
                      {
                         Gx_mode = "INS";
                         /* Insert record */
-                        Insert1768( ) ;
+                        Insert1789( ) ;
                      }
                   }
                   else
@@ -875,7 +918,7 @@ namespace GeneXus.Programs {
                      {
                         Gx_mode = "INS";
                         /* Insert record */
-                        Insert1768( ) ;
+                        Insert1789( ) ;
                      }
                   }
                }
@@ -890,9 +933,9 @@ namespace GeneXus.Programs {
          context.GX_msglist = LclMsgLst;
          AnyError = 0;
          context.GX_msglist.removeAllItems();
-         RowToVars68( bcTrn_Page, 1) ;
+         RowToVars89( bcTrn_Page, 1) ;
          SaveImpl( ) ;
-         VarsToRow68( bcTrn_Page) ;
+         VarsToRow89( bcTrn_Page) ;
          context.GX_msglist = BackMsgLst;
          return  ;
       }
@@ -903,12 +946,12 @@ namespace GeneXus.Programs {
          context.GX_msglist = LclMsgLst;
          AnyError = 0;
          context.GX_msglist.removeAllItems();
-         RowToVars68( bcTrn_Page, 1) ;
+         RowToVars89( bcTrn_Page, 1) ;
          Gx_mode = "INS";
          /* Insert record */
-         Insert1768( ) ;
+         Insert1789( ) ;
          AfterTrn( ) ;
-         VarsToRow68( bcTrn_Page) ;
+         VarsToRow89( bcTrn_Page) ;
          context.GX_msglist = BackMsgLst;
          return (AnyError==0) ;
       }
@@ -918,7 +961,7 @@ namespace GeneXus.Programs {
          if ( IsUpd( ) )
          {
             SaveImpl( ) ;
-            VarsToRow68( bcTrn_Page) ;
+            VarsToRow89( bcTrn_Page) ;
          }
          else
          {
@@ -948,7 +991,7 @@ namespace GeneXus.Programs {
          context.GX_msglist = LclMsgLst;
          AnyError = 0;
          context.GX_msglist.removeAllItems();
-         RowToVars68( bcTrn_Page, 1) ;
+         RowToVars89( bcTrn_Page, 1) ;
          UpdateImpl( ) ;
          context.GX_msglist = BackMsgLst;
          return (AnyError==0) ;
@@ -960,10 +1003,10 @@ namespace GeneXus.Programs {
          context.GX_msglist = LclMsgLst;
          AnyError = 0;
          context.GX_msglist.removeAllItems();
-         RowToVars68( bcTrn_Page, 1) ;
+         RowToVars89( bcTrn_Page, 1) ;
          Gx_mode = "INS";
          /* Insert record */
-         Insert1768( ) ;
+         Insert1789( ) ;
          if ( AnyError == 1 )
          {
             if ( StringUtil.StrCmp(context.GX_msglist.getItemValue(1), "DuplicatePrimaryKey") == 0 )
@@ -974,13 +1017,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               VarsToRow68( bcTrn_Page) ;
+               VarsToRow89( bcTrn_Page) ;
             }
          }
          else
          {
             AfterTrn( ) ;
-            VarsToRow68( bcTrn_Page) ;
+            VarsToRow89( bcTrn_Page) ;
          }
          context.GX_msglist = BackMsgLst;
          return (AnyError==0) ;
@@ -992,9 +1035,9 @@ namespace GeneXus.Programs {
          context.GX_msglist = LclMsgLst;
          AnyError = 0;
          context.GX_msglist.removeAllItems();
-         RowToVars68( bcTrn_Page, 0) ;
-         GetKey1768( ) ;
-         if ( RcdFound68 == 1 )
+         RowToVars89( bcTrn_Page, 0) ;
+         GetKey1789( ) ;
+         if ( RcdFound89 == 1 )
          {
             if ( IsIns( ) )
             {
@@ -1039,7 +1082,7 @@ namespace GeneXus.Programs {
             }
          }
          context.RollbackDataStores("trn_page_bc",pr_default);
-         VarsToRow68( bcTrn_Page) ;
+         VarsToRow89( bcTrn_Page) ;
          context.GX_msglist = BackMsgLst;
          return  ;
       }
@@ -1083,11 +1126,11 @@ namespace GeneXus.Programs {
             }
             if ( sdtToBc == 1 )
             {
-               VarsToRow68( bcTrn_Page) ;
+               VarsToRow89( bcTrn_Page) ;
             }
             else
             {
-               RowToVars68( bcTrn_Page, 1) ;
+               RowToVars89( bcTrn_Page, 1) ;
             }
          }
          else
@@ -1102,7 +1145,7 @@ namespace GeneXus.Programs {
 
       public void ReloadFromSDT( )
       {
-         RowToVars68( bcTrn_Page, 1) ;
+         RowToVars89( bcTrn_Page, 1) ;
          return  ;
       }
 
@@ -1183,13 +1226,14 @@ namespace GeneXus.Programs {
          endTrnMsgCod = "";
          Z310Trn_PageId = Guid.Empty;
          A310Trn_PageId = Guid.Empty;
-         AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
-         AV12WebSession = context.GetSession();
-         Z29LocationId = Guid.Empty;
-         A29LocationId = Guid.Empty;
          Z318Trn_PageName = "";
          A318Trn_PageName = "";
+         Z11OrganisationId = Guid.Empty;
+         A11OrganisationId = Guid.Empty;
+         Z29LocationId = Guid.Empty;
+         A29LocationId = Guid.Empty;
+         Z58ProductServiceId = Guid.Empty;
+         A58ProductServiceId = Guid.Empty;
          Z431PageJsonContent = "";
          A431PageJsonContent = "";
          Z432PageGJSHtml = "";
@@ -1198,21 +1242,25 @@ namespace GeneXus.Programs {
          A433PageGJSJson = "";
          Z437PageChildren = "";
          A437PageChildren = "";
-         BC00174_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         BC00176_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         BC00176_A318Trn_PageName = new string[] {""} ;
+         BC00176_A431PageJsonContent = new string[] {""} ;
+         BC00176_A432PageGJSHtml = new string[] {""} ;
+         BC00176_A433PageGJSJson = new string[] {""} ;
+         BC00176_A434PageIsPublished = new bool[] {false} ;
+         BC00176_A439PageIsContentPage = new bool[] {false} ;
+         BC00176_A437PageChildren = new string[] {""} ;
+         BC00176_n437PageChildren = new bool[] {false} ;
+         BC00176_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00176_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00176_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         BC00176_n58ProductServiceId = new bool[] {false} ;
+         BC00177_A318Trn_PageName = new string[] {""} ;
+         BC00175_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         BC00175_n58ProductServiceId = new bool[] {false} ;
          BC00174_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC00174_n29LocationId = new bool[] {false} ;
-         BC00174_A318Trn_PageName = new string[] {""} ;
-         BC00174_A431PageJsonContent = new string[] {""} ;
-         BC00174_A432PageGJSHtml = new string[] {""} ;
-         BC00174_A433PageGJSJson = new string[] {""} ;
-         BC00174_A434PageIsPublished = new bool[] {false} ;
-         BC00174_A439PageIsContentPage = new bool[] {false} ;
-         BC00174_A437PageChildren = new string[] {""} ;
-         BC00174_n437PageChildren = new bool[] {false} ;
-         BC00175_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         BC00178_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          BC00173_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         BC00173_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC00173_n29LocationId = new bool[] {false} ;
          BC00173_A318Trn_PageName = new string[] {""} ;
          BC00173_A431PageJsonContent = new string[] {""} ;
          BC00173_A432PageGJSHtml = new string[] {""} ;
@@ -1221,10 +1269,12 @@ namespace GeneXus.Programs {
          BC00173_A439PageIsContentPage = new bool[] {false} ;
          BC00173_A437PageChildren = new string[] {""} ;
          BC00173_n437PageChildren = new bool[] {false} ;
-         sMode68 = "";
+         BC00173_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00173_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00173_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         BC00173_n58ProductServiceId = new bool[] {false} ;
+         sMode89 = "";
          BC00172_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         BC00172_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC00172_n29LocationId = new bool[] {false} ;
          BC00172_A318Trn_PageName = new string[] {""} ;
          BC00172_A431PageJsonContent = new string[] {""} ;
          BC00172_A432PageGJSHtml = new string[] {""} ;
@@ -1233,20 +1283,23 @@ namespace GeneXus.Programs {
          BC00172_A439PageIsContentPage = new bool[] {false} ;
          BC00172_A437PageChildren = new string[] {""} ;
          BC00172_n437PageChildren = new bool[] {false} ;
-         BC00179_A407TileId = new Guid[] {Guid.Empty} ;
-         BC001710_A319Trn_RowId = new Guid[] {Guid.Empty} ;
-         BC001711_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         BC001711_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC001711_n29LocationId = new bool[] {false} ;
-         BC001711_A318Trn_PageName = new string[] {""} ;
-         BC001711_A431PageJsonContent = new string[] {""} ;
-         BC001711_A432PageGJSHtml = new string[] {""} ;
-         BC001711_A433PageGJSJson = new string[] {""} ;
-         BC001711_A434PageIsPublished = new bool[] {false} ;
-         BC001711_A439PageIsContentPage = new bool[] {false} ;
-         BC001711_A437PageChildren = new string[] {""} ;
-         BC001711_n437PageChildren = new bool[] {false} ;
-         i29LocationId = Guid.Empty;
+         BC00172_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00172_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00172_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         BC00172_n58ProductServiceId = new bool[] {false} ;
+         BC001712_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         BC001712_A318Trn_PageName = new string[] {""} ;
+         BC001712_A431PageJsonContent = new string[] {""} ;
+         BC001712_A432PageGJSHtml = new string[] {""} ;
+         BC001712_A433PageGJSJson = new string[] {""} ;
+         BC001712_A434PageIsPublished = new bool[] {false} ;
+         BC001712_A439PageIsContentPage = new bool[] {false} ;
+         BC001712_A437PageChildren = new string[] {""} ;
+         BC001712_n437PageChildren = new bool[] {false} ;
+         BC001712_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC001712_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC001712_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         BC001712_n58ProductServiceId = new bool[] {false} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_page_bc__gam(),
@@ -1256,19 +1309,28 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_page_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC00172_A310Trn_PageId, BC00172_A29LocationId, BC00172_n29LocationId, BC00172_A318Trn_PageName, BC00172_A431PageJsonContent, BC00172_A432PageGJSHtml, BC00172_A433PageGJSJson, BC00172_A434PageIsPublished, BC00172_A439PageIsContentPage, BC00172_A437PageChildren,
-               BC00172_n437PageChildren
+               BC00172_A310Trn_PageId, BC00172_A318Trn_PageName, BC00172_A431PageJsonContent, BC00172_A432PageGJSHtml, BC00172_A433PageGJSJson, BC00172_A434PageIsPublished, BC00172_A439PageIsContentPage, BC00172_A437PageChildren, BC00172_n437PageChildren, BC00172_A11OrganisationId,
+               BC00172_A29LocationId, BC00172_A58ProductServiceId, BC00172_n58ProductServiceId
                }
                , new Object[] {
-               BC00173_A310Trn_PageId, BC00173_A29LocationId, BC00173_n29LocationId, BC00173_A318Trn_PageName, BC00173_A431PageJsonContent, BC00173_A432PageGJSHtml, BC00173_A433PageGJSJson, BC00173_A434PageIsPublished, BC00173_A439PageIsContentPage, BC00173_A437PageChildren,
-               BC00173_n437PageChildren
+               BC00173_A310Trn_PageId, BC00173_A318Trn_PageName, BC00173_A431PageJsonContent, BC00173_A432PageGJSHtml, BC00173_A433PageGJSJson, BC00173_A434PageIsPublished, BC00173_A439PageIsContentPage, BC00173_A437PageChildren, BC00173_n437PageChildren, BC00173_A11OrganisationId,
+               BC00173_A29LocationId, BC00173_A58ProductServiceId, BC00173_n58ProductServiceId
                }
                , new Object[] {
-               BC00174_A310Trn_PageId, BC00174_A29LocationId, BC00174_n29LocationId, BC00174_A318Trn_PageName, BC00174_A431PageJsonContent, BC00174_A432PageGJSHtml, BC00174_A433PageGJSJson, BC00174_A434PageIsPublished, BC00174_A439PageIsContentPage, BC00174_A437PageChildren,
-               BC00174_n437PageChildren
+               BC00174_A29LocationId
                }
                , new Object[] {
-               BC00175_A310Trn_PageId
+               BC00175_A58ProductServiceId
+               }
+               , new Object[] {
+               BC00176_A310Trn_PageId, BC00176_A318Trn_PageName, BC00176_A431PageJsonContent, BC00176_A432PageGJSHtml, BC00176_A433PageGJSJson, BC00176_A434PageIsPublished, BC00176_A439PageIsContentPage, BC00176_A437PageChildren, BC00176_n437PageChildren, BC00176_A11OrganisationId,
+               BC00176_A29LocationId, BC00176_A58ProductServiceId, BC00176_n58ProductServiceId
+               }
+               , new Object[] {
+               BC00177_A318Trn_PageName
+               }
+               , new Object[] {
+               BC00178_A310Trn_PageId
                }
                , new Object[] {
                }
@@ -1277,23 +1339,11 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC00179_A407TileId
-               }
-               , new Object[] {
-               BC001710_A319Trn_RowId
-               }
-               , new Object[] {
-               BC001711_A310Trn_PageId, BC001711_A29LocationId, BC001711_n29LocationId, BC001711_A318Trn_PageName, BC001711_A431PageJsonContent, BC001711_A432PageGJSHtml, BC001711_A433PageGJSJson, BC001711_A434PageIsPublished, BC001711_A439PageIsContentPage, BC001711_A437PageChildren,
-               BC001711_n437PageChildren
+               BC001712_A310Trn_PageId, BC001712_A318Trn_PageName, BC001712_A431PageJsonContent, BC001712_A432PageGJSHtml, BC001712_A433PageGJSJson, BC001712_A434PageIsPublished, BC001712_A439PageIsContentPage, BC001712_A437PageChildren, BC001712_n437PageChildren, BC001712_A11OrganisationId,
+               BC001712_A29LocationId, BC001712_A58ProductServiceId, BC001712_n58ProductServiceId
                }
             }
          );
-         Z29LocationId = Guid.NewGuid( );
-         n29LocationId = false;
-         A29LocationId = Guid.NewGuid( );
-         n29LocationId = false;
-         i29LocationId = Guid.NewGuid( );
-         n29LocationId = false;
          Z439PageIsContentPage = false;
          A439PageIsContentPage = false;
          i439PageIsContentPage = false;
@@ -1311,19 +1361,20 @@ namespace GeneXus.Programs {
 
       private short AnyError ;
       private short Gx_BScreen ;
-      private short RcdFound68 ;
+      private short RcdFound89 ;
       private int trnEnded ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string sMode68 ;
+      private string sMode89 ;
       private bool returnInSub ;
       private bool Z434PageIsPublished ;
       private bool A434PageIsPublished ;
       private bool Z439PageIsContentPage ;
       private bool A439PageIsContentPage ;
-      private bool n29LocationId ;
       private bool n437PageChildren ;
+      private bool n58ProductServiceId ;
+      private bool Gx_longc ;
       private bool i439PageIsContentPage ;
       private bool i434PageIsPublished ;
       private string Z431PageJsonContent ;
@@ -1338,30 +1389,34 @@ namespace GeneXus.Programs {
       private string A318Trn_PageName ;
       private Guid Z310Trn_PageId ;
       private Guid A310Trn_PageId ;
+      private Guid Z11OrganisationId ;
+      private Guid A11OrganisationId ;
       private Guid Z29LocationId ;
       private Guid A29LocationId ;
-      private Guid i29LocationId ;
-      private IGxSession AV12WebSession ;
+      private Guid Z58ProductServiceId ;
+      private Guid A58ProductServiceId ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
-      private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV11TrnContext ;
       private IDataStoreProvider pr_default ;
-      private Guid[] BC00174_A310Trn_PageId ;
+      private Guid[] BC00176_A310Trn_PageId ;
+      private string[] BC00176_A318Trn_PageName ;
+      private string[] BC00176_A431PageJsonContent ;
+      private string[] BC00176_A432PageGJSHtml ;
+      private string[] BC00176_A433PageGJSJson ;
+      private bool[] BC00176_A434PageIsPublished ;
+      private bool[] BC00176_A439PageIsContentPage ;
+      private string[] BC00176_A437PageChildren ;
+      private bool[] BC00176_n437PageChildren ;
+      private Guid[] BC00176_A11OrganisationId ;
+      private Guid[] BC00176_A29LocationId ;
+      private Guid[] BC00176_A58ProductServiceId ;
+      private bool[] BC00176_n58ProductServiceId ;
+      private string[] BC00177_A318Trn_PageName ;
+      private Guid[] BC00175_A58ProductServiceId ;
+      private bool[] BC00175_n58ProductServiceId ;
       private Guid[] BC00174_A29LocationId ;
-      private bool[] BC00174_n29LocationId ;
-      private string[] BC00174_A318Trn_PageName ;
-      private string[] BC00174_A431PageJsonContent ;
-      private string[] BC00174_A432PageGJSHtml ;
-      private string[] BC00174_A433PageGJSJson ;
-      private bool[] BC00174_A434PageIsPublished ;
-      private bool[] BC00174_A439PageIsContentPage ;
-      private string[] BC00174_A437PageChildren ;
-      private bool[] BC00174_n437PageChildren ;
-      private Guid[] BC00175_A310Trn_PageId ;
+      private Guid[] BC00178_A310Trn_PageId ;
       private Guid[] BC00173_A310Trn_PageId ;
-      private Guid[] BC00173_A29LocationId ;
-      private bool[] BC00173_n29LocationId ;
       private string[] BC00173_A318Trn_PageName ;
       private string[] BC00173_A431PageJsonContent ;
       private string[] BC00173_A432PageGJSHtml ;
@@ -1370,9 +1425,11 @@ namespace GeneXus.Programs {
       private bool[] BC00173_A439PageIsContentPage ;
       private string[] BC00173_A437PageChildren ;
       private bool[] BC00173_n437PageChildren ;
+      private Guid[] BC00173_A11OrganisationId ;
+      private Guid[] BC00173_A29LocationId ;
+      private Guid[] BC00173_A58ProductServiceId ;
+      private bool[] BC00173_n58ProductServiceId ;
       private Guid[] BC00172_A310Trn_PageId ;
-      private Guid[] BC00172_A29LocationId ;
-      private bool[] BC00172_n29LocationId ;
       private string[] BC00172_A318Trn_PageName ;
       private string[] BC00172_A431PageJsonContent ;
       private string[] BC00172_A432PageGJSHtml ;
@@ -1381,19 +1438,23 @@ namespace GeneXus.Programs {
       private bool[] BC00172_A439PageIsContentPage ;
       private string[] BC00172_A437PageChildren ;
       private bool[] BC00172_n437PageChildren ;
-      private Guid[] BC00179_A407TileId ;
-      private Guid[] BC001710_A319Trn_RowId ;
-      private Guid[] BC001711_A310Trn_PageId ;
-      private Guid[] BC001711_A29LocationId ;
-      private bool[] BC001711_n29LocationId ;
-      private string[] BC001711_A318Trn_PageName ;
-      private string[] BC001711_A431PageJsonContent ;
-      private string[] BC001711_A432PageGJSHtml ;
-      private string[] BC001711_A433PageGJSJson ;
-      private bool[] BC001711_A434PageIsPublished ;
-      private bool[] BC001711_A439PageIsContentPage ;
-      private string[] BC001711_A437PageChildren ;
-      private bool[] BC001711_n437PageChildren ;
+      private Guid[] BC00172_A11OrganisationId ;
+      private Guid[] BC00172_A29LocationId ;
+      private Guid[] BC00172_A58ProductServiceId ;
+      private bool[] BC00172_n58ProductServiceId ;
+      private Guid[] BC001712_A310Trn_PageId ;
+      private string[] BC001712_A318Trn_PageName ;
+      private string[] BC001712_A431PageJsonContent ;
+      private string[] BC001712_A432PageGJSHtml ;
+      private string[] BC001712_A433PageGJSJson ;
+      private bool[] BC001712_A434PageIsPublished ;
+      private bool[] BC001712_A439PageIsContentPage ;
+      private string[] BC001712_A437PageChildren ;
+      private bool[] BC001712_n437PageChildren ;
+      private Guid[] BC001712_A11OrganisationId ;
+      private Guid[] BC001712_A29LocationId ;
+      private Guid[] BC001712_A58ProductServiceId ;
+      private bool[] BC001712_n58ProductServiceId ;
       private SdtTrn_Page bcTrn_Page ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1442,12 +1503,13 @@ namespace GeneXus.Programs {
        ,new ForEachCursor(def[1])
        ,new ForEachCursor(def[2])
        ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new ForEachCursor(def[9])
+       ,new ForEachCursor(def[4])
+       ,new ForEachCursor(def[5])
+       ,new ForEachCursor(def[6])
+       ,new UpdateCursor(def[7])
+       ,new UpdateCursor(def[8])
+       ,new UpdateCursor(def[9])
+       ,new ForEachCursor(def[10])
      };
   }
 
@@ -1466,34 +1528,22 @@ namespace GeneXus.Programs {
         };
         Object[] prmBC00174;
         prmBC00174 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00175;
         prmBC00175 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00176;
         prmBC00176 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
-        new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0) ,
-        new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0) ,
-        new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0) ,
-        new ParDef("PageIsPublished",GXType.Boolean,4,0) ,
-        new ParDef("PageIsContentPage",GXType.Boolean,4,0) ,
-        new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true}
+        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00177;
         prmBC00177 = new Object[] {
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
         new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
-        new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0) ,
-        new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0) ,
-        new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0) ,
-        new ParDef("PageIsPublished",GXType.Boolean,4,0) ,
-        new ParDef("PageIsContentPage",GXType.Boolean,4,0) ,
-        new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true} ,
         new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC00178;
@@ -1502,27 +1552,52 @@ namespace GeneXus.Programs {
         };
         Object[] prmBC00179;
         prmBC00179 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
+        new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0) ,
+        new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0) ,
+        new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0) ,
+        new ParDef("PageIsPublished",GXType.Boolean,4,0) ,
+        new ParDef("PageIsContentPage",GXType.Boolean,4,0) ,
+        new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true} ,
+        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true}
         };
         Object[] prmBC001710;
         prmBC001710 = new Object[] {
+        new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
+        new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0) ,
+        new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0) ,
+        new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0) ,
+        new ParDef("PageIsPublished",GXType.Boolean,4,0) ,
+        new ParDef("PageIsContentPage",GXType.Boolean,4,0) ,
+        new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true} ,
+        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
         new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
         Object[] prmBC001711;
         prmBC001711 = new Object[] {
         new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
         };
+        Object[] prmBC001712;
+        prmBC001712 = new Object[] {
+        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+        };
         def= new CursorDef[] {
-            new CursorDef("BC00172", "SELECT Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren FROM Trn_Page WHERE Trn_PageId = :Trn_PageId  FOR UPDATE OF Trn_Page",true, GxErrorMask.GX_NOMASK, false, this,prmBC00172,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00173", "SELECT Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00173,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00174", "SELECT TM1.Trn_PageId, TM1.LocationId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00174,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00175", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00175,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00176", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren) VALUES(:Trn_PageId, :LocationId, :Trn_PageName, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, :PageChildren);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00176)
-           ,new CursorDef("BC00177", "SAVEPOINT gxupdate;UPDATE Trn_Page SET LocationId=:LocationId, Trn_PageName=:Trn_PageName, PageJsonContent=:PageJsonContent, PageGJSHtml=:PageGJSHtml, PageGJSJson=:PageGJSJson, PageIsPublished=:PageIsPublished, PageIsContentPage=:PageIsContentPage, PageChildren=:PageChildren  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00177)
-           ,new CursorDef("BC00178", "SAVEPOINT gxupdate;DELETE FROM Trn_Page  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00178)
-           ,new CursorDef("BC00179", "SELECT TileId FROM Trn_Tile WHERE SG_ToPageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00179,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC001710", "SELECT Trn_RowId FROM Trn_Row WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001710,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC001711", "SELECT TM1.Trn_PageId, TM1.LocationId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001711,100, GxCacheFrequency.OFF ,true,false )
+            new CursorDef("BC00172", "SELECT Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, OrganisationId, LocationId, ProductServiceId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId  FOR UPDATE OF Trn_Page",true, GxErrorMask.GX_NOMASK, false, this,prmBC00172,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00173", "SELECT Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, OrganisationId, LocationId, ProductServiceId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00173,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00174", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00174,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00175", "SELECT ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00175,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00176", "SELECT TM1.Trn_PageId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren, TM1.OrganisationId, TM1.LocationId, TM1.ProductServiceId FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00176,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00177", "SELECT Trn_PageName FROM Trn_Page WHERE (Trn_PageName = :Trn_PageName) AND (Not ( Trn_PageId = :Trn_PageId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00177,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00178", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00178,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC00179", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, OrganisationId, LocationId, ProductServiceId) VALUES(:Trn_PageId, :Trn_PageName, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, :PageChildren, :OrganisationId, :LocationId, :ProductServiceId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00179)
+           ,new CursorDef("BC001710", "SAVEPOINT gxupdate;UPDATE Trn_Page SET Trn_PageName=:Trn_PageName, PageJsonContent=:PageJsonContent, PageGJSHtml=:PageGJSHtml, PageGJSJson=:PageGJSJson, PageIsPublished=:PageIsPublished, PageIsContentPage=:PageIsContentPage, PageChildren=:PageChildren, OrganisationId=:OrganisationId, LocationId=:LocationId, ProductServiceId=:ProductServiceId  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001710)
+           ,new CursorDef("BC001711", "SAVEPOINT gxupdate;DELETE FROM Trn_Page  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001711)
+           ,new CursorDef("BC001712", "SELECT TM1.Trn_PageId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren, TM1.OrganisationId, TM1.LocationId, TM1.ProductServiceId FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001712,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1535,64 +1610,75 @@ namespace GeneXus.Programs {
      {
            case 0 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((bool[]) buf[2])[0] = rslt.wasNull(2);
-              ((string[]) buf[3])[0] = rslt.getVarchar(3);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
-              ((bool[]) buf[7])[0] = rslt.getBool(7);
-              ((bool[]) buf[8])[0] = rslt.getBool(8);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(9);
-              ((bool[]) buf[10])[0] = rslt.wasNull(9);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+              ((bool[]) buf[5])[0] = rslt.getBool(6);
+              ((bool[]) buf[6])[0] = rslt.getBool(7);
+              ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+              ((bool[]) buf[8])[0] = rslt.wasNull(8);
+              ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+              ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+              ((Guid[]) buf[11])[0] = rslt.getGuid(11);
+              ((bool[]) buf[12])[0] = rslt.wasNull(11);
               return;
            case 1 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((bool[]) buf[2])[0] = rslt.wasNull(2);
-              ((string[]) buf[3])[0] = rslt.getVarchar(3);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
-              ((bool[]) buf[7])[0] = rslt.getBool(7);
-              ((bool[]) buf[8])[0] = rslt.getBool(8);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(9);
-              ((bool[]) buf[10])[0] = rslt.wasNull(9);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+              ((bool[]) buf[5])[0] = rslt.getBool(6);
+              ((bool[]) buf[6])[0] = rslt.getBool(7);
+              ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+              ((bool[]) buf[8])[0] = rslt.wasNull(8);
+              ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+              ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+              ((Guid[]) buf[11])[0] = rslt.getGuid(11);
+              ((bool[]) buf[12])[0] = rslt.wasNull(11);
               return;
            case 2 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((bool[]) buf[2])[0] = rslt.wasNull(2);
-              ((string[]) buf[3])[0] = rslt.getVarchar(3);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
-              ((bool[]) buf[7])[0] = rslt.getBool(7);
-              ((bool[]) buf[8])[0] = rslt.getBool(8);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(9);
-              ((bool[]) buf[10])[0] = rslt.wasNull(9);
               return;
            case 3 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               return;
-           case 7 :
+           case 4 :
+              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+              ((bool[]) buf[5])[0] = rslt.getBool(6);
+              ((bool[]) buf[6])[0] = rslt.getBool(7);
+              ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+              ((bool[]) buf[8])[0] = rslt.wasNull(8);
+              ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+              ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+              ((Guid[]) buf[11])[0] = rslt.getGuid(11);
+              ((bool[]) buf[12])[0] = rslt.wasNull(11);
+              return;
+           case 5 :
+              ((string[]) buf[0])[0] = rslt.getVarchar(1);
+              return;
+           case 6 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               return;
-           case 8 :
+           case 10 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 9 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((bool[]) buf[2])[0] = rslt.wasNull(2);
-              ((string[]) buf[3])[0] = rslt.getVarchar(3);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
-              ((bool[]) buf[7])[0] = rslt.getBool(7);
-              ((bool[]) buf[8])[0] = rslt.getBool(8);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(9);
-              ((bool[]) buf[10])[0] = rslt.wasNull(9);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+              ((bool[]) buf[5])[0] = rslt.getBool(6);
+              ((bool[]) buf[6])[0] = rslt.getBool(7);
+              ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+              ((bool[]) buf[8])[0] = rslt.wasNull(8);
+              ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+              ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+              ((Guid[]) buf[11])[0] = rslt.getGuid(11);
+              ((bool[]) buf[12])[0] = rslt.wasNull(11);
               return;
      }
   }

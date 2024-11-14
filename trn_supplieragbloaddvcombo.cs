@@ -223,7 +223,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(1);
          }
          pr_default.close(1);
-         if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
+         if ( ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 ) && ( StringUtil.StrCmp(AV18TrnMode, "NEW") != 0 ) )
          {
             /* Using cursor P006L4 */
             pr_default.execute(2, new Object[] {AV20SupplierAgbId});

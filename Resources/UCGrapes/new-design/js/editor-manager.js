@@ -15,14 +15,22 @@ class EditorManager {
     this.pageId = this.getCurrentPageId();
     this.pageName = "Home";
     this.toolsSection = null;
+    this.dataManager = null;
   }
 
   setToolsSection(toolBox) {
     this.toolsSection = toolBox;
   }
 
+  setDataManager(dataManager) {
+    this.dataManager = dataManager;
+    console.log("this is data manager: ", this.dataManager);
+  }
+
   init() {
     this.editor.on("load", () => {
+      console.log(this.toolsSection)
+      this.toolsSection.resetPropertySection();
       if (this.pageId === null) {
         const existingFrame = this.editor
           .getWrapper()
@@ -54,22 +62,88 @@ class EditorManager {
             }
 
             this.editor.loadProjectData(parsedData);
+
+            // Fetch and check PageIsContentPage before updating property section
+            this.dataManager
+              .getSinglePage(this.getCurrentPageId())
+              .then((pageData) => {
+                console.log("Page: ", pageData)
+                if (pageData.PageIsContentPage) {
+                  this.dataManager
+                    .getContentPageData(this.getCurrentPageId())
+                    .then((contentPageData) => {
+                      if (contentPageData) {
+                        console.log(
+                          "Product/Service details: ",
+                          contentPageData
+                        );
+                        this.initialContentPageTemplate(contentPageData);
+                        this.toolsSection.pageContentCtas(
+                          contentPageData.CallToActions
+                        );
+                      }
+                    })
+                    .catch((error) => {
+                      console.error("Error fetching page data:", error);
+                    });
+                  this.toolsSection.updatePropertySection();
+                }
+              });
           } catch (error) {
             console.log("Error loading data:" + error);
             const message = this.currentLanguage.getTranslation(
-              "error_loading_data_message"
+              "no_icon_selected_error_message"
             );
             const status = "error";
             this.toolsSection.displayAlertMessage(message, status);
           }
+          console.log("Loaded saved template");
         } else {
-          this.initialTemplate();
+          // Fetch data if no projectData in local storage
+          this.dataManager
+            .getSinglePage(this.getCurrentPageId())
+            .then((pageData) => {
+              if (pageData.length > 0) {
+                if (pageData.PageIsContentPage) {
+                  this.dataManager
+                    .getContentPageData(this.getCurrentPageId())
+                    .then((contentPageData) => {
+                      if (contentPageData) {
+                        console.log(
+                          "Product/Service details: ",
+                          contentPageData
+                        );
+                        this.initialContentPageTemplate(contentPageData);
+                        this.toolsSection.pageContentCtas(
+                          contentPageData.CallToActions
+                        );
+                      }
+                    })
+                    .catch((error) => {
+                      console.error("Error fetching page data:", error);
+                    });
+
+                  this.toolsSection.updatePropertySection();
+                } else {
+                  this.initialTemplate();
+                }
+
+                console.log("Loaded product service");
+              } else {
+                this.initialTemplate();
+              }
+            })
+            .catch((error) => {
+              console.error("Error fetching page data:", error);
+            });
         }
       }
 
       const wrapper = this.editor.getWrapper();
-      console.log(this.editor.getWrapper().view);
-      wrapper.view.el.addEventListener("click", (e) => {
+      wrapper.view.el.removeEventListener("click", this.wrapperClickHandler);
+
+      // Define the event handler as a separate function
+      this.wrapperClickHandler = (e) => {
         const button = e.target.closest(".action-button");
         if (!button) return;
 
@@ -79,7 +153,6 @@ class EditorManager {
         this.templateComponent = this.editor.Components.getById(
           templateWrapper.id
         );
-
         if (!this.templateComponent) return;
 
         if (button.classList.contains("delete-button")) {
@@ -89,7 +162,10 @@ class EditorManager {
         } else if (button.classList.contains("add-button-right")) {
           this.addTemplateRight(this.templateComponent);
         }
-      });
+      };
+
+      // Add the click event listener once
+      wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
 
       wrapper.set({
         selectable: false,
@@ -99,7 +175,6 @@ class EditorManager {
         },
       });
 
-      // call right click handler
       this.rightClickEventHandler();
     });
 
@@ -109,9 +184,8 @@ class EditorManager {
 
       const sidebarInputTitle = document.getElementById("tile-title");
       if (this.selectedTemplateWrapper) {
-        const tileLabel = this.selectedTemplateWrapper.querySelector(
-          ".tile-title"
-        );
+        const tileLabel =
+          this.selectedTemplateWrapper.querySelector(".tile-title");
         if (tileLabel) {
           sidebarInputTitle.value = tileLabel.textContent;
         }
@@ -308,9 +382,134 @@ class EditorManager {
       `)[0];
   }
 
+  initialContentPageTemplate(contentPageData) {
+    return this.editor.addComponents(`
+      <div
+        class="frame-container"
+        id="frame-container"
+        data-gjs-type="template-wrapper"
+        data-gjs-draggable="false"
+        data-gjs-selectable="false"
+        data-gjs-editable="false"
+        data-gjs-highlightable="false"
+        data-gjs-droppable="false"
+        data-gjs-hoverable="false"
+      >
+        <div
+          class="container-column"
+          data-gjs-type="template-wrapper"
+          data-gjs-draggable="false"
+          data-gjs-selectable="false"
+          data-gjs-editable="false"
+          data-gjs-highlightable="false"
+          data-gjs-droppable="true"
+          data-gjs-hoverable="false"
+        >
+          <div
+            class="container-row"
+            data-gjs-type="template-wrapper"
+            data-gjs-draggable="true"
+            data-gjs-selectable="false"
+            data-gjs-editable="false"
+            data-gjs-droppable="false"
+            data-gjs-highlightable="true"
+            data-gjs-hoverable="true"
+          >
+            <div
+              class="template-wrapper"
+              data-gjs-type="template-wrapper"
+              data-gjs-draggable="false"
+              data-gjs-selectable="false"
+              data-gjs-editable="false"
+              data-gjs-droppable="false"
+              data-gjs-highlightable="true"
+              data-gjs-hoverable="true"
+              style="display: flex; width: 100%"
+            >
+              <div
+                class="template-block"
+                data-gjs-draggable="false"
+                data-gjs-selectable="false"
+                data-gjs-editable="false"
+                data-gjs-highlightable="false"
+                data-gjs-droppable="false"
+                data-gjs-resizable="false"
+                data-gjs-hoverable="false"
+                style="flex: 1; padding: 0"
+              >
+                <img
+                  data-gjs-draggable="false"
+                  data-gjs-selectable="false"
+                  data-gjs-editable="false"
+                  data-gjs-droppable="false"
+                  data-gjs-highlightable="false"
+                  data-gjs-hoverable="false"
+                  src="${contentPageData.ProductServiceImage}"
+                  style="width: 100%; height: 100%; object-fit: cover"
+                  alt="Full-width Image"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="container-row"
+            data-gjs-type="template-wrapper"
+            data-gjs-draggable="true"
+            data-gjs-selectable="false"
+            data-gjs-editable="false"
+            data-gjs-droppable="false"
+            data-gjs-highlightable="true"
+            data-gjs-hoverable="true"
+          >
+            <div
+              class="template-wrapper"
+              data-gjs-type="template-wrapper"
+              data-gjs-draggable="false"
+              data-gjs-selectable="false"
+              data-gjs-editable="false"
+              data-gjs-droppable="false"
+              data-gjs-highlightable="true"
+              data-gjs-hoverable="true"
+              style="display: flex; width: 100%"
+            >
+              <div
+                class="template-block"
+                data-gjs-draggable="false"
+                data-gjs-selectable="false"
+                data-gjs-editable="false"
+                data-gjs-highlightable="false"
+                data-gjs-droppable="false"
+                data-gjs-resizable="false"
+                data-gjs-hoverable="false"
+                style="flex: 1; padding: 0; height: auto"
+              >
+                <p
+                  style="margin: 0"
+                  data-gjs-draggable="false"
+                  data-gjs-selectable="false"
+                  data-gjs-editable="false"
+                  data-gjs-droppable="false"
+                  data-gjs-highlightable="false"
+                  data-gjs-hoverable="false"
+                >
+                ${contentPageData.ProductServiceDescription}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="cta-button-container" ${defaultConstraints}></div>      
+        </div>
+      </div>
+
+    `)[0];
+  }
+
   createTemplateHTML(isDefault = false) {
     return `
-        <div ${defaultTileAttrs} class="template-wrapper ${isDefault ? "default-template" : ""}"
+        <div ${defaultTileAttrs} class="template-wrapper ${
+      isDefault ? "default-template" : ""
+    }"
               data-gjs-type="template-wrapper"
               data-gjs-droppable="false">
           <div class="template-block"
@@ -853,7 +1052,7 @@ class EditorManager {
     try {
       const data = this.editor.getProjectData();
       localStorage.setItem(localStorageKey, JSON.stringify(data));
-      let projectData = this.editor.getProjectData()
+      let projectData = this.editor.getProjectData();
       let pageData = mapTemplateToPageData(projectData);
       let pageId = this.getCurrentPageId();
       if (pageId) {
@@ -865,9 +1064,9 @@ class EditorManager {
           SDT_Page: pageData,
           PageIsPublished: true,
         };
-        
+
         this.toolsSection.dataManager.updatePage(data).then((res) => {
-          //console.log("Page Save Successfully");
+          console.log("Page Save Successfully");
         });
       }
     } catch (error) {

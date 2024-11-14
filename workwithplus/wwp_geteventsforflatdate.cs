@@ -80,6 +80,48 @@ namespace GeneXus.Programs.workwithplus {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         AV23GXV1 = 1;
+         while ( AV23GXV1 <= AV13Events.Count )
+         {
+            AV12Event = ((GeneXus.Programs.workwithplus.SdtWWP_Calendar_Events_Item)AV13Events.Item(AV23GXV1));
+            AV8Date = DateTimeUtil.ResetTime(AV12Event.gxTpr_Start);
+            if ( AV12Event.gxTpr_Allday )
+            {
+               AV11EndDate = DateTimeUtil.ResetTime(AV12Event.gxTpr_End);
+            }
+            else
+            {
+               AV11EndDate = AV8Date;
+            }
+            AV10Days = (short)(DateTimeUtil.DDiff(AV11EndDate,AV8Date));
+            AV18i = 0;
+            while ( AV18i <= AV10Days )
+            {
+               AV19NewDate = DateTimeUtil.DAdd(AV8Date,+((int)(AV18i)));
+               if ( AV9DateCollection.IndexOf(AV19NewDate) <= 0 )
+               {
+                  AV9DateCollection.Add(AV19NewDate, 0);
+               }
+               AV18i = (short)(AV18i+1);
+            }
+            AV23GXV1 = (int)(AV23GXV1+1);
+         }
+         AV17FormattedDaysItemClass = ((StringUtil.StrCmp(AV14EventsStyle, "BaseColor")==0) ? "basecolor" : "gray");
+         AV20WWPDateRangePickerOptions.gxTpr_Formatteddays.Clear();
+         AV24GXV2 = 1;
+         while ( AV24GXV2 <= AV9DateCollection.Count )
+         {
+            AV8Date = AV9DateCollection.GetDatetime(AV24GXV2);
+            if ( ( DateTimeUtil.ResetTime ( AV8Date ) >= DateTimeUtil.ResetTime ( AV21FromDate ) ) && ( DateTimeUtil.ResetTime ( AV8Date ) <= DateTimeUtil.ResetTime ( AV22ToDate ) ) )
+            {
+               AV16FormattedDaysItem = new GeneXus.Programs.wwpbaseobjects.SdtWWPDateRangePickerOptions_FormattedDaysItem(context);
+               GXt_dtime1 = DateTimeUtil.ResetTime( AV8Date ) ;
+               AV16FormattedDaysItem.gxTpr_Date = GXt_dtime1;
+               AV16FormattedDaysItem.gxTpr_Class = StringUtil.Format( "daterangepicker-badge daterangepicker-badge-%1", AV17FormattedDaysItemClass, "", "", "", "", "", "", "", "");
+               AV20WWPDateRangePickerOptions.gxTpr_Formatteddays.Add(AV16FormattedDaysItem, 0);
+            }
+            AV24GXV2 = (int)(AV24GXV2+1);
+         }
          cleanup();
       }
 
@@ -96,14 +138,34 @@ namespace GeneXus.Programs.workwithplus {
       public override void initialize( )
       {
          AV20WWPDateRangePickerOptions = new GeneXus.Programs.wwpbaseobjects.SdtWWPDateRangePickerOptions(context);
+         AV12Event = new GeneXus.Programs.workwithplus.SdtWWP_Calendar_Events_Item(context);
+         AV8Date = DateTime.MinValue;
+         AV11EndDate = DateTime.MinValue;
+         AV19NewDate = DateTime.MinValue;
+         AV9DateCollection = new GxSimpleCollection<DateTime>();
+         AV17FormattedDaysItemClass = "";
+         AV16FormattedDaysItem = new GeneXus.Programs.wwpbaseobjects.SdtWWPDateRangePickerOptions_FormattedDaysItem(context);
+         GXt_dtime1 = (DateTime)(DateTime.MinValue);
          /* GeneXus formulas. */
       }
 
+      private short AV10Days ;
+      private short AV18i ;
+      private int AV23GXV1 ;
+      private int AV24GXV2 ;
+      private DateTime GXt_dtime1 ;
       private DateTime AV21FromDate ;
       private DateTime AV22ToDate ;
+      private DateTime AV8Date ;
+      private DateTime AV11EndDate ;
+      private DateTime AV19NewDate ;
       private string AV14EventsStyle ;
+      private string AV17FormattedDaysItemClass ;
       private GXBaseCollection<GeneXus.Programs.workwithplus.SdtWWP_Calendar_Events_Item> AV13Events ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPDateRangePickerOptions AV20WWPDateRangePickerOptions ;
+      private GeneXus.Programs.workwithplus.SdtWWP_Calendar_Events_Item AV12Event ;
+      private GxSimpleCollection<DateTime> AV9DateCollection ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPDateRangePickerOptions_FormattedDaysItem AV16FormattedDaysItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPDateRangePickerOptions aP4_WWPDateRangePickerOptions ;
    }
 

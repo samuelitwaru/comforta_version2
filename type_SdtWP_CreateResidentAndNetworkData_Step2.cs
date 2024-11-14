@@ -54,6 +54,12 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualphone = "";
 
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonecode = "";
+
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonenumber = "";
+
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephone = "";
+
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualbsnnumber = "";
 
 		}
@@ -120,6 +126,15 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("NetworkIndividualPhone", gxTpr_Networkindividualphone, false);
+
+
+			AddObjectProperty("NetworkIndividualHomePhoneCode", gxTpr_Networkindividualhomephonecode, false);
+
+
+			AddObjectProperty("NetworkIndividualHomePhoneNumber", gxTpr_Networkindividualhomephonenumber, false);
+
+
+			AddObjectProperty("NetworkIndividualHomePhone", gxTpr_Networkindividualhomephone, false);
 
 
 			AddObjectProperty("NetworkIndividualBsnNumber", gxTpr_Networkindividualbsnnumber, false);
@@ -342,6 +357,54 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="NetworkIndividualHomePhoneCode")]
+		[XmlElement(ElementName="NetworkIndividualHomePhoneCode")]
+		public string gxTpr_Networkindividualhomephonecode
+		{
+			get {
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonecode; 
+			}
+			set {
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonecode = value;
+				SetDirty("Networkindividualhomephonecode");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="NetworkIndividualHomePhoneNumber")]
+		[XmlElement(ElementName="NetworkIndividualHomePhoneNumber")]
+		public string gxTpr_Networkindividualhomephonenumber
+		{
+			get {
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonenumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonenumber = value;
+				SetDirty("Networkindividualhomephonenumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="NetworkIndividualHomePhone")]
+		[XmlElement(ElementName="NetworkIndividualHomePhone")]
+		public string gxTpr_Networkindividualhomephone
+		{
+			get {
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephone; 
+			}
+			set {
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephone = value;
+				SetDirty("Networkindividualhomephone");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="NetworkIndividualBsnNumber")]
 		[XmlElement(ElementName="NetworkIndividualBsnNumber")]
 		public string gxTpr_Networkindividualbsnnumber
@@ -444,6 +507,9 @@ namespace GeneXus.Programs
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualphonecode = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualphonenumber = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualphone = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonecode = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonenumber = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephone = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualbsnnumber = "";
 
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Sdt_networkindividuals_N = true;
@@ -494,6 +560,15 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualphone;
+		 
+
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonecode;
+		 
+
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephonenumber;
+		 
+
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualhomephone;
 		 
 
 		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step2_Networkindividualbsnnumber;
@@ -674,7 +749,43 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="NetworkIndividualBsnNumber", Order=13)]
+		[DataMember(Name="NetworkIndividualHomePhoneCode", Order=13)]
+		public  string gxTpr_Networkindividualhomephonecode
+		{
+			get { 
+				return sdt.gxTpr_Networkindividualhomephonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Networkindividualhomephonecode = value;
+			}
+		}
+
+		[DataMember(Name="NetworkIndividualHomePhoneNumber", Order=14)]
+		public  string gxTpr_Networkindividualhomephonenumber
+		{
+			get { 
+				return sdt.gxTpr_Networkindividualhomephonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Networkindividualhomephonenumber = value;
+			}
+		}
+
+		[DataMember(Name="NetworkIndividualHomePhone", Order=15)]
+		public  string gxTpr_Networkindividualhomephone
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Networkindividualhomephone);
+
+			}
+			set { 
+				 sdt.gxTpr_Networkindividualhomephone = value;
+			}
+		}
+
+		[DataMember(Name="NetworkIndividualBsnNumber", Order=16)]
 		public  string gxTpr_Networkindividualbsnnumber
 		{
 			get { 
@@ -686,7 +797,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="SDT_NetworkIndividuals", Order=14, EmitDefaultValue=false)]
+		[DataMember(Name="SDT_NetworkIndividuals", Order=17, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_NetworkIndividual_RESTInterface> gxTpr_Sdt_networkindividuals
 		{
 			get { 

@@ -1837,12 +1837,9 @@ namespace GeneXus.Programs {
          while ( AV64GXV1 <= AV38SDT_CallToAction.Count )
          {
             AV38SDT_CallToAction.CurrentItem = ((SdtSDT_CallToAction_SDT_CallToActionItem)AV38SDT_CallToAction.Item(AV64GXV1));
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Calltoactionphone)) )
-            {
-               AV11CallToActionVariable = ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Calltoactionphone;
-               AssignAttri(sPrefix, false, edtavCalltoactionvariable_Internalname, AV11CallToActionVariable);
-            }
-            else if ( ! String.IsNullOrEmpty(StringUtil.RTrim( ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Calltoactionurl)) )
+            AV11CallToActionVariable = "";
+            AssignAttri(sPrefix, false, edtavCalltoactionvariable_Internalname, AV11CallToActionVariable);
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Calltoactionurl)) )
             {
                AV11CallToActionVariable = ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Calltoactionurl;
                AssignAttri(sPrefix, false, edtavCalltoactionvariable_Internalname, AV11CallToActionVariable);
@@ -1855,6 +1852,11 @@ namespace GeneXus.Programs {
             else if ( ! (Guid.Empty==((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Locationdynamicformid) )
             {
                AV11CallToActionVariable = ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Wwpformreferencename;
+               AssignAttri(sPrefix, false, edtavCalltoactionvariable_Internalname, AV11CallToActionVariable);
+            }
+            else if ( ! String.IsNullOrEmpty(StringUtil.RTrim( ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Calltoactionphone)) )
+            {
+               AV11CallToActionVariable = ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV38SDT_CallToAction.CurrentItem)).gxTpr_Calltoactionphone;
                AssignAttri(sPrefix, false, edtavCalltoactionvariable_Internalname, AV11CallToActionVariable);
             }
             cmbavGridactiongroup1.removeAllItems();
@@ -2022,9 +2024,12 @@ namespace GeneXus.Programs {
             AV39SDT_CallToActionItem.gxTpr_Calltoactionemail = AV5CallToActionEmail;
             AV39SDT_CallToActionItem.gxTpr_Calltoactionphonecode = AV59PhoneCode;
             AV39SDT_CallToActionItem.gxTpr_Calltoactionphonenumber = AV60PhoneNumber;
-            GXt_char2 = "";
-            new prc_concatenateintlphone(context ).execute(  AV59PhoneCode,  AV60PhoneNumber, out  GXt_char2) ;
-            AV39SDT_CallToActionItem.gxTpr_Calltoactionphone = GXt_char2;
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60PhoneNumber)) )
+            {
+               GXt_char2 = "";
+               new prc_concatenateintlphone(context ).execute(  AV59PhoneCode,  AV60PhoneNumber, out  GXt_char2) ;
+               AV39SDT_CallToActionItem.gxTpr_Calltoactionphone = GXt_char2;
+            }
             AV39SDT_CallToActionItem.gxTpr_Calltoactiontype = AV9CallToActionType;
             AV39SDT_CallToActionItem.gxTpr_Calltoactionurl = AV10CallToActionUrl;
             AV39SDT_CallToActionItem.gxTpr_Locationdynamicformid = AV26LocationDynamicFormId;
@@ -2771,7 +2776,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411611361282", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411143372663", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2787,7 +2792,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep2.js", "?202411611361283", false, true);
+         context.AddJavascriptSource("wp_productservicestep2.js", "?202411143372663", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

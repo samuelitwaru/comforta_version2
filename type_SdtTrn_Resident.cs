@@ -88,6 +88,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Residentaddressline1_Z");
          state.Add("gxTpr_Residentaddressline2_Z");
          state.Add("gxTpr_Residentphone_Z");
+         state.Add("gxTpr_Residenthomephone_Z");
          state.Add("gxTpr_Residentbirthdate_Z_Nullable");
          state.Add("gxTpr_Residentguid_Z");
          state.Add("gxTpr_Residenttypeid_Z");
@@ -96,6 +97,8 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Medicalindicationname_Z");
          state.Add("gxTpr_Residentphonecode_Z");
          state.Add("gxTpr_Residentphonenumber_Z");
+         state.Add("gxTpr_Residenthomephonecode_Z");
+         state.Add("gxTpr_Residenthomephonenumber_Z");
          return state ;
       }
 
@@ -119,6 +122,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Residentaddressline1 = sdt.gxTv_SdtTrn_Resident_Residentaddressline1 ;
          gxTv_SdtTrn_Resident_Residentaddressline2 = sdt.gxTv_SdtTrn_Resident_Residentaddressline2 ;
          gxTv_SdtTrn_Resident_Residentphone = sdt.gxTv_SdtTrn_Resident_Residentphone ;
+         gxTv_SdtTrn_Resident_Residenthomephone = sdt.gxTv_SdtTrn_Resident_Residenthomephone ;
          gxTv_SdtTrn_Resident_Residentbirthdate = sdt.gxTv_SdtTrn_Resident_Residentbirthdate ;
          gxTv_SdtTrn_Resident_Residentguid = sdt.gxTv_SdtTrn_Resident_Residentguid ;
          gxTv_SdtTrn_Resident_Residenttypeid = sdt.gxTv_SdtTrn_Resident_Residenttypeid ;
@@ -129,6 +133,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Networkcompany = sdt.gxTv_SdtTrn_Resident_Networkcompany ;
          gxTv_SdtTrn_Resident_Residentphonecode = sdt.gxTv_SdtTrn_Resident_Residentphonecode ;
          gxTv_SdtTrn_Resident_Residentphonenumber = sdt.gxTv_SdtTrn_Resident_Residentphonenumber ;
+         gxTv_SdtTrn_Resident_Residenthomephonecode = sdt.gxTv_SdtTrn_Resident_Residenthomephonecode ;
+         gxTv_SdtTrn_Resident_Residenthomephonenumber = sdt.gxTv_SdtTrn_Resident_Residenthomephonenumber ;
          gxTv_SdtTrn_Resident_Mode = sdt.gxTv_SdtTrn_Resident_Mode ;
          gxTv_SdtTrn_Resident_Initialized = sdt.gxTv_SdtTrn_Resident_Initialized ;
          gxTv_SdtTrn_Resident_Residentid_Z = sdt.gxTv_SdtTrn_Resident_Residentid_Z ;
@@ -147,6 +153,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Residentaddressline1_Z = sdt.gxTv_SdtTrn_Resident_Residentaddressline1_Z ;
          gxTv_SdtTrn_Resident_Residentaddressline2_Z = sdt.gxTv_SdtTrn_Resident_Residentaddressline2_Z ;
          gxTv_SdtTrn_Resident_Residentphone_Z = sdt.gxTv_SdtTrn_Resident_Residentphone_Z ;
+         gxTv_SdtTrn_Resident_Residenthomephone_Z = sdt.gxTv_SdtTrn_Resident_Residenthomephone_Z ;
          gxTv_SdtTrn_Resident_Residentbirthdate_Z = sdt.gxTv_SdtTrn_Resident_Residentbirthdate_Z ;
          gxTv_SdtTrn_Resident_Residentguid_Z = sdt.gxTv_SdtTrn_Resident_Residentguid_Z ;
          gxTv_SdtTrn_Resident_Residenttypeid_Z = sdt.gxTv_SdtTrn_Resident_Residenttypeid_Z ;
@@ -155,6 +162,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Medicalindicationname_Z = sdt.gxTv_SdtTrn_Resident_Medicalindicationname_Z ;
          gxTv_SdtTrn_Resident_Residentphonecode_Z = sdt.gxTv_SdtTrn_Resident_Residentphonecode_Z ;
          gxTv_SdtTrn_Resident_Residentphonenumber_Z = sdt.gxTv_SdtTrn_Resident_Residentphonenumber_Z ;
+         gxTv_SdtTrn_Resident_Residenthomephonecode_Z = sdt.gxTv_SdtTrn_Resident_Residenthomephonecode_Z ;
+         gxTv_SdtTrn_Resident_Residenthomephonenumber_Z = sdt.gxTv_SdtTrn_Resident_Residenthomephonenumber_Z ;
          return  ;
       }
 
@@ -189,6 +198,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("ResidentAddressLine1", gxTv_SdtTrn_Resident_Residentaddressline1, false, includeNonInitialized);
          AddObjectProperty("ResidentAddressLine2", gxTv_SdtTrn_Resident_Residentaddressline2, false, includeNonInitialized);
          AddObjectProperty("ResidentPhone", gxTv_SdtTrn_Resident_Residentphone, false, includeNonInitialized);
+         AddObjectProperty("ResidentHomePhone", gxTv_SdtTrn_Resident_Residenthomephone, false, includeNonInitialized);
          sDateCnv = "";
          sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( gxTv_SdtTrn_Resident_Residentbirthdate)), 10, 0));
          sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
@@ -214,6 +224,8 @@ namespace GeneXus.Programs {
          }
          AddObjectProperty("ResidentPhoneCode", gxTv_SdtTrn_Resident_Residentphonecode, false, includeNonInitialized);
          AddObjectProperty("ResidentPhoneNumber", gxTv_SdtTrn_Resident_Residentphonenumber, false, includeNonInitialized);
+         AddObjectProperty("ResidentHomePhoneCode", gxTv_SdtTrn_Resident_Residenthomephonecode, false, includeNonInitialized);
+         AddObjectProperty("ResidentHomePhoneNumber", gxTv_SdtTrn_Resident_Residenthomephonenumber, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_Resident_Mode, false, includeNonInitialized);
@@ -234,6 +246,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("ResidentAddressLine1_Z", gxTv_SdtTrn_Resident_Residentaddressline1_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentAddressLine2_Z", gxTv_SdtTrn_Resident_Residentaddressline2_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentPhone_Z", gxTv_SdtTrn_Resident_Residentphone_Z, false, includeNonInitialized);
+            AddObjectProperty("ResidentHomePhone_Z", gxTv_SdtTrn_Resident_Residenthomephone_Z, false, includeNonInitialized);
             sDateCnv = "";
             sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( gxTv_SdtTrn_Resident_Residentbirthdate_Z)), 10, 0));
             sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
@@ -251,6 +264,8 @@ namespace GeneXus.Programs {
             AddObjectProperty("MedicalIndicationName_Z", gxTv_SdtTrn_Resident_Medicalindicationname_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentPhoneCode_Z", gxTv_SdtTrn_Resident_Residentphonecode_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentPhoneNumber_Z", gxTv_SdtTrn_Resident_Residentphonenumber_Z, false, includeNonInitialized);
+            AddObjectProperty("ResidentHomePhoneCode_Z", gxTv_SdtTrn_Resident_Residenthomephonecode_Z, false, includeNonInitialized);
+            AddObjectProperty("ResidentHomePhoneNumber_Z", gxTv_SdtTrn_Resident_Residenthomephonenumber_Z, false, includeNonInitialized);
          }
          return  ;
       }
@@ -336,6 +351,11 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_Resident_Residentphone = sdt.gxTv_SdtTrn_Resident_Residentphone ;
+         }
+         if ( sdt.IsDirty("ResidentHomePhone") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephone = sdt.gxTv_SdtTrn_Resident_Residenthomephone ;
          }
          if ( sdt.IsDirty("ResidentBirthDate") )
          {
@@ -429,6 +449,16 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Resident_Residentphonenumber = sdt.gxTv_SdtTrn_Resident_Residentphonenumber ;
          }
+         if ( sdt.IsDirty("ResidentHomePhoneCode") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephonecode = sdt.gxTv_SdtTrn_Resident_Residenthomephonecode ;
+         }
+         if ( sdt.IsDirty("ResidentHomePhoneNumber") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephonenumber = sdt.gxTv_SdtTrn_Resident_Residenthomephonenumber ;
+         }
          return  ;
       }
 
@@ -461,6 +491,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Residentaddressline1_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentaddressline2_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphone_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephone_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentbirthdate_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentguid_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residenttypeid_Z_SetNull( );
@@ -469,6 +500,8 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Medicalindicationname_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphonecode_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphonenumber_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephonecode_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephonenumber_Z_SetNull( );
                if ( gxTv_SdtTrn_Resident_Networkindividual != null )
                {
                   GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> collectionNetworkindividual = gxTv_SdtTrn_Resident_Networkindividual;
@@ -531,6 +564,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Residentaddressline1_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentaddressline2_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphone_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephone_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentbirthdate_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentguid_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residenttypeid_Z_SetNull( );
@@ -539,6 +573,8 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Medicalindicationname_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphonecode_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphonenumber_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephonecode_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephonenumber_Z_SetNull( );
                if ( gxTv_SdtTrn_Resident_Networkindividual != null )
                {
                   GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> collectionNetworkindividual = gxTv_SdtTrn_Resident_Networkindividual;
@@ -601,6 +637,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Residentaddressline1_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentaddressline2_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphone_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephone_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentbirthdate_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentguid_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residenttypeid_Z_SetNull( );
@@ -609,6 +646,8 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Medicalindicationname_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphonecode_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentphonenumber_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephonecode_Z_SetNull( );
+               this.gxTv_SdtTrn_Resident_Residenthomephonenumber_Z_SetNull( );
                if ( gxTv_SdtTrn_Resident_Networkindividual != null )
                {
                   GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> collectionNetworkindividual = gxTv_SdtTrn_Resident_Networkindividual;
@@ -846,6 +885,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Resident_Residentphone = value;
             SetDirty("Residentphone");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "ResidentHomePhone" )]
+      [  XmlElement( ElementName = "ResidentHomePhone"   )]
+      public string gxTpr_Residenthomephone
+      {
+         get {
+            return gxTv_SdtTrn_Resident_Residenthomephone ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephone = value;
+            SetDirty("Residenthomephone");
          }
 
       }
@@ -1113,6 +1168,38 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Resident_Residentphonenumber = value;
             SetDirty("Residentphonenumber");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "ResidentHomePhoneCode" )]
+      [  XmlElement( ElementName = "ResidentHomePhoneCode"   )]
+      public string gxTpr_Residenthomephonecode
+      {
+         get {
+            return gxTv_SdtTrn_Resident_Residenthomephonecode ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephonecode = value;
+            SetDirty("Residenthomephonecode");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "ResidentHomePhoneNumber" )]
+      [  XmlElement( ElementName = "ResidentHomePhoneNumber"   )]
+      public string gxTpr_Residenthomephonenumber
+      {
+         get {
+            return gxTv_SdtTrn_Resident_Residenthomephonenumber ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephonenumber = value;
+            SetDirty("Residenthomephonenumber");
          }
 
       }
@@ -1621,6 +1708,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ResidentHomePhone_Z" )]
+      [  XmlElement( ElementName = "ResidentHomePhone_Z"   )]
+      public string gxTpr_Residenthomephone_Z
+      {
+         get {
+            return gxTv_SdtTrn_Resident_Residenthomephone_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephone_Z = value;
+            SetDirty("Residenthomephone_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Resident_Residenthomephone_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Resident_Residenthomephone_Z = "";
+         SetDirty("Residenthomephone_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Resident_Residenthomephone_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "ResidentBirthDate_Z" )]
       [  XmlElement( ElementName = "ResidentBirthDate_Z"  , IsNullable=true )]
       public string gxTpr_Residentbirthdate_Z_Nullable
@@ -1864,6 +1979,62 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ResidentHomePhoneCode_Z" )]
+      [  XmlElement( ElementName = "ResidentHomePhoneCode_Z"   )]
+      public string gxTpr_Residenthomephonecode_Z
+      {
+         get {
+            return gxTv_SdtTrn_Resident_Residenthomephonecode_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephonecode_Z = value;
+            SetDirty("Residenthomephonecode_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Resident_Residenthomephonecode_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Resident_Residenthomephonecode_Z = "";
+         SetDirty("Residenthomephonecode_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Resident_Residenthomephonecode_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "ResidentHomePhoneNumber_Z" )]
+      [  XmlElement( ElementName = "ResidentHomePhoneNumber_Z"   )]
+      public string gxTpr_Residenthomephonenumber_Z
+      {
+         get {
+            return gxTv_SdtTrn_Resident_Residenthomephonenumber_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenthomephonenumber_Z = value;
+            SetDirty("Residenthomephonenumber_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Resident_Residenthomephonenumber_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Resident_Residenthomephonenumber_Z = "";
+         SetDirty("Residenthomephonenumber_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Resident_Residenthomephonenumber_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -1897,6 +2068,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Residentaddressline1 = "";
          gxTv_SdtTrn_Resident_Residentaddressline2 = "";
          gxTv_SdtTrn_Resident_Residentphone = "";
+         gxTv_SdtTrn_Resident_Residenthomephone = "";
          gxTv_SdtTrn_Resident_Residentbirthdate = DateTime.MinValue;
          gxTv_SdtTrn_Resident_Residentguid = "";
          gxTv_SdtTrn_Resident_Residenttypeid = Guid.Empty;
@@ -1905,6 +2077,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Medicalindicationname = "";
          gxTv_SdtTrn_Resident_Residentphonecode = "";
          gxTv_SdtTrn_Resident_Residentphonenumber = "";
+         gxTv_SdtTrn_Resident_Residenthomephonecode = "";
+         gxTv_SdtTrn_Resident_Residenthomephonenumber = "";
          gxTv_SdtTrn_Resident_Mode = "";
          gxTv_SdtTrn_Resident_Residentid_Z = Guid.Empty;
          gxTv_SdtTrn_Resident_Locationid_Z = Guid.Empty;
@@ -1922,6 +2096,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Residentaddressline1_Z = "";
          gxTv_SdtTrn_Resident_Residentaddressline2_Z = "";
          gxTv_SdtTrn_Resident_Residentphone_Z = "";
+         gxTv_SdtTrn_Resident_Residenthomephone_Z = "";
          gxTv_SdtTrn_Resident_Residentbirthdate_Z = DateTime.MinValue;
          gxTv_SdtTrn_Resident_Residentguid_Z = "";
          gxTv_SdtTrn_Resident_Residenttypeid_Z = Guid.Empty;
@@ -1930,6 +2105,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Medicalindicationname_Z = "";
          gxTv_SdtTrn_Resident_Residentphonecode_Z = "";
          gxTv_SdtTrn_Resident_Residentphonenumber_Z = "";
+         gxTv_SdtTrn_Resident_Residenthomephonecode_Z = "";
+         gxTv_SdtTrn_Resident_Residenthomephonenumber_Z = "";
          sDateCnv = "";
          sNumToPad = "";
          IGxSilentTrn obj;
@@ -1951,10 +2128,12 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Resident_Residentsalutation ;
       private string gxTv_SdtTrn_Resident_Residentinitials ;
       private string gxTv_SdtTrn_Resident_Residentphone ;
+      private string gxTv_SdtTrn_Resident_Residenthomephone ;
       private string gxTv_SdtTrn_Resident_Mode ;
       private string gxTv_SdtTrn_Resident_Residentsalutation_Z ;
       private string gxTv_SdtTrn_Resident_Residentinitials_Z ;
       private string gxTv_SdtTrn_Resident_Residentphone_Z ;
+      private string gxTv_SdtTrn_Resident_Residenthomephone_Z ;
       private string sDateCnv ;
       private string sNumToPad ;
       private DateTime gxTv_SdtTrn_Resident_Residentbirthdate ;
@@ -1974,6 +2153,8 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Resident_Medicalindicationname ;
       private string gxTv_SdtTrn_Resident_Residentphonecode ;
       private string gxTv_SdtTrn_Resident_Residentphonenumber ;
+      private string gxTv_SdtTrn_Resident_Residenthomephonecode ;
+      private string gxTv_SdtTrn_Resident_Residenthomephonenumber ;
       private string gxTv_SdtTrn_Resident_Residentbsnnumber_Z ;
       private string gxTv_SdtTrn_Resident_Residentgivenname_Z ;
       private string gxTv_SdtTrn_Resident_Residentlastname_Z ;
@@ -1989,6 +2170,8 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Resident_Medicalindicationname_Z ;
       private string gxTv_SdtTrn_Resident_Residentphonecode_Z ;
       private string gxTv_SdtTrn_Resident_Residentphonenumber_Z ;
+      private string gxTv_SdtTrn_Resident_Residenthomephonecode_Z ;
+      private string gxTv_SdtTrn_Resident_Residenthomephonenumber_Z ;
       private Guid gxTv_SdtTrn_Resident_Residentid ;
       private Guid gxTv_SdtTrn_Resident_Locationid ;
       private Guid gxTv_SdtTrn_Resident_Organisationid ;
@@ -2239,7 +2422,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentBirthDate" , Order = 16 )]
+      [DataMember( Name = "ResidentHomePhone" , Order = 16 )]
+      [GxSeudo()]
+      public string gxTpr_Residenthomephone
+      {
+         get {
+            return StringUtil.RTrim( sdt.gxTpr_Residenthomephone) ;
+         }
+
+         set {
+            sdt.gxTpr_Residenthomephone = value;
+         }
+
+      }
+
+      [DataMember( Name = "ResidentBirthDate" , Order = 17 )]
       [GxSeudo()]
       public string gxTpr_Residentbirthdate
       {
@@ -2253,7 +2450,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentGUID" , Order = 17 )]
+      [DataMember( Name = "ResidentGUID" , Order = 18 )]
       [GxSeudo()]
       public string gxTpr_Residentguid
       {
@@ -2267,7 +2464,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentTypeId" , Order = 18 )]
+      [DataMember( Name = "ResidentTypeId" , Order = 19 )]
       [GxSeudo()]
       public Guid gxTpr_Residenttypeid
       {
@@ -2281,7 +2478,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentTypeName" , Order = 19 )]
+      [DataMember( Name = "ResidentTypeName" , Order = 20 )]
       [GxSeudo()]
       public string gxTpr_Residenttypename
       {
@@ -2295,7 +2492,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MedicalIndicationId" , Order = 20 )]
+      [DataMember( Name = "MedicalIndicationId" , Order = 21 )]
       [GxSeudo()]
       public Guid gxTpr_Medicalindicationid
       {
@@ -2309,7 +2506,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MedicalIndicationName" , Order = 21 )]
+      [DataMember( Name = "MedicalIndicationName" , Order = 22 )]
       [GxSeudo()]
       public string gxTpr_Medicalindicationname
       {
@@ -2323,7 +2520,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkIndividual" , Order = 22 )]
+      [DataMember( Name = "NetworkIndividual" , Order = 23 )]
       public GxGenericCollection<SdtTrn_Resident_NetworkIndividual_RESTInterface> gxTpr_Networkindividual
       {
          get {
@@ -2336,7 +2533,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompany" , Order = 23 )]
+      [DataMember( Name = "NetworkCompany" , Order = 24 )]
       public GxGenericCollection<SdtTrn_Resident_NetworkCompany_RESTInterface> gxTpr_Networkcompany
       {
          get {
@@ -2349,7 +2546,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentPhoneCode" , Order = 24 )]
+      [DataMember( Name = "ResidentPhoneCode" , Order = 25 )]
       [GxSeudo()]
       public string gxTpr_Residentphonecode
       {
@@ -2363,7 +2560,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentPhoneNumber" , Order = 25 )]
+      [DataMember( Name = "ResidentPhoneNumber" , Order = 26 )]
       [GxSeudo()]
       public string gxTpr_Residentphonenumber
       {
@@ -2373,6 +2570,34 @@ namespace GeneXus.Programs {
 
          set {
             sdt.gxTpr_Residentphonenumber = value;
+         }
+
+      }
+
+      [DataMember( Name = "ResidentHomePhoneCode" , Order = 27 )]
+      [GxSeudo()]
+      public string gxTpr_Residenthomephonecode
+      {
+         get {
+            return sdt.gxTpr_Residenthomephonecode ;
+         }
+
+         set {
+            sdt.gxTpr_Residenthomephonecode = value;
+         }
+
+      }
+
+      [DataMember( Name = "ResidentHomePhoneNumber" , Order = 28 )]
+      [GxSeudo()]
+      public string gxTpr_Residenthomephonenumber
+      {
+         get {
+            return sdt.gxTpr_Residenthomephonenumber ;
+         }
+
+         set {
+            sdt.gxTpr_Residenthomephonenumber = value;
          }
 
       }
@@ -2398,7 +2623,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 26 )]
+      [DataMember( Name = "gx_md5_hash", Order = 29 )]
       public string Hash
       {
          get {

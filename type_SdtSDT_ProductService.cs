@@ -113,6 +113,10 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("SupplierAgbName", gxTpr_Supplieragbname, false);
 
+			if (gxTv_SdtSDT_ProductService_Calltoactions != null)
+			{
+				AddObjectProperty("CallToActions", gxTv_SdtSDT_ProductService_Calltoactions, false);
+			}
 			return;
 		}
 		#endregion
@@ -339,6 +343,59 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="CallToActions" )]
+		[XmlArray(ElementName="CallToActions"  )]
+		[XmlArrayItemAttribute(ElementName="SDT_CallToActionItem" , IsNullable=false )]
+		public GXBaseCollection<GeneXus.Programs.SdtSDT_CallToAction_SDT_CallToActionItem> gxTpr_Calltoactions_GXBaseCollection
+		{
+			get {
+				if ( gxTv_SdtSDT_ProductService_Calltoactions == null )
+				{
+					gxTv_SdtSDT_ProductService_Calltoactions = new GXBaseCollection<GeneXus.Programs.SdtSDT_CallToAction_SDT_CallToActionItem>( context, "SDT_CallToAction", "");
+				}
+				return gxTv_SdtSDT_ProductService_Calltoactions;
+			}
+			set {
+				gxTv_SdtSDT_ProductService_Calltoactions_N = false;
+				gxTv_SdtSDT_ProductService_Calltoactions = value;
+			}
+		}
+
+		[XmlIgnore]
+		public GXBaseCollection<GeneXus.Programs.SdtSDT_CallToAction_SDT_CallToActionItem> gxTpr_Calltoactions
+		{
+			get {
+				if ( gxTv_SdtSDT_ProductService_Calltoactions == null )
+				{
+					gxTv_SdtSDT_ProductService_Calltoactions = new GXBaseCollection<GeneXus.Programs.SdtSDT_CallToAction_SDT_CallToActionItem>( context, "SDT_CallToAction", "");
+				}
+				gxTv_SdtSDT_ProductService_Calltoactions_N = false;
+				return gxTv_SdtSDT_ProductService_Calltoactions ;
+			}
+			set {
+				gxTv_SdtSDT_ProductService_Calltoactions_N = false;
+				gxTv_SdtSDT_ProductService_Calltoactions = value;
+				SetDirty("Calltoactions");
+			}
+		}
+
+		public void gxTv_SdtSDT_ProductService_Calltoactions_SetNull()
+		{
+			gxTv_SdtSDT_ProductService_Calltoactions_N = true;
+			gxTv_SdtSDT_ProductService_Calltoactions = null;
+		}
+
+		public bool gxTv_SdtSDT_ProductService_Calltoactions_IsNull()
+		{
+			return gxTv_SdtSDT_ProductService_Calltoactions == null;
+		}
+		public bool ShouldSerializegxTpr_Calltoactions_GXBaseCollection_Json()
+		{
+			return gxTv_SdtSDT_ProductService_Calltoactions != null && gxTv_SdtSDT_ProductService_Calltoactions.Count > 0;
+
+		}
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -370,6 +427,9 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_ProductService_Suppliergencompanyname = "";
 
 			gxTv_SdtSDT_ProductService_Supplieragbname = "";
+
+			gxTv_SdtSDT_ProductService_Calltoactions_N = true;
+
 			return  ;
 		}
 
@@ -417,6 +477,8 @@ namespace GeneXus.Programs
 
 		protected string gxTv_SdtSDT_ProductService_Supplieragbname;
 		 
+		protected bool gxTv_SdtSDT_ProductService_Calltoactions_N;
+		protected GXBaseCollection<GeneXus.Programs.SdtSDT_CallToAction_SDT_CallToActionItem> gxTv_SdtSDT_ProductService_Calltoactions = null;  
 
 
 		#endregion
@@ -589,6 +651,21 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Supplieragbname = value;
+			}
+		}
+
+		[DataMember(Name="CallToActions", Order=13, EmitDefaultValue=false)]
+		public  GxGenericCollection<GeneXus.Programs.SdtSDT_CallToAction_SDT_CallToActionItem_RESTInterface> gxTpr_Calltoactions
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Calltoactions_GXBaseCollection_Json())
+					return new GxGenericCollection<GeneXus.Programs.SdtSDT_CallToAction_SDT_CallToActionItem_RESTInterface>(sdt.gxTpr_Calltoactions);
+				else
+					return null;
+
+			}
+			set { 
+				value.LoadCollection(sdt.gxTpr_Calltoactions);
 			}
 		}
 

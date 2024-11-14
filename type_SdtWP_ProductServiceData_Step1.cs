@@ -92,6 +92,9 @@ namespace GeneXus.Programs
 			AddObjectProperty("noFilterAgb", gxTpr_Nofilteragb, false);
 
 
+			AddObjectProperty("LocationId", gxTpr_Locationid, false);
+
+
 			AddObjectProperty("ProductServiceId", gxTpr_Productserviceid, false);
 
 
@@ -224,6 +227,22 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="LocationId")]
+		[XmlElement(ElementName="LocationId")]
+		public Guid gxTpr_Locationid
+		{
+			get {
+				return gxTv_SdtWP_ProductServiceData_Step1_Locationid; 
+			}
+			set {
+				gxTv_SdtWP_ProductServiceData_Step1_Locationid = value;
+				SetDirty("Locationid");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="ProductServiceId")]
 		[XmlElement(ElementName="ProductServiceId")]
 		public Guid gxTpr_Productserviceid
@@ -332,6 +351,7 @@ namespace GeneXus.Programs
 
 
 
+
 			gxTv_SdtWP_ProductServiceData_Step1_Productservicename = "";
 			gxTv_SdtWP_ProductServiceData_Step1_Productservicetilename = "";
 			gxTv_SdtWP_ProductServiceData_Step1_Productserviceimagevar = "";
@@ -364,6 +384,9 @@ namespace GeneXus.Programs
 		 
 
 		protected bool gxTv_SdtWP_ProductServiceData_Step1_Nofilteragb;
+		 
+
+		protected Guid gxTv_SdtWP_ProductServiceData_Step1_Locationid;
 		 
 
 		protected Guid gxTv_SdtWP_ProductServiceData_Step1_Productserviceid;
@@ -482,7 +505,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceId", Order=7)]
+		[DataMember(Name="LocationId", Order=7)]
+		public Guid gxTpr_Locationid
+		{
+			get { 
+				return sdt.gxTpr_Locationid;
+
+			}
+			set { 
+				sdt.gxTpr_Locationid = value;
+			}
+		}
+
+		[DataMember(Name="ProductServiceId", Order=8)]
 		public Guid gxTpr_Productserviceid
 		{
 			get { 
@@ -494,7 +529,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceName", Order=8)]
+		[DataMember(Name="ProductServiceName", Order=9)]
 		public  string gxTpr_Productservicename
 		{
 			get { 
@@ -506,7 +541,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceTileName", Order=9)]
+		[DataMember(Name="ProductServiceTileName", Order=10)]
 		public  string gxTpr_Productservicetilename
 		{
 			get { 
@@ -518,7 +553,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceImageVar", Order=10)]
+		[DataMember(Name="ProductServiceImageVar", Order=11)]
 		public  string gxTpr_Productserviceimagevar
 		{
 			get { 
@@ -530,7 +565,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="FileName", Order=11)]
+		[DataMember(Name="FileName", Order=12)]
 		public  string gxTpr_Filename
 		{
 			get { 

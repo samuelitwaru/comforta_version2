@@ -58,6 +58,18 @@
                   </Property>
                 </Properties>
               </Field>
+              <Field name="IconCategory" description="Icon Category">
+                <Properties>
+                  <Property>
+                    <Name>Type</Name>
+                    <Value>Character</Value>
+                  </Property>
+                  <Property>
+                    <Name>Length</Name>
+                    <Value>20</Value>
+                  </Property>
+                </Properties>
+              </Field>
               <Field name="IconName" description="Icon Name">
                 <Properties>
                   <Property>

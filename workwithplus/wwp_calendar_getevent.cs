@@ -81,12 +81,20 @@ namespace GeneXus.Programs.workwithplus {
             A304AgendaCalendarTitle = P006U2_A304AgendaCalendarTitle[0];
             A305AgendaCalendarStartDate = P006U2_A305AgendaCalendarStartDate[0];
             A306AgendaCalendarEndDate = P006U2_A306AgendaCalendarEndDate[0];
+            A454AgendaCalendarType = P006U2_A454AgendaCalendarType[0];
+            A450AgendaCalendarRecurring = P006U2_A450AgendaCalendarRecurring[0];
+            A451AgendaCalendarRecurringType = P006U2_A451AgendaCalendarRecurringType[0];
+            A452AgendaCalendarAddRSVP = P006U2_A452AgendaCalendarAddRSVP[0];
             AV8Calendar_Event = new GeneXus.Programs.workwithplus.SdtWWP_Calendar_Events_Item(context);
             AV8Calendar_Event.gxTpr_Id = AV11AgendaCalendarId.ToString();
             AV8Calendar_Event.gxTpr_Allday = A307AgendaCalendarAllDay;
             AV8Calendar_Event.gxTpr_Title = A304AgendaCalendarTitle;
             AV8Calendar_Event.gxTpr_Start = A305AgendaCalendarStartDate;
             AV8Calendar_Event.gxTpr_End = A306AgendaCalendarEndDate;
+            AV8Calendar_Event.gxTpr_Type = A454AgendaCalendarType;
+            AV8Calendar_Event.gxTpr_Recurring = A450AgendaCalendarRecurring;
+            AV8Calendar_Event.gxTpr_Recurringtype = A451AgendaCalendarRecurringType;
+            AV8Calendar_Event.gxTpr_Addrsvp = A452AgendaCalendarAddRSVP;
             /* Exiting from a For First loop. */
             if (true) break;
          }
@@ -113,14 +121,20 @@ namespace GeneXus.Programs.workwithplus {
          P006U2_A304AgendaCalendarTitle = new string[] {""} ;
          P006U2_A305AgendaCalendarStartDate = new DateTime[] {DateTime.MinValue} ;
          P006U2_A306AgendaCalendarEndDate = new DateTime[] {DateTime.MinValue} ;
+         P006U2_A454AgendaCalendarType = new string[] {""} ;
+         P006U2_A450AgendaCalendarRecurring = new bool[] {false} ;
+         P006U2_A451AgendaCalendarRecurringType = new string[] {""} ;
+         P006U2_A452AgendaCalendarAddRSVP = new bool[] {false} ;
          A303AgendaCalendarId = Guid.Empty;
          A304AgendaCalendarTitle = "";
          A305AgendaCalendarStartDate = (DateTime)(DateTime.MinValue);
          A306AgendaCalendarEndDate = (DateTime)(DateTime.MinValue);
+         A454AgendaCalendarType = "";
+         A451AgendaCalendarRecurringType = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.wwp_calendar_getevent__default(),
             new Object[][] {
                 new Object[] {
-               P006U2_A303AgendaCalendarId, P006U2_A307AgendaCalendarAllDay, P006U2_A304AgendaCalendarTitle, P006U2_A305AgendaCalendarStartDate, P006U2_A306AgendaCalendarEndDate
+               P006U2_A303AgendaCalendarId, P006U2_A307AgendaCalendarAllDay, P006U2_A304AgendaCalendarTitle, P006U2_A305AgendaCalendarStartDate, P006U2_A306AgendaCalendarEndDate, P006U2_A454AgendaCalendarType, P006U2_A450AgendaCalendarRecurring, P006U2_A451AgendaCalendarRecurringType, P006U2_A452AgendaCalendarAddRSVP
                }
             }
          );
@@ -130,8 +144,12 @@ namespace GeneXus.Programs.workwithplus {
       private DateTime A305AgendaCalendarStartDate ;
       private DateTime A306AgendaCalendarEndDate ;
       private bool A307AgendaCalendarAllDay ;
+      private bool A450AgendaCalendarRecurring ;
+      private bool A452AgendaCalendarAddRSVP ;
       private string AV9EventId ;
       private string A304AgendaCalendarTitle ;
+      private string A454AgendaCalendarType ;
+      private string A451AgendaCalendarRecurringType ;
       private Guid AV11AgendaCalendarId ;
       private Guid A303AgendaCalendarId ;
       private IGxDataStore dsGAM ;
@@ -143,6 +161,10 @@ namespace GeneXus.Programs.workwithplus {
       private string[] P006U2_A304AgendaCalendarTitle ;
       private DateTime[] P006U2_A305AgendaCalendarStartDate ;
       private DateTime[] P006U2_A306AgendaCalendarEndDate ;
+      private string[] P006U2_A454AgendaCalendarType ;
+      private bool[] P006U2_A450AgendaCalendarRecurring ;
+      private string[] P006U2_A451AgendaCalendarRecurringType ;
+      private bool[] P006U2_A452AgendaCalendarAddRSVP ;
       private GeneXus.Programs.workwithplus.SdtWWP_Calendar_Events_Item aP1_Calendar_Event ;
    }
 
@@ -166,7 +188,7 @@ namespace GeneXus.Programs.workwithplus {
           new ParDef("AV11AgendaCalendarId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P006U2", "SELECT AgendaCalendarId, AgendaCalendarAllDay, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AV11AgendaCalendarId ORDER BY AgendaCalendarId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006U2,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P006U2", "SELECT AgendaCalendarId, AgendaCalendarAllDay, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarType, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AV11AgendaCalendarId ORDER BY AgendaCalendarId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006U2,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -183,6 +205,10 @@ namespace GeneXus.Programs.workwithplus {
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
                 ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
+                ((string[]) buf[5])[0] = rslt.getVarchar(6);
+                ((bool[]) buf[6])[0] = rslt.getBool(7);
+                ((string[]) buf[7])[0] = rslt.getVarchar(8);
+                ((bool[]) buf[8])[0] = rslt.getBool(9);
                 return;
        }
     }
