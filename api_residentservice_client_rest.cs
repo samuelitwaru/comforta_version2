@@ -62,7 +62,7 @@ namespace GeneXus.Programs {
          restLocation = new GxLocation();
          restLocation.Host = "localhost";
          restLocation.Port = 8082;
-         restLocation.BaseUrl = "Comforta_version2DevelopmentNETPostgreSQL/api";
+         restLocation.BaseUrl = "staging.comforta.yukon.software/api";
          gxProperties = new GxObjectProperties();
       }
 
@@ -310,6 +310,41 @@ namespace GeneXus.Programs {
          /* SendDynamicForm Constructor */
       }
 
+      public void gxep_uploadmedia( Guid aP0_MediaId ,
+                                    string aP1_MediaName ,
+                                    string aP2_MediaImageData ,
+                                    int aP3_MediaSize ,
+                                    string aP4_MediaType ,
+                                    out SdtTrn_Media aP5_BC_Trn_Media )
+      {
+         restCliUploadMedia = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/media/upload";
+         restCliUploadMedia.Location = restLocation;
+         restCliUploadMedia.HttpMethod = "POST";
+         restCliUploadMedia.AddBodyVar("MediaId", (Guid)(aP0_MediaId));
+         restCliUploadMedia.AddBodyVar("MediaName", (string)(aP1_MediaName));
+         restCliUploadMedia.AddBodyVar("MediaImageData", (string)(aP2_MediaImageData));
+         restCliUploadMedia.AddBodyVar("MediaSize", (int)(aP3_MediaSize));
+         restCliUploadMedia.AddBodyVar("MediaType", (string)(aP4_MediaType));
+         restCliUploadMedia.RestExecute();
+         if ( restCliUploadMedia.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUploadMedia.ErrorCode;
+            gxProperties.ErrorMessage = restCliUploadMedia.ErrorMessage;
+            gxProperties.StatusCode = restCliUploadMedia.StatusCode;
+            aP5_BC_Trn_Media = new SdtTrn_Media();
+         }
+         else
+         {
+            aP5_BC_Trn_Media = restCliUploadMedia.GetBodySdt<SdtTrn_Media>("BC_Trn_Media");
+         }
+         /* UploadMedia Constructor */
+      }
+
       public void gxep_productsericeapi( Guid aP0_ProductServiceId ,
                                          Guid aP1_locationId ,
                                          Guid aP2_organisationId ,
@@ -365,6 +400,8 @@ namespace GeneXus.Programs {
          aP1_SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>();
          restCliSendDynamicForm = new GXRestAPIClient();
          aP0_result = "";
+         restCliUploadMedia = new GXRestAPIClient();
+         aP5_BC_Trn_Media = new SdtTrn_Media();
          restCliProductSericeAPI = new GXRestAPIClient();
          aP3_SDT_ProductService = new SdtSDT_ProductService();
          /* GeneXus formulas. */
@@ -379,6 +416,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliSendNotification ;
       protected GXRestAPIClient restCliAgendaLocation ;
       protected GXRestAPIClient restCliSendDynamicForm ;
+      protected GXRestAPIClient restCliUploadMedia ;
       protected GXRestAPIClient restCliProductSericeAPI ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
@@ -392,6 +430,7 @@ namespace GeneXus.Programs {
       protected string aP2_result ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> aP1_SDT_AgendaLocation ;
       protected string aP0_result ;
+      protected SdtTrn_Media aP5_BC_Trn_Media ;
       protected SdtSDT_ProductService aP3_SDT_ProductService ;
    }
 

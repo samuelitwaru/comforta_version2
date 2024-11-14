@@ -296,6 +296,31 @@ namespace GeneXus.Programs {
          aP0_result=this.AV17result;
       }
 
+      public void gxep_uploadmedia( Guid aP0_MediaId ,
+                                    string aP1_MediaName ,
+                                    string aP2_MediaImageData ,
+                                    int aP3_MediaSize ,
+                                    string aP4_MediaType ,
+                                    out SdtTrn_Media aP5_BC_Trn_Media )
+      {
+         this.AV46MediaId = aP0_MediaId;
+         this.AV47MediaName = aP1_MediaName;
+         this.AV49MediaImageData = aP2_MediaImageData;
+         this.AV51MediaSize = aP3_MediaSize;
+         this.AV52MediaType = aP4_MediaType;
+         initialize();
+         /* UploadMedia Constructor */
+         new prc_uploadmedia(context ).execute(  AV46MediaId,  AV47MediaName,  AV49MediaImageData,  AV51MediaSize,  AV52MediaType, out  AV50BC_Trn_Media) ;
+         /* Execute user event: After */
+         E11012 ();
+         if ( returnInSub )
+         {
+            aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
+            return;
+         }
+         aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
+      }
+
       public void gxep_productsericeapi( Guid aP0_ProductServiceId ,
                                          Guid aP1_locationId ,
                                          Guid aP2_organisationId ,
@@ -331,24 +356,30 @@ namespace GeneXus.Programs {
          AV23SDT_Organisation = new SdtSDT_Organisation(context);
          AV18SDT_Location = new SdtSDT_Location(context);
          AV59SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>( context, "SDT_AgendaLocation", "Comforta_version2");
+         AV50BC_Trn_Media = new SdtTrn_Media(context);
          AV67SDT_ProductService = new SdtSDT_ProductService(context);
          /* GeneXus formulas. */
       }
 
       protected short AV11DeviceType ;
+      protected int AV51MediaSize ;
       protected string Gx_restmethod ;
       protected string AV10DeviceToken ;
       protected string AV9DeviceID ;
+      protected string AV52MediaType ;
       protected bool returnInSub ;
       protected string AV17result ;
       protected string AV7secretKey ;
+      protected string AV49MediaImageData ;
       protected string AV8userId ;
       protected string AV14NotificationPlatform ;
       protected string AV15NotificationPlatformId ;
       protected string AV19title ;
       protected string AV13message ;
+      protected string AV47MediaName ;
       protected Guid AV16organisationId ;
       protected Guid AV12locationId ;
+      protected Guid AV46MediaId ;
       protected Guid AV66ProductServiceId ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
@@ -366,6 +397,8 @@ namespace GeneXus.Programs {
       protected string aP2_result ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> aP1_SDT_AgendaLocation ;
       protected string aP0_result ;
+      protected SdtTrn_Media AV50BC_Trn_Media ;
+      protected SdtTrn_Media aP5_BC_Trn_Media ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;
       protected SdtSDT_ProductService aP3_SDT_ProductService ;
    }

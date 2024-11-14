@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241114040209"
+  version: "20241114054145"
 servers:
   - url: https://staging.comforta.yukon.software//rest
 paths:

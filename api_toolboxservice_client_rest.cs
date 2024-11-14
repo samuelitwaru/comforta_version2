@@ -142,41 +142,6 @@ namespace GeneXus.Programs {
          /* PagesAPI Constructor */
       }
 
-      public void gxep_uploadmedia( Guid aP0_MediaId ,
-                                    string aP1_MediaName ,
-                                    string aP2_MediaImageData ,
-                                    int aP3_MediaSize ,
-                                    string aP4_MediaType ,
-                                    out SdtTrn_Media aP5_BC_Trn_Media )
-      {
-         restCliUploadMedia = new GXRestAPIClient();
-         if ( restLocation == null )
-         {
-            InitLocation();
-         }
-         restLocation.ResourceName = "/media/upload";
-         restCliUploadMedia.Location = restLocation;
-         restCliUploadMedia.HttpMethod = "POST";
-         restCliUploadMedia.AddBodyVar("MediaId", (Guid)(aP0_MediaId));
-         restCliUploadMedia.AddBodyVar("MediaName", (string)(aP1_MediaName));
-         restCliUploadMedia.AddBodyVar("MediaImageData", (string)(aP2_MediaImageData));
-         restCliUploadMedia.AddBodyVar("MediaSize", (int)(aP3_MediaSize));
-         restCliUploadMedia.AddBodyVar("MediaType", (string)(aP4_MediaType));
-         restCliUploadMedia.RestExecute();
-         if ( restCliUploadMedia.ErrorCode != 0 )
-         {
-            gxProperties.ErrorCode = restCliUploadMedia.ErrorCode;
-            gxProperties.ErrorMessage = restCliUploadMedia.ErrorMessage;
-            gxProperties.StatusCode = restCliUploadMedia.StatusCode;
-            aP5_BC_Trn_Media = new SdtTrn_Media();
-         }
-         else
-         {
-            aP5_BC_Trn_Media = restCliUploadMedia.GetBodySdt<SdtTrn_Media>("BC_Trn_Media");
-         }
-         /* UploadMedia Constructor */
-      }
-
       public void gxep_contentpagesapi( Guid aP0_LocationId ,
                                         Guid aP1_OrganisationId ,
                                         out GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection )
@@ -458,8 +423,6 @@ namespace GeneXus.Programs {
          aP2_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
          restCliPagesAPI = new GXRestAPIClient();
          aP2_SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>();
-         restCliUploadMedia = new GXRestAPIClient();
-         aP5_BC_Trn_Media = new SdtTrn_Media();
          restCliContentPagesAPI = new GXRestAPIClient();
          aP2_SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>();
          restCliGetSinglePage = new GXRestAPIClient();
@@ -482,7 +445,6 @@ namespace GeneXus.Programs {
       protected string Gx_restmethod ;
       protected GXRestAPIClient restCliGetPages ;
       protected GXRestAPIClient restCliPagesAPI ;
-      protected GXRestAPIClient restCliUploadMedia ;
       protected GXRestAPIClient restCliContentPagesAPI ;
       protected GXRestAPIClient restCliGetSinglePage ;
       protected GXRestAPIClient restCliListPages ;
@@ -498,7 +460,6 @@ namespace GeneXus.Programs {
       protected IGxDataStore dsDefault ;
       protected GXBaseCollection<SdtSDT_Page> aP2_SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_MobilePageCollection ;
-      protected SdtTrn_Media aP5_BC_Trn_Media ;
       protected GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection ;
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;

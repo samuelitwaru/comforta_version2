@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ToolBoxService"
   description: "API_Tool Box Service"
-  version: "20241114040210"
+  version: "20241114054145"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -68,30 +68,6 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SDT_MobilePage"  
-
-        404:
-          description: "Not found"
-
-  /media/upload:
-    post:
-      tags:
-        - API_ToolBoxService  
-      operationId: "API_ToolBoxService.UploadMedia"
-      summary: "UploadMedia"
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UploadMediaInput"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_Media"  
 
         404:
           description: "Not found"
@@ -338,24 +314,6 @@ paths:
 
 components:
   schemas:
-    UploadMediaInput:  
-      properties:
-        MediaId:
-          type: "string"
-          format: "uuid"
-        MediaName:
-          type: "string"
-        MediaImageData:
-          type: "string"
-        MediaSize:
-          type: "integer"
-          format: "int64"
-        MediaType:
-          type: "string"
-
-
-
-
     CreatePageInput:  
       properties:
         PageName:
@@ -488,31 +446,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_Row"
-
-
-
-    Trn_Media:
-      properties:
-        MediaId:
-          description: "Media Id"
-          type: "string"
-          format: "uuid"
-        MediaName:
-          description: "Media Name"
-          type: "string"
-        MediaImage:
-          description: "Media Image"
-          type: "string"
-        MediaSize:
-          description: "Media Size"
-          type: "integer"
-          format: "int64"
-        MediaType:
-          description: "Media Type"
-          type: "string"
-        MediaUrl:
-          description: "Media Url"
-          type: "string"
 
 
 

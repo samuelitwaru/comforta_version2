@@ -79,24 +79,6 @@ namespace GeneXus.Programs {
          aP2_SDT_MobilePageCollection=this.AV27SDT_MobilePageCollection;
       }
 
-      public void gxep_uploadmedia( Guid aP0_MediaId ,
-                                    string aP1_MediaName ,
-                                    string aP2_MediaImageData ,
-                                    int aP3_MediaSize ,
-                                    string aP4_MediaType ,
-                                    out SdtTrn_Media aP5_BC_Trn_Media )
-      {
-         this.AV20MediaId = aP0_MediaId;
-         this.AV21MediaName = aP1_MediaName;
-         this.AV22MediaImageData = aP2_MediaImageData;
-         this.AV23MediaSize = aP3_MediaSize;
-         this.AV24MediaType = aP4_MediaType;
-         initialize();
-         /* UploadMedia Constructor */
-         new prc_uploadmedia(context ).execute(  AV20MediaId,  AV21MediaName,  AV22MediaImageData,  AV23MediaSize,  AV24MediaType, out  AV25BC_Trn_Media) ;
-         aP5_BC_Trn_Media=this.AV25BC_Trn_Media;
-      }
-
       public void gxep_contentpagesapi( Guid aP0_LocationId ,
                                         Guid aP1_OrganisationId ,
                                         out GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection )
@@ -222,7 +204,6 @@ namespace GeneXus.Programs {
       {
          AV11SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          AV27SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2");
-         AV25BC_Trn_Media = new SdtTrn_Media(context);
          AV26SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>( context, "SDT_ContentPage", "Comforta_version2");
          AV29SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          AV17result = "";
@@ -230,20 +211,15 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      protected int AV23MediaSize ;
       protected string Gx_restmethod ;
-      protected string AV24MediaType ;
       protected bool AV16PageIsPublished ;
-      protected string AV22MediaImageData ;
       protected string AV17result ;
       protected string AV13PageJsonContent ;
       protected string AV14PageGJSHtml ;
       protected string AV15PageGJSJson ;
-      protected string AV21MediaName ;
       protected string AV30PageName ;
       protected Guid AV9LocationId ;
       protected Guid AV10OrganisationId ;
-      protected Guid AV20MediaId ;
       protected Guid AV12PageId ;
       protected Guid AV18ParentPageId ;
       protected Guid AV19ChildPageId ;
@@ -254,8 +230,6 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_Page> aP2_SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> AV27SDT_MobilePageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_MobilePageCollection ;
-      protected SdtTrn_Media AV25BC_Trn_Media ;
-      protected SdtTrn_Media aP5_BC_Trn_Media ;
       protected GXBaseCollection<SdtSDT_ContentPage> AV26SDT_ContentPageCollection ;
       protected GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection ;
       protected SdtSDT_Page AV28SDT_Page ;

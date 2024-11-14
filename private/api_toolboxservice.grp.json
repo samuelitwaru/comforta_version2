@@ -25,16 +25,6 @@
 "Verb":"GET"
 },
 {
-"Verb":"POST",
-"PathRegexp":"media/upload",
-"Path":"media/upload",
-"Name":"uploadmedia",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_uploadmedia",
-"Implementation":"Prc_UploadMedia"
-},
-{
 "PathRegexp":"toolbox/content-pages",
 "Path":"toolbox/content-pages",
 "Name":"contentpagesapi",
