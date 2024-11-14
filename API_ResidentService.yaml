@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241114054145"
+  version: "20241114060012"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -224,6 +224,312 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/pages/list2:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetPages"
+      summary: "Get Pages"
+      parameters:
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_Page"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/pages:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.PagesAPI"
+      summary: "Pages API"
+      parameters:
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_MobilePage"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/content-pages:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ContentPagesAPI"
+      summary: "Content Pages API"
+      parameters:
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_ContentPage"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/singlepage:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetSinglePage"
+      summary: "Get Single Page"
+      parameters:
+        - name: "Pageid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Page"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/pages/list:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ListPages"
+      summary: "Get Pages"
+      parameters:
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_PageStructure"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/create-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreatePage"
+      summary: "Create Page"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /toolbox/create-content-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreateContentPage"
+      summary: "Create Page"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateContentPageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /toolbox/save-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.SavePage"
+      summary: "Save Page"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavePageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /toolbox/update-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdatePage"
+      summary: "Update Page"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /toolbox/add-page-children:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.AddPageCildren"
+      summary: "Add Page CHildren"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddPageCildrenInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
+  /toolbox/update-location-theme:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdateLocationTheme"
+      summary: "Update Location Theme"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateLocationThemeInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Theme"  
+
+        404:
+          description: "Not found"
+
   /productservice:
     get:
       tags:
@@ -315,6 +621,72 @@ components:
           format: "int64"
         MediaType:
           type: "string"
+
+
+
+
+
+
+    CreatePageInput:  
+      properties:
+        PageName:
+          type: "string"
+
+    CreateContentPageInput:  
+      properties:
+        PageId:
+          type: "string"
+          format: "uuid"
+
+    SavePageInput:  
+      properties:
+        PageId:
+          type: "string"
+          format: "uuid"
+        PageJsonContent:
+          type: "string"
+        PageGJSHtml:
+          type: "string"
+        PageGJSJson:
+          type: "string"
+        SDT_Page:
+          description: "SDT_Page"
+          $ref: "#/components/schemas/SDT_Page"
+
+    UpdatePageInput:  
+      properties:
+        PageId:
+          type: "string"
+          format: "uuid"
+        PageJsonContent:
+          type: "string"
+        PageGJSHtml:
+          type: "string"
+        PageGJSJson:
+          type: "string"
+        PageIsPublished:
+          type: "boolean"
+
+    AddPageCildrenInput:  
+      properties:
+        ParentPageId:
+          type: "string"
+          format: "uuid"
+        ChildPageId:
+          type: "string"
+          format: "uuid"
+
+    UpdateLocationThemeInput:  
+      properties:
+        ThemeId:
+          type: "string"
+          format: "uuid"
+        locationId:
+          type: "string"
+          format: "uuid"
+        organisationId:
+          type: "string"
+          format: "uuid"
 
   
     SDT_LoginResidentResponse:
@@ -551,6 +923,139 @@ components:
 
 
 
+    SDT_Page:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
+        PageIsPublished:
+          description: "Page Is Published"
+          type: "boolean"
+        PageGJSJson:
+          description: "Page GJSJson"
+          type: "string"
+        PageGJSHtml:
+          description: "Page GJSHtml"
+          type: "string"
+        PageJsonContent:
+          description: "Page Json Content"
+          type: "string"
+        PageIsContentPage:
+          description: "Page Is Content Page"
+          type: "boolean"
+        PageChildren:
+          description: "SDT_Page Children"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_PageChildren"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        Row:
+          description: "SDT_Row"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Row"
+
+
+
+    SDT_MobilePage:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
+        PageIsPublished:
+          description: "Page Is Published"
+          type: "boolean"
+        PageIsContentPage:
+          description: "Page Is Content Page"
+          type: "boolean"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        Row:
+          description: "SDT_Row"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Row"
+
+
+
+    SDT_ContentPage:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        ProductServiceImage:
+          description: "Product Service Image"
+          type: "string"
+        ProductServiceDescription:
+          description: "Product Service Description"
+          type: "string"
+        CallToAction:
+          description: "SDT_Call To Action"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
+
+
+
+    SDT_PageStructure:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+          format: "uuid"
+        Name:
+          description: "Name"
+          type: "string"
+        Children:
+          description: "SDT_Page Children"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_PageChildren"
+
+
+
+    SDT_Theme:
+      properties:
+        Trn_ThemeId:
+          description: "Trn_Theme Id"
+          type: "string"
+          format: "uuid"
+        Trn_ThemeName:
+          description: "Trn_Theme Name"
+          type: "string"
+        Trn_ThemeFontFamily:
+          description: "Trn_Theme Font Family"
+          type: "string"
+        Trn_ThemeFontSize:
+          description: "Trn_Theme Font Size"
+          type: "integer"
+          format: "int32"
+
+
+
     SDT_ProductService:
       properties:
         ProductServiceId:
@@ -696,6 +1201,91 @@ components:
         WWPFormIsForDynamicValidations:
           description: "WWPForm Is For Dynamic Validations"
           type: "boolean"
+
+
+
+    SDT_Col:
+      properties:
+        Tile:
+          description: "SDT_Tile"
+          $ref: "#/components/schemas/SDT_Tile"
+
+
+
+    SDT_PageChildren:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+          format: "uuid"
+        Name:
+          description: "Name"
+          type: "string"
+
+
+
+    SDT_Row:
+      properties:
+        Col:
+          description: "SDT_Col"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Col"
+
+
+
+    SDT_Tile:
+      properties:
+        TileId:
+          description: "Tile Id"
+          type: "string"
+          format: "uuid"
+        TileName:
+          description: "Tile Name"
+          type: "string"
+        TileText:
+          description: "Tile Text"
+          type: "string"
+        TileTextColor:
+          description: "Tile Text Color"
+          type: "string"
+        TileTextAlignment:
+          description: "Tile Text Alignment"
+          type: "string"
+        TileIcon:
+          description: "Tile Icon"
+          type: "string"
+        TileIconColor:
+          description: "Tile Icon Color"
+          type: "string"
+        TileIconAlignment:
+          description: "Tile Icon Alignment"
+          type: "string"
+        TileBGColor:
+          description: "Tile BGColor"
+          type: "string"
+        TileBGImageUrl:
+          description: "Tile BGImage Url"
+          type: "string"
+        TileBGImageOpacity:
+          description: "Tile BGImage Opacity"
+          type: "integer"
+          format: "int32"
+        TileAction:
+          description: "SDT_Tile Action"
+          $ref: "#/components/schemas/SDT_TileAction"
+
+
+
+    SDT_TileAction:
+      properties:
+        ObjectType:
+          description: "Object Type"
+          type: "string"
+        ObjectId:
+          description: "Object Id"
+          type: "string"
+          format: "uuid"
 
 
 
