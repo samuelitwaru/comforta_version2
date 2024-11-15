@@ -302,7 +302,7 @@ input:focus {
 .tree li::before {
   border-left: 2px solid #999;
   bottom: 50px;
-  height: 25px;
+  height: 26px;
   top: 0;
   width: 1px;
 }
@@ -334,6 +334,16 @@ input:focus {
 
 .tree li.parent_li::before {
   height: 20px; /* Adjusted */
+}
+
+.tree ul li:hover {
+  color: #173f5f;
+  font-weight: 700;
+}
+
+.tree ul li:hover .delete-tree-item {
+  /* opacity: 1 !important; */
+  font-size: 10px;
 }
 
 .selected-page {
@@ -506,6 +516,11 @@ li .selected-page::after {
   border-radius: 100%;
 }
 
+.call-to-action-item:hover {
+  border: 1px solid #747474;
+  cursor: pointer;
+}
+
 .call-to-action-item i.fa {
   display: block;
   text-align: center;
@@ -532,6 +547,11 @@ li .selected-page::after {
 
 .text-color-palette .color-item label {
   cursor: pointer;
+}
+
+.color-item:hover {
+  border: 1px #5f75ae solid;
+  border-radius: 8px;
 }
 
 .text-color-palette {
@@ -601,6 +621,10 @@ li .selected-page::after {
   padding: 4px 8px;
   text-align: center;
   cursor: pointer;
+}
+
+.icon:hover {
+  background-color: #7070702b !important;
 }
 
 .sidebar-section .icons-list .icon .icon-title {

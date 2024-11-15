@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241114060012"
+  version: "20241115085717"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -290,6 +290,43 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/page:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.PageAPI"
+      summary: "Pages API"
+      parameters:
+        - name: "Pageid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_MobilePage"  
+
+        404:
+          description: "Not found"
+
   /toolbox/content-pages:
     get:
       tags:
@@ -543,18 +580,6 @@ paths:
           schema:
             type: "string"
             format: "uuid"
-        - name: "Locationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
-        - name: "Organisationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
       
       responses:
         200:
@@ -602,7 +627,7 @@ components:
 
     AgendaLocationInput:  
       properties:
-        locationId:
+        ResidentId:
           type: "string"
           format: "uuid"
 
@@ -621,6 +646,7 @@ components:
           format: "int64"
         MediaType:
           type: "string"
+
 
 
 
@@ -887,6 +913,18 @@ components:
         AgendaCalendarAllDay:
           description: "Agenda Calendar All Day"
           type: "boolean"
+        AgendaCalendarType:
+          description: "Agenda Calendar Type"
+          type: "string"
+        AgendaCalendarRecurring:
+          description: "Agenda Calendar Recurring"
+          type: "boolean"
+        AgendaCalendarRecurringType:
+          description: "Agenda Calendar Recurring Type"
+          type: "string"
+        AgendaCalendarAddRSVP:
+          description: "Agenda Calendar Add RSVP"
+          type: "boolean"
         LocationId:
           description: "Location Id"
           type: "string"
@@ -1012,13 +1050,35 @@ components:
         ProductServiceDescription:
           description: "Product Service Description"
           type: "string"
+
         CallToAction:
-          description: "SDT_Call To Action"
           type: array
           items:
-            $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
+            description: CallToActionItem
+            $ref: "#/components/schemas/SDT_ContentPage.CallToAction_CallToActionItem"
 
 
+    SDT_ContentPage.CallToAction_CallToActionItem:
+      properties:
+        CallToActionId:
+          description: "Call To Action Id"
+          type: "string"
+          format: "uuid"
+        CallToActionName:
+          description: "Call To Action Name"
+          type: "string"
+        CallToActionPhone:
+          description: "Call To Action Phone"
+          type: "string"
+        CallToActionUrl:
+          description: "Call To Action Url"
+          type: "string"
+        CallToActionEmail:
+          description: "Call To Action Email"
+          type: "string"
+
+
+      x-gx-level: "SDT_ContentPage"
 
     SDT_PageStructure:
       properties:

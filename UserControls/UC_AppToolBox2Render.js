@@ -78,6 +78,8 @@ function UC_AppToolBox2($) {
 		this.Start = function() {
 
 					const mapping = this.SDT_Pages
+					console.log('LocationId', this.LocationId)
+					console.log('OrgId', this.OrganisationId)
 					console.log("SDTServices", this.SDT_ProductServiceCollection)
 					const templates = this.BC_Trn_TemplateCollection.map(temp => {
 						let res = {

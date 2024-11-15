@@ -331,8 +331,6 @@ atrn_page_dataprovider
 atrn_theme_dataprovider
 atrn_template_dataprovider
 workwithplus\awwp_parameter_dataprovider
-api_toolboxservice
-api_toolboxservice
 api_residentservice
 api_residentservice
 GeneXus.Programs.Common

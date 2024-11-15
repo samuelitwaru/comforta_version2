@@ -837,6 +837,7 @@ class DataManager {
   }
 
   updatePage(data) {
+    console.log('publishing', data)
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${baseURL}/api/toolbox/update-page`, // Replace with the actual API endpoint
@@ -889,7 +890,6 @@ class DataManager {
         contentType: "application/json", // Ensure JSON content type
         data: JSON.stringify({ PageName: pageName }),
         success: function (response) {
-          console.log("Success:", response);
           resolve(response);
         },
         error: function (xhr, status, error) {
@@ -913,7 +913,6 @@ class DataManager {
           ChildPageId: childPageId,
         }),
         success: function (response) {
-          console.log("Success:", response);
           resolve(response);
         },
         error: function (xhr, status, error) {
@@ -944,7 +943,6 @@ class DataManager {
           }),
           success: function (response) {
             // Handle a successful response
-            console.log("Success:", response);
             resolve(response);
           },
           error: function (xhr, status, error) {
@@ -968,8 +966,6 @@ class DataManager {
         type: "GET",
         success: function (response) {
           resolve(response);
-          // display media files
-          console.log(response);
         },
         error: function (xhr, status, error) {
           if (xhr.status === 404) {
@@ -990,7 +986,6 @@ class DataManager {
         contentType: "application/json", // Ensure JSON content type
         data: JSON.stringify({ PageId: pageId }),
         success: function (response) {
-          console.log("Success:", response);
           resolve(response);
         },
         error: function (xhr, status, error) {

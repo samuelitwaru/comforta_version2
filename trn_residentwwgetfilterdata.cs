@@ -202,10 +202,10 @@ namespace GeneXus.Programs {
          {
             AV44GridState.FromXml(AV42Session.Get("Trn_ResidentWWGridState"), null, "", "");
          }
-         AV58GXV1 = 1;
-         while ( AV58GXV1 <= AV44GridState.gxTpr_Filtervalues.Count )
+         AV60GXV1 = 1;
+         while ( AV60GXV1 <= AV44GridState.gxTpr_Filtervalues.Count )
          {
-            AV45GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV44GridState.gxTpr_Filtervalues.Item(AV58GXV1));
+            AV45GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV44GridState.gxTpr_Filtervalues.Item(AV60GXV1));
             if ( StringUtil.StrCmp(AV45GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV53FilterFullText = AV45GridStateFilterValue.gxTpr_Value;
@@ -260,7 +260,7 @@ namespace GeneXus.Programs {
             {
                AV28TFResidentTypeName_Sel = AV45GridStateFilterValue.gxTpr_Value;
             }
-            AV58GXV1 = (int)(AV58GXV1+1);
+            AV60GXV1 = (int)(AV60GXV1+1);
          }
       }
 
@@ -270,53 +270,53 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV13TFResidentGivenName = AV31SearchTxt;
          AV14TFResidentGivenName_Sel = "";
-         AV60Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
-         AV61Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
-         AV62Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
-         AV63Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
-         AV64Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
-         AV65Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
-         AV66Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
-         AV67Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
-         AV68Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
-         AV69Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
-         AV70Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
-         AV71Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
-         AV72Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
+         AV62Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
+         AV63Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
+         AV64Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
+         AV65Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
+         AV66Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
+         AV67Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
+         AV68Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
+         AV69Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
+         AV70Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
+         AV71Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
+         AV72Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
+         AV73Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
+         AV74Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
          pr_default.dynParam(0, new Object[]{ new Object[]{
                                               A72ResidentSalutation ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                               A68ResidentGender ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
-                                              AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                              AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                              AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                              AV64Trn_residentwwds_5_tfresidentlastname ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels.Count ,
-                                              AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                              AV67Trn_residentwwds_8_tfresidentemail ,
-                                              AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                              AV69Trn_residentwwds_10_tfresidentphone ,
-                                              AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                              AV71Trn_residentwwds_12_tfresidenttypename ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
+                                              AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                              AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                              AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                              AV66Trn_residentwwds_5_tfresidentlastname ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels.Count ,
+                                              AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                              AV69Trn_residentwwds_8_tfresidentemail ,
+                                              AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                              AV71Trn_residentwwds_10_tfresidentphone ,
+                                              AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                              AV73Trn_residentwwds_12_tfresidenttypename ,
                                               A64ResidentGivenName ,
                                               A65ResidentLastName ,
                                               A67ResidentEmail ,
                                               A70ResidentPhone ,
                                               A97ResidentTypeName ,
-                                              AV60Trn_residentwwds_1_filterfulltext } ,
+                                              AV62Trn_residentwwds_1_filterfulltext } ,
                                               new int[]{
                                               TypeConstants.INT, TypeConstants.INT
                                               }
          });
-         lV62Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname), "%", "");
-         lV64Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname), "%", "");
-         lV67Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail), "%", "");
-         lV69Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone), 20, "%");
-         lV71Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename), "%", "");
+         lV64Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname), "%", "");
+         lV66Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname), "%", "");
+         lV69Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail), "%", "");
+         lV71Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone), 20, "%");
+         lV73Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename), "%", "");
          /* Using cursor P007B2 */
-         pr_default.execute(0, new Object[] {lV62Trn_residentwwds_3_tfresidentgivenname, AV63Trn_residentwwds_4_tfresidentgivenname_sel, lV64Trn_residentwwds_5_tfresidentlastname, AV65Trn_residentwwds_6_tfresidentlastname_sel, lV67Trn_residentwwds_8_tfresidentemail, AV68Trn_residentwwds_9_tfresidentemail_sel, lV69Trn_residentwwds_10_tfresidentphone, AV70Trn_residentwwds_11_tfresidentphone_sel, lV71Trn_residentwwds_12_tfresidenttypename, AV72Trn_residentwwds_13_tfresidenttypename_sel});
+         pr_default.execute(0, new Object[] {lV64Trn_residentwwds_3_tfresidentgivenname, AV65Trn_residentwwds_4_tfresidentgivenname_sel, lV66Trn_residentwwds_5_tfresidentlastname, AV67Trn_residentwwds_6_tfresidentlastname_sel, lV69Trn_residentwwds_8_tfresidentemail, AV70Trn_residentwwds_9_tfresidentemail_sel, lV71Trn_residentwwds_10_tfresidentphone, AV72Trn_residentwwds_11_tfresidentphone_sel, lV73Trn_residentwwds_12_tfresidenttypename, AV74Trn_residentwwds_13_tfresidenttypename_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK7B2 = false;
@@ -332,14 +332,14 @@ namespace GeneXus.Programs {
             A29LocationId = P007B2_A29LocationId[0];
             A11OrganisationId = P007B2_A11OrganisationId[0];
             A97ResidentTypeName = P007B2_A97ResidentTypeName[0];
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
             )
             {
                AV41count = 0;
@@ -384,53 +384,53 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV15TFResidentLastName = AV31SearchTxt;
          AV16TFResidentLastName_Sel = "";
-         AV60Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
-         AV61Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
-         AV62Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
-         AV63Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
-         AV64Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
-         AV65Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
-         AV66Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
-         AV67Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
-         AV68Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
-         AV69Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
-         AV70Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
-         AV71Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
-         AV72Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
+         AV62Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
+         AV63Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
+         AV64Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
+         AV65Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
+         AV66Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
+         AV67Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
+         AV68Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
+         AV69Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
+         AV70Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
+         AV71Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
+         AV72Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
+         AV73Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
+         AV74Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
          pr_default.dynParam(1, new Object[]{ new Object[]{
                                               A72ResidentSalutation ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                               A68ResidentGender ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
-                                              AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                              AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                              AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                              AV64Trn_residentwwds_5_tfresidentlastname ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels.Count ,
-                                              AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                              AV67Trn_residentwwds_8_tfresidentemail ,
-                                              AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                              AV69Trn_residentwwds_10_tfresidentphone ,
-                                              AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                              AV71Trn_residentwwds_12_tfresidenttypename ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
+                                              AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                              AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                              AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                              AV66Trn_residentwwds_5_tfresidentlastname ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels.Count ,
+                                              AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                              AV69Trn_residentwwds_8_tfresidentemail ,
+                                              AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                              AV71Trn_residentwwds_10_tfresidentphone ,
+                                              AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                              AV73Trn_residentwwds_12_tfresidenttypename ,
                                               A64ResidentGivenName ,
                                               A65ResidentLastName ,
                                               A67ResidentEmail ,
                                               A70ResidentPhone ,
                                               A97ResidentTypeName ,
-                                              AV60Trn_residentwwds_1_filterfulltext } ,
+                                              AV62Trn_residentwwds_1_filterfulltext } ,
                                               new int[]{
                                               TypeConstants.INT, TypeConstants.INT
                                               }
          });
-         lV62Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname), "%", "");
-         lV64Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname), "%", "");
-         lV67Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail), "%", "");
-         lV69Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone), 20, "%");
-         lV71Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename), "%", "");
+         lV64Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname), "%", "");
+         lV66Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname), "%", "");
+         lV69Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail), "%", "");
+         lV71Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone), 20, "%");
+         lV73Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename), "%", "");
          /* Using cursor P007B3 */
-         pr_default.execute(1, new Object[] {lV62Trn_residentwwds_3_tfresidentgivenname, AV63Trn_residentwwds_4_tfresidentgivenname_sel, lV64Trn_residentwwds_5_tfresidentlastname, AV65Trn_residentwwds_6_tfresidentlastname_sel, lV67Trn_residentwwds_8_tfresidentemail, AV68Trn_residentwwds_9_tfresidentemail_sel, lV69Trn_residentwwds_10_tfresidentphone, AV70Trn_residentwwds_11_tfresidentphone_sel, lV71Trn_residentwwds_12_tfresidenttypename, AV72Trn_residentwwds_13_tfresidenttypename_sel});
+         pr_default.execute(1, new Object[] {lV64Trn_residentwwds_3_tfresidentgivenname, AV65Trn_residentwwds_4_tfresidentgivenname_sel, lV66Trn_residentwwds_5_tfresidentlastname, AV67Trn_residentwwds_6_tfresidentlastname_sel, lV69Trn_residentwwds_8_tfresidentemail, AV70Trn_residentwwds_9_tfresidentemail_sel, lV71Trn_residentwwds_10_tfresidentphone, AV72Trn_residentwwds_11_tfresidentphone_sel, lV73Trn_residentwwds_12_tfresidenttypename, AV74Trn_residentwwds_13_tfresidenttypename_sel});
          while ( (pr_default.getStatus(1) != 101) )
          {
             BRK7B4 = false;
@@ -446,14 +446,14 @@ namespace GeneXus.Programs {
             A29LocationId = P007B3_A29LocationId[0];
             A11OrganisationId = P007B3_A11OrganisationId[0];
             A97ResidentTypeName = P007B3_A97ResidentTypeName[0];
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
             )
             {
                AV41count = 0;
@@ -498,53 +498,53 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV19TFResidentEmail = AV31SearchTxt;
          AV20TFResidentEmail_Sel = "";
-         AV60Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
-         AV61Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
-         AV62Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
-         AV63Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
-         AV64Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
-         AV65Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
-         AV66Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
-         AV67Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
-         AV68Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
-         AV69Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
-         AV70Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
-         AV71Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
-         AV72Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
+         AV62Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
+         AV63Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
+         AV64Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
+         AV65Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
+         AV66Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
+         AV67Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
+         AV68Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
+         AV69Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
+         AV70Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
+         AV71Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
+         AV72Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
+         AV73Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
+         AV74Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
          pr_default.dynParam(2, new Object[]{ new Object[]{
                                               A72ResidentSalutation ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                               A68ResidentGender ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
-                                              AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                              AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                              AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                              AV64Trn_residentwwds_5_tfresidentlastname ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels.Count ,
-                                              AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                              AV67Trn_residentwwds_8_tfresidentemail ,
-                                              AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                              AV69Trn_residentwwds_10_tfresidentphone ,
-                                              AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                              AV71Trn_residentwwds_12_tfresidenttypename ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
+                                              AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                              AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                              AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                              AV66Trn_residentwwds_5_tfresidentlastname ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels.Count ,
+                                              AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                              AV69Trn_residentwwds_8_tfresidentemail ,
+                                              AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                              AV71Trn_residentwwds_10_tfresidentphone ,
+                                              AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                              AV73Trn_residentwwds_12_tfresidenttypename ,
                                               A64ResidentGivenName ,
                                               A65ResidentLastName ,
                                               A67ResidentEmail ,
                                               A70ResidentPhone ,
                                               A97ResidentTypeName ,
-                                              AV60Trn_residentwwds_1_filterfulltext } ,
+                                              AV62Trn_residentwwds_1_filterfulltext } ,
                                               new int[]{
                                               TypeConstants.INT, TypeConstants.INT
                                               }
          });
-         lV62Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname), "%", "");
-         lV64Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname), "%", "");
-         lV67Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail), "%", "");
-         lV69Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone), 20, "%");
-         lV71Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename), "%", "");
+         lV64Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname), "%", "");
+         lV66Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname), "%", "");
+         lV69Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail), "%", "");
+         lV71Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone), 20, "%");
+         lV73Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename), "%", "");
          /* Using cursor P007B4 */
-         pr_default.execute(2, new Object[] {lV62Trn_residentwwds_3_tfresidentgivenname, AV63Trn_residentwwds_4_tfresidentgivenname_sel, lV64Trn_residentwwds_5_tfresidentlastname, AV65Trn_residentwwds_6_tfresidentlastname_sel, lV67Trn_residentwwds_8_tfresidentemail, AV68Trn_residentwwds_9_tfresidentemail_sel, lV69Trn_residentwwds_10_tfresidentphone, AV70Trn_residentwwds_11_tfresidentphone_sel, lV71Trn_residentwwds_12_tfresidenttypename, AV72Trn_residentwwds_13_tfresidenttypename_sel});
+         pr_default.execute(2, new Object[] {lV64Trn_residentwwds_3_tfresidentgivenname, AV65Trn_residentwwds_4_tfresidentgivenname_sel, lV66Trn_residentwwds_5_tfresidentlastname, AV67Trn_residentwwds_6_tfresidentlastname_sel, lV69Trn_residentwwds_8_tfresidentemail, AV70Trn_residentwwds_9_tfresidentemail_sel, lV71Trn_residentwwds_10_tfresidentphone, AV72Trn_residentwwds_11_tfresidentphone_sel, lV73Trn_residentwwds_12_tfresidenttypename, AV74Trn_residentwwds_13_tfresidenttypename_sel});
          while ( (pr_default.getStatus(2) != 101) )
          {
             BRK7B6 = false;
@@ -560,14 +560,14 @@ namespace GeneXus.Programs {
             A29LocationId = P007B4_A29LocationId[0];
             A11OrganisationId = P007B4_A11OrganisationId[0];
             A97ResidentTypeName = P007B4_A97ResidentTypeName[0];
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
             )
             {
                AV41count = 0;
@@ -612,53 +612,53 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV23TFResidentPhone = AV31SearchTxt;
          AV24TFResidentPhone_Sel = "";
-         AV60Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
-         AV61Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
-         AV62Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
-         AV63Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
-         AV64Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
-         AV65Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
-         AV66Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
-         AV67Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
-         AV68Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
-         AV69Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
-         AV70Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
-         AV71Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
-         AV72Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
+         AV62Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
+         AV63Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
+         AV64Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
+         AV65Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
+         AV66Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
+         AV67Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
+         AV68Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
+         AV69Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
+         AV70Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
+         AV71Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
+         AV72Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
+         AV73Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
+         AV74Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
          pr_default.dynParam(3, new Object[]{ new Object[]{
                                               A72ResidentSalutation ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                               A68ResidentGender ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
-                                              AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                              AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                              AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                              AV64Trn_residentwwds_5_tfresidentlastname ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels.Count ,
-                                              AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                              AV67Trn_residentwwds_8_tfresidentemail ,
-                                              AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                              AV69Trn_residentwwds_10_tfresidentphone ,
-                                              AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                              AV71Trn_residentwwds_12_tfresidenttypename ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
+                                              AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                              AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                              AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                              AV66Trn_residentwwds_5_tfresidentlastname ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels.Count ,
+                                              AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                              AV69Trn_residentwwds_8_tfresidentemail ,
+                                              AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                              AV71Trn_residentwwds_10_tfresidentphone ,
+                                              AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                              AV73Trn_residentwwds_12_tfresidenttypename ,
                                               A64ResidentGivenName ,
                                               A65ResidentLastName ,
                                               A67ResidentEmail ,
                                               A70ResidentPhone ,
                                               A97ResidentTypeName ,
-                                              AV60Trn_residentwwds_1_filterfulltext } ,
+                                              AV62Trn_residentwwds_1_filterfulltext } ,
                                               new int[]{
                                               TypeConstants.INT, TypeConstants.INT
                                               }
          });
-         lV62Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname), "%", "");
-         lV64Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname), "%", "");
-         lV67Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail), "%", "");
-         lV69Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone), 20, "%");
-         lV71Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename), "%", "");
+         lV64Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname), "%", "");
+         lV66Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname), "%", "");
+         lV69Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail), "%", "");
+         lV71Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone), 20, "%");
+         lV73Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename), "%", "");
          /* Using cursor P007B5 */
-         pr_default.execute(3, new Object[] {lV62Trn_residentwwds_3_tfresidentgivenname, AV63Trn_residentwwds_4_tfresidentgivenname_sel, lV64Trn_residentwwds_5_tfresidentlastname, AV65Trn_residentwwds_6_tfresidentlastname_sel, lV67Trn_residentwwds_8_tfresidentemail, AV68Trn_residentwwds_9_tfresidentemail_sel, lV69Trn_residentwwds_10_tfresidentphone, AV70Trn_residentwwds_11_tfresidentphone_sel, lV71Trn_residentwwds_12_tfresidenttypename, AV72Trn_residentwwds_13_tfresidenttypename_sel});
+         pr_default.execute(3, new Object[] {lV64Trn_residentwwds_3_tfresidentgivenname, AV65Trn_residentwwds_4_tfresidentgivenname_sel, lV66Trn_residentwwds_5_tfresidentlastname, AV67Trn_residentwwds_6_tfresidentlastname_sel, lV69Trn_residentwwds_8_tfresidentemail, AV70Trn_residentwwds_9_tfresidentemail_sel, lV71Trn_residentwwds_10_tfresidentphone, AV72Trn_residentwwds_11_tfresidentphone_sel, lV73Trn_residentwwds_12_tfresidenttypename, AV74Trn_residentwwds_13_tfresidenttypename_sel});
          while ( (pr_default.getStatus(3) != 101) )
          {
             BRK7B8 = false;
@@ -674,14 +674,14 @@ namespace GeneXus.Programs {
             A29LocationId = P007B5_A29LocationId[0];
             A11OrganisationId = P007B5_A11OrganisationId[0];
             A97ResidentTypeName = P007B5_A97ResidentTypeName[0];
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
             )
             {
                AV41count = 0;
@@ -726,53 +726,53 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV27TFResidentTypeName = AV31SearchTxt;
          AV28TFResidentTypeName_Sel = "";
-         AV60Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
-         AV61Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
-         AV62Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
-         AV63Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
-         AV64Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
-         AV65Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
-         AV66Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
-         AV67Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
-         AV68Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
-         AV69Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
-         AV70Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
-         AV71Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
-         AV72Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
+         AV62Trn_residentwwds_1_filterfulltext = AV53FilterFullText;
+         AV63Trn_residentwwds_2_tfresidentsalutation_sels = AV12TFResidentSalutation_Sels;
+         AV64Trn_residentwwds_3_tfresidentgivenname = AV13TFResidentGivenName;
+         AV65Trn_residentwwds_4_tfresidentgivenname_sel = AV14TFResidentGivenName_Sel;
+         AV66Trn_residentwwds_5_tfresidentlastname = AV15TFResidentLastName;
+         AV67Trn_residentwwds_6_tfresidentlastname_sel = AV16TFResidentLastName_Sel;
+         AV68Trn_residentwwds_7_tfresidentgender_sels = AV22TFResidentGender_Sels;
+         AV69Trn_residentwwds_8_tfresidentemail = AV19TFResidentEmail;
+         AV70Trn_residentwwds_9_tfresidentemail_sel = AV20TFResidentEmail_Sel;
+         AV71Trn_residentwwds_10_tfresidentphone = AV23TFResidentPhone;
+         AV72Trn_residentwwds_11_tfresidentphone_sel = AV24TFResidentPhone_Sel;
+         AV73Trn_residentwwds_12_tfresidenttypename = AV27TFResidentTypeName;
+         AV74Trn_residentwwds_13_tfresidenttypename_sel = AV28TFResidentTypeName_Sel;
          pr_default.dynParam(4, new Object[]{ new Object[]{
                                               A72ResidentSalutation ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                               A68ResidentGender ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                              AV61Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
-                                              AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                              AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                              AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                              AV64Trn_residentwwds_5_tfresidentlastname ,
-                                              AV66Trn_residentwwds_7_tfresidentgender_sels.Count ,
-                                              AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                              AV67Trn_residentwwds_8_tfresidentemail ,
-                                              AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                              AV69Trn_residentwwds_10_tfresidentphone ,
-                                              AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                              AV71Trn_residentwwds_12_tfresidenttypename ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                              AV63Trn_residentwwds_2_tfresidentsalutation_sels.Count ,
+                                              AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                              AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                              AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                              AV66Trn_residentwwds_5_tfresidentlastname ,
+                                              AV68Trn_residentwwds_7_tfresidentgender_sels.Count ,
+                                              AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                              AV69Trn_residentwwds_8_tfresidentemail ,
+                                              AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                              AV71Trn_residentwwds_10_tfresidentphone ,
+                                              AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                              AV73Trn_residentwwds_12_tfresidenttypename ,
                                               A64ResidentGivenName ,
                                               A65ResidentLastName ,
                                               A67ResidentEmail ,
                                               A70ResidentPhone ,
                                               A97ResidentTypeName ,
-                                              AV60Trn_residentwwds_1_filterfulltext } ,
+                                              AV62Trn_residentwwds_1_filterfulltext } ,
                                               new int[]{
                                               TypeConstants.INT, TypeConstants.INT
                                               }
          });
-         lV62Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname), "%", "");
-         lV64Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname), "%", "");
-         lV67Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail), "%", "");
-         lV69Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone), 20, "%");
-         lV71Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename), "%", "");
+         lV64Trn_residentwwds_3_tfresidentgivenname = StringUtil.Concat( StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname), "%", "");
+         lV66Trn_residentwwds_5_tfresidentlastname = StringUtil.Concat( StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname), "%", "");
+         lV69Trn_residentwwds_8_tfresidentemail = StringUtil.Concat( StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail), "%", "");
+         lV71Trn_residentwwds_10_tfresidentphone = StringUtil.PadR( StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone), 20, "%");
+         lV73Trn_residentwwds_12_tfresidenttypename = StringUtil.Concat( StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename), "%", "");
          /* Using cursor P007B6 */
-         pr_default.execute(4, new Object[] {lV62Trn_residentwwds_3_tfresidentgivenname, AV63Trn_residentwwds_4_tfresidentgivenname_sel, lV64Trn_residentwwds_5_tfresidentlastname, AV65Trn_residentwwds_6_tfresidentlastname_sel, lV67Trn_residentwwds_8_tfresidentemail, AV68Trn_residentwwds_9_tfresidentemail_sel, lV69Trn_residentwwds_10_tfresidentphone, AV70Trn_residentwwds_11_tfresidentphone_sel, lV71Trn_residentwwds_12_tfresidenttypename, AV72Trn_residentwwds_13_tfresidenttypename_sel});
+         pr_default.execute(4, new Object[] {lV64Trn_residentwwds_3_tfresidentgivenname, AV65Trn_residentwwds_4_tfresidentgivenname_sel, lV66Trn_residentwwds_5_tfresidentlastname, AV67Trn_residentwwds_6_tfresidentlastname_sel, lV69Trn_residentwwds_8_tfresidentemail, AV70Trn_residentwwds_9_tfresidentemail_sel, lV71Trn_residentwwds_10_tfresidentphone, AV72Trn_residentwwds_11_tfresidentphone_sel, lV73Trn_residentwwds_12_tfresidenttypename, AV74Trn_residentwwds_13_tfresidenttypename_sel});
          while ( (pr_default.getStatus(4) != 101) )
          {
             BRK7B10 = false;
@@ -788,14 +788,14 @@ namespace GeneXus.Programs {
             A29LocationId = P007B6_A29LocationId[0];
             A11OrganisationId = P007B6_A11OrganisationId[0];
             A97ResidentTypeName = P007B6_A97ResidentTypeName[0];
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
-            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV60Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
-            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV60Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_1_filterfulltext)) || ( ( StringUtil.Like( context.GetMessage( context.GetMessage( "mr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "mrs", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Mrs", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "dr", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Dr", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "miss", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A72ResidentSalutation, context.GetMessage( "Miss", "")) == 0 ) ) || ( StringUtil.Like( A64ResidentGivenName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A65ResidentLastName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Male", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Female", "")) == 0 ) ) ||
+            ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV62Trn_residentwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A68ResidentGender, context.GetMessage( "Other", "")) == 0 ) ) || ( StringUtil.Like( A67ResidentEmail , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) ||
+            ( StringUtil.Like( A70ResidentPhone , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A97ResidentTypeName , StringUtil.PadR( "%" + AV62Trn_residentwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) )
             )
             {
                AV41count = 0;
@@ -876,25 +876,25 @@ namespace GeneXus.Programs {
          AV24TFResidentPhone_Sel = "";
          AV27TFResidentTypeName = "";
          AV28TFResidentTypeName_Sel = "";
-         AV60Trn_residentwwds_1_filterfulltext = "";
-         AV61Trn_residentwwds_2_tfresidentsalutation_sels = new GxSimpleCollection<string>();
-         AV62Trn_residentwwds_3_tfresidentgivenname = "";
-         AV63Trn_residentwwds_4_tfresidentgivenname_sel = "";
-         AV64Trn_residentwwds_5_tfresidentlastname = "";
-         AV65Trn_residentwwds_6_tfresidentlastname_sel = "";
-         AV66Trn_residentwwds_7_tfresidentgender_sels = new GxSimpleCollection<string>();
-         AV67Trn_residentwwds_8_tfresidentemail = "";
-         AV68Trn_residentwwds_9_tfresidentemail_sel = "";
-         AV69Trn_residentwwds_10_tfresidentphone = "";
-         AV70Trn_residentwwds_11_tfresidentphone_sel = "";
-         AV71Trn_residentwwds_12_tfresidenttypename = "";
-         AV72Trn_residentwwds_13_tfresidenttypename_sel = "";
-         lV60Trn_residentwwds_1_filterfulltext = "";
-         lV62Trn_residentwwds_3_tfresidentgivenname = "";
-         lV64Trn_residentwwds_5_tfresidentlastname = "";
-         lV67Trn_residentwwds_8_tfresidentemail = "";
-         lV69Trn_residentwwds_10_tfresidentphone = "";
-         lV71Trn_residentwwds_12_tfresidenttypename = "";
+         AV62Trn_residentwwds_1_filterfulltext = "";
+         AV63Trn_residentwwds_2_tfresidentsalutation_sels = new GxSimpleCollection<string>();
+         AV64Trn_residentwwds_3_tfresidentgivenname = "";
+         AV65Trn_residentwwds_4_tfresidentgivenname_sel = "";
+         AV66Trn_residentwwds_5_tfresidentlastname = "";
+         AV67Trn_residentwwds_6_tfresidentlastname_sel = "";
+         AV68Trn_residentwwds_7_tfresidentgender_sels = new GxSimpleCollection<string>();
+         AV69Trn_residentwwds_8_tfresidentemail = "";
+         AV70Trn_residentwwds_9_tfresidentemail_sel = "";
+         AV71Trn_residentwwds_10_tfresidentphone = "";
+         AV72Trn_residentwwds_11_tfresidentphone_sel = "";
+         AV73Trn_residentwwds_12_tfresidenttypename = "";
+         AV74Trn_residentwwds_13_tfresidenttypename_sel = "";
+         lV62Trn_residentwwds_1_filterfulltext = "";
+         lV64Trn_residentwwds_3_tfresidentgivenname = "";
+         lV66Trn_residentwwds_5_tfresidentlastname = "";
+         lV69Trn_residentwwds_8_tfresidentemail = "";
+         lV71Trn_residentwwds_10_tfresidentphone = "";
+         lV73Trn_residentwwds_12_tfresidenttypename = "";
          A72ResidentSalutation = "";
          A68ResidentGender = "";
          A64ResidentGivenName = "";
@@ -992,16 +992,16 @@ namespace GeneXus.Programs {
       private short AV34MaxItems ;
       private short AV33PageIndex ;
       private short AV32SkipItems ;
-      private int AV58GXV1 ;
-      private int AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count ;
-      private int AV66Trn_residentwwds_7_tfresidentgender_sels_Count ;
+      private int AV60GXV1 ;
+      private int AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count ;
+      private int AV68Trn_residentwwds_7_tfresidentgender_sels_Count ;
       private int AV35InsertIndex ;
       private long AV41count ;
       private string AV23TFResidentPhone ;
       private string AV24TFResidentPhone_Sel ;
-      private string AV69Trn_residentwwds_10_tfresidentphone ;
-      private string AV70Trn_residentwwds_11_tfresidentphone_sel ;
-      private string lV69Trn_residentwwds_10_tfresidentphone ;
+      private string AV71Trn_residentwwds_10_tfresidentphone ;
+      private string AV72Trn_residentwwds_11_tfresidentphone_sel ;
+      private string lV71Trn_residentwwds_10_tfresidentphone ;
       private string A72ResidentSalutation ;
       private string A70ResidentPhone ;
       private bool returnInSub ;
@@ -1028,20 +1028,20 @@ namespace GeneXus.Programs {
       private string AV20TFResidentEmail_Sel ;
       private string AV27TFResidentTypeName ;
       private string AV28TFResidentTypeName_Sel ;
-      private string AV60Trn_residentwwds_1_filterfulltext ;
-      private string AV62Trn_residentwwds_3_tfresidentgivenname ;
-      private string AV63Trn_residentwwds_4_tfresidentgivenname_sel ;
-      private string AV64Trn_residentwwds_5_tfresidentlastname ;
-      private string AV65Trn_residentwwds_6_tfresidentlastname_sel ;
-      private string AV67Trn_residentwwds_8_tfresidentemail ;
-      private string AV68Trn_residentwwds_9_tfresidentemail_sel ;
-      private string AV71Trn_residentwwds_12_tfresidenttypename ;
-      private string AV72Trn_residentwwds_13_tfresidenttypename_sel ;
-      private string lV60Trn_residentwwds_1_filterfulltext ;
-      private string lV62Trn_residentwwds_3_tfresidentgivenname ;
-      private string lV64Trn_residentwwds_5_tfresidentlastname ;
-      private string lV67Trn_residentwwds_8_tfresidentemail ;
-      private string lV71Trn_residentwwds_12_tfresidenttypename ;
+      private string AV62Trn_residentwwds_1_filterfulltext ;
+      private string AV64Trn_residentwwds_3_tfresidentgivenname ;
+      private string AV65Trn_residentwwds_4_tfresidentgivenname_sel ;
+      private string AV66Trn_residentwwds_5_tfresidentlastname ;
+      private string AV67Trn_residentwwds_6_tfresidentlastname_sel ;
+      private string AV69Trn_residentwwds_8_tfresidentemail ;
+      private string AV70Trn_residentwwds_9_tfresidentemail_sel ;
+      private string AV73Trn_residentwwds_12_tfresidenttypename ;
+      private string AV74Trn_residentwwds_13_tfresidenttypename_sel ;
+      private string lV62Trn_residentwwds_1_filterfulltext ;
+      private string lV64Trn_residentwwds_3_tfresidentgivenname ;
+      private string lV66Trn_residentwwds_5_tfresidentlastname ;
+      private string lV69Trn_residentwwds_8_tfresidentemail ;
+      private string lV73Trn_residentwwds_12_tfresidenttypename ;
       private string A68ResidentGender ;
       private string A64ResidentGivenName ;
       private string A65ResidentLastName ;
@@ -1063,8 +1063,8 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV45GridStateFilterValue ;
       private GxSimpleCollection<string> AV12TFResidentSalutation_Sels ;
       private GxSimpleCollection<string> AV22TFResidentGender_Sels ;
-      private GxSimpleCollection<string> AV61Trn_residentwwds_2_tfresidentsalutation_sels ;
-      private GxSimpleCollection<string> AV66Trn_residentwwds_7_tfresidentgender_sels ;
+      private GxSimpleCollection<string> AV63Trn_residentwwds_2_tfresidentsalutation_sels ;
+      private GxSimpleCollection<string> AV68Trn_residentwwds_7_tfresidentgender_sels ;
       private IDataStoreProvider pr_default ;
       private Guid[] P007B2_A96ResidentTypeId ;
       private string[] P007B2_A64ResidentGivenName ;
@@ -1130,138 +1130,138 @@ namespace GeneXus.Programs {
    {
       protected Object[] conditional_P007B2( IGxContext context ,
                                              string A72ResidentSalutation ,
-                                             GxSimpleCollection<string> AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                             GxSimpleCollection<string> AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                              string A68ResidentGender ,
-                                             GxSimpleCollection<string> AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                             int AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
-                                             string AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                             string AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                             string AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                             string AV64Trn_residentwwds_5_tfresidentlastname ,
-                                             int AV66Trn_residentwwds_7_tfresidentgender_sels_Count ,
-                                             string AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                             string AV67Trn_residentwwds_8_tfresidentemail ,
-                                             string AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                             string AV69Trn_residentwwds_10_tfresidentphone ,
-                                             string AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                             string AV71Trn_residentwwds_12_tfresidenttypename ,
+                                             GxSimpleCollection<string> AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                             int AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
+                                             string AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                             string AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                             string AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                             string AV66Trn_residentwwds_5_tfresidentlastname ,
+                                             int AV68Trn_residentwwds_7_tfresidentgender_sels_Count ,
+                                             string AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                             string AV69Trn_residentwwds_8_tfresidentemail ,
+                                             string AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                             string AV71Trn_residentwwds_10_tfresidentphone ,
+                                             string AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                             string AV73Trn_residentwwds_12_tfresidenttypename ,
                                              string A64ResidentGivenName ,
                                              string A65ResidentLastName ,
                                              string A67ResidentEmail ,
                                              string A70ResidentPhone ,
                                              string A97ResidentTypeName ,
-                                             string AV60Trn_residentwwds_1_filterfulltext )
+                                             string AV62Trn_residentwwds_1_filterfulltext )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int1 = new short[10];
          Object[] GXv_Object2 = new Object[2];
          scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentGivenName, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentGender, T1.ResidentLastName, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
-         if ( AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
+         if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV61Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV62Trn_residentwwds_3_tfresidentgivenname)");
+            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV64Trn_residentwwds_3_tfresidentgivenname)");
          }
          else
          {
             GXv_int1[0] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV63Trn_residentwwds_4_tfresidentgivenname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV65Trn_residentwwds_4_tfresidentgivenname_sel))");
          }
          else
          {
             GXv_int1[1] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName like :lV64Trn_residentwwds_5_tfresidentlastname)");
+            AddWhere(sWhereString, "(T1.ResidentLastName like :lV66Trn_residentwwds_5_tfresidentlastname)");
          }
          else
          {
             GXv_int1[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV65Trn_residentwwds_6_tfresidentlastname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV67Trn_residentwwds_6_tfresidentlastname_sel))");
          }
          else
          {
             GXv_int1[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentLastName))=0))");
          }
-         if ( AV66Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
+         if ( AV68Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV66Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV68Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail like :lV67Trn_residentwwds_8_tfresidentemail)");
+            AddWhere(sWhereString, "(T1.ResidentEmail like :lV69Trn_residentwwds_8_tfresidentemail)");
          }
          else
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV68Trn_residentwwds_9_tfresidentemail_sel))");
+            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV70Trn_residentwwds_9_tfresidentemail_sel))");
          }
          else
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone like :lV69Trn_residentwwds_10_tfresidentphone)");
+            AddWhere(sWhereString, "(T1.ResidentPhone like :lV71Trn_residentwwds_10_tfresidentphone)");
          }
          else
          {
             GXv_int1[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV70Trn_residentwwds_11_tfresidentphone_sel))");
+            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV72Trn_residentwwds_11_tfresidentphone_sel))");
          }
          else
          {
             GXv_int1[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentPhone))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV71Trn_residentwwds_12_tfresidenttypename)");
+            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV73Trn_residentwwds_12_tfresidenttypename)");
          }
          else
          {
             GXv_int1[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV72Trn_residentwwds_13_tfresidenttypename_sel))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV74Trn_residentwwds_13_tfresidenttypename_sel))");
          }
          else
          {
             GXv_int1[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
@@ -1274,138 +1274,138 @@ namespace GeneXus.Programs {
 
       protected Object[] conditional_P007B3( IGxContext context ,
                                              string A72ResidentSalutation ,
-                                             GxSimpleCollection<string> AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                             GxSimpleCollection<string> AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                              string A68ResidentGender ,
-                                             GxSimpleCollection<string> AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                             int AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
-                                             string AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                             string AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                             string AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                             string AV64Trn_residentwwds_5_tfresidentlastname ,
-                                             int AV66Trn_residentwwds_7_tfresidentgender_sels_Count ,
-                                             string AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                             string AV67Trn_residentwwds_8_tfresidentemail ,
-                                             string AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                             string AV69Trn_residentwwds_10_tfresidentphone ,
-                                             string AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                             string AV71Trn_residentwwds_12_tfresidenttypename ,
+                                             GxSimpleCollection<string> AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                             int AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
+                                             string AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                             string AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                             string AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                             string AV66Trn_residentwwds_5_tfresidentlastname ,
+                                             int AV68Trn_residentwwds_7_tfresidentgender_sels_Count ,
+                                             string AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                             string AV69Trn_residentwwds_8_tfresidentemail ,
+                                             string AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                             string AV71Trn_residentwwds_10_tfresidentphone ,
+                                             string AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                             string AV73Trn_residentwwds_12_tfresidenttypename ,
                                              string A64ResidentGivenName ,
                                              string A65ResidentLastName ,
                                              string A67ResidentEmail ,
                                              string A70ResidentPhone ,
                                              string A97ResidentTypeName ,
-                                             string AV60Trn_residentwwds_1_filterfulltext )
+                                             string AV62Trn_residentwwds_1_filterfulltext )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int3 = new short[10];
          Object[] GXv_Object4 = new Object[2];
          scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentLastName, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentGender, T1.ResidentGivenName, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
-         if ( AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
+         if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV61Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV62Trn_residentwwds_3_tfresidentgivenname)");
+            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV64Trn_residentwwds_3_tfresidentgivenname)");
          }
          else
          {
             GXv_int3[0] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV63Trn_residentwwds_4_tfresidentgivenname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV65Trn_residentwwds_4_tfresidentgivenname_sel))");
          }
          else
          {
             GXv_int3[1] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName like :lV64Trn_residentwwds_5_tfresidentlastname)");
+            AddWhere(sWhereString, "(T1.ResidentLastName like :lV66Trn_residentwwds_5_tfresidentlastname)");
          }
          else
          {
             GXv_int3[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV65Trn_residentwwds_6_tfresidentlastname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV67Trn_residentwwds_6_tfresidentlastname_sel))");
          }
          else
          {
             GXv_int3[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentLastName))=0))");
          }
-         if ( AV66Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
+         if ( AV68Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV66Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV68Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail like :lV67Trn_residentwwds_8_tfresidentemail)");
+            AddWhere(sWhereString, "(T1.ResidentEmail like :lV69Trn_residentwwds_8_tfresidentemail)");
          }
          else
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV68Trn_residentwwds_9_tfresidentemail_sel))");
+            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV70Trn_residentwwds_9_tfresidentemail_sel))");
          }
          else
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone like :lV69Trn_residentwwds_10_tfresidentphone)");
+            AddWhere(sWhereString, "(T1.ResidentPhone like :lV71Trn_residentwwds_10_tfresidentphone)");
          }
          else
          {
             GXv_int3[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV70Trn_residentwwds_11_tfresidentphone_sel))");
+            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV72Trn_residentwwds_11_tfresidentphone_sel))");
          }
          else
          {
             GXv_int3[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentPhone))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV71Trn_residentwwds_12_tfresidenttypename)");
+            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV73Trn_residentwwds_12_tfresidenttypename)");
          }
          else
          {
             GXv_int3[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV72Trn_residentwwds_13_tfresidenttypename_sel))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV74Trn_residentwwds_13_tfresidenttypename_sel))");
          }
          else
          {
             GXv_int3[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
@@ -1418,138 +1418,138 @@ namespace GeneXus.Programs {
 
       protected Object[] conditional_P007B4( IGxContext context ,
                                              string A72ResidentSalutation ,
-                                             GxSimpleCollection<string> AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                             GxSimpleCollection<string> AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                              string A68ResidentGender ,
-                                             GxSimpleCollection<string> AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                             int AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
-                                             string AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                             string AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                             string AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                             string AV64Trn_residentwwds_5_tfresidentlastname ,
-                                             int AV66Trn_residentwwds_7_tfresidentgender_sels_Count ,
-                                             string AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                             string AV67Trn_residentwwds_8_tfresidentemail ,
-                                             string AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                             string AV69Trn_residentwwds_10_tfresidentphone ,
-                                             string AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                             string AV71Trn_residentwwds_12_tfresidenttypename ,
+                                             GxSimpleCollection<string> AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                             int AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
+                                             string AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                             string AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                             string AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                             string AV66Trn_residentwwds_5_tfresidentlastname ,
+                                             int AV68Trn_residentwwds_7_tfresidentgender_sels_Count ,
+                                             string AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                             string AV69Trn_residentwwds_8_tfresidentemail ,
+                                             string AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                             string AV71Trn_residentwwds_10_tfresidentphone ,
+                                             string AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                             string AV73Trn_residentwwds_12_tfresidenttypename ,
                                              string A64ResidentGivenName ,
                                              string A65ResidentLastName ,
                                              string A67ResidentEmail ,
                                              string A70ResidentPhone ,
                                              string A97ResidentTypeName ,
-                                             string AV60Trn_residentwwds_1_filterfulltext )
+                                             string AV62Trn_residentwwds_1_filterfulltext )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int5 = new short[10];
          Object[] GXv_Object6 = new Object[2];
          scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentEmail, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentGender, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
-         if ( AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
+         if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV61Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV62Trn_residentwwds_3_tfresidentgivenname)");
+            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV64Trn_residentwwds_3_tfresidentgivenname)");
          }
          else
          {
             GXv_int5[0] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV63Trn_residentwwds_4_tfresidentgivenname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV65Trn_residentwwds_4_tfresidentgivenname_sel))");
          }
          else
          {
             GXv_int5[1] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName like :lV64Trn_residentwwds_5_tfresidentlastname)");
+            AddWhere(sWhereString, "(T1.ResidentLastName like :lV66Trn_residentwwds_5_tfresidentlastname)");
          }
          else
          {
             GXv_int5[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV65Trn_residentwwds_6_tfresidentlastname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV67Trn_residentwwds_6_tfresidentlastname_sel))");
          }
          else
          {
             GXv_int5[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentLastName))=0))");
          }
-         if ( AV66Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
+         if ( AV68Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV66Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV68Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail like :lV67Trn_residentwwds_8_tfresidentemail)");
+            AddWhere(sWhereString, "(T1.ResidentEmail like :lV69Trn_residentwwds_8_tfresidentemail)");
          }
          else
          {
             GXv_int5[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV68Trn_residentwwds_9_tfresidentemail_sel))");
+            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV70Trn_residentwwds_9_tfresidentemail_sel))");
          }
          else
          {
             GXv_int5[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone like :lV69Trn_residentwwds_10_tfresidentphone)");
+            AddWhere(sWhereString, "(T1.ResidentPhone like :lV71Trn_residentwwds_10_tfresidentphone)");
          }
          else
          {
             GXv_int5[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV70Trn_residentwwds_11_tfresidentphone_sel))");
+            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV72Trn_residentwwds_11_tfresidentphone_sel))");
          }
          else
          {
             GXv_int5[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentPhone))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV71Trn_residentwwds_12_tfresidenttypename)");
+            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV73Trn_residentwwds_12_tfresidenttypename)");
          }
          else
          {
             GXv_int5[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV72Trn_residentwwds_13_tfresidenttypename_sel))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV74Trn_residentwwds_13_tfresidenttypename_sel))");
          }
          else
          {
             GXv_int5[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
@@ -1562,138 +1562,138 @@ namespace GeneXus.Programs {
 
       protected Object[] conditional_P007B5( IGxContext context ,
                                              string A72ResidentSalutation ,
-                                             GxSimpleCollection<string> AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                             GxSimpleCollection<string> AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                              string A68ResidentGender ,
-                                             GxSimpleCollection<string> AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                             int AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
-                                             string AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                             string AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                             string AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                             string AV64Trn_residentwwds_5_tfresidentlastname ,
-                                             int AV66Trn_residentwwds_7_tfresidentgender_sels_Count ,
-                                             string AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                             string AV67Trn_residentwwds_8_tfresidentemail ,
-                                             string AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                             string AV69Trn_residentwwds_10_tfresidentphone ,
-                                             string AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                             string AV71Trn_residentwwds_12_tfresidenttypename ,
+                                             GxSimpleCollection<string> AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                             int AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
+                                             string AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                             string AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                             string AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                             string AV66Trn_residentwwds_5_tfresidentlastname ,
+                                             int AV68Trn_residentwwds_7_tfresidentgender_sels_Count ,
+                                             string AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                             string AV69Trn_residentwwds_8_tfresidentemail ,
+                                             string AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                             string AV71Trn_residentwwds_10_tfresidentphone ,
+                                             string AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                             string AV73Trn_residentwwds_12_tfresidenttypename ,
                                              string A64ResidentGivenName ,
                                              string A65ResidentLastName ,
                                              string A67ResidentEmail ,
                                              string A70ResidentPhone ,
                                              string A97ResidentTypeName ,
-                                             string AV60Trn_residentwwds_1_filterfulltext )
+                                             string AV62Trn_residentwwds_1_filterfulltext )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int7 = new short[10];
          Object[] GXv_Object8 = new Object[2];
          scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentPhone, T2.ResidentTypeName, T1.ResidentEmail, T1.ResidentGender, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
-         if ( AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
+         if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV61Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV62Trn_residentwwds_3_tfresidentgivenname)");
+            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV64Trn_residentwwds_3_tfresidentgivenname)");
          }
          else
          {
             GXv_int7[0] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV63Trn_residentwwds_4_tfresidentgivenname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV65Trn_residentwwds_4_tfresidentgivenname_sel))");
          }
          else
          {
             GXv_int7[1] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName like :lV64Trn_residentwwds_5_tfresidentlastname)");
+            AddWhere(sWhereString, "(T1.ResidentLastName like :lV66Trn_residentwwds_5_tfresidentlastname)");
          }
          else
          {
             GXv_int7[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV65Trn_residentwwds_6_tfresidentlastname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV67Trn_residentwwds_6_tfresidentlastname_sel))");
          }
          else
          {
             GXv_int7[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentLastName))=0))");
          }
-         if ( AV66Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
+         if ( AV68Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV66Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV68Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail like :lV67Trn_residentwwds_8_tfresidentemail)");
+            AddWhere(sWhereString, "(T1.ResidentEmail like :lV69Trn_residentwwds_8_tfresidentemail)");
          }
          else
          {
             GXv_int7[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV68Trn_residentwwds_9_tfresidentemail_sel))");
+            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV70Trn_residentwwds_9_tfresidentemail_sel))");
          }
          else
          {
             GXv_int7[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone like :lV69Trn_residentwwds_10_tfresidentphone)");
+            AddWhere(sWhereString, "(T1.ResidentPhone like :lV71Trn_residentwwds_10_tfresidentphone)");
          }
          else
          {
             GXv_int7[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV70Trn_residentwwds_11_tfresidentphone_sel))");
+            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV72Trn_residentwwds_11_tfresidentphone_sel))");
          }
          else
          {
             GXv_int7[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentPhone))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV71Trn_residentwwds_12_tfresidenttypename)");
+            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV73Trn_residentwwds_12_tfresidenttypename)");
          }
          else
          {
             GXv_int7[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV72Trn_residentwwds_13_tfresidenttypename_sel))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV74Trn_residentwwds_13_tfresidenttypename_sel))");
          }
          else
          {
             GXv_int7[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
@@ -1706,138 +1706,138 @@ namespace GeneXus.Programs {
 
       protected Object[] conditional_P007B6( IGxContext context ,
                                              string A72ResidentSalutation ,
-                                             GxSimpleCollection<string> AV61Trn_residentwwds_2_tfresidentsalutation_sels ,
+                                             GxSimpleCollection<string> AV63Trn_residentwwds_2_tfresidentsalutation_sels ,
                                              string A68ResidentGender ,
-                                             GxSimpleCollection<string> AV66Trn_residentwwds_7_tfresidentgender_sels ,
-                                             int AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
-                                             string AV63Trn_residentwwds_4_tfresidentgivenname_sel ,
-                                             string AV62Trn_residentwwds_3_tfresidentgivenname ,
-                                             string AV65Trn_residentwwds_6_tfresidentlastname_sel ,
-                                             string AV64Trn_residentwwds_5_tfresidentlastname ,
-                                             int AV66Trn_residentwwds_7_tfresidentgender_sels_Count ,
-                                             string AV68Trn_residentwwds_9_tfresidentemail_sel ,
-                                             string AV67Trn_residentwwds_8_tfresidentemail ,
-                                             string AV70Trn_residentwwds_11_tfresidentphone_sel ,
-                                             string AV69Trn_residentwwds_10_tfresidentphone ,
-                                             string AV72Trn_residentwwds_13_tfresidenttypename_sel ,
-                                             string AV71Trn_residentwwds_12_tfresidenttypename ,
+                                             GxSimpleCollection<string> AV68Trn_residentwwds_7_tfresidentgender_sels ,
+                                             int AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count ,
+                                             string AV65Trn_residentwwds_4_tfresidentgivenname_sel ,
+                                             string AV64Trn_residentwwds_3_tfresidentgivenname ,
+                                             string AV67Trn_residentwwds_6_tfresidentlastname_sel ,
+                                             string AV66Trn_residentwwds_5_tfresidentlastname ,
+                                             int AV68Trn_residentwwds_7_tfresidentgender_sels_Count ,
+                                             string AV70Trn_residentwwds_9_tfresidentemail_sel ,
+                                             string AV69Trn_residentwwds_8_tfresidentemail ,
+                                             string AV72Trn_residentwwds_11_tfresidentphone_sel ,
+                                             string AV71Trn_residentwwds_10_tfresidentphone ,
+                                             string AV74Trn_residentwwds_13_tfresidenttypename_sel ,
+                                             string AV73Trn_residentwwds_12_tfresidenttypename ,
                                              string A64ResidentGivenName ,
                                              string A65ResidentLastName ,
                                              string A67ResidentEmail ,
                                              string A70ResidentPhone ,
                                              string A97ResidentTypeName ,
-                                             string AV60Trn_residentwwds_1_filterfulltext )
+                                             string AV62Trn_residentwwds_1_filterfulltext )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
          short[] GXv_int9 = new short[10];
          Object[] GXv_Object10 = new Object[2];
          scmdbuf = "SELECT T1.ResidentTypeId, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentGender, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
-         if ( AV61Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
+         if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV61Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_residentwwds_3_tfresidentgivenname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_3_tfresidentgivenname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV62Trn_residentwwds_3_tfresidentgivenname)");
+            AddWhere(sWhereString, "(T1.ResidentGivenName like :lV64Trn_residentwwds_3_tfresidentgivenname)");
          }
          else
          {
             GXv_int9[0] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_4_tfresidentgivenname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV63Trn_residentwwds_4_tfresidentgivenname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentGivenName = ( :AV65Trn_residentwwds_4_tfresidentgivenname_sel))");
          }
          else
          {
             GXv_int9[1] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_residentwwds_4_tfresidentgivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentGivenName))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_residentwwds_5_tfresidentlastname)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_residentwwds_5_tfresidentlastname)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName like :lV64Trn_residentwwds_5_tfresidentlastname)");
+            AddWhere(sWhereString, "(T1.ResidentLastName like :lV66Trn_residentwwds_5_tfresidentlastname)");
          }
          else
          {
             GXv_int9[2] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_6_tfresidentlastname_sel)) && ! ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV65Trn_residentwwds_6_tfresidentlastname_sel))");
+            AddWhere(sWhereString, "(T1.ResidentLastName = ( :AV67Trn_residentwwds_6_tfresidentlastname_sel))");
          }
          else
          {
             GXv_int9[3] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV67Trn_residentwwds_6_tfresidentlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentLastName))=0))");
          }
-         if ( AV66Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
+         if ( AV68Trn_residentwwds_7_tfresidentgender_sels_Count > 0 )
          {
-            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV66Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
+            AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV68Trn_residentwwds_7_tfresidentgender_sels, "T1.ResidentGender IN (", ")")+")");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_residentwwds_8_tfresidentemail)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_8_tfresidentemail)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail like :lV67Trn_residentwwds_8_tfresidentemail)");
+            AddWhere(sWhereString, "(T1.ResidentEmail like :lV69Trn_residentwwds_8_tfresidentemail)");
          }
          else
          {
             GXv_int9[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_9_tfresidentemail_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV68Trn_residentwwds_9_tfresidentemail_sel))");
+            AddWhere(sWhereString, "(T1.ResidentEmail = ( :AV70Trn_residentwwds_9_tfresidentemail_sel))");
          }
          else
          {
             GXv_int9[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV68Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV70Trn_residentwwds_9_tfresidentemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentEmail))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_residentwwds_10_tfresidentphone)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_10_tfresidentphone)) ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone like :lV69Trn_residentwwds_10_tfresidentphone)");
+            AddWhere(sWhereString, "(T1.ResidentPhone like :lV71Trn_residentwwds_10_tfresidentphone)");
          }
          else
          {
             GXv_int9[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_11_tfresidentphone_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV70Trn_residentwwds_11_tfresidentphone_sel))");
+            AddWhere(sWhereString, "(T1.ResidentPhone = ( :AV72Trn_residentwwds_11_tfresidentphone_sel))");
          }
          else
          {
             GXv_int9[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV70Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_residentwwds_11_tfresidentphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.ResidentPhone))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_residentwwds_12_tfresidenttypename)) ) )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_residentwwds_12_tfresidenttypename)) ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV71Trn_residentwwds_12_tfresidenttypename)");
+            AddWhere(sWhereString, "(T2.ResidentTypeName like :lV73Trn_residentwwds_12_tfresidenttypename)");
          }
          else
          {
             GXv_int9[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_residentwwds_13_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
-            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV72Trn_residentwwds_13_tfresidenttypename_sel))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName = ( :AV74Trn_residentwwds_13_tfresidenttypename_sel))");
          }
          else
          {
             GXv_int9[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
@@ -1887,68 +1887,68 @@ namespace GeneXus.Programs {
        {
           Object[] prmP007B2;
           prmP007B2 = new Object[] {
-          new ParDef("lV62Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV63Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV64Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV65Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
-          new ParDef("AV70Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
-          new ParDef("lV71Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
+          new ParDef("lV64Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV65Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV66Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV67Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV69Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
+          new ParDef("AV70Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
+          new ParDef("AV72Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
+          new ParDef("lV73Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
           };
           Object[] prmP007B3;
           prmP007B3 = new Object[] {
-          new ParDef("lV62Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV63Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV64Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV65Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
-          new ParDef("AV70Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
-          new ParDef("lV71Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
+          new ParDef("lV64Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV65Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV66Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV67Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV69Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
+          new ParDef("AV70Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
+          new ParDef("AV72Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
+          new ParDef("lV73Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
           };
           Object[] prmP007B4;
           prmP007B4 = new Object[] {
-          new ParDef("lV62Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV63Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV64Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV65Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
-          new ParDef("AV70Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
-          new ParDef("lV71Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
+          new ParDef("lV64Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV65Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV66Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV67Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV69Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
+          new ParDef("AV70Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
+          new ParDef("AV72Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
+          new ParDef("lV73Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
           };
           Object[] prmP007B5;
           prmP007B5 = new Object[] {
-          new ParDef("lV62Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV63Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV64Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV65Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
-          new ParDef("AV70Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
-          new ParDef("lV71Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
+          new ParDef("lV64Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV65Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV66Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV67Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV69Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
+          new ParDef("AV70Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
+          new ParDef("AV72Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
+          new ParDef("lV73Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
           };
           Object[] prmP007B6;
           prmP007B6 = new Object[] {
-          new ParDef("lV62Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
-          new ParDef("AV63Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV64Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
-          new ParDef("AV65Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV67Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
-          new ParDef("AV68Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
-          new ParDef("lV69Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
-          new ParDef("AV70Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
-          new ParDef("lV71Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
-          new ParDef("AV72Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
+          new ParDef("lV64Trn_residentwwds_3_tfresidentgivenname",GXType.VarChar,100,0) ,
+          new ParDef("AV65Trn_residentwwds_4_tfresidentgivenname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV66Trn_residentwwds_5_tfresidentlastname",GXType.VarChar,100,0) ,
+          new ParDef("AV67Trn_residentwwds_6_tfresidentlastname_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV69Trn_residentwwds_8_tfresidentemail",GXType.VarChar,100,0) ,
+          new ParDef("AV70Trn_residentwwds_9_tfresidentemail_sel",GXType.VarChar,100,0) ,
+          new ParDef("lV71Trn_residentwwds_10_tfresidentphone",GXType.Char,20,0) ,
+          new ParDef("AV72Trn_residentwwds_11_tfresidentphone_sel",GXType.Char,20,0) ,
+          new ParDef("lV73Trn_residentwwds_12_tfresidenttypename",GXType.VarChar,100,0) ,
+          new ParDef("AV74Trn_residentwwds_13_tfresidenttypename_sel",GXType.VarChar,100,0)
           };
           def= new CursorDef[] {
               new CursorDef("P007B2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007B2,100, GxCacheFrequency.OFF ,true,false )

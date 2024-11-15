@@ -18,6 +18,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Col.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_CallToActionItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Country_SDT_CountryItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ErrorResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Location.cs" />

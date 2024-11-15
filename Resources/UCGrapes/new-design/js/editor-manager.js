@@ -24,159 +24,141 @@ class EditorManager {
 
   setDataManager(dataManager) {
     this.dataManager = dataManager;
-    console.log("this is data manager: ", this.dataManager);
   }
 
   init() {
     this.editor.on("load", () => {
-      console.log(this.toolsSection)
       this.toolsSection.resetPropertySection();
-      if (this.pageId === null) {
-        const existingFrame = this.editor
-          .getWrapper()
-          .find("#frame-container")[0];
-        if (!existingFrame) {
-          this.initialTemplate();
+    
+      // Define wrapper event handler setup as a separate function
+      const setupWrapperEvents = () => {
+        const wrapper = this.editor.getWrapper();
+        if (!wrapper || !wrapper.view || !wrapper.view.el) return;
+    
+        // Remove existing event listener if it exists
+        if (this.wrapperClickHandler) {
+          wrapper.view.el.removeEventListener("click", this.wrapperClickHandler);
         }
-      } else {
-        const projectData = localStorage.getItem(
-          `page-${this.getCurrentPageId()}`
-        );
-        if (projectData) {
-          try {
-            let parsedData = JSON.parse(projectData);
-
-            if (!parsedData.pages) {
-              parsedData = {
-                pages: [
-                  {
-                    component: parsedData,
-                    frames: [
-                      {
-                        component: parsedData,
-                      },
-                    ],
-                  },
-                ],
-              };
-            }
-
-            this.editor.loadProjectData(parsedData);
-
-            // Fetch and check PageIsContentPage before updating property section
-            this.dataManager
-              .getSinglePage(this.getCurrentPageId())
-              .then((pageData) => {
-                console.log("Page: ", pageData)
-                if (pageData.PageIsContentPage) {
-                  this.dataManager
-                    .getContentPageData(this.getCurrentPageId())
-                    .then((contentPageData) => {
-                      if (contentPageData) {
-                        console.log(
-                          "Product/Service details: ",
-                          contentPageData
-                        );
-                        this.initialContentPageTemplate(contentPageData);
-                        this.toolsSection.pageContentCtas(
-                          contentPageData.CallToActions
-                        );
-                      }
-                    })
-                    .catch((error) => {
-                      console.error("Error fetching page data:", error);
-                    });
-                  this.toolsSection.updatePropertySection();
-                }
-              });
-          } catch (error) {
-            console.log("Error loading data:" + error);
-            const message = this.currentLanguage.getTranslation(
-              "no_icon_selected_error_message"
-            );
-            const status = "error";
-            this.toolsSection.displayAlertMessage(message, status);
+    
+        // Define the event handler
+        this.wrapperClickHandler = (e) => {
+          const button = e.target.closest(".action-button");
+          if (!button) return;
+    
+          const templateWrapper = button.closest(".template-wrapper");
+          if (!templateWrapper) return;
+    
+          this.templateComponent = this.editor.Components.getById(
+            templateWrapper.id
+          );
+          if (!this.templateComponent) return;
+    
+          if (button.classList.contains("delete-button")) {
+            this.deleteTemplate(this.templateComponent);
+          } else if (button.classList.contains("add-button-bottom")) {
+            this.addTemplateBottom(this.templateComponent);
+          } else if (button.classList.contains("add-button-right")) {
+            this.addTemplateRight(this.templateComponent);
           }
-          console.log("Loaded saved template");
-        } else {
-          // Fetch data if no projectData in local storage
-          this.dataManager
-            .getSinglePage(this.getCurrentPageId())
-            .then((pageData) => {
-              if (pageData.length > 0) {
-                if (pageData.PageIsContentPage) {
-                  this.dataManager
-                    .getContentPageData(this.getCurrentPageId())
-                    .then((contentPageData) => {
-                      if (contentPageData) {
-                        console.log(
-                          "Product/Service details: ",
-                          contentPageData
-                        );
-                        this.initialContentPageTemplate(contentPageData);
-                        this.toolsSection.pageContentCtas(
-                          contentPageData.CallToActions
-                        );
-                      }
-                    })
-                    .catch((error) => {
-                      console.error("Error fetching page data:", error);
-                    });
-
-                  this.toolsSection.updatePropertySection();
-                } else {
-                  this.initialTemplate();
-                }
-
-                console.log("Loaded product service");
-              } else {
-                this.initialTemplate();
-              }
-            })
-            .catch((error) => {
-              console.error("Error fetching page data:", error);
-            });
-        }
-      }
-
-      const wrapper = this.editor.getWrapper();
-      wrapper.view.el.removeEventListener("click", this.wrapperClickHandler);
-
-      // Define the event handler as a separate function
-      this.wrapperClickHandler = (e) => {
-        const button = e.target.closest(".action-button");
-        if (!button) return;
-
-        const templateWrapper = button.closest(".template-wrapper");
-        if (!templateWrapper) return;
-
-        this.templateComponent = this.editor.Components.getById(
-          templateWrapper.id
-        );
-        if (!this.templateComponent) return;
-
-        if (button.classList.contains("delete-button")) {
-          this.deleteTemplate(this.templateComponent);
-        } else if (button.classList.contains("add-button-bottom")) {
-          this.addTemplateBottom(this.templateComponent);
-        } else if (button.classList.contains("add-button-right")) {
-          this.addTemplateRight(this.templateComponent);
-        }
+        };
+    
+        // Add the click event listener
+        wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
+    
+        // Set wrapper properties
+        wrapper.set({
+          selectable: false,
+          droppable: false,
+          resizable: {
+            handles: "e",
+          },
+        });
       };
-
-      // Add the click event listener once
-      wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
-
-      wrapper.set({
-        selectable: false,
-        droppable: false,
-        resizable: {
-          handles: "e",
-        },
-      });
-
-      this.rightClickEventHandler();
+    
+      // Fetch page data directly
+      this.dataManager
+        .getSinglePage(this.getCurrentPageId())
+        .then((pageData) => {
+          console.log('pageData', pageData)
+          if (pageData && pageData.PageGJSJson) {
+            
+            let parsedData;
+            try {
+              parsedData = JSON.parse(pageData.PageGJSJson);
+              if (!parsedData.pages) {
+                parsedData = {
+                  pages: [
+                    {
+                      component: parsedData,
+                      frames: [
+                        {
+                          component: parsedData,
+                        },
+                      ],
+                    },
+                  ],
+                };
+              }
+    
+              if (pageData.PageIsContentPage) {
+                this.dataManager
+                  .getContentPageData(this.getCurrentPageId())
+                  .then((contentPageData) => {
+                    if (contentPageData) {
+                      console.log(contentPageData.CallToActions)
+                      this.toolsSection.pageContentCtas(contentPageData.CallToActions);
+                    }
+                  })
+                  .catch((error) => {
+                    console.error("Error fetching content page data:", error);
+                  });
+                this.toolsSection.updatePropertySection();
+              }
+    
+              // Load project data and setup events after loading
+              console.log('parsedData', parsedData)
+              this.editor.loadProjectData(parsedData);
+              
+              // Setup wrapper events after project data is loaded
+              this.editor.once("load:components", () => {
+                setupWrapperEvents();
+              });
+    
+            } catch (error) {
+              const message = this.currentLanguage.getTranslation(
+                "no_icon_selected_error_message"
+              );
+              const status = "error";
+              this.toolsSection.displayAlertMessage(message, status);
+            }
+          } else if (pageData && pageData.PageIsContentPage) {
+            alert()
+            this.dataManager
+              .getContentPageData(this.getCurrentPageId())
+              .then((contentPageData) => {
+                if (contentPageData) {
+                  this.initialContentPageTemplate(contentPageData);
+                  this.toolsSection.pageContentCtas(contentPageData.CallToActions);
+                }
+              })
+              .catch((error) => {
+                console.error("Error fetching content page data:", error);
+              });
+            this.toolsSection.updatePropertySection();
+          } else {
+            this.initialTemplate();
+          }
+          
+          // Setup wrapper events after all operations
+          setupWrapperEvents();
+          this.rightClickEventHandler();
+        })
+        .catch((error) => {
+          console.error("Error fetching page data:", error);
+        });
+    
     });
+    
 
     this.editor.on("component:selected", (component) => {
       this.selectedTemplateWrapper = component.getEl();
@@ -235,6 +217,14 @@ class EditorManager {
       }
 
       this.toolsSection.updateTileProperties(this.editor);
+
+      // hide context menu if any
+      const contextMenu = document.getElementById("contextMenu");
+      
+      if (contextMenu) {
+        contextMenu.style.display = "none";
+      }
+
     });
 
     // Listen for component drag start and change the cursor
@@ -1070,7 +1060,6 @@ class EditorManager {
         });
       }
     } catch (error) {
-      console.log(error);
       const message = this.currentLanguage.getTranslation(
         "failed_to_save_current_page_message"
       );
@@ -1139,9 +1128,8 @@ class EditorManager {
           component.setStyle({
             "background-image": "",
           });
-          console.log("Background image removed from component:", component);
         } else {
-          console.log("Component not found for the block.");
+          console.error("Component not found for the block.");
         }
 
         hideContextMenu();

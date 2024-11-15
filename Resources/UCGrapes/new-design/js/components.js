@@ -68,7 +68,6 @@ class ActionListComponent {
         });
 
         this.populateDropdownMenu();
-        console.log("Updated category data:", this.categoryData);
       })
       .catch((error) => {
         console.error("Error fetching pages:", error);
@@ -256,7 +255,6 @@ class ActionListComponent {
     this.dataManager.createContentPage(pageId).then(res=>{
       this.dataManager.getPages().then(pages=>{
         let treePages = pages.map(page=>{return {Id:page.PageId, Name:page.PageName}})
-        console.log(self.toolBoxManager)
         const newTree = self.toolBoxManager.mappingComponent.createTree(treePages, true); // Set isRoot to true if it's the root
         self.toolBoxManager.mappingComponent.treeContainer.appendChild(newTree);
       })
@@ -266,127 +264,201 @@ class ActionListComponent {
 
 class MappingComponent {
   treeContainer = document.getElementById("tree-container");
+  isLoading = false;
 
   constructor(dataManager, editorManager, toolBoxManager) {
     this.dataManager = dataManager;
     this.editorManager = editorManager;
     this.toolBoxManager = toolBoxManager;
+    this.boundCreatePage = this.handleCreatePage.bind(this);
   }
 
   init() {
-    this.clearMappings();
+    this.setupEventListeners();
     this.loadPageTree();
+  }
 
+  setupEventListeners() {
     const createPageButton = document.getElementById("page-submit");
     const pageInput = document.getElementById("page-title");
 
-    // Enable/Disable create button based on input
+    createPageButton.removeEventListener("click", this.boundCreatePage);
+    
     pageInput.addEventListener("input", () => {
-      createPageButton.disabled = !pageInput.value.trim();
+      createPageButton.disabled = !pageInput.value.trim() || this.isLoading;
     });
 
-    // Create new page
-    createPageButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      this.handleCreatePage(pageInput, createPageButton);
-    });
+    createPageButton.addEventListener("click", this.boundCreatePage);
   }
 
-  loadPageTree() {
-    this.dataManager
-      .getPagesService()
-      .then((pages) => {
-        this.treeContainer.appendChild(this.createTree(pages, true));
-      })
-      .catch((error) => {
-        console.error("Error fetching pages:", error);
-      });
+  async loadPageTree() {
+    if (this.isLoading) return;
+    
+    try {
+      this.isLoading = true;
+      const pages = await this.dataManager.getPagesService();
+      this.clearMappings();
+      this.treeContainer.appendChild(this.createTree(pages, true));
+    } catch (error) {
+      console.error("Error fetching pages:", error);
+      this.displayMessage("Error loading pages", "error");
+    } finally {
+      this.isLoading = false;
+    }
   }
 
-  handleCreatePage(pageInput, createPageButton) {
+  async handleCreatePage(e) {
+    e.preventDefault();
+    
+    if (this.isLoading) return;
+    
+    const pageInput = document.getElementById("page-title");
+    const createPageButton = document.getElementById("page-submit");
     const pageTitle = pageInput.value.trim();
-    if (pageTitle) {
-      createPageButton.disabled = true;
-      this.dataManager.createNewPage(pageTitle).then((res) => {
-        pageInput.value = "";
 
-        // Refresh the tree
-        this.clearMappings();
-        this.loadPageTree();
-      });
+    if (!pageTitle) return;
+
+    try {
+      this.isLoading = true;
+      createPageButton.disabled = true;
+      pageInput.disabled = true;  // Disable input during creation
+      
+      // Create the page
+      await this.dataManager.createNewPage(pageTitle);
+      
+      // Clear input
+      pageInput.value = "";
+      
+      // First clear the tree
+      this.clearMappings();
+      
+      // Then reload the pages and rebuild the tree
+      const pages = await this.dataManager.getPagesService();
+      this.treeContainer.appendChild(this.createTree(pages, true));
+      
+      // this.displayMessage(`Page "${pageTitle}" created successfully`, "success");
+    } catch (error) {
+      console.error("Error creating page:", error);
+      this.displayMessage("Error creating page", "error");
+    } finally {
+      this.isLoading = false;
+      createPageButton.disabled = !pageInput.value.trim();
+      pageInput.disabled = false;  // Re-enable input
     }
   }
 
   clearMappings() {
-    this.treeContainer.innerHTML = ""; // Clear previous mappings
+    while (this.treeContainer.firstChild) {
+      this.treeContainer.removeChild(this.treeContainer.firstChild);
+    }
   }
 
   createTree(data, isRoot = false) {
-    // Sort the data so that "Home" is always first
-    data.sort((a, b) => (a.Name === "Home" ? -1 : b.Name === "Home" ? 1 : 0));
+    // Create a deep copy to avoid modifying original data
+    const sortedData = JSON.parse(JSON.stringify(data)).sort((a, b) => 
+      a.Name === "Home" ? -1 : b.Name === "Home" ? 1 : 0
+    );
+
     const ul = document.createElement("ul");
     if (!isRoot) ul.style.display = "block";
 
-    data.forEach((item) => {
+    sortedData.forEach((item) => {
       const li = document.createElement("li");
       const span = document.createElement("span");
-      span.textContent = item.Name;
+      
+      // Create text node instead of using textContent to prevent XSS
+      span.appendChild(document.createTextNode(item.Name));
       span.id = item.Id;
       li.appendChild(span);
       li.className = this.checkActivePage(item.Id) ? "selected-page" : "";
       span.title = item.Id;
 
-      if (item.Children && item.Children.length > 0) {
-        const childrenContainer = this.createTree(item.Children); // Recursively create children
+      if (item.Children?.length > 0) {
+        const childrenContainer = this.createTree(item.Children);
         li.appendChild(childrenContainer);
 
-        let childToggle = document.createElement("span");
-        childToggle.textContent = " + ";
+        const childToggle = document.createElement("span");
+        childToggle.appendChild(document.createTextNode(" + "));
         span.style.cursor = "pointer";
 
-        childToggle.onclick = () => {
-          childrenContainer.style.display =
-            childrenContainer.style.display === "none" ? "block" : "none";
-          childToggle.textContent =
-            childrenContainer.style.display === "none" ? " + " : " - ";
+        // Use a single bound click handler
+        const toggleChildren = (e) => {
+          e.stopPropagation();
+          const isHidden = childrenContainer.style.display === "none";
+          childrenContainer.style.display = isHidden ? "block" : "none";
+          childToggle.textContent = isHidden ? " - " : " + ";
         };
 
+        childToggle.onclick = toggleChildren;
         span.appendChild(childToggle);
+      } else {
+        // Add trash icon for items without children
+          const trashIcon = document.createElement("i");
+          trashIcon.className = "fa fa-trash delete-tree-item";
+          trashIcon.style.marginLeft = "30px";
+          trashIcon.style.cursor = "pointer";
+          trashIcon.style.opacity = 0;
+          
+          // Add click handler for trash icon
+          trashIcon.onclick = (e) => {
+              e.stopPropagation();
+          };
+          
+          span.appendChild(trashIcon);
       }
 
-      span.onclick = () => this.handlePageSelection(item, span);
+      // Bind the click handler with proper context
+      span.onclick = (e) => {
+        e.stopPropagation();
+        if (!this.isLoading) {
+          this.handlePageSelection(item, span);
+        }
+      };
+
       ul.appendChild(li);
     });
 
     return ul;
   }
 
-  handlePageSelection(item, span) {
-    this.editorManager.setCurrentPageName(item.Name);
-    this.editorManager.setCurrentPageId(item.Id);
+  async handlePageSelection(item, span) {
+    if (this.isLoading) return;
+    
+    try {
+      this.isLoading = true;
+      
+      this.editorManager.setCurrentPageName(item.Name);
+      this.editorManager.setCurrentPageId(item.Id);
 
-    let page = this.dataManager.pages.find(page => page.PageId === item.Id);
-    this.editorManager.setCurrentPage(page);
+      const page = this.dataManager.pages.find(page => page.PageId === item.Id);
+      this.editorManager.setCurrentPage(page);
 
-    const editor = this.editorManager.editor;
-    editor.DomComponents.clear();
-    this.editorManager.templateComponent = null;
-    editor.trigger("load");
+      const editor = this.editorManager.editor;
+      editor.DomComponents.clear();
+      this.editorManager.templateComponent = null;
+      editor.trigger("load");
 
-    document.querySelectorAll(".selected-page").forEach((el) => {
-      el.classList.remove("selected-page");
-    });
+      // Update UI
+      document.querySelectorAll(".selected-page").forEach(el => {
+        el.classList.remove("selected-page");
+      });
 
-    span.closest("li").classList.add("selected-page");
-    const mainPage = document.getElementById("current-page-title");
-    mainPage.textContent = this.updateActivePageName();
+      span.closest("li").classList.add("selected-page");
+      
+      const mainPage = document.getElementById("current-page-title");
+      mainPage.textContent = this.updateActivePageName();
 
-    this.displayMessage(`${item.Name} Page loaded successfully`, "success");
+      this.displayMessage(`${item.Name} Page loaded successfully`, "success");
+    } catch (error) {
+      console.error("Error selecting page:", error);
+      this.displayMessage("Error loading page", "error");
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   checkActivePage(id) {
-    const pageId = localStorage.getItem("pageId");
-    return pageId === id;
+    return localStorage.getItem("pageId") === id;
   }
 
   updateActivePageName() {
@@ -657,8 +729,6 @@ class MediaComponent {
         statusIcon.innerHTML = "⚠";
         statusIcon.style.color = "red";
     }
-
-    console.log(fileItem)
 
     fileInfo.appendChild(fileName);
     fileInfo.appendChild(fileSize);

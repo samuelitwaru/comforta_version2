@@ -143,6 +143,7 @@ namespace GeneXus.Programs {
          AV8BC_Trn_Page.gxTpr_Locationid = AV20LocationId;
          AV8BC_Trn_Page.gxTpr_Organisationid = AV21OrganisationId;
          AV8BC_Trn_Page.Save();
+         new prc_logtofile(context ).execute(  context.GetMessage( "Something", "")) ;
          if ( AV8BC_Trn_Page.Success() )
          {
             context.CommitDataStores("prc_createpage",pr_default);

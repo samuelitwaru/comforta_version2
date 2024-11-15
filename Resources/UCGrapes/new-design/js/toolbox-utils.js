@@ -37,6 +37,7 @@ function nestPages(pages) {
 }
 
 function mapTemplateToPageData(templateData) {
+  console.log(templateData)
   // Helper function to generate UUID
   function generateUUID() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(

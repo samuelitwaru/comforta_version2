@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241114060012"
+  version: "20241115085717"
 servers:
-  - url: https://staging.comforta.yukon.software//rest
+  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
   /Trn_AuditLoadDVCombo:
     post:
@@ -1048,7 +1048,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
   schemas:
@@ -1737,6 +1737,18 @@ components:
         AgendaCalendarAllDay:
           description: "Agenda Calendar All Day"
           type: "boolean"
+        AgendaCalendarType:
+          description: "Agenda Calendar Type"
+          type: "string"
+        AgendaCalendarRecurring:
+          description: "Agenda Calendar Recurring"
+          type: "boolean"
+        AgendaCalendarRecurringType:
+          description: "Agenda Calendar Recurring Type"
+          type: "string"
+        AgendaCalendarAddRSVP:
+          description: "Agenda Calendar Add RSVP"
+          type: "boolean"
         LocationId:
           description: "Location Id"
           type: "string"
@@ -1857,10 +1869,29 @@ components:
           description: "Product Service Description"
           type: "string"
         CallToAction:
-          description: "SDT_Call To Action"
           type: array
           items:
-            $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
+            description: CallToActionItem
+            $ref: "#/components/schemas/SDT_ContentPage.CallToAction_CallToActionItem"
+    SDT_ContentPage.CallToAction_CallToActionItem:
+      properties:
+        CallToActionId:
+          description: "Call To Action Id"
+          type: "string"
+          format: "uuid"
+        CallToActionName:
+          description: "Call To Action Name"
+          type: "string"
+        CallToActionPhone:
+          description: "Call To Action Phone"
+          type: "string"
+        CallToActionUrl:
+          description: "Call To Action Url"
+          type: "string"
+        CallToActionEmail:
+          description: "Call To Action Email"
+          type: "string"
+      x-gx-level: "SDT_ContentPage"
     SDT_Location:
       properties:
         LocationId:

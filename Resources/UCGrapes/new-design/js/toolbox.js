@@ -31,7 +31,6 @@ class ToolBoxManager {
       pages.forEach((page) => {
         if (page.PageName === "Home") {
           this.editorManager.pageId = page.PageId;
-          console.log(page);
           this.editorManager.setCurrentPage(page);
           this.editorManager.editor.trigger("load");
         }
@@ -101,6 +100,7 @@ class ToolBoxManager {
     publishButton.onclick = (e) => {
       e.preventDefault();
       let projectData = this.editorManager.editor.getProjectData();
+      console.log('publish Button Clicked', this.editorManager.editor.getProjectData())
       let htmlData = this.editorManager.editor.getHtml();
       let jsonData = mapTemplateToPageData(projectData);
 
@@ -114,7 +114,6 @@ class ToolBoxManager {
           SDT_Page: jsonData,
           PageIsPublished: true,
         };
-        console.log(data);
         this.dataManager.updatePage(data).then((res) => {
           this.displayAlertMessage("Page Save Successfully", "success");
         });
@@ -184,7 +183,6 @@ class ToolBoxManager {
         const templateBlock = this.editorManager.editor
           .getSelected()
           .find(".tile-icon-section")[0];
-        console.log("clicked");
         if (templateBlock) {
           templateBlock.setStyle({
             display: "flex",
@@ -327,7 +325,6 @@ class ToolBoxManager {
     // TODO: Apply theme attribute to json out output (research on editor methods to do this)
     let wrapper = this.editorManager.editor.getWrapper();
     wrapper.addAttributes({ theme: theme.name });
-    console.log("Theme is: ", theme);
     this.icons = theme.icons.map((icon) => {
       return {
         name: icon.IconName,
@@ -603,7 +600,7 @@ class ToolBoxManager {
           case "Phone":
             iconHtml = '<i class="fa fa-phone-volume"></i>';
             const phoneComponent = `
-            <div class="cta-container-child">
+            <div class="cta-container-child cta-child" ${defaultConstraints}>
               <div class="cta-button" ${defaultConstraints}>
                 <i class="fas fa-phone-alt" ${defaultConstraints}></i>
                 <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
@@ -619,7 +616,6 @@ class ToolBoxManager {
 
               if (websiteLinkComponent) {
                 websiteLinkComponent.append(phoneComponent);
-                // this.setAttributeToSelected("tile-icon", icon.svg);
               }
             };
             break;
@@ -627,7 +623,7 @@ class ToolBoxManager {
           case "Email":
             iconHtml = '<i class="fa fa-envelope"></i>';
             const emailComponent = `
-          <div class="cta-container-child">
+          <div class="cta-container-child cta-child" ${defaultConstraints}>
             <div class="cta-button" ${defaultConstraints}>
               <i class="fas fa-envelope" ${defaultConstraints}></i>
               <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
@@ -643,7 +639,6 @@ class ToolBoxManager {
 
               if (websiteLinkComponent) {
                 websiteLinkComponent.append(emailComponent);
-                // this.setAttributeToSelected("tile-icon", icon.svg);
               }
             };
             break;
@@ -651,36 +646,14 @@ class ToolBoxManager {
           case "SiteUrl":
             iconHtml = '<i class="fa fa-link"></i>';
             const linkComponent = `
-              <div
-                class="container-row"
-                data-gjs-type="template-wrapper"
-                data-gjs-draggable="true"
-                data-gjs-selectable="false"
-                data-gjs-editable="false"
-                data-gjs-droppable="false"
-                data-gjs-highlightable="true"
-                data-gjs-hoverable="true"
-              >
-                <div
-                  class="template-wrapper"
-                  data-gjs-type="template-wrapper"
-                  data-gjs-draggable="false"
-                  data-gjs-selectable="false"
-                  data-gjs-editable="false"
-                  data-gjs-droppable="false"
-                  data-gjs-highlightable="true"
-                  data-gjs-hoverable="true"
-                  style="display: flex; width: 100%"
-                >
-                  <div
-                    class=""
-                    ${defaultConstraints}
-                    style="flex: 1; padding: 0; height: auto"
-                  >
-                    <div class="cta-button-container" ${defaultConstraints}>
+              <div class="container-row" ${defaultConstraints}>
+                <div class="template-wrapper" ${defaultConstraints} style="display: flex; width: 100%">
+                  <div class="" ${defaultConstraints} style="flex: 1; padding: 0; height: auto">
+                    <div class="cta-button-container cta-child" ${defaultConstraints}>
                       <button class="cta-main-button" ${defaultConstraints} data-gjs-selectable="true">
                       ${cta.CallToActionName}
                       </button>
+                      <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
                     </div>
                   </div>
                 </div>
@@ -688,14 +661,12 @@ class ToolBoxManager {
             `;
             ctaItem.onclick = (e) => {
               e.preventDefault();
-
               const websiteLinkComponent = this.editorManager.editor
                 .getWrapper()
                 .find(".container-column")[0];
 
               if (websiteLinkComponent) {
                 websiteLinkComponent.append(linkComponent);
-                // this.setAttributeToSelected("tile-icon", icon.svg);
               }
             };
             break;
@@ -703,36 +674,14 @@ class ToolBoxManager {
           case "Form":
             iconHtml = '<i class="fa fa-file"></i>';
             const formComponent = `
-              <div
-                class="container-row"
-                data-gjs-type="template-wrapper"
-                data-gjs-draggable="true"
-                data-gjs-selectable="false"
-                data-gjs-editable="false"
-                data-gjs-droppable="false"
-                data-gjs-highlightable="true"
-                data-gjs-hoverable="true"
-              >
-                <div
-                  class="template-wrapper"
-                  data-gjs-type="template-wrapper"
-                  data-gjs-draggable="false"
-                  data-gjs-selectable="false"
-                  data-gjs-editable="false"
-                  data-gjs-droppable="false"
-                  data-gjs-highlightable="true"
-                  data-gjs-hoverable="true"
-                  style="display: flex; width: 100%"
-                >
-                  <div
-                    class=""
-                    ${defaultConstraints}
-                    style="flex: 1; padding: 0; height: auto"
-                  >
-                    <div class="cta-button-container" ${defaultConstraints}>
+              <div class="container-row" ${defaultConstraints}>
+                <div class="template-wrapper" ${defaultConstraints} style="display: flex; width: 100%">
+                  <div class="" ${defaultConstraints} style="flex: 1; padding: 0; height: auto">
+                    <div class="cta-button-container cta-child" ${defaultConstraints}>
                       <button class="cta-main-button" ${defaultConstraints} data-gjs-selectable="true">
                       ${cta.CallToActionName}
                       </button>
+                      <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
                     </div>
                   </div>
                 </div>
@@ -746,7 +695,6 @@ class ToolBoxManager {
 
               if (websiteLinkComponent) {
                 websiteLinkComponent.append(formComponent);
-                // this.setAttributeToSelected("tile-icon", icon.svg);
               }
             };
             break;
@@ -755,18 +703,41 @@ class ToolBoxManager {
             iconHtml = '<i class="fa fa-question"></i>';
             ctaItem.onclick = (e) => {
               e.preventDefault();
-              console.log(`Unknown action type for ${cta.CallToActionName}`);
+              console.error(`Unknown action type for ${cta.CallToActionName}`);
             };
         }
 
         ctaItem.innerHTML = `${iconHtml}`;
-
-        // Append to the container
         contentPageCtas.appendChild(ctaItem);
       });
     };
 
     renderCtas();
+
+    // Use event delegation for handling badge clicks
+    const wrapper = this.editorManager.editor.getWrapper();
+    wrapper.view.el.addEventListener("click", (e) => {
+      // Check if the clicked element or its parent is a badge
+      const badge = e.target.closest(".cta-badge");
+      if (badge) {
+        e.stopPropagation(); // Prevent the click from triggering parent handlers
+        const container = badge.closest(".cta-child");
+        if (container) {
+          // Find the component using GrapesJS API
+          const component = this.editorManager.editor
+            .getComponents()
+            .filter((comp) => {
+              return comp.view.el === container;
+            })[0];
+
+          if (component) {
+            component.remove();
+          } else {
+            container.remove();
+          }
+        }
+      }
+    });
   }
 
   setupColorRadios(radioGroup, colorValues, type) {

@@ -83,8 +83,6 @@ class Locale {
   }
 
   setLanguage() {
-    console.log(`Setting translation to: ${this.currentLanguage}`);
-
     const elementsToTranslate = [
       "navbar_title",
       "navbar_tree_label",
