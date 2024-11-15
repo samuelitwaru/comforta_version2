@@ -132,7 +132,6 @@ class EditorManager {
               this.toolsSection.displayAlertMessage(message, status);
             }
           } else if (pageData && pageData.PageIsContentPage) {
-            alert()
             this.dataManager
               .getContentPageData(this.getCurrentPageId())
               .then((contentPageData) => {
