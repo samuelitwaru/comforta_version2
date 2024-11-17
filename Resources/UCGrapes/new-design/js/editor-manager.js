@@ -28,31 +28,35 @@ class EditorManager {
 
   init() {
     this.editor.on("load", () => {
+      
       this.toolsSection.resetPropertySection();
-    
+
       // Define wrapper event handler setup as a separate function
       const setupWrapperEvents = () => {
         const wrapper = this.editor.getWrapper();
         if (!wrapper || !wrapper.view || !wrapper.view.el) return;
-    
+
         // Remove existing event listener if it exists
         if (this.wrapperClickHandler) {
-          wrapper.view.el.removeEventListener("click", this.wrapperClickHandler);
+          wrapper.view.el.removeEventListener(
+            "click",
+            this.wrapperClickHandler
+          );
         }
-    
+
         // Define the event handler
         this.wrapperClickHandler = (e) => {
           const button = e.target.closest(".action-button");
           if (!button) return;
-    
+
           const templateWrapper = button.closest(".template-wrapper");
           if (!templateWrapper) return;
-    
+
           this.templateComponent = this.editor.Components.getById(
             templateWrapper.id
           );
           if (!this.templateComponent) return;
-    
+
           if (button.classList.contains("delete-button")) {
             this.deleteTemplate(this.templateComponent);
           } else if (button.classList.contains("add-button-bottom")) {
@@ -61,10 +65,10 @@ class EditorManager {
             this.addTemplateRight(this.templateComponent);
           }
         };
-    
+
         // Add the click event listener
         wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
-    
+
         // Set wrapper properties
         wrapper.set({
           selectable: false,
@@ -74,12 +78,12 @@ class EditorManager {
           },
         });
       };
-    
+
       // Fetch page data directly
       this.dataManager
         .getSinglePage(this.getCurrentPageId())
         .then((pageData) => {
-          console.log('pageData', pageData)
+          console.log("Page Data is: ", pageData);
           if (pageData && pageData.PageGJSJson) {
             
             let parsedData;
@@ -99,14 +103,15 @@ class EditorManager {
                   ],
                 };
               }
-    
+
               if (pageData.PageIsContentPage) {
                 this.dataManager
                   .getContentPageData(this.getCurrentPageId())
                   .then((contentPageData) => {
                     if (contentPageData) {
-                      console.log(contentPageData.CallToActions)
-                      this.toolsSection.pageContentCtas(contentPageData.CallToActions);
+                      this.toolsSection.pageContentCtas(
+                        contentPageData.CallToActions
+                      );
                     }
                   })
                   .catch((error) => {
@@ -114,16 +119,15 @@ class EditorManager {
                   });
                 this.toolsSection.updatePropertySection();
               }
-    
+
               // Load project data and setup events after loading
               console.log('parsedData', parsedData)
               this.editor.loadProjectData(parsedData);
-              
+
               // Setup wrapper events after project data is loaded
               this.editor.once("load:components", () => {
                 setupWrapperEvents();
               });
-    
             } catch (error) {
               const message = this.currentLanguage.getTranslation(
                 "no_icon_selected_error_message"
@@ -137,7 +141,9 @@ class EditorManager {
               .then((contentPageData) => {
                 if (contentPageData) {
                   this.initialContentPageTemplate(contentPageData);
-                  this.toolsSection.pageContentCtas(contentPageData.CallToActions);
+                  this.toolsSection.pageContentCtas(
+                    contentPageData.CallToActions
+                  );
                 }
               })
               .catch((error) => {
@@ -147,7 +153,7 @@ class EditorManager {
           } else {
             this.initialTemplate();
           }
-          
+
           // Setup wrapper events after all operations
           setupWrapperEvents();
           this.rightClickEventHandler();
@@ -155,9 +161,7 @@ class EditorManager {
         .catch((error) => {
           console.error("Error fetching page data:", error);
         });
-    
     });
-    
 
     this.editor.on("component:selected", (component) => {
       this.selectedTemplateWrapper = component.getEl();
@@ -219,11 +223,10 @@ class EditorManager {
 
       // hide context menu if any
       const contextMenu = document.getElementById("contextMenu");
-      
+
       if (contextMenu) {
         contextMenu.style.display = "none";
       }
-
     });
 
     // Listen for component drag start and change the cursor
@@ -1042,7 +1045,22 @@ class EditorManager {
       const data = this.editor.getProjectData();
       localStorage.setItem(localStorageKey, JSON.stringify(data));
       let projectData = this.editor.getProjectData();
-      let pageData = mapTemplateToPageData(projectData);
+      let pageData;
+
+      
+      // this.dataManager
+      //   .getSinglePage(this.getCurrentPageId())
+      //   .then((page) => {
+      //     console.log("Page Data is: ", page);
+      //     if (page) {
+      //       if (page.PageIsContentPage) {
+      //         pageData = mapContentToPageData(projectData);
+      //       } else {
+
+      //       }
+      //     }
+      //   });
+      
       let pageId = this.getCurrentPageId();
       if (pageId) {
         let data = {

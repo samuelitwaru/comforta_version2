@@ -269,7 +269,7 @@ body {
 
 .cta-main-button {
   padding: 10px 20px;
-  background-color: #5A67D8;
+  background-color: #5068a8;
   color: white;
   border: none;
   border-radius: 20px;
@@ -314,7 +314,7 @@ body {
   position: relative;
   width: 80px;
   height: 80px;
-  background-color: #4CAF50; /* Green background */
+  background-color: #5068a8; /* Green background */
   border-radius: 50%; /* Makes it circular */
   display: flex;
   align-items: center;

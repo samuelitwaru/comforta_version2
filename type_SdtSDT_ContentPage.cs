@@ -32,10 +32,6 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtSDT_ContentPage_Pagename = "";
 
-			gxTv_SdtSDT_ContentPage_Productserviceimage = "";
-			gxTv_SdtSDT_ContentPage_Productserviceimage_gxi = "";
-			gxTv_SdtSDT_ContentPage_Productservicedescription = "";
-
 		}
 
 		public SdtSDT_ContentPage(IGxContext context)
@@ -63,44 +59,24 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("PageId", gxTpr_Pageid, false);
-
-
 			AddObjectProperty("PageName", gxTpr_Pagename, false);
 
 
-			AddObjectProperty("ProductServiceImage", gxTpr_Productserviceimage, false);
-			AddObjectProperty("ProductServiceImage_GXI", gxTpr_Productserviceimage_gxi, false);
+			AddObjectProperty("PageId", gxTpr_Pageid, false);
 
-
-
-			AddObjectProperty("ProductServiceDescription", gxTpr_Productservicedescription, false);
-
-			if (gxTv_SdtSDT_ContentPage_Calltoaction != null)
+			if (gxTv_SdtSDT_ContentPage_Content != null)
 			{
-				AddObjectProperty("CallToAction", gxTv_SdtSDT_ContentPage_Calltoaction, false);
+				AddObjectProperty("Content", gxTv_SdtSDT_ContentPage_Content, false);
+			}
+			if (gxTv_SdtSDT_ContentPage_Cta != null)
+			{
+				AddObjectProperty("Cta", gxTv_SdtSDT_ContentPage_Cta, false);
 			}
 			return;
 		}
 		#endregion
 
 		#region Properties
-
-		[SoapElement(ElementName="PageId")]
-		[XmlElement(ElementName="PageId")]
-		public Guid gxTpr_Pageid
-		{
-			get {
-				return gxTv_SdtSDT_ContentPage_Pageid; 
-			}
-			set {
-				gxTv_SdtSDT_ContentPage_Pageid = value;
-				SetDirty("Pageid");
-			}
-		}
-
-
-
 
 		[SoapElement(ElementName="PageName")]
 		[XmlElement(ElementName="PageName")]
@@ -118,83 +94,91 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="ProductServiceImage")]
-		[XmlElement(ElementName="ProductServiceImage")]
-		[GxUpload()]
-
-		public string gxTpr_Productserviceimage
+		[SoapElement(ElementName="PageId")]
+		[XmlElement(ElementName="PageId")]
+		public Guid gxTpr_Pageid
 		{
 			get {
-				return gxTv_SdtSDT_ContentPage_Productserviceimage; 
+				return gxTv_SdtSDT_ContentPage_Pageid; 
 			}
 			set {
-				gxTv_SdtSDT_ContentPage_Productserviceimage = value;
-				SetDirty("Productserviceimage");
-			}
-		}
-
-
-		[SoapElement(ElementName="ProductServiceImage_GXI" )]
-		[XmlElement(ElementName="ProductServiceImage_GXI" )]
-		public string gxTpr_Productserviceimage_gxi
-		{
-			get {
-				return gxTv_SdtSDT_ContentPage_Productserviceimage_gxi ;
-			}
-			set {
-				gxTv_SdtSDT_ContentPage_Productserviceimage_gxi = value;
-				SetDirty("Productserviceimage_gxi");
-			}
-		}
-
-		[SoapElement(ElementName="ProductServiceDescription")]
-		[XmlElement(ElementName="ProductServiceDescription")]
-		public string gxTpr_Productservicedescription
-		{
-			get {
-				return gxTv_SdtSDT_ContentPage_Productservicedescription; 
-			}
-			set {
-				gxTv_SdtSDT_ContentPage_Productservicedescription = value;
-				SetDirty("Productservicedescription");
+				gxTv_SdtSDT_ContentPage_Pageid = value;
+				SetDirty("Pageid");
 			}
 		}
 
 
 
 
-		[SoapElement(ElementName="CallToAction" )]
-		[XmlArray(ElementName="CallToAction"  )]
-		[XmlArrayItemAttribute(ElementName="CallToActionItem" , IsNullable=false )]
-		public GXBaseCollection<SdtSDT_ContentPage_CallToActionItem> gxTpr_Calltoaction
+		[SoapElement(ElementName="Content" )]
+		[XmlArray(ElementName="Content"  )]
+		[XmlArrayItemAttribute(ElementName="ContentItem" , IsNullable=false )]
+		public GXBaseCollection<SdtSDT_ContentPage_ContentItem> gxTpr_Content
 		{
 			get {
-				if ( gxTv_SdtSDT_ContentPage_Calltoaction == null )
+				if ( gxTv_SdtSDT_ContentPage_Content == null )
 				{
-					gxTv_SdtSDT_ContentPage_Calltoaction = new GXBaseCollection<SdtSDT_ContentPage_CallToActionItem>( context, "SDT_ContentPage.CallToActionItem", "");
+					gxTv_SdtSDT_ContentPage_Content = new GXBaseCollection<SdtSDT_ContentPage_ContentItem>( context, "SDT_ContentPage.ContentItem", "");
 				}
-				return gxTv_SdtSDT_ContentPage_Calltoaction;
+				return gxTv_SdtSDT_ContentPage_Content;
 			}
 			set {
-				gxTv_SdtSDT_ContentPage_Calltoaction_N = false;
-				gxTv_SdtSDT_ContentPage_Calltoaction = value;
-				SetDirty("Calltoaction");
+				gxTv_SdtSDT_ContentPage_Content_N = false;
+				gxTv_SdtSDT_ContentPage_Content = value;
+				SetDirty("Content");
 			}
 		}
 
-		public void gxTv_SdtSDT_ContentPage_Calltoaction_SetNull()
+		public void gxTv_SdtSDT_ContentPage_Content_SetNull()
 		{
-			gxTv_SdtSDT_ContentPage_Calltoaction_N = true;
-			gxTv_SdtSDT_ContentPage_Calltoaction = null;
+			gxTv_SdtSDT_ContentPage_Content_N = true;
+			gxTv_SdtSDT_ContentPage_Content = null;
 		}
 
-		public bool gxTv_SdtSDT_ContentPage_Calltoaction_IsNull()
+		public bool gxTv_SdtSDT_ContentPage_Content_IsNull()
 		{
-			return gxTv_SdtSDT_ContentPage_Calltoaction == null;
+			return gxTv_SdtSDT_ContentPage_Content == null;
 		}
-		public bool ShouldSerializegxTpr_Calltoaction_GxSimpleCollection_Json()
+		public bool ShouldSerializegxTpr_Content_GxSimpleCollection_Json()
 		{
-			return gxTv_SdtSDT_ContentPage_Calltoaction != null && gxTv_SdtSDT_ContentPage_Calltoaction.Count > 0;
+			return gxTv_SdtSDT_ContentPage_Content != null && gxTv_SdtSDT_ContentPage_Content.Count > 0;
+
+		}
+
+
+
+		[SoapElement(ElementName="Cta" )]
+		[XmlArray(ElementName="Cta"  )]
+		[XmlArrayItemAttribute(ElementName="CtaItem" , IsNullable=false )]
+		public GXBaseCollection<SdtSDT_ContentPage_CtaItem> gxTpr_Cta
+		{
+			get {
+				if ( gxTv_SdtSDT_ContentPage_Cta == null )
+				{
+					gxTv_SdtSDT_ContentPage_Cta = new GXBaseCollection<SdtSDT_ContentPage_CtaItem>( context, "SDT_ContentPage.CtaItem", "");
+				}
+				return gxTv_SdtSDT_ContentPage_Cta;
+			}
+			set {
+				gxTv_SdtSDT_ContentPage_Cta_N = false;
+				gxTv_SdtSDT_ContentPage_Cta = value;
+				SetDirty("Cta");
+			}
+		}
+
+		public void gxTv_SdtSDT_ContentPage_Cta_SetNull()
+		{
+			gxTv_SdtSDT_ContentPage_Cta_N = true;
+			gxTv_SdtSDT_ContentPage_Cta = null;
+		}
+
+		public bool gxTv_SdtSDT_ContentPage_Cta_IsNull()
+		{
+			return gxTv_SdtSDT_ContentPage_Cta == null;
+		}
+		public bool ShouldSerializegxTpr_Cta_GxSimpleCollection_Json()
+		{
+			return gxTv_SdtSDT_ContentPage_Cta != null && gxTv_SdtSDT_ContentPage_Cta.Count > 0;
 
 		}
 
@@ -221,10 +205,12 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtSDT_ContentPage_Pagename = "";
-			gxTv_SdtSDT_ContentPage_Productserviceimage = "";gxTv_SdtSDT_ContentPage_Productserviceimage_gxi = "";
-			gxTv_SdtSDT_ContentPage_Productservicedescription = "";
 
-			gxTv_SdtSDT_ContentPage_Calltoaction_N = true;
+
+			gxTv_SdtSDT_ContentPage_Content_N = true;
+
+
+			gxTv_SdtSDT_ContentPage_Cta_N = true;
 
 			return  ;
 		}
@@ -235,19 +221,16 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected Guid gxTv_SdtSDT_ContentPage_Pageid;
-		 
-
 		protected string gxTv_SdtSDT_ContentPage_Pagename;
 		 
-		protected string gxTv_SdtSDT_ContentPage_Productserviceimage_gxi;
-		protected string gxTv_SdtSDT_ContentPage_Productserviceimage;
-		 
 
-		protected string gxTv_SdtSDT_ContentPage_Productservicedescription;
+		protected Guid gxTv_SdtSDT_ContentPage_Pageid;
 		 
-		protected bool gxTv_SdtSDT_ContentPage_Calltoaction_N;
-		protected GXBaseCollection<SdtSDT_ContentPage_CallToActionItem> gxTv_SdtSDT_ContentPage_Calltoaction = null; 
+		protected bool gxTv_SdtSDT_ContentPage_Content_N;
+		protected GXBaseCollection<SdtSDT_ContentPage_ContentItem> gxTv_SdtSDT_ContentPage_Content = null; 
+
+		protected bool gxTv_SdtSDT_ContentPage_Cta_N;
+		protected GXBaseCollection<SdtSDT_ContentPage_CtaItem> gxTv_SdtSDT_ContentPage_Cta = null; 
 
 
 
@@ -267,19 +250,7 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="PageId", Order=0)]
-		public Guid gxTpr_Pageid
-		{
-			get { 
-				return sdt.gxTpr_Pageid;
-
-			}
-			set { 
-				sdt.gxTpr_Pageid = value;
-			}
-		}
-
-		[DataMember(Name="PageName", Order=1)]
+		[DataMember(Name="PageName", Order=0)]
 		public  string gxTpr_Pagename
 		{
 			get { 
@@ -291,43 +262,45 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ProductServiceImage", Order=2)]
-		[GxUpload()]
-		public  string gxTpr_Productserviceimage
+		[DataMember(Name="PageId", Order=1)]
+		public Guid gxTpr_Pageid
 		{
 			get { 
-				return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Productserviceimage)) ? PathUtil.RelativePath( sdt.gxTpr_Productserviceimage) : StringUtil.RTrim( sdt.gxTpr_Productserviceimage_gxi));
+				return sdt.gxTpr_Pageid;
 
 			}
 			set { 
-				 sdt.gxTpr_Productserviceimage = value;
+				sdt.gxTpr_Pageid = value;
 			}
 		}
 
-		[DataMember(Name="ProductServiceDescription", Order=3)]
-		public  string gxTpr_Productservicedescription
-		{
-			get { 
-				return sdt.gxTpr_Productservicedescription;
-
-			}
-			set { 
-				 sdt.gxTpr_Productservicedescription = value;
-			}
-		}
-
-		[DataMember(Name="CallToAction", Order=4, EmitDefaultValue=false)]
-		public GxGenericCollection<SdtSDT_ContentPage_CallToActionItem_RESTInterface> gxTpr_Calltoaction
+		[DataMember(Name="Content", Order=2, EmitDefaultValue=false)]
+		public GxGenericCollection<SdtSDT_ContentPage_ContentItem_RESTInterface> gxTpr_Content
 		{
 			get {
-				if (sdt.ShouldSerializegxTpr_Calltoaction_GxSimpleCollection_Json())
-					return new GxGenericCollection<SdtSDT_ContentPage_CallToActionItem_RESTInterface>(sdt.gxTpr_Calltoaction);
+				if (sdt.ShouldSerializegxTpr_Content_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtSDT_ContentPage_ContentItem_RESTInterface>(sdt.gxTpr_Content);
 				else
 					return null;
 
 			}
 			set {
-				value.LoadCollection(sdt.gxTpr_Calltoaction);
+				value.LoadCollection(sdt.gxTpr_Content);
+			}
+		}
+
+		[DataMember(Name="Cta", Order=3, EmitDefaultValue=false)]
+		public GxGenericCollection<SdtSDT_ContentPage_CtaItem_RESTInterface> gxTpr_Cta
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Cta_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtSDT_ContentPage_CtaItem_RESTInterface>(sdt.gxTpr_Cta);
+				else
+					return null;
+
+			}
+			set {
+				value.LoadCollection(sdt.gxTpr_Cta);
 			}
 		}
 

@@ -1,41 +1,3 @@
-function nestPages(pages) {
-    const pageMap = {};
-    const nestedPages = new Set();
-  
-    // Create a map for easy reference by PageId
-    pages.forEach(page => {
-      pageMap[page.PageId] = { id: page.PageId, name: page.PageName, children: [] };
-    });
-    // Function to recursively find and add nested pages
-    function addNestedPages(tile, parentPage) {
-      if (tile.ToPageId && pageMap[tile.ToPageId]) {
-        const nestedPage = pageMap[tile.ToPageId];
-        parentPage.children.push(nestedPage);
-        nestedPages.add(nestedPage.PageId);
-      }
-    }
-  
-    // Iterate over each page and find nested pages from the tiles
-    pages.forEach(page => {
-      if (page.Row) {
-        page.Row.forEach(row => {
-          if (row.Col){
-            row.Col.forEach(col => {
-              if (col.Tile) {
-                addNestedPages(col.Tile, pageMap[page.PageId]);
-              }
-            });
-          }
-        });
-      }
-    });
-  
-    // Filter out pages that are nested in other pages
-    const rootPages = pages.filter(page => !nestedPages.has(page.PageId));
-  
-    return rootPages.map(page => pageMap[page.PageId]);
-}
-
 function mapTemplateToPageData(templateData) {
   console.log(templateData)
   // Helper function to generate UUID
@@ -154,4 +116,88 @@ function mapTemplateToPageData(templateData) {
   });
   
   return pageData;
+}
+
+function mapContentToPageData(templateData) {
+  const page = templateData.pages[0];
+  const components =
+    page.frames[0].component.components[0].components[0].components;
+
+  const output = {
+    PageId: localStorage.getItem("pageId"),
+    PageName: localStorage.getItem("pageName"),
+    Content: [],
+    Cta: [],
+  };
+
+  // Find image and text content
+  components.forEach((component) => {
+    // Image content
+    const imageComponent =
+      component.components?.[0]?.components?.[0]?.components?.[0];
+    if (imageComponent?.type === "image") {
+      output.Content.push({
+        ContentType: "Image",
+        ContentValue: imageComponent?.attributes.src,
+      });
+    }
+
+    // Text content
+    const textComponent =
+      component.components?.[0]?.components?.[0]?.components?.[0];
+    if (textComponent?.tagName === "p") {
+      const textContent = textComponent.components?.[0]?.content?.trim();
+      if (textContent) {
+        output.Content.push({
+          ContentType: "Description",
+          ContentValue: textContent,
+        });
+      }
+    }
+
+    // CTA buttons
+    if (component.classes?.includes("cta-button-container")) {
+      const ctaChildren = component.components;
+      
+      ctaChildren.forEach((ctaChild) => {
+      const attributes = ctaChild.attributes || {};
+        if (ctaChild.classes?.includes("cta-container-child")) {
+          output.Cta.push({
+              CtaType: attributes["cta-button-type"],
+              CtaLabel: attributes["cta-button-label"] || "Email Us",
+              CtaAction: attributes["cta-button-action"],
+              CtaBGColor: attributes["cta-background-color"] || "#EEA622",
+          });
+        }
+      });
+    }
+
+    // Website CTA
+    const websiteButton =
+      component.components?.[0]?.components?.[0]?.components?.[0];
+      const websiteAttributes = websiteButton.attributes || {};
+    if (websiteButton?.classes?.includes("cta-url-button")) {
+      output.Cta.push({
+          CtaType: websiteAttributes["cta-button-type"],
+          CtaLabel: websiteAttributes["cta-button-label"] || "Email Us",
+          CtaAction: websiteAttributes["cta-button-action"],
+          CtaBGColor: websiteAttributes["cta-background-color"] || "#EEA622",
+      });
+    }
+
+    // Form CTA
+    const formButton =
+      component.components?.[0]?.components?.[0]?.components?.[0];
+      const formAttributes = websiteButton.attributes || {};
+    if (websiteButton?.classes?.includes("cta-form-button")) {
+      output.Cta.push({
+          CtaType: formAttributes["cta-button-type"],
+          CtaLabel: formAttributes["cta-button-label"] || "Fill Form",
+          CtaAction: formAttributes["cta-button-action"],
+          CtaBGColor: formAttributes["cta-background-color"] || "#EEA622",
+      });
+    }
+  });
+
+  return output;
 }

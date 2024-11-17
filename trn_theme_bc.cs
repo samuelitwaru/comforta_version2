@@ -335,13 +335,13 @@ namespace GeneXus.Programs {
 
       protected void ZM0W46( short GX_JID )
       {
-         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
          {
             Z248Trn_ThemeName = A248Trn_ThemeName;
             Z260Trn_ThemeFontFamily = A260Trn_ThemeFontFamily;
             Z399Trn_ThemeFontSize = A399Trn_ThemeFontSize;
          }
-         if ( GX_JID == -7 )
+         if ( GX_JID == -8 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z248Trn_ThemeName = A248Trn_ThemeName;
@@ -375,7 +375,7 @@ namespace GeneXus.Programs {
             A248Trn_ThemeName = BC000W8_A248Trn_ThemeName[0];
             A260Trn_ThemeFontFamily = BC000W8_A260Trn_ThemeFontFamily[0];
             A399Trn_ThemeFontSize = BC000W8_A399Trn_ThemeFontSize[0];
-            ZM0W46( -7) ;
+            ZM0W46( -8) ;
          }
          pr_default.close(6);
          OnLoadActions0W46( ) ;
@@ -419,7 +419,7 @@ namespace GeneXus.Programs {
          pr_default.execute(5, new Object[] {A247Trn_ThemeId});
          if ( (pr_default.getStatus(5) != 101) )
          {
-            ZM0W46( 7) ;
+            ZM0W46( 8) ;
             RcdFound46 = 1;
             A247Trn_ThemeId = BC000W7_A247Trn_ThemeId[0];
             A248Trn_ThemeName = BC000W7_A248Trn_ThemeName[0];
@@ -987,12 +987,12 @@ namespace GeneXus.Programs {
 
       protected void ZM0W87( short GX_JID )
       {
-         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
             Z443IconCategory = A443IconCategory;
             Z262IconName = A262IconName;
          }
-         if ( GX_JID == -8 )
+         if ( GX_JID == -9 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z261IconId = A261IconId;
@@ -1027,7 +1027,7 @@ namespace GeneXus.Programs {
             A443IconCategory = BC000W15_A443IconCategory[0];
             A262IconName = BC000W15_A262IconName[0];
             A263IconSVG = BC000W15_A263IconSVG[0];
-            ZM0W87( -8) ;
+            ZM0W87( -9) ;
          }
          pr_default.close(13);
          OnLoadActions0W87( ) ;
@@ -1042,6 +1042,11 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          standaloneModal0W87( ) ;
          Gx_BScreen = 0;
+         if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            AnyError = 1;
+         }
       }
 
       protected void CloseExtendedTableCursors0W87( )
@@ -1073,7 +1078,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A247Trn_ThemeId, A261IconId});
          if ( (pr_default.getStatus(3) != 101) )
          {
-            ZM0W87( 8) ;
+            ZM0W87( 9) ;
             RcdFound87 = 1;
             InitializeNonKey0W87( ) ;
             A261IconId = BC000W5_A261IconId[0];
@@ -1378,12 +1383,12 @@ namespace GeneXus.Programs {
 
       protected void ZM0W47( short GX_JID )
       {
-         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 10 ) || ( GX_JID == 0 ) )
          {
             Z250ColorName = A250ColorName;
             Z251ColorCode = A251ColorCode;
          }
-         if ( GX_JID == -9 )
+         if ( GX_JID == -10 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z249ColorId = A249ColorId;
@@ -1416,7 +1421,7 @@ namespace GeneXus.Programs {
             RcdFound47 = 1;
             A250ColorName = BC000W21_A250ColorName[0];
             A251ColorCode = BC000W21_A251ColorCode[0];
-            ZM0W47( -9) ;
+            ZM0W47( -10) ;
          }
          pr_default.close(19);
          OnLoadActions0W47( ) ;
@@ -1462,7 +1467,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A247Trn_ThemeId, A249ColorId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0W47( 9) ;
+            ZM0W47( 10) ;
             RcdFound47 = 1;
             InitializeNonKey0W47( ) ;
             A249ColorId = BC000W3_A249ColorId[0];
@@ -2008,7 +2013,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z247Trn_ThemeId = A247Trn_ThemeId;
          }
-         ZM0W46( -7) ;
+         ZM0W46( -8) ;
          OnLoadActions0W46( ) ;
          AddRow0W46( ) ;
          bcTrn_Theme.gxTpr_Icon.ClearCollection();
@@ -2020,7 +2025,7 @@ namespace GeneXus.Programs {
             {
                Z247Trn_ThemeId = A247Trn_ThemeId;
                Z261IconId = A261IconId;
-               ZM0W87( -8) ;
+               ZM0W87( -9) ;
                OnLoadActions0W87( ) ;
                nRcdExists_87 = 1;
                nIsMod_87 = 0;
@@ -2039,7 +2044,7 @@ namespace GeneXus.Programs {
             {
                Z247Trn_ThemeId = A247Trn_ThemeId;
                Z249ColorId = A249ColorId;
-               ZM0W47( -9) ;
+               ZM0W47( -10) ;
                OnLoadActions0W47( ) ;
                nRcdExists_47 = 1;
                nIsMod_47 = 0;
@@ -2075,7 +2080,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z247Trn_ThemeId = A247Trn_ThemeId;
          }
-         ZM0W46( -7) ;
+         ZM0W46( -8) ;
          OnLoadActions0W46( ) ;
          AddRow0W46( ) ;
          bcTrn_Theme.gxTpr_Icon.ClearCollection();
@@ -2087,7 +2092,7 @@ namespace GeneXus.Programs {
             {
                Z247Trn_ThemeId = A247Trn_ThemeId;
                Z261IconId = A261IconId;
-               ZM0W87( -8) ;
+               ZM0W87( -9) ;
                OnLoadActions0W87( ) ;
                nRcdExists_87 = 1;
                nIsMod_87 = 0;
@@ -2106,7 +2111,7 @@ namespace GeneXus.Programs {
             {
                Z247Trn_ThemeId = A247Trn_ThemeId;
                Z249ColorId = A249ColorId;
-               ZM0W47( -9) ;
+               ZM0W47( -10) ;
                OnLoadActions0W47( ) ;
                nRcdExists_47 = 1;
                nIsMod_47 = 0;
@@ -2691,8 +2696,6 @@ namespace GeneXus.Programs {
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
       private string sMode46 ;
-      private string Z443IconCategory ;
-      private string A443IconCategory ;
       private string sMode87 ;
       private string sMode47 ;
       private bool returnInSub ;
@@ -2702,6 +2705,8 @@ namespace GeneXus.Programs {
       private string A248Trn_ThemeName ;
       private string Z260Trn_ThemeFontFamily ;
       private string A260Trn_ThemeFontFamily ;
+      private string Z443IconCategory ;
+      private string A443IconCategory ;
       private string Z262IconName ;
       private string A262IconName ;
       private string Z250ColorName ;
@@ -2932,13 +2937,13 @@ namespace GeneXus.Programs {
         prmBC000W17 = new Object[] {
         new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("IconCategory",GXType.Char,20,0) ,
+        new ParDef("IconCategory",GXType.VarChar,40,0) ,
         new ParDef("IconName",GXType.VarChar,100,0) ,
         new ParDef("IconSVG",GXType.LongVarChar,2097152,0)
         };
         Object[] prmBC000W18;
         prmBC000W18 = new Object[] {
-        new ParDef("IconCategory",GXType.Char,20,0) ,
+        new ParDef("IconCategory",GXType.VarChar,40,0) ,
         new ParDef("IconName",GXType.VarChar,100,0) ,
         new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
         new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0) ,
@@ -3037,14 +3042,14 @@ namespace GeneXus.Programs {
            case 2 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
               ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
               return;
            case 3 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
               ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
               return;
@@ -3082,7 +3087,7 @@ namespace GeneXus.Programs {
            case 13 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
               ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
               return;
@@ -3093,7 +3098,7 @@ namespace GeneXus.Programs {
            case 18 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
               ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
               return;

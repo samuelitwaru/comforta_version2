@@ -505,6 +505,7 @@ li .selected-page::after {
   grid-template-columns: repeat(8, 1fr);
   gap: 0.4rem;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .call-to-action-item {

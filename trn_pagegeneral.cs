@@ -925,6 +925,7 @@ namespace GeneXus.Programs {
          if ( cmbPageIsContentPage.ItemCount > 0 )
          {
             A439PageIsContentPage = StringUtil.StrToBool( cmbPageIsContentPage.getValidValue(StringUtil.BoolToStr( A439PageIsContentPage)));
+            n439PageIsContentPage = false;
             AssignAttri(sPrefix, false, "A439PageIsContentPage", A439PageIsContentPage);
          }
          if ( context.isAjaxRequest( ) )
@@ -967,12 +968,16 @@ namespace GeneXus.Programs {
                n58ProductServiceId = H005N2_n58ProductServiceId[0];
                AssignAttri(sPrefix, false, "A58ProductServiceId", A58ProductServiceId.ToString());
                A439PageIsContentPage = H005N2_A439PageIsContentPage[0];
+               n439PageIsContentPage = H005N2_n439PageIsContentPage[0];
                AssignAttri(sPrefix, false, "A439PageIsContentPage", A439PageIsContentPage);
                A433PageGJSJson = H005N2_A433PageGJSJson[0];
+               n433PageGJSJson = H005N2_n433PageGJSJson[0];
                AssignAttri(sPrefix, false, "A433PageGJSJson", A433PageGJSJson);
                A432PageGJSHtml = H005N2_A432PageGJSHtml[0];
+               n432PageGJSHtml = H005N2_n432PageGJSHtml[0];
                AssignAttri(sPrefix, false, "A432PageGJSHtml", A432PageGJSHtml);
                A431PageJsonContent = H005N2_A431PageJsonContent[0];
+               n431PageJsonContent = H005N2_n431PageJsonContent[0];
                AssignAttri(sPrefix, false, "A431PageJsonContent", A431PageJsonContent);
                A318Trn_PageName = H005N2_A318Trn_PageName[0];
                AssignAttri(sPrefix, false, "A318Trn_PageName", A318Trn_PageName);
@@ -1035,13 +1040,17 @@ namespace GeneXus.Programs {
             A318Trn_PageName = cgiGet( edtTrn_PageName_Internalname);
             AssignAttri(sPrefix, false, "A318Trn_PageName", A318Trn_PageName);
             A431PageJsonContent = cgiGet( edtPageJsonContent_Internalname);
+            n431PageJsonContent = false;
             AssignAttri(sPrefix, false, "A431PageJsonContent", A431PageJsonContent);
             A432PageGJSHtml = cgiGet( edtPageGJSHtml_Internalname);
+            n432PageGJSHtml = false;
             AssignAttri(sPrefix, false, "A432PageGJSHtml", A432PageGJSHtml);
             A433PageGJSJson = cgiGet( edtPageGJSJson_Internalname);
+            n433PageGJSJson = false;
             AssignAttri(sPrefix, false, "A433PageGJSJson", A433PageGJSJson);
             cmbPageIsContentPage.CurrentValue = cgiGet( cmbPageIsContentPage_Internalname);
             A439PageIsContentPage = StringUtil.StrToBool( cgiGet( cmbPageIsContentPage_Internalname));
+            n439PageIsContentPage = false;
             AssignAttri(sPrefix, false, "A439PageIsContentPage", A439PageIsContentPage);
             A58ProductServiceId = StringUtil.StrToGuid( cgiGet( edtProductServiceId_Internalname));
             n58ProductServiceId = false;
@@ -1378,7 +1387,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411156371975", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411169523975", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1394,7 +1403,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_pagegeneral.js", "?202411156371975", false, true);
+         context.AddJavascriptSource("trn_pagegeneral.js", "?202411169523976", false, true);
          /* End function include_jscripts */
       }
 
@@ -1522,9 +1531,13 @@ namespace GeneXus.Programs {
          H005N2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          H005N2_n58ProductServiceId = new bool[] {false} ;
          H005N2_A439PageIsContentPage = new bool[] {false} ;
+         H005N2_n439PageIsContentPage = new bool[] {false} ;
          H005N2_A433PageGJSJson = new string[] {""} ;
+         H005N2_n433PageGJSJson = new bool[] {false} ;
          H005N2_A432PageGJSHtml = new string[] {""} ;
+         H005N2_n432PageGJSHtml = new bool[] {false} ;
          H005N2_A431PageJsonContent = new string[] {""} ;
+         H005N2_n431PageJsonContent = new bool[] {false} ;
          H005N2_A318Trn_PageName = new string[] {""} ;
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV8TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
@@ -1536,7 +1549,8 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_pagegeneral__default(),
             new Object[][] {
                 new Object[] {
-               H005N2_A310Trn_PageId, H005N2_A58ProductServiceId, H005N2_n58ProductServiceId, H005N2_A439PageIsContentPage, H005N2_A433PageGJSJson, H005N2_A432PageGJSHtml, H005N2_A431PageJsonContent, H005N2_A318Trn_PageName
+               H005N2_A310Trn_PageId, H005N2_A58ProductServiceId, H005N2_n58ProductServiceId, H005N2_A439PageIsContentPage, H005N2_n439PageIsContentPage, H005N2_A433PageGJSJson, H005N2_n433PageGJSJson, H005N2_A432PageGJSHtml, H005N2_n432PageGJSHtml, H005N2_A431PageJsonContent,
+               H005N2_n431PageJsonContent, H005N2_A318Trn_PageName
                }
             }
          );
@@ -1612,8 +1626,12 @@ namespace GeneXus.Programs {
       private bool A439PageIsContentPage ;
       private bool Rfr0gs ;
       private bool wbErr ;
+      private bool n439PageIsContentPage ;
       private bool gxdyncontrolsrefreshing ;
       private bool n58ProductServiceId ;
+      private bool n433PageGJSJson ;
+      private bool n432PageGJSHtml ;
+      private bool n431PageJsonContent ;
       private bool returnInSub ;
       private bool GXt_boolean1 ;
       private string A431PageJsonContent ;
@@ -1634,9 +1652,13 @@ namespace GeneXus.Programs {
       private Guid[] H005N2_A58ProductServiceId ;
       private bool[] H005N2_n58ProductServiceId ;
       private bool[] H005N2_A439PageIsContentPage ;
+      private bool[] H005N2_n439PageIsContentPage ;
       private string[] H005N2_A433PageGJSJson ;
+      private bool[] H005N2_n433PageGJSJson ;
       private string[] H005N2_A432PageGJSHtml ;
+      private bool[] H005N2_n432PageGJSHtml ;
       private string[] H005N2_A431PageJsonContent ;
+      private bool[] H005N2_n431PageJsonContent ;
       private string[] H005N2_A318Trn_PageName ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV8TrnContext ;
@@ -1680,10 +1702,14 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((bool[]) buf[2])[0] = rslt.wasNull(2);
                 ((bool[]) buf[3])[0] = rslt.getBool(3);
-                ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-                ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
-                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((bool[]) buf[4])[0] = rslt.wasNull(3);
+                ((string[]) buf[5])[0] = rslt.getLongVarchar(4);
+                ((bool[]) buf[6])[0] = rslt.wasNull(4);
+                ((string[]) buf[7])[0] = rslt.getLongVarchar(5);
+                ((bool[]) buf[8])[0] = rslt.wasNull(5);
+                ((string[]) buf[9])[0] = rslt.getLongVarchar(6);
+                ((bool[]) buf[10])[0] = rslt.wasNull(6);
+                ((string[]) buf[11])[0] = rslt.getVarchar(7);
                 return;
        }
     }

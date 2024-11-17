@@ -11,6 +11,7 @@ class ActionListComponent {
     this.dataManager = dataManager;
     this.currentLanguage = currentLanguage;
     this.toolBoxManager = toolBoxManager;
+    console.log("Data is: ", dataManager)
 
     this.categoryData = [
       {
@@ -411,6 +412,7 @@ class MappingComponent {
       span.onclick = (e) => {
         e.stopPropagation();
         if (!this.isLoading) {
+          console.log("Item is: "+ item +" and span is: "+ span)
           this.handlePageSelection(item, span);
         }
       };
@@ -423,7 +425,7 @@ class MappingComponent {
 
   async handlePageSelection(item, span) {
     if (this.isLoading) return;
-    
+    console.log("Item is: "+ item +" and span is: "+ span)
     try {
       this.isLoading = true;
       

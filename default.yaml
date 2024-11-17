@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241115085717"
+  version: "20241116065254"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -1855,6 +1855,49 @@ components:
           $ref: "#/components/schemas/SDT_Tile"
     SDT_ContentPage:
       properties:
+        PageName:
+          description: "Page Name"
+          type: "string"
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        Content:
+          type: array
+          items:
+            description: ContentItem
+            $ref: "#/components/schemas/SDT_ContentPage.Content_ContentItem"
+        Cta:
+          type: array
+          items:
+            description: CtaItem
+            $ref: "#/components/schemas/SDT_ContentPage.Cta_CtaItem"
+    SDT_ContentPage.Content_ContentItem:
+      properties:
+        ContentType:
+          description: "Content Type"
+          type: "string"
+        ContentValue:
+          description: "Content Value"
+          type: "string"
+      x-gx-level: "SDT_ContentPage"
+    SDT_ContentPage.Cta_CtaItem:
+      properties:
+        CtaType:
+          description: "Cta Type"
+          type: "string"
+        CtaLabel:
+          description: "Cta Label"
+          type: "string"
+        CtaAction:
+          description: "Cta Action"
+          type: "string"
+        CtaBGColor:
+          description: "Cta BGColor"
+          type: "string"
+      x-gx-level: "SDT_ContentPage"
+    SDT_ContentPage1:
+      properties:
         PageId:
           description: "Page Id"
           type: "string"
@@ -1868,13 +1911,27 @@ components:
         ProductServiceDescription:
           description: "Product Service Description"
           type: "string"
-        CallToAction:
+        Row:
           type: array
           items:
-            description: CallToActionItem
-            $ref: "#/components/schemas/SDT_ContentPage.CallToAction_CallToActionItem"
-    SDT_ContentPage.CallToAction_CallToActionItem:
+            description: RowItem
+            $ref: "#/components/schemas/SDT_ContentPage1.Row_RowItem"
+    SDT_ContentPage1.Row_RowItem:
       properties:
+        Content:
+          type: array
+          items:
+            description: ContentItem
+            $ref: "#/components/schemas/SDT_ContentPage1.Row.Content_ContentItem"
+      x-gx-level: "SDT_ContentPage1"
+    SDT_ContentPage1.Row.Content_ContentItem:
+      properties:
+        ContentType:
+          description: "Content Type"
+          type: "string"
+        ContentValue:
+          description: "Content Value"
+          type: "string"
         CallToActionId:
           description: "Call To Action Id"
           type: "string"
@@ -1891,7 +1948,10 @@ components:
         CallToActionEmail:
           description: "Call To Action Email"
           type: "string"
-      x-gx-level: "SDT_ContentPage"
+        BackgroundColor:
+          description: "Background Color"
+          type: "string"
+      x-gx-level: "SDT_ContentPage1.Row"
     SDT_Location:
       properties:
         LocationId:

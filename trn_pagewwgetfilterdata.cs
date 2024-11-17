@@ -204,7 +204,7 @@ namespace GeneXus.Programs {
                                               A439PageIsContentPage ,
                                               AV45Trn_pagewwds_1_filterfulltext } ,
                                               new int[]{
-                                              TypeConstants.SHORT, TypeConstants.BOOLEAN
+                                              TypeConstants.SHORT, TypeConstants.BOOLEAN, TypeConstants.BOOLEAN
                                               }
          });
          lV46Trn_pagewwds_2_tftrn_pagename = StringUtil.Concat( StringUtil.RTrim( AV46Trn_pagewwds_2_tftrn_pagename), "%", "");
@@ -215,6 +215,7 @@ namespace GeneXus.Programs {
             BRK6Y2 = false;
             A318Trn_PageName = P006Y2_A318Trn_PageName[0];
             A439PageIsContentPage = P006Y2_A439PageIsContentPage[0];
+            n439PageIsContentPage = P006Y2_n439PageIsContentPage[0];
             A310Trn_PageId = P006Y2_A310Trn_PageId[0];
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_pagewwds_1_filterfulltext)) || ( ( StringUtil.Like( A318Trn_PageName , StringUtil.PadR( "%" + AV45Trn_pagewwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "true", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV45Trn_pagewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( A439PageIsContentPage ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "false", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV45Trn_pagewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ! A439PageIsContentPage ) ) )
             {
@@ -285,13 +286,14 @@ namespace GeneXus.Programs {
          A318Trn_PageName = "";
          P006Y2_A318Trn_PageName = new string[] {""} ;
          P006Y2_A439PageIsContentPage = new bool[] {false} ;
+         P006Y2_n439PageIsContentPage = new bool[] {false} ;
          P006Y2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          A310Trn_PageId = Guid.Empty;
          AV18Option = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_pagewwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P006Y2_A318Trn_PageName, P006Y2_A439PageIsContentPage, P006Y2_A310Trn_PageId
+               P006Y2_A318Trn_PageName, P006Y2_A439PageIsContentPage, P006Y2_n439PageIsContentPage, P006Y2_A310Trn_PageId
                }
             }
          );
@@ -308,6 +310,7 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool A439PageIsContentPage ;
       private bool BRK6Y2 ;
+      private bool n439PageIsContentPage ;
       private string AV32OptionsJson ;
       private string AV33OptionsDescJson ;
       private string AV34OptionIndexesJson ;
@@ -337,6 +340,7 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private string[] P006Y2_A318Trn_PageName ;
       private bool[] P006Y2_A439PageIsContentPage ;
+      private bool[] P006Y2_n439PageIsContentPage ;
       private Guid[] P006Y2_A310Trn_PageId ;
       private string aP3_OptionsJson ;
       private string aP4_OptionsDescJson ;
@@ -438,7 +442,8 @@ namespace GeneXus.Programs {
              case 0 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
                 ((bool[]) buf[1])[0] = rslt.getBool(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
                 return;
        }
     }

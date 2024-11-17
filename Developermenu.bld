@@ -275,7 +275,6 @@ aprc_contentpagesapi
 aprc_createcontentpage
 aprc_addpagechildren
 aprc_listpages
-aprc_createpage
 trn_themewwgetfilterdata
 trn_mediawwgetfilterdata
 wp_organisationgeneralsuppliersgetfilterdata

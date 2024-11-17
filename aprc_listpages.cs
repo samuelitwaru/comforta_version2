@@ -118,6 +118,7 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P008W2_A310Trn_PageId[0];
             A318Trn_PageName = P008W2_A318Trn_PageName[0];
             A431PageJsonContent = P008W2_A431PageJsonContent[0];
+            n431PageJsonContent = P008W2_n431PageJsonContent[0];
             AV15SDT_PageStructure = new SdtSDT_PageStructure(context);
             AV15SDT_PageStructure.gxTpr_Id = A310Trn_PageId;
             AV15SDT_PageStructure.gxTpr_Name = A318Trn_PageName;
@@ -172,6 +173,7 @@ namespace GeneXus.Programs {
          P008W2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          P008W2_A318Trn_PageName = new string[] {""} ;
          P008W2_A431PageJsonContent = new string[] {""} ;
+         P008W2_n431PageJsonContent = new bool[] {false} ;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A310Trn_PageId = Guid.Empty;
@@ -186,7 +188,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_listpages__default(),
             new Object[][] {
                 new Object[] {
-               P008W2_A11OrganisationId, P008W2_A29LocationId, P008W2_A310Trn_PageId, P008W2_A318Trn_PageName, P008W2_A431PageJsonContent
+               P008W2_A11OrganisationId, P008W2_A29LocationId, P008W2_A310Trn_PageId, P008W2_A318Trn_PageName, P008W2_A431PageJsonContent, P008W2_n431PageJsonContent
                }
             }
          );
@@ -195,6 +197,7 @@ namespace GeneXus.Programs {
 
       private int AV29GXV1 ;
       private int AV30GXV2 ;
+      private bool n431PageJsonContent ;
       private string A431PageJsonContent ;
       private string A318Trn_PageName ;
       private Guid AV26LocationId ;
@@ -211,6 +214,7 @@ namespace GeneXus.Programs {
       private Guid[] P008W2_A310Trn_PageId ;
       private string[] P008W2_A318Trn_PageName ;
       private string[] P008W2_A431PageJsonContent ;
+      private bool[] P008W2_n431PageJsonContent ;
       private SdtSDT_PageStructure AV15SDT_PageStructure ;
       private SdtSDT_Page AV8SDT_Page ;
       private SdtSDT_Row AV10SDT_Row ;
@@ -258,6 +262,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+                ((bool[]) buf[5])[0] = rslt.wasNull(5);
                 return;
        }
     }

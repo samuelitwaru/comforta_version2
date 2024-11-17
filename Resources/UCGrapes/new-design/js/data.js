@@ -837,7 +837,6 @@ class DataManager {
   }
 
   updatePage(data) {
-    console.log('publishing', data)
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${baseURL}/api/toolbox/update-page`, // Replace with the actual API endpoint
@@ -845,6 +844,7 @@ class DataManager {
         data: JSON.stringify(data),
         success: function (response) {
           resolve(response);
+          console.log("Reached update");
         },
         error: function (xhr, status, error) {
           if (xhr.status === 404) {
@@ -1100,11 +1100,11 @@ const defaultTileAttrs = `
 `;
 
 const defaultConstraints = `
-data-gjs-draggable="false"
-          data-gjs-selectable="false"
-          data-gjs-editable="false"
-          data-gjs-highlightable="false"
-          data-gjs-droppable="false"
-          data-gjs-resizable="false"
-          data-gjs-hoverable="false"
+    data-gjs-draggable="false"
+    data-gjs-selectable="false"
+    data-gjs-editable="false"
+    data-gjs-highlightable="false"
+    data-gjs-droppable="false"
+    data-gjs-resizable="false"
+    data-gjs-hoverable="false"
 `;

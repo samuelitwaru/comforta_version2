@@ -45,9 +45,6 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_SupplierAgb(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_ProductService(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new SdtTrn_NetworkCompany(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
@@ -111,9 +108,6 @@ namespace GeneXus.Programs {
          obj = new GeneXus.Programs.wwpbaseobjects.SdtUserCustomizations(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_Theme(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new SdtTrn_Media(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
@@ -127,9 +121,6 @@ namespace GeneXus.Programs {
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_AgendaCalendar(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
-         obj = new SdtTrn_Page(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_Device(context);
@@ -151,6 +142,15 @@ namespace GeneXus.Programs {
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_AgendaEventGroup(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_Theme(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_Page(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_ProductService(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          return 1 ;

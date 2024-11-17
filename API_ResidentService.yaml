@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241115085717"
+  version: "20241116065254"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -1037,44 +1037,53 @@ components:
 
     SDT_ContentPage:
       properties:
+        PageName:
+          description: "Page Name"
+          type: "string"
         PageId:
           description: "Page Id"
           type: "string"
           format: "uuid"
-        PageName:
-          description: "Page Name"
-          type: "string"
-        ProductServiceImage:
-          description: "Product Service Image"
-          type: "string"
-        ProductServiceDescription:
-          description: "Product Service Description"
-          type: "string"
 
-        CallToAction:
+        Content:
           type: array
           items:
-            description: CallToActionItem
-            $ref: "#/components/schemas/SDT_ContentPage.CallToAction_CallToActionItem"
+            description: ContentItem
+            $ref: "#/components/schemas/SDT_ContentPage.Content_ContentItem"
+
+        Cta:
+          type: array
+          items:
+            description: CtaItem
+            $ref: "#/components/schemas/SDT_ContentPage.Cta_CtaItem"
 
 
-    SDT_ContentPage.CallToAction_CallToActionItem:
+    SDT_ContentPage.Content_ContentItem:
       properties:
-        CallToActionId:
-          description: "Call To Action Id"
+        ContentType:
+          description: "Content Type"
           type: "string"
-          format: "uuid"
-        CallToActionName:
-          description: "Call To Action Name"
+        ContentValue:
+          description: "Content Value"
           type: "string"
-        CallToActionPhone:
-          description: "Call To Action Phone"
+
+
+      x-gx-level: "SDT_ContentPage"
+
+
+    SDT_ContentPage.Cta_CtaItem:
+      properties:
+        CtaType:
+          description: "Cta Type"
           type: "string"
-        CallToActionUrl:
-          description: "Call To Action Url"
+        CtaLabel:
+          description: "Cta Label"
           type: "string"
-        CallToActionEmail:
-          description: "Call To Action Email"
+        CtaAction:
+          description: "Cta Action"
+          type: "string"
+        CtaBGColor:
+          description: "Cta BGColor"
           type: "string"
 
 

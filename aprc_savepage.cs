@@ -130,12 +130,17 @@ namespace GeneXus.Programs {
          A310Trn_PageId = AV8SDT_Page.gxTpr_Pageid;
          A318Trn_PageName = AV8SDT_Page.gxTpr_Pagename;
          A431PageJsonContent = AV21PageJsonContent;
+         n431PageJsonContent = false;
          A432PageGJSHtml = AV20PageGJSHtml;
+         n432PageGJSHtml = false;
          A433PageGJSJson = AV19PageGJSJson;
+         n433PageGJSJson = false;
          A434PageIsPublished = false;
+         n434PageIsPublished = false;
          A439PageIsContentPage = true;
+         n439PageIsContentPage = false;
          /* Using cursor P008B2 */
-         pr_default.execute(0, new Object[] {A310Trn_PageId, A318Trn_PageName, A431PageJsonContent, A432PageGJSHtml, A433PageGJSJson, A434PageIsPublished, A439PageIsContentPage});
+         pr_default.execute(0, new Object[] {A310Trn_PageId, A318Trn_PageName, n431PageJsonContent, A431PageJsonContent, n432PageGJSHtml, A432PageGJSHtml, n433PageGJSJson, A433PageGJSJson, n434PageIsPublished, A434PageIsPublished, n439PageIsContentPage, A439PageIsContentPage});
          pr_default.close(0);
          pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
          if ( (pr_default.getStatus(0) == 1) )
@@ -184,8 +189,13 @@ namespace GeneXus.Programs {
 
       private int GX_INS89 ;
       private string Gx_emsg ;
+      private bool n431PageJsonContent ;
+      private bool n432PageGJSHtml ;
+      private bool n433PageGJSJson ;
       private bool A434PageIsPublished ;
+      private bool n434PageIsPublished ;
       private bool A439PageIsContentPage ;
+      private bool n439PageIsContentPage ;
       private string AV21PageJsonContent ;
       private string AV20PageGJSHtml ;
       private string AV19PageGJSJson ;
@@ -222,11 +232,11 @@ namespace GeneXus.Programs {
           prmP008B2 = new Object[] {
           new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
-          new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0) ,
-          new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0) ,
-          new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0) ,
-          new ParDef("PageIsPublished",GXType.Boolean,4,0) ,
-          new ParDef("PageIsContentPage",GXType.Boolean,4,0)
+          new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0){Nullable=true} ,
+          new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0){Nullable=true} ,
+          new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0){Nullable=true} ,
+          new ParDef("PageIsPublished",GXType.Boolean,4,0){Nullable=true} ,
+          new ParDef("PageIsContentPage",GXType.Boolean,4,0){Nullable=true}
           };
           def= new CursorDef[] {
               new CursorDef("P008B2", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, OrganisationId, LocationId, ProductServiceId) VALUES(:Trn_PageId, :Trn_PageName, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, '', '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000');RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP008B2)

@@ -33,6 +33,7 @@ const translations = {
     category_services_or_page: "Service/Product Page",
     category_dynamic_form: "Dynamic Form",
     category_call_to_action: "Call to Action",
+    cta_button_exists: "Cta button already exists!"
   },
   dutch: {
     navbar_title: "De app gereedschapskist bouwer",
@@ -70,6 +71,7 @@ const translations = {
     category_services_or_page: "Dienst/Productpagina",
     category_dynamic_form: "Dynamisch Formulier",
     category_call_to_action: "Oproep tot Actie",
+    cta_button_exists: "Cta button al bestaat!"
   },
 };
 

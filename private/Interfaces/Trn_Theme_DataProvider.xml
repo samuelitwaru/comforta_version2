@@ -62,11 +62,11 @@
                 <Properties>
                   <Property>
                     <Name>Type</Name>
-                    <Value>Character</Value>
+                    <Value>VarChar</Value>
                   </Property>
                   <Property>
                     <Name>Length</Name>
-                    <Value>20</Value>
+                    <Value>40</Value>
                   </Property>
                 </Properties>
               </Field>

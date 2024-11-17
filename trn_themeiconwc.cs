@@ -63,6 +63,7 @@ namespace GeneXus.Programs {
 
       protected override void createObjects( )
       {
+         cmbIconCategory = new GXCombobox();
       }
 
       protected void INITWEB( )
@@ -844,7 +845,9 @@ namespace GeneXus.Programs {
                               sGXsfl_15_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_15_idx), 4, 0), 4, "0");
                               SubsflControlProps_152( ) ;
                               A261IconId = StringUtil.StrToGuid( cgiGet( edtIconId_Internalname));
-                              A443IconCategory = cgiGet( edtIconCategory_Internalname);
+                              cmbIconCategory.Name = cmbIconCategory_Internalname;
+                              cmbIconCategory.CurrentValue = cgiGet( cmbIconCategory_Internalname);
+                              A443IconCategory = cgiGet( cmbIconCategory_Internalname);
                               A262IconName = cgiGet( edtIconName_Internalname);
                               A263IconSVG = cgiGet( edtIconSVG_Internalname);
                               sEvtType = StringUtil.Right( sEvt, 1);
@@ -1338,7 +1341,7 @@ namespace GeneXus.Programs {
       {
          AV23Pgmname = "Trn_ThemeIconWC";
          edtIconId_Enabled = 0;
-         edtIconCategory_Enabled = 0;
+         cmbIconCategory.Enabled = 0;
          edtIconName_Enabled = 0;
          edtIconSVG_Enabled = 0;
          edtTrn_ThemeId_Enabled = 0;
@@ -1844,7 +1847,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241115637197", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241116941080", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1860,7 +1863,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_themeiconwc.js", "?20241115637197", false, true);
+         context.AddJavascriptSource("trn_themeiconwc.js", "?20241116941080", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -1875,7 +1878,7 @@ namespace GeneXus.Programs {
       protected void SubsflControlProps_152( )
       {
          edtIconId_Internalname = sPrefix+"ICONID_"+sGXsfl_15_idx;
-         edtIconCategory_Internalname = sPrefix+"ICONCATEGORY_"+sGXsfl_15_idx;
+         cmbIconCategory_Internalname = sPrefix+"ICONCATEGORY_"+sGXsfl_15_idx;
          edtIconName_Internalname = sPrefix+"ICONNAME_"+sGXsfl_15_idx;
          edtIconSVG_Internalname = sPrefix+"ICONSVG_"+sGXsfl_15_idx;
       }
@@ -1883,7 +1886,7 @@ namespace GeneXus.Programs {
       protected void SubsflControlProps_fel_152( )
       {
          edtIconId_Internalname = sPrefix+"ICONID_"+sGXsfl_15_fel_idx;
-         edtIconCategory_Internalname = sPrefix+"ICONCATEGORY_"+sGXsfl_15_fel_idx;
+         cmbIconCategory_Internalname = sPrefix+"ICONCATEGORY_"+sGXsfl_15_fel_idx;
          edtIconName_Internalname = sPrefix+"ICONNAME_"+sGXsfl_15_fel_idx;
          edtIconSVG_Internalname = sPrefix+"ICONSVG_"+sGXsfl_15_fel_idx;
       }
@@ -1965,9 +1968,24 @@ namespace GeneXus.Programs {
             {
                context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
             }
-            /* Single line edit */
-            ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconCategory_Internalname,StringUtil.RTrim( A443IconCategory),(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconCategory_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"IconCategory",(string)"start",(bool)true,(string)""});
+            if ( ( cmbIconCategory.ItemCount == 0 ) && isAjaxCallMode( ) )
+            {
+               GXCCtl = "ICONCATEGORY_" + sGXsfl_15_idx;
+               cmbIconCategory.Name = GXCCtl;
+               cmbIconCategory.WebTags = "";
+               cmbIconCategory.addItem("General", context.GetMessage( "General", ""), 0);
+               cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
+               cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
+               cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
+               if ( cmbIconCategory.ItemCount > 0 )
+               {
+                  A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
+               }
+            }
+            /* ComboBox */
+            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbIconCategory,(string)cmbIconCategory_Internalname,StringUtil.RTrim( A443IconCategory),(short)1,(string)cmbIconCategory_Jsonclick,(short)0,(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"svchar",(string)"",(short)-1,(short)0,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"WWColumn",(string)"",(string)"",(string)"",(bool)true,(short)0});
+            cmbIconCategory.CurrentValue = StringUtil.RTrim( A443IconCategory);
+            AssignProp(sPrefix, false, cmbIconCategory_Internalname, "Values", (string)(cmbIconCategory.ToJavascriptSource()), !bGXsfl_15_Refreshing);
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -1995,6 +2013,16 @@ namespace GeneXus.Programs {
 
       protected void init_web_controls( )
       {
+         GXCCtl = "ICONCATEGORY_" + sGXsfl_15_idx;
+         cmbIconCategory.Name = GXCCtl;
+         cmbIconCategory.WebTags = "";
+         cmbIconCategory.addItem("General", context.GetMessage( "General", ""), 0);
+         cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
+         cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
+         cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
+         if ( cmbIconCategory.ItemCount > 0 )
+         {
+         }
          /* End function init_web_controls */
       }
 
@@ -2074,7 +2102,7 @@ namespace GeneXus.Programs {
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A261IconId.ToString()));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( A443IconCategory)));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A443IconCategory));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A262IconName));
@@ -2095,7 +2123,7 @@ namespace GeneXus.Programs {
       protected void init_default_properties( )
       {
          edtIconId_Internalname = sPrefix+"ICONID";
-         edtIconCategory_Internalname = sPrefix+"ICONCATEGORY";
+         cmbIconCategory_Internalname = sPrefix+"ICONCATEGORY";
          edtIconName_Internalname = sPrefix+"ICONNAME";
          edtIconSVG_Internalname = sPrefix+"ICONSVG";
          Gridpaginationbar_Internalname = sPrefix+"GRIDPAGINATIONBAR";
@@ -2129,14 +2157,14 @@ namespace GeneXus.Programs {
          subGrid_Header = "";
          edtIconSVG_Jsonclick = "";
          edtIconName_Jsonclick = "";
-         edtIconCategory_Jsonclick = "";
+         cmbIconCategory_Jsonclick = "";
          edtIconId_Jsonclick = "";
          subGrid_Class = "GridWithPaginationBar WorkWith";
          subGrid_Backcolorstyle = 0;
          edtTrn_ThemeId_Enabled = 0;
          edtIconSVG_Enabled = 0;
          edtIconName_Enabled = 0;
-         edtIconCategory_Enabled = 0;
+         cmbIconCategory.Enabled = 0;
          edtIconId_Enabled = 0;
          subGrid_Sortable = 0;
          edtTrn_ThemeId_Jsonclick = "";
@@ -2262,6 +2290,7 @@ namespace GeneXus.Programs {
          sCtrlAV8Trn_ThemeId = "";
          subGrid_Linesclass = "";
          ROClassString = "";
+         GXCCtl = "";
          GridColumn = new GXWebColumn();
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_themeiconwc__default(),
             new Object[][] {
@@ -2307,7 +2336,6 @@ namespace GeneXus.Programs {
       private int GXPagingFrom2 ;
       private int GXPagingTo2 ;
       private int edtIconId_Enabled ;
-      private int edtIconCategory_Enabled ;
       private int edtIconName_Enabled ;
       private int edtIconSVG_Enabled ;
       private int edtTrn_ThemeId_Enabled ;
@@ -2376,8 +2404,7 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string edtIconId_Internalname ;
-      private string A443IconCategory ;
-      private string edtIconCategory_Internalname ;
+      private string cmbIconCategory_Internalname ;
       private string edtIconName_Internalname ;
       private string edtIconSVG_Internalname ;
       private string GXDecQS ;
@@ -2388,7 +2415,8 @@ namespace GeneXus.Programs {
       private string subGrid_Linesclass ;
       private string ROClassString ;
       private string edtIconId_Jsonclick ;
-      private string edtIconCategory_Jsonclick ;
+      private string GXCCtl ;
+      private string cmbIconCategory_Jsonclick ;
       private string edtIconName_Jsonclick ;
       private string edtIconSVG_Jsonclick ;
       private string subGrid_Header ;
@@ -2410,6 +2438,7 @@ namespace GeneXus.Programs {
       private bool gx_refresh_fired ;
       private string A263IconSVG ;
       private string AV22GridAppliedFilters ;
+      private string A443IconCategory ;
       private string A262IconName ;
       private Guid AV8Trn_ThemeId ;
       private Guid wcpOAV8Trn_ThemeId ;
@@ -2426,6 +2455,7 @@ namespace GeneXus.Programs {
       private GxHttpRequest AV9HTTPRequest ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private GXCombobox cmbIconCategory ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV17DDO_TitleSettingsIcons ;
       private IDataStoreProvider pr_default ;
       private Guid[] H007V2_A247Trn_ThemeId ;
@@ -2614,7 +2644,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 return;
              case 1 :

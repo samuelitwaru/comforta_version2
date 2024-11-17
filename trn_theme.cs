@@ -260,6 +260,7 @@ namespace GeneXus.Programs {
 
       protected override void createObjects( )
       {
+         cmbIconCategory = new GXCombobox();
          cmbColorName = new GXCombobox();
       }
 
@@ -573,8 +574,8 @@ namespace GeneXus.Programs {
                AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
                edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtIconName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconName_Enabled), 5, 0), !bGXsfl_42_Refreshing);
-               edtIconCategory_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               AssignProp("", false, edtIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconCategory_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+               cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, cmbIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbIconCategory.Enabled), 5, 0), !bGXsfl_42_Refreshing);
                edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtIconSVG_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconSVG_Enabled), 5, 0), !bGXsfl_42_Refreshing);
                if ( ( nRcdExists_87 == 0 ) && ! IsIns( ) )
@@ -1326,10 +1327,10 @@ namespace GeneXus.Programs {
             }
             ChangePostValue( edtIconId_Internalname, A261IconId.ToString()) ;
             ChangePostValue( edtIconName_Internalname, A262IconName) ;
-            ChangePostValue( edtIconCategory_Internalname, StringUtil.RTrim( A443IconCategory)) ;
+            ChangePostValue( cmbIconCategory_Internalname, A443IconCategory) ;
             ChangePostValue( edtIconSVG_Internalname, A263IconSVG) ;
             ChangePostValue( "ZT_"+"Z261IconId_"+sGXsfl_42_idx, Z261IconId.ToString()) ;
-            ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_42_idx, StringUtil.RTrim( Z443IconCategory)) ;
+            ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_42_idx, Z443IconCategory) ;
             ChangePostValue( "ZT_"+"Z262IconName_"+sGXsfl_42_idx, Z262IconName) ;
             ChangePostValue( "nRcdDeleted_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             ChangePostValue( "nRcdExists_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
@@ -1338,7 +1339,7 @@ namespace GeneXus.Programs {
             {
                ChangePostValue( "ICONID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", ""))) ;
                ChangePostValue( "ICONNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconCategory_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", ""))) ;
                ChangePostValue( "ICONSVG_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", ""))) ;
             }
          }
@@ -1379,7 +1380,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0W46( short GX_JID )
       {
-         if ( ( GX_JID == 10 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1394,7 +1395,7 @@ namespace GeneXus.Programs {
                Z399Trn_ThemeFontSize = A399Trn_ThemeFontSize;
             }
          }
-         if ( GX_JID == -10 )
+         if ( GX_JID == -11 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z248Trn_ThemeName = A248Trn_ThemeName;
@@ -1469,7 +1470,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A260Trn_ThemeFontFamily", A260Trn_ThemeFontFamily);
             A399Trn_ThemeFontSize = T000W8_A399Trn_ThemeFontSize[0];
             AssignAttri("", false, "A399Trn_ThemeFontSize", StringUtil.LTrimStr( (decimal)(A399Trn_ThemeFontSize), 4, 0));
-            ZM0W46( -10) ;
+            ZM0W46( -11) ;
          }
          pr_default.close(6);
          OnLoadActions0W46( ) ;
@@ -1515,7 +1516,7 @@ namespace GeneXus.Programs {
          pr_default.execute(5, new Object[] {A247Trn_ThemeId});
          if ( (pr_default.getStatus(5) != 101) )
          {
-            ZM0W46( 10) ;
+            ZM0W46( 11) ;
             RcdFound46 = 1;
             A247Trn_ThemeId = T000W7_A247Trn_ThemeId[0];
             AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
@@ -2044,10 +2045,10 @@ namespace GeneXus.Programs {
             }
             ChangePostValue( edtIconId_Internalname, A261IconId.ToString()) ;
             ChangePostValue( edtIconName_Internalname, A262IconName) ;
-            ChangePostValue( edtIconCategory_Internalname, StringUtil.RTrim( A443IconCategory)) ;
+            ChangePostValue( cmbIconCategory_Internalname, A443IconCategory) ;
             ChangePostValue( edtIconSVG_Internalname, A263IconSVG) ;
             ChangePostValue( "ZT_"+"Z261IconId_"+sGXsfl_42_idx, Z261IconId.ToString()) ;
-            ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_42_idx, StringUtil.RTrim( Z443IconCategory)) ;
+            ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_42_idx, Z443IconCategory) ;
             ChangePostValue( "ZT_"+"Z262IconName_"+sGXsfl_42_idx, Z262IconName) ;
             ChangePostValue( "nRcdDeleted_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             ChangePostValue( "nRcdExists_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
@@ -2056,7 +2057,7 @@ namespace GeneXus.Programs {
             {
                ChangePostValue( "ICONID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", ""))) ;
                ChangePostValue( "ICONNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconCategory_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", ""))) ;
                ChangePostValue( "ICONSVG_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", ""))) ;
             }
          }
@@ -2271,7 +2272,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0W87( short GX_JID )
       {
-         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -2284,7 +2285,7 @@ namespace GeneXus.Programs {
                Z262IconName = A262IconName;
             }
          }
-         if ( GX_JID == -11 )
+         if ( GX_JID == -12 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z261IconId = A261IconId;
@@ -2329,7 +2330,7 @@ namespace GeneXus.Programs {
             A443IconCategory = T000W17_A443IconCategory[0];
             A262IconName = T000W17_A262IconName[0];
             A263IconSVG = T000W17_A263IconSVG[0];
-            ZM0W87( -11) ;
+            ZM0W87( -12) ;
          }
          pr_default.close(15);
          OnLoadActions0W87( ) ;
@@ -2345,6 +2346,14 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          standaloneModal0W87( ) ;
+         if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
+         {
+            GXCCtl = "ICONCATEGORY_" + sGXsfl_42_idx;
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, GXCCtl);
+            AnyError = 1;
+            GX_FocusControl = cmbIconCategory_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
       }
 
       protected void CloseExtendedTableCursors0W87( )
@@ -2376,7 +2385,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A247Trn_ThemeId, A261IconId});
          if ( (pr_default.getStatus(3) != 101) )
          {
-            ZM0W87( 11) ;
+            ZM0W87( 12) ;
             RcdFound87 = 1;
             InitializeNonKey0W87( ) ;
             A261IconId = T000W5_A261IconId[0];
@@ -2702,8 +2711,8 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
          edtIconName_Enabled = 0;
          AssignProp("", false, edtIconName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconName_Enabled), 5, 0), !bGXsfl_42_Refreshing);
-         edtIconCategory_Enabled = 0;
-         AssignProp("", false, edtIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconCategory_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         cmbIconCategory.Enabled = 0;
+         AssignProp("", false, cmbIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbIconCategory.Enabled), 5, 0), !bGXsfl_42_Refreshing);
          edtIconSVG_Enabled = 0;
          AssignProp("", false, edtIconSVG_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconSVG_Enabled), 5, 0), !bGXsfl_42_Refreshing);
       }
@@ -2714,7 +2723,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0W47( short GX_JID )
       {
-         if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 13 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -2727,7 +2736,7 @@ namespace GeneXus.Programs {
                Z251ColorCode = A251ColorCode;
             }
          }
-         if ( GX_JID == -12 )
+         if ( GX_JID == -13 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z249ColorId = A249ColorId;
@@ -2762,7 +2771,7 @@ namespace GeneXus.Programs {
             RcdFound47 = 1;
             A250ColorName = T000W23_A250ColorName[0];
             A251ColorCode = T000W23_A251ColorCode[0];
-            ZM0W47( -12) ;
+            ZM0W47( -13) ;
          }
          pr_default.close(21);
          OnLoadActions0W47( ) ;
@@ -2809,7 +2818,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A247Trn_ThemeId, A249ColorId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0W47( 12) ;
+            ZM0W47( 13) ;
             RcdFound47 = 1;
             InitializeNonKey0W47( ) ;
             A249ColorId = T000W3_A249ColorId[0];
@@ -3150,7 +3159,7 @@ namespace GeneXus.Programs {
       {
          edtIconId_Internalname = "ICONID_"+sGXsfl_42_idx;
          edtIconName_Internalname = "ICONNAME_"+sGXsfl_42_idx;
-         edtIconCategory_Internalname = "ICONCATEGORY_"+sGXsfl_42_idx;
+         cmbIconCategory_Internalname = "ICONCATEGORY_"+sGXsfl_42_idx;
          edtIconSVG_Internalname = "ICONSVG_"+sGXsfl_42_idx;
       }
 
@@ -3158,7 +3167,7 @@ namespace GeneXus.Programs {
       {
          edtIconId_Internalname = "ICONID_"+sGXsfl_42_fel_idx;
          edtIconName_Internalname = "ICONNAME_"+sGXsfl_42_fel_idx;
-         edtIconCategory_Internalname = "ICONCATEGORY_"+sGXsfl_42_fel_idx;
+         cmbIconCategory_Internalname = "ICONCATEGORY_"+sGXsfl_42_fel_idx;
          edtIconSVG_Internalname = "ICONSVG_"+sGXsfl_42_fel_idx;
       }
 
@@ -3234,10 +3243,25 @@ namespace GeneXus.Programs {
          ROClassString = "Attribute";
          Gridlevel_iconRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconName_Internalname,(string)A262IconName,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,44);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtIconName_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)42,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
-         /* Single line edit */
          TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 45,'',false,'" + sGXsfl_42_idx + "',42)\"";
-         ROClassString = "Attribute";
-         Gridlevel_iconRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconCategory_Internalname,StringUtil.RTrim( A443IconCategory),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,45);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconCategory_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtIconCategory_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)42,(short)0,(short)-1,(short)-1,(bool)true,(string)"IconCategory",(string)"start",(bool)true,(string)""});
+         if ( ( cmbIconCategory.ItemCount == 0 ) && isAjaxCallMode( ) )
+         {
+            GXCCtl = "ICONCATEGORY_" + sGXsfl_42_idx;
+            cmbIconCategory.Name = GXCCtl;
+            cmbIconCategory.WebTags = "";
+            cmbIconCategory.addItem("General", context.GetMessage( "General", ""), 0);
+            cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
+            cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
+            cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
+            if ( cmbIconCategory.ItemCount > 0 )
+            {
+               A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
+            }
+         }
+         /* ComboBox */
+         Gridlevel_iconRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbIconCategory,(string)cmbIconCategory_Internalname,StringUtil.RTrim( A443IconCategory),(short)1,(string)cmbIconCategory_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"svchar",(string)"",(short)-1,cmbIconCategory.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"TrnColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,45);\"",(string)"",(bool)true,(short)0});
+         cmbIconCategory.CurrentValue = StringUtil.RTrim( A443IconCategory);
+         AssignProp("", false, cmbIconCategory_Internalname, "Values", (string)(cmbIconCategory.ToJavascriptSource()), !bGXsfl_42_Refreshing);
          /* Subfile cell */
          /* Single line edit */
          TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 46,'',false,'" + sGXsfl_42_idx + "',42)\"";
@@ -3248,7 +3272,7 @@ namespace GeneXus.Programs {
          GXCCtl = "Z261IconId_" + sGXsfl_42_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z261IconId.ToString());
          GXCCtl = "Z443IconCategory_" + sGXsfl_42_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.RTrim( Z443IconCategory));
+         GxWebStd.gx_hidden_field( context, GXCCtl, Z443IconCategory);
          GXCCtl = "Z262IconName_" + sGXsfl_42_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z262IconName);
          GXCCtl = "nRcdDeleted_87_" + sGXsfl_42_idx;
@@ -3272,7 +3296,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, GXCCtl, AV13Trn_ThemeId.ToString());
          GxWebStd.gx_hidden_field( context, "ICONID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "ICONNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconCategory_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "ICONSVG_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", "")));
          ajax_sending_grid_row(null);
          Gridlevel_iconContainer.AddRow(Gridlevel_iconRow);
@@ -3285,7 +3309,7 @@ namespace GeneXus.Programs {
          SubsflControlProps_4287( ) ;
          edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         edtIconCategory_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( StringUtil.StrCmp(cgiGet( edtIconId_Internalname), "") == 0 )
          {
@@ -3307,7 +3331,9 @@ namespace GeneXus.Programs {
             }
          }
          A262IconName = cgiGet( edtIconName_Internalname);
-         A443IconCategory = cgiGet( edtIconCategory_Internalname);
+         cmbIconCategory.Name = cmbIconCategory_Internalname;
+         cmbIconCategory.CurrentValue = cgiGet( cmbIconCategory_Internalname);
+         A443IconCategory = cgiGet( cmbIconCategory_Internalname);
          A263IconSVG = cgiGet( edtIconSVG_Internalname);
          GXCCtl = "Z261IconId_" + sGXsfl_42_idx;
          Z261IconId = StringUtil.StrToGuid( cgiGet( GXCCtl));
@@ -3800,7 +3826,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241115637715", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411169405748", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3816,7 +3842,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_theme.js", "?20241115637715", false, true);
+         context.AddJavascriptSource("trn_theme.js", "?202411169405748", false, true);
          /* End function include_jscripts */
       }
 
@@ -3851,8 +3877,8 @@ namespace GeneXus.Programs {
          Gridlevel_iconColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", "")));
          Gridlevel_iconContainer.AddColumnProperties(Gridlevel_iconColumn);
          Gridlevel_iconColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-         Gridlevel_iconColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( A443IconCategory)));
-         Gridlevel_iconColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconCategory_Enabled), 5, 0, ".", "")));
+         Gridlevel_iconColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A443IconCategory));
+         Gridlevel_iconColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", "")));
          Gridlevel_iconContainer.AddColumnProperties(Gridlevel_iconColumn);
          Gridlevel_iconColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          Gridlevel_iconColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A263IconSVG));
@@ -3909,7 +3935,7 @@ namespace GeneXus.Programs {
          grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
          edtIconId_Internalname = "ICONID";
          edtIconName_Internalname = "ICONNAME";
-         edtIconCategory_Internalname = "ICONCATEGORY";
+         cmbIconCategory_Internalname = "ICONCATEGORY";
          edtIconSVG_Internalname = "ICONSVG";
          divTableleaflevel_icon_Internalname = "TABLELEAFLEVEL_ICON";
          lblTextblock1_Internalname = "TEXTBLOCK1";
@@ -3952,7 +3978,7 @@ namespace GeneXus.Programs {
          subGridlevel_color_Class = "WorkWith";
          subGridlevel_color_Backcolorstyle = 0;
          edtIconSVG_Jsonclick = "";
-         edtIconCategory_Jsonclick = "";
+         cmbIconCategory_Jsonclick = "";
          edtIconName_Jsonclick = "";
          edtIconId_Jsonclick = "";
          subGridlevel_icon_Class = "WorkWith";
@@ -3961,7 +3987,7 @@ namespace GeneXus.Programs {
          cmbColorName.Enabled = 1;
          edtColorId_Enabled = 0;
          edtIconSVG_Enabled = 1;
-         edtIconCategory_Enabled = 1;
+         cmbIconCategory.Enabled = 1;
          edtIconName_Enabled = 1;
          edtIconId_Enabled = 1;
          bttBtntrn_delete_Enabled = 0;
@@ -4038,6 +4064,17 @@ namespace GeneXus.Programs {
 
       protected void init_web_controls( )
       {
+         GXCCtl = "ICONCATEGORY_" + sGXsfl_42_idx;
+         cmbIconCategory.Name = GXCCtl;
+         cmbIconCategory.WebTags = "";
+         cmbIconCategory.addItem("General", context.GetMessage( "General", ""), 0);
+         cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
+         cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
+         cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
+         if ( cmbIconCategory.ItemCount > 0 )
+         {
+            A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
+         }
          GXCCtl = "COLORNAME_" + sGXsfl_55_idx;
          cmbColorName.Name = GXCCtl;
          cmbColorName.WebTags = "";
@@ -4090,6 +4127,7 @@ namespace GeneXus.Programs {
          setEventMetadata("AFTER TRN","""{"handler":"E120W2","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
          setEventMetadata("VALID_TRN_THEMEID","""{"handler":"Valid_Trn_themeid","iparms":[]}""");
          setEventMetadata("VALID_ICONID","""{"handler":"Valid_Iconid","iparms":[]}""");
+         setEventMetadata("VALID_ICONCATEGORY","""{"handler":"Valid_Iconcategory","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Valid_Iconsvg","iparms":[]}""");
          setEventMetadata("VALID_COLORID","""{"handler":"Valid_Colorid","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Valid_Colorcode","iparms":[]}""");
@@ -4374,7 +4412,6 @@ namespace GeneXus.Programs {
       private int bttBtntrn_delete_Enabled ;
       private int edtIconId_Enabled ;
       private int edtIconName_Enabled ;
-      private int edtIconCategory_Enabled ;
       private int edtIconSVG_Enabled ;
       private int fRowAdded ;
       private int edtColorId_Enabled ;
@@ -4396,7 +4433,6 @@ namespace GeneXus.Programs {
       private long GRIDLEVEL_COLOR_nFirstRecordOnPage ;
       private string sPrefix ;
       private string wcpOGx_mode ;
-      private string Z443IconCategory ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string GXKey ;
@@ -4437,7 +4473,7 @@ namespace GeneXus.Programs {
       private string sMode87 ;
       private string edtIconId_Internalname ;
       private string edtIconName_Internalname ;
-      private string edtIconCategory_Internalname ;
+      private string cmbIconCategory_Internalname ;
       private string edtIconSVG_Internalname ;
       private string sStyleString ;
       private string subGridlevel_icon_Internalname ;
@@ -4455,14 +4491,13 @@ namespace GeneXus.Programs {
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
       private string GXCCtl ;
-      private string A443IconCategory ;
       private string sGXsfl_42_fel_idx="0001" ;
       private string subGridlevel_icon_Class ;
       private string subGridlevel_icon_Linesclass ;
       private string ROClassString ;
       private string edtIconId_Jsonclick ;
       private string edtIconName_Jsonclick ;
-      private string edtIconCategory_Jsonclick ;
+      private string cmbIconCategory_Jsonclick ;
       private string edtIconSVG_Jsonclick ;
       private string sGXsfl_55_fel_idx="0001" ;
       private string subGridlevel_color_Class ;
@@ -4486,6 +4521,7 @@ namespace GeneXus.Programs {
       private string Z263IconSVG ;
       private string Z248Trn_ThemeName ;
       private string Z260Trn_ThemeFontFamily ;
+      private string Z443IconCategory ;
       private string Z262IconName ;
       private string Z250ColorName ;
       private string Z251ColorCode ;
@@ -4494,6 +4530,7 @@ namespace GeneXus.Programs {
       private string A250ColorName ;
       private string A251ColorCode ;
       private string A262IconName ;
+      private string A443IconCategory ;
       private Guid wcpOAV13Trn_ThemeId ;
       private Guid Z247Trn_ThemeId ;
       private Guid Z261IconId ;
@@ -4513,6 +4550,7 @@ namespace GeneXus.Programs {
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private GXCombobox cmbIconCategory ;
       private GXCombobox cmbColorName ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV11TrnContext ;
@@ -4729,13 +4767,13 @@ namespace GeneXus.Programs {
         prmT000W19 = new Object[] {
         new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0) ,
         new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("IconCategory",GXType.Char,20,0) ,
+        new ParDef("IconCategory",GXType.VarChar,40,0) ,
         new ParDef("IconName",GXType.VarChar,100,0) ,
         new ParDef("IconSVG",GXType.LongVarChar,2097152,0)
         };
         Object[] prmT000W20;
         prmT000W20 = new Object[] {
-        new ParDef("IconCategory",GXType.Char,20,0) ,
+        new ParDef("IconCategory",GXType.VarChar,40,0) ,
         new ParDef("IconName",GXType.VarChar,100,0) ,
         new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
         new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0) ,
@@ -4836,14 +4874,14 @@ namespace GeneXus.Programs {
            case 2 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
               ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
               return;
            case 3 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
               ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
               return;
@@ -4884,7 +4922,7 @@ namespace GeneXus.Programs {
            case 15 :
               ((Guid[]) buf[0])[0] = rslt.getGuid(1);
               ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
+              ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
               ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
               return;

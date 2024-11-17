@@ -417,11 +417,11 @@ namespace GeneXus.Programs {
       private short sdtIsNull ;
       private short gxTv_SdtTrn_Theme_Icon_Modified ;
       private short gxTv_SdtTrn_Theme_Icon_Initialized ;
-      private string gxTv_SdtTrn_Theme_Icon_Iconcategory ;
       private string gxTv_SdtTrn_Theme_Icon_Mode ;
-      private string gxTv_SdtTrn_Theme_Icon_Iconcategory_Z ;
       private string gxTv_SdtTrn_Theme_Icon_Iconsvg ;
+      private string gxTv_SdtTrn_Theme_Icon_Iconcategory ;
       private string gxTv_SdtTrn_Theme_Icon_Iconname ;
+      private string gxTv_SdtTrn_Theme_Icon_Iconcategory_Z ;
       private string gxTv_SdtTrn_Theme_Icon_Iconname_Z ;
       private Guid gxTv_SdtTrn_Theme_Icon_Iconid ;
       private Guid gxTv_SdtTrn_Theme_Icon_Iconid_Z ;
@@ -458,7 +458,7 @@ namespace GeneXus.Programs {
       public string gxTpr_Iconcategory
       {
          get {
-            return StringUtil.RTrim( sdt.gxTpr_Iconcategory) ;
+            return sdt.gxTpr_Iconcategory ;
          }
 
          set {
