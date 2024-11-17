@@ -73,6 +73,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          state.Add("gxTpr_Wwpforminstanceid_Z");
          state.Add("gxTpr_Wwpforminstancedate_Z_Nullable");
          state.Add("gxTpr_Wwpformid_Z");
+         state.Add("gxTpr_Wwpformreferencename_Z");
          state.Add("gxTpr_Wwpformversionnumber_Z");
          state.Add("gxTpr_Wwpformtitle_Z");
          state.Add("gxTpr_Wwpuserextendedid_Z");
@@ -89,6 +90,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          gxTv_SdtWWP_FormInstance_Wwpforminstanceid = sdt.gxTv_SdtWWP_FormInstance_Wwpforminstanceid ;
          gxTv_SdtWWP_FormInstance_Wwpforminstancedate = sdt.gxTv_SdtWWP_FormInstance_Wwpforminstancedate ;
          gxTv_SdtWWP_FormInstance_Wwpformid = sdt.gxTv_SdtWWP_FormInstance_Wwpformid ;
+         gxTv_SdtWWP_FormInstance_Wwpformreferencename = sdt.gxTv_SdtWWP_FormInstance_Wwpformreferencename ;
          gxTv_SdtWWP_FormInstance_Wwpformversionnumber = sdt.gxTv_SdtWWP_FormInstance_Wwpformversionnumber ;
          gxTv_SdtWWP_FormInstance_Wwpformtitle = sdt.gxTv_SdtWWP_FormInstance_Wwpformtitle ;
          gxTv_SdtWWP_FormInstance_Wwpuserextendedid = sdt.gxTv_SdtWWP_FormInstance_Wwpuserextendedid ;
@@ -102,6 +104,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          gxTv_SdtWWP_FormInstance_Wwpforminstanceid_Z = sdt.gxTv_SdtWWP_FormInstance_Wwpforminstanceid_Z ;
          gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z = sdt.gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z ;
          gxTv_SdtWWP_FormInstance_Wwpformid_Z = sdt.gxTv_SdtWWP_FormInstance_Wwpformid_Z ;
+         gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z = sdt.gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z ;
          gxTv_SdtWWP_FormInstance_Wwpformversionnumber_Z = sdt.gxTv_SdtWWP_FormInstance_Wwpformversionnumber_Z ;
          gxTv_SdtWWP_FormInstance_Wwpformtitle_Z = sdt.gxTv_SdtWWP_FormInstance_Wwpformtitle_Z ;
          gxTv_SdtWWP_FormInstance_Wwpuserextendedid_Z = sdt.gxTv_SdtWWP_FormInstance_Wwpuserextendedid_Z ;
@@ -138,6 +141,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
          AddObjectProperty("WWPFormInstanceDate", sDateCnv, false, includeNonInitialized);
          AddObjectProperty("WWPFormId", gxTv_SdtWWP_FormInstance_Wwpformid, false, includeNonInitialized);
+         AddObjectProperty("WWPFormReferenceName", gxTv_SdtWWP_FormInstance_Wwpformreferencename, false, includeNonInitialized);
          AddObjectProperty("WWPFormVersionNumber", gxTv_SdtWWP_FormInstance_Wwpformversionnumber, false, includeNonInitialized);
          AddObjectProperty("WWPFormTitle", gxTv_SdtWWP_FormInstance_Wwpformtitle, false, includeNonInitialized);
          AddObjectProperty("WWPUserExtendedId", gxTv_SdtWWP_FormInstance_Wwpuserextendedid, false, includeNonInitialized);
@@ -166,6 +170,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
             AddObjectProperty("WWPFormInstanceDate_Z", sDateCnv, false, includeNonInitialized);
             AddObjectProperty("WWPFormId_Z", gxTv_SdtWWP_FormInstance_Wwpformid_Z, false, includeNonInitialized);
+            AddObjectProperty("WWPFormReferenceName_Z", gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z, false, includeNonInitialized);
             AddObjectProperty("WWPFormVersionNumber_Z", gxTv_SdtWWP_FormInstance_Wwpformversionnumber_Z, false, includeNonInitialized);
             AddObjectProperty("WWPFormTitle_Z", gxTv_SdtWWP_FormInstance_Wwpformtitle_Z, false, includeNonInitialized);
             AddObjectProperty("WWPUserExtendedId_Z", gxTv_SdtWWP_FormInstance_Wwpuserextendedid_Z, false, includeNonInitialized);
@@ -192,6 +197,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             sdtIsNull = 0;
             gxTv_SdtWWP_FormInstance_Wwpformid = sdt.gxTv_SdtWWP_FormInstance_Wwpformid ;
+         }
+         if ( sdt.IsDirty("WWPFormReferenceName") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtWWP_FormInstance_Wwpformreferencename = sdt.gxTv_SdtWWP_FormInstance_Wwpformreferencename ;
          }
          if ( sdt.IsDirty("WWPFormVersionNumber") )
          {
@@ -274,6 +284,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                this.gxTv_SdtWWP_FormInstance_Wwpforminstanceid_Z_SetNull( );
                this.gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z_SetNull( );
                this.gxTv_SdtWWP_FormInstance_Wwpformid_Z_SetNull( );
+               this.gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z_SetNull( );
                this.gxTv_SdtWWP_FormInstance_Wwpformversionnumber_Z_SetNull( );
                this.gxTv_SdtWWP_FormInstance_Wwpformtitle_Z_SetNull( );
                this.gxTv_SdtWWP_FormInstance_Wwpuserextendedid_Z_SetNull( );
@@ -346,6 +357,22 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             sdtIsNull = 0;
             gxTv_SdtWWP_FormInstance_Wwpformid = value;
             SetDirty("Wwpformid");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "WWPFormReferenceName" )]
+      [  XmlElement( ElementName = "WWPFormReferenceName"   )]
+      public string gxTpr_Wwpformreferencename
+      {
+         get {
+            return gxTv_SdtWWP_FormInstance_Wwpformreferencename ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtWWP_FormInstance_Wwpformreferencename = value;
+            SetDirty("Wwpformreferencename");
          }
 
       }
@@ -695,6 +722,34 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          return false ;
       }
 
+      [  SoapElement( ElementName = "WWPFormReferenceName_Z" )]
+      [  XmlElement( ElementName = "WWPFormReferenceName_Z"   )]
+      public string gxTpr_Wwpformreferencename_Z
+      {
+         get {
+            return gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z = value;
+            SetDirty("Wwpformreferencename_Z");
+         }
+
+      }
+
+      public void gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z_SetNull( )
+      {
+         gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z = "";
+         SetDirty("Wwpformreferencename_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "WWPFormVersionNumber_Z" )]
       [  XmlElement( ElementName = "WWPFormVersionNumber_Z"   )]
       public short gxTpr_Wwpformversionnumber_Z
@@ -881,6 +936,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          sdtIsNull = 1;
          gxTv_SdtWWP_FormInstance_Wwpforminstancedate = DateTime.MinValue;
+         gxTv_SdtWWP_FormInstance_Wwpformreferencename = "";
          gxTv_SdtWWP_FormInstance_Wwpformtitle = "";
          gxTv_SdtWWP_FormInstance_Wwpuserextendedid = "";
          gxTv_SdtWWP_FormInstance_Wwpuserextendedfullname = "";
@@ -888,6 +944,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          gxTv_SdtWWP_FormInstance_Wwpforminstancerecordkey = "";
          gxTv_SdtWWP_FormInstance_Mode = "";
          gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z = DateTime.MinValue;
+         gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z = "";
          gxTv_SdtWWP_FormInstance_Wwpformtitle_Z = "";
          gxTv_SdtWWP_FormInstance_Wwpuserextendedid_Z = "";
          gxTv_SdtWWP_FormInstance_Wwpuserextendedfullname_Z = "";
@@ -927,8 +984,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private DateTime gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z ;
       private string gxTv_SdtWWP_FormInstance_Wwpformvalidations ;
       private string gxTv_SdtWWP_FormInstance_Wwpforminstancerecordkey ;
+      private string gxTv_SdtWWP_FormInstance_Wwpformreferencename ;
       private string gxTv_SdtWWP_FormInstance_Wwpformtitle ;
       private string gxTv_SdtWWP_FormInstance_Wwpuserextendedfullname ;
+      private string gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z ;
       private string gxTv_SdtWWP_FormInstance_Wwpformtitle_Z ;
       private string gxTv_SdtWWP_FormInstance_Wwpuserextendedfullname_Z ;
       private GXBCLevelCollection<GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance_Element> gxTv_SdtWWP_FormInstance_Element=null ;
@@ -988,7 +1047,21 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       }
 
-      [DataMember( Name = "WWPFormVersionNumber" , Order = 3 )]
+      [DataMember( Name = "WWPFormReferenceName" , Order = 3 )]
+      [GxSeudo()]
+      public string gxTpr_Wwpformreferencename
+      {
+         get {
+            return sdt.gxTpr_Wwpformreferencename ;
+         }
+
+         set {
+            sdt.gxTpr_Wwpformreferencename = value;
+         }
+
+      }
+
+      [DataMember( Name = "WWPFormVersionNumber" , Order = 4 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformversionnumber
       {
@@ -1002,7 +1075,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       }
 
-      [DataMember( Name = "WWPFormTitle" , Order = 4 )]
+      [DataMember( Name = "WWPFormTitle" , Order = 5 )]
       [GxSeudo()]
       public string gxTpr_Wwpformtitle
       {
@@ -1016,7 +1089,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       }
 
-      [DataMember( Name = "WWPUserExtendedId" , Order = 5 )]
+      [DataMember( Name = "WWPUserExtendedId" , Order = 6 )]
       [GxSeudo()]
       public string gxTpr_Wwpuserextendedid
       {
@@ -1030,7 +1103,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       }
 
-      [DataMember( Name = "WWPUserExtendedFullName" , Order = 6 )]
+      [DataMember( Name = "WWPUserExtendedFullName" , Order = 7 )]
       [GxSeudo()]
       public string gxTpr_Wwpuserextendedfullname
       {
@@ -1044,7 +1117,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       }
 
-      [DataMember( Name = "WWPFormResume" , Order = 7 )]
+      [DataMember( Name = "WWPFormResume" , Order = 8 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformresume
       {
@@ -1058,7 +1131,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       }
 
-      [DataMember( Name = "WWPFormValidations" , Order = 8 )]
+      [DataMember( Name = "WWPFormValidations" , Order = 9 )]
       public string gxTpr_Wwpformvalidations
       {
          get {
@@ -1071,7 +1144,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       }
 
-      [DataMember( Name = "WWPFormInstanceRecordKey" , Order = 9 )]
+      [DataMember( Name = "WWPFormInstanceRecordKey" , Order = 10 )]
       public string gxTpr_Wwpforminstancerecordkey
       {
          get {
@@ -1084,7 +1157,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       }
 
-      [DataMember( Name = "Element" , Order = 10 )]
+      [DataMember( Name = "Element" , Order = 11 )]
       public GxGenericCollection<GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance_Element_RESTInterface> gxTpr_Element
       {
          get {
@@ -1118,7 +1191,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 11 )]
+      [DataMember( Name = "gx_md5_hash", Order = 12 )]
       public string Hash
       {
          get {

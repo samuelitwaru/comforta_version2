@@ -106,9 +106,9 @@ namespace GeneXus.Programs {
                CheckExtendedTable1C80( ) ;
                if ( AnyError == 0 )
                {
+                  ZM1C80( 12) ;
+                  ZM1C80( 13) ;
                   ZM1C80( 14) ;
-                  ZM1C80( 15) ;
-                  ZM1C80( 16) ;
                }
                CloseExtendedTableCursors1C80( ) ;
             }
@@ -132,7 +132,7 @@ namespace GeneXus.Programs {
 
       protected void ZM1C80( short GX_JID )
       {
-         if ( ( GX_JID == 13 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
          {
             Z397CallToActionName = A397CallToActionName;
             Z368CallToActionType = A368CallToActionType;
@@ -145,17 +145,17 @@ namespace GeneXus.Programs {
             Z395LocationDynamicFormId = A395LocationDynamicFormId;
             Z219WWPFormLatestVersionNumber = A219WWPFormLatestVersionNumber;
          }
-         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
          {
             Z219WWPFormLatestVersionNumber = A219WWPFormLatestVersionNumber;
          }
-         if ( ( GX_JID == 15 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 13 ) || ( GX_JID == 0 ) )
          {
             Z206WWPFormId = A206WWPFormId;
             Z207WWPFormVersionNumber = A207WWPFormVersionNumber;
             Z219WWPFormLatestVersionNumber = A219WWPFormLatestVersionNumber;
          }
-         if ( ( GX_JID == 16 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
          {
             Z208WWPFormReferenceName = A208WWPFormReferenceName;
             Z209WWPFormTitle = A209WWPFormTitle;
@@ -168,7 +168,7 @@ namespace GeneXus.Programs {
             Z242WWPFormIsForDynamicValidations = A242WWPFormIsForDynamicValidations;
             Z219WWPFormLatestVersionNumber = A219WWPFormLatestVersionNumber;
          }
-         if ( GX_JID == -13 )
+         if ( GX_JID == -11 )
          {
             Z367CallToActionId = A367CallToActionId;
             Z397CallToActionName = A397CallToActionName;
@@ -206,12 +206,6 @@ namespace GeneXus.Programs {
          {
             A367CallToActionId = Guid.NewGuid( );
          }
-         GXt_guid1 = A11OrganisationId;
-         new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
-         A11OrganisationId = GXt_guid1;
-         GXt_guid1 = A29LocationId;
-         new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
-         A29LocationId = GXt_guid1;
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
          }
@@ -247,7 +241,7 @@ namespace GeneXus.Programs {
             n395LocationDynamicFormId = BC001C7_n395LocationDynamicFormId[0];
             A206WWPFormId = BC001C7_A206WWPFormId[0];
             A207WWPFormVersionNumber = BC001C7_A207WWPFormVersionNumber[0];
-            ZM1C80( -13) ;
+            ZM1C80( -11) ;
          }
          pr_default.close(5);
          OnLoadActions1C80( ) ;
@@ -255,9 +249,9 @@ namespace GeneXus.Programs {
 
       protected void OnLoadActions1C80( )
       {
-         GXt_int2 = A219WWPFormLatestVersionNumber;
-         new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int2) ;
-         A219WWPFormLatestVersionNumber = GXt_int2;
+         GXt_int1 = A219WWPFormLatestVersionNumber;
+         new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int1) ;
+         A219WWPFormLatestVersionNumber = GXt_int1;
       }
 
       protected void CheckExtendedTable1C80( )
@@ -284,9 +278,9 @@ namespace GeneXus.Programs {
          A206WWPFormId = BC001C5_A206WWPFormId[0];
          A207WWPFormVersionNumber = BC001C5_A207WWPFormVersionNumber[0];
          pr_default.close(3);
-         GXt_int2 = A219WWPFormLatestVersionNumber;
-         new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int2) ;
-         A219WWPFormLatestVersionNumber = GXt_int2;
+         GXt_int1 = A219WWPFormLatestVersionNumber;
+         new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int1) ;
+         A219WWPFormLatestVersionNumber = GXt_int1;
          /* Using cursor BC001C6 */
          pr_default.execute(4, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
          if ( (pr_default.getStatus(4) == 101) )
@@ -358,7 +352,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A367CallToActionId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1C80( 13) ;
+            ZM1C80( 11) ;
             RcdFound80 = 1;
             A367CallToActionId = BC001C3_A367CallToActionId[0];
             A397CallToActionName = BC001C3_A397CallToActionName[0];
@@ -619,9 +613,9 @@ namespace GeneXus.Programs {
             A206WWPFormId = BC001C12_A206WWPFormId[0];
             A207WWPFormVersionNumber = BC001C12_A207WWPFormVersionNumber[0];
             pr_default.close(10);
-            GXt_int2 = A219WWPFormLatestVersionNumber;
-            new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int2) ;
-            A219WWPFormLatestVersionNumber = GXt_int2;
+            GXt_int1 = A219WWPFormLatestVersionNumber;
+            new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int1) ;
+            A219WWPFormLatestVersionNumber = GXt_int1;
             /* Using cursor BC001C13 */
             pr_default.execute(11, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
             A208WWPFormReferenceName = BC001C13_A208WWPFormReferenceName[0];
@@ -800,10 +794,10 @@ namespace GeneXus.Programs {
 
       protected void InitializeNonKey1C80( )
       {
-         A11OrganisationId = Guid.Empty;
-         A29LocationId = Guid.Empty;
          A219WWPFormLatestVersionNumber = 0;
          A58ProductServiceId = Guid.Empty;
+         A11OrganisationId = Guid.Empty;
+         A29LocationId = Guid.Empty;
          A397CallToActionName = "";
          A368CallToActionType = "";
          A370CallToActionPhone = "";
@@ -843,8 +837,6 @@ namespace GeneXus.Programs {
 
       protected void StandaloneModalInsert( )
       {
-         A11OrganisationId = i11OrganisationId;
-         A29LocationId = i29LocationId;
       }
 
       protected bool IsIns( )
@@ -870,10 +862,10 @@ namespace GeneXus.Programs {
       public void VarsToRow80( SdtTrn_CallToAction obj80 )
       {
          obj80.gxTpr_Mode = Gx_mode;
-         obj80.gxTpr_Organisationid = A11OrganisationId;
-         obj80.gxTpr_Locationid = A29LocationId;
          obj80.gxTpr_Wwpformlatestversionnumber = A219WWPFormLatestVersionNumber;
          obj80.gxTpr_Productserviceid = A58ProductServiceId;
+         obj80.gxTpr_Organisationid = A11OrganisationId;
+         obj80.gxTpr_Locationid = A29LocationId;
          obj80.gxTpr_Calltoactionname = A397CallToActionName;
          obj80.gxTpr_Calltoactiontype = A368CallToActionType;
          obj80.gxTpr_Calltoactionphone = A370CallToActionPhone;
@@ -931,10 +923,10 @@ namespace GeneXus.Programs {
                                int forceLoad )
       {
          Gx_mode = obj80.gxTpr_Mode;
-         A11OrganisationId = obj80.gxTpr_Organisationid;
-         A29LocationId = obj80.gxTpr_Locationid;
          A219WWPFormLatestVersionNumber = obj80.gxTpr_Wwpformlatestversionnumber;
          A58ProductServiceId = obj80.gxTpr_Productserviceid;
+         A11OrganisationId = obj80.gxTpr_Organisationid;
+         A29LocationId = obj80.gxTpr_Locationid;
          A397CallToActionName = obj80.gxTpr_Calltoactionname;
          A368CallToActionType = obj80.gxTpr_Calltoactiontype;
          A370CallToActionPhone = obj80.gxTpr_Calltoactionphone;
@@ -1001,7 +993,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z367CallToActionId = A367CallToActionId;
          }
-         ZM1C80( -13) ;
+         ZM1C80( -11) ;
          OnLoadActions1C80( ) ;
          AddRow1C80( ) ;
          ScanKeyEnd1C80( ) ;
@@ -1030,7 +1022,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z367CallToActionId = A367CallToActionId;
          }
-         ZM1C80( -13) ;
+         ZM1C80( -11) ;
          OnLoadActions1C80( ) ;
          AddRow1C80( ) ;
          ScanKeyEnd1C80( ) ;
@@ -1446,7 +1438,6 @@ namespace GeneXus.Programs {
          A235WWPFormResumeMessage = "";
          Z233WWPFormValidations = "";
          A233WWPFormValidations = "";
-         GXt_guid1 = Guid.Empty;
          BC001C7_A367CallToActionId = new Guid[] {Guid.Empty} ;
          BC001C7_A397CallToActionName = new string[] {""} ;
          BC001C7_A368CallToActionType = new string[] {""} ;
@@ -1546,8 +1537,6 @@ namespace GeneXus.Programs {
          BC001C14_n395LocationDynamicFormId = new bool[] {false} ;
          BC001C14_A206WWPFormId = new short[1] ;
          BC001C14_A207WWPFormVersionNumber = new short[1] ;
-         i11OrganisationId = Guid.Empty;
-         i29LocationId = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_calltoaction_bc__gam(),
@@ -1624,7 +1613,7 @@ namespace GeneXus.Programs {
       private short A240WWPFormType ;
       private short Gx_BScreen ;
       private short RcdFound80 ;
-      private short GXt_int2 ;
+      private short GXt_int1 ;
       private int trnEnded ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
@@ -1671,9 +1660,6 @@ namespace GeneXus.Programs {
       private Guid A11OrganisationId ;
       private Guid Z395LocationDynamicFormId ;
       private Guid A395LocationDynamicFormId ;
-      private Guid GXt_guid1 ;
-      private Guid i11OrganisationId ;
-      private Guid i29LocationId ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;

@@ -292,7 +292,6 @@ trn_residentwwgetfilterdata
 trn_residentloaddvcombo
 trn_medicalindicationwwgetfilterdata
 trn_productserviceloaddvcombo
-trn_colloaddvcombo
 aprc_applicationdesign
 trn_pagewwgetfilterdata
 trn_productservicewwgetfilterdata

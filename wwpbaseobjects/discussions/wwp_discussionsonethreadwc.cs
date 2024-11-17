@@ -1486,7 +1486,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                   AV24NotificationInfo.gxTpr_Id = "1";
                   AV24NotificationInfo.gxTpr_Message = AV16Message;
                   AV32socket.broadcast( AV24NotificationInfo);
-                  new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "GeneralDiscussion", ""),  context.GetMessage( "Discussion", ""),  AV33WWPDiscussionMessageEntityRecordId,  "",  context.GetMessage( "New Discussion Message", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  formatLink("wp_discussion.aspx") ,  "",  "",  true) ;
+                  new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "GeneralDiscussion", ""),  context.GetMessage( "Discussion", ""),  AV33WWPDiscussionMessageEntityRecordId,  "",  context.GetMessage( "New Discussion Message", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  AV22WWPNotificationLink,  "",  "",  true) ;
                   AV16Message = "";
                   AssignAttri(sPrefix, false, "AV16Message", AV16Message);
                   gxgrGrid_refresh( subGrid_Rows, AV15WWPDiscussionMessageThreadId, AV35Pgmname, AV33WWPDiscussionMessageEntityRecordId, sPrefix) ;
@@ -1792,7 +1792,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411156371721", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111719561613", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1808,7 +1808,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionsonethreadwc.js", "?202411156371724", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionsonethreadwc.js", "?2024111719561617", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */

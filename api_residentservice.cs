@@ -57,15 +57,6 @@ namespace GeneXus.Programs {
 
       protected void E11012( )
       {
-         /* After Routine */
-         returnInSub = false;
-         new prc_logtofile(context ).execute(  context.GetMessage( "After Event Response ========", "")+AV17result) ;
-         AV17result = StringUtil.StringReplace( AV17result, "\\", "");
-         new prc_logtofile(context ).execute(  context.GetMessage( "After Event Formated Response ========", "")+AV17result) ;
-      }
-
-      protected void E12012( )
-      {
          /* Loginwithqrcode_After Routine */
          returnInSub = false;
          if ( AV20SDT_LoginResidentResponse.FromJSonString(AV17result, null) )
@@ -74,7 +65,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E13012( )
+      protected void E12012( )
       {
          /* Getresidentinformation_After Routine */
          returnInSub = false;
@@ -83,7 +74,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E14012( )
+      protected void E13012( )
       {
          /* Getorganisationinformation_After Routine */
          returnInSub = false;
@@ -92,7 +83,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E15012( )
+      protected void E14012( )
       {
          /* Getlocationinformation_After Routine */
          returnInSub = false;
@@ -101,12 +92,16 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E16012( )
+      protected void E15012( )
       {
          /* Agendalocation_After Routine */
          returnInSub = false;
          if ( AV59SDT_AgendaLocation.FromJSonString(AV17result, null) )
          {
+         }
+         else
+         {
+            new prc_logtofile(context ).execute(  context.GetMessage( "Agenda API Response: ", "")+AV17result) ;
          }
       }
 
@@ -119,13 +114,6 @@ namespace GeneXus.Programs {
          /* LoginWithQrCode Constructor */
          new prc_loginresident(context ).execute(  AV7secretKey, out  AV17result) ;
          /* Execute user event: Loginwithqrcode.After */
-         E12012 ();
-         if ( returnInSub )
-         {
-            aP1_loginResult=this.AV21loginResult;
-            return;
-         }
-         /* Execute user event: After */
          E11012 ();
          if ( returnInSub )
          {
@@ -144,14 +132,7 @@ namespace GeneXus.Programs {
          /* GetResidentInformation Constructor */
          new prc_getresidentinformation(context ).execute(  AV8userId, out  AV17result) ;
          /* Execute user event: Getresidentinformation.After */
-         E13012 ();
-         if ( returnInSub )
-         {
-            aP1_SDT_Resident=this.AV22SDT_Resident;
-            return;
-         }
-         /* Execute user event: After */
-         E11012 ();
+         E12012 ();
          if ( returnInSub )
          {
             aP1_SDT_Resident=this.AV22SDT_Resident;
@@ -169,14 +150,7 @@ namespace GeneXus.Programs {
          /* GetOrganisationInformation Constructor */
          new prc_getorganisationinformation(context ).execute(  AV16organisationId, out  AV17result) ;
          /* Execute user event: Getorganisationinformation.After */
-         E14012 ();
-         if ( returnInSub )
-         {
-            aP1_SDT_Organisation=this.AV23SDT_Organisation;
-            return;
-         }
-         /* Execute user event: After */
-         E11012 ();
+         E13012 ();
          if ( returnInSub )
          {
             aP1_SDT_Organisation=this.AV23SDT_Organisation;
@@ -194,14 +168,7 @@ namespace GeneXus.Programs {
          /* GetLocationInformation Constructor */
          new prc_getlocationinformation(context ).execute(  AV12locationId, out  AV17result) ;
          /* Execute user event: Getlocationinformation.After */
-         E15012 ();
-         if ( returnInSub )
-         {
-            aP1_SDT_Location=this.AV18SDT_Location;
-            return;
-         }
-         /* Execute user event: After */
-         E11012 ();
+         E14012 ();
          if ( returnInSub )
          {
             aP1_SDT_Location=this.AV18SDT_Location;
@@ -227,13 +194,6 @@ namespace GeneXus.Programs {
          initialize();
          /* RegisterDevice Constructor */
          new prc_registermobiledevice(context ).execute(  AV10DeviceToken,  AV9DeviceID,  AV11DeviceType,  AV14NotificationPlatform,  AV15NotificationPlatformId,  AV8userId, out  AV17result) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP6_result=this.AV17result;
-            return;
-         }
          aP6_result=this.AV17result;
       }
 
@@ -246,17 +206,10 @@ namespace GeneXus.Programs {
          initialize();
          /* SendNotification Constructor */
          new prc_sendnotification(context ).execute(  AV19title,  AV13message, out  AV17result) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP2_result=this.AV17result;
-            return;
-         }
          aP2_result=this.AV17result;
       }
 
-      public void gxep_agendalocation( Guid aP0_ResidentId ,
+      public void gxep_agendalocation( string aP0_ResidentId ,
                                        out GXBaseCollection<SdtSDT_AgendaLocation> aP1_SDT_AgendaLocation )
       {
          this.AV74ResidentId = aP0_ResidentId;
@@ -265,14 +218,7 @@ namespace GeneXus.Programs {
          /* AgendaLocation Constructor */
          new prc_agendalocationapi(context ).execute(  AV74ResidentId, out  AV17result) ;
          /* Execute user event: Agendalocation.After */
-         E16012 ();
-         if ( returnInSub )
-         {
-            aP1_SDT_AgendaLocation=this.AV59SDT_AgendaLocation;
-            return;
-         }
-         /* Execute user event: After */
-         E11012 ();
+         E15012 ();
          if ( returnInSub )
          {
             aP1_SDT_AgendaLocation=this.AV59SDT_AgendaLocation;
@@ -286,13 +232,6 @@ namespace GeneXus.Programs {
          initialize();
          /* SendDynamicForm Constructor */
          new prc_dynamicformapi(context ).execute( out  AV17result) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP0_result=this.AV17result;
-            return;
-         }
          aP0_result=this.AV17result;
       }
 
@@ -311,13 +250,6 @@ namespace GeneXus.Programs {
          initialize();
          /* UploadMedia Constructor */
          new prc_uploadmedia(context ).execute(  AV46MediaId,  AV47MediaName,  AV49MediaImageData,  AV51MediaSize,  AV52MediaType, out  AV50BC_Trn_Media) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
-            return;
-         }
          aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
       }
 
@@ -330,13 +262,6 @@ namespace GeneXus.Programs {
          initialize();
          /* GetPages Constructor */
          new prc_getpages(context ).execute(  AV12locationId,  AV16organisationId, out  AV44SDT_PageCollection) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP2_SDT_PageCollection=this.AV44SDT_PageCollection;
-            return;
-         }
          aP2_SDT_PageCollection=this.AV44SDT_PageCollection;
       }
 
@@ -349,13 +274,6 @@ namespace GeneXus.Programs {
          initialize();
          /* PagesAPI Constructor */
          new prc_pagesapi(context ).execute(  AV12locationId,  AV16organisationId, out  AV70SDT_MobilePageCollection) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP2_SDT_MobilePageCollection=this.AV70SDT_MobilePageCollection;
-            return;
-         }
          aP2_SDT_MobilePageCollection=this.AV70SDT_MobilePageCollection;
       }
 
@@ -370,13 +288,6 @@ namespace GeneXus.Programs {
          initialize();
          /* PageAPI Constructor */
          new prc_pageapi(context ).execute(  AV54PageId,  AV12locationId,  AV16organisationId, out  AV75SDT_MobilePage) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP3_SDT_MobilePage=this.AV75SDT_MobilePage;
-            return;
-         }
          aP3_SDT_MobilePage=this.AV75SDT_MobilePage;
       }
 
@@ -389,13 +300,6 @@ namespace GeneXus.Programs {
          initialize();
          /* ContentPagesAPI Constructor */
          new prc_contentpagesapi(context ).execute(  AV12locationId,  AV16organisationId, out  AV69SDT_ContentPageCollection) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP2_SDT_ContentPageCollection=this.AV69SDT_ContentPageCollection;
-            return;
-         }
          aP2_SDT_ContentPageCollection=this.AV69SDT_ContentPageCollection;
       }
 
@@ -406,13 +310,6 @@ namespace GeneXus.Programs {
          initialize();
          /* GetSinglePage Constructor */
          new prc_getsinglepage(context ).execute(  AV54PageId, out  AV55SDT_Page) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP1_SDT_Page=this.AV55SDT_Page;
-            return;
-         }
          aP1_SDT_Page=this.AV55SDT_Page;
       }
 
@@ -425,13 +322,6 @@ namespace GeneXus.Programs {
          initialize();
          /* ListPages Constructor */
          new prc_listpages(context ).execute(  AV12locationId,  AV16organisationId, out  AV64SDT_PageStructureCollection) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP2_SDT_PageStructureCollection=this.AV64SDT_PageStructureCollection;
-            return;
-         }
          aP2_SDT_PageStructureCollection=this.AV64SDT_PageStructureCollection;
       }
 
@@ -442,13 +332,6 @@ namespace GeneXus.Programs {
          initialize();
          /* CreatePage Constructor */
          new prc_createpage(context ).execute(  AV60PageName, ref  AV17result) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP1_result=this.AV17result;
-            return;
-         }
          aP1_result=this.AV17result;
       }
 
@@ -459,13 +342,6 @@ namespace GeneXus.Programs {
          initialize();
          /* CreateContentPage Constructor */
          new prc_createcontentpage(context ).execute(  AV54PageId, out  AV17result) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP1_result=this.AV17result;
-            return;
-         }
          aP1_result=this.AV17result;
       }
 
@@ -484,13 +360,6 @@ namespace GeneXus.Programs {
          initialize();
          /* SavePage Constructor */
          new prc_savepage(context ).execute(  AV54PageId,  AV58PageJsonContent,  AV56PageGJSHtml,  AV57PageGJSJson,  AV55SDT_Page, ref  AV17result) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP5_result=this.AV17result;
-            return;
-         }
          aP5_result=this.AV17result;
       }
 
@@ -509,13 +378,6 @@ namespace GeneXus.Programs {
          initialize();
          /* UpdatePage Constructor */
          new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, ref  AV65PageIsPublished, out  AV17result) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP5_result=this.AV17result;
-            return;
-         }
          aP5_result=this.AV17result;
       }
 
@@ -528,13 +390,6 @@ namespace GeneXus.Programs {
          initialize();
          /* AddPageCildren Constructor */
          new prc_addpagechildren(context ).execute(  AV61ParentPageId,  AV62ChildPageId, out  AV17result) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP2_result=this.AV17result;
-            return;
-         }
          aP2_result=this.AV17result;
       }
 
@@ -549,13 +404,6 @@ namespace GeneXus.Programs {
          initialize();
          /* UpdateLocationTheme Constructor */
          new prc_updatelocationtheme(context ).execute(  AV71ThemeId,  AV12locationId,  AV16organisationId,  AV72SDT_Theme) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP3_SDT_Theme=this.AV72SDT_Theme;
-            return;
-         }
          aP3_SDT_Theme=this.AV72SDT_Theme;
       }
 
@@ -566,13 +414,6 @@ namespace GeneXus.Programs {
          initialize();
          /* ProductSericeAPI Constructor */
          new prc_productserviceapi(context ).execute(  AV66ProductServiceId, ref  AV67SDT_ProductService) ;
-         /* Execute user event: After */
-         E11012 ();
-         if ( returnInSub )
-         {
-            aP1_SDT_ProductService=this.AV67SDT_ProductService;
-            return;
-         }
          aP1_SDT_ProductService=this.AV67SDT_ProductService;
       }
 
@@ -620,11 +461,11 @@ namespace GeneXus.Programs {
       protected string AV15NotificationPlatformId ;
       protected string AV19title ;
       protected string AV13message ;
+      protected string AV74ResidentId ;
       protected string AV47MediaName ;
       protected string AV60PageName ;
       protected Guid AV16organisationId ;
       protected Guid AV12locationId ;
-      protected Guid AV74ResidentId ;
       protected Guid AV46MediaId ;
       protected Guid AV54PageId ;
       protected Guid AV61ParentPageId ;

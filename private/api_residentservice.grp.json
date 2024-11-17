@@ -67,7 +67,7 @@
 {
 "PathRegexp":"location/agenda",
 "Path":"location/agenda",
-"Verb":"POST",
+"Verb":"GET",
 "Name":"agendalocation",
 "Bodystyle":"Wrapped",
 "VariableAlias": [],

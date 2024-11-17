@@ -1834,7 +1834,7 @@ namespace GeneXus.Programs {
                AV31NotificationInfo.gxTpr_Id = "1";
                AV31NotificationInfo.gxTpr_Message = AV13Message;
                AV32socket.broadcast( AV31NotificationInfo);
-               new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "GeneralDiscussion", ""),  context.GetMessage( "Discussion", ""),  AV22WWPDiscussionMessageEntityRecordId,  "",  context.GetMessage( "New Discussion Message", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  formatLink("wp_discussion.aspx") ,  "",  "",  true) ;
+               new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "GeneralDiscussion", ""),  context.GetMessage( "Discussion", ""),  AV22WWPDiscussionMessageEntityRecordId,  "",  context.GetMessage( "New Discussion Message", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  AV25WWPNotificationLink,  "",  "",  true) ;
                if ( new GeneXus.Programs.wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage(context).executeUdp(  AV6WWPEntityId,  0,  AV22WWPDiscussionMessageEntityRecordId,  AV13Message,  Ucmentions_Selecteditemsjson,  StringUtil.Str( (decimal)(AV5WWPDiscussionMessage.gxTpr_Wwpdiscussionmessageid), 10, 0),  context.GetMessage( "WWP_Notifications_NewDiscussionThread", ""),  AV26WWPSubscriptionEntityRecordDescription,  AV25WWPNotificationLink) )
                {
                   AV13Message = "";
@@ -2250,7 +2250,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241115637654", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111719561559", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2266,7 +2266,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_discussions.js", "?20241115637657", false, true);
+         context.AddJavascriptSource("wc_discussions.js", "?2024111719561563", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */

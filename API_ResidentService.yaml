@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241116065254"
+  version: "20241117170601"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -156,17 +156,18 @@ paths:
           description: "Not found"
 
   /location/agenda:
-    post:
+    get:
       tags:
         - API_ResidentService  
       operationId: "API_ResidentService.AgendaLocation"
       summary: "Location Agenda"
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AgendaLocationInput"
+      parameters:
+        - name: "Residentid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
       
       responses:
         200:
@@ -625,11 +626,6 @@ components:
         message:
           type: "string"
 
-    AgendaLocationInput:  
-      properties:
-        ResidentId:
-          type: "string"
-          format: "uuid"
 
 
     UploadMediaInput:  

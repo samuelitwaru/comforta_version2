@@ -108,9 +108,9 @@ namespace GeneXus.Programs {
                CheckExtendedTable0875( ) ;
                if ( AnyError == 0 )
                {
+                  ZM0875( 13) ;
+                  ZM0875( 14) ;
                   ZM0875( 15) ;
-                  ZM0875( 16) ;
-                  ZM0875( 17) ;
                }
                CloseExtendedTableCursors0875( ) ;
             }
@@ -280,7 +280,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0875( short GX_JID )
       {
-         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
          {
             Z59ProductServiceName = A59ProductServiceName;
             Z301ProductServiceTileName = A301ProductServiceTileName;
@@ -289,18 +289,18 @@ namespace GeneXus.Programs {
             Z42SupplierGenId = A42SupplierGenId;
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         if ( ( GX_JID == 15 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 13 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( ( GX_JID == 16 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
          {
             Z44SupplierGenCompanyName = A44SupplierGenCompanyName;
          }
-         if ( ( GX_JID == 17 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 15 ) || ( GX_JID == 0 ) )
          {
             Z51SupplierAgbName = A51SupplierAgbName;
          }
-         if ( GX_JID == -14 )
+         if ( GX_JID == -12 )
          {
             Z58ProductServiceId = A58ProductServiceId;
             Z59ProductServiceName = A59ProductServiceName;
@@ -323,12 +323,6 @@ namespace GeneXus.Programs {
       {
          AV59Pgmname = "Trn_ProductService_BC";
          Gx_BScreen = 0;
-         if ( ! AV57isManager )
-         {
-            GXt_guid3 = A29LocationId;
-            new prc_getuserlocationid(context ).execute( out  GXt_guid3) ;
-            A29LocationId = GXt_guid3;
-         }
       }
 
       protected void standaloneModal( )
@@ -338,9 +332,6 @@ namespace GeneXus.Programs {
             A58ProductServiceId = Guid.NewGuid( );
             n58ProductServiceId = false;
          }
-         GXt_guid3 = A11OrganisationId;
-         new prc_getuserorganisationid(context ).execute( out  GXt_guid3) ;
-         A11OrganisationId = GXt_guid3;
          if ( IsIns( )  && String.IsNullOrEmpty(StringUtil.RTrim( A366ProductServiceGroup)) && ( Gx_BScreen == 0 ) )
          {
             A366ProductServiceGroup = "Location";
@@ -370,7 +361,7 @@ namespace GeneXus.Programs {
             A49SupplierAgbId = BC00087_A49SupplierAgbId[0];
             n49SupplierAgbId = BC00087_n49SupplierAgbId[0];
             A61ProductServiceImage = BC00087_A61ProductServiceImage[0];
-            ZM0875( -14) ;
+            ZM0875( -12) ;
          }
          pr_default.close(5);
          OnLoadActions0875( ) ;
@@ -459,7 +450,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n58ProductServiceId, A58ProductServiceId, A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0875( 14) ;
+            ZM0875( 12) ;
             RcdFound75 = 1;
             A58ProductServiceId = BC00083_A58ProductServiceId[0];
             n58ProductServiceId = BC00083_n58ProductServiceId[0];
@@ -1075,7 +1066,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM0875( -14) ;
+         ZM0875( -12) ;
          OnLoadActions0875( ) ;
          AddRow0875( ) ;
          ScanKeyEnd0875( ) ;
@@ -1114,7 +1105,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM0875( -14) ;
+         ZM0875( -12) ;
          OnLoadActions0875( ) ;
          AddRow0875( ) ;
          ScanKeyEnd0875( ) ;
@@ -1551,7 +1542,6 @@ namespace GeneXus.Programs {
          A61ProductServiceImage = "";
          Z40000ProductServiceImage_GXI = "";
          A40000ProductServiceImage_GXI = "";
-         GXt_guid3 = Guid.Empty;
          BC00087_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          BC00087_n58ProductServiceId = new bool[] {false} ;
          BC00087_A59ProductServiceName = new string[] {""} ;
@@ -1765,7 +1755,6 @@ namespace GeneXus.Programs {
       private Guid A42SupplierGenId ;
       private Guid Z49SupplierAgbId ;
       private Guid A49SupplierAgbId ;
-      private Guid GXt_guid3 ;
       private IGxSession AV18WebSession ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;

@@ -106,8 +106,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                CheckExtendedTable0U42( ) ;
                if ( AnyError == 0 )
                {
+                  ZM0U42( 5) ;
                   ZM0U42( 6) ;
-                  ZM0U42( 7) ;
                }
                CloseExtendedTableCursors0U42( ) ;
             }
@@ -158,8 +158,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                         CheckExtendedTable0U43( ) ;
                         if ( AnyError == 0 )
                         {
+                           ZM0U43( 8) ;
                            ZM0U43( 9) ;
-                           ZM0U43( 10) ;
                         }
                         CloseExtendedTableCursors0U43( ) ;
                         if ( AnyError == 0 )
@@ -199,8 +199,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                               CheckExtendedTable0U43( ) ;
                               if ( AnyError == 0 )
                               {
+                                 ZM0U43( 8) ;
                                  ZM0U43( 9) ;
-                                 ZM0U43( 10) ;
                               }
                               CloseExtendedTableCursors0U43( ) ;
                               if ( AnyError == 0 )
@@ -277,23 +277,24 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void ZM0U42( short GX_JID )
       {
-         if ( ( GX_JID == 5 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 4 ) || ( GX_JID == 0 ) )
          {
             Z239WWPFormInstanceDate = A239WWPFormInstanceDate;
             Z206WWPFormId = A206WWPFormId;
             Z207WWPFormVersionNumber = A207WWPFormVersionNumber;
             Z112WWPUserExtendedId = A112WWPUserExtendedId;
          }
-         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 5 ) || ( GX_JID == 0 ) )
          {
+            Z208WWPFormReferenceName = A208WWPFormReferenceName;
             Z209WWPFormTitle = A209WWPFormTitle;
             Z216WWPFormResume = A216WWPFormResume;
          }
-         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
          {
             Z113WWPUserExtendedFullName = A113WWPUserExtendedFullName;
          }
-         if ( GX_JID == -5 )
+         if ( GX_JID == -4 )
          {
             Z214WWPFormInstanceId = A214WWPFormInstanceId;
             Z239WWPFormInstanceDate = A239WWPFormInstanceDate;
@@ -301,6 +302,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             Z206WWPFormId = A206WWPFormId;
             Z207WWPFormVersionNumber = A207WWPFormVersionNumber;
             Z112WWPUserExtendedId = A112WWPUserExtendedId;
+            Z208WWPFormReferenceName = A208WWPFormReferenceName;
             Z209WWPFormTitle = A209WWPFormTitle;
             Z216WWPFormResume = A216WWPFormResume;
             Z233WWPFormValidations = A233WWPFormValidations;
@@ -317,19 +319,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void standaloneModal( )
       {
-         GXt_char1 = A112WWPUserExtendedId;
-         new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char1) ;
-         A112WWPUserExtendedId = GXt_char1;
          if ( IsIns( )  && (DateTime.MinValue==A239WWPFormInstanceDate) && ( Gx_BScreen == 0 ) )
          {
             A239WWPFormInstanceDate = Gx_date;
-         }
-         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
-         {
-            /* Using cursor BC000U9 */
-            pr_default.execute(7, new Object[] {A112WWPUserExtendedId});
-            A113WWPUserExtendedFullName = BC000U9_A113WWPUserExtendedFullName[0];
-            pr_default.close(7);
          }
       }
 
@@ -341,6 +333,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             RcdFound42 = 1;
             A239WWPFormInstanceDate = BC000U10_A239WWPFormInstanceDate[0];
+            A208WWPFormReferenceName = BC000U10_A208WWPFormReferenceName[0];
             A209WWPFormTitle = BC000U10_A209WWPFormTitle[0];
             A113WWPUserExtendedFullName = BC000U10_A113WWPUserExtendedFullName[0];
             A216WWPFormResume = BC000U10_A216WWPFormResume[0];
@@ -350,7 +343,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             A206WWPFormId = BC000U10_A206WWPFormId[0];
             A207WWPFormVersionNumber = BC000U10_A207WWPFormVersionNumber[0];
             A112WWPUserExtendedId = BC000U10_A112WWPUserExtendedId[0];
-            ZM0U42( -5) ;
+            ZM0U42( -4) ;
          }
          pr_default.close(8);
          OnLoadActions0U42( ) ;
@@ -370,6 +363,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
             AnyError = 1;
          }
+         A208WWPFormReferenceName = BC000U8_A208WWPFormReferenceName[0];
          A209WWPFormTitle = BC000U8_A209WWPFormTitle[0];
          A216WWPFormResume = BC000U8_A216WWPFormResume[0];
          A233WWPFormValidations = BC000U8_A233WWPFormValidations[0];
@@ -416,7 +410,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(5, new Object[] {A214WWPFormInstanceId});
          if ( (pr_default.getStatus(5) != 101) )
          {
-            ZM0U42( 5) ;
+            ZM0U42( 4) ;
             RcdFound42 = 1;
             A214WWPFormInstanceId = BC000U7_A214WWPFormInstanceId[0];
             A239WWPFormInstanceDate = BC000U7_A239WWPFormInstanceDate[0];
@@ -683,6 +677,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             /* Delete mode formulas */
             /* Using cursor BC000U16 */
             pr_default.execute(14, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
+            A208WWPFormReferenceName = BC000U16_A208WWPFormReferenceName[0];
             A209WWPFormTitle = BC000U16_A209WWPFormTitle[0];
             A216WWPFormResume = BC000U16_A216WWPFormResume[0];
             A233WWPFormValidations = BC000U16_A233WWPFormValidations[0];
@@ -827,6 +822,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             RcdFound42 = 1;
             A214WWPFormInstanceId = BC000U18_A214WWPFormInstanceId[0];
             A239WWPFormInstanceDate = BC000U18_A239WWPFormInstanceDate[0];
+            A208WWPFormReferenceName = BC000U18_A208WWPFormReferenceName[0];
             A209WWPFormTitle = BC000U18_A209WWPFormTitle[0];
             A113WWPUserExtendedFullName = BC000U18_A113WWPUserExtendedFullName[0];
             A216WWPFormResume = BC000U18_A216WWPFormResume[0];
@@ -857,6 +853,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             RcdFound42 = 1;
             A214WWPFormInstanceId = BC000U18_A214WWPFormInstanceId[0];
             A239WWPFormInstanceDate = BC000U18_A239WWPFormInstanceDate[0];
+            A208WWPFormReferenceName = BC000U18_A208WWPFormReferenceName[0];
             A209WWPFormTitle = BC000U18_A209WWPFormTitle[0];
             A113WWPUserExtendedFullName = BC000U18_A113WWPUserExtendedFullName[0];
             A216WWPFormResume = BC000U18_A216WWPFormResume[0];
@@ -911,14 +908,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void ZM0U43( short GX_JID )
       {
-         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
          {
             Z220WWPFormInstanceElemDate = A220WWPFormInstanceElemDate;
             Z227WWPFormInstanceElemDateTime = A227WWPFormInstanceElemDateTime;
             Z222WWPFormInstanceElemNumeric = A222WWPFormInstanceElemNumeric;
             Z226WWPFormInstanceElemBoolean = A226WWPFormInstanceElemBoolean;
          }
-         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
          {
             Z213WWPFormElementReferenceId = A213WWPFormElementReferenceId;
             Z218WWPFormElementDataType = A218WWPFormElementDataType;
@@ -926,11 +923,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             Z237WWPFormElementCaption = A237WWPFormElementCaption;
             Z211WWPFormElementParentId = A211WWPFormElementParentId;
          }
-         if ( ( GX_JID == 10 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
             Z230WWPFormElementParentType = A230WWPFormElementParentType;
          }
-         if ( GX_JID == -8 )
+         if ( GX_JID == -7 )
          {
             Z214WWPFormInstanceId = A214WWPFormInstanceId;
             Z215WWPFormInstanceElementId = A215WWPFormInstanceElementId;
@@ -996,7 +993,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             n211WWPFormElementParentId = BC000U19_n211WWPFormElementParentId[0];
             A223WWPFormInstanceElemBlob = BC000U19_A223WWPFormInstanceElemBlob[0];
             n223WWPFormInstanceElemBlob = BC000U19_n223WWPFormInstanceElemBlob[0];
-            ZM0U43( -8) ;
+            ZM0U43( -7) ;
          }
          pr_default.close(17);
          OnLoadActions0U43( ) ;
@@ -1072,7 +1069,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(1, new Object[] {A214WWPFormInstanceId, A210WWPFormElementId, A215WWPFormInstanceElementId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0U43( 8) ;
+            ZM0U43( 7) ;
             RcdFound43 = 1;
             InitializeNonKey0U43( ) ;
             A215WWPFormInstanceElementId = BC000U3_A215WWPFormInstanceElementId[0];
@@ -1493,10 +1490,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void InitializeNonKey0U42( )
       {
-         A112WWPUserExtendedId = "";
          A206WWPFormId = 0;
+         A208WWPFormReferenceName = "";
          A207WWPFormVersionNumber = 0;
          A209WWPFormTitle = "";
+         A112WWPUserExtendedId = "";
          A113WWPUserExtendedFullName = "";
          A216WWPFormResume = 0;
          A233WWPFormValidations = "";
@@ -1517,7 +1515,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void StandaloneModalInsert( )
       {
-         A112WWPUserExtendedId = i112WWPUserExtendedId;
          A239WWPFormInstanceDate = i239WWPFormInstanceDate;
       }
 
@@ -1586,10 +1583,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       public void VarsToRow42( GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance obj42 )
       {
          obj42.gxTpr_Mode = Gx_mode;
-         obj42.gxTpr_Wwpuserextendedid = A112WWPUserExtendedId;
          obj42.gxTpr_Wwpformid = A206WWPFormId;
+         obj42.gxTpr_Wwpformreferencename = A208WWPFormReferenceName;
          obj42.gxTpr_Wwpformversionnumber = A207WWPFormVersionNumber;
          obj42.gxTpr_Wwpformtitle = A209WWPFormTitle;
+         obj42.gxTpr_Wwpuserextendedid = A112WWPUserExtendedId;
          obj42.gxTpr_Wwpuserextendedfullname = A113WWPUserExtendedFullName;
          obj42.gxTpr_Wwpformresume = A216WWPFormResume;
          obj42.gxTpr_Wwpformvalidations = A233WWPFormValidations;
@@ -1599,6 +1597,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          obj42.gxTpr_Wwpforminstanceid_Z = Z214WWPFormInstanceId;
          obj42.gxTpr_Wwpforminstancedate_Z = Z239WWPFormInstanceDate;
          obj42.gxTpr_Wwpformid_Z = Z206WWPFormId;
+         obj42.gxTpr_Wwpformreferencename_Z = Z208WWPFormReferenceName;
          obj42.gxTpr_Wwpformversionnumber_Z = Z207WWPFormVersionNumber;
          obj42.gxTpr_Wwpformtitle_Z = Z209WWPFormTitle;
          obj42.gxTpr_Wwpuserextendedid_Z = Z112WWPUserExtendedId;
@@ -1619,10 +1618,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                int forceLoad )
       {
          Gx_mode = obj42.gxTpr_Mode;
-         A112WWPUserExtendedId = obj42.gxTpr_Wwpuserextendedid;
          A206WWPFormId = obj42.gxTpr_Wwpformid;
+         A208WWPFormReferenceName = obj42.gxTpr_Wwpformreferencename;
          A207WWPFormVersionNumber = obj42.gxTpr_Wwpformversionnumber;
          A209WWPFormTitle = obj42.gxTpr_Wwpformtitle;
+         A112WWPUserExtendedId = obj42.gxTpr_Wwpuserextendedid;
          A113WWPUserExtendedFullName = obj42.gxTpr_Wwpuserextendedfullname;
          A216WWPFormResume = obj42.gxTpr_Wwpformresume;
          A233WWPFormValidations = obj42.gxTpr_Wwpformvalidations;
@@ -1633,6 +1633,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Z214WWPFormInstanceId = obj42.gxTpr_Wwpforminstanceid_Z;
          Z239WWPFormInstanceDate = obj42.gxTpr_Wwpforminstancedate_Z;
          Z206WWPFormId = obj42.gxTpr_Wwpformid_Z;
+         Z208WWPFormReferenceName = obj42.gxTpr_Wwpformreferencename_Z;
          Z207WWPFormVersionNumber = obj42.gxTpr_Wwpformversionnumber_Z;
          Z209WWPFormTitle = obj42.gxTpr_Wwpformtitle_Z;
          Z112WWPUserExtendedId = obj42.gxTpr_Wwpuserextendedid_Z;
@@ -1768,7 +1769,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             Gx_mode = "UPD";
             Z214WWPFormInstanceId = A214WWPFormInstanceId;
          }
-         ZM0U42( -5) ;
+         ZM0U42( -4) ;
          OnLoadActions0U42( ) ;
          AddRow0U42( ) ;
          bcworkwithplus_dynamicforms_WWP_FormInstance.gxTpr_Element.ClearCollection();
@@ -1781,7 +1782,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                Z214WWPFormInstanceId = A214WWPFormInstanceId;
                Z210WWPFormElementId = A210WWPFormElementId;
                Z215WWPFormInstanceElementId = A215WWPFormInstanceElementId;
-               ZM0U43( -8) ;
+               ZM0U43( -7) ;
                OnLoadActions0U43( ) ;
                nRcdExists_43 = 1;
                nIsMod_43 = 0;
@@ -1817,7 +1818,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             Gx_mode = "UPD";
             Z214WWPFormInstanceId = A214WWPFormInstanceId;
          }
-         ZM0U42( -5) ;
+         ZM0U42( -4) ;
          OnLoadActions0U42( ) ;
          AddRow0U42( ) ;
          bcworkwithplus_dynamicforms_WWP_FormInstance.gxTpr_Element.ClearCollection();
@@ -1830,7 +1831,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                Z214WWPFormInstanceId = A214WWPFormInstanceId;
                Z210WWPFormElementId = A210WWPFormElementId;
                Z215WWPFormInstanceElementId = A215WWPFormInstanceElementId;
-               ZM0U43( -8) ;
+               ZM0U43( -7) ;
                OnLoadActions0U43( ) ;
                nRcdExists_43 = 1;
                nIsMod_43 = 0;
@@ -2214,6 +2215,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          A239WWPFormInstanceDate = DateTime.MinValue;
          Z112WWPUserExtendedId = "";
          A112WWPUserExtendedId = "";
+         Z208WWPFormReferenceName = "";
+         A208WWPFormReferenceName = "";
          Z209WWPFormTitle = "";
          A209WWPFormTitle = "";
          Z113WWPUserExtendedFullName = "";
@@ -2223,10 +2226,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Z233WWPFormValidations = "";
          A233WWPFormValidations = "";
          Gx_date = DateTime.MinValue;
-         GXt_char1 = "";
-         BC000U9_A113WWPUserExtendedFullName = new string[] {""} ;
          BC000U10_A214WWPFormInstanceId = new int[1] ;
          BC000U10_A239WWPFormInstanceDate = new DateTime[] {DateTime.MinValue} ;
+         BC000U10_A208WWPFormReferenceName = new string[] {""} ;
          BC000U10_A209WWPFormTitle = new string[] {""} ;
          BC000U10_A113WWPUserExtendedFullName = new string[] {""} ;
          BC000U10_A216WWPFormResume = new short[1] ;
@@ -2236,9 +2238,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          BC000U10_A206WWPFormId = new short[1] ;
          BC000U10_A207WWPFormVersionNumber = new short[1] ;
          BC000U10_A112WWPUserExtendedId = new string[] {""} ;
+         BC000U8_A208WWPFormReferenceName = new string[] {""} ;
          BC000U8_A209WWPFormTitle = new string[] {""} ;
          BC000U8_A216WWPFormResume = new short[1] ;
          BC000U8_A233WWPFormValidations = new string[] {""} ;
+         BC000U9_A113WWPUserExtendedFullName = new string[] {""} ;
          BC000U11_A214WWPFormInstanceId = new int[1] ;
          BC000U7_A214WWPFormInstanceId = new int[1] ;
          BC000U7_A239WWPFormInstanceDate = new DateTime[] {DateTime.MinValue} ;
@@ -2255,12 +2259,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          BC000U6_A207WWPFormVersionNumber = new short[1] ;
          BC000U6_A112WWPUserExtendedId = new string[] {""} ;
          BC000U13_A214WWPFormInstanceId = new int[1] ;
+         BC000U16_A208WWPFormReferenceName = new string[] {""} ;
          BC000U16_A209WWPFormTitle = new string[] {""} ;
          BC000U16_A216WWPFormResume = new short[1] ;
          BC000U16_A233WWPFormValidations = new string[] {""} ;
          BC000U17_A113WWPUserExtendedFullName = new string[] {""} ;
          BC000U18_A214WWPFormInstanceId = new int[1] ;
          BC000U18_A239WWPFormInstanceDate = new DateTime[] {DateTime.MinValue} ;
+         BC000U18_A208WWPFormReferenceName = new string[] {""} ;
          BC000U18_A209WWPFormTitle = new string[] {""} ;
          BC000U18_A113WWPUserExtendedFullName = new string[] {""} ;
          BC000U18_A216WWPFormResume = new short[1] ;
@@ -2404,7 +2410,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          BC000U27_n211WWPFormElementParentId = new bool[] {false} ;
          BC000U27_A223WWPFormInstanceElemBlob = new string[] {""} ;
          BC000U27_n223WWPFormInstanceElemBlob = new bool[] {false} ;
-         i112WWPUserExtendedId = "";
          i239WWPFormInstanceDate = DateTime.MinValue;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -2435,14 +2440,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                BC000U7_A214WWPFormInstanceId, BC000U7_A239WWPFormInstanceDate, BC000U7_A243WWPFormInstanceRecordKey, BC000U7_n243WWPFormInstanceRecordKey, BC000U7_A206WWPFormId, BC000U7_A207WWPFormVersionNumber, BC000U7_A112WWPUserExtendedId
                }
                , new Object[] {
-               BC000U8_A209WWPFormTitle, BC000U8_A216WWPFormResume, BC000U8_A233WWPFormValidations
+               BC000U8_A208WWPFormReferenceName, BC000U8_A209WWPFormTitle, BC000U8_A216WWPFormResume, BC000U8_A233WWPFormValidations
                }
                , new Object[] {
                BC000U9_A113WWPUserExtendedFullName
                }
                , new Object[] {
-               BC000U10_A214WWPFormInstanceId, BC000U10_A239WWPFormInstanceDate, BC000U10_A209WWPFormTitle, BC000U10_A113WWPUserExtendedFullName, BC000U10_A216WWPFormResume, BC000U10_A233WWPFormValidations, BC000U10_A243WWPFormInstanceRecordKey, BC000U10_n243WWPFormInstanceRecordKey, BC000U10_A206WWPFormId, BC000U10_A207WWPFormVersionNumber,
-               BC000U10_A112WWPUserExtendedId
+               BC000U10_A214WWPFormInstanceId, BC000U10_A239WWPFormInstanceDate, BC000U10_A208WWPFormReferenceName, BC000U10_A209WWPFormTitle, BC000U10_A113WWPUserExtendedFullName, BC000U10_A216WWPFormResume, BC000U10_A233WWPFormValidations, BC000U10_A243WWPFormInstanceRecordKey, BC000U10_n243WWPFormInstanceRecordKey, BC000U10_A206WWPFormId,
+               BC000U10_A207WWPFormVersionNumber, BC000U10_A112WWPUserExtendedId
                }
                , new Object[] {
                BC000U11_A214WWPFormInstanceId
@@ -2457,14 +2462,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                , new Object[] {
                }
                , new Object[] {
-               BC000U16_A209WWPFormTitle, BC000U16_A216WWPFormResume, BC000U16_A233WWPFormValidations
+               BC000U16_A208WWPFormReferenceName, BC000U16_A209WWPFormTitle, BC000U16_A216WWPFormResume, BC000U16_A233WWPFormValidations
                }
                , new Object[] {
                BC000U17_A113WWPUserExtendedFullName
                }
                , new Object[] {
-               BC000U18_A214WWPFormInstanceId, BC000U18_A239WWPFormInstanceDate, BC000U18_A209WWPFormTitle, BC000U18_A113WWPUserExtendedFullName, BC000U18_A216WWPFormResume, BC000U18_A233WWPFormValidations, BC000U18_A243WWPFormInstanceRecordKey, BC000U18_n243WWPFormInstanceRecordKey, BC000U18_A206WWPFormId, BC000U18_A207WWPFormVersionNumber,
-               BC000U18_A112WWPUserExtendedId
+               BC000U18_A214WWPFormInstanceId, BC000U18_A239WWPFormInstanceDate, BC000U18_A208WWPFormReferenceName, BC000U18_A209WWPFormTitle, BC000U18_A113WWPUserExtendedFullName, BC000U18_A216WWPFormResume, BC000U18_A233WWPFormValidations, BC000U18_A243WWPFormInstanceRecordKey, BC000U18_n243WWPFormInstanceRecordKey, BC000U18_A206WWPFormId,
+               BC000U18_A207WWPFormVersionNumber, BC000U18_A112WWPUserExtendedId
                }
                , new Object[] {
                BC000U19_A206WWPFormId, BC000U19_A207WWPFormVersionNumber, BC000U19_A214WWPFormInstanceId, BC000U19_A215WWPFormInstanceElementId, BC000U19_A229WWPFormElementTitle, BC000U19_A213WWPFormElementReferenceId, BC000U19_A218WWPFormElementDataType, BC000U19_A230WWPFormElementParentType, BC000U19_A217WWPFormElementType, BC000U19_A236WWPFormElementMetadata,
@@ -2552,11 +2557,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string AV17FormInstanceIdString ;
       private string Z112WWPUserExtendedId ;
       private string A112WWPUserExtendedId ;
-      private string GXt_char1 ;
       private string A223WWPFormInstanceElemBlob_Filetype ;
       private string A223WWPFormInstanceElemBlob_Filename ;
       private string sMode43 ;
-      private string i112WWPUserExtendedId ;
       private DateTime Z227WWPFormInstanceElemDateTime ;
       private DateTime A227WWPFormInstanceElemDateTime ;
       private DateTime Z239WWPFormInstanceDate ;
@@ -2588,6 +2591,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string A236WWPFormElementMetadata ;
       private string AV18FormLink ;
       private string AV19WWPFormReferenceName ;
+      private string Z208WWPFormReferenceName ;
+      private string A208WWPFormReferenceName ;
       private string Z209WWPFormTitle ;
       private string A209WWPFormTitle ;
       private string Z113WWPUserExtendedFullName ;
@@ -2608,9 +2613,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV9TrnContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute AV13TrnContextAtt ;
       private IDataStoreProvider pr_default ;
-      private string[] BC000U9_A113WWPUserExtendedFullName ;
       private int[] BC000U10_A214WWPFormInstanceId ;
       private DateTime[] BC000U10_A239WWPFormInstanceDate ;
+      private string[] BC000U10_A208WWPFormReferenceName ;
       private string[] BC000U10_A209WWPFormTitle ;
       private string[] BC000U10_A113WWPUserExtendedFullName ;
       private short[] BC000U10_A216WWPFormResume ;
@@ -2620,9 +2625,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private short[] BC000U10_A206WWPFormId ;
       private short[] BC000U10_A207WWPFormVersionNumber ;
       private string[] BC000U10_A112WWPUserExtendedId ;
+      private string[] BC000U8_A208WWPFormReferenceName ;
       private string[] BC000U8_A209WWPFormTitle ;
       private short[] BC000U8_A216WWPFormResume ;
       private string[] BC000U8_A233WWPFormValidations ;
+      private string[] BC000U9_A113WWPUserExtendedFullName ;
       private int[] BC000U11_A214WWPFormInstanceId ;
       private int[] BC000U7_A214WWPFormInstanceId ;
       private DateTime[] BC000U7_A239WWPFormInstanceDate ;
@@ -2639,12 +2646,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private short[] BC000U6_A207WWPFormVersionNumber ;
       private string[] BC000U6_A112WWPUserExtendedId ;
       private int[] BC000U13_A214WWPFormInstanceId ;
+      private string[] BC000U16_A208WWPFormReferenceName ;
       private string[] BC000U16_A209WWPFormTitle ;
       private short[] BC000U16_A216WWPFormResume ;
       private string[] BC000U16_A233WWPFormValidations ;
       private string[] BC000U17_A113WWPUserExtendedFullName ;
       private int[] BC000U18_A214WWPFormInstanceId ;
       private DateTime[] BC000U18_A239WWPFormInstanceDate ;
+      private string[] BC000U18_A208WWPFormReferenceName ;
       private string[] BC000U18_A209WWPFormTitle ;
       private string[] BC000U18_A113WWPUserExtendedFullName ;
       private short[] BC000U18_A216WWPFormResume ;
@@ -3009,17 +3018,17 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
            ,new CursorDef("BC000U5", "SELECT WWPFormElementType AS WWPFormElementParentType FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementParentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U5,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U6", "SELECT WWPFormInstanceId, WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId  FOR UPDATE OF WWP_FormInstance",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U6,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U7", "SELECT WWPFormInstanceId, WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U7,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U8", "SELECT WWPFormTitle, WWPFormResume, WWPFormValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U8,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC000U8", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormResume, WWPFormValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U8,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U9", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U9,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U10", "SELECT TM1.WWPFormInstanceId, TM1.WWPFormInstanceDate, T2.WWPFormTitle, T3.WWPUserExtendedFullName, T2.WWPFormResume, T2.WWPFormValidations, TM1.WWPFormInstanceRecordKey, TM1.WWPFormId, TM1.WWPFormVersionNumber, TM1.WWPUserExtendedId FROM ((WWP_FormInstance TM1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = TM1.WWPFormId AND T2.WWPFormVersionNumber = TM1.WWPFormVersionNumber) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY TM1.WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U10,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC000U10", "SELECT TM1.WWPFormInstanceId, TM1.WWPFormInstanceDate, T2.WWPFormReferenceName, T2.WWPFormTitle, T3.WWPUserExtendedFullName, T2.WWPFormResume, T2.WWPFormValidations, TM1.WWPFormInstanceRecordKey, TM1.WWPFormId, TM1.WWPFormVersionNumber, TM1.WWPUserExtendedId FROM ((WWP_FormInstance TM1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = TM1.WWPFormId AND T2.WWPFormVersionNumber = TM1.WWPFormVersionNumber) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY TM1.WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U10,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U11", "SELECT WWPFormInstanceId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U11,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U12", "SAVEPOINT gxupdate;INSERT INTO WWP_FormInstance(WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId) VALUES(:WWPFormInstanceDate, :WWPFormInstanceRecordKey, :WWPFormId, :WWPFormVersionNumber, :WWPUserExtendedId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000U12)
            ,new CursorDef("BC000U13", "SELECT currval('WWPFormInstanceId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U13,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U14", "SAVEPOINT gxupdate;UPDATE WWP_FormInstance SET WWPFormInstanceDate=:WWPFormInstanceDate, WWPFormInstanceRecordKey=:WWPFormInstanceRecordKey, WWPFormId=:WWPFormId, WWPFormVersionNumber=:WWPFormVersionNumber, WWPUserExtendedId=:WWPUserExtendedId  WHERE WWPFormInstanceId = :WWPFormInstanceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U14)
            ,new CursorDef("BC000U15", "SAVEPOINT gxupdate;DELETE FROM WWP_FormInstance  WHERE WWPFormInstanceId = :WWPFormInstanceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U15)
-           ,new CursorDef("BC000U16", "SELECT WWPFormTitle, WWPFormResume, WWPFormValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U16,1, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC000U16", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormResume, WWPFormValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U16,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U17", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U17,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U18", "SELECT TM1.WWPFormInstanceId, TM1.WWPFormInstanceDate, T2.WWPFormTitle, T3.WWPUserExtendedFullName, T2.WWPFormResume, T2.WWPFormValidations, TM1.WWPFormInstanceRecordKey, TM1.WWPFormId, TM1.WWPFormVersionNumber, TM1.WWPUserExtendedId FROM ((WWP_FormInstance TM1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = TM1.WWPFormId AND T2.WWPFormVersionNumber = TM1.WWPFormVersionNumber) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY TM1.WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U18,100, GxCacheFrequency.OFF ,true,false )
+           ,new CursorDef("BC000U18", "SELECT TM1.WWPFormInstanceId, TM1.WWPFormInstanceDate, T2.WWPFormReferenceName, T2.WWPFormTitle, T3.WWPUserExtendedFullName, T2.WWPFormResume, T2.WWPFormValidations, TM1.WWPFormInstanceRecordKey, TM1.WWPFormId, TM1.WWPFormVersionNumber, TM1.WWPUserExtendedId FROM ((WWP_FormInstance TM1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = TM1.WWPFormId AND T2.WWPFormVersionNumber = TM1.WWPFormVersionNumber) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY TM1.WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U18,100, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U19", "SELECT T2.WWPFormId, T2.WWPFormVersionNumber, T1.WWPFormInstanceId, T1.WWPFormInstanceElementId, T2.WWPFormElementTitle, T2.WWPFormElementReferenceId, T2.WWPFormElementDataType, T3.WWPFormElementType AS WWPFormElementParentType, T2.WWPFormElementType, T2.WWPFormElementMetadata, T2.WWPFormElementCaption, T1.WWPFormInstanceElemChar, T1.WWPFormInstanceElemDate, T1.WWPFormInstanceElemDateTime, T1.WWPFormInstanceElemNumeric, T1.WWPFormInstanceElemBoolean, T1.WWPFormInstanceElemBlobFileTyp, T1.WWPFormInstanceElemBlobFileNam, T1.WWPFormElementId, T2.WWPFormElementParentId AS WWPFormElementParentId, T1.WWPFormInstanceElemBlob FROM ((WWP_FormInstanceElement T1 LEFT JOIN WWP_FormElement T2 ON T2.WWPFormId = :WWPFormId AND T2.WWPFormVersionNumber = :WWPFormVersionNumber AND T2.WWPFormElementId = T1.WWPFormElementId) LEFT JOIN WWP_FormElement T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber AND T3.WWPFormElementId = T2.WWPFormElementParentId) WHERE T1.WWPFormInstanceId = :WWPFormInstanceId and T1.WWPFormInstanceElementId = :WWPFormInstanceElementId and T1.WWPFormElementId = :WWPFormElementId ORDER BY T1.WWPFormInstanceId, T1.WWPFormElementId, T1.WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U19,11, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U20", "SELECT WWPFormInstanceId, WWPFormElementId, WWPFormInstanceElementId FROM WWP_FormInstanceElement WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U20,1, GxCacheFrequency.OFF ,true,false )
            ,new CursorDef("BC000U21", "SAVEPOINT gxupdate;INSERT INTO WWP_FormInstanceElement(WWPFormInstanceId, WWPFormInstanceElementId, WWPFormInstanceElemChar, WWPFormInstanceElemDate, WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric, WWPFormInstanceElemBlob, WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam, WWPFormElementId) VALUES(:WWPFormInstanceId, :WWPFormInstanceElementId, :WWPFormInstanceElemChar, :WWPFormInstanceElemDate, :WWPFormInstanceElemDateTime, :WWPFormInstanceElemNumeric, :WWPFormInstanceElemBlob, :WWPFormInstanceElemBoolean, :WWPFormInstanceElemBlobFileTyp, :WWPFormInstanceElemBlobFileNam, :WWPFormElementId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000U21)
@@ -3112,8 +3121,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
               return;
            case 6 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((short[]) buf[2])[0] = rslt.getShort(3);
+              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
               return;
            case 7 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
@@ -3123,13 +3133,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
               ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
               ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((short[]) buf[4])[0] = rslt.getShort(5);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+              ((string[]) buf[4])[0] = rslt.getVarchar(5);
+              ((short[]) buf[5])[0] = rslt.getShort(6);
               ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-              ((bool[]) buf[7])[0] = rslt.wasNull(7);
-              ((short[]) buf[8])[0] = rslt.getShort(8);
+              ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+              ((bool[]) buf[8])[0] = rslt.wasNull(8);
               ((short[]) buf[9])[0] = rslt.getShort(9);
-              ((string[]) buf[10])[0] = rslt.getString(10, 40);
+              ((short[]) buf[10])[0] = rslt.getShort(10);
+              ((string[]) buf[11])[0] = rslt.getString(11, 40);
               return;
            case 9 :
               ((int[]) buf[0])[0] = rslt.getInt(1);
@@ -3139,8 +3150,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
               return;
            case 14 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+              ((string[]) buf[1])[0] = rslt.getVarchar(2);
+              ((short[]) buf[2])[0] = rslt.getShort(3);
+              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
               return;
            case 15 :
               ((string[]) buf[0])[0] = rslt.getVarchar(1);
@@ -3150,13 +3162,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
               ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
               ((string[]) buf[2])[0] = rslt.getVarchar(3);
               ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((short[]) buf[4])[0] = rslt.getShort(5);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+              ((string[]) buf[4])[0] = rslt.getVarchar(5);
+              ((short[]) buf[5])[0] = rslt.getShort(6);
               ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-              ((bool[]) buf[7])[0] = rslt.wasNull(7);
-              ((short[]) buf[8])[0] = rslt.getShort(8);
+              ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+              ((bool[]) buf[8])[0] = rslt.wasNull(8);
               ((short[]) buf[9])[0] = rslt.getShort(9);
-              ((string[]) buf[10])[0] = rslt.getString(10, 40);
+              ((short[]) buf[10])[0] = rslt.getShort(10);
+              ((string[]) buf[11])[0] = rslt.getString(11, 40);
               return;
            case 17 :
               ((short[]) buf[0])[0] = rslt.getShort(1);

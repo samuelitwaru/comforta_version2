@@ -258,7 +258,7 @@ namespace GeneXus.Programs {
          /* SendNotification Constructor */
       }
 
-      public void gxep_agendalocation( Guid aP0_ResidentId ,
+      public void gxep_agendalocation( string aP0_ResidentId ,
                                        out GXBaseCollection<SdtSDT_AgendaLocation> aP1_SDT_AgendaLocation )
       {
          restCliAgendaLocation = new GXRestAPIClient();
@@ -268,8 +268,8 @@ namespace GeneXus.Programs {
          }
          restLocation.ResourceName = "/location/agenda";
          restCliAgendaLocation.Location = restLocation;
-         restCliAgendaLocation.HttpMethod = "POST";
-         restCliAgendaLocation.AddBodyVar("ResidentId", (Guid)(aP0_ResidentId));
+         restCliAgendaLocation.HttpMethod = "GET";
+         restCliAgendaLocation.AddQueryVar("Residentid", (string)(aP0_ResidentId));
          restCliAgendaLocation.RestExecute();
          if ( restCliAgendaLocation.ErrorCode != 0 )
          {

@@ -8,15 +8,10 @@ SoapParm.cs
 GxFullTextSearchReindexer.cs
 GxModelInfoProvider.cs
 @genexus.programs.sdt.bld
-workwithplus\dynamicforms\type_SdtWWP_FormInstance.cs
-workwithplus\dynamicforms\type_SdtWWP_FormInstance_Element.cs
-workwithplus\dynamicforms\type_SdtWWP_Form.cs
-workwithplus\dynamicforms\type_SdtWWP_Form_Element.cs
 type_SdtTrn_OrganisationType.cs
 type_SdtTrn_Organisation.cs
 type_SdtTrn_Manager.cs
 type_SdtTrn_Location.cs
-type_SdtTrn_SupplierGen.cs
 type_SdtTrn_SupplierAgb.cs
 type_SdtTrn_NetworkCompany.cs
 type_SdtTrn_NetworkIndividual.cs
@@ -29,7 +24,6 @@ type_SdtTrn_MedicalIndication.cs
 workwithplus\type_SdtWWP_Parameter.cs
 wwpbaseobjects\type_SdtWWP_Entity.cs
 type_SdtTrn_OrganisationSetting.cs
-wwpbaseobjects\type_SdtWWP_UserExtended.cs
 wwpbaseobjects\subscriptions\type_SdtWWP_Subscription.cs
 wwpbaseobjects\sms\type_SdtWWP_SMS.cs
 wwpbaseobjects\notifications\web\type_SdtWWP_WebClient.cs
@@ -49,7 +43,6 @@ type_SdtTrn_SupplierGenType.cs
 type_SdtTrn_AgendaCalendar.cs
 type_SdtTrn_Device.cs
 type_SdtTrn_LocationDynamicForm.cs
-type_SdtTrn_CallToAction.cs
 type_SdtTrn_Audit.cs
 type_SdtTrn_PreferredAgbSupplier.cs
 type_SdtTrn_PreferredGenSupplier.cs
@@ -58,6 +51,13 @@ type_SdtTrn_Theme.cs
 type_SdtTrn_Theme_Color.cs
 type_SdtTrn_Theme_Icon.cs
 type_SdtTrn_Page.cs
+workwithplus\dynamicforms\type_SdtWWP_FormInstance.cs
+workwithplus\dynamicforms\type_SdtWWP_FormInstance_Element.cs
+workwithplus\dynamicforms\type_SdtWWP_Form.cs
+workwithplus\dynamicforms\type_SdtWWP_Form_Element.cs
+type_SdtTrn_SupplierGen.cs
+wwpbaseobjects\type_SdtWWP_UserExtended.cs
+type_SdtTrn_CallToAction.cs
 type_SdtTrn_ProductService.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
