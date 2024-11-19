@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241117170601"
+  version: "20241119054545"
 servers:
-  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
+  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
   /Trn_AuditLoadDVCombo:
     post:
@@ -72,29 +72,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_CallToActionLoadDVComboOutput"
-        404:
-          description: "Not found"
-  /Trn_ColLoadDVCombo:
-    post:
-      tags:
-        - Trn_ColLoadDVCombo
-      operationId: "Trn_ColLoadDVCombo"
-      summary: "Trn_Col Load DVCombo"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_ColLoadDVComboInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_ColLoadDVComboOutput"
         404:
           description: "Not found"
   /Trn_LocationWWGetFilterData:
@@ -1048,7 +1025,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
   schemas:
@@ -1069,14 +1046,6 @@ components:
         OptionIndexesJson:
           type: "string"
     Trn_CallToActionLoadDVComboOutput:
-      properties:
-        SelectedValue:
-          type: "string"
-        SelectedText:
-          type: "string"
-        Combo_DataJson:
-          type: "string"
-    Trn_ColLoadDVComboOutput:
       properties:
         SelectedValue:
           type: "string"
@@ -1382,19 +1351,6 @@ components:
         IsDynamicCall:
           type: "boolean"
         CallToActionId:
-          type: "string"
-          format: "uuid"
-        SearchTxtParms:
-          type: "string"
-    Trn_ColLoadDVComboInput:  
-      properties:
-        ComboName:
-          type: "string"
-        TrnMode:
-          type: "string"
-        IsDynamicCall:
-          type: "boolean"
-        Trn_ColId:
           type: "string"
           format: "uuid"
         SearchTxtParms:
@@ -1896,62 +1852,6 @@ components:
           description: "Cta BGColor"
           type: "string"
       x-gx-level: "SDT_ContentPage"
-    SDT_ContentPage1:
-      properties:
-        PageId:
-          description: "Page Id"
-          type: "string"
-          format: "uuid"
-        PageName:
-          description: "Page Name"
-          type: "string"
-        ProductServiceImage:
-          description: "Product Service Image"
-          type: "string"
-        ProductServiceDescription:
-          description: "Product Service Description"
-          type: "string"
-        Row:
-          type: array
-          items:
-            description: RowItem
-            $ref: "#/components/schemas/SDT_ContentPage1.Row_RowItem"
-    SDT_ContentPage1.Row_RowItem:
-      properties:
-        Content:
-          type: array
-          items:
-            description: ContentItem
-            $ref: "#/components/schemas/SDT_ContentPage1.Row.Content_ContentItem"
-      x-gx-level: "SDT_ContentPage1"
-    SDT_ContentPage1.Row.Content_ContentItem:
-      properties:
-        ContentType:
-          description: "Content Type"
-          type: "string"
-        ContentValue:
-          description: "Content Value"
-          type: "string"
-        CallToActionId:
-          description: "Call To Action Id"
-          type: "string"
-          format: "uuid"
-        CallToActionName:
-          description: "Call To Action Name"
-          type: "string"
-        CallToActionPhone:
-          description: "Call To Action Phone"
-          type: "string"
-        CallToActionUrl:
-          description: "Call To Action Url"
-          type: "string"
-        CallToActionEmail:
-          description: "Call To Action Email"
-          type: "string"
-        BackgroundColor:
-          description: "Background Color"
-          type: "string"
-      x-gx-level: "SDT_ContentPage1.Row"
     SDT_Location:
       properties:
         LocationId:

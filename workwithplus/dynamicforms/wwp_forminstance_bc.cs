@@ -263,15 +263,15 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AV18FormLink = formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV19WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(A214WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim("DSP"))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode"}) ;
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-plus NotificationFontIconSuccess", ""),  context.GetMessage( "New Form Response", ""),  context.GetMessage( "A dynamic form has been filled", ""),  context.GetMessage( "A dynamic form has been filled", ""),  AV18FormLink,  "",  "",  true) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-plus NotificationFontIconSuccess",  "New Form Response",  "A dynamic form has been filled",  "A dynamic form has been filled",  AV18FormLink,  "",  "",  true) ;
          }
          else if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-pencil-alt NotificationFontIconWarning", ""),  context.GetMessage( "Form Response Updated", ""),  context.GetMessage( "A dynamic form has been updated", ""),  context.GetMessage( "A dynamic form has been updated", ""),  AV18FormLink,  "",  "",  true) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-pencil-alt NotificationFontIconWarning",  "Form Response Updated",  "A dynamic form has been updated",  "A dynamic form has been updated",  AV18FormLink,  "",  "",  true) ;
          }
          else if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
          {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-trash-alt NotificationFontIconDanger", ""),  context.GetMessage( "Form Response Deleted", ""),  context.GetMessage( "A dynamic form has been deleted", ""),  context.GetMessage( "A dynamic form has been delete", ""),  AV18FormLink,  "",  "",  true) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-trash-alt NotificationFontIconDanger",  "Form Response Deleted",  "A dynamic form has been deleted",  "A dynamic form has been delete",  AV18FormLink,  "",  "",  true) ;
          }
       }
 
@@ -360,7 +360,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(6, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
          if ( (pr_default.getStatus(6) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
+            GX_msglist.addItem("No matching 'Dynamic Form'.", "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
             AnyError = 1;
          }
          A208WWPFormReferenceName = BC000U8_A208WWPFormReferenceName[0];
@@ -372,7 +372,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(7, new Object[] {A112WWPUserExtendedId});
          if ( (pr_default.getStatus(7) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+            GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
             AnyError = 1;
          }
          A113WWPUserExtendedFullName = BC000U9_A113WWPUserExtendedFullName[0];
@@ -1012,7 +1012,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(2, new Object[] {A206WWPFormId, A207WWPFormVersionNumber, A210WWPFormElementId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Element", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMELEMENTID");
+            GX_msglist.addItem("No matching 'Element'.", "ForeignKeyNotFound", 1, "WWPFORMELEMENTID");
             AnyError = 1;
          }
          A229WWPFormElementTitle = BC000U4_A229WWPFormElementTitle[0];
@@ -1030,7 +1030,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             if ( ! ( (0==A206WWPFormId) || (0==A207WWPFormVersionNumber) || (0==A211WWPFormElementParentId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWPForm Element Parent", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMELEMENTPARENTID");
+               GX_msglist.addItem("No matching 'WWPForm Element Parent'.", "ForeignKeyNotFound", 1, "WWPFORMELEMENTPARENTID");
                AnyError = 1;
             }
          }

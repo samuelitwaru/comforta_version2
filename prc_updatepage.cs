@@ -115,7 +115,7 @@ namespace GeneXus.Programs {
             AV9BC_Trn_Page.Save();
             if ( AV9BC_Trn_Page.Success() )
             {
-               AV10Response = context.GetMessage( "Page Save Successfully", "");
+               AV10Response = "Page Save Successfully";
                context.CommitDataStores("prc_updatepage",pr_default);
             }
             else
@@ -132,7 +132,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV10Response = context.GetMessage( "Page Not Found", "");
+            AV10Response = "Page Not Found";
          }
          cleanup();
       }

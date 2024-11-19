@@ -91,7 +91,7 @@ namespace GeneXus.Programs {
          AV9GAMUser.gxTpr_Lastname = AV11LastName;
          if ( StringUtil.StrCmp(AV15Role, "Organisation Manager") == 0 )
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "Manager is role", "")) ;
+            new prc_logtofile(context ).execute(  "Manager is role") ;
             /* Using cursor P006B2 */
             pr_default.execute(0, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
             while ( (pr_default.getStatus(0) != 101) )
@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV15Role, "Receptionist") == 0 )
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "Receptionist is role", "")) ;
+            new prc_logtofile(context ).execute(  "Receptionist is role") ;
             /* Using cursor P006B3 */
             pr_default.execute(1, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
             while ( (pr_default.getStatus(1) != 101) )
@@ -126,7 +126,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV15Role, "Resident") == 0 )
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "Resident is role", "")) ;
+            new prc_logtofile(context ).execute(  "Resident is role") ;
             /* Using cursor P006B4 */
             pr_default.execute(2, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
             while ( (pr_default.getStatus(2) != 101) )

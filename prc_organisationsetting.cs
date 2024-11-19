@@ -76,7 +76,6 @@ namespace GeneXus.Programs {
             A11OrganisationId = P006P2_A11OrganisationId[0];
             A40000OrganisationSettingFavicon_GXI = P006P2_A40000OrganisationSettingFavicon_GXI[0];
             A40001OrganisationSettingLogo_GXI = P006P2_A40001OrganisationSettingLogo_GXI[0];
-            A103OrganisationSettingBaseColor = P006P2_A103OrganisationSettingBaseColor[0];
             A104OrganisationSettingFontSize = P006P2_A104OrganisationSettingFontSize[0];
             A105OrganisationSettingLanguage = P006P2_A105OrganisationSettingLanguage[0];
             A100OrganisationSettingid = P006P2_A100OrganisationSettingid[0];
@@ -84,7 +83,7 @@ namespace GeneXus.Programs {
             A101OrganisationSettingLogo = P006P2_A101OrganisationSettingLogo[0];
             AV9GXLvl1 = 1;
             AV8SDT_OrganisationSetting = new SdtSDT_OrganisationSetting(context);
-            AV8SDT_OrganisationSetting.gxTpr_Organisationsettingbasecolor = A103OrganisationSettingBaseColor;
+            AV8SDT_OrganisationSetting.gxTpr_Organisationsettingbasecolor = "Custom";
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettingfavicon = A102OrganisationSettingFavicon;
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettingfavicon_gxi = A40000OrganisationSettingFavicon_GXI;
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettingfontsize = A104OrganisationSettingFontSize;
@@ -96,7 +95,7 @@ namespace GeneXus.Programs {
          pr_default.close(0);
          if ( AV9GXLvl1 == 0 )
          {
-            AV8SDT_OrganisationSetting.gxTpr_Organisationsettingbasecolor = "Teal";
+            AV8SDT_OrganisationSetting.gxTpr_Organisationsettingbasecolor = "Custom";
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettingfontsize = "Medium";
          }
          cleanup();
@@ -119,7 +118,6 @@ namespace GeneXus.Programs {
          P006P2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006P2_A40000OrganisationSettingFavicon_GXI = new string[] {""} ;
          P006P2_A40001OrganisationSettingLogo_GXI = new string[] {""} ;
-         P006P2_A103OrganisationSettingBaseColor = new string[] {""} ;
          P006P2_A104OrganisationSettingFontSize = new string[] {""} ;
          P006P2_A105OrganisationSettingLanguage = new string[] {""} ;
          P006P2_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
@@ -128,7 +126,6 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          A40000OrganisationSettingFavicon_GXI = "";
          A40001OrganisationSettingLogo_GXI = "";
-         A103OrganisationSettingBaseColor = "";
          A104OrganisationSettingFontSize = "";
          A105OrganisationSettingLanguage = "";
          A100OrganisationSettingid = Guid.Empty;
@@ -137,7 +134,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_organisationsetting__default(),
             new Object[][] {
                 new Object[] {
-               P006P2_A11OrganisationId, P006P2_A40000OrganisationSettingFavicon_GXI, P006P2_A40001OrganisationSettingLogo_GXI, P006P2_A103OrganisationSettingBaseColor, P006P2_A104OrganisationSettingFontSize, P006P2_A105OrganisationSettingLanguage, P006P2_A100OrganisationSettingid, P006P2_A102OrganisationSettingFavicon, P006P2_A101OrganisationSettingLogo
+               P006P2_A11OrganisationId, P006P2_A40000OrganisationSettingFavicon_GXI, P006P2_A40001OrganisationSettingLogo_GXI, P006P2_A104OrganisationSettingFontSize, P006P2_A105OrganisationSettingLanguage, P006P2_A100OrganisationSettingid, P006P2_A102OrganisationSettingFavicon, P006P2_A101OrganisationSettingLogo
                }
             }
          );
@@ -148,7 +145,6 @@ namespace GeneXus.Programs {
       private string A105OrganisationSettingLanguage ;
       private string A40000OrganisationSettingFavicon_GXI ;
       private string A40001OrganisationSettingLogo_GXI ;
-      private string A103OrganisationSettingBaseColor ;
       private string A104OrganisationSettingFontSize ;
       private string A102OrganisationSettingFavicon ;
       private string A101OrganisationSettingLogo ;
@@ -162,7 +158,6 @@ namespace GeneXus.Programs {
       private Guid[] P006P2_A11OrganisationId ;
       private string[] P006P2_A40000OrganisationSettingFavicon_GXI ;
       private string[] P006P2_A40001OrganisationSettingLogo_GXI ;
-      private string[] P006P2_A103OrganisationSettingBaseColor ;
       private string[] P006P2_A104OrganisationSettingFontSize ;
       private string[] P006P2_A105OrganisationSettingLanguage ;
       private Guid[] P006P2_A100OrganisationSettingid ;
@@ -191,7 +186,7 @@ namespace GeneXus.Programs {
           new ParDef("AV10Udparg1",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P006P2", "SELECT OrganisationId, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationSettingBaseColor, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingid, OrganisationSettingFavicon, OrganisationSettingLogo FROM Trn_OrganisationSetting WHERE OrganisationId = :AV10Udparg1 ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006P2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P006P2", "SELECT OrganisationId, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingid, OrganisationSettingFavicon, OrganisationSettingLogo FROM Trn_OrganisationSetting WHERE OrganisationId = :AV10Udparg1 ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006P2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -207,11 +202,10 @@ namespace GeneXus.Programs {
                 ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
                 ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(7);
-                ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(2));
-                ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(3));
+                ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+                ((Guid[]) buf[5])[0] = rslt.getGuid(6);
+                ((string[]) buf[6])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(2));
+                ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
                 return;
        }
     }

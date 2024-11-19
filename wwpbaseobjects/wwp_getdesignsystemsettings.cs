@@ -71,7 +71,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          else
          {
             AV8WWP_DesignSystemSettings = new GeneXus.Programs.wwpbaseobjects.SdtWWP_DesignSystemSettings(context);
-            AV8WWP_DesignSystemSettings.gxTpr_Basecolor = "Teal";
+            AV8WWP_DesignSystemSettings.gxTpr_Basecolor = "Custom";
             AV8WWP_DesignSystemSettings.gxTpr_Backgroundstyle = "Light";
             AV8WWP_DesignSystemSettings.gxTpr_Menucolor = "Light";
             AV8WWP_DesignSystemSettings.gxTpr_Fontsize = "Medium";

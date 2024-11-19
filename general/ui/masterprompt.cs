@@ -121,7 +121,7 @@ namespace GeneXus.Programs.general.ui {
          {
             disableOutput();
          }
-         context.AddJavascriptSource("general/ui/masterprompt.js", "?202411156372462", false, true);
+         context.AddJavascriptSource("general/ui/masterprompt.js", "?202411198345881", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -137,7 +137,7 @@ namespace GeneXus.Programs.general.ui {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Prompt Master Page", "") ;
+         return "Prompt Master Page" ;
       }
 
       protected void WB020( )
@@ -508,7 +508,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202411156372465", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202411198345884", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -525,7 +525,7 @@ namespace GeneXus.Programs.general.ui {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("general/ui/masterprompt.js", "?202411156372465", false, true);
+            context.AddJavascriptSource("general/ui/masterprompt.js", "?202411198345884", false, true);
          }
          /* End function include_jscripts */
       }

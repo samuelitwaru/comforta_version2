@@ -223,7 +223,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "WWP_Master Page Top Actions WC", "")) ;
+            context.SendWebValue( "WWP_Master Page Top Actions WC") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -391,7 +391,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WWP_Master Page Top Actions WC", "") ;
+         return "WWP_Master Page Top Actions WC" ;
       }
 
       protected void WB3A0( )
@@ -439,7 +439,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUsername_Internalname, context.GetMessage( "User Name", ""), "gx-form-item MasterPageTopActionsUserNameLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavUsername_Internalname, "User Name", "gx-form-item MasterPageTopActionsUserNameLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavUsername_Internalname, AV6UserName, StringUtil.RTrim( context.localUtil.Format( AV6UserName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUsername_Jsonclick, 0, "MasterPageTopActionsUserName", "", "", "", "", 1, edtavUsername_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WWPBaseObjects/WWP_MasterPageTopActionsWC.htm");
@@ -450,7 +450,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavRolesdescriptions_Internalname, context.GetMessage( "Roles Descriptions", ""), "gx-form-item MasterPageTopActionsRoleNameLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavRolesdescriptions_Internalname, "Roles Descriptions", "gx-form-item MasterPageTopActionsRoleNameLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'" + sPrefix + "',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavRolesdescriptions_Internalname, AV12RolesDescriptions, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,17);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRolesdescriptions_Jsonclick, 0, "MasterPageTopActionsRoleName", "", "", "", "", 1, edtavRolesdescriptions_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WWPBaseObjects/WWP_MasterPageTopActionsWC.htm");
@@ -512,7 +512,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "WWP_Master Page Top Actions WC", ""), 0) ;
+            Form.Meta.addItem("description", "WWP_Master Page Top Actions WC", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1106,7 +1106,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411156324634", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198292773", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1124,7 +1124,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?202411156324638", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?202411198292776", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          }
@@ -1164,11 +1164,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          init_default_properties( ) ;
          Btnlogout_Class = "MasterPageTopActionsOption";
-         Btnlogout_Caption = context.GetMessage( "WWP_GAM_Logout", "");
+         Btnlogout_Caption = "Logout";
          Btnlogout_Beforeiconclass = "fas fa-sign-out-alt FontIconTopRightActions";
          Btnlogout_Tooltiptext = "";
          Btnactionchangepassword_Class = "MasterPageTopActionsOption";
-         Btnactionchangepassword_Caption = context.GetMessage( "WWP_GAM_ChangePassword", "");
+         Btnactionchangepassword_Caption = "Change Password";
          Btnactionchangepassword_Beforeiconclass = "fa fa-lock FontIconTopRightActions";
          Btnactionchangepassword_Tooltiptext = "";
          edtavRolesdescriptions_Jsonclick = "";

@@ -219,7 +219,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "WC Dummy for loading an empty WC", "")) ;
+            context.SendWebValue( "WC Dummy for loading an empty WC") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -380,7 +380,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WC Dummy for loading an empty WC", "") ;
+         return "WC Dummy for loading an empty WC" ;
       }
 
       protected void WB1V0( )
@@ -429,7 +429,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "WC Dummy for loading an empty WC", ""), 0) ;
+            Form.Meta.addItem("description", "WC Dummy for loading an empty WC", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -890,7 +890,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411156322438", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119829542", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -908,7 +908,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_wcdummy.js", "?202411156322438", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_wcdummy.js", "?20241119829542", false, true);
          }
          /* End function include_jscripts */
       }

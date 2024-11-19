@@ -84,14 +84,14 @@ namespace GeneXus.Programs {
             A89ReceptionistId = P008V2_A89ReceptionistId[0];
             AV20LocationId = A29LocationId;
             AV21OrganisationId = A11OrganisationId;
-            new prc_logtofile(context ).execute(  context.GetMessage( "LocationId: ", "")+AV20LocationId.ToString()) ;
-            new prc_logtofile(context ).execute(  context.GetMessage( "&OrganisationId: ", "")+AV21OrganisationId.ToString()) ;
+            new prc_logtofile(context ).execute(  "LocationId: "+AV20LocationId.ToString()) ;
+            new prc_logtofile(context ).execute(  "&OrganisationId: "+AV21OrganisationId.ToString()) ;
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         new prc_logtofile(context ).execute(  context.GetMessage( "Location Info: ", "")+new prc_getlocationinformation(context).executeUdp(  Guid.Empty)) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "User Info: ", "")+new prc_getloggedinusername(context).executeUdp( )) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "Org Info: ", "")+new prc_getorganisationinformation(context).executeUdp(  Guid.Empty)) ;
+         new prc_logtofile(context ).execute(  "Location Info: "+new prc_getlocationinformation(context).executeUdp(  Guid.Empty)) ;
+         new prc_logtofile(context ).execute(  "User Info: "+new prc_getloggedinusername(context).executeUdp( )) ;
+         new prc_logtofile(context ).execute(  "Org Info: "+new prc_getorganisationinformation(context).executeUdp(  Guid.Empty)) ;
          AV8BC_Trn_Page = new SdtTrn_Page(context);
          AV8BC_Trn_Page.gxTpr_Trn_pagename = AV16PageName;
          AV8BC_Trn_Page.gxTpr_Pageispublished = false;
@@ -103,7 +103,7 @@ namespace GeneXus.Programs {
          AV8BC_Trn_Page.gxTv_SdtTrn_Page_Pagechildren_SetNull();
          AV8BC_Trn_Page.gxTv_SdtTrn_Page_Productserviceid_SetNull();
          AV8BC_Trn_Page.Save();
-         new prc_logtofile(context ).execute(  context.GetMessage( "Something", "")) ;
+         new prc_logtofile(context ).execute(  "Something") ;
          if ( AV8BC_Trn_Page.Success() )
          {
             context.CommitDataStores("prc_createpage",pr_default);

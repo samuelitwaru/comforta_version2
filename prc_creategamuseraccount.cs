@@ -112,12 +112,12 @@ namespace GeneXus.Programs {
                new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid, ref  GXt_char1, out  AV18isSuccessful) ;
                if ( AV18isSuccessful )
                {
-                  new prc_logtofile(context ).execute(  context.GetMessage( "Email Sent: ", "")+AV12RoleName) ;
+                  new prc_logtofile(context ).execute(  "Email Sent: "+AV12RoleName) ;
                   context.CommitDataStores("prc_creategamuseraccount",pr_default);
                }
                else
                {
-                  new prc_logtofile(context ).execute(  context.GetMessage( "No Email Sent : ", "")+AV12RoleName) ;
+                  new prc_logtofile(context ).execute(  "No Email Sent : "+AV12RoleName) ;
                }
             }
             else

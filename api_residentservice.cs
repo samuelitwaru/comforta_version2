@@ -101,7 +101,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "Agenda API Response: ", "")+AV17result) ;
+            new prc_logtofile(context ).execute(  "Agenda API Response: "+AV17result) ;
          }
       }
 

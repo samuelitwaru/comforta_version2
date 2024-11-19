@@ -20,9 +20,6 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_ContentItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_CtaItem.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage1.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage1_RowItem.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage1_RowItem_ContentItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Country_SDT_CountryItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ErrorResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Location.cs" />
@@ -83,7 +80,6 @@
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\notifications\common\type_SdtWWP_SDTNotificationMetadata.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\notifications\common\type_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtProgramNames_ProgramName.cs" />
- 	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtSecGAMFunctionalitiesToLoad.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\sms\type_SdtWWP_SendSMSResultSDT.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\sms\type_SdtWWP_SMSParametersSDT.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtSplitScreenDetailInfo.cs" />

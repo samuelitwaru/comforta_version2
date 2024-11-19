@@ -194,17 +194,17 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( StringUtil.Len( A83NetworkCompanyKvkNumber) != 8 )
          {
-            GX_msglist.addItem(context.GetMessage( "KVK number contains 8 digits", ""), 1, "");
+            GX_msglist.addItem("KVK number contains 8 digits", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A85NetworkCompanyEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Network Company Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Network Company Email does not match the specified pattern", "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A392NetworkCompanyPhoneNumber,"\\b\\d{9}\\b") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Network Company Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Phone contains 9 digits", "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -503,7 +503,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A82NetworkCompanyId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_ResidentNetworkCompany", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ResidentNetworkCompany"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);

@@ -209,7 +209,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( context.GetMessage( "WWP_PromptGeolocationSelect", "")) ;
+         context.SendWebValue( "Select Geolocation") ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -316,18 +316,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          include_jscripts( ) ;
-         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-         if ( ! context.isSpaRequest( ) )
-         {
-            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-         }
-         context.WriteHtmlText( "</script>") ;
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -343,7 +331,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WWP_PromptGeolocationSelect", "") ;
+         return "Select Geolocation" ;
       }
 
       protected void WB1A0( )
@@ -385,7 +373,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "WWP_PromptGeolocationSelect", ""), 0) ;
+         Form.Meta.addItem("description", "Select Geolocation", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -598,7 +586,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             Googlemapcontrol1_City = cgiGet( "GOOGLEMAPCONTROL1_City");
             Googlemapcontrol1_Latitude = cgiGet( "GOOGLEMAPCONTROL1_Latitude");
             Googlemapcontrol1_Longitude = cgiGet( "GOOGLEMAPCONTROL1_Longitude");
-            Googlemapcontrol1_Precision = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GOOGLEMAPCONTROL1_Precision"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Googlemapcontrol1_Precision = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GOOGLEMAPCONTROL1_Precision"), ".", ","), 18, MidpointRounding.ToEven));
             Googlemapcontrol1_Onclick = cgiGet( "GOOGLEMAPCONTROL1_Onclick");
             /* Read variables values. */
             /* Read subfile selected row values. */
@@ -714,11 +702,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 15,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "WWP_PromptGeolocationSelect", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/PromptGeolocation.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Select Geolocation", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/PromptGeolocation.htm");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/PromptGeolocation.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/PromptGeolocation.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
@@ -810,7 +798,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241115638778", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119836845", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -825,8 +813,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/promptgeolocation.js", "?20241115638778", false, true);
+         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/promptgeolocation.js", "?20241119836846", false, true);
          context.AddJavascriptSource("GXGoogleVisualizationLibrary/MAP/mapsproviders.js", "", false, true);
          context.AddJavascriptSource("https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js", "", false, true);
          context.AddJavascriptSource("GXGoogleVisualizationLibrary/MAP/Gxmap.js", "", false, true);
@@ -857,7 +845,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         Googlemapcontrol1_Title = context.GetMessage( "Map Title", "");
+         Googlemapcontrol1_Title = "Map Title";
          Googlemapcontrol1_Onclick = "getvalue";
          Googlemapcontrol1_Precision = 15;
          Googlemapcontrol1_City = "";

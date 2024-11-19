@@ -169,13 +169,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               new prc_logtofile(context ).execute(  context.GetMessage( "Updating...", "")+AV12PageId.ToString()) ;
+               new prc_logtofile(context ).execute(  "Updating..."+AV12PageId.ToString()) ;
             }
             AV8BC_Trn_Page.Save();
             if ( AV8BC_Trn_Page.Success() )
             {
                context.CommitDataStores("prc_createcontentpage",pr_default);
-               AV17Response = context.GetMessage( "Content page saved successfully", "");
+               AV17Response = "Content page saved successfully";
             }
             else
             {

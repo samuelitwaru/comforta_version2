@@ -72,7 +72,7 @@ namespace GeneXus.Programs {
             AV10Message = new GeneXus.Utils.SdtMessages_Message(context);
             AV10Message.gxTpr_Type = 1;
             AV10Message.gxTpr_Description = AV8GAMError.gxTpr_Message;
-            AV10Message.gxTpr_Id = StringUtil.Format( "GAM%1", StringUtil.LTrimStr( (decimal)(AV8GAMError.gxTpr_Code), 12, 0), "", "", "", "", "", "", "", "");
+            AV10Message.gxTpr_Id = StringUtil.Format( "GAM%2", StringUtil.LTrimStr( (decimal)(AV8GAMError.gxTpr_Code), 12, 0), "", "", "", "", "", "", "", "");
             AV11Messages.Add(AV10Message, 0);
             AV12GXV1 = (int)(AV12GXV1+1);
          }

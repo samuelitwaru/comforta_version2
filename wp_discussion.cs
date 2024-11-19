@@ -305,18 +305,6 @@ namespace GeneXus.Programs {
          {
             WebComp_Component1.componentjscripts();
          }
-         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-         if ( ! context.isSpaRequest( ) )
-         {
-            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-         }
-         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -359,7 +347,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Discussions", "") ;
+         return "Discussions" ;
       }
 
       protected void WB7Y0( )
@@ -452,7 +440,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "Discussions", ""), 0) ;
+         Form.Meta.addItem("description", "Discussions", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -715,7 +703,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         AV9WWPEntityName = context.GetMessage( "Discussion", "");
+         AV9WWPEntityName = "Discussion";
          GXt_guid1 = AV8LocationId;
          new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
          AV8LocationId = GXt_guid1;
@@ -734,8 +722,8 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Component1_Component) != 0 )
          {
             WebComp_Component1.setjustcreated();
-            WebComp_Component1.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV9WWPEntityName,StringUtil.Trim( AV8LocationId.ToString()),context.GetMessage( "Discussion", ""),formatLink("wp_discussion.aspx") });
-            WebComp_Component1.componentbind(new Object[] {(string)"",(string)""+""+""+""+"",(string)""+""+"",(string)""+""+""});
+            WebComp_Component1.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV9WWPEntityName,StringUtil.Trim( AV8LocationId.ToString()),(string)"Discussion",formatLink("wp_discussion.aspx") });
+            WebComp_Component1.componentbind(new Object[] {(string)"",(string)""+""+""+""+"",(string)"",(string)""+""+""});
          }
       }
 
@@ -795,7 +783,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411156404435", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198383570", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -810,8 +798,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_discussion.js", "?202411156404435", false, true);
+         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_discussion.js", "?202411198383570", false, true);
          /* End function include_jscripts */
       }
 
@@ -840,7 +828,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = context.GetMessage( "Discussions", "");
+         Form.Caption = "Discussions";
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

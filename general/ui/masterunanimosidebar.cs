@@ -136,7 +136,7 @@ namespace GeneXus.Programs.general.ui {
          }
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?20241115637267", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202411198345972", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -152,7 +152,7 @@ namespace GeneXus.Programs.general.ui {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Master Unanimo Sidebar", "") ;
+         return "Master Unanimo Sidebar" ;
       }
 
       protected void WB010( )
@@ -224,7 +224,7 @@ namespace GeneXus.Programs.general.ui {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "Center", "top", "", "flex-grow:1;min-height:20px;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblApplicationheader_Internalname, context.GetMessage( "Application Name", ""), "", "", lblApplicationheader_Jsonclick, "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "header__title", 0, "", 1, 1, 0, 0, "HLP_General/UI/MasterUnanimoSidebar.htm");
+            GxWebStd.gx_label_ctrl( context, lblApplicationheader_Internalname, "Application Name", "", "", lblApplicationheader_Jsonclick, "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "header__title", 0, "", 1, 1, 0, 0, "HLP_General/UI/MasterUnanimoSidebar.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -516,7 +516,7 @@ namespace GeneXus.Programs.general.ui {
             /* Read saved values. */
             AV6target = cgiGet( "vTARGET_MPAGE");
             Sidebarmenu_Title = cgiGet( "SIDEBARMENU_MPAGE_Title");
-            Sidebarmenu_Distancetotop = (int)(Math.Round(context.localUtil.CToN( cgiGet( "SIDEBARMENU_MPAGE_Distancetotop"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Sidebarmenu_Distancetotop = (int)(Math.Round(context.localUtil.CToN( cgiGet( "SIDEBARMENU_MPAGE_Distancetotop"), ".", ","), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -589,7 +589,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202411156372622", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202411198345982", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -604,7 +604,7 @@ namespace GeneXus.Programs.general.ui {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202411156372622", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202411198345982", false, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
          /* End function include_jscripts */
