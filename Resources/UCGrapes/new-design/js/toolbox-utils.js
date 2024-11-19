@@ -201,3 +201,7 @@ function mapContentToPageData(templateData) {
 
   return output;
 }
+
+function applyThemeToPageContent(pageContent, theme){
+  
+}

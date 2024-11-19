@@ -790,10 +790,10 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         AV45Udparg1 = new prc_getuserlocationid(context).executeUdp( );
-         AV46Udparg2 = new prc_getuserorganisationid(context).executeUdp( );
+         AV46Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+         AV47Udparg2 = new prc_getuserorganisationid(context).executeUdp( );
          /* Using cursor H00473 */
-         pr_default.execute(1, new Object[] {AV45Udparg1, AV46Udparg2});
+         pr_default.execute(1, new Object[] {AV46Udparg1, AV47Udparg2});
          while ( (pr_default.getStatus(1) != 101) )
          {
             A11OrganisationId = H00473_A11OrganisationId[0];
@@ -826,6 +826,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3);
          while ( (pr_default.getStatus(3) != 101) )
          {
+            A248Trn_ThemeName = H00475_A248Trn_ThemeName[0];
             A247Trn_ThemeId = H00475_A247Trn_ThemeId[0];
             AV12BC_Trn_Theme = new SdtTrn_Theme(context);
             AV12BC_Trn_Theme.Load(A247Trn_ThemeId);
@@ -905,7 +906,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198365225", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111912101911", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -923,7 +924,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?202411198365226", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?2024111912101912", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBox2Render.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -1020,8 +1021,8 @@ namespace GeneXus.Programs {
          H00472_A278Trn_TemplateId = new Guid[] {Guid.Empty} ;
          A278Trn_TemplateId = Guid.Empty;
          AV11BC_Trn_Template = new SdtTrn_Template(context);
-         AV45Udparg1 = Guid.Empty;
-         AV46Udparg2 = Guid.Empty;
+         AV46Udparg1 = Guid.Empty;
+         AV47Udparg2 = Guid.Empty;
          H00473_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H00473_A29LocationId = new Guid[] {Guid.Empty} ;
          H00473_A40000ProductServiceImage_GXI = new string[] {""} ;
@@ -1038,7 +1039,9 @@ namespace GeneXus.Programs {
          H00474_A409MediaId = new Guid[] {Guid.Empty} ;
          A409MediaId = Guid.Empty;
          AV20BC_Trn_Media = new SdtTrn_Media(context);
+         H00475_A248Trn_ThemeName = new string[] {""} ;
          H00475_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         A248Trn_ThemeName = "";
          A247Trn_ThemeId = Guid.Empty;
          AV12BC_Trn_Theme = new SdtTrn_Theme(context);
          H00476_A310Trn_PageId = new Guid[] {Guid.Empty} ;
@@ -1064,7 +1067,7 @@ namespace GeneXus.Programs {
                H00474_A409MediaId
                }
                , new Object[] {
-               H00475_A247Trn_ThemeId
+               H00475_A248Trn_ThemeName, H00475_A247Trn_ThemeId
                }
                , new Object[] {
                H00476_A310Trn_PageId, H00476_A318Trn_PageName, H00476_A437PageChildren, H00476_n437PageChildren
@@ -1129,6 +1132,7 @@ namespace GeneXus.Programs {
       private string AV40UserName ;
       private string A40000ProductServiceImage_GXI ;
       private string A59ProductServiceName ;
+      private string A248Trn_ThemeName ;
       private string A318Trn_PageName ;
       private string A61ProductServiceImage ;
       private Guid AV16Trn_PageId ;
@@ -1137,8 +1141,8 @@ namespace GeneXus.Programs {
       private Guid AV42OrganisationId ;
       private Guid GXt_guid2 ;
       private Guid A278Trn_TemplateId ;
-      private Guid AV45Udparg1 ;
-      private Guid AV46Udparg2 ;
+      private Guid AV46Udparg1 ;
+      private Guid AV47Udparg2 ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A58ProductServiceId ;
@@ -1166,6 +1170,7 @@ namespace GeneXus.Programs {
       private SdtSDT_ProductService AV36SDT_ProductService ;
       private Guid[] H00474_A409MediaId ;
       private SdtTrn_Media AV20BC_Trn_Media ;
+      private string[] H00475_A248Trn_ThemeName ;
       private Guid[] H00475_A247Trn_ThemeId ;
       private SdtTrn_Theme AV12BC_Trn_Theme ;
       private Guid[] H00476_A310Trn_PageId ;
@@ -1201,8 +1206,8 @@ namespace GeneXus.Programs {
           };
           Object[] prmH00473;
           prmH00473 = new Object[] {
-          new ParDef("AV45Udparg1",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV46Udparg2",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV46Udparg1",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV47Udparg2",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmH00474;
           prmH00474 = new Object[] {
@@ -1215,9 +1220,9 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("H00472", "SELECT Trn_TemplateId FROM Trn_Template ORDER BY Trn_TemplateId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00472,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00473", "SELECT OrganisationId, LocationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceImage FROM Trn_ProductService WHERE LocationId = :AV45Udparg1 and OrganisationId = :AV46Udparg2 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("H00473", "SELECT OrganisationId, LocationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceImage FROM Trn_ProductService WHERE LocationId = :AV46Udparg1 and OrganisationId = :AV47Udparg2 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("H00474", "SELECT MediaId FROM Trn_Media ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00475", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00475", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Not (char_length(trim(trailing ' ' from RTRIM(LTRIM(Trn_ThemeName))))=0) ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00476", "SELECT Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00476,100, GxCacheFrequency.OFF ,false,false )
           };
        }
@@ -1244,7 +1249,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 return;
              case 3 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((string[]) buf[0])[0] = rslt.getVarchar(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 return;
              case 4 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

@@ -417,6 +417,18 @@ namespace GeneXus.Programs {
          aP1_SDT_ProductService=this.AV67SDT_ProductService;
       }
 
+      public void gxep_getlocationtheme( Guid aP0_locationId ,
+                                         Guid aP1_organisationId ,
+                                         out SdtTrn_Theme aP2_Location_BC_Trn_Theme )
+      {
+         this.AV12locationId = aP0_locationId;
+         this.AV16organisationId = aP1_organisationId;
+         initialize();
+         /* GetLocationTheme Constructor */
+         new prc_getlocationtheme(context ).execute( ref  AV12locationId, ref  AV16organisationId, out  AV77Location_BC_Trn_Theme) ;
+         aP2_Location_BC_Trn_Theme=this.AV77Location_BC_Trn_Theme;
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -439,6 +451,7 @@ namespace GeneXus.Programs {
          AV64SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          AV72SDT_Theme = new SdtSDT_Theme(context);
          AV67SDT_ProductService = new SdtSDT_ProductService(context);
+         AV77Location_BC_Trn_Theme = new SdtTrn_Theme(context);
          /* GeneXus formulas. */
       }
 
@@ -508,6 +521,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_Theme aP3_SDT_Theme ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
+      protected SdtTrn_Theme AV77Location_BC_Trn_Theme ;
+      protected SdtTrn_Theme aP2_Location_BC_Trn_Theme ;
    }
 
 }

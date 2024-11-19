@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241119054545"
+  version: "20241119135400"
 servers:
-  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
+  - url: https://staging.comforta.yukon.software//rest
 paths:
   /Trn_AuditLoadDVCombo:
     post:
@@ -1025,7 +1025,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
+          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
   schemas:
@@ -2254,6 +2254,55 @@ components:
         MediaUrl:
           description: "Media Url"
           type: "string"
+    Trn_Theme:
+      properties:
+        Trn_ThemeId:
+          description: "Trn_Theme Id"
+          type: "string"
+          format: "uuid"
+        Trn_ThemeName:
+          description: "Trn_Theme Name"
+          type: "string"
+        Trn_ThemeFontFamily:
+          description: "Trn_Theme Font Family"
+          type: "string"
+        Trn_ThemeFontSize:
+          description: "Trn_Theme Font Size"
+          type: "integer"
+          format: "int32"
+        Icon:
+          $ref: "#/components/schemas/Trn_Theme.Icon"
+        Color:
+          $ref: "#/components/schemas/Trn_Theme.Color"
+    Trn_Theme.Icon:
+      properties:
+        IconId:
+          description: "Icon Id"
+          type: "string"
+          format: "uuid"
+        IconCategory:
+          description: "Icon Category"
+          type: "string"
+        IconName:
+          description: "Icon Name"
+          type: "string"
+        IconSVG:
+          description: "Icon SVG"
+          type: "string"
+      x-gx-level: "Trn_Theme"
+    Trn_Theme.Color:
+      properties:
+        ColorId:
+          description: "Color Id"
+          type: "string"
+          format: "uuid"
+        ColorName:
+          description: "Color Name"
+          type: "string"
+        ColorCode:
+          description: "Color Code"
+          type: "string"
+      x-gx-level: "Trn_Theme"
     WorkWithPlus.DynamicForms.WWP_FormInstance:
       properties:
         WWPFormInstanceId:

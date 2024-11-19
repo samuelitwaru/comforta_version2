@@ -36,6 +36,11 @@ class ToolBoxManager {
         }
       });
     });
+
+    this.dataManager.getLocationTheme().then(theme=>{
+      this.setTheme(theme.Trn_ThemeName)
+    })
+
     this.loadTheme();
     this.listThemesInSelectField();
     this.colorPalette();
@@ -327,7 +332,7 @@ class ToolBoxManager {
 
   setTheme(themeName) {
     const theme = this.themes.find((theme) => theme.name === themeName);
-
+    document.getElementById("theme-select").value = themeName
     console.log(theme);
     if (!theme) {
       return false;

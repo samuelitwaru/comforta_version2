@@ -974,7 +974,6 @@ class EditorManager {
   addTemplateRight(templateComponent) {
     const containerRow = templateComponent.parent();
     if (!containerRow || containerRow.components().length >= 3) return;
-
     const newComponents = this.editor.addComponents(this.createTemplateHTML());
     const newTemplate = newComponents[0];
     if (!newTemplate) return;

@@ -223,4 +223,14 @@
 "ServiceMethod":"gxep_productsericeapi",
 "Implementation":"Prc_ProductServiceAPI",
 "Verb":"GET"
+},
+{
+"PathRegexp":"location-theme",
+"Path":"location-theme",
+"Name":"getlocationtheme",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getlocationtheme",
+"Implementation":"Prc_GetLocationTheme",
+"Verb":"GET"
 }]}

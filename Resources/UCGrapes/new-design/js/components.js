@@ -334,9 +334,12 @@ class MappingComponent {
       this.clearMappings();
       
       // Then reload the pages and rebuild the tree
-      const pages = await this.dataManager.getPagesService();
-      this.treeContainer.appendChild(this.createTree(pages, true));
-      
+      this.dataManager.getPages().then(pages=>{
+        let treePages = pages.map(page=>{return {Id:page.PageId, Name:page.PageName}})
+        const newTree = this.createTree(treePages, true); // Set isRoot to true if it's the root
+        this.treeContainer.appendChild(newTree);
+      })
+
       // this.displayMessage(`Page "${pageTitle}" created successfully`, "success");
     } catch (error) {
       console.error("Error creating page:", error);

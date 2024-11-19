@@ -822,6 +822,7 @@ class DataManager {
         },
         success: function (response) {
           const pages = response;
+          console.log('getPageService', pages)
           resolve(pages); // Resolve the promise with the pages
         },
         error: function (xhr, status, error) {
@@ -859,6 +860,12 @@ class DataManager {
 
   updateLocationTheme() {
     let themeId = this.selectedTheme.id
+    
+    console.log("Hello", {
+      ThemeId: themeId,
+      LocationId :this.LocationId,
+      OrganisationId: this.OrganisationId,
+    })
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${baseURL}/api/toolbox/update-location-theme`, // Replace with the actual API endpoint
@@ -1003,6 +1010,28 @@ class DataManager {
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${baseURL}/api/productservice?Productserviceid=${productServiceId}`,
+        type: "GET",
+        contentType: "application/json",
+        success: function (response) {
+          resolve(response);
+        },
+        error: function (xhr, status, error) {
+          if (xhr.status === 404) {
+            console.error("Error 404: Not Found");
+          } else {
+            console.error("Error:", status, error);
+          }
+          reject(error);
+        },
+      });
+    });
+  }
+
+
+  getLocationTheme() {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: `${baseURL}/api/location-theme?LocationId=${this.LocationId}&OrganisationId=${this.OrganisationId}`,
         type: "GET",
         contentType: "application/json",
         success: function (response) {

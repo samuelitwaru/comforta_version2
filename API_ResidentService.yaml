@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241119054545"
+  version: "20241119135400"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -593,6 +593,37 @@ paths:
         404:
           description: "Not found"
 
+  /location-theme:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetLocationTheme"
+      summary: "GET Location Theme"
+      parameters:
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_Theme"  
+
+        404:
+          description: "Not found"
+
 components:
   schemas:
     LoginWithQrCodeInput:  
@@ -709,6 +740,7 @@ components:
         organisationId:
           type: "string"
           format: "uuid"
+
 
   
     SDT_LoginResidentResponse:
@@ -1174,6 +1206,66 @@ components:
             $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
 
 
+
+    Trn_Theme:
+      properties:
+        Trn_ThemeId:
+          description: "Trn_Theme Id"
+          type: "string"
+          format: "uuid"
+        Trn_ThemeName:
+          description: "Trn_Theme Name"
+          type: "string"
+        Trn_ThemeFontFamily:
+          description: "Trn_Theme Font Family"
+          type: "string"
+        Trn_ThemeFontSize:
+          description: "Trn_Theme Font Size"
+          type: "integer"
+          format: "int32"
+
+        Icon:
+          $ref: "#/components/schemas/Trn_Theme.Icon"
+
+        Color:
+          $ref: "#/components/schemas/Trn_Theme.Color"
+
+
+    Trn_Theme.Icon:
+      properties:
+        IconId:
+          description: "Icon Id"
+          type: "string"
+          format: "uuid"
+        IconCategory:
+          description: "Icon Category"
+          type: "string"
+        IconName:
+          description: "Icon Name"
+          type: "string"
+        IconSVG:
+          description: "Icon SVG"
+          type: "string"
+
+
+      x-gx-level: "Trn_Theme"
+
+
+    Trn_Theme.Color:
+      properties:
+        ColorId:
+          description: "Color Id"
+          type: "string"
+          format: "uuid"
+        ColorName:
+          description: "Color Name"
+          type: "string"
+        ColorCode:
+          description: "Color Code"
+          type: "string"
+
+
+      x-gx-level: "Trn_Theme"
 
     SDT_CallToAction_SDT_CallToActionItem:
       properties:

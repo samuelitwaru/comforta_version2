@@ -62,7 +62,7 @@ namespace GeneXus.Programs {
          restLocation = new GxLocation();
          restLocation.Host = "localhost";
          restLocation.Port = 8082;
-         restLocation.BaseUrl = "Comforta_version2DevelopmentNETPostgreSQL/api";
+         restLocation.BaseUrl = "staging.comforta.yukon.software/api";
          gxProperties = new GxObjectProperties();
       }
 
@@ -730,6 +730,35 @@ namespace GeneXus.Programs {
          /* ProductSericeAPI Constructor */
       }
 
+      public void gxep_getlocationtheme( Guid aP0_locationId ,
+                                         Guid aP1_organisationId ,
+                                         out SdtTrn_Theme aP2_Location_BC_Trn_Theme )
+      {
+         restCliGetLocationTheme = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/location-theme/";
+         restCliGetLocationTheme.Location = restLocation;
+         restCliGetLocationTheme.HttpMethod = "GET";
+         restCliGetLocationTheme.AddQueryVar("Locationid", (Guid)(aP0_locationId));
+         restCliGetLocationTheme.AddQueryVar("Organisationid", (Guid)(aP1_organisationId));
+         restCliGetLocationTheme.RestExecute();
+         if ( restCliGetLocationTheme.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetLocationTheme.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetLocationTheme.ErrorMessage;
+            gxProperties.StatusCode = restCliGetLocationTheme.StatusCode;
+            aP2_Location_BC_Trn_Theme = new SdtTrn_Theme();
+         }
+         else
+         {
+            aP2_Location_BC_Trn_Theme = restCliGetLocationTheme.GetBodySdt<SdtTrn_Theme>("Location_BC_Trn_Theme");
+         }
+         /* GetLocationTheme Constructor */
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -779,6 +808,8 @@ namespace GeneXus.Programs {
          aP3_SDT_Theme = new SdtSDT_Theme();
          restCliProductSericeAPI = new GXRestAPIClient();
          aP1_SDT_ProductService = new SdtSDT_ProductService();
+         restCliGetLocationTheme = new GXRestAPIClient();
+         aP2_Location_BC_Trn_Theme = new SdtTrn_Theme();
          /* GeneXus formulas. */
       }
 
@@ -805,6 +836,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliAddPageCildren ;
       protected GXRestAPIClient restCliUpdateLocationTheme ;
       protected GXRestAPIClient restCliProductSericeAPI ;
+      protected GXRestAPIClient restCliGetLocationTheme ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
       protected IGxDataStore dsGAM ;
@@ -828,6 +860,7 @@ namespace GeneXus.Programs {
       protected string aP5_result ;
       protected SdtSDT_Theme aP3_SDT_Theme ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
+      protected SdtTrn_Theme aP2_Location_BC_Trn_Theme ;
    }
 
 }
