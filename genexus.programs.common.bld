@@ -14,7 +14,6 @@ workwithplus\dynamicforms\type_SdtWWP_Form.cs
 workwithplus\dynamicforms\type_SdtWWP_Form_Element.cs
 type_SdtTrn_OrganisationType.cs
 type_SdtTrn_SupplierGen.cs
-type_SdtTrn_SupplierAgb.cs
 type_SdtTrn_NetworkCompany.cs
 type_SdtTrn_NetworkIndividual.cs
 type_SdtTrn_ResidentType.cs
@@ -43,13 +42,11 @@ type_SdtTrn_Device.cs
 type_SdtTrn_PreferredAgbSupplier.cs
 type_SdtTrn_CallToAction.cs
 type_SdtTrn_PreferredGenSupplier.cs
-type_SdtTrn_Audit.cs
 type_SdtTrn_AgendaEventGroup.cs
 type_SdtTrn_Theme.cs
 type_SdtTrn_Theme_Color.cs
 type_SdtTrn_Theme_Icon.cs
 type_SdtTrn_AgendaCalendar.cs
-type_SdtTrn_ProductService.cs
 type_SdtTrn_Page.cs
 type_SdtTrn_LocationDynamicForm.cs
 type_SdtTrn_Organisation.cs
@@ -59,6 +56,9 @@ type_SdtTrn_Location.cs
 type_SdtTrn_Resident.cs
 type_SdtTrn_Resident_NetworkCompany.cs
 type_SdtTrn_Resident_NetworkIndividual.cs
+type_SdtTrn_Audit.cs
+type_SdtTrn_SupplierAgb.cs
+type_SdtTrn_ProductService.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs

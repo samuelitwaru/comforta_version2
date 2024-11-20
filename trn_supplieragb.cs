@@ -245,7 +245,6 @@ namespace GeneXus.Programs {
 
       protected override void createObjects( )
       {
-         cmbSupplierAgbWebsite = new GXCombobox();
       }
 
       protected override bool IntegratedSecurityEnabled
@@ -312,16 +311,6 @@ namespace GeneXus.Programs {
 
       protected void fix_multi_value_controls( )
       {
-         if ( cmbSupplierAgbWebsite.ItemCount > 0 )
-         {
-            A440SupplierAgbWebsite = cmbSupplierAgbWebsite.getValidValue(A440SupplierAgbWebsite);
-            AssignAttri("", false, "A440SupplierAgbWebsite", A440SupplierAgbWebsite);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            cmbSupplierAgbWebsite.CurrentValue = StringUtil.RTrim( A440SupplierAgbWebsite);
-            AssignProp("", false, cmbSupplierAgbWebsite_Internalname, "Values", cmbSupplierAgbWebsite.ToJavascriptSource(), true);
-         }
       }
 
       protected void Draw( )
@@ -567,16 +556,14 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbSupplierAgbWebsite_Internalname+"\"", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtSupplierAgbWebsite_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, cmbSupplierAgbWebsite_Internalname, "Website", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtSupplierAgbWebsite_Internalname, "Website", "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+         /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'',false,'',0)\"";
-         /* ComboBox */
-         GxWebStd.gx_combobox_ctrl1( context, cmbSupplierAgbWebsite, cmbSupplierAgbWebsite_Internalname, StringUtil.RTrim( A440SupplierAgbWebsite), 1, cmbSupplierAgbWebsite_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "svchar", "", 1, cmbSupplierAgbWebsite.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,77);\"", "", true, 0, "HLP_Trn_SupplierAgb.htm");
-         cmbSupplierAgbWebsite.CurrentValue = StringUtil.RTrim( A440SupplierAgbWebsite);
-         AssignProp("", false, cmbSupplierAgbWebsite_Internalname, "Values", (string)(cmbSupplierAgbWebsite.ToJavascriptSource()), true);
+         GxWebStd.gx_single_line_edit( context, edtSupplierAgbWebsite_Internalname, A440SupplierAgbWebsite, StringUtil.RTrim( context.localUtil.Format( A440SupplierAgbWebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,77);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierAgbWebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierAgbWebsite_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, 0, 0, 0, 0, -1, -1, true, "Website", "start", true, "", "HLP_Trn_SupplierAgb.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1004,8 +991,7 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A378SupplierAgbPhoneNumber", A378SupplierAgbPhoneNumber);
                A57SupplierAgbEmail = cgiGet( edtSupplierAgbEmail_Internalname);
                AssignAttri("", false, "A57SupplierAgbEmail", A57SupplierAgbEmail);
-               cmbSupplierAgbWebsite.CurrentValue = cgiGet( cmbSupplierAgbWebsite_Internalname);
-               A440SupplierAgbWebsite = cgiGet( cmbSupplierAgbWebsite_Internalname);
+               A440SupplierAgbWebsite = cgiGet( edtSupplierAgbWebsite_Internalname);
                AssignAttri("", false, "A440SupplierAgbWebsite", A440SupplierAgbWebsite);
                A333SupplierAgbAddressLine1 = cgiGet( edtSupplierAgbAddressLine1_Internalname);
                AssignAttri("", false, "A333SupplierAgbAddressLine1", A333SupplierAgbAddressLine1);
@@ -1846,7 +1832,7 @@ namespace GeneXus.Programs {
          {
             GX_msglist.addItem("Invalid website format", "OutOfRange", 1, "SUPPLIERAGBWEBSITE");
             AnyError = 1;
-            GX_FocusControl = cmbSupplierAgbWebsite_Internalname;
+            GX_FocusControl = edtSupplierAgbWebsite_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
       }
@@ -2591,8 +2577,8 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtSupplierAgbPhoneNumber_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbPhoneNumber_Enabled), 5, 0), true);
          edtSupplierAgbEmail_Enabled = 0;
          AssignProp("", false, edtSupplierAgbEmail_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbEmail_Enabled), 5, 0), true);
-         cmbSupplierAgbWebsite.Enabled = 0;
-         AssignProp("", false, cmbSupplierAgbWebsite_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbSupplierAgbWebsite.Enabled), 5, 0), true);
+         edtSupplierAgbWebsite_Enabled = 0;
+         AssignProp("", false, edtSupplierAgbWebsite_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbWebsite_Enabled), 5, 0), true);
          edtSupplierAgbAddressLine1_Enabled = 0;
          AssignProp("", false, edtSupplierAgbAddressLine1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbAddressLine1_Enabled), 5, 0), true);
          edtSupplierAgbAddressLine2_Enabled = 0;
@@ -2958,7 +2944,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198321489", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112010501580", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2974,7 +2960,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragb.js", "?202411198321492", false, true);
+         context.AddJavascriptSource("trn_supplieragb.js", "?2024112010501582", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3004,7 +2990,7 @@ namespace GeneXus.Programs {
          tblTablemergedsupplieragbphonecode_Internalname = "TABLEMERGEDSUPPLIERAGBPHONECODE";
          divTablesplittedsupplieragbphonecode_Internalname = "TABLESPLITTEDSUPPLIERAGBPHONECODE";
          edtSupplierAgbEmail_Internalname = "SUPPLIERAGBEMAIL";
-         cmbSupplierAgbWebsite_Internalname = "SUPPLIERAGBWEBSITE";
+         edtSupplierAgbWebsite_Internalname = "SUPPLIERAGBWEBSITE";
          divUnnamedtable1_Internalname = "UNNAMEDTABLE1";
          grpUnnamedgroup2_Internalname = "UNNAMEDGROUP2";
          edtSupplierAgbAddressLine1_Internalname = "SUPPLIERAGBADDRESSLINE1";
@@ -3086,8 +3072,8 @@ namespace GeneXus.Programs {
          edtSupplierAgbAddressLine2_Enabled = 1;
          edtSupplierAgbAddressLine1_Jsonclick = "";
          edtSupplierAgbAddressLine1_Enabled = 1;
-         cmbSupplierAgbWebsite_Jsonclick = "";
-         cmbSupplierAgbWebsite.Enabled = 1;
+         edtSupplierAgbWebsite_Jsonclick = "";
+         edtSupplierAgbWebsite_Enabled = 1;
          edtSupplierAgbEmail_Jsonclick = "";
          edtSupplierAgbEmail_Enabled = 1;
          edtSupplierAgbPhoneNumber_Jsonclick = "";
@@ -3148,17 +3134,6 @@ namespace GeneXus.Programs {
 
       protected void init_web_controls( )
       {
-         cmbSupplierAgbWebsite.Name = "SUPPLIERAGBWEBSITE";
-         cmbSupplierAgbWebsite.WebTags = "";
-         cmbSupplierAgbWebsite.addItem("Health", "Health", 0);
-         cmbSupplierAgbWebsite.addItem("General", "General", 0);
-         cmbSupplierAgbWebsite.addItem("Services", "Services", 0);
-         cmbSupplierAgbWebsite.addItem("Living", "Living", 0);
-         if ( cmbSupplierAgbWebsite.ItemCount > 0 )
-         {
-            A440SupplierAgbWebsite = cmbSupplierAgbWebsite.getValidValue(A440SupplierAgbWebsite);
-            AssignAttri("", false, "A440SupplierAgbWebsite", A440SupplierAgbWebsite);
-         }
          /* End function init_web_controls */
       }
 
@@ -3312,7 +3287,6 @@ namespace GeneXus.Programs {
          PreviousCaption = "";
          Form = new GXWebForm();
          GX_FocusControl = "";
-         A440SupplierAgbWebsite = "";
          ClassString = "";
          StyleString = "";
          lblTextblocksupplieragbtypeid_Jsonclick = "";
@@ -3330,6 +3304,7 @@ namespace GeneXus.Programs {
          AV16DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV27SupplierAgbPhoneCode_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          A57SupplierAgbEmail = "";
+         A440SupplierAgbWebsite = "";
          A333SupplierAgbAddressLine1 = "";
          A334SupplierAgbAddressLine2 = "";
          A299SupplierAgbAddressCity = "";
@@ -3596,6 +3571,7 @@ namespace GeneXus.Programs {
       private int edtSupplierAgbPhoneCode_Enabled ;
       private int edtSupplierAgbPhoneNumber_Enabled ;
       private int edtSupplierAgbEmail_Enabled ;
+      private int edtSupplierAgbWebsite_Enabled ;
       private int edtSupplierAgbAddressLine1_Enabled ;
       private int edtSupplierAgbAddressLine2_Enabled ;
       private int edtSupplierAgbAddressCity_Enabled ;
@@ -3641,7 +3617,6 @@ namespace GeneXus.Programs {
       private string PreviousCaption ;
       private string GX_FocusControl ;
       private string edtSupplierAgbTypeId_Internalname ;
-      private string cmbSupplierAgbWebsite_Internalname ;
       private string divLayoutmaintable_Internalname ;
       private string divLayoutmaintable_Class ;
       private string divTablemain_Internalname ;
@@ -3681,7 +3656,8 @@ namespace GeneXus.Programs {
       private string edtSupplierAgbPhoneNumber_Jsonclick ;
       private string edtSupplierAgbEmail_Internalname ;
       private string edtSupplierAgbEmail_Jsonclick ;
-      private string cmbSupplierAgbWebsite_Jsonclick ;
+      private string edtSupplierAgbWebsite_Internalname ;
+      private string edtSupplierAgbWebsite_Jsonclick ;
       private string grpUnnamedgroup4_Internalname ;
       private string divUnnamedtable3_Internalname ;
       private string edtSupplierAgbAddressLine1_Internalname ;
@@ -3865,12 +3841,12 @@ namespace GeneXus.Programs {
       private string Z440SupplierAgbWebsite ;
       private string A377SupplierAgbPhoneCode ;
       private string A378SupplierAgbPhoneNumber ;
-      private string A440SupplierAgbWebsite ;
       private string A50SupplierAgbNumber ;
       private string A51SupplierAgbName ;
       private string A52SupplierAgbKvkNumber ;
       private string A55SupplierAgbContactName ;
       private string A57SupplierAgbEmail ;
+      private string A440SupplierAgbWebsite ;
       private string A333SupplierAgbAddressLine1 ;
       private string A334SupplierAgbAddressLine2 ;
       private string A299SupplierAgbAddressCity ;
@@ -3901,7 +3877,6 @@ namespace GeneXus.Programs {
       private GXWebForm Form ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GXCombobox cmbSupplierAgbWebsite ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV15SupplierAgbTypeId_Data ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV16DDO_TitleSettingsIcons ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV27SupplierAgbPhoneCode_Data ;
