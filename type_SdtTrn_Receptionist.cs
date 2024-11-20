@@ -69,6 +69,7 @@ namespace GeneXus.Programs {
       public override GeneXus.Utils.GxStringCollection StateAttributes( )
       {
          GeneXus.Utils.GxStringCollection state = new GeneXus.Utils.GxStringCollection();
+         state.Add("gxTpr_Receptionistimage_gxi");
          state.Add("gxTpr_Mode");
          state.Add("gxTpr_Initialized");
          state.Add("gxTpr_Receptionistid_Z");
@@ -83,6 +84,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Receptionistphonenumber_Z");
          state.Add("gxTpr_Receptionistgamguid_Z");
          state.Add("gxTpr_Receptionistisactive_Z");
+         state.Add("gxTpr_Receptionistimage_gxi_Z");
          return state ;
       }
 
@@ -102,6 +104,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Receptionist_Receptionistphonenumber = sdt.gxTv_SdtTrn_Receptionist_Receptionistphonenumber ;
          gxTv_SdtTrn_Receptionist_Receptionistgamguid = sdt.gxTv_SdtTrn_Receptionist_Receptionistgamguid ;
          gxTv_SdtTrn_Receptionist_Receptionistisactive = sdt.gxTv_SdtTrn_Receptionist_Receptionistisactive ;
+         gxTv_SdtTrn_Receptionist_Receptionistimage = sdt.gxTv_SdtTrn_Receptionist_Receptionistimage ;
+         gxTv_SdtTrn_Receptionist_Receptionistimage_gxi = sdt.gxTv_SdtTrn_Receptionist_Receptionistimage_gxi ;
          gxTv_SdtTrn_Receptionist_Mode = sdt.gxTv_SdtTrn_Receptionist_Mode ;
          gxTv_SdtTrn_Receptionist_Initialized = sdt.gxTv_SdtTrn_Receptionist_Initialized ;
          gxTv_SdtTrn_Receptionist_Receptionistid_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistid_Z ;
@@ -116,6 +120,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z ;
          gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z ;
          gxTv_SdtTrn_Receptionist_Receptionistisactive_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistisactive_Z ;
+         gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z = sdt.gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z ;
          return  ;
       }
 
@@ -146,8 +151,10 @@ namespace GeneXus.Programs {
          AddObjectProperty("ReceptionistPhoneNumber", gxTv_SdtTrn_Receptionist_Receptionistphonenumber, false, includeNonInitialized);
          AddObjectProperty("ReceptionistGAMGUID", gxTv_SdtTrn_Receptionist_Receptionistgamguid, false, includeNonInitialized);
          AddObjectProperty("ReceptionistIsActive", gxTv_SdtTrn_Receptionist_Receptionistisactive, false, includeNonInitialized);
+         AddObjectProperty("ReceptionistImage", gxTv_SdtTrn_Receptionist_Receptionistimage, false, includeNonInitialized);
          if ( includeState )
          {
+            AddObjectProperty("ReceptionistImage_GXI", gxTv_SdtTrn_Receptionist_Receptionistimage_gxi, false, includeNonInitialized);
             AddObjectProperty("Mode", gxTv_SdtTrn_Receptionist_Mode, false, includeNonInitialized);
             AddObjectProperty("Initialized", gxTv_SdtTrn_Receptionist_Initialized, false, includeNonInitialized);
             AddObjectProperty("ReceptionistId_Z", gxTv_SdtTrn_Receptionist_Receptionistid_Z, false, includeNonInitialized);
@@ -162,6 +169,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("ReceptionistPhoneNumber_Z", gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z, false, includeNonInitialized);
             AddObjectProperty("ReceptionistGAMGUID_Z", gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z, false, includeNonInitialized);
             AddObjectProperty("ReceptionistIsActive_Z", gxTv_SdtTrn_Receptionist_Receptionistisactive_Z, false, includeNonInitialized);
+            AddObjectProperty("ReceptionistImage_GXI_Z", gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z, false, includeNonInitialized);
          }
          return  ;
       }
@@ -228,6 +236,16 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Receptionist_Receptionistisactive = sdt.gxTv_SdtTrn_Receptionist_Receptionistisactive ;
          }
+         if ( sdt.IsDirty("ReceptionistImage") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Receptionist_Receptionistimage = sdt.gxTv_SdtTrn_Receptionist_Receptionistimage ;
+         }
+         if ( sdt.IsDirty("ReceptionistImage") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Receptionist_Receptionistimage_gxi = sdt.gxTv_SdtTrn_Receptionist_Receptionistimage_gxi ;
+         }
          return  ;
       }
 
@@ -256,6 +274,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistisactive_Z_SetNull( );
+               this.gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z_SetNull( );
             }
             gxTv_SdtTrn_Receptionist_Receptionistid = value;
             SetDirty("Receptionistid");
@@ -288,6 +307,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistisactive_Z_SetNull( );
+               this.gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z_SetNull( );
             }
             gxTv_SdtTrn_Receptionist_Organisationid = value;
             SetDirty("Organisationid");
@@ -320,6 +340,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z_SetNull( );
                this.gxTv_SdtTrn_Receptionist_Receptionistisactive_Z_SetNull( );
+               this.gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z_SetNull( );
             }
             gxTv_SdtTrn_Receptionist_Locationid = value;
             SetDirty("Locationid");
@@ -467,6 +488,39 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Receptionist_Receptionistisactive = value;
             SetDirty("Receptionistisactive");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "ReceptionistImage" )]
+      [  XmlElement( ElementName = "ReceptionistImage"   )]
+      [GxUpload()]
+      public string gxTpr_Receptionistimage
+      {
+         get {
+            return gxTv_SdtTrn_Receptionist_Receptionistimage ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Receptionist_Receptionistimage = value;
+            SetDirty("Receptionistimage");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "ReceptionistImage_GXI" )]
+      [  XmlElement( ElementName = "ReceptionistImage_GXI"   )]
+      public string gxTpr_Receptionistimage_gxi
+      {
+         get {
+            return gxTv_SdtTrn_Receptionist_Receptionistimage_gxi ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Receptionist_Receptionistimage_gxi = value;
+            SetDirty("Receptionistimage_gxi");
          }
 
       }
@@ -863,6 +917,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ReceptionistImage_GXI_Z" )]
+      [  XmlElement( ElementName = "ReceptionistImage_GXI_Z"   )]
+      public string gxTpr_Receptionistimage_gxi_Z
+      {
+         get {
+            return gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z = value;
+            SetDirty("Receptionistimage_gxi_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z = "";
+         SetDirty("Receptionistimage_gxi_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -891,6 +973,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Receptionist_Receptionistphone = "";
          gxTv_SdtTrn_Receptionist_Receptionistphonenumber = "";
          gxTv_SdtTrn_Receptionist_Receptionistgamguid = "";
+         gxTv_SdtTrn_Receptionist_Receptionistimage = "";
+         gxTv_SdtTrn_Receptionist_Receptionistimage_gxi = "";
          gxTv_SdtTrn_Receptionist_Mode = "";
          gxTv_SdtTrn_Receptionist_Receptionistid_Z = Guid.Empty;
          gxTv_SdtTrn_Receptionist_Organisationid_Z = Guid.Empty;
@@ -903,6 +987,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Receptionist_Receptionistphone_Z = "";
          gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z = "";
          gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z = "";
+         gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z = "";
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_receptionist", "GeneXus.Programs.trn_receptionist_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -932,12 +1017,15 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Receptionist_Receptionistphonecode ;
       private string gxTv_SdtTrn_Receptionist_Receptionistphonenumber ;
       private string gxTv_SdtTrn_Receptionist_Receptionistgamguid ;
+      private string gxTv_SdtTrn_Receptionist_Receptionistimage_gxi ;
       private string gxTv_SdtTrn_Receptionist_Receptionistgivenname_Z ;
       private string gxTv_SdtTrn_Receptionist_Receptionistlastname_Z ;
       private string gxTv_SdtTrn_Receptionist_Receptionistemail_Z ;
       private string gxTv_SdtTrn_Receptionist_Receptionistphonecode_Z ;
       private string gxTv_SdtTrn_Receptionist_Receptionistphonenumber_Z ;
       private string gxTv_SdtTrn_Receptionist_Receptionistgamguid_Z ;
+      private string gxTv_SdtTrn_Receptionist_Receptionistimage_gxi_Z ;
+      private string gxTv_SdtTrn_Receptionist_Receptionistimage ;
       private Guid gxTv_SdtTrn_Receptionist_Receptionistid ;
       private Guid gxTv_SdtTrn_Receptionist_Organisationid ;
       private Guid gxTv_SdtTrn_Receptionist_Locationid ;
@@ -1126,6 +1214,20 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "ReceptionistImage" , Order = 12 )]
+      [GxUpload()]
+      public string gxTpr_Receptionistimage
+      {
+         get {
+            return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Receptionistimage)) ? PathUtil.RelativeURL( sdt.gxTpr_Receptionistimage) : StringUtil.RTrim( sdt.gxTpr_Receptionistimage_gxi)) ;
+         }
+
+         set {
+            sdt.gxTpr_Receptionistimage = value;
+         }
+
+      }
+
       public SdtTrn_Receptionist sdt
       {
          get {
@@ -1147,7 +1249,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 12 )]
+      [DataMember( Name = "gx_md5_hash", Order = 13 )]
       public string Hash
       {
          get {

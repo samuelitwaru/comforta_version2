@@ -48,6 +48,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_Managers_SDT_ManagersItem_Managergamguid = "";
 
+			gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage = "";
+			gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage_gxi = "";
 		}
 
 		public SdtSDT_Managers_SDT_ManagersItem(IGxContext context)
@@ -109,6 +111,11 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("ManagerIsMainManager", gxTpr_Managerismainmanager, false);
+
+
+			AddObjectProperty("ManagerImage", gxTpr_Managerimage, false);
+			AddObjectProperty("ManagerImage_GXI", gxTpr_Managerimage_gxi, false);
+
 
 			return;
 		}
@@ -307,6 +314,35 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="ManagerImage")]
+		[XmlElement(ElementName="ManagerImage")]
+		[GxUpload()]
+
+		public string gxTpr_Managerimage
+		{
+			get {
+				return gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage; 
+			}
+			set {
+				gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage = value;
+				SetDirty("Managerimage");
+			}
+		}
+
+
+		[SoapElement(ElementName="ManagerImage_GXI" )]
+		[XmlElement(ElementName="ManagerImage_GXI" )]
+		public string gxTpr_Managerimage_gxi
+		{
+			get {
+				return gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage_gxi ;
+			}
+			set {
+				gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage_gxi = value;
+				SetDirty("Managerimage_gxi");
+			}
+		}
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -338,6 +374,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Managers_SDT_ManagersItem_Managergender = "";
 			gxTv_SdtSDT_Managers_SDT_ManagersItem_Managergamguid = "";
 			gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerismainmanager = false;
+			gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage = "";gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage_gxi = "";
 			return  ;
 		}
 
@@ -381,6 +418,9 @@ namespace GeneXus.Programs
 		 
 
 		protected bool gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerismainmanager;
+		 
+		protected string gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage_gxi;
+		protected string gxTv_SdtSDT_Managers_SDT_ManagersItem_Managerimage;
 		 
 
 
@@ -541,6 +581,19 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Managerismainmanager = value;
+			}
+		}
+
+		[DataMember(Name="ManagerImage", Order=12)]
+		[GxUpload()]
+		public  string gxTpr_Managerimage
+		{
+			get { 
+				return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Managerimage)) ? PathUtil.RelativePath( sdt.gxTpr_Managerimage) : StringUtil.RTrim( sdt.gxTpr_Managerimage_gxi));
+
+			}
+			set { 
+				 sdt.gxTpr_Managerimage = value;
 			}
 		}
 

@@ -46,6 +46,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_Receptionist_Receptionistgamguid = "";
 
+			gxTv_SdtSDT_Receptionist_Receptionistimage = "";
+			gxTv_SdtSDT_Receptionist_Receptionistimage_gxi = "";
 		}
 
 		public SdtSDT_Receptionist(IGxContext context)
@@ -107,6 +109,11 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("ReceptionistGAMGUID", gxTpr_Receptionistgamguid, false);
+
+
+			AddObjectProperty("ReceptionistImage", gxTpr_Receptionistimage, false);
+			AddObjectProperty("ReceptionistImage_GXI", gxTpr_Receptionistimage_gxi, false);
+
 
 			return;
 		}
@@ -305,6 +312,35 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="ReceptionistImage")]
+		[XmlElement(ElementName="ReceptionistImage")]
+		[GxUpload()]
+
+		public string gxTpr_Receptionistimage
+		{
+			get {
+				return gxTv_SdtSDT_Receptionist_Receptionistimage; 
+			}
+			set {
+				gxTv_SdtSDT_Receptionist_Receptionistimage = value;
+				SetDirty("Receptionistimage");
+			}
+		}
+
+
+		[SoapElement(ElementName="ReceptionistImage_GXI" )]
+		[XmlElement(ElementName="ReceptionistImage_GXI" )]
+		public string gxTpr_Receptionistimage_gxi
+		{
+			get {
+				return gxTv_SdtSDT_Receptionist_Receptionistimage_gxi ;
+			}
+			set {
+				gxTv_SdtSDT_Receptionist_Receptionistimage_gxi = value;
+				SetDirty("Receptionistimage_gxi");
+			}
+		}
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -335,6 +371,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Receptionist_Receptioniststatus = "";
 
 			gxTv_SdtSDT_Receptionist_Receptionistgamguid = "";
+			gxTv_SdtSDT_Receptionist_Receptionistimage = "";gxTv_SdtSDT_Receptionist_Receptionistimage_gxi = "";
 			return  ;
 		}
 
@@ -378,6 +415,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Receptionist_Receptionistgamguid;
+		 
+		protected string gxTv_SdtSDT_Receptionist_Receptionistimage_gxi;
+		protected string gxTv_SdtSDT_Receptionist_Receptionistimage;
 		 
 
 
@@ -538,6 +578,19 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Receptionistgamguid = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistImage", Order=12)]
+		[GxUpload()]
+		public  string gxTpr_Receptionistimage
+		{
+			get { 
+				return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Receptionistimage)) ? PathUtil.RelativePath( sdt.gxTpr_Receptionistimage) : StringUtil.RTrim( sdt.gxTpr_Receptionistimage_gxi));
+
+			}
+			set { 
+				 sdt.gxTpr_Receptionistimage = value;
 			}
 		}
 

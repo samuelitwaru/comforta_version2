@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241119135400"
+  version: "20241120051334"
 servers:
   - url: https://staging.comforta.yukon.software//rest
 paths:
@@ -2159,6 +2159,9 @@ components:
           format: "uuid"
         MedicalIndicationName:
           description: "Medical Indication Name"
+          type: "string"
+        ResidentImage:
+          description: "Resident Image"
           type: "string"
     SDT_Row:
       properties:

@@ -61,13 +61,17 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A64ResidentGivenName", A64ResidentGivenName);
             A65ResidentLastName = GetPar( "ResidentLastName");
             AssignAttri("", false, "A65ResidentLastName", A65ResidentLastName);
+            Gx_mode = GetPar( "Mode");
+            AssignAttri("", false, "Gx_mode", Gx_mode);
+            A71ResidentGUID = GetPar( "ResidentGUID");
+            AssignAttri("", false, "A71ResidentGUID", A71ResidentGUID);
             setAjaxCallMode();
             if ( ! IsValidAjaxCall( true) )
             {
                GxWebError = 1;
                return  ;
             }
-            XC_43_0916( A67ResidentEmail, A64ResidentGivenName, A65ResidentLastName) ;
+            XC_43_0916( A67ResidentEmail, A64ResidentGivenName, A65ResidentLastName, Gx_mode, A71ResidentGUID) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action44") == 0 )
@@ -4387,8 +4391,11 @@ namespace GeneXus.Programs {
       protected void BeforeInsert0916( )
       {
          /* Before Insert Rules */
-         new prc_creategamuseraccount(context ).execute(  A67ResidentEmail,  A64ResidentGivenName,  A65ResidentLastName,  "Resident", out  A71ResidentGUID) ;
-         AssignAttri("", false, "A71ResidentGUID", A71ResidentGUID);
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A71ResidentGUID)) )
+         {
+            new prc_creategamuseraccount(context ).execute(  A67ResidentEmail,  A64ResidentGivenName,  A65ResidentLastName,  "Resident", out  A71ResidentGUID) ;
+            AssignAttri("", false, "A71ResidentGUID", A71ResidentGUID);
+         }
       }
 
       protected void BeforeUpdate0916( )
@@ -6610,7 +6617,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198332547", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411208104536", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -6626,7 +6633,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_resident.js", "?202411198332550", false, true);
+         context.AddJavascriptSource("trn_resident.js", "?202411208104539", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -7236,10 +7243,15 @@ namespace GeneXus.Programs {
 
       protected void XC_43_0916( string A67ResidentEmail ,
                                  string A64ResidentGivenName ,
-                                 string A65ResidentLastName )
+                                 string A65ResidentLastName ,
+                                 string Gx_mode ,
+                                 string A71ResidentGUID )
       {
-         new prc_creategamuseraccount(context ).execute(  A67ResidentEmail,  A64ResidentGivenName,  A65ResidentLastName,  "Resident", out  A71ResidentGUID) ;
-         AssignAttri("", false, "A71ResidentGUID", A71ResidentGUID);
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A71ResidentGUID)) )
+         {
+            new prc_creategamuseraccount(context ).execute(  A67ResidentEmail,  A64ResidentGivenName,  A65ResidentLastName,  "Resident", out  A71ResidentGUID) ;
+            AssignAttri("", false, "A71ResidentGUID", A71ResidentGUID);
+         }
          GxWebStd.set_html_headers( context, 0, "", "");
          AddString( "[[") ;
          AddString( "\""+GXUtil.EncodeJSConstant( A71ResidentGUID)+"\"") ;

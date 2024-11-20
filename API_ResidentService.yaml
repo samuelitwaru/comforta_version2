@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241119135400"
+  version: "20241120051334"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -828,6 +828,9 @@ components:
           format: "uuid"
         MedicalIndicationName:
           description: "Medical Indication Name"
+          type: "string"
+        ResidentImage:
+          description: "Resident Image"
           type: "string"
 
 

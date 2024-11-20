@@ -42,6 +42,10 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistlastname = "";
 
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Filename = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistimagevar = "";
+
 		}
 
 		public SdtWP_CreateLocationAndReceptionistData_Step2(IGxContext context)
@@ -88,6 +92,12 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("ReceptionistLastName", gxTpr_Receptionistlastname, false);
+
+
+			AddObjectProperty("FileName", gxTpr_Filename, false);
+
+
+			AddObjectProperty("ReceptionistImageVar", gxTpr_Receptionistimagevar, false);
 
 			if (gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Sdt_receptionists != null)
 			{
@@ -211,6 +221,38 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="FileName")]
+		[XmlElement(ElementName="FileName")]
+		public string gxTpr_Filename
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Filename; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Filename = value;
+				SetDirty("Filename");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ReceptionistImageVar")]
+		[XmlElement(ElementName="ReceptionistImageVar")]
+		public string gxTpr_Receptionistimagevar
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistimagevar; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistimagevar = value;
+				SetDirty("Receptionistimagevar");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="SDT_Receptionists" )]
 		[XmlArray(ElementName="SDT_Receptionists"  )]
 		[XmlArrayItemAttribute(ElementName="SDT_ReceptionistsItem" , IsNullable=false )]
@@ -291,6 +333,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistgivenname = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistlastname = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Filename = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistimagevar = "";
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Sdt_receptionists_N = true;
 
@@ -322,6 +366,12 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistlastname;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Filename;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistimagevar;
 		 
 		protected bool gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Sdt_receptionists_N;
 		protected GXBaseCollection<GeneXus.Programs.SdtSDT_Receptionists_SDT_ReceptionistsItem> gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Sdt_receptionists = null;  
@@ -427,7 +477,31 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="SDT_Receptionists", Order=7, EmitDefaultValue=false)]
+		[DataMember(Name="FileName", Order=7)]
+		public  string gxTpr_Filename
+		{
+			get { 
+				return sdt.gxTpr_Filename;
+
+			}
+			set { 
+				 sdt.gxTpr_Filename = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistImageVar", Order=8)]
+		public  string gxTpr_Receptionistimagevar
+		{
+			get { 
+				return sdt.gxTpr_Receptionistimagevar;
+
+			}
+			set { 
+				 sdt.gxTpr_Receptionistimagevar = value;
+			}
+		}
+
+		[DataMember(Name="SDT_Receptionists", Order=9, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Receptionists_SDT_ReceptionistsItem_RESTInterface> gxTpr_Sdt_receptionists
 		{
 			get { 
