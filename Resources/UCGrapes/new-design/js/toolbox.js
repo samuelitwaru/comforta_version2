@@ -772,7 +772,6 @@ class ToolBoxManager {
 
           case "Form":
             iconHtml = '<i class="fa fa-file"></i>';
-            let url = cta.CallToActionUrl.replace('api/', '')
             const formComponent = `
               <div class="container-row" ${defaultConstraints}>
                 <div class="template-wrapper" ${defaultConstraints} style="display: flex; width: 100%">
@@ -787,7 +786,7 @@ class ToolBoxManager {
                       cta-button-id="${cta.CallToActionId}"
                       cta-button-label="${cta.CallToActionName}"
                       cta-button-type="${cta.CallToActionType}"
-                      cta-button-action="${url}"
+                      cta-button-action="${cta.CallToActionUrl}"
                       cta-background-color="#5068a8"
                     >
                       <button class="cta-main-button" ${defaultConstraints} data-gjs-selectable="true">
