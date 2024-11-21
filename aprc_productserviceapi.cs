@@ -112,37 +112,26 @@ namespace GeneXus.Programs {
          new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
          AV16OrganisationId = GXt_guid1;
          /* Using cursor P00912 */
-         pr_default.execute(0);
+         pr_default.execute(0, new Object[] {AV8ProductServiceId});
          while ( (pr_default.getStatus(0) != 101) )
          {
-            A396CallToActionUrl = P00912_A396CallToActionUrl[0];
-            A367CallToActionId = P00912_A367CallToActionId[0];
-            new prc_logtofile(context ).execute(  ">>>>>>>>>>>>>>>>>>>>>>>"+A396CallToActionUrl) ;
-            pr_default.readNext(0);
-         }
-         pr_default.close(0);
-         /* Using cursor P00913 */
-         pr_default.execute(1);
-         while ( (pr_default.getStatus(1) != 101) )
-         {
-            A11OrganisationId = P00913_A11OrganisationId[0];
-            A29LocationId = P00913_A29LocationId[0];
-            A58ProductServiceId = P00913_A58ProductServiceId[0];
+            A11OrganisationId = P00912_A11OrganisationId[0];
+            A29LocationId = P00912_A29LocationId[0];
+            A58ProductServiceId = P00912_A58ProductServiceId[0];
             AV12BC_Trn_ProductService.Load(A58ProductServiceId, A29LocationId, A11OrganisationId);
             AV9SDT_ProductService.FromJSonString(AV12BC_Trn_ProductService.ToJSonString(true, true), null);
-            /* Using cursor P00914 */
-            pr_default.execute(2, new Object[] {AV8ProductServiceId, A29LocationId, A11OrganisationId});
-            while ( (pr_default.getStatus(2) != 101) )
+            /* Using cursor P00913 */
+            pr_default.execute(1, new Object[] {AV8ProductServiceId, A29LocationId, A11OrganisationId});
+            while ( (pr_default.getStatus(1) != 101) )
             {
-               A58ProductServiceId = P00914_A58ProductServiceId[0];
-               A367CallToActionId = P00914_A367CallToActionId[0];
-               A396CallToActionUrl = P00914_A396CallToActionUrl[0];
-               A397CallToActionName = P00914_A397CallToActionName[0];
-               A370CallToActionPhone = P00914_A370CallToActionPhone[0];
-               A369CallToActionEmail = P00914_A369CallToActionEmail[0];
-               A368CallToActionType = P00914_A368CallToActionType[0];
+               A58ProductServiceId = P00913_A58ProductServiceId[0];
+               A367CallToActionId = P00913_A367CallToActionId[0];
+               A397CallToActionName = P00913_A397CallToActionName[0];
+               A370CallToActionPhone = P00913_A370CallToActionPhone[0];
+               A369CallToActionEmail = P00913_A369CallToActionEmail[0];
+               A368CallToActionType = P00913_A368CallToActionType[0];
+               A396CallToActionUrl = P00913_A396CallToActionUrl[0];
                AV15BC_Trn_CallToAction.Load(A367CallToActionId);
-               new prc_logtofile(context ).execute(  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+A396CallToActionUrl) ;
                AV13SDT_CallToActionItem = new SdtSDT_CallToAction_SDT_CallToActionItem(context);
                AV13SDT_CallToActionItem.gxTpr_Calltoactionid = A367CallToActionId;
                AV13SDT_CallToActionItem.gxTpr_Calltoactionname = A397CallToActionName;
@@ -151,12 +140,12 @@ namespace GeneXus.Programs {
                AV13SDT_CallToActionItem.gxTpr_Calltoactiontype = A368CallToActionType;
                AV13SDT_CallToActionItem.gxTpr_Calltoactionurl = A396CallToActionUrl;
                AV9SDT_ProductService.gxTpr_Calltoactions.Add(AV13SDT_CallToActionItem, 0);
-               pr_default.readNext(2);
+               pr_default.readNext(1);
             }
-            pr_default.close(2);
-            pr_default.readNext(1);
+            pr_default.close(1);
+            pr_default.readNext(0);
          }
-         pr_default.close(1);
+         pr_default.close(0);
          cleanup();
       }
 
@@ -175,42 +164,37 @@ namespace GeneXus.Programs {
          AV17LocationId = Guid.Empty;
          AV16OrganisationId = Guid.Empty;
          GXt_guid1 = Guid.Empty;
-         P00912_A396CallToActionUrl = new string[] {""} ;
-         P00912_A367CallToActionId = new Guid[] {Guid.Empty} ;
-         A396CallToActionUrl = "";
-         A367CallToActionId = Guid.Empty;
-         P00913_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00913_A29LocationId = new Guid[] {Guid.Empty} ;
-         P00913_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         P00912_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00912_A29LocationId = new Guid[] {Guid.Empty} ;
+         P00912_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A58ProductServiceId = Guid.Empty;
          AV12BC_Trn_ProductService = new SdtTrn_ProductService(context);
-         P00914_A29LocationId = new Guid[] {Guid.Empty} ;
-         P00914_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00914_A58ProductServiceId = new Guid[] {Guid.Empty} ;
-         P00914_A367CallToActionId = new Guid[] {Guid.Empty} ;
-         P00914_A396CallToActionUrl = new string[] {""} ;
-         P00914_A397CallToActionName = new string[] {""} ;
-         P00914_A370CallToActionPhone = new string[] {""} ;
-         P00914_A369CallToActionEmail = new string[] {""} ;
-         P00914_A368CallToActionType = new string[] {""} ;
+         P00913_A29LocationId = new Guid[] {Guid.Empty} ;
+         P00913_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00913_A58ProductServiceId = new Guid[] {Guid.Empty} ;
+         P00913_A367CallToActionId = new Guid[] {Guid.Empty} ;
+         P00913_A397CallToActionName = new string[] {""} ;
+         P00913_A370CallToActionPhone = new string[] {""} ;
+         P00913_A369CallToActionEmail = new string[] {""} ;
+         P00913_A368CallToActionType = new string[] {""} ;
+         P00913_A396CallToActionUrl = new string[] {""} ;
+         A367CallToActionId = Guid.Empty;
          A397CallToActionName = "";
          A370CallToActionPhone = "";
          A369CallToActionEmail = "";
          A368CallToActionType = "";
+         A396CallToActionUrl = "";
          AV15BC_Trn_CallToAction = new SdtTrn_CallToAction(context);
          AV13SDT_CallToActionItem = new SdtSDT_CallToAction_SDT_CallToActionItem(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_productserviceapi__default(),
             new Object[][] {
                 new Object[] {
-               P00912_A396CallToActionUrl, P00912_A367CallToActionId
+               P00912_A11OrganisationId, P00912_A29LocationId, P00912_A58ProductServiceId
                }
                , new Object[] {
-               P00913_A11OrganisationId, P00913_A29LocationId, P00913_A58ProductServiceId
-               }
-               , new Object[] {
-               P00914_A29LocationId, P00914_A11OrganisationId, P00914_A58ProductServiceId, P00914_A367CallToActionId, P00914_A396CallToActionUrl, P00914_A397CallToActionName, P00914_A370CallToActionPhone, P00914_A369CallToActionEmail, P00914_A368CallToActionType
+               P00913_A29LocationId, P00913_A11OrganisationId, P00913_A58ProductServiceId, P00913_A367CallToActionId, P00913_A397CallToActionName, P00913_A370CallToActionPhone, P00913_A369CallToActionEmail, P00913_A368CallToActionType, P00913_A396CallToActionUrl
                }
             }
          );
@@ -218,39 +202,37 @@ namespace GeneXus.Programs {
       }
 
       private string A370CallToActionPhone ;
-      private string A396CallToActionUrl ;
       private string A397CallToActionName ;
       private string A369CallToActionEmail ;
       private string A368CallToActionType ;
+      private string A396CallToActionUrl ;
       private Guid AV8ProductServiceId ;
       private Guid AV17LocationId ;
       private Guid AV16OrganisationId ;
       private Guid GXt_guid1 ;
-      private Guid A367CallToActionId ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A58ProductServiceId ;
+      private Guid A367CallToActionId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtSDT_ProductService AV9SDT_ProductService ;
       private SdtSDT_ProductService aP1_SDT_ProductService ;
       private IDataStoreProvider pr_default ;
-      private string[] P00912_A396CallToActionUrl ;
-      private Guid[] P00912_A367CallToActionId ;
-      private Guid[] P00913_A11OrganisationId ;
-      private Guid[] P00913_A29LocationId ;
-      private Guid[] P00913_A58ProductServiceId ;
+      private Guid[] P00912_A11OrganisationId ;
+      private Guid[] P00912_A29LocationId ;
+      private Guid[] P00912_A58ProductServiceId ;
       private SdtTrn_ProductService AV12BC_Trn_ProductService ;
-      private Guid[] P00914_A29LocationId ;
-      private Guid[] P00914_A11OrganisationId ;
-      private Guid[] P00914_A58ProductServiceId ;
-      private Guid[] P00914_A367CallToActionId ;
-      private string[] P00914_A396CallToActionUrl ;
-      private string[] P00914_A397CallToActionName ;
-      private string[] P00914_A370CallToActionPhone ;
-      private string[] P00914_A369CallToActionEmail ;
-      private string[] P00914_A368CallToActionType ;
+      private Guid[] P00913_A29LocationId ;
+      private Guid[] P00913_A11OrganisationId ;
+      private Guid[] P00913_A58ProductServiceId ;
+      private Guid[] P00913_A367CallToActionId ;
+      private string[] P00913_A397CallToActionName ;
+      private string[] P00913_A370CallToActionPhone ;
+      private string[] P00913_A369CallToActionEmail ;
+      private string[] P00913_A368CallToActionType ;
+      private string[] P00913_A396CallToActionUrl ;
       private SdtTrn_CallToAction AV15BC_Trn_CallToAction ;
       private SdtSDT_CallToAction_SDT_CallToActionItem AV13SDT_CallToActionItem ;
    }
@@ -263,7 +245,6 @@ namespace GeneXus.Programs {
          return new Cursor[] {
           new ForEachCursor(def[0])
          ,new ForEachCursor(def[1])
-         ,new ForEachCursor(def[2])
        };
     }
 
@@ -274,20 +255,17 @@ namespace GeneXus.Programs {
        {
           Object[] prmP00912;
           prmP00912 = new Object[] {
+          new ParDef("AV8ProductServiceId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP00913;
           prmP00913 = new Object[] {
-          };
-          Object[] prmP00914;
-          prmP00914 = new Object[] {
           new ParDef("AV8ProductServiceId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00912", "SELECT CallToActionUrl, CallToActionId FROM Trn_CallToAction ORDER BY CallToActionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00912,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00913", "SELECT OrganisationId, LocationId, ProductServiceId FROM Trn_ProductService ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00913,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00914", "SELECT LocationId, OrganisationId, ProductServiceId, CallToActionId, CallToActionUrl, CallToActionName, CallToActionPhone, CallToActionEmail, CallToActionType FROM Trn_CallToAction WHERE ProductServiceId = :AV8ProductServiceId and LocationId = :LocationId and OrganisationId = :OrganisationId ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00914,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00912", "SELECT OrganisationId, LocationId, ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :AV8ProductServiceId ORDER BY ProductServiceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00912,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00913", "SELECT LocationId, OrganisationId, ProductServiceId, CallToActionId, CallToActionName, CallToActionPhone, CallToActionEmail, CallToActionType, CallToActionUrl FROM Trn_CallToAction WHERE ProductServiceId = :AV8ProductServiceId and LocationId = :LocationId and OrganisationId = :OrganisationId ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00913,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -299,22 +277,18 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((string[]) buf[0])[0] = rslt.getVarchar(1);
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                return;
-             case 2 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((string[]) buf[6])[0] = rslt.getString(7, 20);
+                ((string[]) buf[5])[0] = rslt.getString(6, 20);
+                ((string[]) buf[6])[0] = rslt.getVarchar(7);
                 ((string[]) buf[7])[0] = rslt.getVarchar(8);
                 ((string[]) buf[8])[0] = rslt.getVarchar(9);
                 return;
