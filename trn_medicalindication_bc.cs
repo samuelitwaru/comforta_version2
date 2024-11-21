@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -455,7 +457,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A98MedicalIndicationId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Resident"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Resident", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);
@@ -1093,6 +1095,10 @@ namespace GeneXus.Programs {
          BC000E10_A99MedicalIndicationName = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_medicalindication_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_medicalindication_bc__gam(),
             new Object[][] {
             }
@@ -1148,6 +1154,7 @@ namespace GeneXus.Programs {
       private Guid Z98MedicalIndicationId ;
       private Guid A98MedicalIndicationId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1168,10 +1175,11 @@ namespace GeneXus.Programs {
       private SdtTrn_MedicalIndication bcTrn_MedicalIndication ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_medicalindication_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_medicalindication_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1198,26 +1206,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_medicalindication_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_medicalindication_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1226,54 +1225,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC000E2;
-        prmBC000E2 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000E3;
-        prmBC000E3 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000E4;
-        prmBC000E4 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000E5;
-        prmBC000E5 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000E6;
-        prmBC000E6 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("MedicalIndicationName",GXType.VarChar,100,0)
-        };
-        Object[] prmBC000E7;
-        prmBC000E7 = new Object[] {
-        new ParDef("MedicalIndicationName",GXType.VarChar,100,0) ,
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000E8;
-        prmBC000E8 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000E9;
-        prmBC000E9 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000E10;
-        prmBC000E10 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000E2", "SELECT MedicalIndicationId, MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId  FOR UPDATE OF Trn_MedicalIndication",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000E3", "SELECT MedicalIndicationId, MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000E4", "SELECT TM1.MedicalIndicationId, TM1.MedicalIndicationName FROM Trn_MedicalIndication TM1 WHERE TM1.MedicalIndicationId = :MedicalIndicationId ORDER BY TM1.MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000E5", "SELECT MedicalIndicationId FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000E6", "SAVEPOINT gxupdate;INSERT INTO Trn_MedicalIndication(MedicalIndicationId, MedicalIndicationName) VALUES(:MedicalIndicationId, :MedicalIndicationName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000E6)
-           ,new CursorDef("BC000E7", "SAVEPOINT gxupdate;UPDATE Trn_MedicalIndication SET MedicalIndicationName=:MedicalIndicationName  WHERE MedicalIndicationId = :MedicalIndicationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000E7)
-           ,new CursorDef("BC000E8", "SAVEPOINT gxupdate;DELETE FROM Trn_MedicalIndication  WHERE MedicalIndicationId = :MedicalIndicationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000E8)
-           ,new CursorDef("BC000E9", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E9,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000E10", "SELECT TM1.MedicalIndicationId, TM1.MedicalIndicationName FROM Trn_MedicalIndication TM1 WHERE TM1.MedicalIndicationId = :MedicalIndicationId ORDER BY TM1.MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E10,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1282,34 +1234,122 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_medicalindication_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new ForEachCursor(def[8])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000E2;
+       prmBC000E2 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000E3;
+       prmBC000E3 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000E4;
+       prmBC000E4 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000E5;
+       prmBC000E5 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000E6;
+       prmBC000E6 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("MedicalIndicationName",GXType.VarChar,100,0)
+       };
+       Object[] prmBC000E7;
+       prmBC000E7 = new Object[] {
+       new ParDef("MedicalIndicationName",GXType.VarChar,100,0) ,
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000E8;
+       prmBC000E8 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000E9;
+       prmBC000E9 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000E10;
+       prmBC000E10 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000E2", "SELECT MedicalIndicationId, MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId  FOR UPDATE OF Trn_MedicalIndication",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000E3", "SELECT MedicalIndicationId, MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000E4", "SELECT TM1.MedicalIndicationId, TM1.MedicalIndicationName FROM Trn_MedicalIndication TM1 WHERE TM1.MedicalIndicationId = :MedicalIndicationId ORDER BY TM1.MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000E5", "SELECT MedicalIndicationId FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000E6", "SAVEPOINT gxupdate;INSERT INTO Trn_MedicalIndication(MedicalIndicationId, MedicalIndicationName) VALUES(:MedicalIndicationId, :MedicalIndicationName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000E6)
+          ,new CursorDef("BC000E7", "SAVEPOINT gxupdate;UPDATE Trn_MedicalIndication SET MedicalIndicationName=:MedicalIndicationName  WHERE MedicalIndicationId = :MedicalIndicationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000E7)
+          ,new CursorDef("BC000E8", "SAVEPOINT gxupdate;DELETE FROM Trn_MedicalIndication  WHERE MedicalIndicationId = :MedicalIndicationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000E8)
+          ,new CursorDef("BC000E9", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E9,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000E10", "SELECT TM1.MedicalIndicationId, TM1.MedicalIndicationName FROM Trn_MedicalIndication TM1 WHERE TM1.MedicalIndicationId = :MedicalIndicationId ORDER BY TM1.MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E10,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 8 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+    }
+ }
 
 }
 

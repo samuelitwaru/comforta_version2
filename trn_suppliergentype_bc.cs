@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -180,7 +182,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A290SupplierGenTypeName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen Type Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Type Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
       }
@@ -460,7 +462,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A282SupplierGenTypeId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_SupplierGen"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_SupplierGen", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);
@@ -1096,6 +1098,10 @@ namespace GeneXus.Programs {
          BC001210_A290SupplierGenTypeName = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_suppliergentype_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_suppliergentype_bc__gam(),
             new Object[][] {
             }
@@ -1151,6 +1157,7 @@ namespace GeneXus.Programs {
       private Guid Z282SupplierGenTypeId ;
       private Guid A282SupplierGenTypeId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1169,10 +1176,11 @@ namespace GeneXus.Programs {
       private SdtTrn_SupplierGenType bcTrn_SupplierGenType ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_suppliergentype_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_suppliergentype_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1199,26 +1207,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_suppliergentype_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_suppliergentype_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1227,54 +1226,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC00122;
-        prmBC00122 = new Object[] {
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00123;
-        prmBC00123 = new Object[] {
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00124;
-        prmBC00124 = new Object[] {
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00125;
-        prmBC00125 = new Object[] {
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00126;
-        prmBC00126 = new Object[] {
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("SupplierGenTypeName",GXType.VarChar,100,0)
-        };
-        Object[] prmBC00127;
-        prmBC00127 = new Object[] {
-        new ParDef("SupplierGenTypeName",GXType.VarChar,100,0) ,
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00128;
-        prmBC00128 = new Object[] {
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00129;
-        prmBC00129 = new Object[] {
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001210;
-        prmBC001210 = new Object[] {
-        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC00122", "SELECT SupplierGenTypeId, SupplierGenTypeName FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId  FOR UPDATE OF Trn_SupplierGenType",true, GxErrorMask.GX_NOMASK, false, this,prmBC00122,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00123", "SELECT SupplierGenTypeId, SupplierGenTypeName FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00123,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00124", "SELECT TM1.SupplierGenTypeId, TM1.SupplierGenTypeName FROM Trn_SupplierGenType TM1 WHERE TM1.SupplierGenTypeId = :SupplierGenTypeId ORDER BY TM1.SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00124,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00125", "SELECT SupplierGenTypeId FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00125,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00126", "SAVEPOINT gxupdate;INSERT INTO Trn_SupplierGenType(SupplierGenTypeId, SupplierGenTypeName) VALUES(:SupplierGenTypeId, :SupplierGenTypeName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00126)
-           ,new CursorDef("BC00127", "SAVEPOINT gxupdate;UPDATE Trn_SupplierGenType SET SupplierGenTypeName=:SupplierGenTypeName  WHERE SupplierGenTypeId = :SupplierGenTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00127)
-           ,new CursorDef("BC00128", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierGenType  WHERE SupplierGenTypeId = :SupplierGenTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00128)
-           ,new CursorDef("BC00129", "SELECT SupplierGenId FROM Trn_SupplierGen WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00129,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC001210", "SELECT TM1.SupplierGenTypeId, TM1.SupplierGenTypeName FROM Trn_SupplierGenType TM1 WHERE TM1.SupplierGenTypeId = :SupplierGenTypeId ORDER BY TM1.SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001210,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1283,32 +1235,120 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_suppliergentype_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new ForEachCursor(def[8])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC00122;
+       prmBC00122 = new Object[] {
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00123;
+       prmBC00123 = new Object[] {
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00124;
+       prmBC00124 = new Object[] {
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00125;
+       prmBC00125 = new Object[] {
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00126;
+       prmBC00126 = new Object[] {
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("SupplierGenTypeName",GXType.VarChar,100,0)
+       };
+       Object[] prmBC00127;
+       prmBC00127 = new Object[] {
+       new ParDef("SupplierGenTypeName",GXType.VarChar,100,0) ,
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00128;
+       prmBC00128 = new Object[] {
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00129;
+       prmBC00129 = new Object[] {
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001210;
+       prmBC001210 = new Object[] {
+       new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC00122", "SELECT SupplierGenTypeId, SupplierGenTypeName FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId  FOR UPDATE OF Trn_SupplierGenType",true, GxErrorMask.GX_NOMASK, false, this,prmBC00122,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00123", "SELECT SupplierGenTypeId, SupplierGenTypeName FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00123,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00124", "SELECT TM1.SupplierGenTypeId, TM1.SupplierGenTypeName FROM Trn_SupplierGenType TM1 WHERE TM1.SupplierGenTypeId = :SupplierGenTypeId ORDER BY TM1.SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00124,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00125", "SELECT SupplierGenTypeId FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00125,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00126", "SAVEPOINT gxupdate;INSERT INTO Trn_SupplierGenType(SupplierGenTypeId, SupplierGenTypeName) VALUES(:SupplierGenTypeId, :SupplierGenTypeName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00126)
+          ,new CursorDef("BC00127", "SAVEPOINT gxupdate;UPDATE Trn_SupplierGenType SET SupplierGenTypeName=:SupplierGenTypeName  WHERE SupplierGenTypeId = :SupplierGenTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00127)
+          ,new CursorDef("BC00128", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierGenType  WHERE SupplierGenTypeId = :SupplierGenTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00128)
+          ,new CursorDef("BC00129", "SELECT SupplierGenId FROM Trn_SupplierGen WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00129,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC001210", "SELECT TM1.SupplierGenTypeId, TM1.SupplierGenTypeName FROM Trn_SupplierGenType TM1 WHERE TM1.SupplierGenTypeId = :SupplierGenTypeId ORDER BY TM1.SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001210,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 8 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+    }
+ }
 
 }
 

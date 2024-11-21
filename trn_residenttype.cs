@@ -88,16 +88,7 @@ namespace GeneXus.Programs {
                enableJsOutput();
             }
          }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            GxWebError = 1;
-            context.HttpContext.Response.StatusCode = 403;
-            context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-            context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-            context.WriteHtmlText( "<p /><hr />") ;
-            GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-         }
+         GXKey = Crypto.GetSiteKey( );
          if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
          {
             GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -163,7 +154,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Resident Types", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Resident Types", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -187,6 +178,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -197,6 +189,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -329,7 +322,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Control Group */
-         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, "General Information", 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_ResidentType.htm");
+         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_ResidentType.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "CellMarginTop10", "start", "top", "", "", "div");
          /* Div Control */
@@ -345,7 +338,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentTypeName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentTypeName_Internalname, "Type Name", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentTypeName_Internalname, context.GetMessage( "Type Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -373,21 +366,21 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", "Confirm", bttBtntrn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentType.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentType.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", "Cancel", bttBtntrn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentType.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentType.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 30,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", "Delete", bttBtntrn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentType.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentType.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -449,11 +442,11 @@ namespace GeneXus.Programs {
                /* Read saved values. */
                Z96ResidentTypeId = StringUtil.StrToGuid( cgiGet( "Z96ResidentTypeId"));
                Z97ResidentTypeName = cgiGet( "Z97ResidentTypeName");
-               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
                AV7ResidentTypeId = StringUtil.StrToGuid( cgiGet( "vRESIDENTTYPEID"));
-               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                A97ResidentTypeName = cgiGet( edtResidentTypeName_Internalname);
                AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
@@ -480,7 +473,7 @@ namespace GeneXus.Programs {
                }
                /* Read subfile selected row values. */
                /* Read hidden variables. */
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+               GXKey = Crypto.GetSiteKey( );
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_ResidentType");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -854,7 +847,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A97ResidentTypeName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Type Name", "", "", "", "", "", "", "", ""), 1, "RESIDENTTYPENAME");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Type Name", ""), "", "", "", "", "", "", "", ""), 1, "RESIDENTTYPENAME");
             AnyError = 1;
             GX_FocusControl = edtResidentTypeName_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1319,7 +1312,7 @@ namespace GeneXus.Programs {
             pr_default.execute(9, new Object[] {A96ResidentTypeId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Resident"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Resident", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);
@@ -1499,7 +1492,7 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "trn_residenttype.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV7ResidentTypeId.ToString());
          context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("trn_residenttype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
@@ -1516,7 +1509,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_ResidentType");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -1531,8 +1524,8 @@ namespace GeneXus.Programs {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "Z96ResidentTypeId", Z96ResidentTypeId.ToString());
          GxWebStd.gx_hidden_field( context, "Z97ResidentTypeName", Z97ResidentTypeName);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_Mode", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
@@ -1548,7 +1541,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vTRNCONTEXT", GetSecureSignedToken( "", AV11TrnContext, context));
          GxWebStd.gx_hidden_field( context, "vRESIDENTTYPEID", AV7ResidentTypeId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTTYPEID", GetSecureSignedToken( "", AV7ResidentTypeId, context));
-         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -1570,6 +1563,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -1605,7 +1610,7 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "trn_residenttype.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV7ResidentTypeId.ToString());
          return formatLink("trn_residenttype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
@@ -1617,7 +1622,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Resident Types" ;
+         return context.GetMessage( "Resident Types", "") ;
       }
 
       protected void InitializeNonKey0D22( )
@@ -1649,7 +1654,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198332450", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115413492", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1664,8 +1669,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residenttype.js", "?202411198332450", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("trn_residenttype.js", "?2024112115413492", false, true);
          /* End function include_jscripts */
       }
 
@@ -1697,7 +1702,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Resident Types";
+         Form.Caption = context.GetMessage( "Resident Types", "");
          edtResidentTypeId_Jsonclick = "";
          edtResidentTypeId_Enabled = 1;
          edtResidentTypeId_Visible = 1;
@@ -1827,6 +1832,10 @@ namespace GeneXus.Programs {
          FormProcess = "";
          bodyStyle = "";
          GXEncryptionTmp = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_residenttype__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_residenttype__gam(),
             new Object[][] {
             }
@@ -1942,6 +1951,7 @@ namespace GeneXus.Programs {
       private IGxSession AV12WebSession ;
       private GXProperties forbiddenHiddens ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1960,10 +1970,11 @@ namespace GeneXus.Programs {
       private Guid[] T000D11_A29LocationId ;
       private Guid[] T000D11_A11OrganisationId ;
       private Guid[] T000D12_A96ResidentTypeId ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_residenttype__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_residenttype__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1990,28 +2001,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_residenttype__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_residenttype__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new ForEachCursor(def[9])
-       ,new ForEachCursor(def[10])
      };
   }
 
@@ -2020,63 +2020,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmT000D2;
-        prmT000D2 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D3;
-        prmT000D3 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D4;
-        prmT000D4 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D5;
-        prmT000D5 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D6;
-        prmT000D6 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D7;
-        prmT000D7 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D8;
-        prmT000D8 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentTypeName",GXType.VarChar,100,0)
-        };
-        Object[] prmT000D9;
-        prmT000D9 = new Object[] {
-        new ParDef("ResidentTypeName",GXType.VarChar,100,0) ,
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D10;
-        prmT000D10 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D11;
-        prmT000D11 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000D12;
-        prmT000D12 = new Object[] {
-        };
         def= new CursorDef[] {
-            new CursorDef("T000D2", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId  FOR UPDATE OF Trn_ResidentType NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000D2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000D3", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000D4", "SELECT TM1.ResidentTypeId, TM1.ResidentTypeName FROM Trn_ResidentType TM1 WHERE TM1.ResidentTypeId = :ResidentTypeId ORDER BY TM1.ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000D5", "SELECT ResidentTypeId FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000D6", "SELECT ResidentTypeId FROM Trn_ResidentType WHERE ( ResidentTypeId > :ResidentTypeId) ORDER BY ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D6,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000D7", "SELECT ResidentTypeId FROM Trn_ResidentType WHERE ( ResidentTypeId < :ResidentTypeId) ORDER BY ResidentTypeId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D7,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000D8", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentType(ResidentTypeId, ResidentTypeName) VALUES(:ResidentTypeId, :ResidentTypeName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000D8)
-           ,new CursorDef("T000D9", "SAVEPOINT gxupdate;UPDATE Trn_ResidentType SET ResidentTypeName=:ResidentTypeName  WHERE ResidentTypeId = :ResidentTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000D9)
-           ,new CursorDef("T000D10", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentType  WHERE ResidentTypeId = :ResidentTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000D10)
-           ,new CursorDef("T000D11", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D11,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000D12", "SELECT ResidentTypeId FROM Trn_ResidentType ORDER BY ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D12,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2085,39 +2029,138 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 5 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 9 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 10 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_residenttype__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new ForEachCursor(def[9])
+      ,new ForEachCursor(def[10])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmT000D2;
+       prmT000D2 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D3;
+       prmT000D3 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D4;
+       prmT000D4 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D5;
+       prmT000D5 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D6;
+       prmT000D6 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D7;
+       prmT000D7 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D8;
+       prmT000D8 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentTypeName",GXType.VarChar,100,0)
+       };
+       Object[] prmT000D9;
+       prmT000D9 = new Object[] {
+       new ParDef("ResidentTypeName",GXType.VarChar,100,0) ,
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D10;
+       prmT000D10 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D11;
+       prmT000D11 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000D12;
+       prmT000D12 = new Object[] {
+       };
+       def= new CursorDef[] {
+           new CursorDef("T000D2", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId  FOR UPDATE OF Trn_ResidentType NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000D2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000D3", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000D4", "SELECT TM1.ResidentTypeId, TM1.ResidentTypeName FROM Trn_ResidentType TM1 WHERE TM1.ResidentTypeId = :ResidentTypeId ORDER BY TM1.ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000D5", "SELECT ResidentTypeId FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000D6", "SELECT ResidentTypeId FROM Trn_ResidentType WHERE ( ResidentTypeId > :ResidentTypeId) ORDER BY ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D6,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000D7", "SELECT ResidentTypeId FROM Trn_ResidentType WHERE ( ResidentTypeId < :ResidentTypeId) ORDER BY ResidentTypeId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D7,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000D8", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentType(ResidentTypeId, ResidentTypeName) VALUES(:ResidentTypeId, :ResidentTypeName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000D8)
+          ,new CursorDef("T000D9", "SAVEPOINT gxupdate;UPDATE Trn_ResidentType SET ResidentTypeName=:ResidentTypeName  WHERE ResidentTypeId = :ResidentTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000D9)
+          ,new CursorDef("T000D10", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentType  WHERE ResidentTypeId = :ResidentTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000D10)
+          ,new CursorDef("T000D11", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D11,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000D12", "SELECT ResidentTypeId FROM Trn_ResidentType ORDER BY ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000D12,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 5 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 9 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 10 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+    }
+ }
 
 }
 

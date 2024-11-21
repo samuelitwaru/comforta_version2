@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -432,7 +434,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(8, new Object[] {A125WWPEntityId});
             if ( (pr_default.getStatus(8) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessage"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessage", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(8);
@@ -440,7 +442,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(9, new Object[] {A125WWPEntityId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_NotificationDefinition"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_NotificationDefinition", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);
@@ -1072,6 +1074,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          BC000I12_A126WWPEntityName = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_entity_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_entity_bc__gam(),
             new Object[][] {
             }
@@ -1126,6 +1132,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string sMode28 ;
       private string Z126WWPEntityName ;
       private string A126WWPEntityName ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1144,10 +1151,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_Entity bcwwpbaseobjects_WWP_Entity ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_entity_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_entity_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1174,28 +1182,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_entity_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_entity_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new ForEachCursor(def[9])
-       ,new ForEachCursor(def[10])
      };
   }
 
@@ -1204,62 +1201,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
   {
      if ( def == null )
      {
-        Object[] prmBC000I2;
-        prmBC000I2 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000I3;
-        prmBC000I3 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000I4;
-        prmBC000I4 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000I5;
-        prmBC000I5 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000I6;
-        prmBC000I6 = new Object[] {
-        new ParDef("WWPEntityName",GXType.VarChar,100,0)
-        };
-        Object[] prmBC000I7;
-        prmBC000I7 = new Object[] {
-        };
-        Object[] prmBC000I8;
-        prmBC000I8 = new Object[] {
-        new ParDef("WWPEntityName",GXType.VarChar,100,0) ,
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000I9;
-        prmBC000I9 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000I10;
-        prmBC000I10 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000I11;
-        prmBC000I11 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000I12;
-        prmBC000I12 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000I2", "SELECT WWPEntityId, WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId  FOR UPDATE OF WWP_Entity",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000I3", "SELECT WWPEntityId, WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000I4", "SELECT TM1.WWPEntityId, TM1.WWPEntityName FROM WWP_Entity TM1 WHERE TM1.WWPEntityId = :WWPEntityId ORDER BY TM1.WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000I5", "SELECT WWPEntityId FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000I6", "SAVEPOINT gxupdate;INSERT INTO WWP_Entity(WWPEntityName) VALUES(:WWPEntityName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000I6)
-           ,new CursorDef("BC000I7", "SELECT currval('WWPEntityId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I7,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000I8", "SAVEPOINT gxupdate;UPDATE WWP_Entity SET WWPEntityName=:WWPEntityName  WHERE WWPEntityId = :WWPEntityId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000I8)
-           ,new CursorDef("BC000I9", "SAVEPOINT gxupdate;DELETE FROM WWP_Entity  WHERE WWPEntityId = :WWPEntityId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000I9)
-           ,new CursorDef("BC000I10", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I10,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000I11", "SELECT WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I11,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000I12", "SELECT TM1.WWPEntityId, TM1.WWPEntityName FROM WWP_Entity TM1 WHERE TM1.WWPEntityId = :WWPEntityId ORDER BY TM1.WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I12,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1268,38 +1210,136 @@ namespace GeneXus.Programs.wwpbaseobjects {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 1 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 2 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 3 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 5 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 8 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 9 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 10 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_entity_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new ForEachCursor(def[9])
+      ,new ForEachCursor(def[10])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000I2;
+       prmBC000I2 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000I3;
+       prmBC000I3 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000I4;
+       prmBC000I4 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000I5;
+       prmBC000I5 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000I6;
+       prmBC000I6 = new Object[] {
+       new ParDef("WWPEntityName",GXType.VarChar,100,0)
+       };
+       Object[] prmBC000I7;
+       prmBC000I7 = new Object[] {
+       };
+       Object[] prmBC000I8;
+       prmBC000I8 = new Object[] {
+       new ParDef("WWPEntityName",GXType.VarChar,100,0) ,
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000I9;
+       prmBC000I9 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000I10;
+       prmBC000I10 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000I11;
+       prmBC000I11 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000I12;
+       prmBC000I12 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000I2", "SELECT WWPEntityId, WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId  FOR UPDATE OF WWP_Entity",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000I3", "SELECT WWPEntityId, WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000I4", "SELECT TM1.WWPEntityId, TM1.WWPEntityName FROM WWP_Entity TM1 WHERE TM1.WWPEntityId = :WWPEntityId ORDER BY TM1.WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000I5", "SELECT WWPEntityId FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000I6", "SAVEPOINT gxupdate;INSERT INTO WWP_Entity(WWPEntityName) VALUES(:WWPEntityName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000I6)
+          ,new CursorDef("BC000I7", "SELECT currval('WWPEntityId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I7,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000I8", "SAVEPOINT gxupdate;UPDATE WWP_Entity SET WWPEntityName=:WWPEntityName  WHERE WWPEntityId = :WWPEntityId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000I8)
+          ,new CursorDef("BC000I9", "SAVEPOINT gxupdate;DELETE FROM WWP_Entity  WHERE WWPEntityId = :WWPEntityId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000I9)
+          ,new CursorDef("BC000I10", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I10,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000I11", "SELECT WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I11,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000I12", "SELECT TM1.WWPEntityId, TM1.WWPEntityName FROM WWP_Entity TM1 WHERE TM1.WWPEntityId = :WWPEntityId ORDER BY TM1.WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000I12,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 1 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 2 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 3 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 5 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 8 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 9 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 10 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+    }
+ }
 
 }
 

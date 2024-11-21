@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -180,7 +182,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A20OrganisationTypeName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Organisation Type Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Organisation Type Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
       }
@@ -460,7 +462,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A19OrganisationTypeId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Organisation"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Organisation", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);
@@ -1096,6 +1098,10 @@ namespace GeneXus.Programs {
          BC000210_A20OrganisationTypeName = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationtype_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationtype_bc__gam(),
             new Object[][] {
             }
@@ -1151,6 +1157,7 @@ namespace GeneXus.Programs {
       private Guid Z19OrganisationTypeId ;
       private Guid A19OrganisationTypeId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1169,10 +1176,11 @@ namespace GeneXus.Programs {
       private SdtTrn_OrganisationType bcTrn_OrganisationType ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_organisationtype_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_organisationtype_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1199,26 +1207,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_organisationtype_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_organisationtype_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1227,54 +1226,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC00022;
-        prmBC00022 = new Object[] {
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00023;
-        prmBC00023 = new Object[] {
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00024;
-        prmBC00024 = new Object[] {
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00025;
-        prmBC00025 = new Object[] {
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00026;
-        prmBC00026 = new Object[] {
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationTypeName",GXType.VarChar,100,0)
-        };
-        Object[] prmBC00027;
-        prmBC00027 = new Object[] {
-        new ParDef("OrganisationTypeName",GXType.VarChar,100,0) ,
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00028;
-        prmBC00028 = new Object[] {
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00029;
-        prmBC00029 = new Object[] {
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000210;
-        prmBC000210 = new Object[] {
-        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC00022", "SELECT OrganisationTypeId, OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId  FOR UPDATE OF Trn_OrganisationType",true, GxErrorMask.GX_NOMASK, false, this,prmBC00022,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00023", "SELECT OrganisationTypeId, OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00023,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00024", "SELECT TM1.OrganisationTypeId, TM1.OrganisationTypeName FROM Trn_OrganisationType TM1 WHERE TM1.OrganisationTypeId = :OrganisationTypeId ORDER BY TM1.OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00024,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00025", "SELECT OrganisationTypeId FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00025,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00026", "SAVEPOINT gxupdate;INSERT INTO Trn_OrganisationType(OrganisationTypeId, OrganisationTypeName) VALUES(:OrganisationTypeId, :OrganisationTypeName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00026)
-           ,new CursorDef("BC00027", "SAVEPOINT gxupdate;UPDATE Trn_OrganisationType SET OrganisationTypeName=:OrganisationTypeName  WHERE OrganisationTypeId = :OrganisationTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00027)
-           ,new CursorDef("BC00028", "SAVEPOINT gxupdate;DELETE FROM Trn_OrganisationType  WHERE OrganisationTypeId = :OrganisationTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00028)
-           ,new CursorDef("BC00029", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00029,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000210", "SELECT TM1.OrganisationTypeId, TM1.OrganisationTypeName FROM Trn_OrganisationType TM1 WHERE TM1.OrganisationTypeId = :OrganisationTypeId ORDER BY TM1.OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000210,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1283,32 +1235,120 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_organisationtype_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new ForEachCursor(def[8])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC00022;
+       prmBC00022 = new Object[] {
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00023;
+       prmBC00023 = new Object[] {
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00024;
+       prmBC00024 = new Object[] {
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00025;
+       prmBC00025 = new Object[] {
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00026;
+       prmBC00026 = new Object[] {
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationTypeName",GXType.VarChar,100,0)
+       };
+       Object[] prmBC00027;
+       prmBC00027 = new Object[] {
+       new ParDef("OrganisationTypeName",GXType.VarChar,100,0) ,
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00028;
+       prmBC00028 = new Object[] {
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00029;
+       prmBC00029 = new Object[] {
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000210;
+       prmBC000210 = new Object[] {
+       new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC00022", "SELECT OrganisationTypeId, OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId  FOR UPDATE OF Trn_OrganisationType",true, GxErrorMask.GX_NOMASK, false, this,prmBC00022,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00023", "SELECT OrganisationTypeId, OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00023,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00024", "SELECT TM1.OrganisationTypeId, TM1.OrganisationTypeName FROM Trn_OrganisationType TM1 WHERE TM1.OrganisationTypeId = :OrganisationTypeId ORDER BY TM1.OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00024,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00025", "SELECT OrganisationTypeId FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00025,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00026", "SAVEPOINT gxupdate;INSERT INTO Trn_OrganisationType(OrganisationTypeId, OrganisationTypeName) VALUES(:OrganisationTypeId, :OrganisationTypeName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00026)
+          ,new CursorDef("BC00027", "SAVEPOINT gxupdate;UPDATE Trn_OrganisationType SET OrganisationTypeName=:OrganisationTypeName  WHERE OrganisationTypeId = :OrganisationTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00027)
+          ,new CursorDef("BC00028", "SAVEPOINT gxupdate;DELETE FROM Trn_OrganisationType  WHERE OrganisationTypeId = :OrganisationTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00028)
+          ,new CursorDef("BC00029", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00029,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000210", "SELECT TM1.OrganisationTypeId, TM1.OrganisationTypeName FROM Trn_OrganisationType TM1 WHERE TM1.OrganisationTypeId = :OrganisationTypeId ORDER BY TM1.OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000210,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 8 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+    }
+ }
 
 }
 

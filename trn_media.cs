@@ -88,16 +88,7 @@ namespace GeneXus.Programs {
                enableJsOutput();
             }
          }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            GxWebError = 1;
-            context.HttpContext.Response.StatusCode = 403;
-            context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-            context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-            context.WriteHtmlText( "<p /><hr />") ;
-            GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-         }
+         GXKey = Crypto.GetSiteKey( );
          if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
          {
             GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -163,7 +154,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Trn_Media", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Trn_Media", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -187,6 +178,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -197,6 +189,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -329,7 +322,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Control Group */
-         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, "General Information", 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Media.htm");
+         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Media.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "CellMarginTop10", "start", "top", "", "", "div");
          /* Div Control */
@@ -345,7 +338,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtMediaId_Internalname, "Id", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtMediaId_Internalname, context.GetMessage( "Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -362,7 +355,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtMediaName_Internalname, "Name", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtMediaName_Internalname, context.GetMessage( "Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -379,7 +372,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+imgMediaImage_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, "", "Image", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, "", context.GetMessage( "Image", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Static Bitmap Variable */
@@ -402,12 +395,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaSize_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtMediaSize_Internalname, "Size", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtMediaSize_Internalname, context.GetMessage( "Size", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtMediaSize_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A413MediaSize), 8, 0, ".", "")), StringUtil.LTrim( ((edtMediaSize_Enabled!=0) ? context.localUtil.Format( (decimal)(A413MediaSize), "ZZZZZZZ9") : context.localUtil.Format( (decimal)(A413MediaSize), "ZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMediaSize_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMediaSize_Enabled, 0, "text", "1", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_Media.htm");
+         GxWebStd.gx_single_line_edit( context, edtMediaSize_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A413MediaSize), 8, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtMediaSize_Enabled!=0) ? context.localUtil.Format( (decimal)(A413MediaSize), "ZZZZZZZ9") : context.localUtil.Format( (decimal)(A413MediaSize), "ZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMediaSize_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMediaSize_Enabled, 0, "text", "1", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -419,7 +412,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaType_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtMediaType_Internalname, "Type", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtMediaType_Internalname, context.GetMessage( "Type", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -436,7 +429,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMediaUrl_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtMediaUrl_Internalname, "Url", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtMediaUrl_Internalname, context.GetMessage( "Url", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -464,21 +457,21 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", "Confirm", bttBtntrn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", "Cancel", bttBtntrn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", "Delete", bttBtntrn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Media.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -528,14 +521,14 @@ namespace GeneXus.Programs {
                /* Read saved values. */
                Z409MediaId = StringUtil.StrToGuid( cgiGet( "Z409MediaId"));
                Z410MediaName = cgiGet( "Z410MediaName");
-               Z413MediaSize = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z413MediaSize"), ".", ","), 18, MidpointRounding.ToEven));
+               Z413MediaSize = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z413MediaSize"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Z414MediaType = cgiGet( "Z414MediaType");
                Z412MediaUrl = cgiGet( "Z412MediaUrl");
-               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
                AV13MediaId = StringUtil.StrToGuid( cgiGet( "vMEDIAID"));
-               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A40000MediaImage_GXI = cgiGet( "MEDIAIMAGE_GXI");
                n40000MediaImage_GXI = (String.IsNullOrEmpty(StringUtil.RTrim( A40000MediaImage_GXI))&&String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
                /* Read variables values. */
@@ -566,7 +559,7 @@ namespace GeneXus.Programs {
                n411MediaImage = false;
                AssignAttri("", false, "A411MediaImage", A411MediaImage);
                n411MediaImage = (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
-               if ( ( ( context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), ".", ",") > Convert.ToDecimal( 99999999 )) ) )
+               if ( ( ( context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 99999999 )) ) )
                {
                   GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "MEDIASIZE");
                   AnyError = 1;
@@ -578,7 +571,7 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  A413MediaSize = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                  A413MediaSize = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtMediaSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                   AssignAttri("", false, "A413MediaSize", StringUtil.LTrimStr( (decimal)(A413MediaSize), 8, 0));
                }
                A414MediaType = cgiGet( edtMediaType_Internalname);
@@ -590,7 +583,7 @@ namespace GeneXus.Programs {
                getMultimediaValue(imgMediaImage_Internalname, ref  A411MediaImage, ref  A40000MediaImage_GXI);
                n40000MediaImage_GXI = (String.IsNullOrEmpty(StringUtil.RTrim( A40000MediaImage_GXI))&&String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
                n411MediaImage = (String.IsNullOrEmpty(StringUtil.RTrim( A411MediaImage)) ? true : false);
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+               GXKey = Crypto.GetSiteKey( );
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Media");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -988,7 +981,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! ( GxRegex.IsMatch(A412MediaUrl,"^((?:[a-zA-Z]+:(//)?)?((?:(?:[a-zA-Z]([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*)(?:\\.(?:([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*))*)|(?:(\\d{1,3}\\.){3}\\d{1,3}))(?::\\d+)?(?:/([a-zA-Z0-9$\\-_@.&+!*\"'(),=;: ]|%[0-9a-fA-F]{2})+)*/?(?:[#?](?:[a-zA-Z0-9$\\-_@.&+!*\"'(),=;: /]|%[0-9a-fA-F]{2})*)?)?\\s*$") ) )
          {
-            GX_msglist.addItem("Field Media Url does not match the specified pattern", "OutOfRange", 1, "MEDIAURL");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Media Url", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "MEDIAURL");
             AnyError = 1;
             GX_FocusControl = edtMediaUrl_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1670,7 +1663,7 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "trn_media.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV13MediaId.ToString());
          context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("trn_media.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
@@ -1687,7 +1680,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Media");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -1702,11 +1695,11 @@ namespace GeneXus.Programs {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "Z409MediaId", Z409MediaId.ToString());
          GxWebStd.gx_hidden_field( context, "Z410MediaName", Z410MediaName);
-         GxWebStd.gx_hidden_field( context, "Z413MediaSize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z413MediaSize), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z413MediaSize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z413MediaSize), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z414MediaType", StringUtil.RTrim( Z414MediaType));
          GxWebStd.gx_hidden_field( context, "Z412MediaUrl", Z412MediaUrl);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_Mode", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
@@ -1722,7 +1715,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vTRNCONTEXT", GetSecureSignedToken( "", AV11TrnContext, context));
          GxWebStd.gx_hidden_field( context, "vMEDIAID", AV13MediaId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vMEDIAID", GetSecureSignedToken( "", AV13MediaId, context));
-         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "MEDIAIMAGE_GXI", A40000MediaImage_GXI);
          GXCCtlgxBlob = "MEDIAIMAGE" + "_gxBlob";
          GxWebStd.gx_hidden_field( context, GXCCtlgxBlob, A411MediaImage);
@@ -1747,6 +1740,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -1782,7 +1787,7 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "trn_media.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV13MediaId.ToString());
          return formatLink("trn_media.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
@@ -1794,7 +1799,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Trn_Media" ;
+         return context.GetMessage( "Trn_Media", "") ;
       }
 
       protected void InitializeNonKey0X83( )
@@ -1845,7 +1850,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198342973", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115423048", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1860,8 +1865,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_media.js", "?202411198342973", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("trn_media.js", "?2024112115423048", false, true);
          /* End function include_jscripts */
       }
 
@@ -1896,7 +1901,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Trn_Media";
+         Form.Caption = context.GetMessage( "Trn_Media", "");
          bttBtntrn_delete_Enabled = 0;
          bttBtntrn_delete_Visible = 1;
          bttBtntrn_cancel_Visible = 1;
@@ -2060,6 +2065,10 @@ namespace GeneXus.Programs {
          bodyStyle = "";
          GXEncryptionTmp = "";
          GXCCtlgxBlob = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_media__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_media__gam(),
             new Object[][] {
             }
@@ -2198,6 +2207,7 @@ namespace GeneXus.Programs {
       private IGxSession AV12WebSession ;
       private GXProperties forbiddenHiddens ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -2234,10 +2244,11 @@ namespace GeneXus.Programs {
       private string[] T000X2_A411MediaImage ;
       private bool[] T000X2_n411MediaImage ;
       private Guid[] T000X12_A409MediaId ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_media__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_media__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -2264,28 +2275,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_media__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_media__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new ForEachCursor(def[10])
      };
   }
 
@@ -2294,73 +2294,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmT000X2;
-        prmT000X2 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X3;
-        prmT000X3 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X4;
-        prmT000X4 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X5;
-        prmT000X5 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X6;
-        prmT000X6 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X7;
-        prmT000X7 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X8;
-        prmT000X8 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("MediaName",GXType.VarChar,100,0) ,
-        new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
-        new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=2, Tbl="Trn_Media", Fld="MediaImage"} ,
-        new ParDef("MediaSize",GXType.Int32,8,0) ,
-        new ParDef("MediaType",GXType.Char,20,0) ,
-        new ParDef("MediaUrl",GXType.VarChar,1000,0)
-        };
-        Object[] prmT000X9;
-        prmT000X9 = new Object[] {
-        new ParDef("MediaName",GXType.VarChar,100,0) ,
-        new ParDef("MediaSize",GXType.Int32,8,0) ,
-        new ParDef("MediaType",GXType.Char,20,0) ,
-        new ParDef("MediaUrl",GXType.VarChar,1000,0) ,
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X10;
-        prmT000X10 = new Object[] {
-        new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
-        new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=0, Tbl="Trn_Media", Fld="MediaImage"} ,
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X11;
-        prmT000X11 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT000X12;
-        prmT000X12 = new Object[] {
-        };
         def= new CursorDef[] {
-            new CursorDef("T000X2", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000X2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000X3", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000X4", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000X5", "SELECT MediaId FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000X6", "SELECT MediaId FROM Trn_Media WHERE ( MediaId > :MediaId) ORDER BY MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X6,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000X7", "SELECT MediaId FROM Trn_Media WHERE ( MediaId < :MediaId) ORDER BY MediaId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X7,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000X8", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaUrl) VALUES(:MediaId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaUrl);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000X8)
-           ,new CursorDef("T000X9", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaUrl=:MediaUrl  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X9)
-           ,new CursorDef("T000X10", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaImage=:MediaImage, MediaImage_GXI=:MediaImage_GXI  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X10)
-           ,new CursorDef("T000X11", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X11)
-           ,new CursorDef("T000X12", "SELECT MediaId FROM Trn_Media ORDER BY MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X12,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2369,55 +2303,164 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((int[]) buf[4])[0] = rslt.getInt(4);
-              ((string[]) buf[5])[0] = rslt.getString(5, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(6);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((int[]) buf[4])[0] = rslt.getInt(4);
-              ((string[]) buf[5])[0] = rslt.getString(5, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(6);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((int[]) buf[4])[0] = rslt.getInt(4);
-              ((string[]) buf[5])[0] = rslt.getString(5, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(6);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 5 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 10 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_media__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new ForEachCursor(def[10])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmT000X2;
+       prmT000X2 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X3;
+       prmT000X3 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X4;
+       prmT000X4 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X5;
+       prmT000X5 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X6;
+       prmT000X6 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X7;
+       prmT000X7 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X8;
+       prmT000X8 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("MediaName",GXType.VarChar,100,0) ,
+       new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+       new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=2, Tbl="Trn_Media", Fld="MediaImage"} ,
+       new ParDef("MediaSize",GXType.Int32,8,0) ,
+       new ParDef("MediaType",GXType.Char,20,0) ,
+       new ParDef("MediaUrl",GXType.VarChar,1000,0)
+       };
+       Object[] prmT000X9;
+       prmT000X9 = new Object[] {
+       new ParDef("MediaName",GXType.VarChar,100,0) ,
+       new ParDef("MediaSize",GXType.Int32,8,0) ,
+       new ParDef("MediaType",GXType.Char,20,0) ,
+       new ParDef("MediaUrl",GXType.VarChar,1000,0) ,
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X10;
+       prmT000X10 = new Object[] {
+       new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+       new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=0, Tbl="Trn_Media", Fld="MediaImage"} ,
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X11;
+       prmT000X11 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000X12;
+       prmT000X12 = new Object[] {
+       };
+       def= new CursorDef[] {
+           new CursorDef("T000X2", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000X2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000X3", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000X4", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000X5", "SELECT MediaId FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000X6", "SELECT MediaId FROM Trn_Media WHERE ( MediaId > :MediaId) ORDER BY MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X6,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000X7", "SELECT MediaId FROM Trn_Media WHERE ( MediaId < :MediaId) ORDER BY MediaId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X7,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000X8", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaUrl) VALUES(:MediaId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaUrl);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000X8)
+          ,new CursorDef("T000X9", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaUrl=:MediaUrl  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X9)
+          ,new CursorDef("T000X10", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaImage=:MediaImage, MediaImage_GXI=:MediaImage_GXI  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X10)
+          ,new CursorDef("T000X11", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000X11)
+          ,new CursorDef("T000X12", "SELECT MediaId FROM Trn_Media ORDER BY MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000X12,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((int[]) buf[4])[0] = rslt.getInt(4);
+             ((string[]) buf[5])[0] = rslt.getString(5, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(6);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((int[]) buf[4])[0] = rslt.getInt(4);
+             ((string[]) buf[5])[0] = rslt.getString(5, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(6);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((int[]) buf[4])[0] = rslt.getInt(4);
+             ((string[]) buf[5])[0] = rslt.getString(5, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(6);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 5 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 10 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+    }
+ }
 
 }
 

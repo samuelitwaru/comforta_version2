@@ -27,6 +27,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -37,6 +38,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -246,29 +248,29 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A22ManagerGivenName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Manager Given Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Manager Given Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          new prc_getnameinitials(context ).execute(  A22ManagerGivenName,  A23ManagerLastName, out  A24ManagerInitials) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A23ManagerLastName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Manager Last Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Manager Last Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A25ManagerEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Field Manager Email does not match the specified pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Manager Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A25ManagerEmail)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Manager Email", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Manager Email", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          GXt_char1 = A26ManagerPhone;
@@ -276,17 +278,17 @@ namespace GeneXus.Programs {
          A26ManagerPhone = GXt_char1;
          if ( ! ( GxRegex.IsMatch(A386ManagerPhoneNumber,"\\b\\d{9}\\b") ) )
          {
-            GX_msglist.addItem("Phone should contain 9 digits", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone should contain 9 digits", ""), context.GetMessage( "Manager Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A386ManagerPhoneNumber) != 9 )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( ( StringUtil.StrCmp(A27ManagerGender, "Male") == 0 ) || ( StringUtil.StrCmp(A27ManagerGender, "Female") == 0 ) || ( StringUtil.StrCmp(A27ManagerGender, "Other") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Manager Gender is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Manager Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -603,7 +605,7 @@ namespace GeneXus.Programs {
             /* Delete mode formulas */
             if ( IsDlt( )  && ( StringUtil.StrCmp(A28ManagerGAMGUID, new prc_getloggedinuserid(context).executeUdp( )) == 0 ) )
             {
-               GX_msglist.addItem("Invalid Delete Action: You cannot delete you're own account.", 1, "");
+               GX_msglist.addItem(context.GetMessage( "Invalid Delete Action: You cannot delete you're own account.", ""), 1, "");
                AnyError = 1;
             }
          }
@@ -710,7 +712,7 @@ namespace GeneXus.Programs {
       protected void BeforeInsert035( )
       {
          /* Before Insert Rules */
-         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A28ManagerGAMGUID)) )
+         if ( ( StringUtil.StrCmp(Gx_mode, context.GetMessage( "INS", "")) == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A28ManagerGAMGUID)) )
          {
             new prc_creategamuseraccount(context ).execute(  A25ManagerEmail,  A22ManagerGivenName,  A23ManagerLastName,  "Organisation Manager", out  A28ManagerGAMGUID) ;
          }
@@ -926,7 +928,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {A11OrganisationId});
             if ( (pr_default.getStatus(10) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -964,7 +966,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {A11OrganisationId});
             if ( (pr_default.getStatus(10) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -1460,6 +1462,10 @@ namespace GeneXus.Programs {
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          BC000312_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_manager_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_manager_bc__gam(),
             new Object[][] {
             }
@@ -1559,6 +1565,7 @@ namespace GeneXus.Programs {
       private Guid Z11OrganisationId ;
       private Guid A11OrganisationId ;
       private IGxSession AV13WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV9WWPContext ;
@@ -1632,10 +1639,11 @@ namespace GeneXus.Programs {
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
       private Guid[] BC000312_A11OrganisationId ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_manager_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_manager_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1662,28 +1670,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_manager_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_manager_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new ForEachCursor(def[9])
-       ,new ForEachCursor(def[10])
      };
   }
 
@@ -1692,97 +1689,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC00032;
-        prmBC00032 = new Object[] {
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00033;
-        prmBC00033 = new Object[] {
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00034;
-        prmBC00034 = new Object[] {
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00035;
-        prmBC00035 = new Object[] {
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00036;
-        prmBC00036 = new Object[] {
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00037;
-        prmBC00037 = new Object[] {
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ManagerGAMGUID",GXType.VarChar,100,60) ,
-        new ParDef("ManagerInitials",GXType.Char,20,0) ,
-        new ParDef("ManagerPhone",GXType.Char,20,0) ,
-        new ParDef("ManagerGivenName",GXType.VarChar,100,0) ,
-        new ParDef("ManagerLastName",GXType.VarChar,100,0) ,
-        new ParDef("ManagerEmail",GXType.VarChar,100,0) ,
-        new ParDef("ManagerPhoneCode",GXType.VarChar,40,0) ,
-        new ParDef("ManagerPhoneNumber",GXType.VarChar,9,0) ,
-        new ParDef("ManagerGender",GXType.VarChar,40,0) ,
-        new ParDef("ManagerIsMainManager",GXType.Boolean,4,0) ,
-        new ParDef("ManagerIsActive",GXType.Boolean,4,0) ,
-        new ParDef("ManagerImage",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("ManagerImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=12, Tbl="Trn_Manager", Fld="ManagerImage"} ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00038;
-        prmBC00038 = new Object[] {
-        new ParDef("ManagerGAMGUID",GXType.VarChar,100,60) ,
-        new ParDef("ManagerInitials",GXType.Char,20,0) ,
-        new ParDef("ManagerPhone",GXType.Char,20,0) ,
-        new ParDef("ManagerGivenName",GXType.VarChar,100,0) ,
-        new ParDef("ManagerLastName",GXType.VarChar,100,0) ,
-        new ParDef("ManagerEmail",GXType.VarChar,100,0) ,
-        new ParDef("ManagerPhoneCode",GXType.VarChar,40,0) ,
-        new ParDef("ManagerPhoneNumber",GXType.VarChar,9,0) ,
-        new ParDef("ManagerGender",GXType.VarChar,40,0) ,
-        new ParDef("ManagerIsMainManager",GXType.Boolean,4,0) ,
-        new ParDef("ManagerIsActive",GXType.Boolean,4,0) ,
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00039;
-        prmBC00039 = new Object[] {
-        new ParDef("ManagerImage",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("ManagerImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_Manager", Fld="ManagerImage"} ,
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000310;
-        prmBC000310 = new Object[] {
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000311;
-        prmBC000311 = new Object[] {
-        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000312;
-        prmBC000312 = new Object[] {
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC00032", "SELECT ManagerId, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneCode, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, OrganisationId, ManagerImage FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Manager",true, GxErrorMask.GX_NOMASK, false, this,prmBC00032,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00033", "SELECT ManagerId, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneCode, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, OrganisationId, ManagerImage FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00033,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00034", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00034,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00035", "SELECT TM1.ManagerId, TM1.ManagerGAMGUID, TM1.ManagerInitials, TM1.ManagerPhone, TM1.ManagerGivenName, TM1.ManagerLastName, TM1.ManagerEmail, TM1.ManagerPhoneCode, TM1.ManagerPhoneNumber, TM1.ManagerGender, TM1.ManagerIsMainManager, TM1.ManagerIsActive, TM1.ManagerImage_GXI, TM1.OrganisationId, TM1.ManagerImage FROM Trn_Manager TM1 WHERE TM1.ManagerId = :ManagerId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ManagerId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00035,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00036", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00036,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00037", "SAVEPOINT gxupdate;INSERT INTO Trn_Manager(ManagerId, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneCode, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage, ManagerImage_GXI, OrganisationId) VALUES(:ManagerId, :ManagerGAMGUID, :ManagerInitials, :ManagerPhone, :ManagerGivenName, :ManagerLastName, :ManagerEmail, :ManagerPhoneCode, :ManagerPhoneNumber, :ManagerGender, :ManagerIsMainManager, :ManagerIsActive, :ManagerImage, :ManagerImage_GXI, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00037)
-           ,new CursorDef("BC00038", "SAVEPOINT gxupdate;UPDATE Trn_Manager SET ManagerGAMGUID=:ManagerGAMGUID, ManagerInitials=:ManagerInitials, ManagerPhone=:ManagerPhone, ManagerGivenName=:ManagerGivenName, ManagerLastName=:ManagerLastName, ManagerEmail=:ManagerEmail, ManagerPhoneCode=:ManagerPhoneCode, ManagerPhoneNumber=:ManagerPhoneNumber, ManagerGender=:ManagerGender, ManagerIsMainManager=:ManagerIsMainManager, ManagerIsActive=:ManagerIsActive  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00038)
-           ,new CursorDef("BC00039", "SAVEPOINT gxupdate;UPDATE Trn_Manager SET ManagerImage=:ManagerImage, ManagerImage_GXI=:ManagerImage_GXI  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00039)
-           ,new CursorDef("BC000310", "SAVEPOINT gxupdate;DELETE FROM Trn_Manager  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000310)
-           ,new CursorDef("BC000311", "SELECT TM1.ManagerId, TM1.ManagerGAMGUID, TM1.ManagerInitials, TM1.ManagerPhone, TM1.ManagerGivenName, TM1.ManagerLastName, TM1.ManagerEmail, TM1.ManagerPhoneCode, TM1.ManagerPhoneNumber, TM1.ManagerGender, TM1.ManagerIsMainManager, TM1.ManagerIsActive, TM1.ManagerImage_GXI, TM1.OrganisationId, TM1.ManagerImage FROM Trn_Manager TM1 WHERE TM1.ManagerId = :ManagerId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ManagerId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000311,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000312", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000312,1, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1791,88 +1698,221 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              ((bool[]) buf[11])[0] = rslt.getBool(12);
-              ((string[]) buf[12])[0] = rslt.getMultimediaUri(13);
-              ((Guid[]) buf[13])[0] = rslt.getGuid(14);
-              ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(13));
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              ((bool[]) buf[11])[0] = rslt.getBool(12);
-              ((string[]) buf[12])[0] = rslt.getMultimediaUri(13);
-              ((Guid[]) buf[13])[0] = rslt.getGuid(14);
-              ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(13));
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              ((bool[]) buf[11])[0] = rslt.getBool(12);
-              ((string[]) buf[12])[0] = rslt.getMultimediaUri(13);
-              ((Guid[]) buf[13])[0] = rslt.getGuid(14);
-              ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(13));
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-           case 9 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              ((bool[]) buf[11])[0] = rslt.getBool(12);
-              ((string[]) buf[12])[0] = rslt.getMultimediaUri(13);
-              ((Guid[]) buf[13])[0] = rslt.getGuid(14);
-              ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(13));
-              return;
-           case 10 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_manager_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new ForEachCursor(def[9])
+      ,new ForEachCursor(def[10])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC00032;
+       prmBC00032 = new Object[] {
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00033;
+       prmBC00033 = new Object[] {
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00034;
+       prmBC00034 = new Object[] {
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00035;
+       prmBC00035 = new Object[] {
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00036;
+       prmBC00036 = new Object[] {
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00037;
+       prmBC00037 = new Object[] {
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ManagerGAMGUID",GXType.VarChar,100,60) ,
+       new ParDef("ManagerInitials",GXType.Char,20,0) ,
+       new ParDef("ManagerPhone",GXType.Char,20,0) ,
+       new ParDef("ManagerGivenName",GXType.VarChar,100,0) ,
+       new ParDef("ManagerLastName",GXType.VarChar,100,0) ,
+       new ParDef("ManagerEmail",GXType.VarChar,100,0) ,
+       new ParDef("ManagerPhoneCode",GXType.VarChar,40,0) ,
+       new ParDef("ManagerPhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("ManagerGender",GXType.VarChar,40,0) ,
+       new ParDef("ManagerIsMainManager",GXType.Boolean,4,0) ,
+       new ParDef("ManagerIsActive",GXType.Boolean,4,0) ,
+       new ParDef("ManagerImage",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("ManagerImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=12, Tbl="Trn_Manager", Fld="ManagerImage"} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00038;
+       prmBC00038 = new Object[] {
+       new ParDef("ManagerGAMGUID",GXType.VarChar,100,60) ,
+       new ParDef("ManagerInitials",GXType.Char,20,0) ,
+       new ParDef("ManagerPhone",GXType.Char,20,0) ,
+       new ParDef("ManagerGivenName",GXType.VarChar,100,0) ,
+       new ParDef("ManagerLastName",GXType.VarChar,100,0) ,
+       new ParDef("ManagerEmail",GXType.VarChar,100,0) ,
+       new ParDef("ManagerPhoneCode",GXType.VarChar,40,0) ,
+       new ParDef("ManagerPhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("ManagerGender",GXType.VarChar,40,0) ,
+       new ParDef("ManagerIsMainManager",GXType.Boolean,4,0) ,
+       new ParDef("ManagerIsActive",GXType.Boolean,4,0) ,
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00039;
+       prmBC00039 = new Object[] {
+       new ParDef("ManagerImage",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("ManagerImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_Manager", Fld="ManagerImage"} ,
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000310;
+       prmBC000310 = new Object[] {
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000311;
+       prmBC000311 = new Object[] {
+       new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000312;
+       prmBC000312 = new Object[] {
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC00032", "SELECT ManagerId, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneCode, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, OrganisationId, ManagerImage FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Manager",true, GxErrorMask.GX_NOMASK, false, this,prmBC00032,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00033", "SELECT ManagerId, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneCode, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, OrganisationId, ManagerImage FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00033,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00034", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00034,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00035", "SELECT TM1.ManagerId, TM1.ManagerGAMGUID, TM1.ManagerInitials, TM1.ManagerPhone, TM1.ManagerGivenName, TM1.ManagerLastName, TM1.ManagerEmail, TM1.ManagerPhoneCode, TM1.ManagerPhoneNumber, TM1.ManagerGender, TM1.ManagerIsMainManager, TM1.ManagerIsActive, TM1.ManagerImage_GXI, TM1.OrganisationId, TM1.ManagerImage FROM Trn_Manager TM1 WHERE TM1.ManagerId = :ManagerId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ManagerId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00035,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00036", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00036,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00037", "SAVEPOINT gxupdate;INSERT INTO Trn_Manager(ManagerId, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneCode, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage, ManagerImage_GXI, OrganisationId) VALUES(:ManagerId, :ManagerGAMGUID, :ManagerInitials, :ManagerPhone, :ManagerGivenName, :ManagerLastName, :ManagerEmail, :ManagerPhoneCode, :ManagerPhoneNumber, :ManagerGender, :ManagerIsMainManager, :ManagerIsActive, :ManagerImage, :ManagerImage_GXI, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00037)
+          ,new CursorDef("BC00038", "SAVEPOINT gxupdate;UPDATE Trn_Manager SET ManagerGAMGUID=:ManagerGAMGUID, ManagerInitials=:ManagerInitials, ManagerPhone=:ManagerPhone, ManagerGivenName=:ManagerGivenName, ManagerLastName=:ManagerLastName, ManagerEmail=:ManagerEmail, ManagerPhoneCode=:ManagerPhoneCode, ManagerPhoneNumber=:ManagerPhoneNumber, ManagerGender=:ManagerGender, ManagerIsMainManager=:ManagerIsMainManager, ManagerIsActive=:ManagerIsActive  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00038)
+          ,new CursorDef("BC00039", "SAVEPOINT gxupdate;UPDATE Trn_Manager SET ManagerImage=:ManagerImage, ManagerImage_GXI=:ManagerImage_GXI  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00039)
+          ,new CursorDef("BC000310", "SAVEPOINT gxupdate;DELETE FROM Trn_Manager  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000310)
+          ,new CursorDef("BC000311", "SELECT TM1.ManagerId, TM1.ManagerGAMGUID, TM1.ManagerInitials, TM1.ManagerPhone, TM1.ManagerGivenName, TM1.ManagerLastName, TM1.ManagerEmail, TM1.ManagerPhoneCode, TM1.ManagerPhoneNumber, TM1.ManagerGender, TM1.ManagerIsMainManager, TM1.ManagerIsActive, TM1.ManagerImage_GXI, TM1.OrganisationId, TM1.ManagerImage FROM Trn_Manager TM1 WHERE TM1.ManagerId = :ManagerId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ManagerId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000311,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000312", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000312,1, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
+             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             ((bool[]) buf[11])[0] = rslt.getBool(12);
+             ((string[]) buf[12])[0] = rslt.getMultimediaUri(13);
+             ((Guid[]) buf[13])[0] = rslt.getGuid(14);
+             ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(13));
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
+             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             ((bool[]) buf[11])[0] = rslt.getBool(12);
+             ((string[]) buf[12])[0] = rslt.getMultimediaUri(13);
+             ((Guid[]) buf[13])[0] = rslt.getGuid(14);
+             ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(13));
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
+             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             ((bool[]) buf[11])[0] = rslt.getBool(12);
+             ((string[]) buf[12])[0] = rslt.getMultimediaUri(13);
+             ((Guid[]) buf[13])[0] = rslt.getGuid(14);
+             ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(13));
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 9 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
+             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             ((bool[]) buf[11])[0] = rslt.getBool(12);
+             ((string[]) buf[12])[0] = rslt.getMultimediaUri(13);
+             ((Guid[]) buf[13])[0] = rslt.getGuid(14);
+             ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(13));
+             return;
+          case 10 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+    }
+ }
 
 }
 

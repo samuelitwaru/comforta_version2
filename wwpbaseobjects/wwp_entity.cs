@@ -88,11 +88,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                enableJsOutput();
             }
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-         }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -113,7 +109,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "WWP_Entity", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WWP_Entity", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -137,6 +133,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -147,6 +144,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -267,7 +265,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, "WWP_Entity", "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_Entity.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, context.GetMessage( "WWP_Entity", ""), "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_Entity.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -329,7 +327,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
          ClassString = "Button button-secondary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", "Select", bttBtn_select_Jsonclick, 5, "Select", "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/WWP_Entity.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", context.GetMessage( "GX_BtnSelect", ""), bttBtn_select_Jsonclick, 5, context.GetMessage( "GX_BtnSelect", ""), "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/WWP_Entity.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -342,12 +340,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPEntityId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPEntityId_Internalname, "Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPEntityId_Internalname, context.GetMessage( "Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPEntityId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A125WWPEntityId), 10, 0, ".", "")), StringUtil.LTrim( ((edtWWPEntityId_Enabled!=0) ? context.localUtil.Format( (decimal)(A125WWPEntityId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A125WWPEntityId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPEntityId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPEntityId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WWPBaseObjects\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/WWP_Entity.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPEntityId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A125WWPEntityId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtWWPEntityId_Enabled!=0) ? context.localUtil.Format( (decimal)(A125WWPEntityId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A125WWPEntityId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPEntityId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPEntityId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WWPBaseObjects\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/WWP_Entity.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -359,7 +357,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPEntityName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPEntityName_Internalname, "Name", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPEntityName_Internalname, context.GetMessage( "Name", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -383,21 +381,21 @@ namespace GeneXus.Programs.wwpbaseobjects {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", "Confirm", bttBtn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_Entity.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_Entity.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 46,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_Entity.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_Entity.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", "Delete", bttBtn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_Entity.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_Entity.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "end", "Middle", "div");
@@ -436,13 +434,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            Z125WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z125WWPEntityId"), ".", ","), 18, MidpointRounding.ToEven));
+            Z125WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z125WWPEntityId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z126WWPEntityName = cgiGet( "Z126WWPEntityName");
-            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gx_mode = cgiGet( "Mode");
             /* Read variables values. */
-            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWPENTITYID");
                AnyError = 1;
@@ -454,14 +452,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
             else
             {
-               A125WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A125WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A125WWPEntityId", StringUtil.LTrimStr( (decimal)(A125WWPEntityId), 10, 0));
             }
             A126WWPEntityName = cgiGet( edtWWPEntityName_Internalname);
             AssignAttri("", false, "A126WWPEntityName", A126WWPEntityName);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             standaloneNotModal( ) ;
          }
          else
@@ -1310,7 +1308,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(10, new Object[] {A125WWPEntityId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessage"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessage", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -1318,7 +1316,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(11, new Object[] {A125WWPEntityId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_NotificationDefinition"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_NotificationDefinition", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -1512,7 +1510,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -1520,10 +1518,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "Z125WWPEntityId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z125WWPEntityId), 10, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z125WWPEntityId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z125WWPEntityId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z126WWPEntityName", Z126WWPEntityName);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
       }
 
@@ -1546,6 +1544,18 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -1591,7 +1601,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return "WWP_Entity" ;
+         return context.GetMessage( "WWP_Entity", "") ;
       }
 
       protected void InitializeNonKey0I28( )
@@ -1623,7 +1633,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119833405", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211541549", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1638,8 +1648,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/wwp_entity.js", "?20241119833405", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/wwp_entity.js", "?202411211541549", false, true);
          /* End function include_jscripts */
       }
 
@@ -1675,7 +1685,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "WWP_Entity";
+         Form.Caption = context.GetMessage( "WWP_Entity", "");
          bttBtn_delete_Enabled = 1;
          bttBtn_delete_Visible = 1;
          bttBtn_cancel_Visible = 1;
@@ -1833,6 +1843,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          FormProcess = "";
          bodyStyle = "";
          ZZ126WWPEntityName = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_entity__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_entity__gam(),
             new Object[][] {
             }
@@ -1880,7 +1894,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
       }
 
       private short GxWebError ;
-      private short gxcookieaux ;
       private short AnyError ;
       private short IsModified ;
       private short IsConfirmed ;
@@ -1959,6 +1972,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string A126WWPEntityName ;
       private string ZZ126WWPEntityName ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1975,10 +1989,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private long[] T000I12_A200WWPDiscussionMessageId ;
       private long[] T000I13_A128WWPNotificationDefinitionId ;
       private long[] T000I14_A125WWPEntityId ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_entity__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_entity__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -2005,30 +2020,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_entity__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_entity__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new ForEachCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new ForEachCursor(def[12])
      };
   }
 
@@ -2037,71 +2039,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
   {
      if ( def == null )
      {
-        Object[] prmT000I2;
-        prmT000I2 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I3;
-        prmT000I3 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I4;
-        prmT000I4 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I5;
-        prmT000I5 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I6;
-        prmT000I6 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I7;
-        prmT000I7 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I8;
-        prmT000I8 = new Object[] {
-        new ParDef("WWPEntityName",GXType.VarChar,100,0)
-        };
-        Object[] prmT000I9;
-        prmT000I9 = new Object[] {
-        };
-        Object[] prmT000I10;
-        prmT000I10 = new Object[] {
-        new ParDef("WWPEntityName",GXType.VarChar,100,0) ,
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I11;
-        prmT000I11 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I12;
-        prmT000I12 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I13;
-        prmT000I13 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000I14;
-        prmT000I14 = new Object[] {
-        };
         def= new CursorDef[] {
-            new CursorDef("T000I2", "SELECT WWPEntityId, WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId  FOR UPDATE OF WWP_Entity NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000I2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000I3", "SELECT WWPEntityId, WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000I4", "SELECT TM1.WWPEntityId, TM1.WWPEntityName FROM WWP_Entity TM1 WHERE TM1.WWPEntityId = :WWPEntityId ORDER BY TM1.WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000I5", "SELECT WWPEntityId FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000I6", "SELECT WWPEntityId FROM WWP_Entity WHERE ( WWPEntityId > :WWPEntityId) ORDER BY WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I6,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000I7", "SELECT WWPEntityId FROM WWP_Entity WHERE ( WWPEntityId < :WWPEntityId) ORDER BY WWPEntityId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I7,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000I8", "SAVEPOINT gxupdate;INSERT INTO WWP_Entity(WWPEntityName) VALUES(:WWPEntityName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000I8)
-           ,new CursorDef("T000I9", "SELECT currval('WWPEntityId') ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I9,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000I10", "SAVEPOINT gxupdate;UPDATE WWP_Entity SET WWPEntityName=:WWPEntityName  WHERE WWPEntityId = :WWPEntityId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000I10)
-           ,new CursorDef("T000I11", "SAVEPOINT gxupdate;DELETE FROM WWP_Entity  WHERE WWPEntityId = :WWPEntityId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000I11)
-           ,new CursorDef("T000I12", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I12,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000I13", "SELECT WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I13,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000I14", "SELECT WWPEntityId FROM WWP_Entity ORDER BY WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I14,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2110,43 +2048,152 @@ namespace GeneXus.Programs.wwpbaseobjects {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 1 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 2 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 3 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 4 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 5 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 7 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 10 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 11 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 12 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_entity__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new ForEachCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmT000I2;
+       prmT000I2 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I3;
+       prmT000I3 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I4;
+       prmT000I4 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I5;
+       prmT000I5 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I6;
+       prmT000I6 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I7;
+       prmT000I7 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I8;
+       prmT000I8 = new Object[] {
+       new ParDef("WWPEntityName",GXType.VarChar,100,0)
+       };
+       Object[] prmT000I9;
+       prmT000I9 = new Object[] {
+       };
+       Object[] prmT000I10;
+       prmT000I10 = new Object[] {
+       new ParDef("WWPEntityName",GXType.VarChar,100,0) ,
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I11;
+       prmT000I11 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I12;
+       prmT000I12 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I13;
+       prmT000I13 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000I14;
+       prmT000I14 = new Object[] {
+       };
+       def= new CursorDef[] {
+           new CursorDef("T000I2", "SELECT WWPEntityId, WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId  FOR UPDATE OF WWP_Entity NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000I2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000I3", "SELECT WWPEntityId, WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000I4", "SELECT TM1.WWPEntityId, TM1.WWPEntityName FROM WWP_Entity TM1 WHERE TM1.WWPEntityId = :WWPEntityId ORDER BY TM1.WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000I5", "SELECT WWPEntityId FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000I6", "SELECT WWPEntityId FROM WWP_Entity WHERE ( WWPEntityId > :WWPEntityId) ORDER BY WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I6,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000I7", "SELECT WWPEntityId FROM WWP_Entity WHERE ( WWPEntityId < :WWPEntityId) ORDER BY WWPEntityId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I7,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000I8", "SAVEPOINT gxupdate;INSERT INTO WWP_Entity(WWPEntityName) VALUES(:WWPEntityName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000I8)
+          ,new CursorDef("T000I9", "SELECT currval('WWPEntityId') ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I9,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000I10", "SAVEPOINT gxupdate;UPDATE WWP_Entity SET WWPEntityName=:WWPEntityName  WHERE WWPEntityId = :WWPEntityId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000I10)
+          ,new CursorDef("T000I11", "SAVEPOINT gxupdate;DELETE FROM WWP_Entity  WHERE WWPEntityId = :WWPEntityId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000I11)
+          ,new CursorDef("T000I12", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I12,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000I13", "SELECT WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I13,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000I14", "SELECT WWPEntityId FROM WWP_Entity ORDER BY WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000I14,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 1 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 2 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 3 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 4 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 5 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 7 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 10 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 11 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 12 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+    }
+ }
 
 }
 

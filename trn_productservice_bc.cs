@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -169,31 +171,23 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
             AV54DescriptionAttributeValue = A59ProductServiceName;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
             AV55NotificationLink = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "InsertRecord",  "Trn_ProductService",  "",  "fas fa-plus NotificationFontIconSuccess",  "New Product/Service",  StringUtil.Format( "%1 added the %2 %3", new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), "Product/Service", AV54DescriptionAttributeValue, "", "", "", "", "", ""),  StringUtil.Format( "%1 added the %2 %3", new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), "Product/Service", AV54DescriptionAttributeValue, "", "", "", "", "", ""),  AV55NotificationLink,  "",  "",  AV53IsWeb) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "InsertRecord",  "Trn_ProductService",  "",  context.GetMessage( "fas fa-plus NotificationFontIconSuccess", ""),  context.GetMessage( "New Product/Service", ""),  StringUtil.Format( context.GetMessage( "%1 added the %2 %3", ""), new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), context.GetMessage( "Product/Service", ""), AV54DescriptionAttributeValue, "", "", "", "", "", ""),  StringUtil.Format( context.GetMessage( "%1 added the %2 %3", ""), new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), context.GetMessage( "Product/Service", ""), AV54DescriptionAttributeValue, "", "", "", "", "", ""),  AV55NotificationLink,  "",  "",  AV53IsWeb) ;
          }
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
             AV54DescriptionAttributeValue = A59ProductServiceName;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
             AV55NotificationLink = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "UpdateRecord",  "Trn_ProductService",  "",  "fas fa-pencil-alt NotificationFontIconWarning",  "Product/Service Updated",  StringUtil.Format( "%1 updated the %2 %3", new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), "Product/Service", AV54DescriptionAttributeValue, "", "", "", "", "", ""),  StringUtil.Format( "%1 updated the %2 %3", new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), "Product/Service", AV54DescriptionAttributeValue, "", "", "", "", "", ""),  AV55NotificationLink,  "",  "",  AV53IsWeb) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "UpdateRecord",  "Trn_ProductService",  "",  context.GetMessage( "fas fa-pencil-alt NotificationFontIconWarning", ""),  context.GetMessage( "Product/Service Updated", ""),  StringUtil.Format( context.GetMessage( "%1 updated the %2 %3", ""), new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), context.GetMessage( "Product/Service", ""), AV54DescriptionAttributeValue, "", "", "", "", "", ""),  StringUtil.Format( context.GetMessage( "%1 updated the %2 %3", ""), new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), context.GetMessage( "Product/Service", ""), AV54DescriptionAttributeValue, "", "", "", "", "", ""),  AV55NotificationLink,  "",  "",  AV53IsWeb) ;
          }
          if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
          {
             AV54DescriptionAttributeValue = A59ProductServiceName;
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DeleteRecord",  "Trn_ProductService",  "",  "far fa-trash-alt NotificationFontIconDanger",  "Product/Service Deleted",  StringUtil.Format( "%1 deleted the %2 %3", new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), "Product/Service", AV54DescriptionAttributeValue, "", "", "", "", "", ""),  StringUtil.Format( "%1 deleted the %2 %3", new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), "Product/Service", AV54DescriptionAttributeValue, "", "", "", "", "", ""),  "",  "",  "",  AV53IsWeb) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DeleteRecord",  "Trn_ProductService",  "",  context.GetMessage( "far fa-trash-alt NotificationFontIconDanger", ""),  context.GetMessage( "Product/Service Deleted", ""),  StringUtil.Format( context.GetMessage( "%1 deleted the %2 %3", ""), new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), context.GetMessage( "Product/Service", ""), AV54DescriptionAttributeValue, "", "", "", "", "", ""),  StringUtil.Format( context.GetMessage( "%1 deleted the %2 %3", ""), new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context).executeUdp(  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )), context.GetMessage( "Product/Service", ""), AV54DescriptionAttributeValue, "", "", "", "", "", ""),  "",  "",  "",  AV53IsWeb) ;
          }
       }
 
@@ -378,18 +372,18 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A59ProductServiceName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Product Service Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Product Service Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A301ProductServiceTileName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Product Service Tile Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Product Service Tile Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00085 */
@@ -398,7 +392,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A42SupplierGenId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_SupplierGen'.", "ForeignKeyNotFound", 1, "SUPPLIERGENID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_SupplierGen", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SUPPLIERGENID");
                AnyError = 1;
             }
          }
@@ -410,7 +404,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A49SupplierAgbId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_SupplierAGB'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_SupplierAGB", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SUPPLIERAGBID");
                AnyError = 1;
             }
          }
@@ -734,7 +728,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {n58ProductServiceId, A58ProductServiceId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Page"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Page", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -742,7 +736,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {n58ProductServiceId, A58ProductServiceId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_CallToAction"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_CallToAction", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -1054,7 +1048,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(16) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -1093,7 +1087,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(16) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -1622,6 +1616,10 @@ namespace GeneXus.Programs {
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          BC000818_A29LocationId = new Guid[] {Guid.Empty} ;
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_productservice_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_productservice_bc__gam(),
             new Object[][] {
             }
@@ -1697,7 +1695,6 @@ namespace GeneXus.Programs {
       }
 
       private short AnyError ;
-      private short gxcookieaux ;
       private short Gx_BScreen ;
       private short RcdFound75 ;
       private int trnEnded ;
@@ -1756,6 +1753,7 @@ namespace GeneXus.Programs {
       private Guid Z49SupplierAgbId ;
       private Guid A49SupplierAgbId ;
       private IGxSession AV18WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<Guid> AV40PreferredAgbSuppliers ;
@@ -1846,10 +1844,11 @@ namespace GeneXus.Programs {
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
       private Guid[] BC000818_A29LocationId ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_productservice_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_productservice_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1876,34 +1875,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_productservice_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_productservice_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new UpdateCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new ForEachCursor(def[12])
-       ,new ForEachCursor(def[13])
-       ,new ForEachCursor(def[14])
-       ,new ForEachCursor(def[15])
-       ,new ForEachCursor(def[16])
      };
   }
 
@@ -1912,134 +1894,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC00082;
-        prmBC00082 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00083;
-        prmBC00083 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00084;
-        prmBC00084 = new Object[] {
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00085;
-        prmBC00085 = new Object[] {
-        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC00086;
-        prmBC00086 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC00087;
-        prmBC00087 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00088;
-        prmBC00088 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00089;
-        prmBC00089 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ProductServiceName",GXType.VarChar,100,0) ,
-        new ParDef("ProductServiceTileName",GXType.Char,20,0) ,
-        new ParDef("ProductServiceDescription",GXType.LongVarChar,2097152,0) ,
-        new ParDef("ProductServiceClass",GXType.VarChar,400,0) ,
-        new ParDef("ProductServiceImage",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("ProductServiceImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=5, Tbl="Trn_ProductService", Fld="ProductServiceImage"} ,
-        new ParDef("ProductServiceGroup",GXType.VarChar,400,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000810;
-        prmBC000810 = new Object[] {
-        new ParDef("ProductServiceName",GXType.VarChar,100,0) ,
-        new ParDef("ProductServiceTileName",GXType.Char,20,0) ,
-        new ParDef("ProductServiceDescription",GXType.LongVarChar,2097152,0) ,
-        new ParDef("ProductServiceClass",GXType.VarChar,400,0) ,
-        new ParDef("ProductServiceGroup",GXType.VarChar,400,0) ,
-        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000811;
-        prmBC000811 = new Object[] {
-        new ParDef("ProductServiceImage",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("ProductServiceImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_ProductService", Fld="ProductServiceImage"} ,
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000812;
-        prmBC000812 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000813;
-        prmBC000813 = new Object[] {
-        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000814;
-        prmBC000814 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000815;
-        prmBC000815 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000816;
-        prmBC000816 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000817;
-        prmBC000817 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000818;
-        prmBC000818 = new Object[] {
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC00082", "SELECT ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceDescription, ProductServiceClass, ProductServiceImage_GXI, ProductServiceGroup, LocationId, OrganisationId, SupplierGenId, SupplierAgbId, ProductServiceImage FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_ProductService",true, GxErrorMask.GX_NOMASK, false, this,prmBC00082,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00083", "SELECT ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceDescription, ProductServiceClass, ProductServiceImage_GXI, ProductServiceGroup, LocationId, OrganisationId, SupplierGenId, SupplierAgbId, ProductServiceImage FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00083,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00084", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00084,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00085", "SELECT SupplierGenCompanyName FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00085,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00086", "SELECT SupplierAgbName FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00086,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00087", "SELECT TM1.ProductServiceId, TM1.ProductServiceName, TM1.ProductServiceTileName, TM1.ProductServiceDescription, TM1.ProductServiceClass, TM1.ProductServiceImage_GXI, TM1.ProductServiceGroup, T2.SupplierGenCompanyName, T3.SupplierAgbName, TM1.LocationId, TM1.OrganisationId, TM1.SupplierGenId, TM1.SupplierAgbId, TM1.ProductServiceImage FROM ((Trn_ProductService TM1 LEFT JOIN Trn_SupplierGen T2 ON T2.SupplierGenId = TM1.SupplierGenId) LEFT JOIN Trn_SupplierAGB T3 ON T3.SupplierAgbId = TM1.SupplierAgbId) WHERE TM1.ProductServiceId = :ProductServiceId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00087,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00088", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00088,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00089", "SAVEPOINT gxupdate;INSERT INTO Trn_ProductService(ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceDescription, ProductServiceClass, ProductServiceImage, ProductServiceImage_GXI, ProductServiceGroup, LocationId, OrganisationId, SupplierGenId, SupplierAgbId) VALUES(:ProductServiceId, :ProductServiceName, :ProductServiceTileName, :ProductServiceDescription, :ProductServiceClass, :ProductServiceImage, :ProductServiceImage_GXI, :ProductServiceGroup, :LocationId, :OrganisationId, :SupplierGenId, :SupplierAgbId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00089)
-           ,new CursorDef("BC000810", "SAVEPOINT gxupdate;UPDATE Trn_ProductService SET ProductServiceName=:ProductServiceName, ProductServiceTileName=:ProductServiceTileName, ProductServiceDescription=:ProductServiceDescription, ProductServiceClass=:ProductServiceClass, ProductServiceGroup=:ProductServiceGroup, SupplierGenId=:SupplierGenId, SupplierAgbId=:SupplierAgbId  WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000810)
-           ,new CursorDef("BC000811", "SAVEPOINT gxupdate;UPDATE Trn_ProductService SET ProductServiceImage=:ProductServiceImage, ProductServiceImage_GXI=:ProductServiceImage_GXI  WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000811)
-           ,new CursorDef("BC000812", "SAVEPOINT gxupdate;DELETE FROM Trn_ProductService  WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000812)
-           ,new CursorDef("BC000813", "SELECT SupplierGenCompanyName FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000813,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000814", "SELECT SupplierAgbName FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000814,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000815", "SELECT Trn_PageId FROM Trn_Page WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000815,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000816", "SELECT CallToActionId FROM Trn_CallToAction WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000816,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000817", "SELECT TM1.ProductServiceId, TM1.ProductServiceName, TM1.ProductServiceTileName, TM1.ProductServiceDescription, TM1.ProductServiceClass, TM1.ProductServiceImage_GXI, TM1.ProductServiceGroup, T2.SupplierGenCompanyName, T3.SupplierAgbName, TM1.LocationId, TM1.OrganisationId, TM1.SupplierGenId, TM1.SupplierAgbId, TM1.ProductServiceImage FROM ((Trn_ProductService TM1 LEFT JOIN Trn_SupplierGen T2 ON T2.SupplierGenId = TM1.SupplierGenId) LEFT JOIN Trn_SupplierAGB T3 ON T3.SupplierAgbId = TM1.SupplierAgbId) WHERE TM1.ProductServiceId = :ProductServiceId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000817,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000818", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000818,1, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2048,107 +1903,283 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((Guid[]) buf[7])[0] = rslt.getGuid(8);
-              ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((bool[]) buf[10])[0] = rslt.wasNull(10);
-              ((Guid[]) buf[11])[0] = rslt.getGuid(11);
-              ((bool[]) buf[12])[0] = rslt.wasNull(11);
-              ((string[]) buf[13])[0] = rslt.getMultimediaFile(12, rslt.getVarchar(6));
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((Guid[]) buf[7])[0] = rslt.getGuid(8);
-              ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((bool[]) buf[10])[0] = rslt.wasNull(10);
-              ((Guid[]) buf[11])[0] = rslt.getGuid(11);
-              ((bool[]) buf[12])[0] = rslt.wasNull(11);
-              ((string[]) buf[13])[0] = rslt.getMultimediaFile(12, rslt.getVarchar(6));
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 4 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 5 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[10])[0] = rslt.getGuid(11);
-              ((Guid[]) buf[11])[0] = rslt.getGuid(12);
-              ((bool[]) buf[12])[0] = rslt.wasNull(12);
-              ((Guid[]) buf[13])[0] = rslt.getGuid(13);
-              ((bool[]) buf[14])[0] = rslt.wasNull(13);
-              ((string[]) buf[15])[0] = rslt.getMultimediaFile(14, rslt.getVarchar(6));
-              return;
-           case 6 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 11 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 12 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 13 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 14 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 15 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[10])[0] = rslt.getGuid(11);
-              ((Guid[]) buf[11])[0] = rslt.getGuid(12);
-              ((bool[]) buf[12])[0] = rslt.wasNull(12);
-              ((Guid[]) buf[13])[0] = rslt.getGuid(13);
-              ((bool[]) buf[14])[0] = rslt.wasNull(13);
-              ((string[]) buf[15])[0] = rslt.getMultimediaFile(14, rslt.getVarchar(6));
-              return;
-           case 16 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_productservice_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new UpdateCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
+      ,new ForEachCursor(def[13])
+      ,new ForEachCursor(def[14])
+      ,new ForEachCursor(def[15])
+      ,new ForEachCursor(def[16])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC00082;
+       prmBC00082 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00083;
+       prmBC00083 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00084;
+       prmBC00084 = new Object[] {
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00085;
+       prmBC00085 = new Object[] {
+       new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC00086;
+       prmBC00086 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC00087;
+       prmBC00087 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00088;
+       prmBC00088 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00089;
+       prmBC00089 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ProductServiceName",GXType.VarChar,100,0) ,
+       new ParDef("ProductServiceTileName",GXType.Char,20,0) ,
+       new ParDef("ProductServiceDescription",GXType.LongVarChar,2097152,0) ,
+       new ParDef("ProductServiceClass",GXType.VarChar,400,0) ,
+       new ParDef("ProductServiceImage",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("ProductServiceImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=5, Tbl="Trn_ProductService", Fld="ProductServiceImage"} ,
+       new ParDef("ProductServiceGroup",GXType.VarChar,400,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000810;
+       prmBC000810 = new Object[] {
+       new ParDef("ProductServiceName",GXType.VarChar,100,0) ,
+       new ParDef("ProductServiceTileName",GXType.Char,20,0) ,
+       new ParDef("ProductServiceDescription",GXType.LongVarChar,2097152,0) ,
+       new ParDef("ProductServiceClass",GXType.VarChar,400,0) ,
+       new ParDef("ProductServiceGroup",GXType.VarChar,400,0) ,
+       new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000811;
+       prmBC000811 = new Object[] {
+       new ParDef("ProductServiceImage",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("ProductServiceImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_ProductService", Fld="ProductServiceImage"} ,
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000812;
+       prmBC000812 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000813;
+       prmBC000813 = new Object[] {
+       new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000814;
+       prmBC000814 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000815;
+       prmBC000815 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000816;
+       prmBC000816 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000817;
+       prmBC000817 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000818;
+       prmBC000818 = new Object[] {
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC00082", "SELECT ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceDescription, ProductServiceClass, ProductServiceImage_GXI, ProductServiceGroup, LocationId, OrganisationId, SupplierGenId, SupplierAgbId, ProductServiceImage FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_ProductService",true, GxErrorMask.GX_NOMASK, false, this,prmBC00082,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00083", "SELECT ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceDescription, ProductServiceClass, ProductServiceImage_GXI, ProductServiceGroup, LocationId, OrganisationId, SupplierGenId, SupplierAgbId, ProductServiceImage FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00083,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00084", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00084,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00085", "SELECT SupplierGenCompanyName FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00085,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00086", "SELECT SupplierAgbName FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00086,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00087", "SELECT TM1.ProductServiceId, TM1.ProductServiceName, TM1.ProductServiceTileName, TM1.ProductServiceDescription, TM1.ProductServiceClass, TM1.ProductServiceImage_GXI, TM1.ProductServiceGroup, T2.SupplierGenCompanyName, T3.SupplierAgbName, TM1.LocationId, TM1.OrganisationId, TM1.SupplierGenId, TM1.SupplierAgbId, TM1.ProductServiceImage FROM ((Trn_ProductService TM1 LEFT JOIN Trn_SupplierGen T2 ON T2.SupplierGenId = TM1.SupplierGenId) LEFT JOIN Trn_SupplierAGB T3 ON T3.SupplierAgbId = TM1.SupplierAgbId) WHERE TM1.ProductServiceId = :ProductServiceId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00087,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00088", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00088,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00089", "SAVEPOINT gxupdate;INSERT INTO Trn_ProductService(ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceDescription, ProductServiceClass, ProductServiceImage, ProductServiceImage_GXI, ProductServiceGroup, LocationId, OrganisationId, SupplierGenId, SupplierAgbId) VALUES(:ProductServiceId, :ProductServiceName, :ProductServiceTileName, :ProductServiceDescription, :ProductServiceClass, :ProductServiceImage, :ProductServiceImage_GXI, :ProductServiceGroup, :LocationId, :OrganisationId, :SupplierGenId, :SupplierAgbId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00089)
+          ,new CursorDef("BC000810", "SAVEPOINT gxupdate;UPDATE Trn_ProductService SET ProductServiceName=:ProductServiceName, ProductServiceTileName=:ProductServiceTileName, ProductServiceDescription=:ProductServiceDescription, ProductServiceClass=:ProductServiceClass, ProductServiceGroup=:ProductServiceGroup, SupplierGenId=:SupplierGenId, SupplierAgbId=:SupplierAgbId  WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000810)
+          ,new CursorDef("BC000811", "SAVEPOINT gxupdate;UPDATE Trn_ProductService SET ProductServiceImage=:ProductServiceImage, ProductServiceImage_GXI=:ProductServiceImage_GXI  WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000811)
+          ,new CursorDef("BC000812", "SAVEPOINT gxupdate;DELETE FROM Trn_ProductService  WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000812)
+          ,new CursorDef("BC000813", "SELECT SupplierGenCompanyName FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000813,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000814", "SELECT SupplierAgbName FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000814,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000815", "SELECT Trn_PageId FROM Trn_Page WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000815,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000816", "SELECT CallToActionId FROM Trn_CallToAction WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000816,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000817", "SELECT TM1.ProductServiceId, TM1.ProductServiceName, TM1.ProductServiceTileName, TM1.ProductServiceDescription, TM1.ProductServiceClass, TM1.ProductServiceImage_GXI, TM1.ProductServiceGroup, T2.SupplierGenCompanyName, T3.SupplierAgbName, TM1.LocationId, TM1.OrganisationId, TM1.SupplierGenId, TM1.SupplierAgbId, TM1.ProductServiceImage FROM ((Trn_ProductService TM1 LEFT JOIN Trn_SupplierGen T2 ON T2.SupplierGenId = TM1.SupplierGenId) LEFT JOIN Trn_SupplierAGB T3 ON T3.SupplierAgbId = TM1.SupplierAgbId) WHERE TM1.ProductServiceId = :ProductServiceId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000817,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000818", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000818,1, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((Guid[]) buf[7])[0] = rslt.getGuid(8);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((bool[]) buf[10])[0] = rslt.wasNull(10);
+             ((Guid[]) buf[11])[0] = rslt.getGuid(11);
+             ((bool[]) buf[12])[0] = rslt.wasNull(11);
+             ((string[]) buf[13])[0] = rslt.getMultimediaFile(12, rslt.getVarchar(6));
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((Guid[]) buf[7])[0] = rslt.getGuid(8);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((bool[]) buf[10])[0] = rslt.wasNull(10);
+             ((Guid[]) buf[11])[0] = rslt.getGuid(11);
+             ((bool[]) buf[12])[0] = rslt.wasNull(11);
+             ((string[]) buf[13])[0] = rslt.getMultimediaFile(12, rslt.getVarchar(6));
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 4 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 5 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+             ((Guid[]) buf[11])[0] = rslt.getGuid(12);
+             ((bool[]) buf[12])[0] = rslt.wasNull(12);
+             ((Guid[]) buf[13])[0] = rslt.getGuid(13);
+             ((bool[]) buf[14])[0] = rslt.wasNull(13);
+             ((string[]) buf[15])[0] = rslt.getMultimediaFile(14, rslt.getVarchar(6));
+             return;
+          case 6 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 11 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 12 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 13 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 14 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 15 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+             ((Guid[]) buf[11])[0] = rslt.getGuid(12);
+             ((bool[]) buf[12])[0] = rslt.wasNull(12);
+             ((Guid[]) buf[13])[0] = rslt.getGuid(13);
+             ((bool[]) buf[14])[0] = rslt.wasNull(13);
+             ((string[]) buf[15])[0] = rslt.getMultimediaFile(14, rslt.getVarchar(6));
+             return;
+          case 16 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+    }
+ }
 
 }
 

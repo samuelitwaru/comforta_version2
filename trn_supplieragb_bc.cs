@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -106,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0711( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0711( 22) ;
+                  ZM0711( 23) ;
                }
                CloseExtendedTableCursors0711( ) ;
             }
@@ -145,7 +147,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0711( short GX_JID )
       {
-         if ( ( GX_JID == 21 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
          {
             Z56SupplierAgbPhone = A56SupplierAgbPhone;
             Z50SupplierAgbNumber = A50SupplierAgbNumber;
@@ -163,11 +165,11 @@ namespace GeneXus.Programs {
             Z440SupplierAgbWebsite = A440SupplierAgbWebsite;
             Z283SupplierAgbTypeId = A283SupplierAgbTypeId;
          }
-         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
          {
             Z291SupplierAgbTypeName = A291SupplierAgbTypeName;
          }
-         if ( GX_JID == -21 )
+         if ( GX_JID == -22 )
          {
             Z49SupplierAgbId = A49SupplierAgbId;
             Z56SupplierAgbPhone = A56SupplierAgbPhone;
@@ -229,7 +231,7 @@ namespace GeneXus.Programs {
             A57SupplierAgbEmail = BC00075_A57SupplierAgbEmail[0];
             A440SupplierAgbWebsite = BC00075_A440SupplierAgbWebsite[0];
             A283SupplierAgbTypeId = BC00075_A283SupplierAgbTypeId[0];
-            ZM0711( -21) ;
+            ZM0711( -22) ;
          }
          pr_default.close(3);
          OnLoadActions0711( ) ;
@@ -247,61 +249,61 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A50SupplierAgbNumber)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Agb Number", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Agb Number", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A50SupplierAgbNumber) != 8 )
          {
-            GX_msglist.addItem("AGB Number should contain 8 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "AGB Number should contain 8 digits", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00074 */
          pr_default.execute(2, new Object[] {A283SupplierAgbTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierAgbType'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_SupplierAgbType", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
             AnyError = 1;
          }
          A291SupplierAgbTypeName = BC00074_A291SupplierAgbTypeName[0];
          pr_default.close(2);
          if ( (Guid.Empty==A283SupplierAgbTypeId) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Agb Type Id", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Agb Type Id", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A51SupplierAgbName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Agb Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Agb Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A52SupplierAgbKvkNumber,"\\b\\d{8}\\b") ) )
          {
-            GX_msglist.addItem("KvK number should contain 8 digits", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "KvK number should contain 8 digits", ""), context.GetMessage( "Supplier Agb Kvk Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A52SupplierAgbKvkNumber) != 8 )
          {
-            GX_msglist.addItem("KvK Number should contain 8 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "KvK Number should contain 8 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A332SupplierAGBAddressCountry)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier AGBAddress Country", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier AGBAddress Country", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A299SupplierAgbAddressCity)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Agb Address City", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Agb Address City", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A298SupplierAgbAddressZipCode)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Agb Address Zip Code", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Agb Address Zip Code", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A333SupplierAgbAddressLine1)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Agb Address Line1", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Agb Address Line1", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          GXt_char1 = A56SupplierAgbPhone;
@@ -309,22 +311,27 @@ namespace GeneXus.Programs {
          A56SupplierAgbPhone = GXt_char1;
          if ( ! ( GxRegex.IsMatch(A378SupplierAgbPhoneNumber,"\\b\\d{9}\\b") ) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Supplier Agb Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A378SupplierAgbPhoneNumber) != 9 )
          {
-            GX_msglist.addItem("Phone should contain 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone should contain 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A57SupplierAgbEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Field Supplier Agb Email does not match the specified pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Supplier Agb Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A440SupplierAgbWebsite,"\\bhttps?://[^\\s/$.?#].[^\\s]*\\b") ) )
          {
-            GX_msglist.addItem("Invalid website format", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid website format", ""), context.GetMessage( "Supplier Agb Website", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            AnyError = 1;
+         }
+         if ( ! GxRegex.IsMatch(A440SupplierAgbWebsite,context.GetMessage( "^(https?:\\/\\/)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})(\\/[^\\s]*)?$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A440SupplierAgbWebsite)) )
+         {
+            GX_msglist.addItem(context.GetMessage( "Invalid website format", ""), 1, "");
             AnyError = 1;
          }
       }
@@ -359,7 +366,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n49SupplierAgbId, A49SupplierAgbId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0711( 21) ;
+            ZM0711( 22) ;
             RcdFound11 = 1;
             A49SupplierAgbId = BC00073_A49SupplierAgbId[0];
             n49SupplierAgbId = BC00073_n49SupplierAgbId[0];
@@ -636,7 +643,7 @@ namespace GeneXus.Programs {
             pr_default.execute(9, new Object[] {n49SupplierAgbId, A49SupplierAgbId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ProductService"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_ProductService", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);
@@ -967,7 +974,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         ZM0711( -21) ;
+         ZM0711( -22) ;
          OnLoadActions0711( ) ;
          AddRow0711( ) ;
          ScanKeyEnd0711( ) ;
@@ -996,7 +1003,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         ZM0711( -21) ;
+         ZM0711( -22) ;
          OnLoadActions0711( ) ;
          AddRow0711( ) ;
          ScanKeyEnd0711( ) ;
@@ -1502,6 +1509,10 @@ namespace GeneXus.Programs {
          BC000712_A283SupplierAgbTypeId = new Guid[] {Guid.Empty} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_supplieragb_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_supplieragb_bc__gam(),
             new Object[][] {
             }
@@ -1606,6 +1617,7 @@ namespace GeneXus.Programs {
       private Guid Z283SupplierAgbTypeId ;
       private Guid A283SupplierAgbTypeId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1692,10 +1704,11 @@ namespace GeneXus.Programs {
       private SdtTrn_SupplierAgb bcTrn_SupplierAgb ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_supplieragb_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_supplieragb_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1722,28 +1735,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_supplieragb_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_supplieragb_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new ForEachCursor(def[9])
-       ,new ForEachCursor(def[10])
      };
   }
 
@@ -1752,92 +1754,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC00072;
-        prmBC00072 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC00073;
-        prmBC00073 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC00074;
-        prmBC00074 = new Object[] {
-        new ParDef("SupplierAgbTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00075;
-        prmBC00075 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC00076;
-        prmBC00076 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC00077;
-        prmBC00077 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("SupplierAgbPhone",GXType.Char,20,0) ,
-        new ParDef("SupplierAgbNumber",GXType.VarChar,8,0) ,
-        new ParDef("SupplierAgbName",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbKvkNumber",GXType.VarChar,8,0) ,
-        new ParDef("SupplierAGBAddressCountry",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbAddressCity",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbAddressZipCode",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbAddressLine1",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbAddressLine2",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbContactName",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbPhoneCode",GXType.VarChar,40,0) ,
-        new ParDef("SupplierAgbPhoneNumber",GXType.VarChar,9,0) ,
-        new ParDef("SupplierAgbEmail",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbWebsite",GXType.VarChar,50,0) ,
-        new ParDef("SupplierAgbTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00078;
-        prmBC00078 = new Object[] {
-        new ParDef("SupplierAgbPhone",GXType.Char,20,0) ,
-        new ParDef("SupplierAgbNumber",GXType.VarChar,8,0) ,
-        new ParDef("SupplierAgbName",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbKvkNumber",GXType.VarChar,8,0) ,
-        new ParDef("SupplierAGBAddressCountry",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbAddressCity",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbAddressZipCode",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbAddressLine1",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbAddressLine2",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbContactName",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbPhoneCode",GXType.VarChar,40,0) ,
-        new ParDef("SupplierAgbPhoneNumber",GXType.VarChar,9,0) ,
-        new ParDef("SupplierAgbEmail",GXType.VarChar,100,0) ,
-        new ParDef("SupplierAgbWebsite",GXType.VarChar,50,0) ,
-        new ParDef("SupplierAgbTypeId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC00079;
-        prmBC00079 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000710;
-        prmBC000710 = new Object[] {
-        new ParDef("SupplierAgbTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000711;
-        prmBC000711 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000712;
-        prmBC000712 = new Object[] {
-        new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
         def= new CursorDef[] {
-            new CursorDef("BC00072", "SELECT SupplierAgbId, SupplierAgbPhone, SupplierAgbNumber, SupplierAgbName, SupplierAgbKvkNumber, SupplierAGBAddressCountry, SupplierAgbAddressCity, SupplierAgbAddressZipCode, SupplierAgbAddressLine1, SupplierAgbAddressLine2, SupplierAgbContactName, SupplierAgbPhoneCode, SupplierAgbPhoneNumber, SupplierAgbEmail, SupplierAgbWebsite, SupplierAgbTypeId FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId  FOR UPDATE OF Trn_SupplierAGB",true, GxErrorMask.GX_NOMASK, false, this,prmBC00072,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00073", "SELECT SupplierAgbId, SupplierAgbPhone, SupplierAgbNumber, SupplierAgbName, SupplierAgbKvkNumber, SupplierAGBAddressCountry, SupplierAgbAddressCity, SupplierAgbAddressZipCode, SupplierAgbAddressLine1, SupplierAgbAddressLine2, SupplierAgbContactName, SupplierAgbPhoneCode, SupplierAgbPhoneNumber, SupplierAgbEmail, SupplierAgbWebsite, SupplierAgbTypeId FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00073,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00074", "SELECT SupplierAgbTypeName FROM Trn_SupplierAgbType WHERE SupplierAgbTypeId = :SupplierAgbTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00074,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00075", "SELECT TM1.SupplierAgbId, TM1.SupplierAgbPhone, TM1.SupplierAgbNumber, T2.SupplierAgbTypeName, TM1.SupplierAgbName, TM1.SupplierAgbKvkNumber, TM1.SupplierAGBAddressCountry, TM1.SupplierAgbAddressCity, TM1.SupplierAgbAddressZipCode, TM1.SupplierAgbAddressLine1, TM1.SupplierAgbAddressLine2, TM1.SupplierAgbContactName, TM1.SupplierAgbPhoneCode, TM1.SupplierAgbPhoneNumber, TM1.SupplierAgbEmail, TM1.SupplierAgbWebsite, TM1.SupplierAgbTypeId FROM (Trn_SupplierAGB TM1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = TM1.SupplierAgbTypeId) WHERE TM1.SupplierAgbId = :SupplierAgbId ORDER BY TM1.SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00075,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00076", "SELECT SupplierAgbId FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00076,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00077", "SAVEPOINT gxupdate;INSERT INTO Trn_SupplierAGB(SupplierAgbId, SupplierAgbPhone, SupplierAgbNumber, SupplierAgbName, SupplierAgbKvkNumber, SupplierAGBAddressCountry, SupplierAgbAddressCity, SupplierAgbAddressZipCode, SupplierAgbAddressLine1, SupplierAgbAddressLine2, SupplierAgbContactName, SupplierAgbPhoneCode, SupplierAgbPhoneNumber, SupplierAgbEmail, SupplierAgbWebsite, SupplierAgbTypeId) VALUES(:SupplierAgbId, :SupplierAgbPhone, :SupplierAgbNumber, :SupplierAgbName, :SupplierAgbKvkNumber, :SupplierAGBAddressCountry, :SupplierAgbAddressCity, :SupplierAgbAddressZipCode, :SupplierAgbAddressLine1, :SupplierAgbAddressLine2, :SupplierAgbContactName, :SupplierAgbPhoneCode, :SupplierAgbPhoneNumber, :SupplierAgbEmail, :SupplierAgbWebsite, :SupplierAgbTypeId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00077)
-           ,new CursorDef("BC00078", "SAVEPOINT gxupdate;UPDATE Trn_SupplierAGB SET SupplierAgbPhone=:SupplierAgbPhone, SupplierAgbNumber=:SupplierAgbNumber, SupplierAgbName=:SupplierAgbName, SupplierAgbKvkNumber=:SupplierAgbKvkNumber, SupplierAGBAddressCountry=:SupplierAGBAddressCountry, SupplierAgbAddressCity=:SupplierAgbAddressCity, SupplierAgbAddressZipCode=:SupplierAgbAddressZipCode, SupplierAgbAddressLine1=:SupplierAgbAddressLine1, SupplierAgbAddressLine2=:SupplierAgbAddressLine2, SupplierAgbContactName=:SupplierAgbContactName, SupplierAgbPhoneCode=:SupplierAgbPhoneCode, SupplierAgbPhoneNumber=:SupplierAgbPhoneNumber, SupplierAgbEmail=:SupplierAgbEmail, SupplierAgbWebsite=:SupplierAgbWebsite, SupplierAgbTypeId=:SupplierAgbTypeId  WHERE SupplierAgbId = :SupplierAgbId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00078)
-           ,new CursorDef("BC00079", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierAGB  WHERE SupplierAgbId = :SupplierAgbId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00079)
-           ,new CursorDef("BC000710", "SELECT SupplierAgbTypeName FROM Trn_SupplierAgbType WHERE SupplierAgbTypeId = :SupplierAgbTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000710,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000711", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000711,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000712", "SELECT TM1.SupplierAgbId, TM1.SupplierAgbPhone, TM1.SupplierAgbNumber, T2.SupplierAgbTypeName, TM1.SupplierAgbName, TM1.SupplierAgbKvkNumber, TM1.SupplierAGBAddressCountry, TM1.SupplierAgbAddressCity, TM1.SupplierAgbAddressZipCode, TM1.SupplierAgbAddressLine1, TM1.SupplierAgbAddressLine2, TM1.SupplierAgbContactName, TM1.SupplierAgbPhoneCode, TM1.SupplierAgbPhoneNumber, TM1.SupplierAgbEmail, TM1.SupplierAgbWebsite, TM1.SupplierAgbTypeId FROM (Trn_SupplierAGB TM1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = TM1.SupplierAgbTypeId) WHERE TM1.SupplierAgbId = :SupplierAgbId ORDER BY TM1.SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000712,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1846,98 +1763,226 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 20);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((Guid[]) buf[15])[0] = rslt.getGuid(16);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 20);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((Guid[]) buf[15])[0] = rslt.getGuid(16);
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 20);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((Guid[]) buf[16])[0] = rslt.getGuid(17);
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 8 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 9 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 10 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 20);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((Guid[]) buf[16])[0] = rslt.getGuid(17);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_supplieragb_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new ForEachCursor(def[9])
+      ,new ForEachCursor(def[10])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC00072;
+       prmBC00072 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC00073;
+       prmBC00073 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC00074;
+       prmBC00074 = new Object[] {
+       new ParDef("SupplierAgbTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00075;
+       prmBC00075 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC00076;
+       prmBC00076 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC00077;
+       prmBC00077 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("SupplierAgbPhone",GXType.Char,20,0) ,
+       new ParDef("SupplierAgbNumber",GXType.VarChar,8,0) ,
+       new ParDef("SupplierAgbName",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbKvkNumber",GXType.VarChar,8,0) ,
+       new ParDef("SupplierAGBAddressCountry",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbAddressCity",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbAddressZipCode",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbAddressLine1",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbAddressLine2",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbContactName",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbPhoneCode",GXType.VarChar,40,0) ,
+       new ParDef("SupplierAgbPhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("SupplierAgbEmail",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbWebsite",GXType.VarChar,50,0) ,
+       new ParDef("SupplierAgbTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00078;
+       prmBC00078 = new Object[] {
+       new ParDef("SupplierAgbPhone",GXType.Char,20,0) ,
+       new ParDef("SupplierAgbNumber",GXType.VarChar,8,0) ,
+       new ParDef("SupplierAgbName",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbKvkNumber",GXType.VarChar,8,0) ,
+       new ParDef("SupplierAGBAddressCountry",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbAddressCity",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbAddressZipCode",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbAddressLine1",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbAddressLine2",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbContactName",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbPhoneCode",GXType.VarChar,40,0) ,
+       new ParDef("SupplierAgbPhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("SupplierAgbEmail",GXType.VarChar,100,0) ,
+       new ParDef("SupplierAgbWebsite",GXType.VarChar,50,0) ,
+       new ParDef("SupplierAgbTypeId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC00079;
+       prmBC00079 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000710;
+       prmBC000710 = new Object[] {
+       new ParDef("SupplierAgbTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000711;
+       prmBC000711 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000712;
+       prmBC000712 = new Object[] {
+       new ParDef("SupplierAgbId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC00072", "SELECT SupplierAgbId, SupplierAgbPhone, SupplierAgbNumber, SupplierAgbName, SupplierAgbKvkNumber, SupplierAGBAddressCountry, SupplierAgbAddressCity, SupplierAgbAddressZipCode, SupplierAgbAddressLine1, SupplierAgbAddressLine2, SupplierAgbContactName, SupplierAgbPhoneCode, SupplierAgbPhoneNumber, SupplierAgbEmail, SupplierAgbWebsite, SupplierAgbTypeId FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId  FOR UPDATE OF Trn_SupplierAGB",true, GxErrorMask.GX_NOMASK, false, this,prmBC00072,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00073", "SELECT SupplierAgbId, SupplierAgbPhone, SupplierAgbNumber, SupplierAgbName, SupplierAgbKvkNumber, SupplierAGBAddressCountry, SupplierAgbAddressCity, SupplierAgbAddressZipCode, SupplierAgbAddressLine1, SupplierAgbAddressLine2, SupplierAgbContactName, SupplierAgbPhoneCode, SupplierAgbPhoneNumber, SupplierAgbEmail, SupplierAgbWebsite, SupplierAgbTypeId FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00073,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00074", "SELECT SupplierAgbTypeName FROM Trn_SupplierAgbType WHERE SupplierAgbTypeId = :SupplierAgbTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00074,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00075", "SELECT TM1.SupplierAgbId, TM1.SupplierAgbPhone, TM1.SupplierAgbNumber, T2.SupplierAgbTypeName, TM1.SupplierAgbName, TM1.SupplierAgbKvkNumber, TM1.SupplierAGBAddressCountry, TM1.SupplierAgbAddressCity, TM1.SupplierAgbAddressZipCode, TM1.SupplierAgbAddressLine1, TM1.SupplierAgbAddressLine2, TM1.SupplierAgbContactName, TM1.SupplierAgbPhoneCode, TM1.SupplierAgbPhoneNumber, TM1.SupplierAgbEmail, TM1.SupplierAgbWebsite, TM1.SupplierAgbTypeId FROM (Trn_SupplierAGB TM1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = TM1.SupplierAgbTypeId) WHERE TM1.SupplierAgbId = :SupplierAgbId ORDER BY TM1.SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00075,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00076", "SELECT SupplierAgbId FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00076,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00077", "SAVEPOINT gxupdate;INSERT INTO Trn_SupplierAGB(SupplierAgbId, SupplierAgbPhone, SupplierAgbNumber, SupplierAgbName, SupplierAgbKvkNumber, SupplierAGBAddressCountry, SupplierAgbAddressCity, SupplierAgbAddressZipCode, SupplierAgbAddressLine1, SupplierAgbAddressLine2, SupplierAgbContactName, SupplierAgbPhoneCode, SupplierAgbPhoneNumber, SupplierAgbEmail, SupplierAgbWebsite, SupplierAgbTypeId) VALUES(:SupplierAgbId, :SupplierAgbPhone, :SupplierAgbNumber, :SupplierAgbName, :SupplierAgbKvkNumber, :SupplierAGBAddressCountry, :SupplierAgbAddressCity, :SupplierAgbAddressZipCode, :SupplierAgbAddressLine1, :SupplierAgbAddressLine2, :SupplierAgbContactName, :SupplierAgbPhoneCode, :SupplierAgbPhoneNumber, :SupplierAgbEmail, :SupplierAgbWebsite, :SupplierAgbTypeId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00077)
+          ,new CursorDef("BC00078", "SAVEPOINT gxupdate;UPDATE Trn_SupplierAGB SET SupplierAgbPhone=:SupplierAgbPhone, SupplierAgbNumber=:SupplierAgbNumber, SupplierAgbName=:SupplierAgbName, SupplierAgbKvkNumber=:SupplierAgbKvkNumber, SupplierAGBAddressCountry=:SupplierAGBAddressCountry, SupplierAgbAddressCity=:SupplierAgbAddressCity, SupplierAgbAddressZipCode=:SupplierAgbAddressZipCode, SupplierAgbAddressLine1=:SupplierAgbAddressLine1, SupplierAgbAddressLine2=:SupplierAgbAddressLine2, SupplierAgbContactName=:SupplierAgbContactName, SupplierAgbPhoneCode=:SupplierAgbPhoneCode, SupplierAgbPhoneNumber=:SupplierAgbPhoneNumber, SupplierAgbEmail=:SupplierAgbEmail, SupplierAgbWebsite=:SupplierAgbWebsite, SupplierAgbTypeId=:SupplierAgbTypeId  WHERE SupplierAgbId = :SupplierAgbId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00078)
+          ,new CursorDef("BC00079", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierAGB  WHERE SupplierAgbId = :SupplierAgbId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00079)
+          ,new CursorDef("BC000710", "SELECT SupplierAgbTypeName FROM Trn_SupplierAgbType WHERE SupplierAgbTypeId = :SupplierAgbTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000710,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000711", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000711,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000712", "SELECT TM1.SupplierAgbId, TM1.SupplierAgbPhone, TM1.SupplierAgbNumber, T2.SupplierAgbTypeName, TM1.SupplierAgbName, TM1.SupplierAgbKvkNumber, TM1.SupplierAGBAddressCountry, TM1.SupplierAgbAddressCity, TM1.SupplierAgbAddressZipCode, TM1.SupplierAgbAddressLine1, TM1.SupplierAgbAddressLine2, TM1.SupplierAgbContactName, TM1.SupplierAgbPhoneCode, TM1.SupplierAgbPhoneNumber, TM1.SupplierAgbEmail, TM1.SupplierAgbWebsite, TM1.SupplierAgbTypeId FROM (Trn_SupplierAGB TM1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = TM1.SupplierAgbTypeId) WHERE TM1.SupplierAgbId = :SupplierAgbId ORDER BY TM1.SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000712,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getVarchar(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((Guid[]) buf[15])[0] = rslt.getGuid(16);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getVarchar(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((Guid[]) buf[15])[0] = rslt.getGuid(16);
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getVarchar(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((Guid[]) buf[16])[0] = rslt.getGuid(17);
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 8 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 9 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 10 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getVarchar(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((Guid[]) buf[16])[0] = rslt.getGuid(17);
+             return;
+    }
+ }
 
 }
 

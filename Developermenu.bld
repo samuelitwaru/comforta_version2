@@ -1,3 +1,4 @@
+trn_gamsession
 trn_agendaeventgroup
 trn_preferredgensupplier
 trn_preferredagbsupplier
@@ -42,6 +43,7 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wp_usernotificationsboard
 gamconfiguration
 gamwwappmenuoptions
 gamwwappmenus

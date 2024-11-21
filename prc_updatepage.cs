@@ -28,6 +28,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -115,7 +117,7 @@ namespace GeneXus.Programs {
             AV9BC_Trn_Page.Save();
             if ( AV9BC_Trn_Page.Success() )
             {
-               AV10Response = "Page Save Successfully";
+               AV10Response = context.GetMessage( "Page Save Successfully", "");
                context.CommitDataStores("prc_updatepage",pr_default);
             }
             else
@@ -132,7 +134,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV10Response = "Page Not Found";
+            AV10Response = context.GetMessage( "Page Not Found", "");
          }
          cleanup();
       }
@@ -153,6 +155,10 @@ namespace GeneXus.Programs {
          AV9BC_Trn_Page = new SdtTrn_Page(context);
          AV18GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV14Message = new GeneXus.Utils.SdtMessages_Message(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepage__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepage__gam(),
             new Object[][] {
             }
@@ -171,6 +177,7 @@ namespace GeneXus.Programs {
       private string AV11PageGJSJson ;
       private string AV10Response ;
       private Guid AV8PageId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private Guid aP0_PageId ;
@@ -183,10 +190,11 @@ namespace GeneXus.Programs {
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV18GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV14Message ;
       private string aP5_Response ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class prc_updatepage__gam : DataStoreHelperBase, IDataStoreHelper
+   public class prc_updatepage__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -213,12 +221,12 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class prc_updatepage__default : DataStoreHelperBase, IDataStoreHelper
+ public class prc_updatepage__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -242,6 +250,38 @@ namespace GeneXus.Programs {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class prc_updatepage__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

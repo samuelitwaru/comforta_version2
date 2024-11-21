@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -203,13 +205,13 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          if ( ! ( ( StringUtil.StrCmp(A454AgendaCalendarType, "Event") == 0 ) || ( StringUtil.StrCmp(A454AgendaCalendarType, "Activity") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Agenda Calendar Type is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Agenda Calendar Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -504,7 +506,7 @@ namespace GeneXus.Programs {
             pr_default.execute(8, new Object[] {A303AgendaCalendarId});
             if ( (pr_default.getStatus(8) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_AgendaEventGroup"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_AgendaEventGroup", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(8);
@@ -1263,6 +1265,10 @@ namespace GeneXus.Programs {
          i11OrganisationId = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_agendacalendar_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_agendacalendar_bc__gam(),
             new Object[][] {
             }
@@ -1343,6 +1349,7 @@ namespace GeneXus.Programs {
       private Guid GXt_guid1 ;
       private Guid i29LocationId ;
       private Guid i11OrganisationId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1397,10 +1404,11 @@ namespace GeneXus.Programs {
       private SdtTrn_AgendaCalendar bcTrn_AgendaCalendar ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_agendacalendar_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_agendacalendar_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1427,27 +1435,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_agendacalendar_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_agendacalendar_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new ForEachCursor(def[9])
      };
   }
 
@@ -1456,78 +1454,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC00132;
-        prmBC00132 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00133;
-        prmBC00133 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00134;
-        prmBC00134 = new Object[] {
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00135;
-        prmBC00135 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00136;
-        prmBC00136 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00137;
-        prmBC00137 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("AgendaCalendarTitle",GXType.VarChar,100,0) ,
-        new ParDef("AgendaCalendarStartDate",GXType.DateTime,8,5) ,
-        new ParDef("AgendaCalendarEndDate",GXType.DateTime,8,5) ,
-        new ParDef("AgendaCalendarType",GXType.VarChar,40,0) ,
-        new ParDef("AgendaCalendarAllDay",GXType.Boolean,4,0) ,
-        new ParDef("AgendaCalendarRecurring",GXType.Boolean,4,0) ,
-        new ParDef("AgendaCalendarRecurringType",GXType.VarChar,100,0) ,
-        new ParDef("AgendaCalendarAddRSVP",GXType.Boolean,4,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00138;
-        prmBC00138 = new Object[] {
-        new ParDef("AgendaCalendarTitle",GXType.VarChar,100,0) ,
-        new ParDef("AgendaCalendarStartDate",GXType.DateTime,8,5) ,
-        new ParDef("AgendaCalendarEndDate",GXType.DateTime,8,5) ,
-        new ParDef("AgendaCalendarType",GXType.VarChar,40,0) ,
-        new ParDef("AgendaCalendarAllDay",GXType.Boolean,4,0) ,
-        new ParDef("AgendaCalendarRecurring",GXType.Boolean,4,0) ,
-        new ParDef("AgendaCalendarRecurringType",GXType.VarChar,100,0) ,
-        new ParDef("AgendaCalendarAddRSVP",GXType.Boolean,4,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00139;
-        prmBC00139 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001310;
-        prmBC001310 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001311;
-        prmBC001311 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC00132", "SELECT AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarType, AgendaCalendarAllDay, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP, LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId  FOR UPDATE OF Trn_AgendaCalendar",true, GxErrorMask.GX_NOMASK, false, this,prmBC00132,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00133", "SELECT AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarType, AgendaCalendarAllDay, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP, LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00133,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00134", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00134,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00135", "SELECT TM1.AgendaCalendarId, TM1.AgendaCalendarTitle, TM1.AgendaCalendarStartDate, TM1.AgendaCalendarEndDate, TM1.AgendaCalendarType, TM1.AgendaCalendarAllDay, TM1.AgendaCalendarRecurring, TM1.AgendaCalendarRecurringType, TM1.AgendaCalendarAddRSVP, TM1.LocationId, TM1.OrganisationId FROM Trn_AgendaCalendar TM1 WHERE TM1.AgendaCalendarId = :AgendaCalendarId ORDER BY TM1.AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00135,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00136", "SELECT AgendaCalendarId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00136,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00137", "SAVEPOINT gxupdate;INSERT INTO Trn_AgendaCalendar(AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarType, AgendaCalendarAllDay, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP, LocationId, OrganisationId) VALUES(:AgendaCalendarId, :AgendaCalendarTitle, :AgendaCalendarStartDate, :AgendaCalendarEndDate, :AgendaCalendarType, :AgendaCalendarAllDay, :AgendaCalendarRecurring, :AgendaCalendarRecurringType, :AgendaCalendarAddRSVP, :LocationId, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00137)
-           ,new CursorDef("BC00138", "SAVEPOINT gxupdate;UPDATE Trn_AgendaCalendar SET AgendaCalendarTitle=:AgendaCalendarTitle, AgendaCalendarStartDate=:AgendaCalendarStartDate, AgendaCalendarEndDate=:AgendaCalendarEndDate, AgendaCalendarType=:AgendaCalendarType, AgendaCalendarAllDay=:AgendaCalendarAllDay, AgendaCalendarRecurring=:AgendaCalendarRecurring, AgendaCalendarRecurringType=:AgendaCalendarRecurringType, AgendaCalendarAddRSVP=:AgendaCalendarAddRSVP, LocationId=:LocationId, OrganisationId=:OrganisationId  WHERE AgendaCalendarId = :AgendaCalendarId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00138)
-           ,new CursorDef("BC00139", "SAVEPOINT gxupdate;DELETE FROM Trn_AgendaCalendar  WHERE AgendaCalendarId = :AgendaCalendarId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00139)
-           ,new CursorDef("BC001310", "SELECT AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001310,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC001311", "SELECT TM1.AgendaCalendarId, TM1.AgendaCalendarTitle, TM1.AgendaCalendarStartDate, TM1.AgendaCalendarEndDate, TM1.AgendaCalendarType, TM1.AgendaCalendarAllDay, TM1.AgendaCalendarRecurring, TM1.AgendaCalendarRecurringType, TM1.AgendaCalendarAddRSVP, TM1.LocationId, TM1.OrganisationId FROM Trn_AgendaCalendar TM1 WHERE TM1.AgendaCalendarId = :AgendaCalendarId ORDER BY TM1.AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001311,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1536,72 +1463,185 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((bool[]) buf[5])[0] = rslt.getBool(6);
-              ((bool[]) buf[6])[0] = rslt.getBool(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((bool[]) buf[8])[0] = rslt.getBool(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[10])[0] = rslt.getGuid(11);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((bool[]) buf[5])[0] = rslt.getBool(6);
-              ((bool[]) buf[6])[0] = rslt.getBool(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((bool[]) buf[8])[0] = rslt.getBool(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[10])[0] = rslt.getGuid(11);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((bool[]) buf[5])[0] = rslt.getBool(6);
-              ((bool[]) buf[6])[0] = rslt.getBool(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((bool[]) buf[8])[0] = rslt.getBool(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[10])[0] = rslt.getGuid(11);
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-           case 9 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((bool[]) buf[5])[0] = rslt.getBool(6);
-              ((bool[]) buf[6])[0] = rslt.getBool(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((bool[]) buf[8])[0] = rslt.getBool(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[10])[0] = rslt.getGuid(11);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_agendacalendar_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new ForEachCursor(def[9])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC00132;
+       prmBC00132 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00133;
+       prmBC00133 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00134;
+       prmBC00134 = new Object[] {
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00135;
+       prmBC00135 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00136;
+       prmBC00136 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00137;
+       prmBC00137 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("AgendaCalendarTitle",GXType.VarChar,100,0) ,
+       new ParDef("AgendaCalendarStartDate",GXType.DateTime,8,5) ,
+       new ParDef("AgendaCalendarEndDate",GXType.DateTime,8,5) ,
+       new ParDef("AgendaCalendarType",GXType.VarChar,40,0) ,
+       new ParDef("AgendaCalendarAllDay",GXType.Boolean,4,0) ,
+       new ParDef("AgendaCalendarRecurring",GXType.Boolean,4,0) ,
+       new ParDef("AgendaCalendarRecurringType",GXType.VarChar,100,0) ,
+       new ParDef("AgendaCalendarAddRSVP",GXType.Boolean,4,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00138;
+       prmBC00138 = new Object[] {
+       new ParDef("AgendaCalendarTitle",GXType.VarChar,100,0) ,
+       new ParDef("AgendaCalendarStartDate",GXType.DateTime,8,5) ,
+       new ParDef("AgendaCalendarEndDate",GXType.DateTime,8,5) ,
+       new ParDef("AgendaCalendarType",GXType.VarChar,40,0) ,
+       new ParDef("AgendaCalendarAllDay",GXType.Boolean,4,0) ,
+       new ParDef("AgendaCalendarRecurring",GXType.Boolean,4,0) ,
+       new ParDef("AgendaCalendarRecurringType",GXType.VarChar,100,0) ,
+       new ParDef("AgendaCalendarAddRSVP",GXType.Boolean,4,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00139;
+       prmBC00139 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001310;
+       prmBC001310 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001311;
+       prmBC001311 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC00132", "SELECT AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarType, AgendaCalendarAllDay, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP, LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId  FOR UPDATE OF Trn_AgendaCalendar",true, GxErrorMask.GX_NOMASK, false, this,prmBC00132,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00133", "SELECT AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarType, AgendaCalendarAllDay, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP, LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00133,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00134", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00134,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00135", "SELECT TM1.AgendaCalendarId, TM1.AgendaCalendarTitle, TM1.AgendaCalendarStartDate, TM1.AgendaCalendarEndDate, TM1.AgendaCalendarType, TM1.AgendaCalendarAllDay, TM1.AgendaCalendarRecurring, TM1.AgendaCalendarRecurringType, TM1.AgendaCalendarAddRSVP, TM1.LocationId, TM1.OrganisationId FROM Trn_AgendaCalendar TM1 WHERE TM1.AgendaCalendarId = :AgendaCalendarId ORDER BY TM1.AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00135,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00136", "SELECT AgendaCalendarId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00136,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00137", "SAVEPOINT gxupdate;INSERT INTO Trn_AgendaCalendar(AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarStartDate, AgendaCalendarEndDate, AgendaCalendarType, AgendaCalendarAllDay, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP, LocationId, OrganisationId) VALUES(:AgendaCalendarId, :AgendaCalendarTitle, :AgendaCalendarStartDate, :AgendaCalendarEndDate, :AgendaCalendarType, :AgendaCalendarAllDay, :AgendaCalendarRecurring, :AgendaCalendarRecurringType, :AgendaCalendarAddRSVP, :LocationId, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00137)
+          ,new CursorDef("BC00138", "SAVEPOINT gxupdate;UPDATE Trn_AgendaCalendar SET AgendaCalendarTitle=:AgendaCalendarTitle, AgendaCalendarStartDate=:AgendaCalendarStartDate, AgendaCalendarEndDate=:AgendaCalendarEndDate, AgendaCalendarType=:AgendaCalendarType, AgendaCalendarAllDay=:AgendaCalendarAllDay, AgendaCalendarRecurring=:AgendaCalendarRecurring, AgendaCalendarRecurringType=:AgendaCalendarRecurringType, AgendaCalendarAddRSVP=:AgendaCalendarAddRSVP, LocationId=:LocationId, OrganisationId=:OrganisationId  WHERE AgendaCalendarId = :AgendaCalendarId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00138)
+          ,new CursorDef("BC00139", "SAVEPOINT gxupdate;DELETE FROM Trn_AgendaCalendar  WHERE AgendaCalendarId = :AgendaCalendarId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00139)
+          ,new CursorDef("BC001310", "SELECT AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001310,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC001311", "SELECT TM1.AgendaCalendarId, TM1.AgendaCalendarTitle, TM1.AgendaCalendarStartDate, TM1.AgendaCalendarEndDate, TM1.AgendaCalendarType, TM1.AgendaCalendarAllDay, TM1.AgendaCalendarRecurring, TM1.AgendaCalendarRecurringType, TM1.AgendaCalendarAddRSVP, TM1.LocationId, TM1.OrganisationId FROM Trn_AgendaCalendar TM1 WHERE TM1.AgendaCalendarId = :AgendaCalendarId ORDER BY TM1.AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001311,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((bool[]) buf[5])[0] = rslt.getBool(6);
+             ((bool[]) buf[6])[0] = rslt.getBool(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((bool[]) buf[8])[0] = rslt.getBool(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((bool[]) buf[5])[0] = rslt.getBool(6);
+             ((bool[]) buf[6])[0] = rslt.getBool(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((bool[]) buf[8])[0] = rslt.getBool(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((bool[]) buf[5])[0] = rslt.getBool(6);
+             ((bool[]) buf[6])[0] = rslt.getBool(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((bool[]) buf[8])[0] = rslt.getBool(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 8 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 9 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((bool[]) buf[5])[0] = rslt.getBool(6);
+             ((bool[]) buf[6])[0] = rslt.getBool(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((bool[]) buf[8])[0] = rslt.getBool(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+             return;
+    }
+ }
 
 }
 

@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -39,6 +40,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -232,7 +234,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "Home Progress Bar WC") ;
+            context.SendWebValue( context.GetMessage( "Home Progress Bar WC", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -280,7 +282,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             context.skipLines(1);
             if ( nGXWrapped != 1 )
             {
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+               GXKey = Crypto.GetSiteKey( );
                GXEncryptionTmp = "wwpbaseobjects.homeprogressbarwc.aspx"+UrlEncode(StringUtil.RTrim(AV5OptionTitle)) + "," + UrlEncode(StringUtil.RTrim(AV9BarDescription)) + "," + UrlEncode(StringUtil.LTrimStr(AV6Percentage,2,0));
                context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wwpbaseobjects.homeprogressbarwc.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
                GxWebStd.gx_hidden_field( context, "_EventName", "");
@@ -330,7 +332,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -340,9 +342,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV5OptionTitle", wcpOAV5OptionTitle);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV9BarDescription", wcpOAV9BarDescription);
-         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV6Percentage", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV6Percentage), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV6Percentage", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV6Percentage), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vBARDESCRIPTION", AV9BarDescription);
-         GxWebStd.gx_hidden_field( context, sPrefix+"vPERCENTAGE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV6Percentage), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vPERCENTAGE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV6Percentage), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"PROGRESSBAR1_Type", StringUtil.RTrim( Progressbar1_Type));
          GxWebStd.gx_hidden_field( context, sPrefix+"PROGRESSBAR1_Percentage", StringUtil.LTrim( StringUtil.NToC( (decimal)(Progressbar1_Percentage), 9, 0, ".", "")));
       }
@@ -404,7 +406,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return "Home Progress Bar WC" ;
+         return context.GetMessage( "Home Progress Bar WC", "") ;
       }
 
       protected void WB1D0( )
@@ -463,7 +465,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavOptiontitle_Internalname, "Option Title", "col-sm-3 AttributeCardsMenuTitleLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavOptiontitle_Internalname, context.GetMessage( "Option Title", ""), "col-sm-3 AttributeCardsMenuTitleLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'" + sPrefix + "',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavOptiontitle_Internalname, AV5OptionTitle, StringUtil.RTrim( context.localUtil.Format( AV5OptionTitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,16);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavOptiontitle_Jsonclick, 0, "AttributeCardsMenuTitle", "", "", "", "", 1, edtavOptiontitle_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WWPBaseObjects/HomeProgressBarWC.htm");
@@ -486,7 +488,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          wbStart = 0;
          if ( StringUtil.Len( sPrefix) != 0 )
          {
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          if ( StringUtil.Len( sPrefix) == 0 )
          {
@@ -497,7 +499,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "Home Progress Bar WC", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "Home Progress Bar WC", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -672,18 +674,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
             {
                initialize_properties( ) ;
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  GxWebError = 1;
-                  context.HttpContext.Response.StatusCode = 403;
-                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-                  context.WriteHtmlText( "<p /><hr />") ;
-                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-               }
                if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
                {
                   GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -834,13 +827,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Read saved values. */
             wcpOAV5OptionTitle = cgiGet( sPrefix+"wcpOAV5OptionTitle");
             wcpOAV9BarDescription = cgiGet( sPrefix+"wcpOAV9BarDescription");
-            wcpOAV6Percentage = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV6Percentage"), ".", ","), 18, MidpointRounding.ToEven));
+            wcpOAV6Percentage = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV6Percentage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Progressbar1_Type = cgiGet( sPrefix+"PROGRESSBAR1_Type");
-            Progressbar1_Percentage = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"PROGRESSBAR1_Percentage"), ".", ","), 18, MidpointRounding.ToEven));
+            Progressbar1_Percentage = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"PROGRESSBAR1_Percentage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -912,7 +905,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected override EncryptionType GetEncryptionType( )
       {
-         return EncryptionType.SESSION ;
+         return EncryptionType.SITE ;
       }
 
       public override void componentbind( Object[] obj )
@@ -966,7 +959,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          wcpOAV5OptionTitle = cgiGet( sPrefix+"wcpOAV5OptionTitle");
          wcpOAV9BarDescription = cgiGet( sPrefix+"wcpOAV9BarDescription");
-         wcpOAV6Percentage = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV6Percentage"), ".", ","), 18, MidpointRounding.ToEven));
+         wcpOAV6Percentage = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV6Percentage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(AV5OptionTitle, wcpOAV5OptionTitle) != 0 ) || ( StringUtil.StrCmp(AV9BarDescription, wcpOAV9BarDescription) != 0 ) || ( AV6Percentage != wcpOAV6Percentage ) ) )
          {
             setjustcreated();
@@ -1002,12 +995,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
          sCtrlAV6Percentage = cgiGet( sPrefix+"AV6Percentage_CTRL");
          if ( StringUtil.Len( sCtrlAV6Percentage) > 0 )
          {
-            AV6Percentage = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV6Percentage), ".", ","), 18, MidpointRounding.ToEven));
+            AV6Percentage = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV6Percentage), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AssignAttri(sPrefix, false, "AV6Percentage", StringUtil.LTrimStr( (decimal)(AV6Percentage), 2, 0));
          }
          else
          {
-            AV6Percentage = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV6Percentage_PARM"), ".", ","), 18, MidpointRounding.ToEven));
+            AV6Percentage = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV6Percentage_PARM"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
       }
 
@@ -1064,7 +1057,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV9BarDescription_CTRL", StringUtil.RTrim( sCtrlAV9BarDescription));
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"AV6Percentage_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV6Percentage), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"AV6Percentage_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV6Percentage), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV6Percentage)) > 0 )
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV6Percentage_CTRL", StringUtil.RTrim( sCtrlAV6Percentage));
@@ -1121,7 +1114,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119829961", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115375062", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1139,7 +1132,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/homeprogressbarwc.js", "?20241119829961", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/homeprogressbarwc.js", "?2024112115375062", false, true);
             context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
             context.AddJavascriptSource("DVelop/Bootstrap/DVProgressIndicator/DVProgressIndicatorRender.js", "", false, true);
          }
@@ -1178,7 +1171,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          edtavOptiontitle_Jsonclick = "";
          edtavOptiontitle_Enabled = 0;
          Progressbar1_Caption = "";
-         lblDescriptionprogressbar1_Caption = "Add Products to Cart";
+         lblDescriptionprogressbar1_Caption = context.GetMessage( "Add Products to Cart", "");
          Progressbar1_Percentage = 83;
          Progressbar1_Type = "Bar";
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -1300,6 +1293,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string wcpOAV9BarDescription ;
       private GXUserControl ucProgressbar1 ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

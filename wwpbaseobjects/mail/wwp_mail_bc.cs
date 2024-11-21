@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -320,7 +322,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          standaloneModal( ) ;
          if ( ! ( ( A186WWPMailStatus == 1 ) || ( A186WWPMailStatus == 2 ) || ( A186WWPMailStatus == 3 ) ) )
          {
-            GX_msglist.addItem("Field Mail Status is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Mail Status", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC000Q6 */
@@ -329,7 +331,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          {
             if ( ! ( (0==A127WWPNotificationId) ) )
             {
-               GX_msglist.addItem("No matching 'WWP_Notification'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Notification", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
                AnyError = 1;
             }
          }
@@ -2086,6 +2088,10 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          i197WWPMailScheduled = (DateTime)(DateTime.MinValue);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.mail.wwp_mail_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.mail.wwp_mail_bc__gam(),
             new Object[][] {
             }
@@ -2223,6 +2229,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       private string A174WWPMailSubject ;
       private string Z198WWPMailAttachmentName ;
       private string A198WWPMailAttachmentName ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_Mail bcwwpbaseobjects_mail_WWP_Mail ;
@@ -2329,10 +2336,11 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       private string[] BC000Q20_A190WWPMailAttachmentFile ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_mail_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_mail_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -2359,36 +2367,17 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_mail_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_mail_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new UpdateCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new ForEachCursor(def[12])
-       ,new ForEachCursor(def[13])
-       ,new ForEachCursor(def[14])
-       ,new UpdateCursor(def[15])
-       ,new UpdateCursor(def[16])
-       ,new UpdateCursor(def[17])
-       ,new ForEachCursor(def[18])
      };
   }
 
@@ -2397,135 +2386,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
   {
      if ( def == null )
      {
-        Object[] prmBC000Q2;
-        prmBC000Q2 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0) ,
-        new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
-        };
-        Object[] prmBC000Q3;
-        prmBC000Q3 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0) ,
-        new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
-        };
-        Object[] prmBC000Q4;
-        prmBC000Q4 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000Q5;
-        prmBC000Q5 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000Q6;
-        prmBC000Q6 = new Object[] {
-        new ParDef("WWPNotificationId",GXType.Int64,10,0){Nullable=true}
-        };
-        Object[] prmBC000Q7;
-        prmBC000Q7 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000Q8;
-        prmBC000Q8 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000Q9;
-        prmBC000Q9 = new Object[] {
-        new ParDef("WWPMailSubject",GXType.VarChar,80,0) ,
-        new ParDef("WWPMailBody",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPMailTo",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPMailCC",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPMailBCC",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPMailSenderAddress",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPMailSenderName",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPMailStatus",GXType.Int16,4,0) ,
-        new ParDef("WWPMailCreated",GXType.DateTime2,10,12) ,
-        new ParDef("WWPMailScheduled",GXType.DateTime2,10,12) ,
-        new ParDef("WWPMailProcessed",GXType.DateTime2,10,12){Nullable=true} ,
-        new ParDef("WWPMailDetail",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPNotificationId",GXType.Int64,10,0){Nullable=true}
-        };
-        Object[] prmBC000Q10;
-        prmBC000Q10 = new Object[] {
-        };
-        Object[] prmBC000Q11;
-        prmBC000Q11 = new Object[] {
-        new ParDef("WWPMailSubject",GXType.VarChar,80,0) ,
-        new ParDef("WWPMailBody",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPMailTo",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPMailCC",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPMailBCC",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPMailSenderAddress",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPMailSenderName",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPMailStatus",GXType.Int16,4,0) ,
-        new ParDef("WWPMailCreated",GXType.DateTime2,10,12) ,
-        new ParDef("WWPMailScheduled",GXType.DateTime2,10,12) ,
-        new ParDef("WWPMailProcessed",GXType.DateTime2,10,12){Nullable=true} ,
-        new ParDef("WWPMailDetail",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPNotificationId",GXType.Int64,10,0){Nullable=true} ,
-        new ParDef("WWPMailId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000Q12;
-        prmBC000Q12 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000Q13;
-        prmBC000Q13 = new Object[] {
-        new ParDef("WWPNotificationId",GXType.Int64,10,0){Nullable=true}
-        };
-        Object[] prmBC000Q14;
-        prmBC000Q14 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000Q15;
-        prmBC000Q15 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0) ,
-        new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
-        };
-        Object[] prmBC000Q16;
-        prmBC000Q16 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0) ,
-        new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
-        };
-        Object[] prmBC000Q17;
-        prmBC000Q17 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0) ,
-        new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0) ,
-        new ParDef("WWPMailAttachmentFile",GXType.LongVarChar,2097152,0)
-        };
-        Object[] prmBC000Q18;
-        prmBC000Q18 = new Object[] {
-        new ParDef("WWPMailAttachmentFile",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPMailId",GXType.Int64,10,0) ,
-        new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
-        };
-        Object[] prmBC000Q19;
-        prmBC000Q19 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0) ,
-        new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
-        };
-        Object[] prmBC000Q20;
-        prmBC000Q20 = new Object[] {
-        new ParDef("WWPMailId",GXType.Int64,10,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000Q2", "SELECT WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName  FOR UPDATE OF WWP_MailAttachments",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q3", "SELECT WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q4", "SELECT WWPMailId, WWPMailSubject, WWPMailBody, WWPMailTo, WWPMailCC, WWPMailBCC, WWPMailSenderAddress, WWPMailSenderName, WWPMailStatus, WWPMailCreated, WWPMailScheduled, WWPMailProcessed, WWPMailDetail, WWPNotificationId FROM WWP_Mail WHERE WWPMailId = :WWPMailId  FOR UPDATE OF WWP_Mail",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q5", "SELECT WWPMailId, WWPMailSubject, WWPMailBody, WWPMailTo, WWPMailCC, WWPMailBCC, WWPMailSenderAddress, WWPMailSenderName, WWPMailStatus, WWPMailCreated, WWPMailScheduled, WWPMailProcessed, WWPMailDetail, WWPNotificationId FROM WWP_Mail WHERE WWPMailId = :WWPMailId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q6", "SELECT WWPNotificationCreated FROM WWP_Notification WHERE WWPNotificationId = :WWPNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q7", "SELECT TM1.WWPMailId, TM1.WWPMailSubject, TM1.WWPMailBody, TM1.WWPMailTo, TM1.WWPMailCC, TM1.WWPMailBCC, TM1.WWPMailSenderAddress, TM1.WWPMailSenderName, TM1.WWPMailStatus, TM1.WWPMailCreated, TM1.WWPMailScheduled, TM1.WWPMailProcessed, TM1.WWPMailDetail, T2.WWPNotificationCreated, TM1.WWPNotificationId FROM (WWP_Mail TM1 LEFT JOIN WWP_Notification T2 ON T2.WWPNotificationId = TM1.WWPNotificationId) WHERE TM1.WWPMailId = :WWPMailId ORDER BY TM1.WWPMailId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q7,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q8", "SELECT WWPMailId FROM WWP_Mail WHERE WWPMailId = :WWPMailId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q8,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q9", "SAVEPOINT gxupdate;INSERT INTO WWP_Mail(WWPMailSubject, WWPMailBody, WWPMailTo, WWPMailCC, WWPMailBCC, WWPMailSenderAddress, WWPMailSenderName, WWPMailStatus, WWPMailCreated, WWPMailScheduled, WWPMailProcessed, WWPMailDetail, WWPNotificationId) VALUES(:WWPMailSubject, :WWPMailBody, :WWPMailTo, :WWPMailCC, :WWPMailBCC, :WWPMailSenderAddress, :WWPMailSenderName, :WWPMailStatus, :WWPMailCreated, :WWPMailScheduled, :WWPMailProcessed, :WWPMailDetail, :WWPNotificationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000Q9)
-           ,new CursorDef("BC000Q10", "SELECT currval('WWPMailId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q10,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q11", "SAVEPOINT gxupdate;UPDATE WWP_Mail SET WWPMailSubject=:WWPMailSubject, WWPMailBody=:WWPMailBody, WWPMailTo=:WWPMailTo, WWPMailCC=:WWPMailCC, WWPMailBCC=:WWPMailBCC, WWPMailSenderAddress=:WWPMailSenderAddress, WWPMailSenderName=:WWPMailSenderName, WWPMailStatus=:WWPMailStatus, WWPMailCreated=:WWPMailCreated, WWPMailScheduled=:WWPMailScheduled, WWPMailProcessed=:WWPMailProcessed, WWPMailDetail=:WWPMailDetail, WWPNotificationId=:WWPNotificationId  WHERE WWPMailId = :WWPMailId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Q11)
-           ,new CursorDef("BC000Q12", "SAVEPOINT gxupdate;DELETE FROM WWP_Mail  WHERE WWPMailId = :WWPMailId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Q12)
-           ,new CursorDef("BC000Q13", "SELECT WWPNotificationCreated FROM WWP_Notification WHERE WWPNotificationId = :WWPNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q13,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q14", "SELECT TM1.WWPMailId, TM1.WWPMailSubject, TM1.WWPMailBody, TM1.WWPMailTo, TM1.WWPMailCC, TM1.WWPMailBCC, TM1.WWPMailSenderAddress, TM1.WWPMailSenderName, TM1.WWPMailStatus, TM1.WWPMailCreated, TM1.WWPMailScheduled, TM1.WWPMailProcessed, TM1.WWPMailDetail, T2.WWPNotificationCreated, TM1.WWPNotificationId FROM (WWP_Mail TM1 LEFT JOIN WWP_Notification T2 ON T2.WWPNotificationId = TM1.WWPNotificationId) WHERE TM1.WWPMailId = :WWPMailId ORDER BY TM1.WWPMailId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q14,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q15", "SELECT WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId and WWPMailAttachmentName = ( :WWPMailAttachmentName) ORDER BY WWPMailId, WWPMailAttachmentName ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q15,11, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q16", "SELECT WWPMailId, WWPMailAttachmentName FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q16,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000Q17", "SAVEPOINT gxupdate;INSERT INTO WWP_MailAttachments(WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile) VALUES(:WWPMailId, :WWPMailAttachmentName, :WWPMailAttachmentFile);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000Q17)
-           ,new CursorDef("BC000Q18", "SAVEPOINT gxupdate;UPDATE WWP_MailAttachments SET WWPMailAttachmentFile=:WWPMailAttachmentFile  WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Q18)
-           ,new CursorDef("BC000Q19", "SAVEPOINT gxupdate;DELETE FROM WWP_MailAttachments  WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Q19)
-           ,new CursorDef("BC000Q20", "SELECT WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId ORDER BY WWPMailId, WWPMailAttachmentName ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q20,11, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2534,136 +2395,315 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 1 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 2 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.wasNull(4);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-              ((bool[]) buf[6])[0] = rslt.wasNull(5);
-              ((string[]) buf[7])[0] = rslt.getLongVarchar(6);
-              ((bool[]) buf[8])[0] = rslt.wasNull(6);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(7);
-              ((string[]) buf[10])[0] = rslt.getLongVarchar(8);
-              ((short[]) buf[11])[0] = rslt.getShort(9);
-              ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10, true);
-              ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(11, true);
-              ((DateTime[]) buf[14])[0] = rslt.getGXDateTime(12, true);
-              ((bool[]) buf[15])[0] = rslt.wasNull(12);
-              ((string[]) buf[16])[0] = rslt.getLongVarchar(13);
-              ((bool[]) buf[17])[0] = rslt.wasNull(13);
-              ((long[]) buf[18])[0] = rslt.getLong(14);
-              ((bool[]) buf[19])[0] = rslt.wasNull(14);
-              return;
-           case 3 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.wasNull(4);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-              ((bool[]) buf[6])[0] = rslt.wasNull(5);
-              ((string[]) buf[7])[0] = rslt.getLongVarchar(6);
-              ((bool[]) buf[8])[0] = rslt.wasNull(6);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(7);
-              ((string[]) buf[10])[0] = rslt.getLongVarchar(8);
-              ((short[]) buf[11])[0] = rslt.getShort(9);
-              ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10, true);
-              ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(11, true);
-              ((DateTime[]) buf[14])[0] = rslt.getGXDateTime(12, true);
-              ((bool[]) buf[15])[0] = rslt.wasNull(12);
-              ((string[]) buf[16])[0] = rslt.getLongVarchar(13);
-              ((bool[]) buf[17])[0] = rslt.wasNull(13);
-              ((long[]) buf[18])[0] = rslt.getLong(14);
-              ((bool[]) buf[19])[0] = rslt.wasNull(14);
-              return;
-           case 4 :
-              ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1, true);
-              return;
-           case 5 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.wasNull(4);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-              ((bool[]) buf[6])[0] = rslt.wasNull(5);
-              ((string[]) buf[7])[0] = rslt.getLongVarchar(6);
-              ((bool[]) buf[8])[0] = rslt.wasNull(6);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(7);
-              ((string[]) buf[10])[0] = rslt.getLongVarchar(8);
-              ((short[]) buf[11])[0] = rslt.getShort(9);
-              ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10, true);
-              ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(11, true);
-              ((DateTime[]) buf[14])[0] = rslt.getGXDateTime(12, true);
-              ((bool[]) buf[15])[0] = rslt.wasNull(12);
-              ((string[]) buf[16])[0] = rslt.getLongVarchar(13);
-              ((bool[]) buf[17])[0] = rslt.wasNull(13);
-              ((DateTime[]) buf[18])[0] = rslt.getGXDateTime(14, true);
-              ((long[]) buf[19])[0] = rslt.getLong(15);
-              ((bool[]) buf[20])[0] = rslt.wasNull(15);
-              return;
-           case 6 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 8 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 11 :
-              ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1, true);
-              return;
-           case 12 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.wasNull(4);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-              ((bool[]) buf[6])[0] = rslt.wasNull(5);
-              ((string[]) buf[7])[0] = rslt.getLongVarchar(6);
-              ((bool[]) buf[8])[0] = rslt.wasNull(6);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(7);
-              ((string[]) buf[10])[0] = rslt.getLongVarchar(8);
-              ((short[]) buf[11])[0] = rslt.getShort(9);
-              ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10, true);
-              ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(11, true);
-              ((DateTime[]) buf[14])[0] = rslt.getGXDateTime(12, true);
-              ((bool[]) buf[15])[0] = rslt.wasNull(12);
-              ((string[]) buf[16])[0] = rslt.getLongVarchar(13);
-              ((bool[]) buf[17])[0] = rslt.wasNull(13);
-              ((DateTime[]) buf[18])[0] = rslt.getGXDateTime(14, true);
-              ((long[]) buf[19])[0] = rslt.getLong(15);
-              ((bool[]) buf[20])[0] = rslt.wasNull(15);
-              return;
-           case 13 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 14 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 18 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_mail_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new UpdateCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
+      ,new ForEachCursor(def[13])
+      ,new ForEachCursor(def[14])
+      ,new UpdateCursor(def[15])
+      ,new UpdateCursor(def[16])
+      ,new UpdateCursor(def[17])
+      ,new ForEachCursor(def[18])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000Q2;
+       prmBC000Q2 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0) ,
+       new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
+       };
+       Object[] prmBC000Q3;
+       prmBC000Q3 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0) ,
+       new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
+       };
+       Object[] prmBC000Q4;
+       prmBC000Q4 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000Q5;
+       prmBC000Q5 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000Q6;
+       prmBC000Q6 = new Object[] {
+       new ParDef("WWPNotificationId",GXType.Int64,10,0){Nullable=true}
+       };
+       Object[] prmBC000Q7;
+       prmBC000Q7 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000Q8;
+       prmBC000Q8 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000Q9;
+       prmBC000Q9 = new Object[] {
+       new ParDef("WWPMailSubject",GXType.VarChar,80,0) ,
+       new ParDef("WWPMailBody",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPMailTo",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPMailCC",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPMailBCC",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPMailSenderAddress",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPMailSenderName",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPMailStatus",GXType.Int16,4,0) ,
+       new ParDef("WWPMailCreated",GXType.DateTime2,10,12) ,
+       new ParDef("WWPMailScheduled",GXType.DateTime2,10,12) ,
+       new ParDef("WWPMailProcessed",GXType.DateTime2,10,12){Nullable=true} ,
+       new ParDef("WWPMailDetail",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPNotificationId",GXType.Int64,10,0){Nullable=true}
+       };
+       Object[] prmBC000Q10;
+       prmBC000Q10 = new Object[] {
+       };
+       Object[] prmBC000Q11;
+       prmBC000Q11 = new Object[] {
+       new ParDef("WWPMailSubject",GXType.VarChar,80,0) ,
+       new ParDef("WWPMailBody",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPMailTo",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPMailCC",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPMailBCC",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPMailSenderAddress",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPMailSenderName",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPMailStatus",GXType.Int16,4,0) ,
+       new ParDef("WWPMailCreated",GXType.DateTime2,10,12) ,
+       new ParDef("WWPMailScheduled",GXType.DateTime2,10,12) ,
+       new ParDef("WWPMailProcessed",GXType.DateTime2,10,12){Nullable=true} ,
+       new ParDef("WWPMailDetail",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPNotificationId",GXType.Int64,10,0){Nullable=true} ,
+       new ParDef("WWPMailId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000Q12;
+       prmBC000Q12 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000Q13;
+       prmBC000Q13 = new Object[] {
+       new ParDef("WWPNotificationId",GXType.Int64,10,0){Nullable=true}
+       };
+       Object[] prmBC000Q14;
+       prmBC000Q14 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000Q15;
+       prmBC000Q15 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0) ,
+       new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
+       };
+       Object[] prmBC000Q16;
+       prmBC000Q16 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0) ,
+       new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
+       };
+       Object[] prmBC000Q17;
+       prmBC000Q17 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0) ,
+       new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0) ,
+       new ParDef("WWPMailAttachmentFile",GXType.LongVarChar,2097152,0)
+       };
+       Object[] prmBC000Q18;
+       prmBC000Q18 = new Object[] {
+       new ParDef("WWPMailAttachmentFile",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPMailId",GXType.Int64,10,0) ,
+       new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
+       };
+       Object[] prmBC000Q19;
+       prmBC000Q19 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0) ,
+       new ParDef("WWPMailAttachmentName",GXType.VarChar,40,0)
+       };
+       Object[] prmBC000Q20;
+       prmBC000Q20 = new Object[] {
+       new ParDef("WWPMailId",GXType.Int64,10,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000Q2", "SELECT WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName  FOR UPDATE OF WWP_MailAttachments",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q3", "SELECT WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q4", "SELECT WWPMailId, WWPMailSubject, WWPMailBody, WWPMailTo, WWPMailCC, WWPMailBCC, WWPMailSenderAddress, WWPMailSenderName, WWPMailStatus, WWPMailCreated, WWPMailScheduled, WWPMailProcessed, WWPMailDetail, WWPNotificationId FROM WWP_Mail WHERE WWPMailId = :WWPMailId  FOR UPDATE OF WWP_Mail",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q5", "SELECT WWPMailId, WWPMailSubject, WWPMailBody, WWPMailTo, WWPMailCC, WWPMailBCC, WWPMailSenderAddress, WWPMailSenderName, WWPMailStatus, WWPMailCreated, WWPMailScheduled, WWPMailProcessed, WWPMailDetail, WWPNotificationId FROM WWP_Mail WHERE WWPMailId = :WWPMailId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q6", "SELECT WWPNotificationCreated FROM WWP_Notification WHERE WWPNotificationId = :WWPNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q7", "SELECT TM1.WWPMailId, TM1.WWPMailSubject, TM1.WWPMailBody, TM1.WWPMailTo, TM1.WWPMailCC, TM1.WWPMailBCC, TM1.WWPMailSenderAddress, TM1.WWPMailSenderName, TM1.WWPMailStatus, TM1.WWPMailCreated, TM1.WWPMailScheduled, TM1.WWPMailProcessed, TM1.WWPMailDetail, T2.WWPNotificationCreated, TM1.WWPNotificationId FROM (WWP_Mail TM1 LEFT JOIN WWP_Notification T2 ON T2.WWPNotificationId = TM1.WWPNotificationId) WHERE TM1.WWPMailId = :WWPMailId ORDER BY TM1.WWPMailId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q7,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q8", "SELECT WWPMailId FROM WWP_Mail WHERE WWPMailId = :WWPMailId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q8,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q9", "SAVEPOINT gxupdate;INSERT INTO WWP_Mail(WWPMailSubject, WWPMailBody, WWPMailTo, WWPMailCC, WWPMailBCC, WWPMailSenderAddress, WWPMailSenderName, WWPMailStatus, WWPMailCreated, WWPMailScheduled, WWPMailProcessed, WWPMailDetail, WWPNotificationId) VALUES(:WWPMailSubject, :WWPMailBody, :WWPMailTo, :WWPMailCC, :WWPMailBCC, :WWPMailSenderAddress, :WWPMailSenderName, :WWPMailStatus, :WWPMailCreated, :WWPMailScheduled, :WWPMailProcessed, :WWPMailDetail, :WWPNotificationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000Q9)
+          ,new CursorDef("BC000Q10", "SELECT currval('WWPMailId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q10,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q11", "SAVEPOINT gxupdate;UPDATE WWP_Mail SET WWPMailSubject=:WWPMailSubject, WWPMailBody=:WWPMailBody, WWPMailTo=:WWPMailTo, WWPMailCC=:WWPMailCC, WWPMailBCC=:WWPMailBCC, WWPMailSenderAddress=:WWPMailSenderAddress, WWPMailSenderName=:WWPMailSenderName, WWPMailStatus=:WWPMailStatus, WWPMailCreated=:WWPMailCreated, WWPMailScheduled=:WWPMailScheduled, WWPMailProcessed=:WWPMailProcessed, WWPMailDetail=:WWPMailDetail, WWPNotificationId=:WWPNotificationId  WHERE WWPMailId = :WWPMailId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Q11)
+          ,new CursorDef("BC000Q12", "SAVEPOINT gxupdate;DELETE FROM WWP_Mail  WHERE WWPMailId = :WWPMailId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Q12)
+          ,new CursorDef("BC000Q13", "SELECT WWPNotificationCreated FROM WWP_Notification WHERE WWPNotificationId = :WWPNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q13,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q14", "SELECT TM1.WWPMailId, TM1.WWPMailSubject, TM1.WWPMailBody, TM1.WWPMailTo, TM1.WWPMailCC, TM1.WWPMailBCC, TM1.WWPMailSenderAddress, TM1.WWPMailSenderName, TM1.WWPMailStatus, TM1.WWPMailCreated, TM1.WWPMailScheduled, TM1.WWPMailProcessed, TM1.WWPMailDetail, T2.WWPNotificationCreated, TM1.WWPNotificationId FROM (WWP_Mail TM1 LEFT JOIN WWP_Notification T2 ON T2.WWPNotificationId = TM1.WWPNotificationId) WHERE TM1.WWPMailId = :WWPMailId ORDER BY TM1.WWPMailId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q14,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q15", "SELECT WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId and WWPMailAttachmentName = ( :WWPMailAttachmentName) ORDER BY WWPMailId, WWPMailAttachmentName ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q15,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q16", "SELECT WWPMailId, WWPMailAttachmentName FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q16,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000Q17", "SAVEPOINT gxupdate;INSERT INTO WWP_MailAttachments(WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile) VALUES(:WWPMailId, :WWPMailAttachmentName, :WWPMailAttachmentFile);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000Q17)
+          ,new CursorDef("BC000Q18", "SAVEPOINT gxupdate;UPDATE WWP_MailAttachments SET WWPMailAttachmentFile=:WWPMailAttachmentFile  WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Q18)
+          ,new CursorDef("BC000Q19", "SAVEPOINT gxupdate;DELETE FROM WWP_MailAttachments  WHERE WWPMailId = :WWPMailId AND WWPMailAttachmentName = :WWPMailAttachmentName;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Q19)
+          ,new CursorDef("BC000Q20", "SELECT WWPMailId, WWPMailAttachmentName, WWPMailAttachmentFile FROM WWP_MailAttachments WHERE WWPMailId = :WWPMailId ORDER BY WWPMailId, WWPMailAttachmentName ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Q20,11, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 1 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 2 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[6])[0] = rslt.wasNull(5);
+             ((string[]) buf[7])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[8])[0] = rslt.wasNull(6);
+             ((string[]) buf[9])[0] = rslt.getLongVarchar(7);
+             ((string[]) buf[10])[0] = rslt.getLongVarchar(8);
+             ((short[]) buf[11])[0] = rslt.getShort(9);
+             ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10, true);
+             ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(11, true);
+             ((DateTime[]) buf[14])[0] = rslt.getGXDateTime(12, true);
+             ((bool[]) buf[15])[0] = rslt.wasNull(12);
+             ((string[]) buf[16])[0] = rslt.getLongVarchar(13);
+             ((bool[]) buf[17])[0] = rslt.wasNull(13);
+             ((long[]) buf[18])[0] = rslt.getLong(14);
+             ((bool[]) buf[19])[0] = rslt.wasNull(14);
+             return;
+          case 3 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[6])[0] = rslt.wasNull(5);
+             ((string[]) buf[7])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[8])[0] = rslt.wasNull(6);
+             ((string[]) buf[9])[0] = rslt.getLongVarchar(7);
+             ((string[]) buf[10])[0] = rslt.getLongVarchar(8);
+             ((short[]) buf[11])[0] = rslt.getShort(9);
+             ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10, true);
+             ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(11, true);
+             ((DateTime[]) buf[14])[0] = rslt.getGXDateTime(12, true);
+             ((bool[]) buf[15])[0] = rslt.wasNull(12);
+             ((string[]) buf[16])[0] = rslt.getLongVarchar(13);
+             ((bool[]) buf[17])[0] = rslt.wasNull(13);
+             ((long[]) buf[18])[0] = rslt.getLong(14);
+             ((bool[]) buf[19])[0] = rslt.wasNull(14);
+             return;
+          case 4 :
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1, true);
+             return;
+          case 5 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[6])[0] = rslt.wasNull(5);
+             ((string[]) buf[7])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[8])[0] = rslt.wasNull(6);
+             ((string[]) buf[9])[0] = rslt.getLongVarchar(7);
+             ((string[]) buf[10])[0] = rslt.getLongVarchar(8);
+             ((short[]) buf[11])[0] = rslt.getShort(9);
+             ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10, true);
+             ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(11, true);
+             ((DateTime[]) buf[14])[0] = rslt.getGXDateTime(12, true);
+             ((bool[]) buf[15])[0] = rslt.wasNull(12);
+             ((string[]) buf[16])[0] = rslt.getLongVarchar(13);
+             ((bool[]) buf[17])[0] = rslt.wasNull(13);
+             ((DateTime[]) buf[18])[0] = rslt.getGXDateTime(14, true);
+             ((long[]) buf[19])[0] = rslt.getLong(15);
+             ((bool[]) buf[20])[0] = rslt.wasNull(15);
+             return;
+          case 6 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 8 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 11 :
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1, true);
+             return;
+          case 12 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[6])[0] = rslt.wasNull(5);
+             ((string[]) buf[7])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[8])[0] = rslt.wasNull(6);
+             ((string[]) buf[9])[0] = rslt.getLongVarchar(7);
+             ((string[]) buf[10])[0] = rslt.getLongVarchar(8);
+             ((short[]) buf[11])[0] = rslt.getShort(9);
+             ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10, true);
+             ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(11, true);
+             ((DateTime[]) buf[14])[0] = rslt.getGXDateTime(12, true);
+             ((bool[]) buf[15])[0] = rslt.wasNull(12);
+             ((string[]) buf[16])[0] = rslt.getLongVarchar(13);
+             ((bool[]) buf[17])[0] = rslt.wasNull(13);
+             ((DateTime[]) buf[18])[0] = rslt.getGXDateTime(14, true);
+             ((long[]) buf[19])[0] = rslt.getLong(15);
+             ((bool[]) buf[20])[0] = rslt.wasNull(15);
+             return;
+          case 13 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 14 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 18 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+    }
+ }
 
 }
 

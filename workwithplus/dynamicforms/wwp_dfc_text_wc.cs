@@ -26,6 +26,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -39,6 +40,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -234,7 +236,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WWP_Dynamic Form Creation_Text_WC") ;
+            context.SendWebValue( context.GetMessage( "WWP_Dynamic Form Creation_Text_WC", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -288,7 +290,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "workwithplus.dynamicforms.wwp_dfc_text_wc.aspx"+UrlEncode(StringUtil.RTrim(AV16WWPDynamicFormMode)) + "," + UrlEncode(StringUtil.LTrimStr(AV19WWPFormElementId,4,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV11SessionId,4,0));
             context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("workwithplus.dynamicforms.wwp_dfc_text_wc.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
@@ -343,9 +345,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISLASTELEMENT", GetSecureSignedToken( sPrefix, AV8IsLastElement, context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vPARENTISGRIDMULTIPLEDATA", AV10ParentIsGridMultipleData);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPARENTISGRIDMULTIPLEDATA", GetSecureSignedToken( sPrefix, AV10ParentIsGridMultipleData, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWP_DYNAMICFORMDATATYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15WWP_DynamicFormDataType), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWP_DYNAMICFORMDATATYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15WWP_DynamicFormDataType), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWP_DYNAMICFORMDATATYPE", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV15WWP_DynamicFormDataType), "Z9"), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -354,14 +356,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV16WWPDynamicFormMode", StringUtil.RTrim( wcpOAV16WWPDynamicFormMode));
-         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV19WWPFormElementId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV19WWPFormElementId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV11SessionId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV11SessionId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV19WWPFormElementId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV19WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV11SessionId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV11SessionId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISFIRSTELEMENT", AV7IsFirstElement);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISFIRSTELEMENT", GetSecureSignedToken( sPrefix, AV7IsFirstElement, context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISLASTELEMENT", AV8IsLastElement);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISLASTELEMENT", GetSecureSignedToken( sPrefix, AV8IsLastElement, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSESSIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11SessionId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMELEMENTID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19WWPFormElementId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSESSIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11SessionId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMELEMENTID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vNEEDTORELOADWC", AV9NeedToReloadWC);
          if ( context.isAjaxRequest( ) )
          {
@@ -373,9 +375,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vPARENTISGRIDMULTIPLEDATA", AV10ParentIsGridMultipleData);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPARENTISGRIDMULTIPLEDATA", GetSecureSignedToken( sPrefix, AV10ParentIsGridMultipleData, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWP_DYNAMICFORMDATATYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15WWP_DynamicFormDataType), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWP_DYNAMICFORMDATATYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15WWP_DynamicFormDataType), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWP_DYNAMICFORMDATATYPE", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV15WWP_DynamicFormDataType), "Z9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWP_DF_CHARCONTROLTYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV14WWP_DF_CharControlType), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWP_DF_CHARCONTROLTYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV14WWP_DF_CharControlType), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWWP_DF_CHARMETADATA", AV12WWP_DF_CharMetadata);
@@ -466,7 +468,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       public override string GetPgmdesc( )
       {
-         return "WWP_Dynamic Form Creation_Text_WC" ;
+         return context.GetMessage( "WWP_Dynamic Form Creation_Text_WC", "") ;
       }
 
       protected void WB330( )
@@ -627,7 +629,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          wbStart = 0;
          if ( StringUtil.Len( sPrefix) != 0 )
          {
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          if ( StringUtil.Len( sPrefix) == 0 )
          {
@@ -638,7 +640,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WWP_Dynamic Form Creation_Text_WC", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WWP_Dynamic Form Creation_Text_WC", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -939,18 +941,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             {
                initialize_properties( ) ;
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  GxWebError = 1;
-                  context.HttpContext.Response.StatusCode = 403;
-                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-                  context.WriteHtmlText( "<p /><hr />") ;
-                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-               }
                if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
                {
                   GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -1092,7 +1085,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISLASTELEMENT", GetSecureSignedToken( sPrefix, AV8IsLastElement, context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vPARENTISGRIDMULTIPLEDATA", AV10ParentIsGridMultipleData);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPARENTISGRIDMULTIPLEDATA", GetSecureSignedToken( sPrefix, AV10ParentIsGridMultipleData, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWP_DYNAMICFORMDATATYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15WWP_DynamicFormDataType), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWP_DYNAMICFORMDATATYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15WWP_DynamicFormDataType), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWP_DYNAMICFORMDATATYPE", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV15WWP_DynamicFormDataType), "Z9"), context));
       }
 
@@ -1118,8 +1111,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             /* Read saved SDTs. */
             /* Read saved values. */
             wcpOAV16WWPDynamicFormMode = cgiGet( sPrefix+"wcpOAV16WWPDynamicFormMode");
-            wcpOAV19WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV19WWPFormElementId"), ".", ","), 18, MidpointRounding.ToEven));
-            wcpOAV11SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV11SessionId"), ".", ","), 18, MidpointRounding.ToEven));
+            wcpOAV19WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV19WWPFormElementId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            wcpOAV11SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV11SessionId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Dvelop_confirmpanel_btndeleteelement_Result = cgiGet( sPrefix+"DVELOP_CONFIRMPANEL_BTNDELETEELEMENT_Result");
             Settings_modal_Result = cgiGet( sPrefix+"SETTINGS_MODAL_Result");
             /* Read variables values. */
@@ -1127,7 +1120,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             AssignAttri(sPrefix, false, "AV5Data", AV5Data);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -1172,11 +1165,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             ucBtndeleteelement.SendProperty(context, sPrefix, false, Btndeleteelement_Internalname, "Caption", Btndeleteelement_Caption);
             if ( AV10ParentIsGridMultipleData )
             {
-               Btnmoveup_Tooltiptext = "Move left";
+               Btnmoveup_Tooltiptext = context.GetMessage( "Move left", "");
                ucBtnmoveup.SendProperty(context, sPrefix, false, Btnmoveup_Internalname, "TooltipText", Btnmoveup_Tooltiptext);
                Btnmoveup_Beforeiconclass = "fas fa-arrow-left";
                ucBtnmoveup.SendProperty(context, sPrefix, false, Btnmoveup_Internalname, "BeforeIconClass", Btnmoveup_Beforeiconclass);
-               Btnmovedown_Tooltiptext = "Move right";
+               Btnmovedown_Tooltiptext = context.GetMessage( "Move right", "");
                ucBtnmovedown.SendProperty(context, sPrefix, false, Btnmovedown_Internalname, "TooltipText", Btnmovedown_Tooltiptext);
                Btnmovedown_Beforeiconclass = "fas fa-arrow-right";
                ucBtnmovedown.SendProperty(context, sPrefix, false, Btnmovedown_Internalname, "BeforeIconClass", Btnmovedown_Beforeiconclass);
@@ -1568,7 +1561,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected override EncryptionType GetEncryptionType( )
       {
-         return EncryptionType.SESSION ;
+         return EncryptionType.SITE ;
       }
 
       public override void componentbind( Object[] obj )
@@ -1623,8 +1616,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             AV17WWPForm = (GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form)getParm(obj,5);
          }
          wcpOAV16WWPDynamicFormMode = cgiGet( sPrefix+"wcpOAV16WWPDynamicFormMode");
-         wcpOAV19WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV19WWPFormElementId"), ".", ","), 18, MidpointRounding.ToEven));
-         wcpOAV11SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV11SessionId"), ".", ","), 18, MidpointRounding.ToEven));
+         wcpOAV19WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV19WWPFormElementId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         wcpOAV11SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV11SessionId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(AV16WWPDynamicFormMode, wcpOAV16WWPDynamicFormMode) != 0 ) || ( AV19WWPFormElementId != wcpOAV19WWPFormElementId ) || ( AV11SessionId != wcpOAV11SessionId ) ) )
          {
             setjustcreated();
@@ -1650,22 +1643,22 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          sCtrlAV19WWPFormElementId = cgiGet( sPrefix+"AV19WWPFormElementId_CTRL");
          if ( StringUtil.Len( sCtrlAV19WWPFormElementId) > 0 )
          {
-            AV19WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV19WWPFormElementId), ".", ","), 18, MidpointRounding.ToEven));
+            AV19WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV19WWPFormElementId), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AssignAttri(sPrefix, false, "AV19WWPFormElementId", StringUtil.LTrimStr( (decimal)(AV19WWPFormElementId), 4, 0));
          }
          else
          {
-            AV19WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV19WWPFormElementId_PARM"), ".", ","), 18, MidpointRounding.ToEven));
+            AV19WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV19WWPFormElementId_PARM"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
          sCtrlAV11SessionId = cgiGet( sPrefix+"AV11SessionId_CTRL");
          if ( StringUtil.Len( sCtrlAV11SessionId) > 0 )
          {
-            AV11SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV11SessionId), ".", ","), 18, MidpointRounding.ToEven));
+            AV11SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV11SessionId), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AssignAttri(sPrefix, false, "AV11SessionId", StringUtil.LTrimStr( (decimal)(AV11SessionId), 4, 0));
          }
          else
          {
-            AV11SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV11SessionId_PARM"), ".", ","), 18, MidpointRounding.ToEven));
+            AV11SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV11SessionId_PARM"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
          sCtrlAV17WWPForm = cgiGet( sPrefix+"AV17WWPForm_CTRL");
          if ( StringUtil.Len( sCtrlAV17WWPForm) > 0 )
@@ -1726,12 +1719,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV16WWPDynamicFormMode_CTRL", StringUtil.RTrim( sCtrlAV16WWPDynamicFormMode));
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"AV19WWPFormElementId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19WWPFormElementId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"AV19WWPFormElementId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV19WWPFormElementId)) > 0 )
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV19WWPFormElementId_CTRL", StringUtil.RTrim( sCtrlAV19WWPFormElementId));
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"AV11SessionId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11SessionId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"AV11SessionId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11SessionId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV11SessionId)) > 0 )
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV11SessionId_CTRL", StringUtil.RTrim( sCtrlAV11SessionId));
@@ -1812,7 +1805,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198292417", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115381078", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1828,7 +1821,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dfc_text_wc.js", "?202411198292417", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dfc_text_wc.js", "?2024112115381078", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -1897,10 +1890,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Dvelop_confirmpanel_btndeleteelement_Nobuttoncaption = "WWP_ConfirmTextNo";
          Dvelop_confirmpanel_btndeleteelement_Yesbuttoncaption = "WWP_ConfirmTextYes";
          Dvelop_confirmpanel_btndeleteelement_Confirmationtext = "DF_ConfirmCurrentElementDeletion";
-         Dvelop_confirmpanel_btndeleteelement_Title = "Delete";
+         Dvelop_confirmpanel_btndeleteelement_Title = context.GetMessage( "GX_BtnDelete", "");
          Settings_modal_Bodytype = "WebComponent";
          Settings_modal_Confirmtype = "";
-         Settings_modal_Title = "Element settings";
+         Settings_modal_Title = context.GetMessage( "Element settings", "");
          Settings_modal_Width = "800";
          tblTableactions_Visible = 1;
          Btnmovedown_Visible = Convert.ToBoolean( -1);
@@ -1909,16 +1902,16 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Btnmovedown_Tooltiptext = "Move down";
          Btnmoveup_Beforeiconclass = "fas fa-arrow-up";
          Btnmoveup_Tooltiptext = "Move up";
-         Btndeleteelement_Caption = "Delete";
-         Btnsettings_Caption = "Settings";
-         Btnmovedown_Caption = "Move down";
-         Btnmoveup_Caption = "Move up";
+         Btndeleteelement_Caption = context.GetMessage( "GX_BtnDelete", "");
+         Btnsettings_Caption = context.GetMessage( "WWP_DF_Settings", "");
+         Btnmovedown_Caption = context.GetMessage( "WWP_DF_MoveDown", "");
+         Btnmoveup_Caption = context.GetMessage( "WWP_DF_MoveUp", "");
          edtavData_Jsonclick = "";
          edtavData_Ispassword = 0;
          edtavData_Enabled = 1;
-         edtavData_Caption = "Data";
+         edtavData_Caption = context.GetMessage( "Data", "");
          divDatacellname_Class = "col-xs-12 DataContentCell DscTop";
-         lblDatatitle_Caption = "Title";
+         lblDatatitle_Caption = context.GetMessage( "Title", "");
          divDatatitlecell_Class = "col-xs-12";
          divDatatitlecell_Visible = 1;
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -2133,6 +2126,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private GXUserControl ucSettings_modal ;
       private GXUserControl ucDvelop_confirmpanel_btndeleteelement ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form AV17WWPForm ;

@@ -28,6 +28,7 @@ namespace GeneXus.Programs.workwithplus {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.workwithplus {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -149,7 +151,7 @@ namespace GeneXus.Programs.workwithplus {
             AV15EventEndDate = context.localUtil.YMDHMSToT( (short)(DateTimeUtil.Year( AV12EndDate)), (short)(DateTimeUtil.Month( AV12EndDate)), (short)(DateTimeUtil.Day( AV12EndDate)), (short)(DateTimeUtil.Hour( AV21ToTime)), (short)(DateTimeUtil.Minute( AV21ToTime)), 0);
          }
          AV19Message = new GeneXus.Utils.SdtMessages_Message(context);
-         AV19Message.gxTpr_Description = "In order to add events, you need to add the code in the procedures that are in WorkWithPlus Module / UCCalendar / CalendarUser folder";
+         AV19Message.gxTpr_Description = context.GetMessage( "In order to add events, you need to add the code in the procedures that are in WorkWithPlus Module / UCCalendar / CalendarUser folder", "");
          AV13ErrorMessages.Add(AV19Message, 0);
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
@@ -204,16 +206,16 @@ namespace GeneXus.Programs.workwithplus {
             }
             context.CommitDataStores("workwithplus.wwp_calendar_editevent",pr_default);
             AV14EventCreated = true;
-            AV24EventDescription = "Event: " + AV20Title + " starting from " + context.localUtil.Format( AV17EventStartDate, "99/99/99 99:99") + " to " + context.localUtil.Format( AV15EventEndDate, "99/99/99 99:99");
+            AV24EventDescription = "Event: " + AV20Title + context.GetMessage( " starting from ", "") + context.localUtil.Format( AV17EventStartDate, "99/99/99 99:99") + context.GetMessage( " to ", "") + context.localUtil.Format( AV15EventEndDate, "99/99/99 99:99");
             if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
             {
-               new prc_sendagendanotification(context ).execute(  "New Calendar Event",  AV24EventDescription,  AV30AddressGroup) ;
-               new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "AgendaNotification",  "AgendaEvents",  "",  "",  "New Agenda Created",  AV24EventDescription,  AV24EventDescription,  formatLink("wp_calendaragenda.aspx") ,  "",  "",  true) ;
+               new prc_sendagendanotification(context ).execute(  context.GetMessage( "New Calendar Event", ""),  AV24EventDescription,  AV30AddressGroup) ;
+               new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "AgendaNotification",  "AgendaEvents",  "",  "",  context.GetMessage( "New Agenda Created", ""),  AV24EventDescription,  AV24EventDescription,  formatLink("wp_calendaragenda.aspx") ,  "",  "",  true) ;
             }
             else if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
             {
-               new prc_sendagendanotification(context ).execute(  "Calendar Event Updated",  AV24EventDescription,  AV30AddressGroup) ;
-               new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "AgendaNotification",  "AgendaEvents",  "",  "",  "Agenda Event Updated",  AV24EventDescription,  AV24EventDescription,  formatLink("wp_calendaragenda.aspx") ,  "",  "",  true) ;
+               new prc_sendagendanotification(context ).execute(  context.GetMessage( "Calendar Event Updated", ""),  AV24EventDescription,  AV30AddressGroup) ;
+               new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "AgendaNotification",  "AgendaEvents",  "",  "",  context.GetMessage( "Agenda Event Updated", ""),  AV24EventDescription,  AV24EventDescription,  formatLink("wp_calendaragenda.aspx") ,  "",  "",  true) ;
             }
          }
          else
@@ -250,6 +252,10 @@ namespace GeneXus.Programs.workwithplus {
          AV31Trn_AgendaEventGroup = new SdtTrn_AgendaEventGroup(context);
          AV32ResidentId = Guid.Empty;
          AV24EventDescription = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.wwp_calendar_editevent__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.wwp_calendar_editevent__gam(),
             new Object[][] {
             }
@@ -286,6 +292,7 @@ namespace GeneXus.Programs.workwithplus {
       private Guid A303AgendaCalendarId ;
       private Guid A62ResidentId ;
       private Guid AV32ResidentId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<Guid> AV30AddressGroup ;
@@ -298,10 +305,11 @@ namespace GeneXus.Programs.workwithplus {
       private SdtTrn_AgendaEventGroup AV31Trn_AgendaEventGroup ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP13_ErrorMessages ;
       private bool aP14_EventCreated ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_calendar_editevent__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_calendar_editevent__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -328,49 +336,17 @@ namespace GeneXus.Programs.workwithplus {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_calendar_editevent__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_calendar_editevent__gam : DataStoreHelperBase, IDataStoreHelper
  {
-    protected Object[] conditional_P006T2( IGxContext context ,
-                                           Guid A303AgendaCalendarId ,
-                                           GxSimpleCollection<Guid> AV30AddressGroup ,
-                                           Guid AV9CalendarEventGUID )
-    {
-       System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
-       string scmdbuf;
-       short[] GXv_int2 = new short[1];
-       Object[] GXv_Object3 = new Object[2];
-       scmdbuf = "SELECT AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup";
-       AddWhere(sWhereString, "(AgendaCalendarId = :AV9CalendarEventGUID)");
-       AddWhere(sWhereString, "(Not "+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV30AddressGroup, "AgendaCalendarId IN (", ")")+")");
-       scmdbuf += sWhereString;
-       scmdbuf += " ORDER BY AgendaCalendarId";
-       GXv_Object3[0] = scmdbuf;
-       GXv_Object3[1] = GXv_int2;
-       return GXv_Object3 ;
-    }
-
-    public override Object [] getDynamicStatement( int cursor ,
-                                                   IGxContext context ,
-                                                   Object [] dynConstraints )
-    {
-       switch ( cursor )
-       {
-             case 0 :
-                   return conditional_P006T2(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] , (Guid)dynConstraints[2] );
-       }
-       return base.getDynamicStatement(cursor, context, dynConstraints);
-    }
-
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
      };
   }
 
@@ -379,12 +355,7 @@ namespace GeneXus.Programs.workwithplus {
   {
      if ( def == null )
      {
-        Object[] prmP006T2;
-        prmP006T2 = new Object[] {
-        new ParDef("AV9CalendarEventGUID",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P006T2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006T2,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -393,14 +364,83 @@ namespace GeneXus.Programs.workwithplus {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_calendar_editevent__default : DataStoreHelperBase, IDataStoreHelper
+{
+   protected Object[] conditional_P006T2( IGxContext context ,
+                                          Guid A303AgendaCalendarId ,
+                                          GxSimpleCollection<Guid> AV30AddressGroup ,
+                                          Guid AV9CalendarEventGUID )
+   {
+      System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
+      string scmdbuf;
+      short[] GXv_int2 = new short[1];
+      Object[] GXv_Object3 = new Object[2];
+      scmdbuf = "SELECT AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup";
+      AddWhere(sWhereString, "(AgendaCalendarId = :AV9CalendarEventGUID)");
+      AddWhere(sWhereString, "(Not "+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV30AddressGroup, "AgendaCalendarId IN (", ")")+")");
+      scmdbuf += sWhereString;
+      scmdbuf += " ORDER BY AgendaCalendarId";
+      GXv_Object3[0] = scmdbuf;
+      GXv_Object3[1] = GXv_int2;
+      return GXv_Object3 ;
+   }
+
+   public override Object [] getDynamicStatement( int cursor ,
+                                                  IGxContext context ,
+                                                  Object [] dynConstraints )
+   {
+      switch ( cursor )
+      {
+            case 0 :
+                  return conditional_P006T2(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] , (Guid)dynConstraints[2] );
+      }
+      return base.getDynamicStatement(cursor, context, dynConstraints);
+   }
+
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP006T2;
+       prmP006T2 = new Object[] {
+       new ParDef("AV9CalendarEventGUID",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P006T2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006T2,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+    }
+ }
 
 }
 

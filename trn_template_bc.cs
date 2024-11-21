@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -1111,6 +1113,10 @@ namespace GeneXus.Programs {
          BC00109_A281Trn_TemplateContent = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_template_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_template_bc__gam(),
             new Object[][] {
             }
@@ -1167,6 +1173,7 @@ namespace GeneXus.Programs {
       private Guid Z278Trn_TemplateId ;
       private Guid A278Trn_TemplateId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1192,10 +1199,11 @@ namespace GeneXus.Programs {
       private SdtTrn_Template bcTrn_Template ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_template_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_template_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1222,25 +1230,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_template_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_template_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
      };
   }
 
@@ -1249,53 +1249,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC00102;
-        prmBC00102 = new Object[] {
-        new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00103;
-        prmBC00103 = new Object[] {
-        new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00104;
-        prmBC00104 = new Object[] {
-        new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00105;
-        prmBC00105 = new Object[] {
-        new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00106;
-        prmBC00106 = new Object[] {
-        new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_TemplateName",GXType.VarChar,100,0) ,
-        new ParDef("Trn_TemplateMedia",GXType.VarChar,100,0) ,
-        new ParDef("Trn_TemplateContent",GXType.LongVarChar,2097152,0)
-        };
-        Object[] prmBC00107;
-        prmBC00107 = new Object[] {
-        new ParDef("Trn_TemplateName",GXType.VarChar,100,0) ,
-        new ParDef("Trn_TemplateMedia",GXType.VarChar,100,0) ,
-        new ParDef("Trn_TemplateContent",GXType.LongVarChar,2097152,0) ,
-        new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00108;
-        prmBC00108 = new Object[] {
-        new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00109;
-        prmBC00109 = new Object[] {
-        new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC00102", "SELECT Trn_TemplateId, Trn_TemplateName, Trn_TemplateMedia, Trn_TemplateContent FROM Trn_Template WHERE Trn_TemplateId = :Trn_TemplateId  FOR UPDATE OF Trn_Template",true, GxErrorMask.GX_NOMASK, false, this,prmBC00102,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00103", "SELECT Trn_TemplateId, Trn_TemplateName, Trn_TemplateMedia, Trn_TemplateContent FROM Trn_Template WHERE Trn_TemplateId = :Trn_TemplateId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00103,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00104", "SELECT TM1.Trn_TemplateId, TM1.Trn_TemplateName, TM1.Trn_TemplateMedia, TM1.Trn_TemplateContent FROM Trn_Template TM1 WHERE TM1.Trn_TemplateId = :Trn_TemplateId ORDER BY TM1.Trn_TemplateId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00104,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00105", "SELECT Trn_TemplateId FROM Trn_Template WHERE Trn_TemplateId = :Trn_TemplateId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00105,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00106", "SAVEPOINT gxupdate;INSERT INTO Trn_Template(Trn_TemplateId, Trn_TemplateName, Trn_TemplateMedia, Trn_TemplateContent) VALUES(:Trn_TemplateId, :Trn_TemplateName, :Trn_TemplateMedia, :Trn_TemplateContent);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00106)
-           ,new CursorDef("BC00107", "SAVEPOINT gxupdate;UPDATE Trn_Template SET Trn_TemplateName=:Trn_TemplateName, Trn_TemplateMedia=:Trn_TemplateMedia, Trn_TemplateContent=:Trn_TemplateContent  WHERE Trn_TemplateId = :Trn_TemplateId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00107)
-           ,new CursorDef("BC00108", "SAVEPOINT gxupdate;DELETE FROM Trn_Template  WHERE Trn_TemplateId = :Trn_TemplateId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00108)
-           ,new CursorDef("BC00109", "SELECT TM1.Trn_TemplateId, TM1.Trn_TemplateName, TM1.Trn_TemplateMedia, TM1.Trn_TemplateContent FROM Trn_Template TM1 WHERE TM1.Trn_TemplateId = :Trn_TemplateId ORDER BY TM1.Trn_TemplateId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00109,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1304,37 +1258,123 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_template_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC00102;
+       prmBC00102 = new Object[] {
+       new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00103;
+       prmBC00103 = new Object[] {
+       new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00104;
+       prmBC00104 = new Object[] {
+       new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00105;
+       prmBC00105 = new Object[] {
+       new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00106;
+       prmBC00106 = new Object[] {
+       new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("Trn_TemplateName",GXType.VarChar,100,0) ,
+       new ParDef("Trn_TemplateMedia",GXType.VarChar,100,0) ,
+       new ParDef("Trn_TemplateContent",GXType.LongVarChar,2097152,0)
+       };
+       Object[] prmBC00107;
+       prmBC00107 = new Object[] {
+       new ParDef("Trn_TemplateName",GXType.VarChar,100,0) ,
+       new ParDef("Trn_TemplateMedia",GXType.VarChar,100,0) ,
+       new ParDef("Trn_TemplateContent",GXType.LongVarChar,2097152,0) ,
+       new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00108;
+       prmBC00108 = new Object[] {
+       new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00109;
+       prmBC00109 = new Object[] {
+       new ParDef("Trn_TemplateId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC00102", "SELECT Trn_TemplateId, Trn_TemplateName, Trn_TemplateMedia, Trn_TemplateContent FROM Trn_Template WHERE Trn_TemplateId = :Trn_TemplateId  FOR UPDATE OF Trn_Template",true, GxErrorMask.GX_NOMASK, false, this,prmBC00102,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00103", "SELECT Trn_TemplateId, Trn_TemplateName, Trn_TemplateMedia, Trn_TemplateContent FROM Trn_Template WHERE Trn_TemplateId = :Trn_TemplateId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00103,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00104", "SELECT TM1.Trn_TemplateId, TM1.Trn_TemplateName, TM1.Trn_TemplateMedia, TM1.Trn_TemplateContent FROM Trn_Template TM1 WHERE TM1.Trn_TemplateId = :Trn_TemplateId ORDER BY TM1.Trn_TemplateId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00104,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00105", "SELECT Trn_TemplateId FROM Trn_Template WHERE Trn_TemplateId = :Trn_TemplateId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00105,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00106", "SAVEPOINT gxupdate;INSERT INTO Trn_Template(Trn_TemplateId, Trn_TemplateName, Trn_TemplateMedia, Trn_TemplateContent) VALUES(:Trn_TemplateId, :Trn_TemplateName, :Trn_TemplateMedia, :Trn_TemplateContent);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00106)
+          ,new CursorDef("BC00107", "SAVEPOINT gxupdate;UPDATE Trn_Template SET Trn_TemplateName=:Trn_TemplateName, Trn_TemplateMedia=:Trn_TemplateMedia, Trn_TemplateContent=:Trn_TemplateContent  WHERE Trn_TemplateId = :Trn_TemplateId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00107)
+          ,new CursorDef("BC00108", "SAVEPOINT gxupdate;DELETE FROM Trn_Template  WHERE Trn_TemplateId = :Trn_TemplateId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00108)
+          ,new CursorDef("BC00109", "SELECT TM1.Trn_TemplateId, TM1.Trn_TemplateName, TM1.Trn_TemplateMedia, TM1.Trn_TemplateContent FROM Trn_Template TM1 WHERE TM1.Trn_TemplateId = :Trn_TemplateId ORDER BY TM1.Trn_TemplateId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00109,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             return;
+    }
+ }
 
 }
 

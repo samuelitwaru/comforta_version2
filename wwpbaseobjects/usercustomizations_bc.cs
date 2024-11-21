@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -1072,6 +1074,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          BC000V9_A246UserCustomizationsValue = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.usercustomizations_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.usercustomizations_bc__gam(),
             new Object[][] {
             }
@@ -1119,6 +1125,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string A246UserCustomizationsValue ;
       private string Z245UserCustomizationsKey ;
       private string A245UserCustomizationsKey ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1139,10 +1146,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GeneXus.Programs.wwpbaseobjects.SdtUserCustomizations bcwwpbaseobjects_UserCustomizations ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class usercustomizations_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class usercustomizations_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1169,25 +1177,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class usercustomizations_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class usercustomizations_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
      };
   }
 
@@ -1196,57 +1196,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
   {
      if ( def == null )
      {
-        Object[] prmBC000V2;
-        prmBC000V2 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmBC000V3;
-        prmBC000V3 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmBC000V4;
-        prmBC000V4 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmBC000V5;
-        prmBC000V5 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmBC000V6;
-        prmBC000V6 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0) ,
-        new ParDef("UserCustomizationsValue",GXType.LongVarChar,2097152,0)
-        };
-        Object[] prmBC000V7;
-        prmBC000V7 = new Object[] {
-        new ParDef("UserCustomizationsValue",GXType.LongVarChar,2097152,0) ,
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmBC000V8;
-        prmBC000V8 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmBC000V9;
-        prmBC000V9 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000V2", "SELECT UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey  FOR UPDATE OF UserCustomizations",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000V3", "SELECT UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000V4", "SELECT TM1.UserCustomizationsId, TM1.UserCustomizationsKey, TM1.UserCustomizationsValue FROM UserCustomizations TM1 WHERE TM1.UserCustomizationsId = ( :UserCustomizationsId) and TM1.UserCustomizationsKey = ( :UserCustomizationsKey) ORDER BY TM1.UserCustomizationsId, TM1.UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000V5", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000V6", "SAVEPOINT gxupdate;INSERT INTO UserCustomizations(UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue) VALUES(:UserCustomizationsId, :UserCustomizationsKey, :UserCustomizationsValue);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000V6)
-           ,new CursorDef("BC000V7", "SAVEPOINT gxupdate;UPDATE UserCustomizations SET UserCustomizationsValue=:UserCustomizationsValue  WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000V7)
-           ,new CursorDef("BC000V8", "SAVEPOINT gxupdate;DELETE FROM UserCustomizations  WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000V8)
-           ,new CursorDef("BC000V9", "SELECT TM1.UserCustomizationsId, TM1.UserCustomizationsKey, TM1.UserCustomizationsValue FROM UserCustomizations TM1 WHERE TM1.UserCustomizationsId = ( :UserCustomizationsId) and TM1.UserCustomizationsKey = ( :UserCustomizationsKey) ORDER BY TM1.UserCustomizationsId, TM1.UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V9,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1255,34 +1205,124 @@ namespace GeneXus.Programs.wwpbaseobjects {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 7 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class usercustomizations_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000V2;
+       prmBC000V2 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmBC000V3;
+       prmBC000V3 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmBC000V4;
+       prmBC000V4 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmBC000V5;
+       prmBC000V5 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmBC000V6;
+       prmBC000V6 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0) ,
+       new ParDef("UserCustomizationsValue",GXType.LongVarChar,2097152,0)
+       };
+       Object[] prmBC000V7;
+       prmBC000V7 = new Object[] {
+       new ParDef("UserCustomizationsValue",GXType.LongVarChar,2097152,0) ,
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmBC000V8;
+       prmBC000V8 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmBC000V9;
+       prmBC000V9 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000V2", "SELECT UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey  FOR UPDATE OF UserCustomizations",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000V3", "SELECT UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000V4", "SELECT TM1.UserCustomizationsId, TM1.UserCustomizationsKey, TM1.UserCustomizationsValue FROM UserCustomizations TM1 WHERE TM1.UserCustomizationsId = ( :UserCustomizationsId) and TM1.UserCustomizationsKey = ( :UserCustomizationsKey) ORDER BY TM1.UserCustomizationsId, TM1.UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000V5", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000V6", "SAVEPOINT gxupdate;INSERT INTO UserCustomizations(UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue) VALUES(:UserCustomizationsId, :UserCustomizationsKey, :UserCustomizationsValue);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000V6)
+          ,new CursorDef("BC000V7", "SAVEPOINT gxupdate;UPDATE UserCustomizations SET UserCustomizationsValue=:UserCustomizationsValue  WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000V7)
+          ,new CursorDef("BC000V8", "SAVEPOINT gxupdate;DELETE FROM UserCustomizations  WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000V8)
+          ,new CursorDef("BC000V9", "SELECT TM1.UserCustomizationsId, TM1.UserCustomizationsKey, TM1.UserCustomizationsValue FROM UserCustomizations TM1 WHERE TM1.UserCustomizationsId = ( :UserCustomizationsId) and TM1.UserCustomizationsKey = ( :UserCustomizationsKey) ORDER BY TM1.UserCustomizationsId, TM1.UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000V9,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 7 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+    }
+ }
 
 }
 

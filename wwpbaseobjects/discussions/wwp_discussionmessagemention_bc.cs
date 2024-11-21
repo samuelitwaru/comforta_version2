@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -172,7 +174,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(2, new Object[] {A200WWPDiscussionMessageId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_DiscussionMessage'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_DiscussionMessage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
             AnyError = 1;
          }
          A203WWPDiscussionMessageDate = BC000S4_A203WWPDiscussionMessageDate[0];
@@ -181,7 +183,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(3, new Object[] {A201WWPDiscussionMentionUserId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'Discussion Message Mention User'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Mention User", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
             AnyError = 1;
          }
          A202WWPDiscussionMentionUserName = BC000S5_A202WWPDiscussionMentionUserName[0];
@@ -675,7 +677,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(8, new Object[] {A200WWPDiscussionMessageId});
             if ( (pr_default.getStatus(8) == 101) )
             {
-               GX_msglist.addItem("No matching 'WWP_DiscussionMessage'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_DiscussionMessage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
                AnyError = 1;
             }
             A203WWPDiscussionMessageDate = BC000S10_A203WWPDiscussionMessageDate[0];
@@ -684,7 +686,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(9, new Object[] {A201WWPDiscussionMentionUserId});
             if ( (pr_default.getStatus(9) == 101) )
             {
-               GX_msglist.addItem("No matching 'Discussion Message Mention User'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Mention User", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
                AnyError = 1;
             }
             A202WWPDiscussionMentionUserName = BC000S11_A202WWPDiscussionMentionUserName[0];
@@ -723,7 +725,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(8, new Object[] {A200WWPDiscussionMessageId});
             if ( (pr_default.getStatus(8) == 101) )
             {
-               GX_msglist.addItem("No matching 'WWP_DiscussionMessage'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_DiscussionMessage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGEID");
                AnyError = 1;
             }
             A203WWPDiscussionMessageDate = BC000S10_A203WWPDiscussionMessageDate[0];
@@ -732,7 +734,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(9, new Object[] {A201WWPDiscussionMentionUserId});
             if ( (pr_default.getStatus(9) == 101) )
             {
-               GX_msglist.addItem("No matching 'Discussion Message Mention User'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Mention User", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMENTIONUSERID");
                AnyError = 1;
             }
             A202WWPDiscussionMentionUserName = BC000S11_A202WWPDiscussionMentionUserName[0];
@@ -1157,6 +1159,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          BC000S12_A201WWPDiscussionMentionUserId = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.discussions.wwp_discussionmessagemention_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.discussions.wwp_discussionmessagemention_bc__gam(),
             new Object[][] {
             }
@@ -1216,6 +1222,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private DateTime A203WWPDiscussionMessageDate ;
       private string Z202WWPDiscussionMentionUserName ;
       private string A202WWPDiscussionMentionUserName ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1240,10 +1247,11 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private GeneXus.Programs.wwpbaseobjects.discussions.SdtWWP_DiscussionMessageMention bcwwpbaseobjects_discussions_WWP_DiscussionMessageMention ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_discussionmessagemention_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_discussionmessagemention_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1270,28 +1278,17 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_discussionmessagemention_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_discussionmessagemention_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new ForEachCursor(def[9])
-       ,new ForEachCursor(def[10])
      };
   }
 
@@ -1300,69 +1297,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
   {
      if ( def == null )
      {
-        Object[] prmBC000S2;
-        prmBC000S2 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
-        Object[] prmBC000S3;
-        prmBC000S3 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
-        Object[] prmBC000S4;
-        prmBC000S4 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000S5;
-        prmBC000S5 = new Object[] {
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
-        Object[] prmBC000S6;
-        prmBC000S6 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
-        Object[] prmBC000S7;
-        prmBC000S7 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
-        Object[] prmBC000S8;
-        prmBC000S8 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
-        Object[] prmBC000S9;
-        prmBC000S9 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
-        Object[] prmBC000S10;
-        prmBC000S10 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000S11;
-        prmBC000S11 = new Object[] {
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
-        Object[] prmBC000S12;
-        prmBC000S12 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000S2", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId AND WWPDiscussionMentionUserId = :WWPDiscussionMentionUserId  FOR UPDATE OF WWP_DiscussionMessageMention",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000S3", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId AND WWPDiscussionMentionUserId = :WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000S4", "SELECT WWPDiscussionMessageDate FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000S5", "SELECT WWPUserExtendedFullName AS WWPDiscussionMentionUserName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000S6", "SELECT T2.WWPDiscussionMessageDate, T3.WWPUserExtendedFullName AS WWPDiscussionMentionUserName, TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMentionUserId AS WWPDiscussionMentionUserId FROM ((WWP_DiscussionMessageMention TM1 INNER JOIN WWP_DiscussionMessage T2 ON T2.WWPDiscussionMessageId = TM1.WWPDiscussionMessageId) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPDiscussionMentionUserId) WHERE TM1.WWPDiscussionMessageId = :WWPDiscussionMessageId and TM1.WWPDiscussionMentionUserId = ( :WWPDiscussionMentionUserId) ORDER BY TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S6,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000S7", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId AND WWPDiscussionMentionUserId = :WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S7,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000S8", "SAVEPOINT gxupdate;INSERT INTO WWP_DiscussionMessageMention(WWPDiscussionMessageId, WWPDiscussionMentionUserId) VALUES(:WWPDiscussionMessageId, :WWPDiscussionMentionUserId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000S8)
-           ,new CursorDef("BC000S9", "SAVEPOINT gxupdate;DELETE FROM WWP_DiscussionMessageMention  WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId AND WWPDiscussionMentionUserId = :WWPDiscussionMentionUserId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000S9)
-           ,new CursorDef("BC000S10", "SELECT WWPDiscussionMessageDate FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S10,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000S11", "SELECT WWPUserExtendedFullName AS WWPDiscussionMentionUserName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S11,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000S12", "SELECT T2.WWPDiscussionMessageDate, T3.WWPUserExtendedFullName AS WWPDiscussionMentionUserName, TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMentionUserId AS WWPDiscussionMentionUserId FROM ((WWP_DiscussionMessageMention TM1 INNER JOIN WWP_DiscussionMessage T2 ON T2.WWPDiscussionMessageId = TM1.WWPDiscussionMessageId) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPDiscussionMentionUserId) WHERE TM1.WWPDiscussionMessageId = :WWPDiscussionMessageId and TM1.WWPDiscussionMentionUserId = ( :WWPDiscussionMentionUserId) ORDER BY TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S12,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1371,46 +1306,151 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 40);
-              return;
-           case 1 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 40);
-              return;
-           case 2 :
-              ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 4 :
-              ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((long[]) buf[2])[0] = rslt.getLong(3);
-              ((string[]) buf[3])[0] = rslt.getString(4, 40);
-              return;
-           case 5 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 40);
-              return;
-           case 8 :
-              ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
-              return;
-           case 9 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 10 :
-              ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((long[]) buf[2])[0] = rslt.getLong(3);
-              ((string[]) buf[3])[0] = rslt.getString(4, 40);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_discussionmessagemention_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new ForEachCursor(def[9])
+      ,new ForEachCursor(def[10])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000S2;
+       prmBC000S2 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       Object[] prmBC000S3;
+       prmBC000S3 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       Object[] prmBC000S4;
+       prmBC000S4 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000S5;
+       prmBC000S5 = new Object[] {
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       Object[] prmBC000S6;
+       prmBC000S6 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       Object[] prmBC000S7;
+       prmBC000S7 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       Object[] prmBC000S8;
+       prmBC000S8 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       Object[] prmBC000S9;
+       prmBC000S9 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       Object[] prmBC000S10;
+       prmBC000S10 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000S11;
+       prmBC000S11 = new Object[] {
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       Object[] prmBC000S12;
+       prmBC000S12 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMentionUserId",GXType.Char,40,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000S2", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId AND WWPDiscussionMentionUserId = :WWPDiscussionMentionUserId  FOR UPDATE OF WWP_DiscussionMessageMention",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000S3", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId AND WWPDiscussionMentionUserId = :WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000S4", "SELECT WWPDiscussionMessageDate FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000S5", "SELECT WWPUserExtendedFullName AS WWPDiscussionMentionUserName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000S6", "SELECT T2.WWPDiscussionMessageDate, T3.WWPUserExtendedFullName AS WWPDiscussionMentionUserName, TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMentionUserId AS WWPDiscussionMentionUserId FROM ((WWP_DiscussionMessageMention TM1 INNER JOIN WWP_DiscussionMessage T2 ON T2.WWPDiscussionMessageId = TM1.WWPDiscussionMessageId) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPDiscussionMentionUserId) WHERE TM1.WWPDiscussionMessageId = :WWPDiscussionMessageId and TM1.WWPDiscussionMentionUserId = ( :WWPDiscussionMentionUserId) ORDER BY TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S6,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000S7", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId AND WWPDiscussionMentionUserId = :WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S7,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000S8", "SAVEPOINT gxupdate;INSERT INTO WWP_DiscussionMessageMention(WWPDiscussionMessageId, WWPDiscussionMentionUserId) VALUES(:WWPDiscussionMessageId, :WWPDiscussionMentionUserId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000S8)
+          ,new CursorDef("BC000S9", "SAVEPOINT gxupdate;DELETE FROM WWP_DiscussionMessageMention  WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId AND WWPDiscussionMentionUserId = :WWPDiscussionMentionUserId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000S9)
+          ,new CursorDef("BC000S10", "SELECT WWPDiscussionMessageDate FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S10,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000S11", "SELECT WWPUserExtendedFullName AS WWPDiscussionMentionUserName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S11,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000S12", "SELECT T2.WWPDiscussionMessageDate, T3.WWPUserExtendedFullName AS WWPDiscussionMentionUserName, TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMentionUserId AS WWPDiscussionMentionUserId FROM ((WWP_DiscussionMessageMention TM1 INNER JOIN WWP_DiscussionMessage T2 ON T2.WWPDiscussionMessageId = TM1.WWPDiscussionMessageId) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPDiscussionMentionUserId) WHERE TM1.WWPDiscussionMessageId = :WWPDiscussionMessageId and TM1.WWPDiscussionMentionUserId = ( :WWPDiscussionMentionUserId) ORDER BY TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMentionUserId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000S12,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 40);
+             return;
+          case 1 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 40);
+             return;
+          case 2 :
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 4 :
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((long[]) buf[2])[0] = rslt.getLong(3);
+             ((string[]) buf[3])[0] = rslt.getString(4, 40);
+             return;
+          case 5 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 40);
+             return;
+          case 8 :
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
+             return;
+          case 9 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 10 :
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((long[]) buf[2])[0] = rslt.getLong(3);
+             ((string[]) buf[3])[0] = rslt.getString(4, 40);
+             return;
+    }
+ }
 
 }
 

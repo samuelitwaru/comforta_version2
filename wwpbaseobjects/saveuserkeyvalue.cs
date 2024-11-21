@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -109,6 +111,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          AV34Session = context.GetSession();
          AV37UserCustomizations = new GeneXus.Programs.wwpbaseobjects.SdtUserCustomizations(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.saveuserkeyvalue__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.saveuserkeyvalue__gam(),
             new Object[][] {
             }
@@ -123,14 +129,16 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string AV36UserCustomizationsValue ;
       private string AV35UserCustomizationsKey ;
       private IGxSession AV34Session ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtUserCustomizations AV37UserCustomizations ;
       private IDataStoreProvider pr_default ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class saveuserkeyvalue__gam : DataStoreHelperBase, IDataStoreHelper
+   public class saveuserkeyvalue__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -157,12 +165,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class saveuserkeyvalue__default : DataStoreHelperBase, IDataStoreHelper
+ public class saveuserkeyvalue__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -186,6 +194,38 @@ namespace GeneXus.Programs.wwpbaseobjects {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class saveuserkeyvalue__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

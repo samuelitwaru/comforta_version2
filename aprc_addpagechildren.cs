@@ -87,6 +87,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -97,6 +98,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -193,6 +195,10 @@ namespace GeneXus.Programs {
          AV23SDT_PageChildrenCollection = new GXBaseCollection<SdtSDT_PageChildren>( context, "SDT_PageChildren", "Comforta_version2");
          AV22SDT_PageChildren = new SdtSDT_PageChildren(context);
          AV25Child = new SdtTrn_Page(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.aprc_addpagechildren__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.aprc_addpagechildren__gam(),
             new Object[][] {
             }
@@ -214,6 +220,7 @@ namespace GeneXus.Programs {
       private Guid AV18ParentPageId ;
       private Guid AV19ChildPageId ;
       private Guid A310Trn_PageId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtTrn_Page AV24Trn_Page ;
@@ -225,10 +232,11 @@ namespace GeneXus.Programs {
       private SdtSDT_PageChildren AV22SDT_PageChildren ;
       private SdtTrn_Page AV25Child ;
       private string aP2_response ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class aprc_addpagechildren__gam : DataStoreHelperBase, IDataStoreHelper
+   public class aprc_addpagechildren__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -255,18 +263,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class aprc_addpagechildren__default : DataStoreHelperBase, IDataStoreHelper
+ public class aprc_addpagechildren__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
      };
   }
 
@@ -275,12 +282,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmP008X2;
-        prmP008X2 = new Object[] {
-        new ParDef("AV18ParentPageId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P008X2", "SELECT Trn_PageId, PageChildren FROM Trn_Page WHERE Trn_PageId = :AV18ParentPageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008X2,1, GxCacheFrequency.OFF ,true,true )
         };
      }
   }
@@ -289,15 +291,53 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
-              ((bool[]) buf[2])[0] = rslt.wasNull(2);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class aprc_addpagechildren__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP008X2;
+       prmP008X2 = new Object[] {
+       new ParDef("AV18ParentPageId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P008X2", "SELECT Trn_PageId, PageChildren FROM Trn_Page WHERE Trn_PageId = :AV18ParentPageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008X2,1, GxCacheFrequency.OFF ,true,true )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
+             ((bool[]) buf[2])[0] = rslt.wasNull(2);
+             return;
+    }
+ }
 
 }
 

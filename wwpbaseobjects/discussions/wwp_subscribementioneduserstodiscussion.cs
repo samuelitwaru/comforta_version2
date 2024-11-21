@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -112,7 +114,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                   AV10WWPSubscription.Save();
                   if ( ! AV10WWPSubscription.Success() )
                   {
-                     new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  "Subscribe Mentioned User",  AV10WWPSubscription.GetMessages().ToJSonString(false)) ;
+                     new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  context.GetMessage( "Subscribe Mentioned User", ""),  AV10WWPSubscription.GetMessages().ToJSonString(false)) ;
                   }
                }
                AV18GXV1 = (int)(AV18GXV1+1);
@@ -149,6 +151,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          AV13WWPUserExtendedId = "";
          AV10WWPSubscription = new GeneXus.Programs.wwpbaseobjects.subscriptions.SdtWWP_Subscription(context);
          AV20Pgmname = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.discussions.wwp_subscribementioneduserstodiscussion__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.discussions.wwp_subscribementioneduserstodiscussion__gam(),
             new Object[][] {
             }
@@ -181,6 +187,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string AV9WWPSubscriptionEntityRecordId ;
       private string AV11WWPSubscriptionEntityRecordDescription ;
       private string A164WWPNotificationDefinitionName ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV12MentionWWPUserExtendedIdCollection ;
@@ -189,10 +196,11 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private long[] P003X2_A125WWPEntityId ;
       private string[] P003X2_A164WWPNotificationDefinitionName ;
       private GeneXus.Programs.wwpbaseobjects.subscriptions.SdtWWP_Subscription AV10WWPSubscription ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_subscribementioneduserstodiscussion__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_subscribementioneduserstodiscussion__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -219,19 +227,17 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_subscribementioneduserstodiscussion__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_subscribementioneduserstodiscussion__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new UpdateCursor(def[1])
      };
   }
 
@@ -240,20 +246,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
   {
      if ( def == null )
      {
-        Object[] prmP003X2;
-        prmP003X2 = new Object[] {
-        new ParDef("AV17Udparg1",GXType.Int64,10,0) ,
-        new ParDef("AV8WWPNotificationDefinitionName",GXType.VarChar,100,0)
-        };
-        Object[] prmP003X3;
-        prmP003X3 = new Object[] {
-        new ParDef("AV13WWPUserExtendedId",GXType.Char,40,0) ,
-        new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
-        new ParDef("AV9WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P003X2", "SELECT WWPNotificationDefinitionId, WWPEntityId, WWPNotificationDefinitionName FROM WWP_NotificationDefinition WHERE (WWPEntityId = :AV17Udparg1) AND (WWPNotificationDefinitionName = ( :AV8WWPNotificationDefinitionName)) ORDER BY WWPEntityId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003X2,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("P003X3", "UPDATE WWP_Subscription SET WWPSubscriptionSubscribed=TRUE  WHERE (WWPUserExtendedId = ( :AV13WWPUserExtendedId)) AND (WWPNotificationDefinitionId = :WWPNotificationDefinitionId) AND (WWPSubscriptionEntityRecordId = ( :AV9WWPSubscriptionEntityRecordId))", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP003X3)
         };
      }
   }
@@ -262,15 +255,62 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((long[]) buf[1])[0] = rslt.getLong(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_subscribementioneduserstodiscussion__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new UpdateCursor(def[1])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP003X2;
+       prmP003X2 = new Object[] {
+       new ParDef("AV17Udparg1",GXType.Int64,10,0) ,
+       new ParDef("AV8WWPNotificationDefinitionName",GXType.VarChar,100,0)
+       };
+       Object[] prmP003X3;
+       prmP003X3 = new Object[] {
+       new ParDef("AV13WWPUserExtendedId",GXType.Char,40,0) ,
+       new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
+       new ParDef("AV9WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P003X2", "SELECT WWPNotificationDefinitionId, WWPEntityId, WWPNotificationDefinitionName FROM WWP_NotificationDefinition WHERE (WWPEntityId = :AV17Udparg1) AND (WWPNotificationDefinitionName = ( :AV8WWPNotificationDefinitionName)) ORDER BY WWPEntityId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003X2,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("P003X3", "UPDATE WWP_Subscription SET WWPSubscriptionSubscribed=TRUE  WHERE (WWPUserExtendedId = ( :AV13WWPUserExtendedId)) AND (WWPNotificationDefinitionId = :WWPNotificationDefinitionId) AND (WWPSubscriptionEntityRecordId = ( :AV9WWPSubscriptionEntityRecordId))", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP003X3)
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((long[]) buf[1])[0] = rslt.getLong(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             return;
+    }
+ }
 
 }
 

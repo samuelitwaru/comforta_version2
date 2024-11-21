@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -209,27 +211,27 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( StringUtil.Len( A75NetworkIndividualBsnNumber) != 9 )
          {
-            GX_msglist.addItem("BSN number contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "BSN number contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A78NetworkIndividualEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Field Network Individual Email does not match the specified pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Network Individual Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A388NetworkIndividualPhoneNumber,"\\b\\d{9}\\b") ) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Network Individual Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A449NetworkIndividualHomePhoneNumb,"\\b\\d{9}\\b") ) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Network Individual Home Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( ( StringUtil.StrCmp(A81NetworkIndividualGender, "Male") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Female") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Other") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Network Individual Gender is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Network Individual Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -537,7 +539,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A74NetworkIndividualId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ResidentNetworkIndividual"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_ResidentNetworkIndividual", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);
@@ -1382,6 +1384,10 @@ namespace GeneXus.Programs {
          BC000A10_A348NetworkIndividualAddressLine2 = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_networkindividual_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_networkindividual_bc__gam(),
             new Object[][] {
             }
@@ -1468,6 +1474,7 @@ namespace GeneXus.Programs {
       private string A348NetworkIndividualAddressLine2 ;
       private Guid Z74NetworkIndividualId ;
       private Guid A74NetworkIndividualId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1547,10 +1554,11 @@ namespace GeneXus.Programs {
       private SdtTrn_NetworkIndividual bcTrn_NetworkIndividual ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_networkindividual_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_networkindividual_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1577,26 +1585,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_networkindividual_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_networkindividual_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1605,84 +1604,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC000A2;
-        prmBC000A2 = new Object[] {
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000A3;
-        prmBC000A3 = new Object[] {
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000A4;
-        prmBC000A4 = new Object[] {
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000A5;
-        prmBC000A5 = new Object[] {
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000A6;
-        prmBC000A6 = new Object[] {
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("NetworkIndividualBsnNumber",GXType.VarChar,9,0) ,
-        new ParDef("NetworkIndividualGivenName",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualLastName",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualEmail",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualPhone",GXType.Char,20,0) ,
-        new ParDef("NetworkIndividualHomePhone",GXType.Char,20,0) ,
-        new ParDef("NetworkIndividualPhoneCode",GXType.VarChar,40,0) ,
-        new ParDef("NetworkIndividualHomePhoneCode",GXType.VarChar,40,0) ,
-        new ParDef("NetworkIndividualPhoneNumber",GXType.VarChar,9,0) ,
-        new ParDef("NetworkIndividualHomePhoneNumb",GXType.VarChar,9,0) ,
-        new ParDef("NetworkIndividualGender",GXType.VarChar,40,0) ,
-        new ParDef("NetworkIndividualCountry",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualCity",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualZipCode",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualAddressLine1",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualAddressLine2",GXType.VarChar,100,0)
-        };
-        Object[] prmBC000A7;
-        prmBC000A7 = new Object[] {
-        new ParDef("NetworkIndividualBsnNumber",GXType.VarChar,9,0) ,
-        new ParDef("NetworkIndividualGivenName",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualLastName",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualEmail",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualPhone",GXType.Char,20,0) ,
-        new ParDef("NetworkIndividualHomePhone",GXType.Char,20,0) ,
-        new ParDef("NetworkIndividualPhoneCode",GXType.VarChar,40,0) ,
-        new ParDef("NetworkIndividualHomePhoneCode",GXType.VarChar,40,0) ,
-        new ParDef("NetworkIndividualPhoneNumber",GXType.VarChar,9,0) ,
-        new ParDef("NetworkIndividualHomePhoneNumb",GXType.VarChar,9,0) ,
-        new ParDef("NetworkIndividualGender",GXType.VarChar,40,0) ,
-        new ParDef("NetworkIndividualCountry",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualCity",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualZipCode",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualAddressLine1",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualAddressLine2",GXType.VarChar,100,0) ,
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000A8;
-        prmBC000A8 = new Object[] {
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000A9;
-        prmBC000A9 = new Object[] {
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000A10;
-        prmBC000A10 = new Object[] {
-        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000A2", "SELECT NetworkIndividualId, NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualHomePhone, NetworkIndividualPhoneCode, NetworkIndividualHomePhoneCode, NetworkIndividualPhoneNumber, NetworkIndividualHomePhoneNumb, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId  FOR UPDATE OF Trn_NetworkIndividual",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000A3", "SELECT NetworkIndividualId, NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualHomePhone, NetworkIndividualPhoneCode, NetworkIndividualHomePhoneCode, NetworkIndividualPhoneNumber, NetworkIndividualHomePhoneNumb, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000A4", "SELECT TM1.NetworkIndividualId, TM1.NetworkIndividualBsnNumber, TM1.NetworkIndividualGivenName, TM1.NetworkIndividualLastName, TM1.NetworkIndividualEmail, TM1.NetworkIndividualPhone, TM1.NetworkIndividualHomePhone, TM1.NetworkIndividualPhoneCode, TM1.NetworkIndividualHomePhoneCode, TM1.NetworkIndividualPhoneNumber, TM1.NetworkIndividualHomePhoneNumb, TM1.NetworkIndividualGender, TM1.NetworkIndividualCountry, TM1.NetworkIndividualCity, TM1.NetworkIndividualZipCode, TM1.NetworkIndividualAddressLine1, TM1.NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual TM1 WHERE TM1.NetworkIndividualId = :NetworkIndividualId ORDER BY TM1.NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000A5", "SELECT NetworkIndividualId FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000A6", "SAVEPOINT gxupdate;INSERT INTO Trn_NetworkIndividual(NetworkIndividualId, NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualHomePhone, NetworkIndividualPhoneCode, NetworkIndividualHomePhoneCode, NetworkIndividualPhoneNumber, NetworkIndividualHomePhoneNumb, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2) VALUES(:NetworkIndividualId, :NetworkIndividualBsnNumber, :NetworkIndividualGivenName, :NetworkIndividualLastName, :NetworkIndividualEmail, :NetworkIndividualPhone, :NetworkIndividualHomePhone, :NetworkIndividualPhoneCode, :NetworkIndividualHomePhoneCode, :NetworkIndividualPhoneNumber, :NetworkIndividualHomePhoneNumb, :NetworkIndividualGender, :NetworkIndividualCountry, :NetworkIndividualCity, :NetworkIndividualZipCode, :NetworkIndividualAddressLine1, :NetworkIndividualAddressLine2);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000A6)
-           ,new CursorDef("BC000A7", "SAVEPOINT gxupdate;UPDATE Trn_NetworkIndividual SET NetworkIndividualBsnNumber=:NetworkIndividualBsnNumber, NetworkIndividualGivenName=:NetworkIndividualGivenName, NetworkIndividualLastName=:NetworkIndividualLastName, NetworkIndividualEmail=:NetworkIndividualEmail, NetworkIndividualPhone=:NetworkIndividualPhone, NetworkIndividualHomePhone=:NetworkIndividualHomePhone, NetworkIndividualPhoneCode=:NetworkIndividualPhoneCode, NetworkIndividualHomePhoneCode=:NetworkIndividualHomePhoneCode, NetworkIndividualPhoneNumber=:NetworkIndividualPhoneNumber, NetworkIndividualHomePhoneNumb=:NetworkIndividualHomePhoneNumb, NetworkIndividualGender=:NetworkIndividualGender, NetworkIndividualCountry=:NetworkIndividualCountry, NetworkIndividualCity=:NetworkIndividualCity, NetworkIndividualZipCode=:NetworkIndividualZipCode, NetworkIndividualAddressLine1=:NetworkIndividualAddressLine1, NetworkIndividualAddressLine2=:NetworkIndividualAddressLine2  WHERE NetworkIndividualId = :NetworkIndividualId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000A7)
-           ,new CursorDef("BC000A8", "SAVEPOINT gxupdate;DELETE FROM Trn_NetworkIndividual  WHERE NetworkIndividualId = :NetworkIndividualId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000A8)
-           ,new CursorDef("BC000A9", "SELECT ResidentId, LocationId, OrganisationId, NetworkIndividualId FROM Trn_ResidentNetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A9,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000A10", "SELECT TM1.NetworkIndividualId, TM1.NetworkIndividualBsnNumber, TM1.NetworkIndividualGivenName, TM1.NetworkIndividualLastName, TM1.NetworkIndividualEmail, TM1.NetworkIndividualPhone, TM1.NetworkIndividualHomePhone, TM1.NetworkIndividualPhoneCode, TM1.NetworkIndividualHomePhoneCode, TM1.NetworkIndividualPhoneNumber, TM1.NetworkIndividualHomePhoneNumb, TM1.NetworkIndividualGender, TM1.NetworkIndividualCountry, TM1.NetworkIndividualCity, TM1.NetworkIndividualZipCode, TM1.NetworkIndividualAddressLine1, TM1.NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual TM1 WHERE TM1.NetworkIndividualId = :NetworkIndividualId ORDER BY TM1.NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A10,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1691,95 +1613,213 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 20);
-              ((string[]) buf[6])[0] = rslt.getString(7, 20);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((string[]) buf[16])[0] = rslt.getVarchar(17);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 20);
-              ((string[]) buf[6])[0] = rslt.getString(7, 20);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((string[]) buf[16])[0] = rslt.getVarchar(17);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 20);
-              ((string[]) buf[6])[0] = rslt.getString(7, 20);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((string[]) buf[16])[0] = rslt.getVarchar(17);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-              return;
-           case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 20);
-              ((string[]) buf[6])[0] = rslt.getString(7, 20);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((string[]) buf[16])[0] = rslt.getVarchar(17);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_networkindividual_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new ForEachCursor(def[8])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000A2;
+       prmBC000A2 = new Object[] {
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000A3;
+       prmBC000A3 = new Object[] {
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000A4;
+       prmBC000A4 = new Object[] {
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000A5;
+       prmBC000A5 = new Object[] {
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000A6;
+       prmBC000A6 = new Object[] {
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("NetworkIndividualBsnNumber",GXType.VarChar,9,0) ,
+       new ParDef("NetworkIndividualGivenName",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualLastName",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualEmail",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualPhone",GXType.Char,20,0) ,
+       new ParDef("NetworkIndividualHomePhone",GXType.Char,20,0) ,
+       new ParDef("NetworkIndividualPhoneCode",GXType.VarChar,40,0) ,
+       new ParDef("NetworkIndividualHomePhoneCode",GXType.VarChar,40,0) ,
+       new ParDef("NetworkIndividualPhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("NetworkIndividualHomePhoneNumb",GXType.VarChar,9,0) ,
+       new ParDef("NetworkIndividualGender",GXType.VarChar,40,0) ,
+       new ParDef("NetworkIndividualCountry",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualCity",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualZipCode",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualAddressLine1",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualAddressLine2",GXType.VarChar,100,0)
+       };
+       Object[] prmBC000A7;
+       prmBC000A7 = new Object[] {
+       new ParDef("NetworkIndividualBsnNumber",GXType.VarChar,9,0) ,
+       new ParDef("NetworkIndividualGivenName",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualLastName",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualEmail",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualPhone",GXType.Char,20,0) ,
+       new ParDef("NetworkIndividualHomePhone",GXType.Char,20,0) ,
+       new ParDef("NetworkIndividualPhoneCode",GXType.VarChar,40,0) ,
+       new ParDef("NetworkIndividualHomePhoneCode",GXType.VarChar,40,0) ,
+       new ParDef("NetworkIndividualPhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("NetworkIndividualHomePhoneNumb",GXType.VarChar,9,0) ,
+       new ParDef("NetworkIndividualGender",GXType.VarChar,40,0) ,
+       new ParDef("NetworkIndividualCountry",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualCity",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualZipCode",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualAddressLine1",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualAddressLine2",GXType.VarChar,100,0) ,
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000A8;
+       prmBC000A8 = new Object[] {
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000A9;
+       prmBC000A9 = new Object[] {
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000A10;
+       prmBC000A10 = new Object[] {
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000A2", "SELECT NetworkIndividualId, NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualHomePhone, NetworkIndividualPhoneCode, NetworkIndividualHomePhoneCode, NetworkIndividualPhoneNumber, NetworkIndividualHomePhoneNumb, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId  FOR UPDATE OF Trn_NetworkIndividual",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000A3", "SELECT NetworkIndividualId, NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualHomePhone, NetworkIndividualPhoneCode, NetworkIndividualHomePhoneCode, NetworkIndividualPhoneNumber, NetworkIndividualHomePhoneNumb, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000A4", "SELECT TM1.NetworkIndividualId, TM1.NetworkIndividualBsnNumber, TM1.NetworkIndividualGivenName, TM1.NetworkIndividualLastName, TM1.NetworkIndividualEmail, TM1.NetworkIndividualPhone, TM1.NetworkIndividualHomePhone, TM1.NetworkIndividualPhoneCode, TM1.NetworkIndividualHomePhoneCode, TM1.NetworkIndividualPhoneNumber, TM1.NetworkIndividualHomePhoneNumb, TM1.NetworkIndividualGender, TM1.NetworkIndividualCountry, TM1.NetworkIndividualCity, TM1.NetworkIndividualZipCode, TM1.NetworkIndividualAddressLine1, TM1.NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual TM1 WHERE TM1.NetworkIndividualId = :NetworkIndividualId ORDER BY TM1.NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000A5", "SELECT NetworkIndividualId FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000A6", "SAVEPOINT gxupdate;INSERT INTO Trn_NetworkIndividual(NetworkIndividualId, NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualHomePhone, NetworkIndividualPhoneCode, NetworkIndividualHomePhoneCode, NetworkIndividualPhoneNumber, NetworkIndividualHomePhoneNumb, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2) VALUES(:NetworkIndividualId, :NetworkIndividualBsnNumber, :NetworkIndividualGivenName, :NetworkIndividualLastName, :NetworkIndividualEmail, :NetworkIndividualPhone, :NetworkIndividualHomePhone, :NetworkIndividualPhoneCode, :NetworkIndividualHomePhoneCode, :NetworkIndividualPhoneNumber, :NetworkIndividualHomePhoneNumb, :NetworkIndividualGender, :NetworkIndividualCountry, :NetworkIndividualCity, :NetworkIndividualZipCode, :NetworkIndividualAddressLine1, :NetworkIndividualAddressLine2);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000A6)
+          ,new CursorDef("BC000A7", "SAVEPOINT gxupdate;UPDATE Trn_NetworkIndividual SET NetworkIndividualBsnNumber=:NetworkIndividualBsnNumber, NetworkIndividualGivenName=:NetworkIndividualGivenName, NetworkIndividualLastName=:NetworkIndividualLastName, NetworkIndividualEmail=:NetworkIndividualEmail, NetworkIndividualPhone=:NetworkIndividualPhone, NetworkIndividualHomePhone=:NetworkIndividualHomePhone, NetworkIndividualPhoneCode=:NetworkIndividualPhoneCode, NetworkIndividualHomePhoneCode=:NetworkIndividualHomePhoneCode, NetworkIndividualPhoneNumber=:NetworkIndividualPhoneNumber, NetworkIndividualHomePhoneNumb=:NetworkIndividualHomePhoneNumb, NetworkIndividualGender=:NetworkIndividualGender, NetworkIndividualCountry=:NetworkIndividualCountry, NetworkIndividualCity=:NetworkIndividualCity, NetworkIndividualZipCode=:NetworkIndividualZipCode, NetworkIndividualAddressLine1=:NetworkIndividualAddressLine1, NetworkIndividualAddressLine2=:NetworkIndividualAddressLine2  WHERE NetworkIndividualId = :NetworkIndividualId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000A7)
+          ,new CursorDef("BC000A8", "SAVEPOINT gxupdate;DELETE FROM Trn_NetworkIndividual  WHERE NetworkIndividualId = :NetworkIndividualId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000A8)
+          ,new CursorDef("BC000A9", "SELECT ResidentId, LocationId, OrganisationId, NetworkIndividualId FROM Trn_ResidentNetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A9,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000A10", "SELECT TM1.NetworkIndividualId, TM1.NetworkIndividualBsnNumber, TM1.NetworkIndividualGivenName, TM1.NetworkIndividualLastName, TM1.NetworkIndividualEmail, TM1.NetworkIndividualPhone, TM1.NetworkIndividualHomePhone, TM1.NetworkIndividualPhoneCode, TM1.NetworkIndividualHomePhoneCode, TM1.NetworkIndividualPhoneNumber, TM1.NetworkIndividualHomePhoneNumb, TM1.NetworkIndividualGender, TM1.NetworkIndividualCountry, TM1.NetworkIndividualCity, TM1.NetworkIndividualZipCode, TM1.NetworkIndividualAddressLine1, TM1.NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual TM1 WHERE TM1.NetworkIndividualId = :NetworkIndividualId ORDER BY TM1.NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000A10,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 20);
+             ((string[]) buf[6])[0] = rslt.getString(7, 20);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getVarchar(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((string[]) buf[16])[0] = rslt.getVarchar(17);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 20);
+             ((string[]) buf[6])[0] = rslt.getString(7, 20);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getVarchar(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((string[]) buf[16])[0] = rslt.getVarchar(17);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 20);
+             ((string[]) buf[6])[0] = rslt.getString(7, 20);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getVarchar(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((string[]) buf[16])[0] = rslt.getVarchar(17);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+             return;
+          case 8 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 20);
+             ((string[]) buf[6])[0] = rslt.getString(7, 20);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getVarchar(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((string[]) buf[16])[0] = rslt.getVarchar(17);
+             return;
+    }
+ }
 
 }
 

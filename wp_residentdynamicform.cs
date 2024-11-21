@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -43,12 +45,12 @@ namespace GeneXus.Programs {
       public void execute( string aP0_WWPFormReferenceName ,
                            int aP1_WWPFormInstanceId ,
                            string aP2_WWPDynamicFormMode ,
-                           string aP3_ResidentId )
+                           string aP3_AccessToken )
       {
          this.AV7WWPFormReferenceName = aP0_WWPFormReferenceName;
          this.AV8WWPFormInstanceId = aP1_WWPFormInstanceId;
          this.AV9WWPDynamicFormMode = aP2_WWPDynamicFormMode;
-         this.AV11ResidentId = aP3_ResidentId;
+         this.AV15AccessToken = aP3_AccessToken;
          ExecuteImpl();
       }
 
@@ -128,9 +130,9 @@ namespace GeneXus.Programs {
                   AV9WWPDynamicFormMode = GetPar( "WWPDynamicFormMode");
                   AssignAttri("", false, "AV9WWPDynamicFormMode", AV9WWPDynamicFormMode);
                   GxWebStd.gx_hidden_field( context, "gxhash_vWWPDYNAMICFORMMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9WWPDynamicFormMode, "")), context));
-                  AV11ResidentId = GetPar( "ResidentId");
-                  AssignAttri("", false, "AV11ResidentId", AV11ResidentId);
-                  GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV11ResidentId, "")), context));
+                  AV15AccessToken = GetPar( "AccessToken");
+                  AssignAttri("", false, "AV15AccessToken", AV15AccessToken);
+                  GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV15AccessToken, context));
                }
             }
             if ( toggleJsOutput )
@@ -258,7 +260,7 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_residentdynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV7WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(AV8WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim(AV9WWPDynamicFormMode)),UrlEncode(StringUtil.RTrim(AV11ResidentId))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","ResidentId"}) +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_residentdynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV7WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(AV8WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim(AV9WWPDynamicFormMode)),UrlEncode(StringUtil.RTrim(AV15AccessToken))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","AccessToken"}) +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -275,12 +277,12 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, "vWWPFORMREFERENCENAME", AV7WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMREFERENCENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV7WWPFormReferenceName, "")), context));
-         GxWebStd.gx_hidden_field( context, "vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8WWPFormInstanceId), 6, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMINSTANCEID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV8WWPFormInstanceId), "ZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "vWWPDYNAMICFORMMODE", StringUtil.RTrim( AV9WWPDynamicFormMode));
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPDYNAMICFORMMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9WWPDynamicFormMode, "")), context));
-         GxWebStd.gx_hidden_field( context, "vRESIDENTID", AV11ResidentId);
-         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV11ResidentId, "")), context));
+         GxWebStd.gx_hidden_field( context, "vACCESSTOKEN", AV15AccessToken);
+         GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV15AccessToken, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -291,12 +293,12 @@ namespace GeneXus.Programs {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "vWWPFORMREFERENCENAME", AV7WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMREFERENCENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV7WWPFormReferenceName, "")), context));
-         GxWebStd.gx_hidden_field( context, "vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8WWPFormInstanceId), 6, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vWWPFORMINSTANCEID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMINSTANCEID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV8WWPFormInstanceId), "ZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "vWWPDYNAMICFORMMODE", StringUtil.RTrim( AV9WWPDynamicFormMode));
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPDYNAMICFORMMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9WWPDynamicFormMode, "")), context));
-         GxWebStd.gx_hidden_field( context, "vRESIDENTID", AV11ResidentId);
-         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV11ResidentId, "")), context));
+         GxWebStd.gx_hidden_field( context, "vACCESSTOKEN", AV15AccessToken);
+         GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV15AccessToken, context));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -322,6 +324,18 @@ namespace GeneXus.Programs {
          {
             WebComp_Wcwc_residentdynamicform.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -354,7 +368,7 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wp_residentdynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV7WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(AV8WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim(AV9WWPDynamicFormMode)),UrlEncode(StringUtil.RTrim(AV11ResidentId))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","ResidentId"})  ;
+         return formatLink("wp_residentdynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV7WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(AV8WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim(AV9WWPDynamicFormMode)),UrlEncode(StringUtil.RTrim(AV15AccessToken))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","AccessToken"})  ;
       }
 
       public override string GetPgmname( )
@@ -364,7 +378,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WP_Resident Dynamic Form" ;
+         return context.GetMessage( "WP_Resident Dynamic Form", "") ;
       }
 
       protected void WB7X0( )
@@ -463,7 +477,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblBanicon_Internalname, "<i class='fas fa-ban' style='font-size: 50px'></i>", "", "", lblBanicon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ResidentDynamicForm.htm");
+            GxWebStd.gx_label_ctrl( context, lblBanicon_Internalname, context.GetMessage( "<i class='fas fa-ban' style='font-size: 50px'></i>", ""), "", "", lblBanicon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ResidentDynamicForm.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -490,7 +504,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, "The record could not be found", "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentDynamicForm.htm");
+            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, context.GetMessage( "The record could not be found", ""), "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentDynamicForm.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -520,7 +534,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "WP_Resident Dynamic Form", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WP_Resident Dynamic Form", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -783,9 +797,12 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         GXt_char1 = AV11ResidentId;
+         new prc_getuseridfromaccesstoken(context ).execute(  AV15AccessToken, out  GXt_char1) ;
+         AV11ResidentId = GXt_char1;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11ResidentId)) )
          {
-            AV12WebSession.Set("ResidentId", AV11ResidentId);
+            AV12WebSession.Set(context.GetMessage( "ResidentId", ""), AV11ResidentId);
          }
          AV14ShowNoRecordFound = false;
          AssignAttri("", false, "AV14ShowNoRecordFound", AV14ShowNoRecordFound);
@@ -814,7 +831,7 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wcwc_residentdynamicform_Component) != 0 )
             {
                WebComp_Wcwc_residentdynamicform.setjustcreated();
-               WebComp_Wcwc_residentdynamicform.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV7WWPFormReferenceName,(int)AV8WWPFormInstanceId,(string)AV9WWPDynamicFormMode,(string)AV11ResidentId});
+               WebComp_Wcwc_residentdynamicform.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV7WWPFormReferenceName,(int)AV8WWPFormInstanceId,(string)AV9WWPDynamicFormMode,(string)AV15AccessToken});
                WebComp_Wcwc_residentdynamicform.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
             }
          }
@@ -904,9 +921,9 @@ namespace GeneXus.Programs {
          AV9WWPDynamicFormMode = (string)getParm(obj,2);
          AssignAttri("", false, "AV9WWPDynamicFormMode", AV9WWPDynamicFormMode);
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPDYNAMICFORMMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9WWPDynamicFormMode, "")), context));
-         AV11ResidentId = (string)getParm(obj,3);
-         AssignAttri("", false, "AV11ResidentId", AV11ResidentId);
-         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV11ResidentId, "")), context));
+         AV15AccessToken = (string)getParm(obj,3);
+         AssignAttri("", false, "AV15AccessToken", AV15AccessToken);
+         GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV15AccessToken, context));
       }
 
       public override string getresponse( string sGXDynURL )
@@ -949,7 +966,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198383544", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211546397", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -964,8 +981,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdynamicform.js", "?202411198383544", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_residentdynamicform.js", "?202411211546397", false, true);
          /* End function include_jscripts */
       }
 
@@ -1004,7 +1021,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "WP_Resident Dynamic Form";
+         Form.Caption = context.GetMessage( "WP_Resident Dynamic Form", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {
@@ -1019,7 +1036,7 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV7WWPFormReferenceName","fld":"vWWPFORMREFERENCENAME","hsh":true},{"av":"AV8WWPFormInstanceId","fld":"vWWPFORMINSTANCEID","pic":"ZZZZZ9","hsh":true},{"av":"AV9WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE","hsh":true},{"av":"AV11ResidentId","fld":"vRESIDENTID","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV7WWPFormReferenceName","fld":"vWWPFORMREFERENCENAME","hsh":true},{"av":"AV8WWPFormInstanceId","fld":"vWWPFORMINSTANCEID","pic":"ZZZZZ9","hsh":true},{"av":"AV9WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE","hsh":true},{"av":"AV15AccessToken","fld":"vACCESSTOKEN","hsh":true}]}""");
          return  ;
       }
 
@@ -1036,7 +1053,7 @@ namespace GeneXus.Programs {
       {
          wcpOAV7WWPFormReferenceName = "";
          wcpOAV9WWPDynamicFormMode = "";
-         wcpOAV11ResidentId = "";
+         wcpOAV15AccessToken = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
@@ -1056,6 +1073,8 @@ namespace GeneXus.Programs {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV11ResidentId = "";
+         GXt_char1 = "";
          AV12WebSession = context.GetSession();
          AV13WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          sStyleString = "";
@@ -1108,6 +1127,7 @@ namespace GeneXus.Programs {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string GXt_char1 ;
       private string tblSpacetable2_Internalname ;
       private string tblSpacetable1_Internalname ;
       private string sStyleString ;
@@ -1124,13 +1144,15 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool AV14ShowNoRecordFound ;
       private bool bDynCreated_Wcwc_residentdynamicform ;
+      private string AV15AccessToken ;
+      private string wcpOAV15AccessToken ;
       private string AV7WWPFormReferenceName ;
-      private string AV11ResidentId ;
       private string wcpOAV7WWPFormReferenceName ;
-      private string wcpOAV11ResidentId ;
+      private string AV11ResidentId ;
       private GXWebComponent WebComp_Wcwc_residentdynamicform ;
       private IGxSession AV12WebSession ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended AV13WWP_UserExtended ;

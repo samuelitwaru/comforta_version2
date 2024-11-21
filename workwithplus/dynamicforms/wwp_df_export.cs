@@ -29,16 +29,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context.SetDefaultTheme("WorkWithPlusDS", true);
          initialize();
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            GxWebError = 1;
-            context.HttpContext.Response.StatusCode = 403;
-            context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-            context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-            context.WriteHtmlText( "<p /><hr />") ;
-            GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-         }
+         GXKey = Crypto.GetSiteKey( );
          if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) )
          {
             GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -76,6 +67,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -86,6 +78,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -226,6 +219,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string AV10ErrorMessage ;
       private GxHttpResponse AV12HttpResponse ;
       private GxFile AV8TextFile ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;

@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -142,6 +144,10 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          P00362_n112WWPUserExtendedId = new bool[] {false} ;
          P00362_A128WWPNotificationDefinitionId = new long[1] ;
          P00362_A130WWPSubscriptionId = new long[1] ;
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.subscriptions.wwp_roleupdatesubscription__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.subscriptions.wwp_roleupdatesubscription__gam(),
             new Object[][] {
             }
@@ -166,6 +172,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private string A112WWPUserExtendedId ;
       private bool AV8Subscribe ;
       private bool n112WWPUserExtendedId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private long aP1_WWPSubscriptionId ;
@@ -177,10 +184,11 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private bool[] P00362_n112WWPUserExtendedId ;
       private long[] P00362_A128WWPNotificationDefinitionId ;
       private long[] P00362_A130WWPSubscriptionId ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_roleupdatesubscription__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_roleupdatesubscription__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -207,52 +215,17 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_roleupdatesubscription__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_roleupdatesubscription__gam : DataStoreHelperBase, IDataStoreHelper
  {
-    protected Object[] conditional_P00362( IGxContext context ,
-                                           string A112WWPUserExtendedId ,
-                                           GxSimpleCollection<string> AV13WWPUserExtendedIdCollection ,
-                                           long AV9WWPNotificationDefinitionId ,
-                                           long A128WWPNotificationDefinitionId )
-    {
-       System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
-       string scmdbuf;
-       short[] GXv_int2 = new short[1];
-       Object[] GXv_Object3 = new Object[2];
-       scmdbuf = "SELECT WWPUserExtendedId, WWPNotificationDefinitionId, WWPSubscriptionId FROM WWP_Subscription";
-       AddWhere(sWhereString, "(WWPNotificationDefinitionId = :AV9WWPNotificationDefinitionId)");
-       AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV13WWPUserExtendedIdCollection, "WWPUserExtendedId IN (", ")")+")");
-       scmdbuf += sWhereString;
-       scmdbuf += " ORDER BY WWPNotificationDefinitionId";
-       scmdbuf += " FOR UPDATE OF WWP_Subscription";
-       GXv_Object3[0] = scmdbuf;
-       GXv_Object3[1] = GXv_int2;
-       return GXv_Object3 ;
-    }
-
-    public override Object [] getDynamicStatement( int cursor ,
-                                                   IGxContext context ,
-                                                   Object [] dynConstraints )
-    {
-       switch ( cursor )
-       {
-             case 0 :
-                   return conditional_P00362(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (long)dynConstraints[2] , (long)dynConstraints[3] );
-       }
-       return base.getDynamicStatement(cursor, context, dynConstraints);
-    }
-
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new UpdateCursor(def[1])
      };
   }
 
@@ -261,17 +234,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
   {
      if ( def == null )
      {
-        Object[] prmP00363;
-        prmP00363 = new Object[] {
-        new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
-        };
-        Object[] prmP00362;
-        prmP00362 = new Object[] {
-        new ParDef("AV9WWPNotificationDefinitionId",GXType.Int64,10,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P00362", "scmdbuf",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00362,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("P00363", "SAVEPOINT gxupdate;DELETE FROM WWP_Subscription  WHERE WWPSubscriptionId = :WWPSubscriptionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00363)
         };
      }
   }
@@ -280,16 +243,93 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((bool[]) buf[1])[0] = rslt.wasNull(1);
-              ((long[]) buf[2])[0] = rslt.getLong(2);
-              ((long[]) buf[3])[0] = rslt.getLong(3);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_roleupdatesubscription__default : DataStoreHelperBase, IDataStoreHelper
+{
+   protected Object[] conditional_P00362( IGxContext context ,
+                                          string A112WWPUserExtendedId ,
+                                          GxSimpleCollection<string> AV13WWPUserExtendedIdCollection ,
+                                          long AV9WWPNotificationDefinitionId ,
+                                          long A128WWPNotificationDefinitionId )
+   {
+      System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
+      string scmdbuf;
+      short[] GXv_int2 = new short[1];
+      Object[] GXv_Object3 = new Object[2];
+      scmdbuf = "SELECT WWPUserExtendedId, WWPNotificationDefinitionId, WWPSubscriptionId FROM WWP_Subscription";
+      AddWhere(sWhereString, "(WWPNotificationDefinitionId = :AV9WWPNotificationDefinitionId)");
+      AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV13WWPUserExtendedIdCollection, "WWPUserExtendedId IN (", ")")+")");
+      scmdbuf += sWhereString;
+      scmdbuf += " ORDER BY WWPNotificationDefinitionId";
+      scmdbuf += " FOR UPDATE OF WWP_Subscription";
+      GXv_Object3[0] = scmdbuf;
+      GXv_Object3[1] = GXv_int2;
+      return GXv_Object3 ;
+   }
+
+   public override Object [] getDynamicStatement( int cursor ,
+                                                  IGxContext context ,
+                                                  Object [] dynConstraints )
+   {
+      switch ( cursor )
+      {
+            case 0 :
+                  return conditional_P00362(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (long)dynConstraints[2] , (long)dynConstraints[3] );
+      }
+      return base.getDynamicStatement(cursor, context, dynConstraints);
+   }
+
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new UpdateCursor(def[1])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP00363;
+       prmP00363 = new Object[] {
+       new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
+       };
+       Object[] prmP00362;
+       prmP00362 = new Object[] {
+       new ParDef("AV9WWPNotificationDefinitionId",GXType.Int64,10,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P00362", "scmdbuf",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00362,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("P00363", "SAVEPOINT gxupdate;DELETE FROM WWP_Subscription  WHERE WWPSubscriptionId = :WWPSubscriptionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00363)
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((bool[]) buf[1])[0] = rslt.wasNull(1);
+             ((long[]) buf[2])[0] = rslt.getLong(2);
+             ((long[]) buf[3])[0] = rslt.getLong(3);
+             return;
+    }
+ }
 
 }
 

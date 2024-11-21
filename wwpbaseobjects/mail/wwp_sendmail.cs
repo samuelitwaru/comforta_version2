@@ -29,6 +29,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -39,6 +40,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -235,6 +237,10 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          AV8Address = "";
          AV19StatusMessage = "";
          GXt_char2 = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.mail.wwp_sendmail__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.mail.wwp_sendmail__gam(),
             new Object[][] {
             }
@@ -263,6 +269,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       private GeneXus.Mail.GXMailMessage AV15MailMessage ;
       private GeneXus.Mail.GXMailRecipient AV16MailRecipient ;
       private GeneXus.Mail.GXSMTPSession AV18SMTPSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Mail.GXSMTPSession aP1_SMTPSession ;
@@ -274,10 +281,11 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       private GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_Mail_Attachments AV9Attachment ;
       private IDataStoreProvider pr_default ;
       private short aP2_SendStatus ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_sendmail__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_sendmail__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -304,12 +312,12 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_sendmail__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_sendmail__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -333,6 +341,38 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_sendmail__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

@@ -52,6 +52,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -62,6 +63,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -177,8 +179,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             }
             else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFWWPFORMINSTANCEDATE") == 0 )
             {
-               AV13TFWWPFormInstanceDate = context.localUtil.CToD( AV33GridStateFilterValue.gxTpr_Value, 2);
-               AV14TFWWPFormInstanceDate_To = context.localUtil.CToD( AV33GridStateFilterValue.gxTpr_Valueto, 2);
+               AV13TFWWPFormInstanceDate = context.localUtil.CToD( AV33GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV14TFWWPFormInstanceDate_To = context.localUtil.CToD( AV33GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFWWPFORMVERSIONNUMBER") == 0 )
             {
@@ -393,6 +395,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string A113WWPUserExtendedFullName ;
       private string AV24Option ;
       private IGxSession AV30Session ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV25Options ;
@@ -504,7 +507,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             GXv_int1[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Workwithplus_dynamicforms_wwp_forminstancewwds_10_tfwwpuserextendedfullname_sel)) && ! ( StringUtil.StrCmp(AV55Workwithplus_dynamicforms_wwp_forminstancewwds_10_tfwwpuserextendedfullname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Workwithplus_dynamicforms_wwp_forminstancewwds_10_tfwwpuserextendedfullname_sel)) && ! ( StringUtil.StrCmp(AV55Workwithplus_dynamicforms_wwp_forminstancewwds_10_tfwwpuserextendedfullname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.WWPUserExtendedFullName = ( :AV55Workwithplus_dynamicforms_wwp_forminstancewwds_10_tfwwpuser))");
          }
@@ -512,7 +515,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             GXv_int1[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Workwithplus_dynamicforms_wwp_forminstancewwds_10_tfwwpuserextendedfullname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV55Workwithplus_dynamicforms_wwp_forminstancewwds_10_tfwwpuserextendedfullname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPUserExtendedFullName))=0))");
          }

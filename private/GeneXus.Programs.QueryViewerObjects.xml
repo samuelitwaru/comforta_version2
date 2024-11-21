@@ -60,4 +60,7 @@
   <Object name="DP_LocationResident" id="26" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="DP_LocationResident" xmlns="qv">
     <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
   </Object>
+  <Object name="DP_GetUserNotifications" id="27" type="DataProvider" IntegratedSecurityLevel="SecurityLow" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
 </Objects>

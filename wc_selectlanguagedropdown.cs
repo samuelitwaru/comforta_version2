@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -39,6 +40,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -219,7 +221,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WC_Select Language Dropdown") ;
+            context.SendWebValue( context.GetMessage( "WC_Select Language Dropdown", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -315,7 +317,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -382,7 +384,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WC_Select Language Dropdown" ;
+         return context.GetMessage( "WC_Select Language Dropdown", "") ;
       }
 
       protected void WB3F0( )
@@ -455,7 +457,7 @@ namespace GeneXus.Programs {
          wbStart = 0;
          if ( StringUtil.Len( sPrefix) != 0 )
          {
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          if ( StringUtil.Len( sPrefix) == 0 )
          {
@@ -466,7 +468,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WC_Select Language Dropdown", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WC_Select Language Dropdown", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -658,14 +660,7 @@ namespace GeneXus.Programs {
             {
                initialize_properties( ) ;
             }
-            if ( StringUtil.Len( sPrefix) == 0 )
-            {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-               }
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
@@ -768,7 +763,7 @@ namespace GeneXus.Programs {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -833,7 +828,7 @@ namespace GeneXus.Programs {
 
       protected override EncryptionType GetEncryptionType( )
       {
-         return EncryptionType.SESSION ;
+         return EncryptionType.SITE ;
       }
 
       public override void componentbind( Object[] obj )
@@ -977,7 +972,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024111982953", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115374710", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -995,7 +990,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_selectlanguagedropdown.js", "?2024111982953", false, true);
+            context.AddJavascriptSource("wc_selectlanguagedropdown.js", "?2024112115374711", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          }
@@ -1031,11 +1026,11 @@ namespace GeneXus.Programs {
          }
          init_default_properties( ) ;
          Selectdutch_Class = "MasterPageTopActionsOption";
-         Selectdutch_Caption = "Dutch";
+         Selectdutch_Caption = context.GetMessage( "Dutch", "");
          Selectdutch_Beforeiconclass = "FontIconTopRightActions";
          Selectdutch_Tooltiptext = "";
          Selectenglish_Class = "MasterPageTopActionsOption";
-         Selectenglish_Caption = "English";
+         Selectenglish_Caption = context.GetMessage( "English", "");
          Selectenglish_Beforeiconclass = "FontIconTopRightActions";
          Selectenglish_Tooltiptext = "";
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -1101,7 +1096,6 @@ namespace GeneXus.Programs {
       private short nDraw ;
       private short nDoneStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short AV5NumericValue ;
       private int idxLst ;
       private string gxfirstwebparm ;
@@ -1141,6 +1135,7 @@ namespace GeneXus.Programs {
       private GXUserControl ucSelectenglish ;
       private GXUserControl ucSelectdutch ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

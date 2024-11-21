@@ -28,6 +28,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -80,7 +82,7 @@ namespace GeneXus.Programs {
             if ( AV12BC_Trn_Location.Success() )
             {
                context.CommitDataStores("prc_updatelocationtheme",pr_default);
-               new prc_logtofile(context ).execute(  "Saved") ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Saved", "")) ;
             }
             else
             {
@@ -112,6 +114,10 @@ namespace GeneXus.Programs {
          AV12BC_Trn_Location = new SdtTrn_Location(context);
          AV14GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV13Message = new GeneXus.Utils.SdtMessages_Message(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatelocationtheme__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_updatelocationtheme__gam(),
             new Object[][] {
             }
@@ -127,6 +133,7 @@ namespace GeneXus.Programs {
       private Guid AV8ThemeId ;
       private Guid AV9LocationId ;
       private Guid AV10OrganisationId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtSDT_Theme AV11SDT_Theme ;
@@ -134,10 +141,11 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV14GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV13Message ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class prc_updatelocationtheme__gam : DataStoreHelperBase, IDataStoreHelper
+   public class prc_updatelocationtheme__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -164,12 +172,12 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class prc_updatelocationtheme__default : DataStoreHelperBase, IDataStoreHelper
+ public class prc_updatelocationtheme__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -193,6 +201,38 @@ namespace GeneXus.Programs {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class prc_updatelocationtheme__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

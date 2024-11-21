@@ -61,6 +61,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -71,6 +72,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -128,13 +130,13 @@ namespace GeneXus.Programs {
          AV14BC_Trn_Media.gxTpr_Medianame = AV12MediaName;
          AV14BC_Trn_Media.gxTpr_Mediasize = AV20MediaSize;
          AV14BC_Trn_Media.gxTpr_Mediatype = AV21MediaType;
-         AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, "api/media/", "media/"+AV12MediaName);
-         if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http://localhost") )
+         AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, context.GetMessage( "api/media/", ""), context.GetMessage( "media/", "")+AV12MediaName);
+         if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
          {
          }
          else
          {
-            AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, "http://", "https://");
+            AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, context.GetMessage( "http://", ""), context.GetMessage( "https://", ""));
          }
          new prc_logtofile(context ).execute(  ">>>>>>>>>>>>>>>>>>>>>>>>>"+AV23MediaUrl) ;
          AV14BC_Trn_Media.gxTpr_Mediaurl = AV23MediaUrl;
@@ -142,9 +144,9 @@ namespace GeneXus.Programs {
          if ( AV14BC_Trn_Media.Success() )
          {
             AV22Path = "";
-            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http") )
+            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http", "")) )
             {
-               AV22Path = "C:\\KBs\\Comforta_version2\\Data018\\Web\\media\\";
+               AV22Path = context.GetMessage( "C:\\KBs\\Comforta_version2\\Data018\\Web\\media\\", "");
             }
             new SdtEO_Base64Image(context).saveimage(AV18MediaImageData, AV22Path+AV12MediaName) ;
             new prc_logtofile(context ).execute(  AV22Path+AV12MediaName) ;
@@ -161,7 +163,7 @@ namespace GeneXus.Programs {
                new prc_logtofile(context ).execute(  AV17Message.gxTpr_Description) ;
                AV25GXV2 = (int)(AV25GXV2+1);
             }
-            AV10response = "Insert ERROR";
+            AV10response = context.GetMessage( "Insert ERROR", "");
             context.RollbackDataStores("prc_uploadmedia",pr_default);
          }
          cleanup();
@@ -186,6 +188,10 @@ namespace GeneXus.Programs {
          AV10response = "";
          AV24GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV17Message = new GeneXus.Utils.SdtMessages_Message(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.aprc_uploadmedia__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.aprc_uploadmedia__gam(),
             new Object[][] {
             }
@@ -207,6 +213,7 @@ namespace GeneXus.Programs {
       private string AV22Path ;
       private Guid AV11MediaId ;
       private GxHttpRequest AV8HttpRequest ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtTrn_Media AV14BC_Trn_Media ;
@@ -214,10 +221,11 @@ namespace GeneXus.Programs {
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV24GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV17Message ;
       private SdtTrn_Media aP5_BC_Trn_Media ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class aprc_uploadmedia__gam : DataStoreHelperBase, IDataStoreHelper
+   public class aprc_uploadmedia__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -244,12 +252,12 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class aprc_uploadmedia__default : DataStoreHelperBase, IDataStoreHelper
+ public class aprc_uploadmedia__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -273,6 +281,38 @@ namespace GeneXus.Programs {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class aprc_uploadmedia__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

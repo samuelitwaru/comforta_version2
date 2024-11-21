@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -116,15 +118,11 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             AV23WWP_Notification.gxTpr_Wwpnotificationmetadata = AV15WWPNotificationMetadata;
             AV23WWP_Notification.Save();
             AV18WWPNotificationID = AV23WWP_Notification.gxTpr_Wwpnotificationid;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx"+GXUtil.UrlEncode(StringUtil.LTrimStr(AV18WWPNotificationID,10,0));
             AV30SmsAndMailUrl = formatLink("wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_cleannotificationurl(context ).execute( ref  AV30SmsAndMailUrl) ;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getparameter(context ).gxep_text(  "Notification_BaseURL", ref  AV26Notification_BaseUrl) ;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getparameter(context ).gxep_text(  context.GetMessage( "Notification_BaseURL", ""), ref  AV26Notification_BaseUrl) ;
             AV30SmsAndMailUrl = StringUtil.Format( "%1%2", AV26Notification_BaseUrl, AV30SmsAndMailUrl, "", "", "", "", "", "", "");
             if ( A116WWPUserExtendedEmaiNotif )
             {
@@ -311,7 +309,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          /* GeneXus formulas. */
       }
 
-      private short gxcookieaux ;
       private long AV17WWPNotificationDefinitionId ;
       private long AV18WWPNotificationID ;
       private string AV16WWPUserExtendedId ;
@@ -342,6 +339,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private string AV8SenderName ;
       private string AV9SenderAddress ;
       private string AV31TextParameter ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private string aP5_WWPNotificationDefinitionLink ;

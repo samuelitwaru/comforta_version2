@@ -101,6 +101,8 @@
 	--GX-Image_LoginImage : url(../LoginImage.jpg);
 	--GX-Image_ComfortaLogo : url(../ComfortaLogo.png);
 	--GX-Image_loaderA : url(../loaderA.gif);
+	--GX-Image_NotAuthorizedImage : url(../NotAuthorizedImage.png);
+	--GX-Image_GAMActionMenu : url(../GAMActionMenu.png);
 }
 
 .GX_Image_SelectRow_Class{content: var(--GX-Image_SelectRow);}
@@ -203,4 +205,6 @@
 .GX_Image_LoginImage_Class{content: var(--GX-Image_LoginImage);}
 .GX_Image_ComfortaLogo_Class{content: var(--GX-Image_ComfortaLogo);}
 .GX_Image_loaderA_Class{content: var(--GX-Image_loaderA);}
+.GX_Image_NotAuthorizedImage_Class{content: var(--GX-Image_NotAuthorizedImage);}
+.GX_Image_GAMActionMenu_Class{content: var(--GX-Image_GAMActionMenu);}
 }

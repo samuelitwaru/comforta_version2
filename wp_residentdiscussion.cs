@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,15 +37,16 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
 
       public void execute( string aP0_DiscussionRecordId ,
-                           string aP1_ResidentId )
+                           string aP1_AccessToken )
       {
          this.AV13DiscussionRecordId = aP0_DiscussionRecordId;
-         this.AV9ResidentId = aP1_ResidentId;
+         this.AV18AccessToken = aP1_AccessToken;
          ExecuteImpl();
       }
 
@@ -118,9 +120,9 @@ namespace GeneXus.Programs {
                GxWebStd.gx_hidden_field( context, "gxhash_vDISCUSSIONRECORDID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13DiscussionRecordId, "")), context));
                if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
                {
-                  AV9ResidentId = GetPar( "ResidentId");
-                  AssignAttri("", false, "AV9ResidentId", AV9ResidentId);
-                  GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9ResidentId, "")), context));
+                  AV18AccessToken = GetPar( "AccessToken");
+                  AssignAttri("", false, "AV18AccessToken", AV18AccessToken);
+                  GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV18AccessToken, context));
                }
             }
             if ( toggleJsOutput )
@@ -248,7 +250,7 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_residentdiscussion.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV13DiscussionRecordId)),UrlEncode(StringUtil.RTrim(AV9ResidentId))}, new string[] {"DiscussionRecordId","ResidentId"}) +"\">") ;
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_residentdiscussion.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV13DiscussionRecordId)),UrlEncode(StringUtil.RTrim(AV18AccessToken))}, new string[] {"DiscussionRecordId","AccessToken"}) +"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -265,8 +267,8 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, "vDISCUSSIONRECORDID", AV13DiscussionRecordId);
          GxWebStd.gx_hidden_field( context, "gxhash_vDISCUSSIONRECORDID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13DiscussionRecordId, "")), context));
-         GxWebStd.gx_hidden_field( context, "vRESIDENTID", AV9ResidentId);
-         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9ResidentId, "")), context));
+         GxWebStd.gx_hidden_field( context, "vACCESSTOKEN", AV18AccessToken);
+         GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV18AccessToken, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -277,8 +279,8 @@ namespace GeneXus.Programs {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "vDISCUSSIONRECORDID", AV13DiscussionRecordId);
          GxWebStd.gx_hidden_field( context, "gxhash_vDISCUSSIONRECORDID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13DiscussionRecordId, "")), context));
-         GxWebStd.gx_hidden_field( context, "vRESIDENTID", AV9ResidentId);
-         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9ResidentId, "")), context));
+         GxWebStd.gx_hidden_field( context, "vACCESSTOKEN", AV18AccessToken);
+         GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV18AccessToken, context));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -304,6 +306,18 @@ namespace GeneXus.Programs {
          {
             WebComp_Discussioncomponent.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -336,7 +350,7 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wp_residentdiscussion.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV13DiscussionRecordId)),UrlEncode(StringUtil.RTrim(AV9ResidentId))}, new string[] {"DiscussionRecordId","ResidentId"})  ;
+         return formatLink("wp_residentdiscussion.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV13DiscussionRecordId)),UrlEncode(StringUtil.RTrim(AV18AccessToken))}, new string[] {"DiscussionRecordId","AccessToken"})  ;
       }
 
       public override string GetPgmname( )
@@ -346,7 +360,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WP_Resident Discussion" ;
+         return context.GetMessage( "WP_Resident Discussion", "") ;
       }
 
       protected void WB800( )
@@ -448,7 +462,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblBanicon_Internalname, "<i class='fas fa-ban' style='font-size: 50px'></i>", "", "", lblBanicon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ResidentDiscussion.htm");
+            GxWebStd.gx_label_ctrl( context, lblBanicon_Internalname, context.GetMessage( "<i class='fas fa-ban' style='font-size: 50px'></i>", ""), "", "", lblBanicon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ResidentDiscussion.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -475,7 +489,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, "The discussion record could not be found", "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentDiscussion.htm");
+            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, context.GetMessage( "The discussion record could not be found", ""), "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentDiscussion.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -502,7 +516,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "WP_Resident Discussion", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WP_Resident Discussion", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -765,17 +779,20 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         AV12WWPEntityName = "Discussion";
+         AV12WWPEntityName = context.GetMessage( "Discussion", "");
+         GXt_char1 = AV9ResidentId;
+         new prc_getuseridfromaccesstoken(context ).execute(  AV18AccessToken, out  GXt_char1) ;
+         AV9ResidentId = GXt_char1;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9ResidentId)) )
          {
-            AV11WebSession.Set("DiscussionResidentId", AV9ResidentId);
+            AV11WebSession.Set(context.GetMessage( "DiscussionResidentId", ""), AV9ResidentId);
             AV16WWP_UserExtended.Load(AV9ResidentId);
             if ( AV16WWP_UserExtended.Success() )
             {
                AV14WWP_FormInstance.Load((int)(Math.Round(NumberUtil.Val( AV13DiscussionRecordId, "."), 18, MidpointRounding.ToEven)));
                if ( AV14WWP_FormInstance.Success() )
                {
-                  AV12WWPEntityName = "WWP_DynamicForm";
+                  AV12WWPEntityName = context.GetMessage( "WWP_DynamicForm", "");
                   AV15WWPFormReferenceName = AV14WWP_FormInstance.gxTpr_Wwpformreferencename;
                   AssignAttri("", false, "AV15WWPFormReferenceName", AV15WWPFormReferenceName);
                }
@@ -801,8 +818,8 @@ namespace GeneXus.Programs {
                if ( StringUtil.Len( WebComp_Discussioncomponent_Component) != 0 )
                {
                   WebComp_Discussioncomponent.setjustcreated();
-                  WebComp_Discussioncomponent.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV12WWPEntityName,StringUtil.Trim( AV13DiscussionRecordId),(string)"Discussion",formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV15WWPFormReferenceName)),UrlEncode(StringUtil.RTrim(StringUtil.Trim( AV13DiscussionRecordId))),UrlEncode(StringUtil.RTrim("DSP"))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode"}) });
-                  WebComp_Discussioncomponent.componentbind(new Object[] {(string)"",(string)""+""+"",(string)"",(string)""+"",(string)"",(string)""+""+"",(string)""+""});
+                  WebComp_Discussioncomponent.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV12WWPEntityName,StringUtil.Trim( AV13DiscussionRecordId),context.GetMessage( "Discussion", ""),formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV15WWPFormReferenceName)),UrlEncode(StringUtil.RTrim(StringUtil.Trim( AV13DiscussionRecordId))),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.BoolToStr(true))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) });
+                  WebComp_Discussioncomponent.componentbind(new Object[] {(string)"",(string)""+""+"",(string)""+""+"",(string)""+"",(string)"",(string)""+""+"",(string)"",(string)""+""});
                }
             }
             else
@@ -886,9 +903,9 @@ namespace GeneXus.Programs {
          AV13DiscussionRecordId = (string)getParm(obj,0);
          AssignAttri("", false, "AV13DiscussionRecordId", AV13DiscussionRecordId);
          GxWebStd.gx_hidden_field( context, "gxhash_vDISCUSSIONRECORDID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13DiscussionRecordId, "")), context));
-         AV9ResidentId = (string)getParm(obj,1);
-         AssignAttri("", false, "AV9ResidentId", AV9ResidentId);
-         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9ResidentId, "")), context));
+         AV18AccessToken = (string)getParm(obj,1);
+         AssignAttri("", false, "AV18AccessToken", AV18AccessToken);
+         GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV18AccessToken, context));
       }
 
       public override string getresponse( string sGXDynURL )
@@ -931,7 +948,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198383631", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211546689", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -946,8 +963,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdiscussion.js", "?202411198383631", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_residentdiscussion.js", "?202411211546689", false, true);
          /* End function include_jscripts */
       }
 
@@ -986,7 +1003,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "WP_Resident Discussion";
+         Form.Caption = context.GetMessage( "WP_Resident Discussion", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {
@@ -1001,7 +1018,7 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV13DiscussionRecordId","fld":"vDISCUSSIONRECORDID","hsh":true},{"av":"AV9ResidentId","fld":"vRESIDENTID","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV13DiscussionRecordId","fld":"vDISCUSSIONRECORDID","hsh":true},{"av":"AV18AccessToken","fld":"vACCESSTOKEN","hsh":true}]}""");
          return  ;
       }
 
@@ -1017,7 +1034,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          wcpOAV13DiscussionRecordId = "";
-         wcpOAV9ResidentId = "";
+         wcpOAV18AccessToken = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
@@ -1038,6 +1055,8 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          AV12WWPEntityName = "";
+         AV9ResidentId = "";
+         GXt_char1 = "";
          AV11WebSession = context.GetSession();
          AV16WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          AV14WWP_FormInstance = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance(context);
@@ -1088,6 +1107,7 @@ namespace GeneXus.Programs {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string GXt_char1 ;
       private string tblSpacetable2_Internalname ;
       private string tblSpacetable1_Internalname ;
       private string sStyleString ;
@@ -1104,15 +1124,17 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool bDynCreated_Discussioncomponent ;
       private bool AV17ShowNoRecordFound ;
+      private string AV18AccessToken ;
+      private string wcpOAV18AccessToken ;
       private string AV13DiscussionRecordId ;
-      private string AV9ResidentId ;
       private string wcpOAV13DiscussionRecordId ;
-      private string wcpOAV9ResidentId ;
       private string AV12WWPEntityName ;
+      private string AV9ResidentId ;
       private string AV15WWPFormReferenceName ;
       private GXWebComponent WebComp_Discussioncomponent ;
       private IGxSession AV11WebSession ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended AV16WWP_UserExtended ;

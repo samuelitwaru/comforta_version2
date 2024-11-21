@@ -28,6 +28,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -183,7 +185,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                else
                {
                   AV10IsOk = false;
-                  new GeneXus.Programs.wwpbaseobjects.wwp_addmessage(context ).execute(  "WWP_DF_Import_ReferenceExistentTitle",  1,  "Existing Reference Name", ref  AV11Messages) ;
+                  new GeneXus.Programs.wwpbaseobjects.wwp_addmessage(context ).execute(  "WWP_DF_Import_ReferenceExistentTitle",  1,  context.GetMessage( "WWP_DF_Import_ReferenceExistent", ""), ref  AV11Messages) ;
                }
             }
          }
@@ -232,6 +234,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AV17WWPFormDate = (DateTime)(DateTime.MinValue);
          AV15NewWWPForm = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form(context);
          AV18Element = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_import__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_import__gam(),
             new Object[][] {
             }
@@ -266,6 +272,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string AV9FilePath ;
       private string A208WWPFormReferenceName ;
       private GxFile AV8File ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV11Messages ;
@@ -282,10 +289,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element AV18Element ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_Messages ;
       private bool aP3_IsOk ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_df_import__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_df_import__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -312,19 +320,17 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_df_import__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_df_import__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
      };
   }
 
@@ -333,16 +339,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
   {
      if ( def == null )
      {
-        Object[] prmP00502;
-        prmP00502 = new Object[] {
-        };
-        Object[] prmP00503;
-        prmP00503 = new Object[] {
-        new ParDef("AV13WWPF_1Wwpformreferencenam",GXType.VarChar,100,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P00502", "SELECT WWPFormId, WWPFormVersionNumber FROM WWP_Form ORDER BY WWPFormId DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00502,1, GxCacheFrequency.OFF ,false,true )
-           ,new CursorDef("P00503", "SELECT WWPFormReferenceName, WWPFormId, WWPFormInstantiated, WWPFormDate, WWPFormVersionNumber FROM WWP_Form WHERE WWPFormReferenceName = ( :AV13WWPF_1Wwpformreferencenam) ORDER BY WWPFormReferenceName, WWPFormVersionNumber DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00503,1, GxCacheFrequency.OFF ,false,true )
         };
      }
   }
@@ -351,21 +348,64 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((short[]) buf[0])[0] = rslt.getShort(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((bool[]) buf[2])[0] = rslt.getBool(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
-              ((short[]) buf[4])[0] = rslt.getShort(5);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_df_import__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP00502;
+       prmP00502 = new Object[] {
+       };
+       Object[] prmP00503;
+       prmP00503 = new Object[] {
+       new ParDef("AV13WWPF_1Wwpformreferencenam",GXType.VarChar,100,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P00502", "SELECT WWPFormId, WWPFormVersionNumber FROM WWP_Form ORDER BY WWPFormId DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00502,1, GxCacheFrequency.OFF ,false,true )
+          ,new CursorDef("P00503", "SELECT WWPFormReferenceName, WWPFormId, WWPFormInstantiated, WWPFormDate, WWPFormVersionNumber FROM WWP_Form WHERE WWPFormReferenceName = ( :AV13WWPF_1Wwpformreferencenam) ORDER BY WWPFormReferenceName, WWPFormVersionNumber DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00503,1, GxCacheFrequency.OFF ,false,true )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((short[]) buf[0])[0] = rslt.getShort(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((bool[]) buf[2])[0] = rslt.getBool(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
+             ((short[]) buf[4])[0] = rslt.getShort(5);
+             return;
+    }
+ }
 
 }
 

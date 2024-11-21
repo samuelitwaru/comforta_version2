@@ -27,6 +27,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -37,6 +38,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -269,7 +271,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.WriteHtmlText( " "+"class=\"form-horizontal FormNoBackgroundColor\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "wwpbaseobjects.exportoptions.aspx"+UrlEncode(StringUtil.RTrim(AV7ExcelFileName)) + "," + UrlEncode(StringUtil.RTrim(AV6DefaultTitle));
          context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal FormNoBackgroundColor\" data-gx-class=\"form-horizontal FormNoBackgroundColor\" novalidate action=\""+formatLink("wwpbaseobjects.exportoptions.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
@@ -292,7 +294,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_hidden_field( context, "gxhash_vEXCELFILENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV7ExcelFileName, "")), context));
          GxWebStd.gx_hidden_field( context, "vDEFAULTTITLE", AV6DefaultTitle);
          GxWebStd.gx_hidden_field( context, "gxhash_vDEFAULTTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6DefaultTitle, "")), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -350,6 +352,18 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -382,7 +396,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetSelfLink( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "wwpbaseobjects.exportoptions.aspx"+UrlEncode(StringUtil.RTrim(AV7ExcelFileName)) + "," + UrlEncode(StringUtil.RTrim(AV6DefaultTitle));
          return formatLink("wwpbaseobjects.exportoptions.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
@@ -394,7 +408,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return "Excel Export Options" ;
+         return context.GetMessage( "WWP_ExportOptionsDescription", "") ;
       }
 
       protected void WB120( )
@@ -451,7 +465,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Excel Export Options", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WWP_ExportOptionsDescription", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -574,16 +588,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nDonePA == 0 )
          {
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               GxWebError = 1;
-               context.HttpContext.Response.StatusCode = 403;
-               context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-               context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-               context.WriteHtmlText( "<p /><hr />") ;
-               GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-            }
+            GXKey = Crypto.GetSiteKey( );
             if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
                GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -777,7 +782,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignAttri("", false, "AV12Password", AV12Password);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -810,7 +815,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignProp("", false, bttBtnsavegoogledrive_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnsavegoogledrive_Visible), 5, 0), true);
          }
          AV13URL = formatLink(AV7ExcelFileName) ;
-         bttBtndownloadtofile_Jsonclick = "exportActionDownloadFile('"+AV13URL+"')";
+         bttBtndownloadtofile_Jsonclick = context.GetMessage( "exportActionDownloadFile('", "")+AV13URL+"')";
          AssignProp("", false, bttBtndownloadtofile_Internalname, "Jsonclick", bttBtndownloadtofile_Jsonclick, true);
          lblJs_Caption = "<script type=\"text/javascript\">function exportActionDownloadFile(u) { var element = document.createElement(\"iframe\"); element.setAttribute(\"src\", u);document.body.appendChild(element); return true; }</script>";
          AssignProp("", false, lblJs_Internalname, "Caption", lblJs_Caption, true);
@@ -848,8 +853,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             Innewwindow1_Width = "800";
             ucInnewwindow1.SendProperty(context, "", false, Innewwindow1_Internalname, "Width", Innewwindow1_Width);
             this.executeUsercontrolMethod("", false, "INNEWWINDOW1Container", "OpenWindow", "", new Object[] {});
-            GX_msglist.addItem("The document was succesully uploaded to Google Drive");
-            bttBtncancel_Caption = "Close";
+            GX_msglist.addItem(context.GetMessage( "The document was succesully uploaded to Google Drive", ""));
+            bttBtncancel_Caption = context.GetMessage( "WWP_CloseButtonCaption", "");
             AssignProp("", false, bttBtncancel_Internalname, "Caption", bttBtncancel_Caption, true);
             tblTablecontent_Visible = 0;
             AssignProp("", false, tblTablecontent_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(tblTablecontent_Visible), 5, 0), true);
@@ -860,7 +865,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          else
          {
-            GX_msglist.addItem("Error uploading Spreadsheet:  "+AV10GoogleDocsResult.gxTpr_Error);
+            GX_msglist.addItem(context.GetMessage( "Error uploading Spreadsheet:  ", "")+AV10GoogleDocsResult.gxTpr_Error);
          }
          /*  Sending Event outputs  */
       }
@@ -941,21 +946,21 @@ namespace GeneXus.Programs.wwpbaseobjects {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 60,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtndownloadtofile_Internalname, "", "Save", bttBtndownloadtofile_Jsonclick, 5, "Save", "", StyleString, ClassString, bttBtndownloadtofile_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DODOWNLOADTOFILE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/ExportOptions.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtndownloadtofile_Internalname, "", context.GetMessage( "WWP_SaveButtonCaption", ""), bttBtndownloadtofile_Jsonclick, 5, context.GetMessage( "WWP_SaveButtonCaption", ""), "", StyleString, ClassString, bttBtndownloadtofile_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DODOWNLOADTOFILE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/ExportOptions.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 62,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnsavegoogledrive_Internalname, "", "Save", bttBtnsavegoogledrive_Jsonclick, 5, "Save", "", StyleString, ClassString, bttBtnsavegoogledrive_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOSAVEGOOGLEDRIVE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/ExportOptions.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnsavegoogledrive_Internalname, "", context.GetMessage( "WWP_SaveButtonCaption", ""), bttBtnsavegoogledrive_Jsonclick, 5, context.GetMessage( "WWP_SaveButtonCaption", ""), "", StyleString, ClassString, bttBtnsavegoogledrive_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOSAVEGOOGLEDRIVE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/ExportOptions.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", bttBtncancel_Caption, bttBtncancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/ExportOptions.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", bttBtncancel_Caption, bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/ExportOptions.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
@@ -1032,7 +1037,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavExporttype_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavExporttype_Internalname, "Export type", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavExporttype_Internalname, context.GetMessage( "WWP_ExportTypeDescription", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'',0)\"";
@@ -1110,7 +1115,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavUser_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUser_Internalname, "Email", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavUser_Internalname, context.GetMessage( "WWP_GoogleDriveEmail", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1127,7 +1132,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavDoctitle_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavDoctitle_Internalname, "Document title", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavDoctitle_Internalname, context.GetMessage( "WWP_GoogleDriveDocumentTitle", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1144,7 +1149,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavPassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavPassword_Internalname, "Password", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavPassword_Internalname, context.GetMessage( "WWP_GoogleDrivePassword", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1213,7 +1218,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119836468", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115434926", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1228,8 +1233,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/exportoptions.js", "?20241119836468", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/exportoptions.js", "?2024112115434927", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1244,8 +1249,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          cmbavExporttype.Name = "vEXPORTTYPE";
          cmbavExporttype.WebTags = "";
-         cmbavExporttype.addItem("1", "Download to disk", 0);
-         cmbavExporttype.addItem("2", "Upload to Google Drive", 0);
+         cmbavExporttype.addItem("1", context.GetMessage( "Download to disk", ""), 0);
+         cmbavExporttype.addItem("2", context.GetMessage( "Upload to Google Drive", ""), 0);
          if ( cmbavExporttype.ItemCount > 0 )
          {
             AV8ExportType = (short)(Math.Round(NumberUtil.Val( cmbavExporttype.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV8ExportType), 1, 0))), "."), 18, MidpointRounding.ToEven));
@@ -1299,8 +1304,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          bttBtnsavegoogledrive_Visible = 1;
          bttBtndownloadtofile_Visible = 1;
          tblTablecontent_Visible = 1;
-         bttBtncancel_Caption = "Cancel";
-         lblJs_Caption = "JS";
+         bttBtncancel_Caption = context.GetMessage( "GX_BtnCancel", "");
+         lblJs_Caption = context.GetMessage( "JS", "");
          tblTablegoogledriveinfo_Visible = 1;
          edtavPassword_Ispassword = 0;
          divLayoutmaintable_Class = "Table TableTransactionTemplate";
@@ -1312,7 +1317,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Dvpanel_tableattributes_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Title = "Google Drive Information";
+         Dvpanel_tableattributes_Title = context.GetMessage( "WWP_ExcelOptions_GoogleDriveInfo", "");
          Dvpanel_tableattributes_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_tableattributes_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tableattributes_Autowidth = Convert.ToBoolean( 0);
@@ -1322,7 +1327,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Dvpanel_tableexport_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tableexport_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tableexport_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableexport_Title = "Where to export?";
+         Dvpanel_tableexport_Title = context.GetMessage( "WWP_ExportOptions_Where", "");
          Dvpanel_tableexport_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_tableexport_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tableexport_Autowidth = Convert.ToBoolean( 0);
@@ -1331,7 +1336,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Excel Export Options";
+         Form.Caption = context.GetMessage( "WWP_ExportOptionsDescription", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {
@@ -1518,6 +1523,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXUserControl ucDvpanel_tableattributes ;
       private GxHttpRequest AV11HttpRequest ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXCombobox cmbavExporttype ;

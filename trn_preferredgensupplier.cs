@@ -101,11 +101,7 @@ namespace GeneXus.Programs {
                enableJsOutput();
             }
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-         }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -126,7 +122,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Preferred Gen Supplier", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Preferred Gen Supplier", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -150,6 +146,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -160,6 +157,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -280,7 +278,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, "Preferred Gen Supplier", "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_Trn_PreferredGenSupplier.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, context.GetMessage( "Preferred Gen Supplier", ""), "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_Trn_PreferredGenSupplier.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -342,7 +340,7 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
          ClassString = "Button button-secondary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", "Select", bttBtn_select_Jsonclick, 5, "Select", "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_Trn_PreferredGenSupplier.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", context.GetMessage( "GX_BtnSelect", ""), bttBtn_select_Jsonclick, 5, context.GetMessage( "GX_BtnSelect", ""), "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_Trn_PreferredGenSupplier.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -355,7 +353,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtPreferredGenSupplierId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtPreferredGenSupplierId_Internalname, "Supplier Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtPreferredGenSupplierId_Internalname, context.GetMessage( "Supplier Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -372,7 +370,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtPreferredGenOrganisationId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtPreferredGenOrganisationId_Internalname, "Organisation Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtPreferredGenOrganisationId_Internalname, context.GetMessage( "Organisation Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -389,7 +387,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtPreferredSupplierGenId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtPreferredSupplierGenId_Internalname, "Gen Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtPreferredSupplierGenId_Internalname, context.GetMessage( "Gen Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -413,21 +411,21 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", "Confirm", bttBtn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_PreferredGenSupplier.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_PreferredGenSupplier.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_PreferredGenSupplier.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_PreferredGenSupplier.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", "Delete", bttBtn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_PreferredGenSupplier.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_PreferredGenSupplier.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "end", "Middle", "div");
@@ -469,10 +467,10 @@ namespace GeneXus.Programs {
             Z427PreferredGenSupplierId = StringUtil.StrToGuid( cgiGet( "Z427PreferredGenSupplierId"));
             Z429PreferredGenOrganisationId = StringUtil.StrToGuid( cgiGet( "Z429PreferredGenOrganisationId"));
             Z426PreferredSupplierGenId = StringUtil.StrToGuid( cgiGet( "Z426PreferredSupplierGenId"));
-            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gx_mode = cgiGet( "Mode");
-            Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+            Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             if ( StringUtil.StrCmp(cgiGet( edtPreferredGenSupplierId_Internalname), "") == 0 )
             {
@@ -539,7 +537,7 @@ namespace GeneXus.Programs {
             }
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             standaloneNotModal( ) ;
          }
          else
@@ -1609,7 +1607,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -1620,10 +1618,10 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z427PreferredGenSupplierId", Z427PreferredGenSupplierId.ToString());
          GxWebStd.gx_hidden_field( context, "Z429PreferredGenOrganisationId", Z429PreferredGenOrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "Z426PreferredSupplierGenId", Z426PreferredSupplierGenId.ToString());
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
-         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -1645,6 +1643,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -1690,7 +1700,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Preferred Gen Supplier" ;
+         return context.GetMessage( "Preferred Gen Supplier", "") ;
       }
 
       protected void InitializeNonKey1F86( )
@@ -1729,7 +1739,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198345277", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115425238", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1744,8 +1754,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_preferredgensupplier.js", "?202411198345278", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("trn_preferredgensupplier.js", "?2024112115425238", false, true);
          /* End function include_jscripts */
       }
 
@@ -1782,7 +1792,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Preferred Gen Supplier";
+         Form.Caption = context.GetMessage( "Preferred Gen Supplier", "");
          bttBtn_delete_Enabled = 1;
          bttBtn_delete_Visible = 1;
          bttBtn_cancel_Visible = 1;
@@ -1973,6 +1983,10 @@ namespace GeneXus.Programs {
          ZZ427PreferredGenSupplierId = Guid.Empty;
          ZZ429PreferredGenOrganisationId = Guid.Empty;
          ZZ426PreferredSupplierGenId = Guid.Empty;
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_preferredgensupplier__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_preferredgensupplier__gam(),
             new Object[][] {
             }
@@ -2016,7 +2030,6 @@ namespace GeneXus.Programs {
       }
 
       private short GxWebError ;
-      private short gxcookieaux ;
       private short AnyError ;
       private short IsModified ;
       private short IsConfirmed ;
@@ -2104,6 +2117,7 @@ namespace GeneXus.Programs {
       private Guid ZZ429PreferredGenOrganisationId ;
       private Guid ZZ426PreferredSupplierGenId ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -2120,10 +2134,11 @@ namespace GeneXus.Programs {
       private Guid[] T001F2_A429PreferredGenOrganisationId ;
       private Guid[] T001F2_A426PreferredSupplierGenId ;
       private Guid[] T001F11_A427PreferredGenSupplierId ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_preferredgensupplier__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_preferredgensupplier__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -2150,27 +2165,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_preferredgensupplier__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_preferredgensupplier__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new ForEachCursor(def[9])
      };
   }
 
@@ -2179,60 +2184,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmT001F2;
-        prmT001F2 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F3;
-        prmT001F3 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F4;
-        prmT001F4 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F5;
-        prmT001F5 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F6;
-        prmT001F6 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F7;
-        prmT001F7 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F8;
-        prmT001F8 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("PreferredGenOrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("PreferredSupplierGenId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F9;
-        prmT001F9 = new Object[] {
-        new ParDef("PreferredGenOrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("PreferredSupplierGenId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F10;
-        prmT001F10 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmT001F11;
-        prmT001F11 = new Object[] {
-        };
         def= new CursorDef[] {
-            new CursorDef("T001F2", "SELECT PreferredGenSupplierId, PreferredGenOrganisationId, PreferredSupplierGenId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId  FOR UPDATE OF Trn_PreferredGenSupplier NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT001F2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T001F3", "SELECT PreferredGenSupplierId, PreferredGenOrganisationId, PreferredSupplierGenId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T001F4", "SELECT TM1.PreferredGenSupplierId, TM1.PreferredGenOrganisationId, TM1.PreferredSupplierGenId FROM Trn_PreferredGenSupplier TM1 WHERE TM1.PreferredGenSupplierId = :PreferredGenSupplierId ORDER BY TM1.PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T001F5", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T001F6", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier WHERE ( PreferredGenSupplierId > :PreferredGenSupplierId) ORDER BY PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F6,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T001F7", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier WHERE ( PreferredGenSupplierId < :PreferredGenSupplierId) ORDER BY PreferredGenSupplierId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F7,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T001F8", "SAVEPOINT gxupdate;INSERT INTO Trn_PreferredGenSupplier(PreferredGenSupplierId, PreferredGenOrganisationId, PreferredSupplierGenId) VALUES(:PreferredGenSupplierId, :PreferredGenOrganisationId, :PreferredSupplierGenId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT001F8)
-           ,new CursorDef("T001F9", "SAVEPOINT gxupdate;UPDATE Trn_PreferredGenSupplier SET PreferredGenOrganisationId=:PreferredGenOrganisationId, PreferredSupplierGenId=:PreferredSupplierGenId  WHERE PreferredGenSupplierId = :PreferredGenSupplierId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001F9)
-           ,new CursorDef("T001F10", "SAVEPOINT gxupdate;DELETE FROM Trn_PreferredGenSupplier  WHERE PreferredGenSupplierId = :PreferredGenSupplierId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001F10)
-           ,new CursorDef("T001F11", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier ORDER BY PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F11,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2241,37 +2193,132 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 5 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 9 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_preferredgensupplier__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new ForEachCursor(def[9])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmT001F2;
+       prmT001F2 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F3;
+       prmT001F3 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F4;
+       prmT001F4 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F5;
+       prmT001F5 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F6;
+       prmT001F6 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F7;
+       prmT001F7 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F8;
+       prmT001F8 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("PreferredGenOrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("PreferredSupplierGenId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F9;
+       prmT001F9 = new Object[] {
+       new ParDef("PreferredGenOrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("PreferredSupplierGenId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F10;
+       prmT001F10 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT001F11;
+       prmT001F11 = new Object[] {
+       };
+       def= new CursorDef[] {
+           new CursorDef("T001F2", "SELECT PreferredGenSupplierId, PreferredGenOrganisationId, PreferredSupplierGenId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId  FOR UPDATE OF Trn_PreferredGenSupplier NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT001F2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001F3", "SELECT PreferredGenSupplierId, PreferredGenOrganisationId, PreferredSupplierGenId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001F4", "SELECT TM1.PreferredGenSupplierId, TM1.PreferredGenOrganisationId, TM1.PreferredSupplierGenId FROM Trn_PreferredGenSupplier TM1 WHERE TM1.PreferredGenSupplierId = :PreferredGenSupplierId ORDER BY TM1.PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001F5", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001F6", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier WHERE ( PreferredGenSupplierId > :PreferredGenSupplierId) ORDER BY PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F6,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T001F7", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier WHERE ( PreferredGenSupplierId < :PreferredGenSupplierId) ORDER BY PreferredGenSupplierId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F7,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T001F8", "SAVEPOINT gxupdate;INSERT INTO Trn_PreferredGenSupplier(PreferredGenSupplierId, PreferredGenOrganisationId, PreferredSupplierGenId) VALUES(:PreferredGenSupplierId, :PreferredGenOrganisationId, :PreferredSupplierGenId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT001F8)
+          ,new CursorDef("T001F9", "SAVEPOINT gxupdate;UPDATE Trn_PreferredGenSupplier SET PreferredGenOrganisationId=:PreferredGenOrganisationId, PreferredSupplierGenId=:PreferredSupplierGenId  WHERE PreferredGenSupplierId = :PreferredGenSupplierId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001F9)
+          ,new CursorDef("T001F10", "SAVEPOINT gxupdate;DELETE FROM Trn_PreferredGenSupplier  WHERE PreferredGenSupplierId = :PreferredGenSupplierId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001F10)
+          ,new CursorDef("T001F11", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier ORDER BY PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001F11,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 5 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 9 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+    }
+ }
 
 }
 

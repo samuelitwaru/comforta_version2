@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -166,7 +168,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! ( ( A362DeviceType == 0 ) || ( A362DeviceType == 1 ) || ( A362DeviceType == 2 ) || ( A362DeviceType == 3 ) ) )
          {
-            GX_msglist.addItem("Field Device Type is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Device Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -1109,6 +1111,10 @@ namespace GeneXus.Programs {
          BC001A9_A365DeviceUserId = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_device_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_device_bc__gam(),
             new Object[][] {
             }
@@ -1160,6 +1166,7 @@ namespace GeneXus.Programs {
       private string sMode78 ;
       private string Z365DeviceUserId ;
       private string A365DeviceUserId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1187,10 +1194,11 @@ namespace GeneXus.Programs {
       private SdtTrn_Device bcTrn_Device ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_device_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_device_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1217,25 +1225,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_device_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_device_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
      };
   }
 
@@ -1244,55 +1244,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC001A2;
-        prmBC001A2 = new Object[] {
-        new ParDef("DeviceId",GXType.Char,128,0)
-        };
-        Object[] prmBC001A3;
-        prmBC001A3 = new Object[] {
-        new ParDef("DeviceId",GXType.Char,128,0)
-        };
-        Object[] prmBC001A4;
-        prmBC001A4 = new Object[] {
-        new ParDef("DeviceId",GXType.Char,128,0)
-        };
-        Object[] prmBC001A5;
-        prmBC001A5 = new Object[] {
-        new ParDef("DeviceId",GXType.Char,128,0)
-        };
-        Object[] prmBC001A6;
-        prmBC001A6 = new Object[] {
-        new ParDef("DeviceId",GXType.Char,128,0) ,
-        new ParDef("DeviceType",GXType.Int16,1,0) ,
-        new ParDef("DeviceToken",GXType.Char,1000,0) ,
-        new ParDef("DeviceName",GXType.Char,128,0) ,
-        new ParDef("DeviceUserId",GXType.VarChar,100,60)
-        };
-        Object[] prmBC001A7;
-        prmBC001A7 = new Object[] {
-        new ParDef("DeviceType",GXType.Int16,1,0) ,
-        new ParDef("DeviceToken",GXType.Char,1000,0) ,
-        new ParDef("DeviceName",GXType.Char,128,0) ,
-        new ParDef("DeviceUserId",GXType.VarChar,100,60) ,
-        new ParDef("DeviceId",GXType.Char,128,0)
-        };
-        Object[] prmBC001A8;
-        prmBC001A8 = new Object[] {
-        new ParDef("DeviceId",GXType.Char,128,0)
-        };
-        Object[] prmBC001A9;
-        prmBC001A9 = new Object[] {
-        new ParDef("DeviceId",GXType.Char,128,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC001A2", "SELECT DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId FROM Trn_Device WHERE DeviceId = :DeviceId  FOR UPDATE OF Trn_Device",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001A3", "SELECT DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId FROM Trn_Device WHERE DeviceId = :DeviceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001A4", "SELECT TM1.DeviceId, TM1.DeviceType, TM1.DeviceToken, TM1.DeviceName, TM1.DeviceUserId FROM Trn_Device TM1 WHERE TM1.DeviceId = ( :DeviceId) ORDER BY TM1.DeviceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001A5", "SELECT DeviceId FROM Trn_Device WHERE DeviceId = :DeviceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001A6", "SAVEPOINT gxupdate;INSERT INTO Trn_Device(DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId) VALUES(:DeviceId, :DeviceType, :DeviceToken, :DeviceName, :DeviceUserId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001A6)
-           ,new CursorDef("BC001A7", "SAVEPOINT gxupdate;UPDATE Trn_Device SET DeviceType=:DeviceType, DeviceToken=:DeviceToken, DeviceName=:DeviceName, DeviceUserId=:DeviceUserId  WHERE DeviceId = :DeviceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001A7)
-           ,new CursorDef("BC001A8", "SAVEPOINT gxupdate;DELETE FROM Trn_Device  WHERE DeviceId = :DeviceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001A8)
-           ,new CursorDef("BC001A9", "SELECT TM1.DeviceId, TM1.DeviceType, TM1.DeviceToken, TM1.DeviceName, TM1.DeviceUserId FROM Trn_Device TM1 WHERE TM1.DeviceId = ( :DeviceId) ORDER BY TM1.DeviceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A9,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1301,41 +1253,129 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 128);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 1000);
-              ((string[]) buf[3])[0] = rslt.getString(4, 128);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 128);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 1000);
-              ((string[]) buf[3])[0] = rslt.getString(4, 128);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 128);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 1000);
-              ((string[]) buf[3])[0] = rslt.getString(4, 128);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 128);
-              return;
-           case 7 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 128);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 1000);
-              ((string[]) buf[3])[0] = rslt.getString(4, 128);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_device_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC001A2;
+       prmBC001A2 = new Object[] {
+       new ParDef("DeviceId",GXType.Char,128,0)
+       };
+       Object[] prmBC001A3;
+       prmBC001A3 = new Object[] {
+       new ParDef("DeviceId",GXType.Char,128,0)
+       };
+       Object[] prmBC001A4;
+       prmBC001A4 = new Object[] {
+       new ParDef("DeviceId",GXType.Char,128,0)
+       };
+       Object[] prmBC001A5;
+       prmBC001A5 = new Object[] {
+       new ParDef("DeviceId",GXType.Char,128,0)
+       };
+       Object[] prmBC001A6;
+       prmBC001A6 = new Object[] {
+       new ParDef("DeviceId",GXType.Char,128,0) ,
+       new ParDef("DeviceType",GXType.Int16,1,0) ,
+       new ParDef("DeviceToken",GXType.Char,1000,0) ,
+       new ParDef("DeviceName",GXType.Char,128,0) ,
+       new ParDef("DeviceUserId",GXType.VarChar,100,60)
+       };
+       Object[] prmBC001A7;
+       prmBC001A7 = new Object[] {
+       new ParDef("DeviceType",GXType.Int16,1,0) ,
+       new ParDef("DeviceToken",GXType.Char,1000,0) ,
+       new ParDef("DeviceName",GXType.Char,128,0) ,
+       new ParDef("DeviceUserId",GXType.VarChar,100,60) ,
+       new ParDef("DeviceId",GXType.Char,128,0)
+       };
+       Object[] prmBC001A8;
+       prmBC001A8 = new Object[] {
+       new ParDef("DeviceId",GXType.Char,128,0)
+       };
+       Object[] prmBC001A9;
+       prmBC001A9 = new Object[] {
+       new ParDef("DeviceId",GXType.Char,128,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC001A2", "SELECT DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId FROM Trn_Device WHERE DeviceId = :DeviceId  FOR UPDATE OF Trn_Device",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001A3", "SELECT DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId FROM Trn_Device WHERE DeviceId = :DeviceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001A4", "SELECT TM1.DeviceId, TM1.DeviceType, TM1.DeviceToken, TM1.DeviceName, TM1.DeviceUserId FROM Trn_Device TM1 WHERE TM1.DeviceId = ( :DeviceId) ORDER BY TM1.DeviceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001A5", "SELECT DeviceId FROM Trn_Device WHERE DeviceId = :DeviceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001A6", "SAVEPOINT gxupdate;INSERT INTO Trn_Device(DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId) VALUES(:DeviceId, :DeviceType, :DeviceToken, :DeviceName, :DeviceUserId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001A6)
+          ,new CursorDef("BC001A7", "SAVEPOINT gxupdate;UPDATE Trn_Device SET DeviceType=:DeviceType, DeviceToken=:DeviceToken, DeviceName=:DeviceName, DeviceUserId=:DeviceUserId  WHERE DeviceId = :DeviceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001A7)
+          ,new CursorDef("BC001A8", "SAVEPOINT gxupdate;DELETE FROM Trn_Device  WHERE DeviceId = :DeviceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001A8)
+          ,new CursorDef("BC001A9", "SELECT TM1.DeviceId, TM1.DeviceType, TM1.DeviceToken, TM1.DeviceName, TM1.DeviceUserId FROM Trn_Device TM1 WHERE TM1.DeviceId = ( :DeviceId) ORDER BY TM1.DeviceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001A9,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 128);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 1000);
+             ((string[]) buf[3])[0] = rslt.getString(4, 128);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 128);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 1000);
+             ((string[]) buf[3])[0] = rslt.getString(4, 128);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 128);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 1000);
+             ((string[]) buf[3])[0] = rslt.getString(4, 128);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 128);
+             return;
+          case 7 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 128);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 1000);
+             ((string[]) buf[3])[0] = rslt.getString(4, 128);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             return;
+    }
+ }
 
 }
 

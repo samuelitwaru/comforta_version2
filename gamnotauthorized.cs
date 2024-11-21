@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -248,7 +250,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -277,6 +279,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -319,7 +333,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Not Authorized" ;
+         return context.GetMessage( "Not Authorized", "") ;
       }
 
       protected void WB0Q0( )
@@ -362,7 +376,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblUnauthorizedaccess_Internalname, "UNAUTHORIZED ACCESS", "", "", lblUnauthorizedaccess_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "SeparateBigTitle", 0, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
+            GxWebStd.gx_label_ctrl( context, lblUnauthorizedaccess_Internalname, context.GetMessage( "WWP_GAM_UNAUTHORIZEDACCESS", ""), "", "", lblUnauthorizedaccess_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "SeparateBigTitle", 0, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -405,7 +419,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Not Authorized", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Not Authorized", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -528,11 +542,7 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -631,7 +641,7 @@ namespace GeneXus.Programs {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -697,21 +707,21 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTologinagain_Internalname, "TO LOGIN AGAIN,", "", "", lblTologinagain_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockNotAuthorized", 0, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
+            GxWebStd.gx_label_ctrl( context, lblTologinagain_Internalname, context.GetMessage( "WWP_GAM_ToLoginAgain", ""), "", "", lblTologinagain_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockNotAuthorized", 0, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblLoginagain_Internalname, "CLICK HERE", "", "", lblLoginagain_Jsonclick, "'"+""+"'"+",false,"+"'"+"ELOGINAGAIN.CLICK."+"'", "", "TextBlockNotAuthorized", 5, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
+            GxWebStd.gx_label_ctrl( context, lblLoginagain_Internalname, context.GetMessage( "WWP_GAM_ClickHere", ""), "", "", lblLoginagain_Jsonclick, "'"+""+"'"+",false,"+"'"+"ELOGINAGAIN.CLICK."+"'", "", "TextBlockNotAuthorized", 5, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td data-align=\"Right\"  style=\""+CSSHelper.Prettify( "text-align:-khtml-Right;text-align:-moz-Right;text-align:-webkit-Right")+"\">") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblToreturn_Internalname, "TO RETURN", "", "", lblToreturn_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockNotAuthorized", 0, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
+            GxWebStd.gx_label_ctrl( context, lblToreturn_Internalname, context.GetMessage( "WWP_GAM_ToReturn", ""), "", "", lblToreturn_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockNotAuthorized", 0, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblReturn_Internalname, "CLICK HERE", "", "", lblReturn_Jsonclick, "'"+""+"'"+",false,"+"'"+"ERETURN.CLICK."+"'", "", "TextBlockNotAuthorized", 5, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
+            GxWebStd.gx_label_ctrl( context, lblReturn_Internalname, context.GetMessage( "WWP_GAM_ClickHere", ""), "", "", lblReturn_Jsonclick, "'"+""+"'"+",false,"+"'"+"ERETURN.CLICK."+"'", "", "TextBlockNotAuthorized", 5, "", 1, 1, 0, 0, "HLP_GAMNotAuthorized.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -763,7 +773,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119835761", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115431118", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -778,8 +788,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamnotauthorized.js", "?20241119835765", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gamnotauthorized.js", "?2024112115431123", false, true);
          /* End function include_jscripts */
       }
 
@@ -815,7 +825,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Not Authorized";
+         Form.Caption = context.GetMessage( "Not Authorized", "");
          if ( context.isSpaRequest( ) )
          {
             enableJsOutput();
@@ -881,7 +891,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short nGXWrapped ;
       private int idxLst ;
       private string gxfirstwebparm ;
@@ -925,6 +934,7 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool AV6isOK ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV5Errors ;

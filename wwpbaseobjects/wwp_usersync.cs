@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -83,7 +85,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AV11WWP_UserExtended.gxTpr_Wwpuserextendedid = AV8GAMUser.gxTpr_Guid;
             AV11WWP_UserExtended.gxTpr_Wwpuserextendedname = StringUtil.RTrim( AV8GAMUser.gxTpr_Name);
             AV11WWP_UserExtended.gxTpr_Wwpuserextendedfullname = StringUtil.RTrim( AV8GAMUser.gxTpr_Firstname)+(String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.RTrim( AV8GAMUser.gxTpr_Firstname)))||String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.RTrim( AV8GAMUser.gxTpr_Lastname))) ? "" : " ")+StringUtil.RTrim( AV8GAMUser.gxTpr_Lastname);
-            AV11WWP_UserExtended.gxTpr_Wwpuserextendedemail = ((StringUtil.StrCmp(StringUtil.RTrim( AV8GAMUser.gxTpr_Email), "admin")!=0) ? StringUtil.RTrim( AV8GAMUser.gxTpr_Email) : "");
+            AV11WWP_UserExtended.gxTpr_Wwpuserextendedemail = ((StringUtil.StrCmp(StringUtil.RTrim( AV8GAMUser.gxTpr_Email), context.GetMessage( "admin", ""))!=0) ? StringUtil.RTrim( AV8GAMUser.gxTpr_Email) : "");
             AV11WWP_UserExtended.gxTpr_Wwpuserextendedphone = StringUtil.RTrim( AV8GAMUser.gxTpr_Phone);
             AV11WWP_UserExtended.gxTpr_Wwpuserextendeddesktopnotif = true;
             AV11WWP_UserExtended.gxTpr_Wwpuserextendedemainotif = true;
@@ -114,7 +116,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
             AV11WWP_UserExtended.gxTpr_Wwpuserextendedname = StringUtil.RTrim( AV8GAMUser.gxTpr_Name);
             AV11WWP_UserExtended.gxTpr_Wwpuserextendedfullname = StringUtil.RTrim( AV8GAMUser.gxTpr_Firstname)+(String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.RTrim( AV8GAMUser.gxTpr_Firstname)))||String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.RTrim( AV8GAMUser.gxTpr_Lastname))) ? "" : " ")+StringUtil.RTrim( AV8GAMUser.gxTpr_Lastname);
-            AV11WWP_UserExtended.gxTpr_Wwpuserextendedemail = ((StringUtil.StrCmp(StringUtil.RTrim( AV8GAMUser.gxTpr_Email), "admin")!=0) ? StringUtil.RTrim( AV8GAMUser.gxTpr_Email) : "");
+            AV11WWP_UserExtended.gxTpr_Wwpuserextendedemail = ((StringUtil.StrCmp(StringUtil.RTrim( AV8GAMUser.gxTpr_Email), context.GetMessage( "admin", ""))!=0) ? StringUtil.RTrim( AV8GAMUser.gxTpr_Email) : "");
             AV11WWP_UserExtended.gxTpr_Wwpuserextendedphone = StringUtil.RTrim( AV8GAMUser.gxTpr_Phone);
             AV11WWP_UserExtended.Save();
             if ( ! AV11WWP_UserExtended.Success() )
@@ -173,6 +175,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       private string AV10TrnMode ;
       private string AV14Pgmname ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV8GAMUser ;

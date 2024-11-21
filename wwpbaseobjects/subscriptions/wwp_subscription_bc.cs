@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -200,7 +202,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          pr_default.execute(2, new Object[] {A128WWPNotificationDefinitionId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_NotificationDefinition'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONDEFINITIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_NotificationDefinition", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONDEFINITIONID");
             AnyError = 1;
          }
          A125WWPEntityId = BC000J4_A125WWPEntityId[0];
@@ -210,7 +212,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          pr_default.execute(4, new Object[] {A125WWPEntityId});
          if ( (pr_default.getStatus(4) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_Entity'.", "ForeignKeyNotFound", 1, "WWPENTITYID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Entity", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPENTITYID");
             AnyError = 1;
          }
          A126WWPEntityName = BC000J6_A126WWPEntityName[0];
@@ -221,7 +223,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          {
             if ( ! ( String.IsNullOrEmpty(StringUtil.RTrim( A112WWPUserExtendedId)) ) )
             {
-               GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
                AnyError = 1;
             }
          }
@@ -1295,6 +1297,10 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          BC000J16_n112WWPUserExtendedId = new bool[] {false} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.subscriptions.wwp_subscription_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.subscriptions.wwp_subscription_bc__gam(),
             new Object[][] {
             }
@@ -1384,6 +1390,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private string A113WWPUserExtendedFullName ;
       private string Z126WWPEntityName ;
       private string A126WWPEntityName ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1444,10 +1451,11 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private GeneXus.Programs.wwpbaseobjects.subscriptions.SdtWWP_Subscription bcwwpbaseobjects_subscriptions_WWP_Subscription ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_subscription_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_subscription_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1474,32 +1482,17 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_subscription_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_subscription_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new UpdateCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new ForEachCursor(def[12])
-       ,new ForEachCursor(def[13])
-       ,new ForEachCursor(def[14])
      };
   }
 
@@ -1508,92 +1501,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
   {
      if ( def == null )
      {
-        Object[] prmBC000J2;
-        prmBC000J2 = new Object[] {
-        new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J3;
-        prmBC000J3 = new Object[] {
-        new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J4;
-        prmBC000J4 = new Object[] {
-        new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J5;
-        prmBC000J5 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000J6;
-        prmBC000J6 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J7;
-        prmBC000J7 = new Object[] {
-        new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J8;
-        prmBC000J8 = new Object[] {
-        new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J9;
-        prmBC000J9 = new Object[] {
-        new ParDef("WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0) ,
-        new ParDef("WWPSubscriptionEntityRecordDes",GXType.VarChar,200,0) ,
-        new ParDef("WWPSubscriptionRoleId",GXType.Char,40,0){Nullable=true} ,
-        new ParDef("WWPSubscriptionSubscribed",GXType.Boolean,4,0) ,
-        new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000J10;
-        prmBC000J10 = new Object[] {
-        };
-        Object[] prmBC000J11;
-        prmBC000J11 = new Object[] {
-        new ParDef("WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0) ,
-        new ParDef("WWPSubscriptionEntityRecordDes",GXType.VarChar,200,0) ,
-        new ParDef("WWPSubscriptionRoleId",GXType.Char,40,0){Nullable=true} ,
-        new ParDef("WWPSubscriptionSubscribed",GXType.Boolean,4,0) ,
-        new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true} ,
-        new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J12;
-        prmBC000J12 = new Object[] {
-        new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J13;
-        prmBC000J13 = new Object[] {
-        new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J14;
-        prmBC000J14 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmBC000J15;
-        prmBC000J15 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000J16;
-        prmBC000J16 = new Object[] {
-        new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000J2", "SELECT WWPSubscriptionId, WWPSubscriptionEntityRecordId, WWPSubscriptionEntityRecordDes, WWPSubscriptionRoleId, WWPSubscriptionSubscribed, WWPNotificationDefinitionId, WWPUserExtendedId FROM WWP_Subscription WHERE WWPSubscriptionId = :WWPSubscriptionId  FOR UPDATE OF WWP_Subscription",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J3", "SELECT WWPSubscriptionId, WWPSubscriptionEntityRecordId, WWPSubscriptionEntityRecordDes, WWPSubscriptionRoleId, WWPSubscriptionSubscribed, WWPNotificationDefinitionId, WWPUserExtendedId FROM WWP_Subscription WHERE WWPSubscriptionId = :WWPSubscriptionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J4", "SELECT WWPEntityId, WWPNotificationDefinitionDescr FROM WWP_NotificationDefinition WHERE WWPNotificationDefinitionId = :WWPNotificationDefinitionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J5", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J6", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J7", "SELECT T2.WWPEntityId, TM1.WWPSubscriptionId, T2.WWPNotificationDefinitionDescr, T3.WWPEntityName, T4.WWPUserExtendedFullName, TM1.WWPSubscriptionEntityRecordId, TM1.WWPSubscriptionEntityRecordDes, TM1.WWPSubscriptionRoleId, TM1.WWPSubscriptionSubscribed, TM1.WWPNotificationDefinitionId, TM1.WWPUserExtendedId FROM (((WWP_Subscription TM1 INNER JOIN WWP_NotificationDefinition T2 ON T2.WWPNotificationDefinitionId = TM1.WWPNotificationDefinitionId) INNER JOIN WWP_Entity T3 ON T3.WWPEntityId = T2.WWPEntityId) LEFT JOIN WWP_UserExtended T4 ON T4.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPSubscriptionId = :WWPSubscriptionId ORDER BY TM1.WWPSubscriptionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J7,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J8", "SELECT WWPSubscriptionId FROM WWP_Subscription WHERE WWPSubscriptionId = :WWPSubscriptionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J8,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J9", "SAVEPOINT gxupdate;INSERT INTO WWP_Subscription(WWPSubscriptionEntityRecordId, WWPSubscriptionEntityRecordDes, WWPSubscriptionRoleId, WWPSubscriptionSubscribed, WWPNotificationDefinitionId, WWPUserExtendedId) VALUES(:WWPSubscriptionEntityRecordId, :WWPSubscriptionEntityRecordDes, :WWPSubscriptionRoleId, :WWPSubscriptionSubscribed, :WWPNotificationDefinitionId, :WWPUserExtendedId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000J9)
-           ,new CursorDef("BC000J10", "SELECT currval('WWPSubscriptionId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J10,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J11", "SAVEPOINT gxupdate;UPDATE WWP_Subscription SET WWPSubscriptionEntityRecordId=:WWPSubscriptionEntityRecordId, WWPSubscriptionEntityRecordDes=:WWPSubscriptionEntityRecordDes, WWPSubscriptionRoleId=:WWPSubscriptionRoleId, WWPSubscriptionSubscribed=:WWPSubscriptionSubscribed, WWPNotificationDefinitionId=:WWPNotificationDefinitionId, WWPUserExtendedId=:WWPUserExtendedId  WHERE WWPSubscriptionId = :WWPSubscriptionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000J11)
-           ,new CursorDef("BC000J12", "SAVEPOINT gxupdate;DELETE FROM WWP_Subscription  WHERE WWPSubscriptionId = :WWPSubscriptionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000J12)
-           ,new CursorDef("BC000J13", "SELECT WWPEntityId, WWPNotificationDefinitionDescr FROM WWP_NotificationDefinition WHERE WWPNotificationDefinitionId = :WWPNotificationDefinitionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J13,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J14", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J14,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J15", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J15,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000J16", "SELECT T2.WWPEntityId, TM1.WWPSubscriptionId, T2.WWPNotificationDefinitionDescr, T3.WWPEntityName, T4.WWPUserExtendedFullName, TM1.WWPSubscriptionEntityRecordId, TM1.WWPSubscriptionEntityRecordDes, TM1.WWPSubscriptionRoleId, TM1.WWPSubscriptionSubscribed, TM1.WWPNotificationDefinitionId, TM1.WWPUserExtendedId FROM (((WWP_Subscription TM1 INNER JOIN WWP_NotificationDefinition T2 ON T2.WWPNotificationDefinitionId = TM1.WWPNotificationDefinitionId) INNER JOIN WWP_Entity T3 ON T3.WWPEntityId = T2.WWPEntityId) LEFT JOIN WWP_UserExtended T4 ON T4.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPSubscriptionId = :WWPSubscriptionId ORDER BY TM1.WWPSubscriptionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J16,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1602,88 +1510,220 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getString(4, 40);
-              ((bool[]) buf[4])[0] = rslt.wasNull(4);
-              ((bool[]) buf[5])[0] = rslt.getBool(5);
-              ((long[]) buf[6])[0] = rslt.getLong(6);
-              ((string[]) buf[7])[0] = rslt.getString(7, 40);
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-           case 1 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getString(4, 40);
-              ((bool[]) buf[4])[0] = rslt.wasNull(4);
-              ((bool[]) buf[5])[0] = rslt.getBool(5);
-              ((long[]) buf[6])[0] = rslt.getLong(6);
-              ((string[]) buf[7])[0] = rslt.getString(7, 40);
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-           case 2 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 4 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 5 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((long[]) buf[1])[0] = rslt.getLong(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getString(8, 40);
-              ((bool[]) buf[8])[0] = rslt.wasNull(8);
-              ((bool[]) buf[9])[0] = rslt.getBool(9);
-              ((long[]) buf[10])[0] = rslt.getLong(10);
-              ((string[]) buf[11])[0] = rslt.getString(11, 40);
-              ((bool[]) buf[12])[0] = rslt.wasNull(11);
-              return;
-           case 6 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 8 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 11 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 12 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 13 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 14 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((long[]) buf[1])[0] = rslt.getLong(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getString(8, 40);
-              ((bool[]) buf[8])[0] = rslt.wasNull(8);
-              ((bool[]) buf[9])[0] = rslt.getBool(9);
-              ((long[]) buf[10])[0] = rslt.getLong(10);
-              ((string[]) buf[11])[0] = rslt.getString(11, 40);
-              ((bool[]) buf[12])[0] = rslt.wasNull(11);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_subscription_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new UpdateCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
+      ,new ForEachCursor(def[13])
+      ,new ForEachCursor(def[14])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000J2;
+       prmBC000J2 = new Object[] {
+       new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J3;
+       prmBC000J3 = new Object[] {
+       new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J4;
+       prmBC000J4 = new Object[] {
+       new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J5;
+       prmBC000J5 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000J6;
+       prmBC000J6 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J7;
+       prmBC000J7 = new Object[] {
+       new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J8;
+       prmBC000J8 = new Object[] {
+       new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J9;
+       prmBC000J9 = new Object[] {
+       new ParDef("WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0) ,
+       new ParDef("WWPSubscriptionEntityRecordDes",GXType.VarChar,200,0) ,
+       new ParDef("WWPSubscriptionRoleId",GXType.Char,40,0){Nullable=true} ,
+       new ParDef("WWPSubscriptionSubscribed",GXType.Boolean,4,0) ,
+       new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000J10;
+       prmBC000J10 = new Object[] {
+       };
+       Object[] prmBC000J11;
+       prmBC000J11 = new Object[] {
+       new ParDef("WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0) ,
+       new ParDef("WWPSubscriptionEntityRecordDes",GXType.VarChar,200,0) ,
+       new ParDef("WWPSubscriptionRoleId",GXType.Char,40,0){Nullable=true} ,
+       new ParDef("WWPSubscriptionSubscribed",GXType.Boolean,4,0) ,
+       new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true} ,
+       new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J12;
+       prmBC000J12 = new Object[] {
+       new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J13;
+       prmBC000J13 = new Object[] {
+       new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J14;
+       prmBC000J14 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmBC000J15;
+       prmBC000J15 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000J16;
+       prmBC000J16 = new Object[] {
+       new ParDef("WWPSubscriptionId",GXType.Int64,10,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000J2", "SELECT WWPSubscriptionId, WWPSubscriptionEntityRecordId, WWPSubscriptionEntityRecordDes, WWPSubscriptionRoleId, WWPSubscriptionSubscribed, WWPNotificationDefinitionId, WWPUserExtendedId FROM WWP_Subscription WHERE WWPSubscriptionId = :WWPSubscriptionId  FOR UPDATE OF WWP_Subscription",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J3", "SELECT WWPSubscriptionId, WWPSubscriptionEntityRecordId, WWPSubscriptionEntityRecordDes, WWPSubscriptionRoleId, WWPSubscriptionSubscribed, WWPNotificationDefinitionId, WWPUserExtendedId FROM WWP_Subscription WHERE WWPSubscriptionId = :WWPSubscriptionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J4", "SELECT WWPEntityId, WWPNotificationDefinitionDescr FROM WWP_NotificationDefinition WHERE WWPNotificationDefinitionId = :WWPNotificationDefinitionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J5", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J6", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J7", "SELECT T2.WWPEntityId, TM1.WWPSubscriptionId, T2.WWPNotificationDefinitionDescr, T3.WWPEntityName, T4.WWPUserExtendedFullName, TM1.WWPSubscriptionEntityRecordId, TM1.WWPSubscriptionEntityRecordDes, TM1.WWPSubscriptionRoleId, TM1.WWPSubscriptionSubscribed, TM1.WWPNotificationDefinitionId, TM1.WWPUserExtendedId FROM (((WWP_Subscription TM1 INNER JOIN WWP_NotificationDefinition T2 ON T2.WWPNotificationDefinitionId = TM1.WWPNotificationDefinitionId) INNER JOIN WWP_Entity T3 ON T3.WWPEntityId = T2.WWPEntityId) LEFT JOIN WWP_UserExtended T4 ON T4.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPSubscriptionId = :WWPSubscriptionId ORDER BY TM1.WWPSubscriptionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J7,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J8", "SELECT WWPSubscriptionId FROM WWP_Subscription WHERE WWPSubscriptionId = :WWPSubscriptionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J8,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J9", "SAVEPOINT gxupdate;INSERT INTO WWP_Subscription(WWPSubscriptionEntityRecordId, WWPSubscriptionEntityRecordDes, WWPSubscriptionRoleId, WWPSubscriptionSubscribed, WWPNotificationDefinitionId, WWPUserExtendedId) VALUES(:WWPSubscriptionEntityRecordId, :WWPSubscriptionEntityRecordDes, :WWPSubscriptionRoleId, :WWPSubscriptionSubscribed, :WWPNotificationDefinitionId, :WWPUserExtendedId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000J9)
+          ,new CursorDef("BC000J10", "SELECT currval('WWPSubscriptionId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J10,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J11", "SAVEPOINT gxupdate;UPDATE WWP_Subscription SET WWPSubscriptionEntityRecordId=:WWPSubscriptionEntityRecordId, WWPSubscriptionEntityRecordDes=:WWPSubscriptionEntityRecordDes, WWPSubscriptionRoleId=:WWPSubscriptionRoleId, WWPSubscriptionSubscribed=:WWPSubscriptionSubscribed, WWPNotificationDefinitionId=:WWPNotificationDefinitionId, WWPUserExtendedId=:WWPUserExtendedId  WHERE WWPSubscriptionId = :WWPSubscriptionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000J11)
+          ,new CursorDef("BC000J12", "SAVEPOINT gxupdate;DELETE FROM WWP_Subscription  WHERE WWPSubscriptionId = :WWPSubscriptionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000J12)
+          ,new CursorDef("BC000J13", "SELECT WWPEntityId, WWPNotificationDefinitionDescr FROM WWP_NotificationDefinition WHERE WWPNotificationDefinitionId = :WWPNotificationDefinitionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J13,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J14", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J14,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J15", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J15,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000J16", "SELECT T2.WWPEntityId, TM1.WWPSubscriptionId, T2.WWPNotificationDefinitionDescr, T3.WWPEntityName, T4.WWPUserExtendedFullName, TM1.WWPSubscriptionEntityRecordId, TM1.WWPSubscriptionEntityRecordDes, TM1.WWPSubscriptionRoleId, TM1.WWPSubscriptionSubscribed, TM1.WWPNotificationDefinitionId, TM1.WWPUserExtendedId FROM (((WWP_Subscription TM1 INNER JOIN WWP_NotificationDefinition T2 ON T2.WWPNotificationDefinitionId = TM1.WWPNotificationDefinitionId) INNER JOIN WWP_Entity T3 ON T3.WWPEntityId = T2.WWPEntityId) LEFT JOIN WWP_UserExtended T4 ON T4.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPSubscriptionId = :WWPSubscriptionId ORDER BY TM1.WWPSubscriptionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000J16,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getString(4, 40);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((bool[]) buf[5])[0] = rslt.getBool(5);
+             ((long[]) buf[6])[0] = rslt.getLong(6);
+             ((string[]) buf[7])[0] = rslt.getString(7, 40);
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+          case 1 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getString(4, 40);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((bool[]) buf[5])[0] = rslt.getBool(5);
+             ((long[]) buf[6])[0] = rslt.getLong(6);
+             ((string[]) buf[7])[0] = rslt.getString(7, 40);
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+          case 2 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 4 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 5 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((long[]) buf[1])[0] = rslt.getLong(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getString(8, 40);
+             ((bool[]) buf[8])[0] = rslt.wasNull(8);
+             ((bool[]) buf[9])[0] = rslt.getBool(9);
+             ((long[]) buf[10])[0] = rslt.getLong(10);
+             ((string[]) buf[11])[0] = rslt.getString(11, 40);
+             ((bool[]) buf[12])[0] = rslt.wasNull(11);
+             return;
+          case 6 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 8 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 11 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 12 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 13 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 14 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((long[]) buf[1])[0] = rslt.getLong(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getString(8, 40);
+             ((bool[]) buf[8])[0] = rslt.wasNull(8);
+             ((bool[]) buf[9])[0] = rslt.getBool(9);
+             ((long[]) buf[10])[0] = rslt.getLong(10);
+             ((string[]) buf[11])[0] = rslt.getString(11, 40);
+             ((bool[]) buf[12])[0] = rslt.wasNull(11);
+             return;
+    }
+ }
 
 }
 

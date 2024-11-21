@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -182,7 +184,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          standaloneModal( ) ;
          if ( ! ( ( A154WWPWebClientBrowserId == 0 ) || ( A154WWPWebClientBrowserId == 1 ) || ( A154WWPWebClientBrowserId == 2 ) || ( A154WWPWebClientBrowserId == 3 ) || ( A154WWPWebClientBrowserId == 5 ) || ( A154WWPWebClientBrowserId == 6 ) || ( A154WWPWebClientBrowserId == 7 ) || ( A154WWPWebClientBrowserId == 8 ) || ( A154WWPWebClientBrowserId == 9 ) ) )
          {
-            GX_msglist.addItem("Field Web Client Browser Id is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Web Client Browser Id", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC000M4 */
@@ -191,7 +193,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          {
             if ( ! ( String.IsNullOrEmpty(StringUtil.RTrim( A112WWPUserExtendedId)) ) )
             {
-               GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
                AnyError = 1;
             }
          }
@@ -1166,6 +1168,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          i157WWPWebClientLastRegistered = (DateTime)(DateTime.MinValue);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.web.wwp_webclient_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.web.wwp_webclient_bc__gam(),
             new Object[][] {
             }
@@ -1232,6 +1238,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       private bool n112WWPUserExtendedId ;
       private string Z155WWPWebClientBrowserVersion ;
       private string A155WWPWebClientBrowserVersion ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1269,10 +1276,11 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       private GeneXus.Programs.wwpbaseobjects.notifications.web.SdtWWP_WebClient bcwwpbaseobjects_notifications_web_WWP_WebClient ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_webclient_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_webclient_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1299,26 +1307,17 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_webclient_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_webclient_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1327,62 +1326,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
   {
      if ( def == null )
      {
-        Object[] prmBC000M2;
-        prmBC000M2 = new Object[] {
-        new ParDef("WWPWebClientId",GXType.Char,100,0)
-        };
-        Object[] prmBC000M3;
-        prmBC000M3 = new Object[] {
-        new ParDef("WWPWebClientId",GXType.Char,100,0)
-        };
-        Object[] prmBC000M4;
-        prmBC000M4 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000M5;
-        prmBC000M5 = new Object[] {
-        new ParDef("WWPWebClientId",GXType.Char,100,0)
-        };
-        Object[] prmBC000M6;
-        prmBC000M6 = new Object[] {
-        new ParDef("WWPWebClientId",GXType.Char,100,0)
-        };
-        Object[] prmBC000M7;
-        prmBC000M7 = new Object[] {
-        new ParDef("WWPWebClientId",GXType.Char,100,0) ,
-        new ParDef("WWPWebClientBrowserId",GXType.Int16,4,0) ,
-        new ParDef("WWPWebClientBrowserVersion",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPWebClientFirstRegistered",GXType.DateTime2,10,12) ,
-        new ParDef("WWPWebClientLastRegistered",GXType.DateTime2,10,12) ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000M8;
-        prmBC000M8 = new Object[] {
-        new ParDef("WWPWebClientBrowserId",GXType.Int16,4,0) ,
-        new ParDef("WWPWebClientBrowserVersion",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPWebClientFirstRegistered",GXType.DateTime2,10,12) ,
-        new ParDef("WWPWebClientLastRegistered",GXType.DateTime2,10,12) ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true} ,
-        new ParDef("WWPWebClientId",GXType.Char,100,0)
-        };
-        Object[] prmBC000M9;
-        prmBC000M9 = new Object[] {
-        new ParDef("WWPWebClientId",GXType.Char,100,0)
-        };
-        Object[] prmBC000M10;
-        prmBC000M10 = new Object[] {
-        new ParDef("WWPWebClientId",GXType.Char,100,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000M2", "SELECT WWPWebClientId, WWPWebClientBrowserId, WWPWebClientBrowserVersion, WWPWebClientFirstRegistered, WWPWebClientLastRegistered, WWPUserExtendedId FROM WWP_WebClient WHERE WWPWebClientId = :WWPWebClientId  FOR UPDATE OF WWP_WebClient",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000M3", "SELECT WWPWebClientId, WWPWebClientBrowserId, WWPWebClientBrowserVersion, WWPWebClientFirstRegistered, WWPWebClientLastRegistered, WWPUserExtendedId FROM WWP_WebClient WHERE WWPWebClientId = :WWPWebClientId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000M4", "SELECT WWPUserExtendedId FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000M5", "SELECT TM1.WWPWebClientId, TM1.WWPWebClientBrowserId, TM1.WWPWebClientBrowserVersion, TM1.WWPWebClientFirstRegistered, TM1.WWPWebClientLastRegistered, TM1.WWPUserExtendedId FROM WWP_WebClient TM1 WHERE TM1.WWPWebClientId = ( :WWPWebClientId) ORDER BY TM1.WWPWebClientId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M5,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000M6", "SELECT WWPWebClientId FROM WWP_WebClient WHERE WWPWebClientId = :WWPWebClientId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000M7", "SAVEPOINT gxupdate;INSERT INTO WWP_WebClient(WWPWebClientId, WWPWebClientBrowserId, WWPWebClientBrowserVersion, WWPWebClientFirstRegistered, WWPWebClientLastRegistered, WWPUserExtendedId) VALUES(:WWPWebClientId, :WWPWebClientBrowserId, :WWPWebClientBrowserVersion, :WWPWebClientFirstRegistered, :WWPWebClientLastRegistered, :WWPUserExtendedId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000M7)
-           ,new CursorDef("BC000M8", "SAVEPOINT gxupdate;UPDATE WWP_WebClient SET WWPWebClientBrowserId=:WWPWebClientBrowserId, WWPWebClientBrowserVersion=:WWPWebClientBrowserVersion, WWPWebClientFirstRegistered=:WWPWebClientFirstRegistered, WWPWebClientLastRegistered=:WWPWebClientLastRegistered, WWPUserExtendedId=:WWPUserExtendedId  WHERE WWPWebClientId = :WWPWebClientId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000M8)
-           ,new CursorDef("BC000M9", "SAVEPOINT gxupdate;DELETE FROM WWP_WebClient  WHERE WWPWebClientId = :WWPWebClientId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000M9)
-           ,new CursorDef("BC000M10", "SELECT TM1.WWPWebClientId, TM1.WWPWebClientBrowserId, TM1.WWPWebClientBrowserVersion, TM1.WWPWebClientFirstRegistered, TM1.WWPWebClientLastRegistered, TM1.WWPUserExtendedId FROM WWP_WebClient TM1 WHERE TM1.WWPWebClientId = ( :WWPWebClientId) ORDER BY TM1.WWPWebClientId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M10,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1391,52 +1335,148 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 100);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4, true);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5, true);
-              ((string[]) buf[5])[0] = rslt.getString(6, 40);
-              ((bool[]) buf[6])[0] = rslt.wasNull(6);
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 100);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4, true);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5, true);
-              ((string[]) buf[5])[0] = rslt.getString(6, 40);
-              ((bool[]) buf[6])[0] = rslt.wasNull(6);
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 100);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4, true);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5, true);
-              ((string[]) buf[5])[0] = rslt.getString(6, 40);
-              ((bool[]) buf[6])[0] = rslt.wasNull(6);
-              return;
-           case 4 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 100);
-              return;
-           case 8 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 100);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4, true);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5, true);
-              ((string[]) buf[5])[0] = rslt.getString(6, 40);
-              ((bool[]) buf[6])[0] = rslt.wasNull(6);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_webclient_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000M2;
+       prmBC000M2 = new Object[] {
+       new ParDef("WWPWebClientId",GXType.Char,100,0)
+       };
+       Object[] prmBC000M3;
+       prmBC000M3 = new Object[] {
+       new ParDef("WWPWebClientId",GXType.Char,100,0)
+       };
+       Object[] prmBC000M4;
+       prmBC000M4 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000M5;
+       prmBC000M5 = new Object[] {
+       new ParDef("WWPWebClientId",GXType.Char,100,0)
+       };
+       Object[] prmBC000M6;
+       prmBC000M6 = new Object[] {
+       new ParDef("WWPWebClientId",GXType.Char,100,0)
+       };
+       Object[] prmBC000M7;
+       prmBC000M7 = new Object[] {
+       new ParDef("WWPWebClientId",GXType.Char,100,0) ,
+       new ParDef("WWPWebClientBrowserId",GXType.Int16,4,0) ,
+       new ParDef("WWPWebClientBrowserVersion",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPWebClientFirstRegistered",GXType.DateTime2,10,12) ,
+       new ParDef("WWPWebClientLastRegistered",GXType.DateTime2,10,12) ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000M8;
+       prmBC000M8 = new Object[] {
+       new ParDef("WWPWebClientBrowserId",GXType.Int16,4,0) ,
+       new ParDef("WWPWebClientBrowserVersion",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPWebClientFirstRegistered",GXType.DateTime2,10,12) ,
+       new ParDef("WWPWebClientLastRegistered",GXType.DateTime2,10,12) ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true} ,
+       new ParDef("WWPWebClientId",GXType.Char,100,0)
+       };
+       Object[] prmBC000M9;
+       prmBC000M9 = new Object[] {
+       new ParDef("WWPWebClientId",GXType.Char,100,0)
+       };
+       Object[] prmBC000M10;
+       prmBC000M10 = new Object[] {
+       new ParDef("WWPWebClientId",GXType.Char,100,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000M2", "SELECT WWPWebClientId, WWPWebClientBrowserId, WWPWebClientBrowserVersion, WWPWebClientFirstRegistered, WWPWebClientLastRegistered, WWPUserExtendedId FROM WWP_WebClient WHERE WWPWebClientId = :WWPWebClientId  FOR UPDATE OF WWP_WebClient",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000M3", "SELECT WWPWebClientId, WWPWebClientBrowserId, WWPWebClientBrowserVersion, WWPWebClientFirstRegistered, WWPWebClientLastRegistered, WWPUserExtendedId FROM WWP_WebClient WHERE WWPWebClientId = :WWPWebClientId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000M4", "SELECT WWPUserExtendedId FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000M5", "SELECT TM1.WWPWebClientId, TM1.WWPWebClientBrowserId, TM1.WWPWebClientBrowserVersion, TM1.WWPWebClientFirstRegistered, TM1.WWPWebClientLastRegistered, TM1.WWPUserExtendedId FROM WWP_WebClient TM1 WHERE TM1.WWPWebClientId = ( :WWPWebClientId) ORDER BY TM1.WWPWebClientId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M5,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000M6", "SELECT WWPWebClientId FROM WWP_WebClient WHERE WWPWebClientId = :WWPWebClientId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000M7", "SAVEPOINT gxupdate;INSERT INTO WWP_WebClient(WWPWebClientId, WWPWebClientBrowserId, WWPWebClientBrowserVersion, WWPWebClientFirstRegistered, WWPWebClientLastRegistered, WWPUserExtendedId) VALUES(:WWPWebClientId, :WWPWebClientBrowserId, :WWPWebClientBrowserVersion, :WWPWebClientFirstRegistered, :WWPWebClientLastRegistered, :WWPUserExtendedId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000M7)
+          ,new CursorDef("BC000M8", "SAVEPOINT gxupdate;UPDATE WWP_WebClient SET WWPWebClientBrowserId=:WWPWebClientBrowserId, WWPWebClientBrowserVersion=:WWPWebClientBrowserVersion, WWPWebClientFirstRegistered=:WWPWebClientFirstRegistered, WWPWebClientLastRegistered=:WWPWebClientLastRegistered, WWPUserExtendedId=:WWPUserExtendedId  WHERE WWPWebClientId = :WWPWebClientId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000M8)
+          ,new CursorDef("BC000M9", "SAVEPOINT gxupdate;DELETE FROM WWP_WebClient  WHERE WWPWebClientId = :WWPWebClientId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000M9)
+          ,new CursorDef("BC000M10", "SELECT TM1.WWPWebClientId, TM1.WWPWebClientBrowserId, TM1.WWPWebClientBrowserVersion, TM1.WWPWebClientFirstRegistered, TM1.WWPWebClientLastRegistered, TM1.WWPUserExtendedId FROM WWP_WebClient TM1 WHERE TM1.WWPWebClientId = ( :WWPWebClientId) ORDER BY TM1.WWPWebClientId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000M10,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 100);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4, true);
+             ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5, true);
+             ((string[]) buf[5])[0] = rslt.getString(6, 40);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 100);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4, true);
+             ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5, true);
+             ((string[]) buf[5])[0] = rslt.getString(6, 40);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 100);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4, true);
+             ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5, true);
+             ((string[]) buf[5])[0] = rslt.getString(6, 40);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
+             return;
+          case 4 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 100);
+             return;
+          case 8 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 100);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4, true);
+             ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5, true);
+             ((string[]) buf[5])[0] = rslt.getString(6, 40);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
+             return;
+    }
+ }
 
 }
 

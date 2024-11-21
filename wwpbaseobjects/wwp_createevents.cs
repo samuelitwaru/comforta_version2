@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -187,6 +189,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV24Pgmname = "";
          AV10GAMError = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
          AV14Message = new GeneXus.Utils.SdtMessages_Message(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_createevents__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_createevents__gam(),
             new Object[][] {
             }
@@ -209,6 +215,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string AV22KBPackageName ;
       private string AV9FileName ;
       private string AV8ClassName ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.genexussecurity.SdtGAMEventSubscriptionFilter AV21GAMEventSubscriptionFilter ;
@@ -219,10 +226,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV15Messages ;
       private GeneXus.Programs.genexussecurity.SdtGAMError AV10GAMError ;
       private GeneXus.Utils.SdtMessages_Message AV14Message ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_createevents__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_createevents__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -249,12 +257,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_createevents__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_createevents__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -278,6 +286,38 @@ namespace GeneXus.Programs.wwpbaseobjects {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_createevents__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

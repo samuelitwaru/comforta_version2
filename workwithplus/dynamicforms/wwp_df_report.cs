@@ -29,16 +29,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context.SetDefaultTheme("WorkWithPlusDS", true);
          initialize();
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            GxWebError = 1;
-            context.HttpContext.Response.StatusCode = 403;
-            context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-            context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-            context.WriteHtmlText( "<p /><hr />") ;
-            GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-         }
+         GXKey = Crypto.GetSiteKey( );
          if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) )
          {
             GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -76,6 +67,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -86,6 +78,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -142,7 +135,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             AV95Date = StringUtil.Trim( context.localUtil.Format( AV10WWPFormInstance.gxTpr_Wwpforminstancedate, "99/99/99"));
             AV94User = AV10WWPFormInstance.gxTpr_Wwpuserextendedfullname;
             H4X0( false, 108) ;
-            getPrinter().GxDrawRect(0, Gx_line+0, 552, Gx_line+108, 1, 0, 0, 0, 1, 0, 128, 128, 1, 1, 1, 1, 0, 0, 0, 0) ;
+            getPrinter().GxDrawRect(0, Gx_line+0, 552, Gx_line+108, 1, 0, 0, 0, 1, 34, 47, 84, 1, 1, 1, 1, 0, 0, 0, 0) ;
             getPrinter().GxAttris("Microsoft Sans Serif", 8, false, false, false, false, 0, 255, 255, 255, 0, 255, 255, 255) ;
             getPrinter().GxDrawText(StringUtil.RTrim( context.localUtil.Format( AV92DynamicFormNumber, "")), 30, Gx_line+30, 422, Gx_line+45, 0, 0, 0, 0) ;
             getPrinter().GxAttris("Microsoft Sans Serif", 20, false, false, false, false, 0, 255, 255, 255, 0, 255, 255, 255) ;
@@ -955,7 +948,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                {
                   /* Print footers */
                   Gx_line = P_lines;
-                  AV96PagesFooter = StringUtil.Format( "Page: %1", StringUtil.LTrimStr( (decimal)(Gx_page), 6, 0), "", "", "", "", "", "", "", "");
+                  AV96PagesFooter = StringUtil.Format( context.GetMessage( "WWP_DF_Report_Page", ""), StringUtil.LTrimStr( (decimal)(Gx_page), 6, 0), "", "", "", "", "", "", "", "");
                   getPrinter().GxDrawLine(0, Gx_line+1, 552, Gx_line+1, 2, 0, 128, 128, 0) ;
                   getPrinter().GxAttris("Microsoft Sans Serif", 8, false, false, false, false, 0, 0, 0, 0, 0, 255, 255, 255) ;
                   getPrinter().GxDrawText(StringUtil.RTrim( context.localUtil.Format( AV96PagesFooter, "")), 0, Gx_line+7, 552, Gx_line+22, 2, 0, 0, 0) ;
@@ -1285,6 +1278,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string AV42ImageNoLabel ;
       private string Imagenolabel ;
       private string A223WWPFormInstanceElemBlob ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXBCLevelCollection<GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element> AV86WWPFormElements ;

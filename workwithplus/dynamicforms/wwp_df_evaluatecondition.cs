@@ -28,6 +28,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -204,7 +206,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
                else
                {
-                  AV16ErrorMessage = StringUtil.Format( "Referenced control not found: %1", AV19FieldName, "", "", "", "", "", "", "", "");
+                  AV16ErrorMessage = StringUtil.Format( context.GetMessage( "WWP_DF_ReferencedControlNotFound", ""), AV19FieldName, "", "", "", "", "", "", "", "");
                   AV9AllElementsFound = false;
                   if (true) break;
                }
@@ -242,11 +244,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             AV12CleanedExpression = StringUtil.StringReplace( AV12CleanedExpression, "\"", "'");
             AV12CleanedExpression = StringUtil.StringReplace( AV12CleanedExpression, "\\'", "\"");
             AV12CleanedExpression = StringUtil.StringReplace( AV12CleanedExpression, "[']", "'");
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0));
             AV29WWPDateSumCall = formatLink("workwithplus_dynamicforms.wwp_df_datesum") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             AV29WWPDateSumCall = StringUtil.Substring( AV29WWPDateSumCall, 1, StringUtil.StringSearch( AV29WWPDateSumCall, "?", 1)-1);
@@ -273,13 +271,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                AV16ErrorMessage = (AV23IsException ? AV17ExceptionMessage : StringUtil.Trim( AV18ExpressionEvaluator.ErrDescription));
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV16ErrorMessage)) )
                {
-                  AV16ErrorMessage = "Unknown error";
+                  AV16ErrorMessage = context.GetMessage( "WWP_DF_UnknownError", "");
                }
                else
                {
                   if ( StringUtil.StrCmp(AV16ErrorMessage, "Failed to load type: GeneXus.Programs.iif") == 0 )
                   {
-                     AV16ErrorMessage = "In order to use the iif function, include a space before it";
+                     AV16ErrorMessage = context.GetMessage( "WWP_DF_IncludeSpaceForIIF", "");
                   }
                   else if ( StringUtil.Contains( AV16ErrorMessage, "'iif((") && StringUtil.Contains( AV16ErrorMessage, "), 1, 0)'") )
                   {
@@ -391,7 +389,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private short AV10ChildrenCount ;
       private short A240WWPFormType ;
       private short AV36WWPFormType ;
-      private short gxcookieaux ;
       private int AV39GXV1 ;
       private int AV41GXV2 ;
       private int GXt_int2 ;
@@ -423,6 +420,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private GXProperties AV8Properties ;
       private GXProperties AV25SectionReferencedElements ;
       private ExpressionEvaluator AV18ExpressionEvaluator ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance AV31WWPFormInstance ;

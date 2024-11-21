@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -1089,6 +1091,10 @@ namespace GeneXus.Programs {
          i429PreferredGenOrganisationId = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_preferredgensupplier_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_preferredgensupplier_bc__gam(),
             new Object[][] {
             }
@@ -1145,6 +1151,7 @@ namespace GeneXus.Programs {
       private Guid GXt_guid1 ;
       private Guid i426PreferredSupplierGenId ;
       private Guid i429PreferredGenOrganisationId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1164,10 +1171,11 @@ namespace GeneXus.Programs {
       private SdtTrn_PreferredGenSupplier bcTrn_PreferredGenSupplier ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_preferredgensupplier_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_preferredgensupplier_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1194,25 +1202,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_preferredgensupplier_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_preferredgensupplier_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
      };
   }
 
@@ -1221,51 +1221,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC001F2;
-        prmBC001F2 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001F3;
-        prmBC001F3 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001F4;
-        prmBC001F4 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001F5;
-        prmBC001F5 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001F6;
-        prmBC001F6 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("PreferredSupplierGenId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("PreferredGenOrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001F7;
-        prmBC001F7 = new Object[] {
-        new ParDef("PreferredSupplierGenId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("PreferredGenOrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001F8;
-        prmBC001F8 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001F9;
-        prmBC001F9 = new Object[] {
-        new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC001F2", "SELECT PreferredGenSupplierId, PreferredSupplierGenId, PreferredGenOrganisationId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId  FOR UPDATE OF Trn_PreferredGenSupplier",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001F3", "SELECT PreferredGenSupplierId, PreferredSupplierGenId, PreferredGenOrganisationId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001F4", "SELECT TM1.PreferredGenSupplierId, TM1.PreferredSupplierGenId, TM1.PreferredGenOrganisationId FROM Trn_PreferredGenSupplier TM1 WHERE TM1.PreferredGenSupplierId = :PreferredGenSupplierId ORDER BY TM1.PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001F5", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001F6", "SAVEPOINT gxupdate;INSERT INTO Trn_PreferredGenSupplier(PreferredGenSupplierId, PreferredSupplierGenId, PreferredGenOrganisationId) VALUES(:PreferredGenSupplierId, :PreferredSupplierGenId, :PreferredGenOrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001F6)
-           ,new CursorDef("BC001F7", "SAVEPOINT gxupdate;UPDATE Trn_PreferredGenSupplier SET PreferredSupplierGenId=:PreferredSupplierGenId, PreferredGenOrganisationId=:PreferredGenOrganisationId  WHERE PreferredGenSupplierId = :PreferredGenSupplierId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001F7)
-           ,new CursorDef("BC001F8", "SAVEPOINT gxupdate;DELETE FROM Trn_PreferredGenSupplier  WHERE PreferredGenSupplierId = :PreferredGenSupplierId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001F8)
-           ,new CursorDef("BC001F9", "SELECT TM1.PreferredGenSupplierId, TM1.PreferredSupplierGenId, TM1.PreferredGenOrganisationId FROM Trn_PreferredGenSupplier TM1 WHERE TM1.PreferredGenSupplierId = :PreferredGenSupplierId ORDER BY TM1.PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F9,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1274,33 +1230,117 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_preferredgensupplier_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC001F2;
+       prmBC001F2 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001F3;
+       prmBC001F3 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001F4;
+       prmBC001F4 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001F5;
+       prmBC001F5 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001F6;
+       prmBC001F6 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("PreferredSupplierGenId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("PreferredGenOrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001F7;
+       prmBC001F7 = new Object[] {
+       new ParDef("PreferredSupplierGenId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("PreferredGenOrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001F8;
+       prmBC001F8 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001F9;
+       prmBC001F9 = new Object[] {
+       new ParDef("PreferredGenSupplierId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC001F2", "SELECT PreferredGenSupplierId, PreferredSupplierGenId, PreferredGenOrganisationId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId  FOR UPDATE OF Trn_PreferredGenSupplier",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001F3", "SELECT PreferredGenSupplierId, PreferredSupplierGenId, PreferredGenOrganisationId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001F4", "SELECT TM1.PreferredGenSupplierId, TM1.PreferredSupplierGenId, TM1.PreferredGenOrganisationId FROM Trn_PreferredGenSupplier TM1 WHERE TM1.PreferredGenSupplierId = :PreferredGenSupplierId ORDER BY TM1.PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001F5", "SELECT PreferredGenSupplierId FROM Trn_PreferredGenSupplier WHERE PreferredGenSupplierId = :PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001F6", "SAVEPOINT gxupdate;INSERT INTO Trn_PreferredGenSupplier(PreferredGenSupplierId, PreferredSupplierGenId, PreferredGenOrganisationId) VALUES(:PreferredGenSupplierId, :PreferredSupplierGenId, :PreferredGenOrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001F6)
+          ,new CursorDef("BC001F7", "SAVEPOINT gxupdate;UPDATE Trn_PreferredGenSupplier SET PreferredSupplierGenId=:PreferredSupplierGenId, PreferredGenOrganisationId=:PreferredGenOrganisationId  WHERE PreferredGenSupplierId = :PreferredGenSupplierId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001F7)
+          ,new CursorDef("BC001F8", "SAVEPOINT gxupdate;DELETE FROM Trn_PreferredGenSupplier  WHERE PreferredGenSupplierId = :PreferredGenSupplierId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001F8)
+          ,new CursorDef("BC001F9", "SELECT TM1.PreferredGenSupplierId, TM1.PreferredSupplierGenId, TM1.PreferredGenOrganisationId FROM Trn_PreferredGenSupplier TM1 WHERE TM1.PreferredGenSupplierId = :PreferredGenSupplierId ORDER BY TM1.PreferredGenSupplierId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001F9,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+    }
+ }
 
 }
 

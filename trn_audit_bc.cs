@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -224,7 +226,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -1252,6 +1254,10 @@ namespace GeneXus.Programs {
          BC001D10_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_audit_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_audit_bc__gam(),
             new Object[][] {
             }
@@ -1328,6 +1334,7 @@ namespace GeneXus.Programs {
       private Guid Z11OrganisationId ;
       private Guid A11OrganisationId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1375,10 +1382,11 @@ namespace GeneXus.Programs {
       private SdtTrn_Audit bcTrn_Audit ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_audit_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_audit_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1405,26 +1413,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_audit_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_audit_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1433,68 +1432,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC001D2;
-        prmBC001D2 = new Object[] {
-        new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001D3;
-        prmBC001D3 = new Object[] {
-        new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001D4;
-        prmBC001D4 = new Object[] {
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001D5;
-        prmBC001D5 = new Object[] {
-        new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001D6;
-        prmBC001D6 = new Object[] {
-        new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001D7;
-        prmBC001D7 = new Object[] {
-        new ParDef("AuditId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("AuditDate",GXType.DateTime,8,5) ,
-        new ParDef("AuditTableName",GXType.VarChar,100,0) ,
-        new ParDef("AuditDescription",GXType.LongVarChar,2097152,0) ,
-        new ParDef("AuditShortDescription",GXType.VarChar,400,0) ,
-        new ParDef("GAMUserId",GXType.Char,40,0) ,
-        new ParDef("AuditUserName",GXType.VarChar,100,0) ,
-        new ParDef("AuditAction",GXType.VarChar,40,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001D8;
-        prmBC001D8 = new Object[] {
-        new ParDef("AuditDate",GXType.DateTime,8,5) ,
-        new ParDef("AuditTableName",GXType.VarChar,100,0) ,
-        new ParDef("AuditDescription",GXType.LongVarChar,2097152,0) ,
-        new ParDef("AuditShortDescription",GXType.VarChar,400,0) ,
-        new ParDef("GAMUserId",GXType.Char,40,0) ,
-        new ParDef("AuditUserName",GXType.VarChar,100,0) ,
-        new ParDef("AuditAction",GXType.VarChar,40,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001D9;
-        prmBC001D9 = new Object[] {
-        new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001D10;
-        prmBC001D10 = new Object[] {
-        new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC001D2", "SELECT AuditId, AuditDate, AuditTableName, AuditDescription, AuditShortDescription, GAMUserId, AuditUserName, AuditAction, OrganisationId FROM Trn_Audit WHERE AuditId = :AuditId  FOR UPDATE OF Trn_Audit",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001D3", "SELECT AuditId, AuditDate, AuditTableName, AuditDescription, AuditShortDescription, GAMUserId, AuditUserName, AuditAction, OrganisationId FROM Trn_Audit WHERE AuditId = :AuditId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001D4", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001D5", "SELECT TM1.AuditId, TM1.AuditDate, TM1.AuditTableName, TM1.AuditDescription, TM1.AuditShortDescription, TM1.GAMUserId, TM1.AuditUserName, TM1.AuditAction, TM1.OrganisationId FROM Trn_Audit TM1 WHERE TM1.AuditId = :AuditId ORDER BY TM1.AuditId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D5,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001D6", "SELECT AuditId FROM Trn_Audit WHERE AuditId = :AuditId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001D7", "SAVEPOINT gxupdate;INSERT INTO Trn_Audit(AuditId, AuditDate, AuditTableName, AuditDescription, AuditShortDescription, GAMUserId, AuditUserName, AuditAction, OrganisationId) VALUES(:AuditId, :AuditDate, :AuditTableName, :AuditDescription, :AuditShortDescription, :GAMUserId, :AuditUserName, :AuditAction, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001D7)
-           ,new CursorDef("BC001D8", "SAVEPOINT gxupdate;UPDATE Trn_Audit SET AuditDate=:AuditDate, AuditTableName=:AuditTableName, AuditDescription=:AuditDescription, AuditShortDescription=:AuditShortDescription, GAMUserId=:GAMUserId, AuditUserName=:AuditUserName, AuditAction=:AuditAction, OrganisationId=:OrganisationId  WHERE AuditId = :AuditId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001D8)
-           ,new CursorDef("BC001D9", "SAVEPOINT gxupdate;DELETE FROM Trn_Audit  WHERE AuditId = :AuditId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001D9)
-           ,new CursorDef("BC001D10", "SELECT TM1.AuditId, TM1.AuditDate, TM1.AuditTableName, TM1.AuditDescription, TM1.AuditShortDescription, TM1.GAMUserId, TM1.AuditUserName, TM1.AuditAction, TM1.OrganisationId FROM Trn_Audit TM1 WHERE TM1.AuditId = :AuditId ORDER BY TM1.AuditId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D10,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1503,60 +1441,162 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 40);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 40);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 40);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 40);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_audit_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC001D2;
+       prmBC001D2 = new Object[] {
+       new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001D3;
+       prmBC001D3 = new Object[] {
+       new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001D4;
+       prmBC001D4 = new Object[] {
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001D5;
+       prmBC001D5 = new Object[] {
+       new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001D6;
+       prmBC001D6 = new Object[] {
+       new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001D7;
+       prmBC001D7 = new Object[] {
+       new ParDef("AuditId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("AuditDate",GXType.DateTime,8,5) ,
+       new ParDef("AuditTableName",GXType.VarChar,100,0) ,
+       new ParDef("AuditDescription",GXType.LongVarChar,2097152,0) ,
+       new ParDef("AuditShortDescription",GXType.VarChar,400,0) ,
+       new ParDef("GAMUserId",GXType.Char,40,0) ,
+       new ParDef("AuditUserName",GXType.VarChar,100,0) ,
+       new ParDef("AuditAction",GXType.VarChar,40,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001D8;
+       prmBC001D8 = new Object[] {
+       new ParDef("AuditDate",GXType.DateTime,8,5) ,
+       new ParDef("AuditTableName",GXType.VarChar,100,0) ,
+       new ParDef("AuditDescription",GXType.LongVarChar,2097152,0) ,
+       new ParDef("AuditShortDescription",GXType.VarChar,400,0) ,
+       new ParDef("GAMUserId",GXType.Char,40,0) ,
+       new ParDef("AuditUserName",GXType.VarChar,100,0) ,
+       new ParDef("AuditAction",GXType.VarChar,40,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001D9;
+       prmBC001D9 = new Object[] {
+       new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001D10;
+       prmBC001D10 = new Object[] {
+       new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC001D2", "SELECT AuditId, AuditDate, AuditTableName, AuditDescription, AuditShortDescription, GAMUserId, AuditUserName, AuditAction, OrganisationId FROM Trn_Audit WHERE AuditId = :AuditId  FOR UPDATE OF Trn_Audit",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001D3", "SELECT AuditId, AuditDate, AuditTableName, AuditDescription, AuditShortDescription, GAMUserId, AuditUserName, AuditAction, OrganisationId FROM Trn_Audit WHERE AuditId = :AuditId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001D4", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001D5", "SELECT TM1.AuditId, TM1.AuditDate, TM1.AuditTableName, TM1.AuditDescription, TM1.AuditShortDescription, TM1.GAMUserId, TM1.AuditUserName, TM1.AuditAction, TM1.OrganisationId FROM Trn_Audit TM1 WHERE TM1.AuditId = :AuditId ORDER BY TM1.AuditId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D5,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001D6", "SELECT AuditId FROM Trn_Audit WHERE AuditId = :AuditId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001D7", "SAVEPOINT gxupdate;INSERT INTO Trn_Audit(AuditId, AuditDate, AuditTableName, AuditDescription, AuditShortDescription, GAMUserId, AuditUserName, AuditAction, OrganisationId) VALUES(:AuditId, :AuditDate, :AuditTableName, :AuditDescription, :AuditShortDescription, :GAMUserId, :AuditUserName, :AuditAction, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001D7)
+          ,new CursorDef("BC001D8", "SAVEPOINT gxupdate;UPDATE Trn_Audit SET AuditDate=:AuditDate, AuditTableName=:AuditTableName, AuditDescription=:AuditDescription, AuditShortDescription=:AuditShortDescription, GAMUserId=:GAMUserId, AuditUserName=:AuditUserName, AuditAction=:AuditAction, OrganisationId=:OrganisationId  WHERE AuditId = :AuditId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001D8)
+          ,new CursorDef("BC001D9", "SAVEPOINT gxupdate;DELETE FROM Trn_Audit  WHERE AuditId = :AuditId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001D9)
+          ,new CursorDef("BC001D10", "SELECT TM1.AuditId, TM1.AuditDate, TM1.AuditTableName, TM1.AuditDescription, TM1.AuditShortDescription, TM1.GAMUserId, TM1.AuditUserName, TM1.AuditAction, TM1.OrganisationId FROM Trn_Audit TM1 WHERE TM1.AuditId = :AuditId ORDER BY TM1.AuditId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001D10,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 40);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 40);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 40);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 8 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 40);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+             return;
+    }
+ }
 
 }
 

@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -253,7 +255,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A303AgendaCalendarId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_AgendaCalendar'.", "ForeignKeyNotFound", 1, "AGENDACALENDARID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_AgendaCalendar", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "AGENDACALENDARID");
             AnyError = 1;
          }
          A29LocationId = BC001G4_A29LocationId[0];
@@ -263,7 +265,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Resident'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          A72ResidentSalutation = BC001G5_A72ResidentSalutation[0];
@@ -290,7 +292,7 @@ namespace GeneXus.Programs {
          pr_default.execute(4, new Object[] {A96ResidentTypeId});
          if ( (pr_default.getStatus(4) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident Type", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
             AnyError = 1;
          }
          A97ResidentTypeName = BC001G6_A97ResidentTypeName[0];
@@ -299,7 +301,7 @@ namespace GeneXus.Programs {
          pr_default.execute(5, new Object[] {A98MedicalIndicationId});
          if ( (pr_default.getStatus(5) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Medical Indication", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
             AnyError = 1;
          }
          A99MedicalIndicationName = BC001G7_A99MedicalIndicationName[0];
@@ -986,7 +988,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {A303AgendaCalendarId});
             if ( (pr_default.getStatus(11) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_AgendaCalendar'.", "ForeignKeyNotFound", 1, "AGENDACALENDARID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_AgendaCalendar", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "AGENDACALENDARID");
                AnyError = 1;
             }
             A29LocationId = BC001G13_A29LocationId[0];
@@ -996,7 +998,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Resident'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             A72ResidentSalutation = BC001G14_A72ResidentSalutation[0];
@@ -1023,7 +1025,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {A96ResidentTypeId});
             if ( (pr_default.getStatus(13) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident Type", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
                AnyError = 1;
             }
             A97ResidentTypeName = BC001G15_A97ResidentTypeName[0];
@@ -1032,7 +1034,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {A98MedicalIndicationId});
             if ( (pr_default.getStatus(14) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Medical Indication", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
             }
             A99MedicalIndicationName = BC001G16_A99MedicalIndicationName[0];
@@ -1071,7 +1073,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {A303AgendaCalendarId});
             if ( (pr_default.getStatus(11) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_AgendaCalendar'.", "ForeignKeyNotFound", 1, "AGENDACALENDARID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_AgendaCalendar", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "AGENDACALENDARID");
                AnyError = 1;
             }
             A29LocationId = BC001G13_A29LocationId[0];
@@ -1081,7 +1083,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Resident'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             A72ResidentSalutation = BC001G14_A72ResidentSalutation[0];
@@ -1108,7 +1110,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {A96ResidentTypeId});
             if ( (pr_default.getStatus(13) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident Type", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
                AnyError = 1;
             }
             A97ResidentTypeName = BC001G15_A97ResidentTypeName[0];
@@ -1117,7 +1119,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {A98MedicalIndicationId});
             if ( (pr_default.getStatus(14) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Medical Indication", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
             }
             A99MedicalIndicationName = BC001G16_A99MedicalIndicationName[0];
@@ -1676,6 +1678,10 @@ namespace GeneXus.Programs {
          BC001G17_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_agendaeventgroup_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_agendaeventgroup_bc__gam(),
             new Object[][] {
             }
@@ -1802,6 +1808,7 @@ namespace GeneXus.Programs {
       private Guid A96ResidentTypeId ;
       private Guid Z98MedicalIndicationId ;
       private Guid A98MedicalIndicationId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1914,10 +1921,11 @@ namespace GeneXus.Programs {
       private SdtTrn_AgendaEventGroup bcTrn_AgendaEventGroup ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_agendaeventgroup_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_agendaeventgroup_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1944,33 +1952,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_agendaeventgroup_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_agendaeventgroup_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new UpdateCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new ForEachCursor(def[12])
-       ,new ForEachCursor(def[13])
-       ,new ForEachCursor(def[14])
-       ,new ForEachCursor(def[15])
      };
   }
 
@@ -1979,101 +1971,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC001G2;
-        prmBC001G2 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G3;
-        prmBC001G3 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G4;
-        prmBC001G4 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G5;
-        prmBC001G5 = new Object[] {
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G6;
-        prmBC001G6 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G7;
-        prmBC001G7 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G8;
-        prmBC001G8 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G9;
-        prmBC001G9 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G10;
-        prmBC001G10 = new Object[] {
-        new ParDef("AgendaEventGroupRSVP",GXType.Boolean,4,0) ,
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G11;
-        prmBC001G11 = new Object[] {
-        new ParDef("AgendaEventGroupRSVP",GXType.Boolean,4,0) ,
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G12;
-        prmBC001G12 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G13;
-        prmBC001G13 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G14;
-        prmBC001G14 = new Object[] {
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G15;
-        prmBC001G15 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G16;
-        prmBC001G16 = new Object[] {
-        new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001G17;
-        prmBC001G17 = new Object[] {
-        new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC001G2", "SELECT AgendaEventGroupRSVP, AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId  FOR UPDATE OF Trn_AgendaEventGroup",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G3", "SELECT AgendaEventGroupRSVP, AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G4", "SELECT LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G5", "SELECT ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentInitials, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentPhone, ResidentBirthDate, ResidentGUID, ResidentPhoneCode, ResidentPhoneNumber, ResidentTypeId, MedicalIndicationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G6", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G7", "SELECT MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G7,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G8", "SELECT TM1.AgendaEventGroupRSVP, T3.ResidentSalutation, T3.ResidentBsnNumber, T3.ResidentGivenName, T3.ResidentLastName, T3.ResidentInitials, T3.ResidentEmail, T3.ResidentGender, T3.ResidentCountry, T3.ResidentCity, T3.ResidentZipCode, T3.ResidentAddressLine1, T3.ResidentAddressLine2, T3.ResidentPhone, T3.ResidentBirthDate, T3.ResidentGUID, T4.ResidentTypeName, T5.MedicalIndicationName, T3.ResidentPhoneCode, T3.ResidentPhoneNumber, TM1.AgendaCalendarId, T2.LocationId, T2.OrganisationId, TM1.ResidentId, T3.ResidentTypeId, T3.MedicalIndicationId FROM ((((Trn_AgendaEventGroup TM1 INNER JOIN Trn_AgendaCalendar T2 ON T2.AgendaCalendarId = TM1.AgendaCalendarId) LEFT JOIN Trn_Resident T3 ON T3.ResidentId = TM1.ResidentId AND T3.LocationId = T2.LocationId AND T3.OrganisationId = T2.OrganisationId) INNER JOIN Trn_ResidentType T4 ON T4.ResidentTypeId = T3.ResidentTypeId) INNER JOIN Trn_MedicalIndication T5 ON T5.MedicalIndicationId = T3.MedicalIndicationId) WHERE TM1.AgendaCalendarId = :AgendaCalendarId and TM1.ResidentId = :ResidentId ORDER BY TM1.AgendaCalendarId, TM1.ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G8,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G9", "SELECT AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G9,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G10", "SAVEPOINT gxupdate;INSERT INTO Trn_AgendaEventGroup(AgendaEventGroupRSVP, AgendaCalendarId, ResidentId) VALUES(:AgendaEventGroupRSVP, :AgendaCalendarId, :ResidentId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001G10)
-           ,new CursorDef("BC001G11", "SAVEPOINT gxupdate;UPDATE Trn_AgendaEventGroup SET AgendaEventGroupRSVP=:AgendaEventGroupRSVP  WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001G11)
-           ,new CursorDef("BC001G12", "SAVEPOINT gxupdate;DELETE FROM Trn_AgendaEventGroup  WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001G12)
-           ,new CursorDef("BC001G13", "SELECT LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G13,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G14", "SELECT ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentInitials, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentPhone, ResidentBirthDate, ResidentGUID, ResidentPhoneCode, ResidentPhoneNumber, ResidentTypeId, MedicalIndicationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G14,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G15", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G15,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G16", "SELECT MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G16,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001G17", "SELECT TM1.AgendaEventGroupRSVP, T3.ResidentSalutation, T3.ResidentBsnNumber, T3.ResidentGivenName, T3.ResidentLastName, T3.ResidentInitials, T3.ResidentEmail, T3.ResidentGender, T3.ResidentCountry, T3.ResidentCity, T3.ResidentZipCode, T3.ResidentAddressLine1, T3.ResidentAddressLine2, T3.ResidentPhone, T3.ResidentBirthDate, T3.ResidentGUID, T4.ResidentTypeName, T5.MedicalIndicationName, T3.ResidentPhoneCode, T3.ResidentPhoneNumber, TM1.AgendaCalendarId, T2.LocationId, T2.OrganisationId, TM1.ResidentId, T3.ResidentTypeId, T3.MedicalIndicationId FROM ((((Trn_AgendaEventGroup TM1 INNER JOIN Trn_AgendaCalendar T2 ON T2.AgendaCalendarId = TM1.AgendaCalendarId) LEFT JOIN Trn_Resident T3 ON T3.ResidentId = TM1.ResidentId AND T3.LocationId = T2.LocationId AND T3.OrganisationId = T2.OrganisationId) INNER JOIN Trn_ResidentType T4 ON T4.ResidentTypeId = T3.ResidentTypeId) INNER JOIN Trn_MedicalIndication T5 ON T5.MedicalIndicationId = T3.MedicalIndicationId) WHERE TM1.AgendaCalendarId = :AgendaCalendarId and TM1.ResidentId = :ResidentId ORDER BY TM1.AgendaCalendarId, TM1.ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G17,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2082,142 +1980,284 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((bool[]) buf[0])[0] = rslt.getBool(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 1 :
-              ((bool[]) buf[0])[0] = rslt.getBool(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 20);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getString(5, 20);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getString(13, 20);
-              ((DateTime[]) buf[13])[0] = rslt.getGXDate(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((string[]) buf[16])[0] = rslt.getVarchar(17);
-              ((Guid[]) buf[17])[0] = rslt.getGuid(18);
-              ((Guid[]) buf[18])[0] = rslt.getGuid(19);
-              return;
-           case 4 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 5 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 6 :
-              ((bool[]) buf[0])[0] = rslt.getBool(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 20);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getString(14, 20);
-              ((DateTime[]) buf[14])[0] = rslt.getGXDate(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((string[]) buf[16])[0] = rslt.getVarchar(17);
-              ((string[]) buf[17])[0] = rslt.getVarchar(18);
-              ((string[]) buf[18])[0] = rslt.getVarchar(19);
-              ((string[]) buf[19])[0] = rslt.getVarchar(20);
-              ((Guid[]) buf[20])[0] = rslt.getGuid(21);
-              ((Guid[]) buf[21])[0] = rslt.getGuid(22);
-              ((Guid[]) buf[22])[0] = rslt.getGuid(23);
-              ((Guid[]) buf[23])[0] = rslt.getGuid(24);
-              ((Guid[]) buf[24])[0] = rslt.getGuid(25);
-              ((Guid[]) buf[25])[0] = rslt.getGuid(26);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-           case 11 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-           case 12 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 20);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getString(5, 20);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getString(13, 20);
-              ((DateTime[]) buf[13])[0] = rslt.getGXDate(14);
-              ((string[]) buf[14])[0] = rslt.getVarchar(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((string[]) buf[16])[0] = rslt.getVarchar(17);
-              ((Guid[]) buf[17])[0] = rslt.getGuid(18);
-              ((Guid[]) buf[18])[0] = rslt.getGuid(19);
-              return;
-           case 13 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 14 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 15 :
-              ((bool[]) buf[0])[0] = rslt.getBool(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 20);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getString(6, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((string[]) buf[8])[0] = rslt.getVarchar(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((string[]) buf[10])[0] = rslt.getVarchar(11);
-              ((string[]) buf[11])[0] = rslt.getVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getVarchar(13);
-              ((string[]) buf[13])[0] = rslt.getString(14, 20);
-              ((DateTime[]) buf[14])[0] = rslt.getGXDate(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((string[]) buf[16])[0] = rslt.getVarchar(17);
-              ((string[]) buf[17])[0] = rslt.getVarchar(18);
-              ((string[]) buf[18])[0] = rslt.getVarchar(19);
-              ((string[]) buf[19])[0] = rslt.getVarchar(20);
-              ((Guid[]) buf[20])[0] = rslt.getGuid(21);
-              ((Guid[]) buf[21])[0] = rslt.getGuid(22);
-              ((Guid[]) buf[22])[0] = rslt.getGuid(23);
-              ((Guid[]) buf[23])[0] = rslt.getGuid(24);
-              ((Guid[]) buf[24])[0] = rslt.getGuid(25);
-              ((Guid[]) buf[25])[0] = rslt.getGuid(26);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_agendaeventgroup_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new UpdateCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
+      ,new ForEachCursor(def[13])
+      ,new ForEachCursor(def[14])
+      ,new ForEachCursor(def[15])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC001G2;
+       prmBC001G2 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G3;
+       prmBC001G3 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G4;
+       prmBC001G4 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G5;
+       prmBC001G5 = new Object[] {
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G6;
+       prmBC001G6 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G7;
+       prmBC001G7 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G8;
+       prmBC001G8 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G9;
+       prmBC001G9 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G10;
+       prmBC001G10 = new Object[] {
+       new ParDef("AgendaEventGroupRSVP",GXType.Boolean,4,0) ,
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G11;
+       prmBC001G11 = new Object[] {
+       new ParDef("AgendaEventGroupRSVP",GXType.Boolean,4,0) ,
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G12;
+       prmBC001G12 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G13;
+       prmBC001G13 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G14;
+       prmBC001G14 = new Object[] {
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G15;
+       prmBC001G15 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G16;
+       prmBC001G16 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001G17;
+       prmBC001G17 = new Object[] {
+       new ParDef("AgendaCalendarId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC001G2", "SELECT AgendaEventGroupRSVP, AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId  FOR UPDATE OF Trn_AgendaEventGroup",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G3", "SELECT AgendaEventGroupRSVP, AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G4", "SELECT LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G5", "SELECT ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentInitials, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentPhone, ResidentBirthDate, ResidentGUID, ResidentPhoneCode, ResidentPhoneNumber, ResidentTypeId, MedicalIndicationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G6", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G7", "SELECT MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G7,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G8", "SELECT TM1.AgendaEventGroupRSVP, T3.ResidentSalutation, T3.ResidentBsnNumber, T3.ResidentGivenName, T3.ResidentLastName, T3.ResidentInitials, T3.ResidentEmail, T3.ResidentGender, T3.ResidentCountry, T3.ResidentCity, T3.ResidentZipCode, T3.ResidentAddressLine1, T3.ResidentAddressLine2, T3.ResidentPhone, T3.ResidentBirthDate, T3.ResidentGUID, T4.ResidentTypeName, T5.MedicalIndicationName, T3.ResidentPhoneCode, T3.ResidentPhoneNumber, TM1.AgendaCalendarId, T2.LocationId, T2.OrganisationId, TM1.ResidentId, T3.ResidentTypeId, T3.MedicalIndicationId FROM ((((Trn_AgendaEventGroup TM1 INNER JOIN Trn_AgendaCalendar T2 ON T2.AgendaCalendarId = TM1.AgendaCalendarId) LEFT JOIN Trn_Resident T3 ON T3.ResidentId = TM1.ResidentId AND T3.LocationId = T2.LocationId AND T3.OrganisationId = T2.OrganisationId) INNER JOIN Trn_ResidentType T4 ON T4.ResidentTypeId = T3.ResidentTypeId) INNER JOIN Trn_MedicalIndication T5 ON T5.MedicalIndicationId = T3.MedicalIndicationId) WHERE TM1.AgendaCalendarId = :AgendaCalendarId and TM1.ResidentId = :ResidentId ORDER BY TM1.AgendaCalendarId, TM1.ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G8,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G9", "SELECT AgendaCalendarId, ResidentId FROM Trn_AgendaEventGroup WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G9,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G10", "SAVEPOINT gxupdate;INSERT INTO Trn_AgendaEventGroup(AgendaEventGroupRSVP, AgendaCalendarId, ResidentId) VALUES(:AgendaEventGroupRSVP, :AgendaCalendarId, :ResidentId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001G10)
+          ,new CursorDef("BC001G11", "SAVEPOINT gxupdate;UPDATE Trn_AgendaEventGroup SET AgendaEventGroupRSVP=:AgendaEventGroupRSVP  WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001G11)
+          ,new CursorDef("BC001G12", "SAVEPOINT gxupdate;DELETE FROM Trn_AgendaEventGroup  WHERE AgendaCalendarId = :AgendaCalendarId AND ResidentId = :ResidentId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001G12)
+          ,new CursorDef("BC001G13", "SELECT LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G13,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G14", "SELECT ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentInitials, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentPhone, ResidentBirthDate, ResidentGUID, ResidentPhoneCode, ResidentPhoneNumber, ResidentTypeId, MedicalIndicationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G14,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G15", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G15,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G16", "SELECT MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G16,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001G17", "SELECT TM1.AgendaEventGroupRSVP, T3.ResidentSalutation, T3.ResidentBsnNumber, T3.ResidentGivenName, T3.ResidentLastName, T3.ResidentInitials, T3.ResidentEmail, T3.ResidentGender, T3.ResidentCountry, T3.ResidentCity, T3.ResidentZipCode, T3.ResidentAddressLine1, T3.ResidentAddressLine2, T3.ResidentPhone, T3.ResidentBirthDate, T3.ResidentGUID, T4.ResidentTypeName, T5.MedicalIndicationName, T3.ResidentPhoneCode, T3.ResidentPhoneNumber, TM1.AgendaCalendarId, T2.LocationId, T2.OrganisationId, TM1.ResidentId, T3.ResidentTypeId, T3.MedicalIndicationId FROM ((((Trn_AgendaEventGroup TM1 INNER JOIN Trn_AgendaCalendar T2 ON T2.AgendaCalendarId = TM1.AgendaCalendarId) LEFT JOIN Trn_Resident T3 ON T3.ResidentId = TM1.ResidentId AND T3.LocationId = T2.LocationId AND T3.OrganisationId = T2.OrganisationId) INNER JOIN Trn_ResidentType T4 ON T4.ResidentTypeId = T3.ResidentTypeId) INNER JOIN Trn_MedicalIndication T5 ON T5.MedicalIndicationId = T3.MedicalIndicationId) WHERE TM1.AgendaCalendarId = :AgendaCalendarId and TM1.ResidentId = :ResidentId ORDER BY TM1.AgendaCalendarId, TM1.ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001G17,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((bool[]) buf[0])[0] = rslt.getBool(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 1 :
+             ((bool[]) buf[0])[0] = rslt.getBool(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 20);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getString(13, 20);
+             ((DateTime[]) buf[13])[0] = rslt.getGXDate(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((string[]) buf[16])[0] = rslt.getVarchar(17);
+             ((Guid[]) buf[17])[0] = rslt.getGuid(18);
+             ((Guid[]) buf[18])[0] = rslt.getGuid(19);
+             return;
+          case 4 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 5 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 6 :
+             ((bool[]) buf[0])[0] = rslt.getBool(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getString(14, 20);
+             ((DateTime[]) buf[14])[0] = rslt.getGXDate(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((string[]) buf[16])[0] = rslt.getVarchar(17);
+             ((string[]) buf[17])[0] = rslt.getVarchar(18);
+             ((string[]) buf[18])[0] = rslt.getVarchar(19);
+             ((string[]) buf[19])[0] = rslt.getVarchar(20);
+             ((Guid[]) buf[20])[0] = rslt.getGuid(21);
+             ((Guid[]) buf[21])[0] = rslt.getGuid(22);
+             ((Guid[]) buf[22])[0] = rslt.getGuid(23);
+             ((Guid[]) buf[23])[0] = rslt.getGuid(24);
+             ((Guid[]) buf[24])[0] = rslt.getGuid(25);
+             ((Guid[]) buf[25])[0] = rslt.getGuid(26);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 11 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 12 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 20);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getString(13, 20);
+             ((DateTime[]) buf[13])[0] = rslt.getGXDate(14);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((string[]) buf[16])[0] = rslt.getVarchar(17);
+             ((Guid[]) buf[17])[0] = rslt.getGuid(18);
+             ((Guid[]) buf[18])[0] = rslt.getGuid(19);
+             return;
+          case 13 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 14 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 15 :
+             ((bool[]) buf[0])[0] = rslt.getBool(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getString(6, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getVarchar(13);
+             ((string[]) buf[13])[0] = rslt.getString(14, 20);
+             ((DateTime[]) buf[14])[0] = rslt.getGXDate(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((string[]) buf[16])[0] = rslt.getVarchar(17);
+             ((string[]) buf[17])[0] = rslt.getVarchar(18);
+             ((string[]) buf[18])[0] = rslt.getVarchar(19);
+             ((string[]) buf[19])[0] = rslt.getVarchar(20);
+             ((Guid[]) buf[20])[0] = rslt.getGuid(21);
+             ((Guid[]) buf[21])[0] = rslt.getGuid(22);
+             ((Guid[]) buf[22])[0] = rslt.getGuid(23);
+             ((Guid[]) buf[23])[0] = rslt.getGuid(24);
+             ((Guid[]) buf[24])[0] = rslt.getGuid(25);
+             ((Guid[]) buf[25])[0] = rslt.getGuid(26);
+             return;
+    }
+ }
 
 }
 

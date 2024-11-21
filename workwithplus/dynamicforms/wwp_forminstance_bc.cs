@@ -26,6 +26,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -260,18 +262,18 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* After Trn Routine */
          returnInSub = false;
          AV17FormInstanceIdString = StringUtil.Trim( StringUtil.Str( (decimal)(A214WWPFormInstanceId), 6, 0));
-         AV18FormLink = formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV19WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(A214WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim("DSP"))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode"}) ;
+         AV18FormLink = formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV19WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(A214WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim("DSP"))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) ;
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-plus NotificationFontIconSuccess",  "New Form Response",  "A dynamic form has been filled",  "A dynamic form has been filled",  AV18FormLink,  "",  "",  true) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-plus NotificationFontIconSuccess", ""),  context.GetMessage( "New Form Response", ""),  context.GetMessage( "A dynamic form has been filled", ""),  context.GetMessage( "A dynamic form has been filled", ""),  AV18FormLink,  "",  "",  true) ;
          }
          else if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-pencil-alt NotificationFontIconWarning",  "Form Response Updated",  "A dynamic form has been updated",  "A dynamic form has been updated",  AV18FormLink,  "",  "",  true) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-pencil-alt NotificationFontIconWarning", ""),  context.GetMessage( "Form Response Updated", ""),  context.GetMessage( "A dynamic form has been updated", ""),  context.GetMessage( "A dynamic form has been updated", ""),  AV18FormLink,  "",  "",  true) ;
          }
          else if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
          {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-trash-alt NotificationFontIconDanger",  "Form Response Deleted",  "A dynamic form has been deleted",  "A dynamic form has been delete",  AV18FormLink,  "",  "",  true) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-trash-alt NotificationFontIconDanger", ""),  context.GetMessage( "Form Response Deleted", ""),  context.GetMessage( "A dynamic form has been deleted", ""),  context.GetMessage( "A dynamic form has been delete", ""),  AV18FormLink,  "",  "",  true) ;
          }
       }
 
@@ -360,7 +362,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(6, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
          if ( (pr_default.getStatus(6) == 101) )
          {
-            GX_msglist.addItem("No matching 'Dynamic Form'.", "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
             AnyError = 1;
          }
          A208WWPFormReferenceName = BC000U8_A208WWPFormReferenceName[0];
@@ -372,7 +374,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(7, new Object[] {A112WWPUserExtendedId});
          if ( (pr_default.getStatus(7) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
             AnyError = 1;
          }
          A113WWPUserExtendedFullName = BC000U9_A113WWPUserExtendedFullName[0];
@@ -1012,7 +1014,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          pr_default.execute(2, new Object[] {A206WWPFormId, A207WWPFormVersionNumber, A210WWPFormElementId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Element'.", "ForeignKeyNotFound", 1, "WWPFORMELEMENTID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Element", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMELEMENTID");
             AnyError = 1;
          }
          A229WWPFormElementTitle = BC000U4_A229WWPFormElementTitle[0];
@@ -1030,7 +1032,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             if ( ! ( (0==A206WWPFormId) || (0==A207WWPFormVersionNumber) || (0==A211WWPFormElementParentId) ) )
             {
-               GX_msglist.addItem("No matching 'WWPForm Element Parent'.", "ForeignKeyNotFound", 1, "WWPFORMELEMENTPARENTID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWPForm Element Parent", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMELEMENTPARENTID");
                AnyError = 1;
             }
          }
@@ -2413,6 +2415,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          i239WWPFormInstanceDate = DateTime.MinValue;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.dynamicforms.wwp_forminstance_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.dynamicforms.wwp_forminstance_bc__gam(),
             new Object[][] {
             }
@@ -2606,6 +2612,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string Z223WWPFormInstanceElemBlob ;
       private string A223WWPFormInstanceElemBlob ;
       private IGxSession AV10WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance bcworkwithplus_dynamicforms_WWP_FormInstance ;
@@ -2778,10 +2785,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private bool[] BC000U27_n223WWPFormInstanceElemBlob ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_forminstance_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_forminstance_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -2808,43 +2816,17 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_forminstance_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_forminstance_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new ForEachCursor(def[9])
-       ,new UpdateCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new UpdateCursor(def[12])
-       ,new UpdateCursor(def[13])
-       ,new ForEachCursor(def[14])
-       ,new ForEachCursor(def[15])
-       ,new ForEachCursor(def[16])
-       ,new ForEachCursor(def[17])
-       ,new ForEachCursor(def[18])
-       ,new UpdateCursor(def[19])
-       ,new UpdateCursor(def[20])
-       ,new UpdateCursor(def[21])
-       ,new UpdateCursor(def[22])
-       ,new ForEachCursor(def[23])
-       ,new ForEachCursor(def[24])
-       ,new ForEachCursor(def[25])
      };
   }
 
@@ -2853,191 +2835,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
   {
      if ( def == null )
      {
-        Object[] prmBC000U2;
-        prmBC000U2 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U3;
-        prmBC000U3 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U4;
-        prmBC000U4 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U5;
-        prmBC000U5 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
-        new ParDef("WWPFormElementParentId",GXType.Int16,4,0){Nullable=true}
-        };
-        Object[] prmBC000U6;
-        prmBC000U6 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
-        };
-        Object[] prmBC000U7;
-        prmBC000U7 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
-        };
-        Object[] prmBC000U8;
-        prmBC000U8 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U9;
-        prmBC000U9 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0)
-        };
-        Object[] prmBC000U10;
-        prmBC000U10 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
-        };
-        Object[] prmBC000U11;
-        prmBC000U11 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
-        };
-        Object[] prmBC000U12;
-        prmBC000U12 = new Object[] {
-        new ParDef("WWPFormInstanceDate",GXType.Date,8,0) ,
-        new ParDef("WWPFormInstanceRecordKey",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0)
-        };
-        Object[] prmBC000U13;
-        prmBC000U13 = new Object[] {
-        };
-        Object[] prmBC000U14;
-        prmBC000U14 = new Object[] {
-        new ParDef("WWPFormInstanceDate",GXType.Date,8,0) ,
-        new ParDef("WWPFormInstanceRecordKey",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0) ,
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
-        };
-        Object[] prmBC000U15;
-        prmBC000U15 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
-        };
-        Object[] prmBC000U16;
-        prmBC000U16 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U17;
-        prmBC000U17 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0)
-        };
-        Object[] prmBC000U18;
-        prmBC000U18 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
-        };
-        Object[] prmBC000U19;
-        prmBC000U19 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
-        new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U20;
-        prmBC000U20 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U21;
-        prmBC000U21 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
-        new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceElemChar",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemDate",GXType.Date,8,0){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemDateTime",GXType.DateTime,8,5){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemNumeric",GXType.Number,18,5){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemBlob",GXType.Byte,1024,0){Nullable=true,InDB=true} ,
-        new ParDef("WWPFormInstanceElemBoolean",GXType.Boolean,4,0){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemBlobFileTyp",GXType.VarChar,40,0) ,
-        new ParDef("WWPFormInstanceElemBlobFileNam",GXType.VarChar,40,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U22;
-        prmBC000U22 = new Object[] {
-        new ParDef("WWPFormInstanceElemChar",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemDate",GXType.Date,8,0){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemDateTime",GXType.DateTime,8,5){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemNumeric",GXType.Number,18,5){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemBoolean",GXType.Boolean,4,0){Nullable=true} ,
-        new ParDef("WWPFormInstanceElemBlobFileTyp",GXType.VarChar,40,0) ,
-        new ParDef("WWPFormInstanceElemBlobFileNam",GXType.VarChar,40,0) ,
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U23;
-        prmBC000U23 = new Object[] {
-        new ParDef("WWPFormInstanceElemBlob",GXType.Byte,1024,0){Nullable=true,InDB=true} ,
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U24;
-        prmBC000U24 = new Object[] {
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U25;
-        prmBC000U25 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
-        new ParDef("WWPFormElementId",GXType.Int16,4,0)
-        };
-        Object[] prmBC000U26;
-        prmBC000U26 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
-        new ParDef("WWPFormElementParentId",GXType.Int16,4,0){Nullable=true}
-        };
-        Object[] prmBC000U27;
-        prmBC000U27 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
-        new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000U2", "SELECT WWPFormInstanceId, WWPFormInstanceElementId, WWPFormInstanceElemChar, WWPFormInstanceElemDate, WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric, WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam, WWPFormElementId, WWPFormInstanceElemBlob FROM WWP_FormInstanceElement WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId  FOR UPDATE OF WWP_FormInstanceElement",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U3", "SELECT WWPFormInstanceId, WWPFormInstanceElementId, WWPFormInstanceElemChar, WWPFormInstanceElemDate, WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric, WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam, WWPFormElementId, WWPFormInstanceElemBlob FROM WWP_FormInstanceElement WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U4", "SELECT WWPFormId, WWPFormVersionNumber, WWPFormElementTitle, WWPFormElementReferenceId, WWPFormElementDataType, WWPFormElementType, WWPFormElementMetadata, WWPFormElementCaption, WWPFormElementParentId FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U5", "SELECT WWPFormElementType AS WWPFormElementParentType FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementParentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U6", "SELECT WWPFormInstanceId, WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId  FOR UPDATE OF WWP_FormInstance",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U7", "SELECT WWPFormInstanceId, WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U7,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U8", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormResume, WWPFormValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U8,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U9", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U9,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U10", "SELECT TM1.WWPFormInstanceId, TM1.WWPFormInstanceDate, T2.WWPFormReferenceName, T2.WWPFormTitle, T3.WWPUserExtendedFullName, T2.WWPFormResume, T2.WWPFormValidations, TM1.WWPFormInstanceRecordKey, TM1.WWPFormId, TM1.WWPFormVersionNumber, TM1.WWPUserExtendedId FROM ((WWP_FormInstance TM1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = TM1.WWPFormId AND T2.WWPFormVersionNumber = TM1.WWPFormVersionNumber) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY TM1.WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U10,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U11", "SELECT WWPFormInstanceId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U11,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U12", "SAVEPOINT gxupdate;INSERT INTO WWP_FormInstance(WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId) VALUES(:WWPFormInstanceDate, :WWPFormInstanceRecordKey, :WWPFormId, :WWPFormVersionNumber, :WWPUserExtendedId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000U12)
-           ,new CursorDef("BC000U13", "SELECT currval('WWPFormInstanceId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U13,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U14", "SAVEPOINT gxupdate;UPDATE WWP_FormInstance SET WWPFormInstanceDate=:WWPFormInstanceDate, WWPFormInstanceRecordKey=:WWPFormInstanceRecordKey, WWPFormId=:WWPFormId, WWPFormVersionNumber=:WWPFormVersionNumber, WWPUserExtendedId=:WWPUserExtendedId  WHERE WWPFormInstanceId = :WWPFormInstanceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U14)
-           ,new CursorDef("BC000U15", "SAVEPOINT gxupdate;DELETE FROM WWP_FormInstance  WHERE WWPFormInstanceId = :WWPFormInstanceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U15)
-           ,new CursorDef("BC000U16", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormResume, WWPFormValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U16,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U17", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U17,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U18", "SELECT TM1.WWPFormInstanceId, TM1.WWPFormInstanceDate, T2.WWPFormReferenceName, T2.WWPFormTitle, T3.WWPUserExtendedFullName, T2.WWPFormResume, T2.WWPFormValidations, TM1.WWPFormInstanceRecordKey, TM1.WWPFormId, TM1.WWPFormVersionNumber, TM1.WWPUserExtendedId FROM ((WWP_FormInstance TM1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = TM1.WWPFormId AND T2.WWPFormVersionNumber = TM1.WWPFormVersionNumber) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY TM1.WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U18,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U19", "SELECT T2.WWPFormId, T2.WWPFormVersionNumber, T1.WWPFormInstanceId, T1.WWPFormInstanceElementId, T2.WWPFormElementTitle, T2.WWPFormElementReferenceId, T2.WWPFormElementDataType, T3.WWPFormElementType AS WWPFormElementParentType, T2.WWPFormElementType, T2.WWPFormElementMetadata, T2.WWPFormElementCaption, T1.WWPFormInstanceElemChar, T1.WWPFormInstanceElemDate, T1.WWPFormInstanceElemDateTime, T1.WWPFormInstanceElemNumeric, T1.WWPFormInstanceElemBoolean, T1.WWPFormInstanceElemBlobFileTyp, T1.WWPFormInstanceElemBlobFileNam, T1.WWPFormElementId, T2.WWPFormElementParentId AS WWPFormElementParentId, T1.WWPFormInstanceElemBlob FROM ((WWP_FormInstanceElement T1 LEFT JOIN WWP_FormElement T2 ON T2.WWPFormId = :WWPFormId AND T2.WWPFormVersionNumber = :WWPFormVersionNumber AND T2.WWPFormElementId = T1.WWPFormElementId) LEFT JOIN WWP_FormElement T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber AND T3.WWPFormElementId = T2.WWPFormElementParentId) WHERE T1.WWPFormInstanceId = :WWPFormInstanceId and T1.WWPFormInstanceElementId = :WWPFormInstanceElementId and T1.WWPFormElementId = :WWPFormElementId ORDER BY T1.WWPFormInstanceId, T1.WWPFormElementId, T1.WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U19,11, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U20", "SELECT WWPFormInstanceId, WWPFormElementId, WWPFormInstanceElementId FROM WWP_FormInstanceElement WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U20,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U21", "SAVEPOINT gxupdate;INSERT INTO WWP_FormInstanceElement(WWPFormInstanceId, WWPFormInstanceElementId, WWPFormInstanceElemChar, WWPFormInstanceElemDate, WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric, WWPFormInstanceElemBlob, WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam, WWPFormElementId) VALUES(:WWPFormInstanceId, :WWPFormInstanceElementId, :WWPFormInstanceElemChar, :WWPFormInstanceElemDate, :WWPFormInstanceElemDateTime, :WWPFormInstanceElemNumeric, :WWPFormInstanceElemBlob, :WWPFormInstanceElemBoolean, :WWPFormInstanceElemBlobFileTyp, :WWPFormInstanceElemBlobFileNam, :WWPFormElementId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000U21)
-           ,new CursorDef("BC000U22", "SAVEPOINT gxupdate;UPDATE WWP_FormInstanceElement SET WWPFormInstanceElemChar=:WWPFormInstanceElemChar, WWPFormInstanceElemDate=:WWPFormInstanceElemDate, WWPFormInstanceElemDateTime=:WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric=:WWPFormInstanceElemNumeric, WWPFormInstanceElemBoolean=:WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp=:WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam=:WWPFormInstanceElemBlobFileNam  WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U22)
-           ,new CursorDef("BC000U23", "SAVEPOINT gxupdate;UPDATE WWP_FormInstanceElement SET WWPFormInstanceElemBlob=:WWPFormInstanceElemBlob  WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U23)
-           ,new CursorDef("BC000U24", "SAVEPOINT gxupdate;DELETE FROM WWP_FormInstanceElement  WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U24)
-           ,new CursorDef("BC000U25", "SELECT WWPFormElementTitle, WWPFormElementReferenceId, WWPFormElementDataType, WWPFormElementType, WWPFormElementMetadata, WWPFormElementCaption, WWPFormElementParentId FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U25,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U26", "SELECT WWPFormElementType AS WWPFormElementParentType FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementParentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U26,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000U27", "SELECT T2.WWPFormId, T2.WWPFormVersionNumber, T1.WWPFormInstanceId, T1.WWPFormInstanceElementId, T2.WWPFormElementTitle, T2.WWPFormElementReferenceId, T2.WWPFormElementDataType, T3.WWPFormElementType AS WWPFormElementParentType, T2.WWPFormElementType, T2.WWPFormElementMetadata, T2.WWPFormElementCaption, T1.WWPFormInstanceElemChar, T1.WWPFormInstanceElemDate, T1.WWPFormInstanceElemDateTime, T1.WWPFormInstanceElemNumeric, T1.WWPFormInstanceElemBoolean, T1.WWPFormInstanceElemBlobFileTyp, T1.WWPFormInstanceElemBlobFileNam, T1.WWPFormElementId, T2.WWPFormElementParentId AS WWPFormElementParentId, T1.WWPFormInstanceElemBlob FROM ((WWP_FormInstanceElement T1 LEFT JOIN WWP_FormElement T2 ON T2.WWPFormId = :WWPFormId AND T2.WWPFormVersionNumber = :WWPFormVersionNumber AND T2.WWPFormElementId = T1.WWPFormElementId) LEFT JOIN WWP_FormElement T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber AND T3.WWPFormElementId = T2.WWPFormElementParentId) WHERE T1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY T1.WWPFormInstanceId, T1.WWPFormElementId, T1.WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U27,11, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -3046,211 +2844,453 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDate(4);
-              ((bool[]) buf[5])[0] = rslt.wasNull(4);
-              ((DateTime[]) buf[6])[0] = rslt.getGXDateTime(5);
-              ((bool[]) buf[7])[0] = rslt.wasNull(5);
-              ((decimal[]) buf[8])[0] = rslt.getDecimal(6);
-              ((bool[]) buf[9])[0] = rslt.wasNull(6);
-              ((bool[]) buf[10])[0] = rslt.getBool(7);
-              ((bool[]) buf[11])[0] = rslt.wasNull(7);
-              ((string[]) buf[12])[0] = rslt.getVarchar(8);
-              ((string[]) buf[13])[0] = rslt.getVarchar(9);
-              ((short[]) buf[14])[0] = rslt.getShort(10);
-              ((string[]) buf[15])[0] = rslt.getBLOBFile(11, rslt.getVarchar(8), rslt.getVarchar(9));
-              ((bool[]) buf[16])[0] = rslt.wasNull(11);
-              return;
-           case 1 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((DateTime[]) buf[4])[0] = rslt.getGXDate(4);
-              ((bool[]) buf[5])[0] = rslt.wasNull(4);
-              ((DateTime[]) buf[6])[0] = rslt.getGXDateTime(5);
-              ((bool[]) buf[7])[0] = rslt.wasNull(5);
-              ((decimal[]) buf[8])[0] = rslt.getDecimal(6);
-              ((bool[]) buf[9])[0] = rslt.wasNull(6);
-              ((bool[]) buf[10])[0] = rslt.getBool(7);
-              ((bool[]) buf[11])[0] = rslt.wasNull(7);
-              ((string[]) buf[12])[0] = rslt.getVarchar(8);
-              ((string[]) buf[13])[0] = rslt.getVarchar(9);
-              ((short[]) buf[14])[0] = rslt.getShort(10);
-              ((string[]) buf[15])[0] = rslt.getBLOBFile(11, rslt.getVarchar(8), rslt.getVarchar(9));
-              ((bool[]) buf[16])[0] = rslt.wasNull(11);
-              return;
-           case 2 :
-              ((short[]) buf[0])[0] = rslt.getShort(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((short[]) buf[4])[0] = rslt.getShort(5);
-              ((short[]) buf[5])[0] = rslt.getShort(6);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-              ((short[]) buf[7])[0] = rslt.getShort(8);
-              ((short[]) buf[8])[0] = rslt.getShort(9);
-              ((bool[]) buf[9])[0] = rslt.wasNull(9);
-              return;
-           case 3 :
-              ((short[]) buf[0])[0] = rslt.getShort(1);
-              return;
-           case 4 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((short[]) buf[4])[0] = rslt.getShort(4);
-              ((short[]) buf[5])[0] = rslt.getShort(5);
-              ((string[]) buf[6])[0] = rslt.getString(6, 40);
-              return;
-           case 5 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((short[]) buf[4])[0] = rslt.getShort(4);
-              ((short[]) buf[5])[0] = rslt.getShort(5);
-              ((string[]) buf[6])[0] = rslt.getString(6, 40);
-              return;
-           case 6 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((short[]) buf[2])[0] = rslt.getShort(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              return;
-           case 7 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 8 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((short[]) buf[5])[0] = rslt.getShort(6);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[8])[0] = rslt.wasNull(8);
-              ((short[]) buf[9])[0] = rslt.getShort(9);
-              ((short[]) buf[10])[0] = rslt.getShort(10);
-              ((string[]) buf[11])[0] = rslt.getString(11, 40);
-              return;
-           case 9 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              return;
-           case 11 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              return;
-           case 14 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((short[]) buf[2])[0] = rslt.getShort(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              return;
-           case 15 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 16 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((short[]) buf[5])[0] = rslt.getShort(6);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[8])[0] = rslt.wasNull(8);
-              ((short[]) buf[9])[0] = rslt.getShort(9);
-              ((short[]) buf[10])[0] = rslt.getShort(10);
-              ((string[]) buf[11])[0] = rslt.getString(11, 40);
-              return;
-           case 17 :
-              ((short[]) buf[0])[0] = rslt.getShort(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((int[]) buf[2])[0] = rslt.getInt(3);
-              ((short[]) buf[3])[0] = rslt.getShort(4);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((short[]) buf[6])[0] = rslt.getShort(7);
-              ((short[]) buf[7])[0] = rslt.getShort(8);
-              ((short[]) buf[8])[0] = rslt.getShort(9);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(10);
-              ((short[]) buf[10])[0] = rslt.getShort(11);
-              ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
-              ((bool[]) buf[12])[0] = rslt.wasNull(12);
-              ((DateTime[]) buf[13])[0] = rslt.getGXDate(13);
-              ((bool[]) buf[14])[0] = rslt.wasNull(13);
-              ((DateTime[]) buf[15])[0] = rslt.getGXDateTime(14);
-              ((bool[]) buf[16])[0] = rslt.wasNull(14);
-              ((decimal[]) buf[17])[0] = rslt.getDecimal(15);
-              ((bool[]) buf[18])[0] = rslt.wasNull(15);
-              ((bool[]) buf[19])[0] = rslt.getBool(16);
-              ((bool[]) buf[20])[0] = rslt.wasNull(16);
-              ((string[]) buf[21])[0] = rslt.getVarchar(17);
-              ((string[]) buf[22])[0] = rslt.getVarchar(18);
-              ((short[]) buf[23])[0] = rslt.getShort(19);
-              ((short[]) buf[24])[0] = rslt.getShort(20);
-              ((bool[]) buf[25])[0] = rslt.wasNull(20);
-              ((string[]) buf[26])[0] = rslt.getBLOBFile(21, rslt.getVarchar(17), rslt.getVarchar(18));
-              ((bool[]) buf[27])[0] = rslt.wasNull(21);
-              return;
-           case 18 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((short[]) buf[2])[0] = rslt.getShort(3);
-              return;
-           case 23 :
-              ((string[]) buf[0])[0] = rslt.getLongVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((short[]) buf[2])[0] = rslt.getShort(3);
-              ((short[]) buf[3])[0] = rslt.getShort(4);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-              ((short[]) buf[5])[0] = rslt.getShort(6);
-              ((short[]) buf[6])[0] = rslt.getShort(7);
-              ((bool[]) buf[7])[0] = rslt.wasNull(7);
-              return;
-           case 24 :
-              ((short[]) buf[0])[0] = rslt.getShort(1);
-              return;
-           case 25 :
-              ((short[]) buf[0])[0] = rslt.getShort(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              ((int[]) buf[2])[0] = rslt.getInt(3);
-              ((short[]) buf[3])[0] = rslt.getShort(4);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((short[]) buf[6])[0] = rslt.getShort(7);
-              ((short[]) buf[7])[0] = rslt.getShort(8);
-              ((short[]) buf[8])[0] = rslt.getShort(9);
-              ((string[]) buf[9])[0] = rslt.getLongVarchar(10);
-              ((short[]) buf[10])[0] = rslt.getShort(11);
-              ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
-              ((bool[]) buf[12])[0] = rslt.wasNull(12);
-              ((DateTime[]) buf[13])[0] = rslt.getGXDate(13);
-              ((bool[]) buf[14])[0] = rslt.wasNull(13);
-              ((DateTime[]) buf[15])[0] = rslt.getGXDateTime(14);
-              ((bool[]) buf[16])[0] = rslt.wasNull(14);
-              ((decimal[]) buf[17])[0] = rslt.getDecimal(15);
-              ((bool[]) buf[18])[0] = rslt.wasNull(15);
-              ((bool[]) buf[19])[0] = rslt.getBool(16);
-              ((bool[]) buf[20])[0] = rslt.wasNull(16);
-              ((string[]) buf[21])[0] = rslt.getVarchar(17);
-              ((string[]) buf[22])[0] = rslt.getVarchar(18);
-              ((short[]) buf[23])[0] = rslt.getShort(19);
-              ((short[]) buf[24])[0] = rslt.getShort(20);
-              ((bool[]) buf[25])[0] = rslt.wasNull(20);
-              ((string[]) buf[26])[0] = rslt.getBLOBFile(21, rslt.getVarchar(17), rslt.getVarchar(18));
-              ((bool[]) buf[27])[0] = rslt.wasNull(21);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_forminstance_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new ForEachCursor(def[9])
+      ,new UpdateCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new UpdateCursor(def[12])
+      ,new UpdateCursor(def[13])
+      ,new ForEachCursor(def[14])
+      ,new ForEachCursor(def[15])
+      ,new ForEachCursor(def[16])
+      ,new ForEachCursor(def[17])
+      ,new ForEachCursor(def[18])
+      ,new UpdateCursor(def[19])
+      ,new UpdateCursor(def[20])
+      ,new UpdateCursor(def[21])
+      ,new UpdateCursor(def[22])
+      ,new ForEachCursor(def[23])
+      ,new ForEachCursor(def[24])
+      ,new ForEachCursor(def[25])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000U2;
+       prmBC000U2 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U3;
+       prmBC000U3 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U4;
+       prmBC000U4 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U5;
+       prmBC000U5 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
+       new ParDef("WWPFormElementParentId",GXType.Int16,4,0){Nullable=true}
+       };
+       Object[] prmBC000U6;
+       prmBC000U6 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+       };
+       Object[] prmBC000U7;
+       prmBC000U7 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+       };
+       Object[] prmBC000U8;
+       prmBC000U8 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U9;
+       prmBC000U9 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0)
+       };
+       Object[] prmBC000U10;
+       prmBC000U10 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+       };
+       Object[] prmBC000U11;
+       prmBC000U11 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+       };
+       Object[] prmBC000U12;
+       prmBC000U12 = new Object[] {
+       new ParDef("WWPFormInstanceDate",GXType.Date,8,0) ,
+       new ParDef("WWPFormInstanceRecordKey",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0)
+       };
+       Object[] prmBC000U13;
+       prmBC000U13 = new Object[] {
+       };
+       Object[] prmBC000U14;
+       prmBC000U14 = new Object[] {
+       new ParDef("WWPFormInstanceDate",GXType.Date,8,0) ,
+       new ParDef("WWPFormInstanceRecordKey",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0) ,
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+       };
+       Object[] prmBC000U15;
+       prmBC000U15 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+       };
+       Object[] prmBC000U16;
+       prmBC000U16 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U17;
+       prmBC000U17 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0)
+       };
+       Object[] prmBC000U18;
+       prmBC000U18 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+       };
+       Object[] prmBC000U19;
+       prmBC000U19 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
+       new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U20;
+       prmBC000U20 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U21;
+       prmBC000U21 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
+       new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceElemChar",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemDate",GXType.Date,8,0){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemDateTime",GXType.DateTime,8,5){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemNumeric",GXType.Number,18,5){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemBlob",GXType.Byte,1024,0){Nullable=true,InDB=true} ,
+       new ParDef("WWPFormInstanceElemBoolean",GXType.Boolean,4,0){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemBlobFileTyp",GXType.VarChar,40,0) ,
+       new ParDef("WWPFormInstanceElemBlobFileNam",GXType.VarChar,40,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U22;
+       prmBC000U22 = new Object[] {
+       new ParDef("WWPFormInstanceElemChar",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemDate",GXType.Date,8,0){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemDateTime",GXType.DateTime,8,5){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemNumeric",GXType.Number,18,5){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemBoolean",GXType.Boolean,4,0){Nullable=true} ,
+       new ParDef("WWPFormInstanceElemBlobFileTyp",GXType.VarChar,40,0) ,
+       new ParDef("WWPFormInstanceElemBlobFileNam",GXType.VarChar,40,0) ,
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U23;
+       prmBC000U23 = new Object[] {
+       new ParDef("WWPFormInstanceElemBlob",GXType.Byte,1024,0){Nullable=true,InDB=true} ,
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U24;
+       prmBC000U24 = new Object[] {
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U25;
+       prmBC000U25 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
+       new ParDef("WWPFormElementId",GXType.Int16,4,0)
+       };
+       Object[] prmBC000U26;
+       prmBC000U26 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
+       new ParDef("WWPFormElementParentId",GXType.Int16,4,0){Nullable=true}
+       };
+       Object[] prmBC000U27;
+       prmBC000U27 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
+       new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000U2", "SELECT WWPFormInstanceId, WWPFormInstanceElementId, WWPFormInstanceElemChar, WWPFormInstanceElemDate, WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric, WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam, WWPFormElementId, WWPFormInstanceElemBlob FROM WWP_FormInstanceElement WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId  FOR UPDATE OF WWP_FormInstanceElement",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U3", "SELECT WWPFormInstanceId, WWPFormInstanceElementId, WWPFormInstanceElemChar, WWPFormInstanceElemDate, WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric, WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam, WWPFormElementId, WWPFormInstanceElemBlob FROM WWP_FormInstanceElement WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U4", "SELECT WWPFormId, WWPFormVersionNumber, WWPFormElementTitle, WWPFormElementReferenceId, WWPFormElementDataType, WWPFormElementType, WWPFormElementMetadata, WWPFormElementCaption, WWPFormElementParentId FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U5", "SELECT WWPFormElementType AS WWPFormElementParentType FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementParentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U6", "SELECT WWPFormInstanceId, WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId  FOR UPDATE OF WWP_FormInstance",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U7", "SELECT WWPFormInstanceId, WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U7,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U8", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormResume, WWPFormValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U8,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U9", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U9,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U10", "SELECT TM1.WWPFormInstanceId, TM1.WWPFormInstanceDate, T2.WWPFormReferenceName, T2.WWPFormTitle, T3.WWPUserExtendedFullName, T2.WWPFormResume, T2.WWPFormValidations, TM1.WWPFormInstanceRecordKey, TM1.WWPFormId, TM1.WWPFormVersionNumber, TM1.WWPUserExtendedId FROM ((WWP_FormInstance TM1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = TM1.WWPFormId AND T2.WWPFormVersionNumber = TM1.WWPFormVersionNumber) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY TM1.WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U10,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U11", "SELECT WWPFormInstanceId FROM WWP_FormInstance WHERE WWPFormInstanceId = :WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U11,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U12", "SAVEPOINT gxupdate;INSERT INTO WWP_FormInstance(WWPFormInstanceDate, WWPFormInstanceRecordKey, WWPFormId, WWPFormVersionNumber, WWPUserExtendedId) VALUES(:WWPFormInstanceDate, :WWPFormInstanceRecordKey, :WWPFormId, :WWPFormVersionNumber, :WWPUserExtendedId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000U12)
+          ,new CursorDef("BC000U13", "SELECT currval('WWPFormInstanceId') ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U13,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U14", "SAVEPOINT gxupdate;UPDATE WWP_FormInstance SET WWPFormInstanceDate=:WWPFormInstanceDate, WWPFormInstanceRecordKey=:WWPFormInstanceRecordKey, WWPFormId=:WWPFormId, WWPFormVersionNumber=:WWPFormVersionNumber, WWPUserExtendedId=:WWPUserExtendedId  WHERE WWPFormInstanceId = :WWPFormInstanceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U14)
+          ,new CursorDef("BC000U15", "SAVEPOINT gxupdate;DELETE FROM WWP_FormInstance  WHERE WWPFormInstanceId = :WWPFormInstanceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U15)
+          ,new CursorDef("BC000U16", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormResume, WWPFormValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U16,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U17", "SELECT WWPUserExtendedFullName FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U17,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U18", "SELECT TM1.WWPFormInstanceId, TM1.WWPFormInstanceDate, T2.WWPFormReferenceName, T2.WWPFormTitle, T3.WWPUserExtendedFullName, T2.WWPFormResume, T2.WWPFormValidations, TM1.WWPFormInstanceRecordKey, TM1.WWPFormId, TM1.WWPFormVersionNumber, TM1.WWPUserExtendedId FROM ((WWP_FormInstance TM1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = TM1.WWPFormId AND T2.WWPFormVersionNumber = TM1.WWPFormVersionNumber) INNER JOIN WWP_UserExtended T3 ON T3.WWPUserExtendedId = TM1.WWPUserExtendedId) WHERE TM1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY TM1.WWPFormInstanceId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U18,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U19", "SELECT T2.WWPFormId, T2.WWPFormVersionNumber, T1.WWPFormInstanceId, T1.WWPFormInstanceElementId, T2.WWPFormElementTitle, T2.WWPFormElementReferenceId, T2.WWPFormElementDataType, T3.WWPFormElementType AS WWPFormElementParentType, T2.WWPFormElementType, T2.WWPFormElementMetadata, T2.WWPFormElementCaption, T1.WWPFormInstanceElemChar, T1.WWPFormInstanceElemDate, T1.WWPFormInstanceElemDateTime, T1.WWPFormInstanceElemNumeric, T1.WWPFormInstanceElemBoolean, T1.WWPFormInstanceElemBlobFileTyp, T1.WWPFormInstanceElemBlobFileNam, T1.WWPFormElementId, T2.WWPFormElementParentId AS WWPFormElementParentId, T1.WWPFormInstanceElemBlob FROM ((WWP_FormInstanceElement T1 LEFT JOIN WWP_FormElement T2 ON T2.WWPFormId = :WWPFormId AND T2.WWPFormVersionNumber = :WWPFormVersionNumber AND T2.WWPFormElementId = T1.WWPFormElementId) LEFT JOIN WWP_FormElement T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber AND T3.WWPFormElementId = T2.WWPFormElementParentId) WHERE T1.WWPFormInstanceId = :WWPFormInstanceId and T1.WWPFormInstanceElementId = :WWPFormInstanceElementId and T1.WWPFormElementId = :WWPFormElementId ORDER BY T1.WWPFormInstanceId, T1.WWPFormElementId, T1.WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U19,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U20", "SELECT WWPFormInstanceId, WWPFormElementId, WWPFormInstanceElementId FROM WWP_FormInstanceElement WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U20,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U21", "SAVEPOINT gxupdate;INSERT INTO WWP_FormInstanceElement(WWPFormInstanceId, WWPFormInstanceElementId, WWPFormInstanceElemChar, WWPFormInstanceElemDate, WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric, WWPFormInstanceElemBlob, WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam, WWPFormElementId) VALUES(:WWPFormInstanceId, :WWPFormInstanceElementId, :WWPFormInstanceElemChar, :WWPFormInstanceElemDate, :WWPFormInstanceElemDateTime, :WWPFormInstanceElemNumeric, :WWPFormInstanceElemBlob, :WWPFormInstanceElemBoolean, :WWPFormInstanceElemBlobFileTyp, :WWPFormInstanceElemBlobFileNam, :WWPFormElementId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000U21)
+          ,new CursorDef("BC000U22", "SAVEPOINT gxupdate;UPDATE WWP_FormInstanceElement SET WWPFormInstanceElemChar=:WWPFormInstanceElemChar, WWPFormInstanceElemDate=:WWPFormInstanceElemDate, WWPFormInstanceElemDateTime=:WWPFormInstanceElemDateTime, WWPFormInstanceElemNumeric=:WWPFormInstanceElemNumeric, WWPFormInstanceElemBoolean=:WWPFormInstanceElemBoolean, WWPFormInstanceElemBlobFileTyp=:WWPFormInstanceElemBlobFileTyp, WWPFormInstanceElemBlobFileNam=:WWPFormInstanceElemBlobFileNam  WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U22)
+          ,new CursorDef("BC000U23", "SAVEPOINT gxupdate;UPDATE WWP_FormInstanceElement SET WWPFormInstanceElemBlob=:WWPFormInstanceElemBlob  WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U23)
+          ,new CursorDef("BC000U24", "SAVEPOINT gxupdate;DELETE FROM WWP_FormInstanceElement  WHERE WWPFormInstanceId = :WWPFormInstanceId AND WWPFormElementId = :WWPFormElementId AND WWPFormInstanceElementId = :WWPFormInstanceElementId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000U24)
+          ,new CursorDef("BC000U25", "SELECT WWPFormElementTitle, WWPFormElementReferenceId, WWPFormElementDataType, WWPFormElementType, WWPFormElementMetadata, WWPFormElementCaption, WWPFormElementParentId FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U25,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U26", "SELECT WWPFormElementType AS WWPFormElementParentType FROM WWP_FormElement WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber AND WWPFormElementId = :WWPFormElementParentId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U26,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000U27", "SELECT T2.WWPFormId, T2.WWPFormVersionNumber, T1.WWPFormInstanceId, T1.WWPFormInstanceElementId, T2.WWPFormElementTitle, T2.WWPFormElementReferenceId, T2.WWPFormElementDataType, T3.WWPFormElementType AS WWPFormElementParentType, T2.WWPFormElementType, T2.WWPFormElementMetadata, T2.WWPFormElementCaption, T1.WWPFormInstanceElemChar, T1.WWPFormInstanceElemDate, T1.WWPFormInstanceElemDateTime, T1.WWPFormInstanceElemNumeric, T1.WWPFormInstanceElemBoolean, T1.WWPFormInstanceElemBlobFileTyp, T1.WWPFormInstanceElemBlobFileNam, T1.WWPFormElementId, T2.WWPFormElementParentId AS WWPFormElementParentId, T1.WWPFormInstanceElemBlob FROM ((WWP_FormInstanceElement T1 LEFT JOIN WWP_FormElement T2 ON T2.WWPFormId = :WWPFormId AND T2.WWPFormVersionNumber = :WWPFormVersionNumber AND T2.WWPFormElementId = T1.WWPFormElementId) LEFT JOIN WWP_FormElement T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber AND T3.WWPFormElementId = T2.WWPFormElementParentId) WHERE T1.WWPFormInstanceId = :WWPFormInstanceId ORDER BY T1.WWPFormInstanceId, T1.WWPFormElementId, T1.WWPFormInstanceElementId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000U27,11, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((DateTime[]) buf[4])[0] = rslt.getGXDate(4);
+             ((bool[]) buf[5])[0] = rslt.wasNull(4);
+             ((DateTime[]) buf[6])[0] = rslt.getGXDateTime(5);
+             ((bool[]) buf[7])[0] = rslt.wasNull(5);
+             ((decimal[]) buf[8])[0] = rslt.getDecimal(6);
+             ((bool[]) buf[9])[0] = rslt.wasNull(6);
+             ((bool[]) buf[10])[0] = rslt.getBool(7);
+             ((bool[]) buf[11])[0] = rslt.wasNull(7);
+             ((string[]) buf[12])[0] = rslt.getVarchar(8);
+             ((string[]) buf[13])[0] = rslt.getVarchar(9);
+             ((short[]) buf[14])[0] = rslt.getShort(10);
+             ((string[]) buf[15])[0] = rslt.getBLOBFile(11, rslt.getVarchar(8), rslt.getVarchar(9));
+             ((bool[]) buf[16])[0] = rslt.wasNull(11);
+             return;
+          case 1 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((DateTime[]) buf[4])[0] = rslt.getGXDate(4);
+             ((bool[]) buf[5])[0] = rslt.wasNull(4);
+             ((DateTime[]) buf[6])[0] = rslt.getGXDateTime(5);
+             ((bool[]) buf[7])[0] = rslt.wasNull(5);
+             ((decimal[]) buf[8])[0] = rslt.getDecimal(6);
+             ((bool[]) buf[9])[0] = rslt.wasNull(6);
+             ((bool[]) buf[10])[0] = rslt.getBool(7);
+             ((bool[]) buf[11])[0] = rslt.wasNull(7);
+             ((string[]) buf[12])[0] = rslt.getVarchar(8);
+             ((string[]) buf[13])[0] = rslt.getVarchar(9);
+             ((short[]) buf[14])[0] = rslt.getShort(10);
+             ((string[]) buf[15])[0] = rslt.getBLOBFile(11, rslt.getVarchar(8), rslt.getVarchar(9));
+             ((bool[]) buf[16])[0] = rslt.wasNull(11);
+             return;
+          case 2 :
+             ((short[]) buf[0])[0] = rslt.getShort(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((short[]) buf[4])[0] = rslt.getShort(5);
+             ((short[]) buf[5])[0] = rslt.getShort(6);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
+             ((short[]) buf[7])[0] = rslt.getShort(8);
+             ((short[]) buf[8])[0] = rslt.getShort(9);
+             ((bool[]) buf[9])[0] = rslt.wasNull(9);
+             return;
+          case 3 :
+             ((short[]) buf[0])[0] = rslt.getShort(1);
+             return;
+          case 4 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((short[]) buf[4])[0] = rslt.getShort(4);
+             ((short[]) buf[5])[0] = rslt.getShort(5);
+             ((string[]) buf[6])[0] = rslt.getString(6, 40);
+             return;
+          case 5 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((short[]) buf[4])[0] = rslt.getShort(4);
+             ((short[]) buf[5])[0] = rslt.getShort(5);
+             ((string[]) buf[6])[0] = rslt.getString(6, 40);
+             return;
+          case 6 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((short[]) buf[2])[0] = rslt.getShort(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             return;
+          case 7 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 8 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((short[]) buf[5])[0] = rslt.getShort(6);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+             ((bool[]) buf[8])[0] = rslt.wasNull(8);
+             ((short[]) buf[9])[0] = rslt.getShort(9);
+             ((short[]) buf[10])[0] = rslt.getShort(10);
+             ((string[]) buf[11])[0] = rslt.getString(11, 40);
+             return;
+          case 9 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             return;
+          case 11 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             return;
+          case 14 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((short[]) buf[2])[0] = rslt.getShort(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             return;
+          case 15 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 16 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((short[]) buf[5])[0] = rslt.getShort(6);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+             ((bool[]) buf[8])[0] = rslt.wasNull(8);
+             ((short[]) buf[9])[0] = rslt.getShort(9);
+             ((short[]) buf[10])[0] = rslt.getShort(10);
+             ((string[]) buf[11])[0] = rslt.getString(11, 40);
+             return;
+          case 17 :
+             ((short[]) buf[0])[0] = rslt.getShort(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((int[]) buf[2])[0] = rslt.getInt(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((short[]) buf[6])[0] = rslt.getShort(7);
+             ((short[]) buf[7])[0] = rslt.getShort(8);
+             ((short[]) buf[8])[0] = rslt.getShort(9);
+             ((string[]) buf[9])[0] = rslt.getLongVarchar(10);
+             ((short[]) buf[10])[0] = rslt.getShort(11);
+             ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
+             ((bool[]) buf[12])[0] = rslt.wasNull(12);
+             ((DateTime[]) buf[13])[0] = rslt.getGXDate(13);
+             ((bool[]) buf[14])[0] = rslt.wasNull(13);
+             ((DateTime[]) buf[15])[0] = rslt.getGXDateTime(14);
+             ((bool[]) buf[16])[0] = rslt.wasNull(14);
+             ((decimal[]) buf[17])[0] = rslt.getDecimal(15);
+             ((bool[]) buf[18])[0] = rslt.wasNull(15);
+             ((bool[]) buf[19])[0] = rslt.getBool(16);
+             ((bool[]) buf[20])[0] = rslt.wasNull(16);
+             ((string[]) buf[21])[0] = rslt.getVarchar(17);
+             ((string[]) buf[22])[0] = rslt.getVarchar(18);
+             ((short[]) buf[23])[0] = rslt.getShort(19);
+             ((short[]) buf[24])[0] = rslt.getShort(20);
+             ((bool[]) buf[25])[0] = rslt.wasNull(20);
+             ((string[]) buf[26])[0] = rslt.getBLOBFile(21, rslt.getVarchar(17), rslt.getVarchar(18));
+             ((bool[]) buf[27])[0] = rslt.wasNull(21);
+             return;
+          case 18 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((short[]) buf[2])[0] = rslt.getShort(3);
+             return;
+          case 23 :
+             ((string[]) buf[0])[0] = rslt.getLongVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((short[]) buf[2])[0] = rslt.getShort(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             ((short[]) buf[5])[0] = rslt.getShort(6);
+             ((short[]) buf[6])[0] = rslt.getShort(7);
+             ((bool[]) buf[7])[0] = rslt.wasNull(7);
+             return;
+          case 24 :
+             ((short[]) buf[0])[0] = rslt.getShort(1);
+             return;
+          case 25 :
+             ((short[]) buf[0])[0] = rslt.getShort(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((int[]) buf[2])[0] = rslt.getInt(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((short[]) buf[6])[0] = rslt.getShort(7);
+             ((short[]) buf[7])[0] = rslt.getShort(8);
+             ((short[]) buf[8])[0] = rslt.getShort(9);
+             ((string[]) buf[9])[0] = rslt.getLongVarchar(10);
+             ((short[]) buf[10])[0] = rslt.getShort(11);
+             ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
+             ((bool[]) buf[12])[0] = rslt.wasNull(12);
+             ((DateTime[]) buf[13])[0] = rslt.getGXDate(13);
+             ((bool[]) buf[14])[0] = rslt.wasNull(13);
+             ((DateTime[]) buf[15])[0] = rslt.getGXDateTime(14);
+             ((bool[]) buf[16])[0] = rslt.wasNull(14);
+             ((decimal[]) buf[17])[0] = rslt.getDecimal(15);
+             ((bool[]) buf[18])[0] = rslt.wasNull(15);
+             ((bool[]) buf[19])[0] = rslt.getBool(16);
+             ((bool[]) buf[20])[0] = rslt.wasNull(16);
+             ((string[]) buf[21])[0] = rslt.getVarchar(17);
+             ((string[]) buf[22])[0] = rslt.getVarchar(18);
+             ((short[]) buf[23])[0] = rslt.getShort(19);
+             ((short[]) buf[24])[0] = rslt.getShort(20);
+             ((bool[]) buf[25])[0] = rslt.wasNull(20);
+             ((string[]) buf[26])[0] = rslt.getBLOBFile(21, rslt.getVarchar(17), rslt.getVarchar(18));
+             ((bool[]) buf[27])[0] = rslt.wasNull(21);
+             return;
+    }
+ }
 
 }
 

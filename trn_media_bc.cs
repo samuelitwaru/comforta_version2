@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -195,7 +197,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! ( GxRegex.IsMatch(A412MediaUrl,"^((?:[a-zA-Z]+:(//)?)?((?:(?:[a-zA-Z]([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*)(?:\\.(?:([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*))*)|(?:(\\d{1,3}\\.){3}\\d{1,3}))(?::\\d+)?(?:/([a-zA-Z0-9$\\-_@.&+!*\"'(),=;: ]|%[0-9a-fA-F]{2})+)*/?(?:[#?](?:[a-zA-Z0-9$\\-_@.&+!*\"'(),=;: /]|%[0-9a-fA-F]{2})*)?)?\\s*$") ) )
          {
-            GX_msglist.addItem("Field Media Url does not match the specified pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Media Url", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -1197,6 +1199,10 @@ namespace GeneXus.Programs {
          BC000X10_n411MediaImage = new bool[] {false} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_media_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_media_bc__gam(),
             new Object[][] {
             }
@@ -1263,6 +1269,7 @@ namespace GeneXus.Programs {
       private Guid Z409MediaId ;
       private Guid A409MediaId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1308,10 +1315,11 @@ namespace GeneXus.Programs {
       private SdtTrn_Media bcTrn_Media ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_media_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_media_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1338,26 +1346,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_media_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_media_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1366,64 +1365,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC000X2;
-        prmBC000X2 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000X3;
-        prmBC000X3 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000X4;
-        prmBC000X4 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000X5;
-        prmBC000X5 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000X6;
-        prmBC000X6 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("MediaName",GXType.VarChar,100,0) ,
-        new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
-        new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=2, Tbl="Trn_Media", Fld="MediaImage"} ,
-        new ParDef("MediaSize",GXType.Int32,8,0) ,
-        new ParDef("MediaType",GXType.Char,20,0) ,
-        new ParDef("MediaUrl",GXType.VarChar,1000,0)
-        };
-        Object[] prmBC000X7;
-        prmBC000X7 = new Object[] {
-        new ParDef("MediaName",GXType.VarChar,100,0) ,
-        new ParDef("MediaSize",GXType.Int32,8,0) ,
-        new ParDef("MediaType",GXType.Char,20,0) ,
-        new ParDef("MediaUrl",GXType.VarChar,1000,0) ,
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000X8;
-        prmBC000X8 = new Object[] {
-        new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
-        new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=0, Tbl="Trn_Media", Fld="MediaImage"} ,
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000X9;
-        prmBC000X9 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000X10;
-        prmBC000X10 = new Object[] {
-        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000X2", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000X3", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000X4", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000X5", "SELECT MediaId FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000X6", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaUrl) VALUES(:MediaId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaUrl);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000X6)
-           ,new CursorDef("BC000X7", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaUrl=:MediaUrl  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X7)
-           ,new CursorDef("BC000X8", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaImage=:MediaImage, MediaImage_GXI=:MediaImage_GXI  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X8)
-           ,new CursorDef("BC000X9", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X9)
-           ,new CursorDef("BC000X10", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X10,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1432,57 +1374,155 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((int[]) buf[4])[0] = rslt.getInt(4);
-              ((string[]) buf[5])[0] = rslt.getString(5, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(6);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((int[]) buf[4])[0] = rslt.getInt(4);
-              ((string[]) buf[5])[0] = rslt.getString(5, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(6);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((int[]) buf[4])[0] = rslt.getInt(4);
-              ((string[]) buf[5])[0] = rslt.getString(5, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(6);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((int[]) buf[4])[0] = rslt.getInt(4);
-              ((string[]) buf[5])[0] = rslt.getString(5, 20);
-              ((string[]) buf[6])[0] = rslt.getVarchar(6);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-              ((bool[]) buf[8])[0] = rslt.wasNull(7);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_media_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000X2;
+       prmBC000X2 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000X3;
+       prmBC000X3 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000X4;
+       prmBC000X4 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000X5;
+       prmBC000X5 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000X6;
+       prmBC000X6 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("MediaName",GXType.VarChar,100,0) ,
+       new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+       new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=2, Tbl="Trn_Media", Fld="MediaImage"} ,
+       new ParDef("MediaSize",GXType.Int32,8,0) ,
+       new ParDef("MediaType",GXType.Char,20,0) ,
+       new ParDef("MediaUrl",GXType.VarChar,1000,0)
+       };
+       Object[] prmBC000X7;
+       prmBC000X7 = new Object[] {
+       new ParDef("MediaName",GXType.VarChar,100,0) ,
+       new ParDef("MediaSize",GXType.Int32,8,0) ,
+       new ParDef("MediaType",GXType.Char,20,0) ,
+       new ParDef("MediaUrl",GXType.VarChar,1000,0) ,
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000X8;
+       prmBC000X8 = new Object[] {
+       new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+       new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=0, Tbl="Trn_Media", Fld="MediaImage"} ,
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000X9;
+       prmBC000X9 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000X10;
+       prmBC000X10 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000X2", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000X3", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000X4", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000X5", "SELECT MediaId FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000X6", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaUrl) VALUES(:MediaId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaUrl);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000X6)
+          ,new CursorDef("BC000X7", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaUrl=:MediaUrl  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X7)
+          ,new CursorDef("BC000X8", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaImage=:MediaImage, MediaImage_GXI=:MediaImage_GXI  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X8)
+          ,new CursorDef("BC000X9", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X9)
+          ,new CursorDef("BC000X10", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X10,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((int[]) buf[4])[0] = rslt.getInt(4);
+             ((string[]) buf[5])[0] = rslt.getString(5, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(6);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((int[]) buf[4])[0] = rslt.getInt(4);
+             ((string[]) buf[5])[0] = rslt.getString(5, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(6);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((int[]) buf[4])[0] = rslt.getInt(4);
+             ((string[]) buf[5])[0] = rslt.getString(5, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(6);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 8 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((int[]) buf[4])[0] = rslt.getInt(4);
+             ((string[]) buf[5])[0] = rslt.getString(5, 20);
+             ((string[]) buf[6])[0] = rslt.getVarchar(6);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             return;
+    }
+ }
 
 }
 

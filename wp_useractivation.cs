@@ -27,6 +27,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -37,6 +38,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -301,6 +303,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -343,7 +357,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WP_User Activation" ;
+         return context.GetMessage( "WP_User Activation", "") ;
       }
 
       protected void WB4F0( )
@@ -404,7 +418,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divCurrentrepositorycell_Internalname, 1, 0, "px", 0, "px", "col-xs-12 TextBlockTitleWWP", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblCurrentrepository_Internalname, "Set Account Password:", "", "", lblCurrentrepository_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "DataDescriptionLogin", 0, "", 1, 1, 0, 0, "HLP_WP_UserActivation.htm");
+            GxWebStd.gx_label_ctrl( context, lblCurrentrepository_Internalname, context.GetMessage( "Set Account Password:", ""), "", "", lblCurrentrepository_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "DataDescriptionLogin", 0, "", 1, 1, 0, 0, "HLP_WP_UserActivation.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -414,10 +428,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUserpassword_Internalname, "User Password", "col-sm-3 AttributeLoginImageLeftLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavUserpassword_Internalname, context.GetMessage( "User Password", ""), "col-sm-3 AttributeLoginImageLeftLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUserpassword_Internalname, StringUtil.RTrim( AV7UserPassword), StringUtil.RTrim( context.localUtil.Format( AV7UserPassword, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,25);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Password", edtavUserpassword_Jsonclick, 0, "AttributeLoginImageLeft", "", "", "", "", 1, edtavUserpassword_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_WP_UserActivation.htm");
+            GxWebStd.gx_single_line_edit( context, edtavUserpassword_Internalname, StringUtil.RTrim( AV7UserPassword), StringUtil.RTrim( context.localUtil.Format( AV7UserPassword, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,25);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_GAM_Password", ""), edtavUserpassword_Jsonclick, 0, "AttributeLoginImageLeft", "", "", "", "", 1, edtavUserpassword_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_WP_UserActivation.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -428,10 +442,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUserpasswordcomfirmation_Internalname, "User Password Comfirmation", "col-sm-3 AttributeLoginImageLeftLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavUserpasswordcomfirmation_Internalname, context.GetMessage( "User Password Comfirmation", ""), "col-sm-3 AttributeLoginImageLeftLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUserpasswordcomfirmation_Internalname, StringUtil.RTrim( AV8UserPasswordComfirmation), StringUtil.RTrim( context.localUtil.Format( AV8UserPasswordComfirmation, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Comfirm Password", edtavUserpasswordcomfirmation_Jsonclick, 0, "AttributeLoginImageLeft", "", "", "", "", 1, edtavUserpasswordcomfirmation_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_WP_UserActivation.htm");
+            GxWebStd.gx_single_line_edit( context, edtavUserpasswordcomfirmation_Internalname, StringUtil.RTrim( AV8UserPasswordComfirmation), StringUtil.RTrim( context.localUtil.Format( AV8UserPasswordComfirmation, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "Comfirm Password", ""), edtavUserpasswordcomfirmation_Jsonclick, 0, "AttributeLoginImageLeft", "", "", "", "", 1, edtavUserpasswordcomfirmation_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_WP_UserActivation.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -442,7 +456,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 32,'',false,'',0)\"";
             ClassString = "ButtonMaterial ButtonLogin";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Set Password", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserActivation.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "Set Password", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserActivation.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -494,7 +508,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "WP_User Activation", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WP_User Activation", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -768,7 +782,7 @@ namespace GeneXus.Programs {
                   {
                      context.CommitDataStores("wp_useractivation",pr_default);
                   }
-                  AV16AdditionalParameter.gxTpr_Authenticationtypename = "local";
+                  AV16AdditionalParameter.gxTpr_Authenticationtypename = context.GetMessage( "local", "");
                   AV17isLoggedIn = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).login(AV11GAMUser.gxTpr_Email, AV7UserPassword, AV16AdditionalParameter, out  AV13GAMErrors);
                   if ( AV17isLoggedIn )
                   {
@@ -797,7 +811,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GX_msglist.addItem("The new password and confirmation do not match.");
+            GX_msglist.addItem(context.GetMessage( "WWP_GAM_PasswordAndConfirmationDontMatch", ""));
          }
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV16AdditionalParameter", AV16AdditionalParameter);
@@ -821,11 +835,11 @@ namespace GeneXus.Programs {
             AV14Error = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV13GAMErrors.Item(AV20GXV1));
             if ( AV14Error.gxTpr_Code == 52 )
             {
-               GX_msglist.addItem("Your activation link has expired, Please contact the manager");
+               GX_msglist.addItem(context.GetMessage( "Your activation link has expired, Please contact the manager", ""));
             }
             else
             {
-               GX_msglist.addItem(StringUtil.Format( "Error: %1 (GAM%2)", AV14Error.gxTpr_Message, StringUtil.LTrimStr( (decimal)(AV14Error.gxTpr_Code), 12, 0), "", "", "", "", "", "", ""));
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Error: %1 (GAM%2)", ""), AV14Error.gxTpr_Message, StringUtil.LTrimStr( (decimal)(AV14Error.gxTpr_Code), 12, 0), "", "", "", "", "", "", ""));
             }
             AV20GXV1 = (int)(AV20GXV1+1);
          }
@@ -851,11 +865,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblNoaccount_Internalname, "Already activated?", "", "", lblNoaccount_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_UserActivation.htm");
+            GxWebStd.gx_label_ctrl( context, lblNoaccount_Internalname, context.GetMessage( "Already activated?", ""), "", "", lblNoaccount_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_UserActivation.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblRegisteruser_Internalname, "Login", "", "", lblRegisteruser_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'GOTOLOGIN\\'."+"'", "", "DataDescriptionLogin", 5, "", 1, 1, 0, 0, "HLP_WP_UserActivation.htm");
+            GxWebStd.gx_label_ctrl( context, lblRegisteruser_Internalname, context.GetMessage( "Login", ""), "", "", lblRegisteruser_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'GOTOLOGIN\\'."+"'", "", "DataDescriptionLogin", 5, "", 1, 1, 0, 0, "HLP_WP_UserActivation.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -913,7 +927,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119837149", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115445214", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -928,8 +942,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_useractivation.js", "?20241119837152", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_useractivation.js", "?2024112115445217", false, true);
          /* End function include_jscripts */
       }
 
@@ -973,7 +987,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "WP_User Activation";
+         Form.Caption = context.GetMessage( "WP_User Activation", "");
          if ( context.isSpaRequest( ) )
          {
             enableJsOutput();
@@ -1037,6 +1051,10 @@ namespace GeneXus.Programs {
          lblRegisteruser_Jsonclick = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wp_useractivation__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wp_useractivation__gam(),
             new Object[][] {
             }
@@ -1115,6 +1133,7 @@ namespace GeneXus.Programs {
       private string AV10GamGuid ;
       private string wcpOAV10GamGuid ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV11GAMUser ;
@@ -1124,10 +1143,11 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.genexussecurity.SdtGAMError AV14Error ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wp_useractivation__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wp_useractivation__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1154,12 +1174,12 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wp_useractivation__default : DataStoreHelperBase, IDataStoreHelper
+ public class wp_useractivation__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -1183,6 +1203,38 @@ namespace GeneXus.Programs {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wp_useractivation__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

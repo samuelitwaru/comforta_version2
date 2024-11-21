@@ -17,6 +17,7 @@ using GeneXus.XML;
 using GeneXus.Search;
 using GeneXus.Encryption;
 using GeneXus.Http.Client;
+using GeneXus.Http.Server;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 namespace GeneXus.Programs {
@@ -26,6 +27,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +38,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -106,9 +109,9 @@ namespace GeneXus.Programs {
                CheckExtendedTable1C80( ) ;
                if ( AnyError == 0 )
                {
-                  ZM1C80( 12) ;
                   ZM1C80( 13) ;
                   ZM1C80( 14) ;
+                  ZM1C80( 15) ;
                }
                CloseExtendedTableCursors1C80( ) ;
             }
@@ -132,12 +135,12 @@ namespace GeneXus.Programs {
 
       protected void ZM1C80( short GX_JID )
       {
-         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
          {
+            Z396CallToActionUrl = A396CallToActionUrl;
             Z397CallToActionName = A397CallToActionName;
             Z368CallToActionType = A368CallToActionType;
             Z370CallToActionPhone = A370CallToActionPhone;
-            Z396CallToActionUrl = A396CallToActionUrl;
             Z369CallToActionEmail = A369CallToActionEmail;
             Z58ProductServiceId = A58ProductServiceId;
             Z29LocationId = A29LocationId;
@@ -145,17 +148,17 @@ namespace GeneXus.Programs {
             Z395LocationDynamicFormId = A395LocationDynamicFormId;
             Z219WWPFormLatestVersionNumber = A219WWPFormLatestVersionNumber;
          }
-         if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 13 ) || ( GX_JID == 0 ) )
          {
             Z219WWPFormLatestVersionNumber = A219WWPFormLatestVersionNumber;
          }
-         if ( ( GX_JID == 13 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
          {
             Z206WWPFormId = A206WWPFormId;
             Z207WWPFormVersionNumber = A207WWPFormVersionNumber;
             Z219WWPFormLatestVersionNumber = A219WWPFormLatestVersionNumber;
          }
-         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 15 ) || ( GX_JID == 0 ) )
          {
             Z208WWPFormReferenceName = A208WWPFormReferenceName;
             Z209WWPFormTitle = A209WWPFormTitle;
@@ -168,13 +171,13 @@ namespace GeneXus.Programs {
             Z242WWPFormIsForDynamicValidations = A242WWPFormIsForDynamicValidations;
             Z219WWPFormLatestVersionNumber = A219WWPFormLatestVersionNumber;
          }
-         if ( GX_JID == -11 )
+         if ( GX_JID == -12 )
          {
             Z367CallToActionId = A367CallToActionId;
+            Z396CallToActionUrl = A396CallToActionUrl;
             Z397CallToActionName = A397CallToActionName;
             Z368CallToActionType = A368CallToActionType;
             Z370CallToActionPhone = A370CallToActionPhone;
-            Z396CallToActionUrl = A396CallToActionUrl;
             Z369CallToActionEmail = A369CallToActionEmail;
             Z58ProductServiceId = A58ProductServiceId;
             Z29LocationId = A29LocationId;
@@ -218,10 +221,10 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(5) != 101) )
          {
             RcdFound80 = 1;
+            A396CallToActionUrl = BC001C7_A396CallToActionUrl[0];
             A397CallToActionName = BC001C7_A397CallToActionName[0];
             A368CallToActionType = BC001C7_A368CallToActionType[0];
             A370CallToActionPhone = BC001C7_A370CallToActionPhone[0];
-            A396CallToActionUrl = BC001C7_A396CallToActionUrl[0];
             A369CallToActionEmail = BC001C7_A369CallToActionEmail[0];
             A208WWPFormReferenceName = BC001C7_A208WWPFormReferenceName[0];
             A209WWPFormTitle = BC001C7_A209WWPFormTitle[0];
@@ -241,7 +244,7 @@ namespace GeneXus.Programs {
             n395LocationDynamicFormId = BC001C7_n395LocationDynamicFormId[0];
             A206WWPFormId = BC001C7_A206WWPFormId[0];
             A207WWPFormVersionNumber = BC001C7_A207WWPFormVersionNumber[0];
-            ZM1C80( -11) ;
+            ZM1C80( -12) ;
          }
          pr_default.close(5);
          OnLoadActions1C80( ) ;
@@ -252,6 +255,12 @@ namespace GeneXus.Programs {
          GXt_int1 = A219WWPFormLatestVersionNumber;
          new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int1) ;
          A219WWPFormLatestVersionNumber = GXt_int1;
+         if ( StringUtil.StrCmp(A368CallToActionType, "Form") == 0 )
+         {
+            GXt_char2 = A396CallToActionUrl;
+            new prc_getcalltoactionformurl(context ).execute( ref  A368CallToActionType, ref  A208WWPFormReferenceName, out  GXt_char2) ;
+            A396CallToActionUrl = GXt_char2;
+         }
       }
 
       protected void CheckExtendedTable1C80( )
@@ -261,7 +270,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A58ProductServiceId, A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_ProductService'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_ProductService", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -271,7 +280,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A395LocationDynamicFormId) || (Guid.Empty==A11OrganisationId) || (Guid.Empty==A29LocationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_LocationDynamicForm'.", "ForeignKeyNotFound", 1, "LOCATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_LocationDynamicForm", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "LOCATIONID");
                AnyError = 1;
             }
          }
@@ -287,7 +296,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (0==A206WWPFormId) || (0==A207WWPFormVersionNumber) ) )
             {
-               GX_msglist.addItem("No matching 'Dynamic Form'.", "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
                AnyError = 1;
             }
          }
@@ -303,19 +312,25 @@ namespace GeneXus.Programs {
          A241WWPFormSectionRefElements = BC001C6_A241WWPFormSectionRefElements[0];
          A242WWPFormIsForDynamicValidations = BC001C6_A242WWPFormIsForDynamicValidations[0];
          pr_default.close(4);
+         if ( StringUtil.StrCmp(A368CallToActionType, "Form") == 0 )
+         {
+            GXt_char2 = A396CallToActionUrl;
+            new prc_getcalltoactionformurl(context ).execute( ref  A368CallToActionType, ref  A208WWPFormReferenceName, out  GXt_char2) ;
+            A396CallToActionUrl = GXt_char2;
+         }
          if ( ! ( ( StringUtil.StrCmp(A368CallToActionType, "Phone") == 0 ) || ( StringUtil.StrCmp(A368CallToActionType, "Email") == 0 ) || ( StringUtil.StrCmp(A368CallToActionType, "Form") == 0 ) || ( StringUtil.StrCmp(A368CallToActionType, "SiteUrl") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Call To Action Type is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Call To Action Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A396CallToActionUrl,"^((?:[a-zA-Z]+:(//)?)?((?:(?:[a-zA-Z]([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*)(?:\\.(?:([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*))*)|(?:(\\d{1,3}\\.){3}\\d{1,3}))(?::\\d+)?(?:/([a-zA-Z0-9$\\-_@.&+!*\"'(),=;: ]|%[0-9a-fA-F]{2})+)*/?(?:[#?](?:[a-zA-Z0-9$\\-_@.&+!*\"'(),=;: /]|%[0-9a-fA-F]{2})*)?)?\\s*$") ) )
          {
-            GX_msglist.addItem("Field Call To Action Url does not match the specified pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Call To Action Url", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A369CallToActionEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Field Call To Action Email does not match the specified pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Call To Action Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -352,13 +367,13 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A367CallToActionId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1C80( 11) ;
+            ZM1C80( 12) ;
             RcdFound80 = 1;
             A367CallToActionId = BC001C3_A367CallToActionId[0];
+            A396CallToActionUrl = BC001C3_A396CallToActionUrl[0];
             A397CallToActionName = BC001C3_A397CallToActionName[0];
             A368CallToActionType = BC001C3_A368CallToActionType[0];
             A370CallToActionPhone = BC001C3_A370CallToActionPhone[0];
-            A396CallToActionUrl = BC001C3_A396CallToActionUrl[0];
             A369CallToActionEmail = BC001C3_A369CallToActionEmail[0];
             A58ProductServiceId = BC001C3_A58ProductServiceId[0];
             A29LocationId = BC001C3_A29LocationId[0];
@@ -431,7 +446,7 @@ namespace GeneXus.Programs {
                return  ;
             }
             Gx_longc = false;
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z397CallToActionName, BC001C2_A397CallToActionName[0]) != 0 ) || ( StringUtil.StrCmp(Z368CallToActionType, BC001C2_A368CallToActionType[0]) != 0 ) || ( StringUtil.StrCmp(Z370CallToActionPhone, BC001C2_A370CallToActionPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z396CallToActionUrl, BC001C2_A396CallToActionUrl[0]) != 0 ) || ( StringUtil.StrCmp(Z369CallToActionEmail, BC001C2_A369CallToActionEmail[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z396CallToActionUrl, BC001C2_A396CallToActionUrl[0]) != 0 ) || ( StringUtil.StrCmp(Z397CallToActionName, BC001C2_A397CallToActionName[0]) != 0 ) || ( StringUtil.StrCmp(Z368CallToActionType, BC001C2_A368CallToActionType[0]) != 0 ) || ( StringUtil.StrCmp(Z370CallToActionPhone, BC001C2_A370CallToActionPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z369CallToActionEmail, BC001C2_A369CallToActionEmail[0]) != 0 ) )
             {
                Gx_longc = true;
             }
@@ -464,7 +479,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC001C9 */
-                     pr_default.execute(7, new Object[] {A367CallToActionId, A397CallToActionName, A368CallToActionType, A370CallToActionPhone, A396CallToActionUrl, A369CallToActionEmail, A58ProductServiceId, A29LocationId, A11OrganisationId, n395LocationDynamicFormId, A395LocationDynamicFormId});
+                     pr_default.execute(7, new Object[] {A367CallToActionId, A396CallToActionUrl, A397CallToActionName, A368CallToActionType, A370CallToActionPhone, A369CallToActionEmail, A58ProductServiceId, A29LocationId, A11OrganisationId, n395LocationDynamicFormId, A395LocationDynamicFormId});
                      pr_default.close(7);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_CallToAction");
                      if ( (pr_default.getStatus(7) == 1) )
@@ -519,7 +534,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC001C10 */
-                     pr_default.execute(8, new Object[] {A397CallToActionName, A368CallToActionType, A370CallToActionPhone, A396CallToActionUrl, A369CallToActionEmail, A58ProductServiceId, A29LocationId, A11OrganisationId, n395LocationDynamicFormId, A395LocationDynamicFormId, A367CallToActionId});
+                     pr_default.execute(8, new Object[] {A396CallToActionUrl, A397CallToActionName, A368CallToActionType, A370CallToActionPhone, A369CallToActionEmail, A58ProductServiceId, A29LocationId, A11OrganisationId, n395LocationDynamicFormId, A395LocationDynamicFormId, A367CallToActionId});
                      pr_default.close(8);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_CallToAction");
                      if ( (pr_default.getStatus(8) == 103) )
@@ -669,10 +684,10 @@ namespace GeneXus.Programs {
          {
             RcdFound80 = 1;
             A367CallToActionId = BC001C14_A367CallToActionId[0];
+            A396CallToActionUrl = BC001C14_A396CallToActionUrl[0];
             A397CallToActionName = BC001C14_A397CallToActionName[0];
             A368CallToActionType = BC001C14_A368CallToActionType[0];
             A370CallToActionPhone = BC001C14_A370CallToActionPhone[0];
-            A396CallToActionUrl = BC001C14_A396CallToActionUrl[0];
             A369CallToActionEmail = BC001C14_A369CallToActionEmail[0];
             A208WWPFormReferenceName = BC001C14_A208WWPFormReferenceName[0];
             A209WWPFormTitle = BC001C14_A209WWPFormTitle[0];
@@ -712,10 +727,10 @@ namespace GeneXus.Programs {
          {
             RcdFound80 = 1;
             A367CallToActionId = BC001C14_A367CallToActionId[0];
+            A396CallToActionUrl = BC001C14_A396CallToActionUrl[0];
             A397CallToActionName = BC001C14_A397CallToActionName[0];
             A368CallToActionType = BC001C14_A368CallToActionType[0];
             A370CallToActionPhone = BC001C14_A370CallToActionPhone[0];
-            A396CallToActionUrl = BC001C14_A396CallToActionUrl[0];
             A369CallToActionEmail = BC001C14_A369CallToActionEmail[0];
             A208WWPFormReferenceName = BC001C14_A208WWPFormReferenceName[0];
             A209WWPFormTitle = BC001C14_A209WWPFormTitle[0];
@@ -794,6 +809,7 @@ namespace GeneXus.Programs {
 
       protected void InitializeNonKey1C80( )
       {
+         A396CallToActionUrl = "";
          A219WWPFormLatestVersionNumber = 0;
          A58ProductServiceId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
@@ -801,7 +817,6 @@ namespace GeneXus.Programs {
          A397CallToActionName = "";
          A368CallToActionType = "";
          A370CallToActionPhone = "";
-         A396CallToActionUrl = "";
          A369CallToActionEmail = "";
          A395LocationDynamicFormId = Guid.Empty;
          n395LocationDynamicFormId = false;
@@ -818,10 +833,10 @@ namespace GeneXus.Programs {
          A240WWPFormType = 0;
          A241WWPFormSectionRefElements = "";
          A242WWPFormIsForDynamicValidations = false;
+         Z396CallToActionUrl = "";
          Z397CallToActionName = "";
          Z368CallToActionType = "";
          Z370CallToActionPhone = "";
-         Z396CallToActionUrl = "";
          Z369CallToActionEmail = "";
          Z58ProductServiceId = Guid.Empty;
          Z29LocationId = Guid.Empty;
@@ -862,6 +877,7 @@ namespace GeneXus.Programs {
       public void VarsToRow80( SdtTrn_CallToAction obj80 )
       {
          obj80.gxTpr_Mode = Gx_mode;
+         obj80.gxTpr_Calltoactionurl = A396CallToActionUrl;
          obj80.gxTpr_Wwpformlatestversionnumber = A219WWPFormLatestVersionNumber;
          obj80.gxTpr_Productserviceid = A58ProductServiceId;
          obj80.gxTpr_Organisationid = A11OrganisationId;
@@ -869,7 +885,6 @@ namespace GeneXus.Programs {
          obj80.gxTpr_Calltoactionname = A397CallToActionName;
          obj80.gxTpr_Calltoactiontype = A368CallToActionType;
          obj80.gxTpr_Calltoactionphone = A370CallToActionPhone;
-         obj80.gxTpr_Calltoactionurl = A396CallToActionUrl;
          obj80.gxTpr_Calltoactionemail = A369CallToActionEmail;
          obj80.gxTpr_Locationdynamicformid = A395LocationDynamicFormId;
          obj80.gxTpr_Wwpformid = A206WWPFormId;
@@ -923,6 +938,7 @@ namespace GeneXus.Programs {
                                int forceLoad )
       {
          Gx_mode = obj80.gxTpr_Mode;
+         A396CallToActionUrl = obj80.gxTpr_Calltoactionurl;
          A219WWPFormLatestVersionNumber = obj80.gxTpr_Wwpformlatestversionnumber;
          A58ProductServiceId = obj80.gxTpr_Productserviceid;
          A11OrganisationId = obj80.gxTpr_Organisationid;
@@ -930,7 +946,6 @@ namespace GeneXus.Programs {
          A397CallToActionName = obj80.gxTpr_Calltoactionname;
          A368CallToActionType = obj80.gxTpr_Calltoactiontype;
          A370CallToActionPhone = obj80.gxTpr_Calltoactionphone;
-         A396CallToActionUrl = obj80.gxTpr_Calltoactionurl;
          A369CallToActionEmail = obj80.gxTpr_Calltoactionemail;
          A395LocationDynamicFormId = obj80.gxTpr_Locationdynamicformid;
          n395LocationDynamicFormId = false;
@@ -993,7 +1008,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z367CallToActionId = A367CallToActionId;
          }
-         ZM1C80( -11) ;
+         ZM1C80( -12) ;
          OnLoadActions1C80( ) ;
          AddRow1C80( ) ;
          ScanKeyEnd1C80( ) ;
@@ -1022,7 +1037,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z367CallToActionId = A367CallToActionId;
          }
-         ZM1C80( -11) ;
+         ZM1C80( -12) ;
          OnLoadActions1C80( ) ;
          AddRow1C80( ) ;
          ScanKeyEnd1C80( ) ;
@@ -1408,14 +1423,14 @@ namespace GeneXus.Programs {
          endTrnMsgCod = "";
          Z367CallToActionId = Guid.Empty;
          A367CallToActionId = Guid.Empty;
+         Z396CallToActionUrl = "";
+         A396CallToActionUrl = "";
          Z397CallToActionName = "";
          A397CallToActionName = "";
          Z368CallToActionType = "";
          A368CallToActionType = "";
          Z370CallToActionPhone = "";
          A370CallToActionPhone = "";
-         Z396CallToActionUrl = "";
-         A396CallToActionUrl = "";
          Z369CallToActionEmail = "";
          A369CallToActionEmail = "";
          Z58ProductServiceId = Guid.Empty;
@@ -1439,10 +1454,10 @@ namespace GeneXus.Programs {
          Z233WWPFormValidations = "";
          A233WWPFormValidations = "";
          BC001C7_A367CallToActionId = new Guid[] {Guid.Empty} ;
+         BC001C7_A396CallToActionUrl = new string[] {""} ;
          BC001C7_A397CallToActionName = new string[] {""} ;
          BC001C7_A368CallToActionType = new string[] {""} ;
          BC001C7_A370CallToActionPhone = new string[] {""} ;
-         BC001C7_A396CallToActionUrl = new string[] {""} ;
          BC001C7_A369CallToActionEmail = new string[] {""} ;
          BC001C7_A208WWPFormReferenceName = new string[] {""} ;
          BC001C7_A209WWPFormTitle = new string[] {""} ;
@@ -1476,12 +1491,13 @@ namespace GeneXus.Programs {
          BC001C6_A240WWPFormType = new short[1] ;
          BC001C6_A241WWPFormSectionRefElements = new string[] {""} ;
          BC001C6_A242WWPFormIsForDynamicValidations = new bool[] {false} ;
+         GXt_char2 = "";
          BC001C8_A367CallToActionId = new Guid[] {Guid.Empty} ;
          BC001C3_A367CallToActionId = new Guid[] {Guid.Empty} ;
+         BC001C3_A396CallToActionUrl = new string[] {""} ;
          BC001C3_A397CallToActionName = new string[] {""} ;
          BC001C3_A368CallToActionType = new string[] {""} ;
          BC001C3_A370CallToActionPhone = new string[] {""} ;
-         BC001C3_A396CallToActionUrl = new string[] {""} ;
          BC001C3_A369CallToActionEmail = new string[] {""} ;
          BC001C3_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          BC001C3_A29LocationId = new Guid[] {Guid.Empty} ;
@@ -1490,10 +1506,10 @@ namespace GeneXus.Programs {
          BC001C3_n395LocationDynamicFormId = new bool[] {false} ;
          sMode80 = "";
          BC001C2_A367CallToActionId = new Guid[] {Guid.Empty} ;
+         BC001C2_A396CallToActionUrl = new string[] {""} ;
          BC001C2_A397CallToActionName = new string[] {""} ;
          BC001C2_A368CallToActionType = new string[] {""} ;
          BC001C2_A370CallToActionPhone = new string[] {""} ;
-         BC001C2_A396CallToActionUrl = new string[] {""} ;
          BC001C2_A369CallToActionEmail = new string[] {""} ;
          BC001C2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          BC001C2_A29LocationId = new Guid[] {Guid.Empty} ;
@@ -1514,10 +1530,10 @@ namespace GeneXus.Programs {
          BC001C13_A241WWPFormSectionRefElements = new string[] {""} ;
          BC001C13_A242WWPFormIsForDynamicValidations = new bool[] {false} ;
          BC001C14_A367CallToActionId = new Guid[] {Guid.Empty} ;
+         BC001C14_A396CallToActionUrl = new string[] {""} ;
          BC001C14_A397CallToActionName = new string[] {""} ;
          BC001C14_A368CallToActionType = new string[] {""} ;
          BC001C14_A370CallToActionPhone = new string[] {""} ;
-         BC001C14_A396CallToActionUrl = new string[] {""} ;
          BC001C14_A369CallToActionEmail = new string[] {""} ;
          BC001C14_A208WWPFormReferenceName = new string[] {""} ;
          BC001C14_A209WWPFormTitle = new string[] {""} ;
@@ -1539,6 +1555,10 @@ namespace GeneXus.Programs {
          BC001C14_A207WWPFormVersionNumber = new short[1] ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_calltoaction_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_calltoaction_bc__gam(),
             new Object[][] {
             }
@@ -1546,11 +1566,11 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_calltoaction_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC001C2_A367CallToActionId, BC001C2_A397CallToActionName, BC001C2_A368CallToActionType, BC001C2_A370CallToActionPhone, BC001C2_A396CallToActionUrl, BC001C2_A369CallToActionEmail, BC001C2_A58ProductServiceId, BC001C2_A29LocationId, BC001C2_A11OrganisationId, BC001C2_A395LocationDynamicFormId,
+               BC001C2_A367CallToActionId, BC001C2_A396CallToActionUrl, BC001C2_A397CallToActionName, BC001C2_A368CallToActionType, BC001C2_A370CallToActionPhone, BC001C2_A369CallToActionEmail, BC001C2_A58ProductServiceId, BC001C2_A29LocationId, BC001C2_A11OrganisationId, BC001C2_A395LocationDynamicFormId,
                BC001C2_n395LocationDynamicFormId
                }
                , new Object[] {
-               BC001C3_A367CallToActionId, BC001C3_A397CallToActionName, BC001C3_A368CallToActionType, BC001C3_A370CallToActionPhone, BC001C3_A396CallToActionUrl, BC001C3_A369CallToActionEmail, BC001C3_A58ProductServiceId, BC001C3_A29LocationId, BC001C3_A11OrganisationId, BC001C3_A395LocationDynamicFormId,
+               BC001C3_A367CallToActionId, BC001C3_A396CallToActionUrl, BC001C3_A397CallToActionName, BC001C3_A368CallToActionType, BC001C3_A370CallToActionPhone, BC001C3_A369CallToActionEmail, BC001C3_A58ProductServiceId, BC001C3_A29LocationId, BC001C3_A11OrganisationId, BC001C3_A395LocationDynamicFormId,
                BC001C3_n395LocationDynamicFormId
                }
                , new Object[] {
@@ -1564,7 +1584,7 @@ namespace GeneXus.Programs {
                BC001C6_A242WWPFormIsForDynamicValidations
                }
                , new Object[] {
-               BC001C7_A367CallToActionId, BC001C7_A397CallToActionName, BC001C7_A368CallToActionType, BC001C7_A370CallToActionPhone, BC001C7_A396CallToActionUrl, BC001C7_A369CallToActionEmail, BC001C7_A208WWPFormReferenceName, BC001C7_A209WWPFormTitle, BC001C7_A231WWPFormDate, BC001C7_A232WWPFormIsWizard,
+               BC001C7_A367CallToActionId, BC001C7_A396CallToActionUrl, BC001C7_A397CallToActionName, BC001C7_A368CallToActionType, BC001C7_A370CallToActionPhone, BC001C7_A369CallToActionEmail, BC001C7_A208WWPFormReferenceName, BC001C7_A209WWPFormTitle, BC001C7_A231WWPFormDate, BC001C7_A232WWPFormIsWizard,
                BC001C7_A216WWPFormResume, BC001C7_A235WWPFormResumeMessage, BC001C7_A233WWPFormValidations, BC001C7_A234WWPFormInstantiated, BC001C7_A240WWPFormType, BC001C7_A241WWPFormSectionRefElements, BC001C7_A242WWPFormIsForDynamicValidations, BC001C7_A58ProductServiceId, BC001C7_A29LocationId, BC001C7_A11OrganisationId,
                BC001C7_A395LocationDynamicFormId, BC001C7_n395LocationDynamicFormId, BC001C7_A206WWPFormId, BC001C7_A207WWPFormVersionNumber
                }
@@ -1585,7 +1605,7 @@ namespace GeneXus.Programs {
                BC001C13_A242WWPFormIsForDynamicValidations
                }
                , new Object[] {
-               BC001C14_A367CallToActionId, BC001C14_A397CallToActionName, BC001C14_A368CallToActionType, BC001C14_A370CallToActionPhone, BC001C14_A396CallToActionUrl, BC001C14_A369CallToActionEmail, BC001C14_A208WWPFormReferenceName, BC001C14_A209WWPFormTitle, BC001C14_A231WWPFormDate, BC001C14_A232WWPFormIsWizard,
+               BC001C14_A367CallToActionId, BC001C14_A396CallToActionUrl, BC001C14_A397CallToActionName, BC001C14_A368CallToActionType, BC001C14_A370CallToActionPhone, BC001C14_A369CallToActionEmail, BC001C14_A208WWPFormReferenceName, BC001C14_A209WWPFormTitle, BC001C14_A231WWPFormDate, BC001C14_A232WWPFormIsWizard,
                BC001C14_A216WWPFormResume, BC001C14_A235WWPFormResumeMessage, BC001C14_A233WWPFormValidations, BC001C14_A234WWPFormInstantiated, BC001C14_A240WWPFormType, BC001C14_A241WWPFormSectionRefElements, BC001C14_A242WWPFormIsForDynamicValidations, BC001C14_A58ProductServiceId, BC001C14_A29LocationId, BC001C14_A11OrganisationId,
                BC001C14_A395LocationDynamicFormId, BC001C14_n395LocationDynamicFormId, BC001C14_A206WWPFormId, BC001C14_A207WWPFormVersionNumber
                }
@@ -1620,6 +1640,7 @@ namespace GeneXus.Programs {
       private string endTrnMsgCod ;
       private string Z370CallToActionPhone ;
       private string A370CallToActionPhone ;
+      private string GXt_char2 ;
       private string sMode80 ;
       private DateTime Z231WWPFormDate ;
       private DateTime A231WWPFormDate ;
@@ -1636,12 +1657,12 @@ namespace GeneXus.Programs {
       private string A235WWPFormResumeMessage ;
       private string Z233WWPFormValidations ;
       private string A233WWPFormValidations ;
+      private string Z396CallToActionUrl ;
+      private string A396CallToActionUrl ;
       private string Z397CallToActionName ;
       private string A397CallToActionName ;
       private string Z368CallToActionType ;
       private string A368CallToActionType ;
-      private string Z396CallToActionUrl ;
-      private string A396CallToActionUrl ;
       private string Z369CallToActionEmail ;
       private string A369CallToActionEmail ;
       private string Z208WWPFormReferenceName ;
@@ -1660,14 +1681,15 @@ namespace GeneXus.Programs {
       private Guid A11OrganisationId ;
       private Guid Z395LocationDynamicFormId ;
       private Guid A395LocationDynamicFormId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
       private Guid[] BC001C7_A367CallToActionId ;
+      private string[] BC001C7_A396CallToActionUrl ;
       private string[] BC001C7_A397CallToActionName ;
       private string[] BC001C7_A368CallToActionType ;
       private string[] BC001C7_A370CallToActionPhone ;
-      private string[] BC001C7_A396CallToActionUrl ;
       private string[] BC001C7_A369CallToActionEmail ;
       private string[] BC001C7_A208WWPFormReferenceName ;
       private string[] BC001C7_A209WWPFormTitle ;
@@ -1703,10 +1725,10 @@ namespace GeneXus.Programs {
       private bool[] BC001C6_A242WWPFormIsForDynamicValidations ;
       private Guid[] BC001C8_A367CallToActionId ;
       private Guid[] BC001C3_A367CallToActionId ;
+      private string[] BC001C3_A396CallToActionUrl ;
       private string[] BC001C3_A397CallToActionName ;
       private string[] BC001C3_A368CallToActionType ;
       private string[] BC001C3_A370CallToActionPhone ;
-      private string[] BC001C3_A396CallToActionUrl ;
       private string[] BC001C3_A369CallToActionEmail ;
       private Guid[] BC001C3_A58ProductServiceId ;
       private Guid[] BC001C3_A29LocationId ;
@@ -1714,10 +1736,10 @@ namespace GeneXus.Programs {
       private Guid[] BC001C3_A395LocationDynamicFormId ;
       private bool[] BC001C3_n395LocationDynamicFormId ;
       private Guid[] BC001C2_A367CallToActionId ;
+      private string[] BC001C2_A396CallToActionUrl ;
       private string[] BC001C2_A397CallToActionName ;
       private string[] BC001C2_A368CallToActionType ;
       private string[] BC001C2_A370CallToActionPhone ;
-      private string[] BC001C2_A396CallToActionUrl ;
       private string[] BC001C2_A369CallToActionEmail ;
       private Guid[] BC001C2_A58ProductServiceId ;
       private Guid[] BC001C2_A29LocationId ;
@@ -1738,10 +1760,10 @@ namespace GeneXus.Programs {
       private string[] BC001C13_A241WWPFormSectionRefElements ;
       private bool[] BC001C13_A242WWPFormIsForDynamicValidations ;
       private Guid[] BC001C14_A367CallToActionId ;
+      private string[] BC001C14_A396CallToActionUrl ;
       private string[] BC001C14_A397CallToActionName ;
       private string[] BC001C14_A368CallToActionType ;
       private string[] BC001C14_A370CallToActionPhone ;
-      private string[] BC001C14_A396CallToActionUrl ;
       private string[] BC001C14_A369CallToActionEmail ;
       private string[] BC001C14_A208WWPFormReferenceName ;
       private string[] BC001C14_A209WWPFormTitle ;
@@ -1764,10 +1786,11 @@ namespace GeneXus.Programs {
       private SdtTrn_CallToAction bcTrn_CallToAction ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_calltoaction_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_calltoaction_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1794,30 +1817,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_calltoaction_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_calltoaction_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new ForEachCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new ForEachCursor(def[12])
      };
   }
 
@@ -1826,98 +1836,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC001C2;
-        prmBC001C2 = new Object[] {
-        new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C3;
-        prmBC001C3 = new Object[] {
-        new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C4;
-        prmBC001C4 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C5;
-        prmBC001C5 = new Object[] {
-        new ParDef("LocationDynamicFormId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C6;
-        prmBC001C6 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
-        };
-        Object[] prmBC001C7;
-        prmBC001C7 = new Object[] {
-        new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C8;
-        prmBC001C8 = new Object[] {
-        new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C9;
-        prmBC001C9 = new Object[] {
-        new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("CallToActionName",GXType.VarChar,100,0) ,
-        new ParDef("CallToActionType",GXType.VarChar,100,0) ,
-        new ParDef("CallToActionPhone",GXType.Char,20,0) ,
-        new ParDef("CallToActionUrl",GXType.VarChar,1000,0) ,
-        new ParDef("CallToActionEmail",GXType.VarChar,100,0) ,
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationDynamicFormId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC001C10;
-        prmBC001C10 = new Object[] {
-        new ParDef("CallToActionName",GXType.VarChar,100,0) ,
-        new ParDef("CallToActionType",GXType.VarChar,100,0) ,
-        new ParDef("CallToActionPhone",GXType.Char,20,0) ,
-        new ParDef("CallToActionUrl",GXType.VarChar,1000,0) ,
-        new ParDef("CallToActionEmail",GXType.VarChar,100,0) ,
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationDynamicFormId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C11;
-        prmBC001C11 = new Object[] {
-        new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C12;
-        prmBC001C12 = new Object[] {
-        new ParDef("LocationDynamicFormId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001C13;
-        prmBC001C13 = new Object[] {
-        new ParDef("WWPFormId",GXType.Int16,4,0) ,
-        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
-        };
-        Object[] prmBC001C14;
-        prmBC001C14 = new Object[] {
-        new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC001C2", "SELECT CallToActionId, CallToActionName, CallToActionType, CallToActionPhone, CallToActionUrl, CallToActionEmail, ProductServiceId, LocationId, OrganisationId, LocationDynamicFormId FROM Trn_CallToAction WHERE CallToActionId = :CallToActionId  FOR UPDATE OF Trn_CallToAction",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C3", "SELECT CallToActionId, CallToActionName, CallToActionType, CallToActionPhone, CallToActionUrl, CallToActionEmail, ProductServiceId, LocationId, OrganisationId, LocationDynamicFormId FROM Trn_CallToAction WHERE CallToActionId = :CallToActionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C4", "SELECT ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C5", "SELECT WWPFormId, WWPFormVersionNumber FROM Trn_LocationDynamicForm WHERE LocationDynamicFormId = :LocationDynamicFormId AND OrganisationId = :OrganisationId AND LocationId = :LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C6", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormDate, WWPFormIsWizard, WWPFormResume, WWPFormResumeMessage, WWPFormValidations, WWPFormInstantiated, WWPFormType, WWPFormSectionRefElements, WWPFormIsForDynamicValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C7", "SELECT TM1.CallToActionId, TM1.CallToActionName, TM1.CallToActionType, TM1.CallToActionPhone, TM1.CallToActionUrl, TM1.CallToActionEmail, T3.WWPFormReferenceName, T3.WWPFormTitle, T3.WWPFormDate, T3.WWPFormIsWizard, T3.WWPFormResume, T3.WWPFormResumeMessage, T3.WWPFormValidations, T3.WWPFormInstantiated, T3.WWPFormType, T3.WWPFormSectionRefElements, T3.WWPFormIsForDynamicValidations, TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId, TM1.LocationDynamicFormId, T2.WWPFormId, T2.WWPFormVersionNumber FROM ((Trn_CallToAction TM1 LEFT JOIN Trn_LocationDynamicForm T2 ON T2.LocationDynamicFormId = TM1.LocationDynamicFormId AND T2.OrganisationId = TM1.OrganisationId AND T2.LocationId = TM1.LocationId) LEFT JOIN WWP_Form T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber) WHERE TM1.CallToActionId = :CallToActionId ORDER BY TM1.CallToActionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C7,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C8", "SELECT CallToActionId FROM Trn_CallToAction WHERE CallToActionId = :CallToActionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C8,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C9", "SAVEPOINT gxupdate;INSERT INTO Trn_CallToAction(CallToActionId, CallToActionName, CallToActionType, CallToActionPhone, CallToActionUrl, CallToActionEmail, ProductServiceId, LocationId, OrganisationId, LocationDynamicFormId) VALUES(:CallToActionId, :CallToActionName, :CallToActionType, :CallToActionPhone, :CallToActionUrl, :CallToActionEmail, :ProductServiceId, :LocationId, :OrganisationId, :LocationDynamicFormId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001C9)
-           ,new CursorDef("BC001C10", "SAVEPOINT gxupdate;UPDATE Trn_CallToAction SET CallToActionName=:CallToActionName, CallToActionType=:CallToActionType, CallToActionPhone=:CallToActionPhone, CallToActionUrl=:CallToActionUrl, CallToActionEmail=:CallToActionEmail, ProductServiceId=:ProductServiceId, LocationId=:LocationId, OrganisationId=:OrganisationId, LocationDynamicFormId=:LocationDynamicFormId  WHERE CallToActionId = :CallToActionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001C10)
-           ,new CursorDef("BC001C11", "SAVEPOINT gxupdate;DELETE FROM Trn_CallToAction  WHERE CallToActionId = :CallToActionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001C11)
-           ,new CursorDef("BC001C12", "SELECT WWPFormId, WWPFormVersionNumber FROM Trn_LocationDynamicForm WHERE LocationDynamicFormId = :LocationDynamicFormId AND OrganisationId = :OrganisationId AND LocationId = :LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C12,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C13", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormDate, WWPFormIsWizard, WWPFormResume, WWPFormResumeMessage, WWPFormValidations, WWPFormInstantiated, WWPFormType, WWPFormSectionRefElements, WWPFormIsForDynamicValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C13,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC001C14", "SELECT TM1.CallToActionId, TM1.CallToActionName, TM1.CallToActionType, TM1.CallToActionPhone, TM1.CallToActionUrl, TM1.CallToActionEmail, T3.WWPFormReferenceName, T3.WWPFormTitle, T3.WWPFormDate, T3.WWPFormIsWizard, T3.WWPFormResume, T3.WWPFormResumeMessage, T3.WWPFormValidations, T3.WWPFormInstantiated, T3.WWPFormType, T3.WWPFormSectionRefElements, T3.WWPFormIsForDynamicValidations, TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId, TM1.LocationDynamicFormId, T2.WWPFormId, T2.WWPFormVersionNumber FROM ((Trn_CallToAction TM1 LEFT JOIN Trn_LocationDynamicForm T2 ON T2.LocationDynamicFormId = TM1.LocationDynamicFormId AND T2.OrganisationId = TM1.OrganisationId AND T2.LocationId = TM1.LocationId) LEFT JOIN WWP_Form T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber) WHERE TM1.CallToActionId = :CallToActionId ORDER BY TM1.CallToActionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C14,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1926,128 +1845,264 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
-              ((Guid[]) buf[7])[0] = rslt.getGuid(8);
-              ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((bool[]) buf[10])[0] = rslt.wasNull(10);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
-              ((Guid[]) buf[7])[0] = rslt.getGuid(8);
-              ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-              ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-              ((bool[]) buf[10])[0] = rslt.wasNull(10);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 3 :
-              ((short[]) buf[0])[0] = rslt.getShort(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              return;
-           case 4 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
-              ((bool[]) buf[3])[0] = rslt.getBool(4);
-              ((short[]) buf[4])[0] = rslt.getShort(5);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-              ((bool[]) buf[7])[0] = rslt.getBool(8);
-              ((short[]) buf[8])[0] = rslt.getShort(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              return;
-           case 5 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((DateTime[]) buf[8])[0] = rslt.getGXDateTime(9);
-              ((bool[]) buf[9])[0] = rslt.getBool(10);
-              ((short[]) buf[10])[0] = rslt.getShort(11);
-              ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
-              ((bool[]) buf[13])[0] = rslt.getBool(14);
-              ((short[]) buf[14])[0] = rslt.getShort(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((bool[]) buf[16])[0] = rslt.getBool(17);
-              ((Guid[]) buf[17])[0] = rslt.getGuid(18);
-              ((Guid[]) buf[18])[0] = rslt.getGuid(19);
-              ((Guid[]) buf[19])[0] = rslt.getGuid(20);
-              ((Guid[]) buf[20])[0] = rslt.getGuid(21);
-              ((bool[]) buf[21])[0] = rslt.wasNull(21);
-              ((short[]) buf[22])[0] = rslt.getShort(22);
-              ((short[]) buf[23])[0] = rslt.getShort(23);
-              return;
-           case 6 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 10 :
-              ((short[]) buf[0])[0] = rslt.getShort(1);
-              ((short[]) buf[1])[0] = rslt.getShort(2);
-              return;
-           case 11 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
-              ((bool[]) buf[3])[0] = rslt.getBool(4);
-              ((short[]) buf[4])[0] = rslt.getShort(5);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-              ((bool[]) buf[7])[0] = rslt.getBool(8);
-              ((short[]) buf[8])[0] = rslt.getShort(9);
-              ((string[]) buf[9])[0] = rslt.getVarchar(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              return;
-           case 12 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              ((DateTime[]) buf[8])[0] = rslt.getGXDateTime(9);
-              ((bool[]) buf[9])[0] = rslt.getBool(10);
-              ((short[]) buf[10])[0] = rslt.getShort(11);
-              ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
-              ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
-              ((bool[]) buf[13])[0] = rslt.getBool(14);
-              ((short[]) buf[14])[0] = rslt.getShort(15);
-              ((string[]) buf[15])[0] = rslt.getVarchar(16);
-              ((bool[]) buf[16])[0] = rslt.getBool(17);
-              ((Guid[]) buf[17])[0] = rslt.getGuid(18);
-              ((Guid[]) buf[18])[0] = rslt.getGuid(19);
-              ((Guid[]) buf[19])[0] = rslt.getGuid(20);
-              ((Guid[]) buf[20])[0] = rslt.getGuid(21);
-              ((bool[]) buf[21])[0] = rslt.wasNull(21);
-              ((short[]) buf[22])[0] = rslt.getShort(22);
-              ((short[]) buf[23])[0] = rslt.getShort(23);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_calltoaction_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new ForEachCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC001C2;
+       prmBC001C2 = new Object[] {
+       new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C3;
+       prmBC001C3 = new Object[] {
+       new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C4;
+       prmBC001C4 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C5;
+       prmBC001C5 = new Object[] {
+       new ParDef("LocationDynamicFormId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C6;
+       prmBC001C6 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
+       };
+       Object[] prmBC001C7;
+       prmBC001C7 = new Object[] {
+       new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C8;
+       prmBC001C8 = new Object[] {
+       new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C9;
+       prmBC001C9 = new Object[] {
+       new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("CallToActionUrl",GXType.VarChar,1000,0) ,
+       new ParDef("CallToActionName",GXType.VarChar,100,0) ,
+       new ParDef("CallToActionType",GXType.VarChar,100,0) ,
+       new ParDef("CallToActionPhone",GXType.Char,20,0) ,
+       new ParDef("CallToActionEmail",GXType.VarChar,100,0) ,
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationDynamicFormId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC001C10;
+       prmBC001C10 = new Object[] {
+       new ParDef("CallToActionUrl",GXType.VarChar,1000,0) ,
+       new ParDef("CallToActionName",GXType.VarChar,100,0) ,
+       new ParDef("CallToActionType",GXType.VarChar,100,0) ,
+       new ParDef("CallToActionPhone",GXType.Char,20,0) ,
+       new ParDef("CallToActionEmail",GXType.VarChar,100,0) ,
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationDynamicFormId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C11;
+       prmBC001C11 = new Object[] {
+       new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C12;
+       prmBC001C12 = new Object[] {
+       new ParDef("LocationDynamicFormId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001C13;
+       prmBC001C13 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
+       };
+       Object[] prmBC001C14;
+       prmBC001C14 = new Object[] {
+       new ParDef("CallToActionId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC001C2", "SELECT CallToActionId, CallToActionUrl, CallToActionName, CallToActionType, CallToActionPhone, CallToActionEmail, ProductServiceId, LocationId, OrganisationId, LocationDynamicFormId FROM Trn_CallToAction WHERE CallToActionId = :CallToActionId  FOR UPDATE OF Trn_CallToAction",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C3", "SELECT CallToActionId, CallToActionUrl, CallToActionName, CallToActionType, CallToActionPhone, CallToActionEmail, ProductServiceId, LocationId, OrganisationId, LocationDynamicFormId FROM Trn_CallToAction WHERE CallToActionId = :CallToActionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C4", "SELECT ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C5", "SELECT WWPFormId, WWPFormVersionNumber FROM Trn_LocationDynamicForm WHERE LocationDynamicFormId = :LocationDynamicFormId AND OrganisationId = :OrganisationId AND LocationId = :LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C6", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormDate, WWPFormIsWizard, WWPFormResume, WWPFormResumeMessage, WWPFormValidations, WWPFormInstantiated, WWPFormType, WWPFormSectionRefElements, WWPFormIsForDynamicValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C7", "SELECT TM1.CallToActionId, TM1.CallToActionUrl, TM1.CallToActionName, TM1.CallToActionType, TM1.CallToActionPhone, TM1.CallToActionEmail, T3.WWPFormReferenceName, T3.WWPFormTitle, T3.WWPFormDate, T3.WWPFormIsWizard, T3.WWPFormResume, T3.WWPFormResumeMessage, T3.WWPFormValidations, T3.WWPFormInstantiated, T3.WWPFormType, T3.WWPFormSectionRefElements, T3.WWPFormIsForDynamicValidations, TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId, TM1.LocationDynamicFormId, T2.WWPFormId, T2.WWPFormVersionNumber FROM ((Trn_CallToAction TM1 LEFT JOIN Trn_LocationDynamicForm T2 ON T2.LocationDynamicFormId = TM1.LocationDynamicFormId AND T2.OrganisationId = TM1.OrganisationId AND T2.LocationId = TM1.LocationId) LEFT JOIN WWP_Form T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber) WHERE TM1.CallToActionId = :CallToActionId ORDER BY TM1.CallToActionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C7,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C8", "SELECT CallToActionId FROM Trn_CallToAction WHERE CallToActionId = :CallToActionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C8,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C9", "SAVEPOINT gxupdate;INSERT INTO Trn_CallToAction(CallToActionId, CallToActionUrl, CallToActionName, CallToActionType, CallToActionPhone, CallToActionEmail, ProductServiceId, LocationId, OrganisationId, LocationDynamicFormId) VALUES(:CallToActionId, :CallToActionUrl, :CallToActionName, :CallToActionType, :CallToActionPhone, :CallToActionEmail, :ProductServiceId, :LocationId, :OrganisationId, :LocationDynamicFormId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001C9)
+          ,new CursorDef("BC001C10", "SAVEPOINT gxupdate;UPDATE Trn_CallToAction SET CallToActionUrl=:CallToActionUrl, CallToActionName=:CallToActionName, CallToActionType=:CallToActionType, CallToActionPhone=:CallToActionPhone, CallToActionEmail=:CallToActionEmail, ProductServiceId=:ProductServiceId, LocationId=:LocationId, OrganisationId=:OrganisationId, LocationDynamicFormId=:LocationDynamicFormId  WHERE CallToActionId = :CallToActionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001C10)
+          ,new CursorDef("BC001C11", "SAVEPOINT gxupdate;DELETE FROM Trn_CallToAction  WHERE CallToActionId = :CallToActionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001C11)
+          ,new CursorDef("BC001C12", "SELECT WWPFormId, WWPFormVersionNumber FROM Trn_LocationDynamicForm WHERE LocationDynamicFormId = :LocationDynamicFormId AND OrganisationId = :OrganisationId AND LocationId = :LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C12,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C13", "SELECT WWPFormReferenceName, WWPFormTitle, WWPFormDate, WWPFormIsWizard, WWPFormResume, WWPFormResumeMessage, WWPFormValidations, WWPFormInstantiated, WWPFormType, WWPFormSectionRefElements, WWPFormIsForDynamicValidations FROM WWP_Form WHERE WWPFormId = :WWPFormId AND WWPFormVersionNumber = :WWPFormVersionNumber ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C13,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001C14", "SELECT TM1.CallToActionId, TM1.CallToActionUrl, TM1.CallToActionName, TM1.CallToActionType, TM1.CallToActionPhone, TM1.CallToActionEmail, T3.WWPFormReferenceName, T3.WWPFormTitle, T3.WWPFormDate, T3.WWPFormIsWizard, T3.WWPFormResume, T3.WWPFormResumeMessage, T3.WWPFormValidations, T3.WWPFormInstantiated, T3.WWPFormType, T3.WWPFormSectionRefElements, T3.WWPFormIsForDynamicValidations, TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId, TM1.LocationDynamicFormId, T2.WWPFormId, T2.WWPFormVersionNumber FROM ((Trn_CallToAction TM1 LEFT JOIN Trn_LocationDynamicForm T2 ON T2.LocationDynamicFormId = TM1.LocationDynamicFormId AND T2.OrganisationId = TM1.OrganisationId AND T2.LocationId = TM1.LocationId) LEFT JOIN WWP_Form T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber) WHERE TM1.CallToActionId = :CallToActionId ORDER BY TM1.CallToActionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001C14,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+             ((Guid[]) buf[7])[0] = rslt.getGuid(8);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((bool[]) buf[10])[0] = rslt.wasNull(10);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+             ((Guid[]) buf[7])[0] = rslt.getGuid(8);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(10);
+             ((bool[]) buf[10])[0] = rslt.wasNull(10);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 3 :
+             ((short[]) buf[0])[0] = rslt.getShort(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             return;
+          case 4 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+             ((bool[]) buf[3])[0] = rslt.getBool(4);
+             ((short[]) buf[4])[0] = rslt.getShort(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
+             ((bool[]) buf[7])[0] = rslt.getBool(8);
+             ((short[]) buf[8])[0] = rslt.getShort(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             return;
+          case 5 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((DateTime[]) buf[8])[0] = rslt.getGXDateTime(9);
+             ((bool[]) buf[9])[0] = rslt.getBool(10);
+             ((short[]) buf[10])[0] = rslt.getShort(11);
+             ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
+             ((bool[]) buf[13])[0] = rslt.getBool(14);
+             ((short[]) buf[14])[0] = rslt.getShort(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((bool[]) buf[16])[0] = rslt.getBool(17);
+             ((Guid[]) buf[17])[0] = rslt.getGuid(18);
+             ((Guid[]) buf[18])[0] = rslt.getGuid(19);
+             ((Guid[]) buf[19])[0] = rslt.getGuid(20);
+             ((Guid[]) buf[20])[0] = rslt.getGuid(21);
+             ((bool[]) buf[21])[0] = rslt.wasNull(21);
+             ((short[]) buf[22])[0] = rslt.getShort(22);
+             ((short[]) buf[23])[0] = rslt.getShort(23);
+             return;
+          case 6 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 10 :
+             ((short[]) buf[0])[0] = rslt.getShort(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             return;
+          case 11 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+             ((bool[]) buf[3])[0] = rslt.getBool(4);
+             ((short[]) buf[4])[0] = rslt.getShort(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
+             ((bool[]) buf[7])[0] = rslt.getBool(8);
+             ((short[]) buf[8])[0] = rslt.getShort(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             return;
+          case 12 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((DateTime[]) buf[8])[0] = rslt.getGXDateTime(9);
+             ((bool[]) buf[9])[0] = rslt.getBool(10);
+             ((short[]) buf[10])[0] = rslt.getShort(11);
+             ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
+             ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
+             ((bool[]) buf[13])[0] = rslt.getBool(14);
+             ((short[]) buf[14])[0] = rslt.getShort(15);
+             ((string[]) buf[15])[0] = rslt.getVarchar(16);
+             ((bool[]) buf[16])[0] = rslt.getBool(17);
+             ((Guid[]) buf[17])[0] = rslt.getGuid(18);
+             ((Guid[]) buf[18])[0] = rslt.getGuid(19);
+             ((Guid[]) buf[19])[0] = rslt.getGuid(20);
+             ((Guid[]) buf[20])[0] = rslt.getGuid(21);
+             ((bool[]) buf[21])[0] = rslt.wasNull(21);
+             ((short[]) buf[22])[0] = rslt.getShort(22);
+             ((short[]) buf[23])[0] = rslt.getShort(23);
+             return;
+    }
+ }
 
 }
 

@@ -88,11 +88,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                enableJsOutput();
             }
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-         }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -113,7 +109,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "User Custom", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "User Custom", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -137,6 +133,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -147,6 +144,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -272,7 +270,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, "User Custom", "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/UserCustomizations.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, context.GetMessage( "User Custom", ""), "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/UserCustomizations.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -334,7 +332,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
          ClassString = "Button button-secondary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", "Select", bttBtn_select_Jsonclick, 5, "Select", "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/UserCustomizations.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", context.GetMessage( "GX_BtnSelect", ""), bttBtn_select_Jsonclick, 5, context.GetMessage( "GX_BtnSelect", ""), "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/UserCustomizations.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -347,7 +345,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtUserCustomizationsId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtUserCustomizationsId_Internalname, "Customizations Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtUserCustomizationsId_Internalname, context.GetMessage( "Customizations Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -364,7 +362,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtUserCustomizationsKey_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtUserCustomizationsKey_Internalname, "Customizations Key", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtUserCustomizationsKey_Internalname, context.GetMessage( "Customizations Key", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -385,7 +383,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtUserCustomizationsValue_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtUserCustomizationsValue_Internalname, "Customizations Value", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtUserCustomizationsValue_Internalname, context.GetMessage( "Customizations Value", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -413,21 +411,21 @@ namespace GeneXus.Programs.wwpbaseobjects {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", "Confirm", bttBtn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/UserCustomizations.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/UserCustomizations.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/UserCustomizations.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/UserCustomizations.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", "Delete", bttBtn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/UserCustomizations.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/UserCustomizations.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "end", "Middle", "div");
@@ -468,8 +466,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Read saved values. */
             Z244UserCustomizationsId = cgiGet( "Z244UserCustomizationsId");
             Z245UserCustomizationsKey = cgiGet( "Z245UserCustomizationsKey");
-            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gx_mode = cgiGet( "Mode");
             /* Read variables values. */
             A244UserCustomizationsId = cgiGet( edtUserCustomizationsId_Internalname);
@@ -480,7 +478,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignAttri("", false, "A246UserCustomizationsValue", A246UserCustomizationsValue);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             standaloneNotModal( ) ;
          }
          else
@@ -1460,7 +1458,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( "User Custom") ;
+         context.SendWebValue( context.GetMessage( "User Custom", "")) ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -1514,7 +1512,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -1524,8 +1522,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "Z244UserCustomizationsId", StringUtil.RTrim( Z244UserCustomizationsId));
          GxWebStd.gx_hidden_field( context, "Z245UserCustomizationsKey", Z245UserCustomizationsKey);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
       }
 
@@ -1548,6 +1546,18 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -1563,7 +1573,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return "User Custom" ;
+         return context.GetMessage( "User Custom", "") ;
       }
 
       protected void InitializeNonKey0V44( )
@@ -1596,7 +1606,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198342219", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115422256", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1611,8 +1621,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/usercustomizations.js", "?202411198342219", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/usercustomizations.js", "?2024112115422257", false, true);
          /* End function include_jscripts */
       }
 
@@ -1814,6 +1824,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          ZZ244UserCustomizationsId = "";
          ZZ245UserCustomizationsKey = "";
          ZZ246UserCustomizationsValue = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.usercustomizations__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.usercustomizations__gam(),
             new Object[][] {
             }
@@ -1852,7 +1866,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
       }
 
       private short GxWebError ;
-      private short gxcookieaux ;
       private short AnyError ;
       private short IsModified ;
       private short IsConfirmed ;
@@ -1935,6 +1948,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string A245UserCustomizationsKey ;
       private string ZZ245UserCustomizationsKey ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1955,10 +1969,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string[] T000V2_A246UserCustomizationsValue ;
       private string[] T000V11_A244UserCustomizationsId ;
       private string[] T000V11_A245UserCustomizationsKey ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class usercustomizations__gam : DataStoreHelperBase, IDataStoreHelper
+   public class usercustomizations__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1985,27 +2000,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class usercustomizations__default : DataStoreHelperBase, IDataStoreHelper
+ public class usercustomizations__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new ForEachCursor(def[9])
      };
   }
 
@@ -2014,67 +2019,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
   {
      if ( def == null )
      {
-        Object[] prmT000V2;
-        prmT000V2 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmT000V3;
-        prmT000V3 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmT000V4;
-        prmT000V4 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmT000V5;
-        prmT000V5 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmT000V6;
-        prmT000V6 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmT000V7;
-        prmT000V7 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmT000V8;
-        prmT000V8 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0) ,
-        new ParDef("UserCustomizationsValue",GXType.LongVarChar,2097152,0)
-        };
-        Object[] prmT000V9;
-        prmT000V9 = new Object[] {
-        new ParDef("UserCustomizationsValue",GXType.LongVarChar,2097152,0) ,
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmT000V10;
-        prmT000V10 = new Object[] {
-        new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
-        new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
-        };
-        Object[] prmT000V11;
-        prmT000V11 = new Object[] {
-        };
         def= new CursorDef[] {
-            new CursorDef("T000V2", "SELECT UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey  FOR UPDATE OF UserCustomizations NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000V2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000V3", "SELECT UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000V4", "SELECT TM1.UserCustomizationsId, TM1.UserCustomizationsKey, TM1.UserCustomizationsValue FROM UserCustomizations TM1 WHERE TM1.UserCustomizationsId = ( :UserCustomizationsId) and TM1.UserCustomizationsKey = ( :UserCustomizationsKey) ORDER BY TM1.UserCustomizationsId, TM1.UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000V5", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000V6", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations WHERE ( UserCustomizationsId > ( :UserCustomizationsId) or UserCustomizationsId = ( :UserCustomizationsId) and UserCustomizationsKey > ( :UserCustomizationsKey)) ORDER BY UserCustomizationsId, UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V6,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000V7", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations WHERE ( UserCustomizationsId < ( :UserCustomizationsId) or UserCustomizationsId = ( :UserCustomizationsId) and UserCustomizationsKey < ( :UserCustomizationsKey)) ORDER BY UserCustomizationsId DESC, UserCustomizationsKey DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V7,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000V8", "SAVEPOINT gxupdate;INSERT INTO UserCustomizations(UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue) VALUES(:UserCustomizationsId, :UserCustomizationsKey, :UserCustomizationsValue);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000V8)
-           ,new CursorDef("T000V9", "SAVEPOINT gxupdate;UPDATE UserCustomizations SET UserCustomizationsValue=:UserCustomizationsValue  WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000V9)
-           ,new CursorDef("T000V10", "SAVEPOINT gxupdate;DELETE FROM UserCustomizations  WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000V10)
-           ,new CursorDef("T000V11", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations ORDER BY UserCustomizationsId, UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V11,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2083,41 +2028,143 @@ namespace GeneXus.Programs.wwpbaseobjects {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 4 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 5 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 9 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class usercustomizations__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new ForEachCursor(def[9])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmT000V2;
+       prmT000V2 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmT000V3;
+       prmT000V3 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmT000V4;
+       prmT000V4 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmT000V5;
+       prmT000V5 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmT000V6;
+       prmT000V6 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmT000V7;
+       prmT000V7 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmT000V8;
+       prmT000V8 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0) ,
+       new ParDef("UserCustomizationsValue",GXType.LongVarChar,2097152,0)
+       };
+       Object[] prmT000V9;
+       prmT000V9 = new Object[] {
+       new ParDef("UserCustomizationsValue",GXType.LongVarChar,2097152,0) ,
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmT000V10;
+       prmT000V10 = new Object[] {
+       new ParDef("UserCustomizationsId",GXType.Char,40,0) ,
+       new ParDef("UserCustomizationsKey",GXType.VarChar,200,0)
+       };
+       Object[] prmT000V11;
+       prmT000V11 = new Object[] {
+       };
+       def= new CursorDef[] {
+           new CursorDef("T000V2", "SELECT UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey  FOR UPDATE OF UserCustomizations NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000V2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000V3", "SELECT UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000V4", "SELECT TM1.UserCustomizationsId, TM1.UserCustomizationsKey, TM1.UserCustomizationsValue FROM UserCustomizations TM1 WHERE TM1.UserCustomizationsId = ( :UserCustomizationsId) and TM1.UserCustomizationsKey = ( :UserCustomizationsKey) ORDER BY TM1.UserCustomizationsId, TM1.UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000V5", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000V6", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations WHERE ( UserCustomizationsId > ( :UserCustomizationsId) or UserCustomizationsId = ( :UserCustomizationsId) and UserCustomizationsKey > ( :UserCustomizationsKey)) ORDER BY UserCustomizationsId, UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V6,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000V7", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations WHERE ( UserCustomizationsId < ( :UserCustomizationsId) or UserCustomizationsId = ( :UserCustomizationsId) and UserCustomizationsKey < ( :UserCustomizationsKey)) ORDER BY UserCustomizationsId DESC, UserCustomizationsKey DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V7,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000V8", "SAVEPOINT gxupdate;INSERT INTO UserCustomizations(UserCustomizationsId, UserCustomizationsKey, UserCustomizationsValue) VALUES(:UserCustomizationsId, :UserCustomizationsKey, :UserCustomizationsValue);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000V8)
+          ,new CursorDef("T000V9", "SAVEPOINT gxupdate;UPDATE UserCustomizations SET UserCustomizationsValue=:UserCustomizationsValue  WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000V9)
+          ,new CursorDef("T000V10", "SAVEPOINT gxupdate;DELETE FROM UserCustomizations  WHERE UserCustomizationsId = :UserCustomizationsId AND UserCustomizationsKey = :UserCustomizationsKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000V10)
+          ,new CursorDef("T000V11", "SELECT UserCustomizationsId, UserCustomizationsKey FROM UserCustomizations ORDER BY UserCustomizationsId, UserCustomizationsKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000V11,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 4 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 5 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 9 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+    }
+ }
 
 }
 

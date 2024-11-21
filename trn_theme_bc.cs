@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -695,7 +697,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Location"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Location", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -1048,7 +1050,7 @@ namespace GeneXus.Programs {
          Gx_BScreen = 0;
          if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Icon Category is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -2615,6 +2617,10 @@ namespace GeneXus.Programs {
          BC000W26_A251ColorCode = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_theme_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_theme_bc__gam(),
             new Object[][] {
             }
@@ -2749,6 +2755,7 @@ namespace GeneXus.Programs {
       private Guid Z249ColorId ;
       private Guid A249ColorId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtTrn_Theme bcTrn_Theme ;
@@ -2831,10 +2838,11 @@ namespace GeneXus.Programs {
       private string[] BC000W26_A251ColorCode ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_theme_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_theme_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -2861,42 +2869,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_theme_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_theme_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new UpdateCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new ForEachCursor(def[12])
-       ,new ForEachCursor(def[13])
-       ,new ForEachCursor(def[14])
-       ,new UpdateCursor(def[15])
-       ,new UpdateCursor(def[16])
-       ,new UpdateCursor(def[17])
-       ,new ForEachCursor(def[18])
-       ,new ForEachCursor(def[19])
-       ,new ForEachCursor(def[20])
-       ,new UpdateCursor(def[21])
-       ,new UpdateCursor(def[22])
-       ,new UpdateCursor(def[23])
-       ,new ForEachCursor(def[24])
      };
   }
 
@@ -2905,162 +2888,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC000W2;
-        prmBC000W2 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W3;
-        prmBC000W3 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W4;
-        prmBC000W4 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W5;
-        prmBC000W5 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W6;
-        prmBC000W6 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W7;
-        prmBC000W7 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W8;
-        prmBC000W8 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W9;
-        prmBC000W9 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W10;
-        prmBC000W10 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
-        new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
-        new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0)
-        };
-        Object[] prmBC000W11;
-        prmBC000W11 = new Object[] {
-        new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
-        new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
-        new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0) ,
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W12;
-        prmBC000W12 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W13;
-        prmBC000W13 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W14;
-        prmBC000W14 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W15;
-        prmBC000W15 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W16;
-        prmBC000W16 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W17;
-        prmBC000W17 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("IconCategory",GXType.VarChar,40,0) ,
-        new ParDef("IconName",GXType.VarChar,100,0) ,
-        new ParDef("IconSVG",GXType.LongVarChar,2097152,0)
-        };
-        Object[] prmBC000W18;
-        prmBC000W18 = new Object[] {
-        new ParDef("IconCategory",GXType.VarChar,40,0) ,
-        new ParDef("IconName",GXType.VarChar,100,0) ,
-        new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W19;
-        prmBC000W19 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W20;
-        prmBC000W20 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
-        Object[] prmBC000W21;
-        prmBC000W21 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W22;
-        prmBC000W22 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W23;
-        prmBC000W23 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ColorId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ColorName",GXType.VarChar,100,0) ,
-        new ParDef("ColorCode",GXType.VarChar,100,0)
-        };
-        Object[] prmBC000W24;
-        prmBC000W24 = new Object[] {
-        new ParDef("ColorName",GXType.VarChar,100,0) ,
-        new ParDef("ColorCode",GXType.VarChar,100,0) ,
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W25;
-        prmBC000W25 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000W26;
-        prmBC000W26 = new Object[] {
-        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000W2", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId  FOR UPDATE OF Trn_ThemeColor",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W3", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W4", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId  FOR UPDATE OF Trn_ThemeIcon",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W5", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W6", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId  FOR UPDATE OF Trn_Theme",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W7", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W7,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W8", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily, TM1.Trn_ThemeFontSize FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W8,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W9", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W9,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W10", "SAVEPOINT gxupdate;INSERT INTO Trn_Theme(Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize) VALUES(:Trn_ThemeId, :Trn_ThemeName, :Trn_ThemeFontFamily, :Trn_ThemeFontSize);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000W10)
-           ,new CursorDef("BC000W11", "SAVEPOINT gxupdate;UPDATE Trn_Theme SET Trn_ThemeName=:Trn_ThemeName, Trn_ThemeFontFamily=:Trn_ThemeFontFamily, Trn_ThemeFontSize=:Trn_ThemeFontSize  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W11)
-           ,new CursorDef("BC000W12", "SAVEPOINT gxupdate;DELETE FROM Trn_Theme  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W12)
-           ,new CursorDef("BC000W13", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W13,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000W14", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily, TM1.Trn_ThemeFontSize FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W14,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W15", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId and IconId = :IconId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W15,11, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W16", "SELECT Trn_ThemeId, IconId FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W16,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W17", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeIcon(Trn_ThemeId, IconId, IconCategory, IconName, IconSVG) VALUES(:Trn_ThemeId, :IconId, :IconCategory, :IconName, :IconSVG);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000W17)
-           ,new CursorDef("BC000W18", "SAVEPOINT gxupdate;UPDATE Trn_ThemeIcon SET IconCategory=:IconCategory, IconName=:IconName, IconSVG=:IconSVG  WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W18)
-           ,new CursorDef("BC000W19", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeIcon  WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W19)
-           ,new CursorDef("BC000W20", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W20,11, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W21", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId ORDER BY Trn_ThemeId, ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W21,11, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W22", "SELECT Trn_ThemeId, ColorId FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W22,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000W23", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeColor(Trn_ThemeId, ColorId, ColorName, ColorCode) VALUES(:Trn_ThemeId, :ColorId, :ColorName, :ColorCode);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000W23)
-           ,new CursorDef("BC000W24", "SAVEPOINT gxupdate;UPDATE Trn_ThemeColor SET ColorName=:ColorName, ColorCode=:ColorCode  WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W24)
-           ,new CursorDef("BC000W25", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeColor  WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W25)
-           ,new CursorDef("BC000W26", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W26,11, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -3069,101 +2897,313 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((short[]) buf[3])[0] = rslt.getShort(4);
-              return;
-           case 5 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((short[]) buf[3])[0] = rslt.getShort(4);
-              return;
-           case 6 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((short[]) buf[3])[0] = rslt.getShort(4);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 11 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-           case 12 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((short[]) buf[3])[0] = rslt.getShort(4);
-              return;
-           case 13 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-              return;
-           case 14 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-           case 18 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-              return;
-           case 19 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              return;
-           case 20 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              return;
-           case 24 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_theme_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new UpdateCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
+      ,new ForEachCursor(def[13])
+      ,new ForEachCursor(def[14])
+      ,new UpdateCursor(def[15])
+      ,new UpdateCursor(def[16])
+      ,new UpdateCursor(def[17])
+      ,new ForEachCursor(def[18])
+      ,new ForEachCursor(def[19])
+      ,new ForEachCursor(def[20])
+      ,new UpdateCursor(def[21])
+      ,new UpdateCursor(def[22])
+      ,new UpdateCursor(def[23])
+      ,new ForEachCursor(def[24])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000W2;
+       prmBC000W2 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W3;
+       prmBC000W3 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W4;
+       prmBC000W4 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("IconId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W5;
+       prmBC000W5 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("IconId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W6;
+       prmBC000W6 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W7;
+       prmBC000W7 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W8;
+       prmBC000W8 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W9;
+       prmBC000W9 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W10;
+       prmBC000W10 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
+       new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
+       new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0)
+       };
+       Object[] prmBC000W11;
+       prmBC000W11 = new Object[] {
+       new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
+       new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
+       new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0) ,
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W12;
+       prmBC000W12 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W13;
+       prmBC000W13 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W14;
+       prmBC000W14 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W15;
+       prmBC000W15 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("IconId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W16;
+       prmBC000W16 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("IconId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W17;
+       prmBC000W17 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconName",GXType.VarChar,100,0) ,
+       new ParDef("IconSVG",GXType.LongVarChar,2097152,0)
+       };
+       Object[] prmBC000W18;
+       prmBC000W18 = new Object[] {
+       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconName",GXType.VarChar,100,0) ,
+       new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("IconId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W19;
+       prmBC000W19 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("IconId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W20;
+       prmBC000W20 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000W21;
+       prmBC000W21 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W22;
+       prmBC000W22 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W23;
+       prmBC000W23 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ColorName",GXType.VarChar,100,0) ,
+       new ParDef("ColorCode",GXType.VarChar,100,0)
+       };
+       Object[] prmBC000W24;
+       prmBC000W24 = new Object[] {
+       new ParDef("ColorName",GXType.VarChar,100,0) ,
+       new ParDef("ColorCode",GXType.VarChar,100,0) ,
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W25;
+       prmBC000W25 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000W26;
+       prmBC000W26 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000W2", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId  FOR UPDATE OF Trn_ThemeColor",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W3", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W4", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId  FOR UPDATE OF Trn_ThemeIcon",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W5", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W6", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId  FOR UPDATE OF Trn_Theme",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W7", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W7,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W8", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily, TM1.Trn_ThemeFontSize FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W8,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W9", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W9,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W10", "SAVEPOINT gxupdate;INSERT INTO Trn_Theme(Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize) VALUES(:Trn_ThemeId, :Trn_ThemeName, :Trn_ThemeFontFamily, :Trn_ThemeFontSize);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000W10)
+          ,new CursorDef("BC000W11", "SAVEPOINT gxupdate;UPDATE Trn_Theme SET Trn_ThemeName=:Trn_ThemeName, Trn_ThemeFontFamily=:Trn_ThemeFontFamily, Trn_ThemeFontSize=:Trn_ThemeFontSize  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W11)
+          ,new CursorDef("BC000W12", "SAVEPOINT gxupdate;DELETE FROM Trn_Theme  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W12)
+          ,new CursorDef("BC000W13", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W13,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000W14", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily, TM1.Trn_ThemeFontSize FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W14,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W15", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId and IconId = :IconId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W15,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W16", "SELECT Trn_ThemeId, IconId FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W16,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W17", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeIcon(Trn_ThemeId, IconId, IconCategory, IconName, IconSVG) VALUES(:Trn_ThemeId, :IconId, :IconCategory, :IconName, :IconSVG);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000W17)
+          ,new CursorDef("BC000W18", "SAVEPOINT gxupdate;UPDATE Trn_ThemeIcon SET IconCategory=:IconCategory, IconName=:IconName, IconSVG=:IconSVG  WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W18)
+          ,new CursorDef("BC000W19", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeIcon  WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W19)
+          ,new CursorDef("BC000W20", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W20,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W21", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId ORDER BY Trn_ThemeId, ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W21,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W22", "SELECT Trn_ThemeId, ColorId FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W22,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000W23", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeColor(Trn_ThemeId, ColorId, ColorName, ColorCode) VALUES(:Trn_ThemeId, :ColorId, :ColorName, :ColorCode);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000W23)
+          ,new CursorDef("BC000W24", "SAVEPOINT gxupdate;UPDATE Trn_ThemeColor SET ColorName=:ColorName, ColorCode=:ColorCode  WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W24)
+          ,new CursorDef("BC000W25", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeColor  WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000W25)
+          ,new CursorDef("BC000W26", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000W26,11, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             return;
+          case 5 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             return;
+          case 6 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 11 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 12 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             return;
+          case 13 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             return;
+          case 14 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 18 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             return;
+          case 19 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             return;
+          case 20 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 24 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             return;
+    }
+ }
 
 }
 

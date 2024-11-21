@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -82,8 +84,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AV12Audit.gxTpr_Organisationid = GXt_guid2;
             if ( AV18FirstRecord )
             {
-               AV14AuditShortDescription = "Record '";
-               AV15AuditDescription = "Record with key '";
+               AV14AuditShortDescription = context.GetMessage( "Record '", "");
+               AV15AuditDescription = context.GetMessage( "Record with key '", "");
                AV17ActualMode = AV8AuditingObject.gxTpr_Mode;
             }
             else
@@ -94,15 +96,15 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
             if ( StringUtil.StrCmp(AV17ActualMode, "INS") == 0 )
             {
-               AV12Audit.gxTpr_Auditaction = "Insert";
+               AV12Audit.gxTpr_Auditaction = context.GetMessage( "Insert", "");
             }
             else if ( StringUtil.StrCmp(AV17ActualMode, "UPD") == 0 )
             {
-               AV12Audit.gxTpr_Auditaction = "Update";
+               AV12Audit.gxTpr_Auditaction = context.GetMessage( "Update", "");
             }
             else if ( StringUtil.StrCmp(AV17ActualMode, "DLT") == 0 )
             {
-               AV12Audit.gxTpr_Auditaction = "Delete";
+               AV12Audit.gxTpr_Auditaction = context.GetMessage( "Delete", "");
             }
             AV20GXV2 = 1;
             while ( AV20GXV2 <= AV9AuditingObjectRecordItem.gxTpr_Attribute.Count )
@@ -139,22 +141,22 @@ namespace GeneXus.Programs.wwpbaseobjects {
                AV18FirstRecord = false;
                AV16AuditPrimaryKey = AV14AuditShortDescription;
             }
-            AV14AuditShortDescription += "' was ";
-            AV15AuditDescription += "' was ";
+            AV14AuditShortDescription += context.GetMessage( "' was ", "");
+            AV15AuditDescription += context.GetMessage( "' was ", "");
             if ( StringUtil.StrCmp(AV17ActualMode, "INS") == 0 )
             {
-               AV14AuditShortDescription += "inserted";
-               AV15AuditDescription += "inserted." + StringUtil.NewLine( ) + " Attributes:" + StringUtil.NewLine( );
+               AV14AuditShortDescription += context.GetMessage( "inserted", "");
+               AV15AuditDescription += context.GetMessage( "inserted.", "") + StringUtil.NewLine( ) + context.GetMessage( " Attributes:", "") + StringUtil.NewLine( );
             }
             else if ( StringUtil.StrCmp(AV17ActualMode, "UPD") == 0 )
             {
-               AV14AuditShortDescription += "updated";
-               AV15AuditDescription += "updated." + StringUtil.NewLine( ) + " Modified attributes:" + StringUtil.NewLine( );
+               AV14AuditShortDescription += context.GetMessage( "updated", "");
+               AV15AuditDescription += context.GetMessage( "updated.", "") + StringUtil.NewLine( ) + context.GetMessage( " Modified attributes:", "") + StringUtil.NewLine( );
             }
             else if ( StringUtil.StrCmp(AV17ActualMode, "DLT") == 0 )
             {
-               AV14AuditShortDescription += "deleted";
-               AV15AuditDescription += "deleted." + StringUtil.NewLine( ) + " Attributes:" + StringUtil.NewLine( );
+               AV14AuditShortDescription += context.GetMessage( "deleted", "");
+               AV15AuditDescription += context.GetMessage( "deleted.", "") + StringUtil.NewLine( ) + context.GetMessage( " Attributes:", "") + StringUtil.NewLine( );
             }
             AV14AuditShortDescription += ".";
             AV21GXV3 = 1;
@@ -174,7 +176,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   {
                      if ( StringUtil.StrCmp(AV10AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue, AV10AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue) != 0 )
                      {
-                        AV15AuditDescription += AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue + " (Old value = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue + ")" + StringUtil.NewLine( );
+                        AV15AuditDescription += AV10AuditingObjectRecordItemAttributeItem.gxTpr_Description + " = " + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue + context.GetMessage( " (Old value = ", "") + AV10AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue + ")" + StringUtil.NewLine( );
                      }
                   }
                   else if ( StringUtil.StrCmp(AV17ActualMode, "DLT") == 0 )
@@ -221,6 +223,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV15AuditDescription = "";
          AV17ActualMode = "";
          AV10AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.audittransaction__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.audittransaction__gam(),
             new Object[][] {
             }
@@ -243,6 +249,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string AV16AuditPrimaryKey ;
       private string AV14AuditShortDescription ;
       private Guid GXt_guid2 ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject AV8AuditingObject ;
@@ -251,10 +258,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private SdtTrn_Audit AV12Audit ;
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem AV10AuditingObjectRecordItemAttributeItem ;
       private IDataStoreProvider pr_default ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class audittransaction__gam : DataStoreHelperBase, IDataStoreHelper
+   public class audittransaction__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -281,12 +289,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class audittransaction__default : DataStoreHelperBase, IDataStoreHelper
+ public class audittransaction__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -310,6 +318,38 @@ namespace GeneXus.Programs.wwpbaseobjects {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class audittransaction__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

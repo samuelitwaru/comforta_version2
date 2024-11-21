@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -39,6 +40,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -219,7 +221,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WC Dummy for loading an empty WC") ;
+            context.SendWebValue( context.GetMessage( "WC Dummy for loading an empty WC", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -313,7 +315,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -380,7 +382,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       public override string GetPgmdesc( )
       {
-         return "WC Dummy for loading an empty WC" ;
+         return context.GetMessage( "WC Dummy for loading an empty WC", "") ;
       }
 
       protected void WB1V0( )
@@ -418,7 +420,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          wbStart = 0;
          if ( StringUtil.Len( sPrefix) != 0 )
          {
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          if ( StringUtil.Len( sPrefix) == 0 )
          {
@@ -429,7 +431,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WC Dummy for loading an empty WC", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WC Dummy for loading an empty WC", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -587,14 +589,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             {
                initialize_properties( ) ;
             }
-            if ( StringUtil.Len( sPrefix) == 0 )
-            {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-               }
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
@@ -697,7 +692,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -746,7 +741,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected override EncryptionType GetEncryptionType( )
       {
-         return EncryptionType.SESSION ;
+         return EncryptionType.SITE ;
       }
 
       public override void componentbind( Object[] obj )
@@ -890,7 +885,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119829542", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115374814", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -908,7 +903,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_wcdummy.js", "?20241119829542", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_wcdummy.js", "?2024112115374814", false, true);
          }
          /* End function include_jscripts */
       }
@@ -997,7 +992,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private short nDraw ;
       private short nDoneStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1023,6 +1017,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private msglist BackMsgLst ;

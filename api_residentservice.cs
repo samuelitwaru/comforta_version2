@@ -24,6 +24,7 @@ namespace GeneXus.Programs {
       public api_residentservice( )
       {
          context = new GxContext(  );
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -35,6 +36,7 @@ namespace GeneXus.Programs {
          this.context = context;
          IsMain = false;
          IsApiObject = true;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          if ( context.HttpContext != null )
@@ -101,7 +103,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            new prc_logtofile(context ).execute(  "Agenda API Response: "+AV17result) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Agenda API Response: ", "")+AV17result) ;
          }
       }
 
@@ -485,6 +487,7 @@ namespace GeneXus.Programs {
       protected Guid AV62ChildPageId ;
       protected Guid AV71ThemeId ;
       protected Guid AV66ProductServiceId ;
+      protected IGxDataStore dsDataStore1 ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
       protected SdtSDT_LoginResidentResponse AV20SDT_LoginResidentResponse ;

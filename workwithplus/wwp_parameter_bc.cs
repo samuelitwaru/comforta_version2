@@ -26,6 +26,7 @@ namespace GeneXus.Programs.workwithplus {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.workwithplus {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -190,7 +192,7 @@ namespace GeneXus.Programs.workwithplus {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A106WWPParameterKey)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Parameter Key", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_ParameterKey_Attribute_Description", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A107WWPParameterValue) <= 30 )
@@ -1160,6 +1162,10 @@ namespace GeneXus.Programs.workwithplus {
          BC000H9_A110WWPParameterDisableDelete = new bool[] {false} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.wwp_parameter_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.wwp_parameter_bc__gam(),
             new Object[][] {
             }
@@ -1217,6 +1223,7 @@ namespace GeneXus.Programs.workwithplus {
       private string Z111WWPParameterValueTrimmed ;
       private string A111WWPParameterValueTrimmed ;
       private IGxSession AV10WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1246,10 +1253,11 @@ namespace GeneXus.Programs.workwithplus {
       private GeneXus.Programs.workwithplus.SdtWWP_Parameter bcworkwithplus_WWP_Parameter ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_parameter_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_parameter_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1276,25 +1284,17 @@ namespace GeneXus.Programs.workwithplus {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_parameter_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_parameter_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
      };
   }
 
@@ -1303,55 +1303,7 @@ namespace GeneXus.Programs.workwithplus {
   {
      if ( def == null )
      {
-        Object[] prmBC000H2;
-        prmBC000H2 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmBC000H3;
-        prmBC000H3 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmBC000H4;
-        prmBC000H4 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmBC000H5;
-        prmBC000H5 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmBC000H6;
-        prmBC000H6 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0) ,
-        new ParDef("WWPParameterCategory",GXType.VarChar,200,0) ,
-        new ParDef("WWPParameterDescription",GXType.VarChar,200,0) ,
-        new ParDef("WWPParameterValue",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPParameterDisableDelete",GXType.Boolean,4,0)
-        };
-        Object[] prmBC000H7;
-        prmBC000H7 = new Object[] {
-        new ParDef("WWPParameterCategory",GXType.VarChar,200,0) ,
-        new ParDef("WWPParameterDescription",GXType.VarChar,200,0) ,
-        new ParDef("WWPParameterValue",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPParameterDisableDelete",GXType.Boolean,4,0) ,
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmBC000H8;
-        prmBC000H8 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmBC000H9;
-        prmBC000H9 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000H2", "SELECT WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey  FOR UPDATE OF WWP_Parameter",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000H3", "SELECT WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000H4", "SELECT TM1.WWPParameterKey, TM1.WWPParameterCategory, TM1.WWPParameterDescription, TM1.WWPParameterValue, TM1.WWPParameterDisableDelete FROM WWP_Parameter TM1 WHERE TM1.WWPParameterKey = ( :WWPParameterKey) ORDER BY TM1.WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000H5", "SELECT WWPParameterKey FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000H6", "SAVEPOINT gxupdate;INSERT INTO WWP_Parameter(WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete) VALUES(:WWPParameterKey, :WWPParameterCategory, :WWPParameterDescription, :WWPParameterValue, :WWPParameterDisableDelete);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000H6)
-           ,new CursorDef("BC000H7", "SAVEPOINT gxupdate;UPDATE WWP_Parameter SET WWPParameterCategory=:WWPParameterCategory, WWPParameterDescription=:WWPParameterDescription, WWPParameterValue=:WWPParameterValue, WWPParameterDisableDelete=:WWPParameterDisableDelete  WHERE WWPParameterKey = :WWPParameterKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000H7)
-           ,new CursorDef("BC000H8", "SAVEPOINT gxupdate;DELETE FROM WWP_Parameter  WHERE WWPParameterKey = :WWPParameterKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000H8)
-           ,new CursorDef("BC000H9", "SELECT TM1.WWPParameterKey, TM1.WWPParameterCategory, TM1.WWPParameterDescription, TM1.WWPParameterValue, TM1.WWPParameterDisableDelete FROM WWP_Parameter TM1 WHERE TM1.WWPParameterKey = ( :WWPParameterKey) ORDER BY TM1.WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H9,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1360,41 +1312,129 @@ namespace GeneXus.Programs.workwithplus {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.getBool(5);
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.getBool(5);
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.getBool(5);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 7 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.getBool(5);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_parameter_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000H2;
+       prmBC000H2 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmBC000H3;
+       prmBC000H3 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmBC000H4;
+       prmBC000H4 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmBC000H5;
+       prmBC000H5 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmBC000H6;
+       prmBC000H6 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0) ,
+       new ParDef("WWPParameterCategory",GXType.VarChar,200,0) ,
+       new ParDef("WWPParameterDescription",GXType.VarChar,200,0) ,
+       new ParDef("WWPParameterValue",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPParameterDisableDelete",GXType.Boolean,4,0)
+       };
+       Object[] prmBC000H7;
+       prmBC000H7 = new Object[] {
+       new ParDef("WWPParameterCategory",GXType.VarChar,200,0) ,
+       new ParDef("WWPParameterDescription",GXType.VarChar,200,0) ,
+       new ParDef("WWPParameterValue",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPParameterDisableDelete",GXType.Boolean,4,0) ,
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmBC000H8;
+       prmBC000H8 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmBC000H9;
+       prmBC000H9 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000H2", "SELECT WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey  FOR UPDATE OF WWP_Parameter",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000H3", "SELECT WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000H4", "SELECT TM1.WWPParameterKey, TM1.WWPParameterCategory, TM1.WWPParameterDescription, TM1.WWPParameterValue, TM1.WWPParameterDisableDelete FROM WWP_Parameter TM1 WHERE TM1.WWPParameterKey = ( :WWPParameterKey) ORDER BY TM1.WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000H5", "SELECT WWPParameterKey FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000H6", "SAVEPOINT gxupdate;INSERT INTO WWP_Parameter(WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete) VALUES(:WWPParameterKey, :WWPParameterCategory, :WWPParameterDescription, :WWPParameterValue, :WWPParameterDisableDelete);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000H6)
+          ,new CursorDef("BC000H7", "SAVEPOINT gxupdate;UPDATE WWP_Parameter SET WWPParameterCategory=:WWPParameterCategory, WWPParameterDescription=:WWPParameterDescription, WWPParameterValue=:WWPParameterValue, WWPParameterDisableDelete=:WWPParameterDisableDelete  WHERE WWPParameterKey = :WWPParameterKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000H7)
+          ,new CursorDef("BC000H8", "SAVEPOINT gxupdate;DELETE FROM WWP_Parameter  WHERE WWPParameterKey = :WWPParameterKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000H8)
+          ,new CursorDef("BC000H9", "SELECT TM1.WWPParameterKey, TM1.WWPParameterCategory, TM1.WWPParameterDescription, TM1.WWPParameterValue, TM1.WWPParameterDisableDelete FROM WWP_Parameter TM1 WHERE TM1.WWPParameterKey = ( :WWPParameterKey) ORDER BY TM1.WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000H9,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.getBool(5);
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.getBool(5);
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.getBool(5);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 7 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.getBool(5);
+             return;
+    }
+ }
 
 }
 

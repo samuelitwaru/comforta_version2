@@ -141,11 +141,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                enableJsOutput();
             }
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-         }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -166,7 +162,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Discussion Message", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Discussion Message", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -190,6 +186,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -200,6 +197,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -320,7 +318,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, "Discussion Message", "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, context.GetMessage( "Discussion Message", ""), "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -382,7 +380,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
          ClassString = "Button button-secondary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", "Select", bttBtn_select_Jsonclick, 5, "Select", "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", context.GetMessage( "GX_BtnSelect", ""), bttBtn_select_Jsonclick, 5, context.GetMessage( "GX_BtnSelect", ""), "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -395,12 +393,12 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPDiscussionMessageId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageId_Internalname, "Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageId_Internalname, context.GetMessage( "Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPDiscussionMessageId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A200WWPDiscussionMessageId), 10, 0, ".", "")), StringUtil.LTrim( ((edtWWPDiscussionMessageId_Enabled!=0) ? context.localUtil.Format( (decimal)(A200WWPDiscussionMessageId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A200WWPDiscussionMessageId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPDiscussionMessageId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPDiscussionMessageId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WWPBaseObjects\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPDiscussionMessageId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A200WWPDiscussionMessageId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtWWPDiscussionMessageId_Enabled!=0) ? context.localUtil.Format( (decimal)(A200WWPDiscussionMessageId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A200WWPDiscussionMessageId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPDiscussionMessageId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPDiscussionMessageId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WWPBaseObjects\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -412,13 +410,13 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPDiscussionMessageDate_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageDate_Internalname, "Date", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageDate_Internalname, context.GetMessage( "Date", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtWWPDiscussionMessageDate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtWWPDiscussionMessageDate_Internalname, context.localUtil.TToC( A203WWPDiscussionMessageDate, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A203WWPDiscussionMessageDate, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',5,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',5,24,'eng',false,0);"+";gx.evt.onblur(this,39);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPDiscussionMessageDate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPDiscussionMessageDate_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPDiscussionMessageDate_Internalname, context.localUtil.TToC( A203WWPDiscussionMessageDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A203WWPDiscussionMessageDate, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,39);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPDiscussionMessageDate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPDiscussionMessageDate_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_bitmap( context, edtWWPDiscussionMessageDate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtWWPDiscussionMessageDate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -432,12 +430,12 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPDiscussionMessageThreadId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageThreadId_Internalname, "Thread Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageThreadId_Internalname, context.GetMessage( "Thread Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPDiscussionMessageThreadId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A199WWPDiscussionMessageThreadId), 10, 0, ".", "")), StringUtil.LTrim( ((edtWWPDiscussionMessageThreadId_Enabled!=0) ? context.localUtil.Format( (decimal)(A199WWPDiscussionMessageThreadId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A199WWPDiscussionMessageThreadId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPDiscussionMessageThreadId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPDiscussionMessageThreadId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WWPBaseObjects\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPDiscussionMessageThreadId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A199WWPDiscussionMessageThreadId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtWWPDiscussionMessageThreadId_Enabled!=0) ? context.localUtil.Format( (decimal)(A199WWPDiscussionMessageThreadId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A199WWPDiscussionMessageThreadId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPDiscussionMessageThreadId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPDiscussionMessageThreadId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WWPBaseObjects\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -449,7 +447,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPDiscussionMessageMessage_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageMessage_Internalname, "Message", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageMessage_Internalname, context.GetMessage( "Message", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -470,7 +468,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedId_Internalname, "User Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedId_Internalname, context.GetMessage( "User Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -487,7 +485,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+imgWWPUserExtendedPhoto_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, "", "User Photo", "col-sm-3 ImageAttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, "", context.GetMessage( "User Photo", ""), "col-sm-3 ImageAttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Static Bitmap Variable */
@@ -510,7 +508,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedFullName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedFullName_Internalname, "User Full Name", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedFullName_Internalname, context.GetMessage( "User Full Name", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -527,12 +525,12 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPEntityId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPEntityId_Internalname, "Entity Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPEntityId_Internalname, context.GetMessage( "Entity Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPEntityId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A125WWPEntityId), 10, 0, ".", "")), StringUtil.LTrim( ((edtWWPEntityId_Enabled!=0) ? context.localUtil.Format( (decimal)(A125WWPEntityId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A125WWPEntityId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPEntityId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPEntityId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WWPBaseObjects\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPEntityId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A125WWPEntityId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtWWPEntityId_Enabled!=0) ? context.localUtil.Format( (decimal)(A125WWPEntityId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A125WWPEntityId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPEntityId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPEntityId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WWPBaseObjects\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -544,7 +542,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPEntityName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPEntityName_Internalname, "Entity Name", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPEntityName_Internalname, context.GetMessage( "Entity Name", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -561,7 +559,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPDiscussionMessageEntityReco_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageEntityReco_Internalname, "Record Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPDiscussionMessageEntityReco_Internalname, context.GetMessage( "Record Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -585,21 +583,21 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 84,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", "Confirm", bttBtn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 86,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 88,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", "Delete", bttBtn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Discussions/WWP_DiscussionMessage.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "end", "Middle", "div");
@@ -638,20 +636,20 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            Z200WWPDiscussionMessageId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z200WWPDiscussionMessageId"), ".", ","), 18, MidpointRounding.ToEven));
+            Z200WWPDiscussionMessageId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z200WWPDiscussionMessageId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z203WWPDiscussionMessageDate = context.localUtil.CToT( cgiGet( "Z203WWPDiscussionMessageDate"), 0);
             Z204WWPDiscussionMessageMessage = cgiGet( "Z204WWPDiscussionMessageMessage");
             Z205WWPDiscussionMessageEntityReco = cgiGet( "Z205WWPDiscussionMessageEntityReco");
             Z112WWPUserExtendedId = cgiGet( "Z112WWPUserExtendedId");
-            Z125WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z125WWPEntityId"), ".", ","), 18, MidpointRounding.ToEven));
-            Z199WWPDiscussionMessageThreadId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z199WWPDiscussionMessageThreadId"), ".", ","), 18, MidpointRounding.ToEven));
+            Z125WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z125WWPEntityId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Z199WWPDiscussionMessageThreadId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z199WWPDiscussionMessageThreadId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             n199WWPDiscussionMessageThreadId = ((0==A199WWPDiscussionMessageThreadId) ? true : false);
-            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gx_mode = cgiGet( "Mode");
             A40000WWPUserExtendedPhoto_GXI = cgiGet( "WWPUSEREXTENDEDPHOTO_GXI");
             /* Read variables values. */
-            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageId_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWPDISCUSSIONMESSAGEID");
                AnyError = 1;
@@ -663,25 +661,25 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             }
             else
             {
-               A200WWPDiscussionMessageId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A200WWPDiscussionMessageId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A200WWPDiscussionMessageId", StringUtil.LTrimStr( (decimal)(A200WWPDiscussionMessageId), 10, 0));
             }
-            if ( context.localUtil.VCDateTime( cgiGet( edtWWPDiscussionMessageDate_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtWWPDiscussionMessageDate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"Message Date"}), 1, "WWPDISCUSSIONMESSAGEDATE");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "Message Date", "")}), 1, "WWPDISCUSSIONMESSAGEDATE");
                AnyError = 1;
                GX_FocusControl = edtWWPDiscussionMessageDate_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A203WWPDiscussionMessageDate = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A203WWPDiscussionMessageDate = context.localUtil.CToT( cgiGet( edtWWPDiscussionMessageDate_Internalname));
-               AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageThreadId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageThreadId_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageThreadId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageThreadId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWPDISCUSSIONMESSAGETHREADID");
                AnyError = 1;
@@ -694,7 +692,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             }
             else
             {
-               A199WWPDiscussionMessageThreadId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageThreadId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A199WWPDiscussionMessageThreadId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageThreadId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                n199WWPDiscussionMessageThreadId = false;
                AssignAttri("", false, "A199WWPDiscussionMessageThreadId", StringUtil.LTrimStr( (decimal)(A199WWPDiscussionMessageThreadId), 10, 0));
             }
@@ -707,7 +705,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             AssignAttri("", false, "A115WWPUserExtendedPhoto", A115WWPUserExtendedPhoto);
             A113WWPUserExtendedFullName = cgiGet( edtWWPUserExtendedFullName_Internalname);
             AssignAttri("", false, "A113WWPUserExtendedFullName", A113WWPUserExtendedFullName);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWPENTITYID");
                AnyError = 1;
@@ -719,7 +717,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             }
             else
             {
-               A125WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A125WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPEntityId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A125WWPEntityId", StringUtil.LTrimStr( (decimal)(A125WWPEntityId), 10, 0));
             }
             A126WWPEntityName = cgiGet( edtWWPEntityName_Internalname);
@@ -729,7 +727,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             getMultimediaValue(imgWWPUserExtendedPhoto_Internalname, ref  A115WWPUserExtendedPhoto, ref  A40000WWPUserExtendedPhoto_GXI);
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             standaloneNotModal( ) ;
          }
          else
@@ -958,7 +956,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       protected void standaloneModal( )
       {
          A203WWPDiscussionMessageDate = DateTimeUtil.Now( context);
-         AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GXt_char1 = A112WWPUserExtendedId;
          new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char1) ;
          A112WWPUserExtendedId = GXt_char1;
@@ -1008,7 +1006,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             RcdFound38 = 1;
             A203WWPDiscussionMessageDate = T000R7_A203WWPDiscussionMessageDate[0];
-            AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A204WWPDiscussionMessageMessage = T000R7_A204WWPDiscussionMessageMessage[0];
             AssignAttri("", false, "A204WWPDiscussionMessageMessage", A204WWPDiscussionMessageMessage);
             A40000WWPUserExtendedPhoto_GXI = T000R7_A40000WWPUserExtendedPhoto_GXI[0];
@@ -1051,7 +1049,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             if ( ! ( (0==A199WWPDiscussionMessageThreadId) ) )
             {
-               GX_msglist.addItem("No matching 'Discussion Message Thread'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGETHREADID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Thread", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGETHREADID");
                AnyError = 1;
                GX_FocusControl = edtWWPDiscussionMessageThreadId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1062,7 +1060,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(2, new Object[] {A112WWPUserExtendedId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
             AnyError = 1;
             GX_FocusControl = edtWWPUserExtendedId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1081,7 +1079,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(3, new Object[] {A125WWPEntityId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_Entity'.", "ForeignKeyNotFound", 1, "WWPENTITYID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Entity", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPENTITYID");
             AnyError = 1;
             GX_FocusControl = edtWWPEntityId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1110,7 +1108,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             if ( ! ( (0==A199WWPDiscussionMessageThreadId) ) )
             {
-               GX_msglist.addItem("No matching 'Discussion Message Thread'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGETHREADID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Thread", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGETHREADID");
                AnyError = 1;
                GX_FocusControl = edtWWPDiscussionMessageThreadId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1134,7 +1132,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(7, new Object[] {A112WWPUserExtendedId});
          if ( (pr_default.getStatus(7) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
             AnyError = 1;
             GX_FocusControl = edtWWPUserExtendedId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1167,7 +1165,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(8, new Object[] {A125WWPEntityId});
          if ( (pr_default.getStatus(8) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_Entity'.", "ForeignKeyNotFound", 1, "WWPENTITYID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Entity", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPENTITYID");
             AnyError = 1;
             GX_FocusControl = edtWWPEntityId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1213,7 +1211,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             A200WWPDiscussionMessageId = T000R3_A200WWPDiscussionMessageId[0];
             AssignAttri("", false, "A200WWPDiscussionMessageId", StringUtil.LTrimStr( (decimal)(A200WWPDiscussionMessageId), 10, 0));
             A203WWPDiscussionMessageDate = T000R3_A203WWPDiscussionMessageDate[0];
-            AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A204WWPDiscussionMessageMessage = T000R3_A204WWPDiscussionMessageMessage[0];
             AssignAttri("", false, "A204WWPDiscussionMessageMessage", A204WWPDiscussionMessageMessage);
             A205WWPDiscussionMessageEntityReco = T000R3_A205WWPDiscussionMessageEntityReco[0];
@@ -1838,7 +1836,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(18, new Object[] {A200WWPDiscussionMessageId});
             if ( (pr_default.getStatus(18) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessage"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessage", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(18);
@@ -1846,7 +1844,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.execute(19, new Object[] {A200WWPDiscussionMessageId});
             if ( (pr_default.getStatus(19) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessageMention"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessageMention", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(19);
@@ -2030,7 +2028,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -2067,7 +2065,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -2075,15 +2073,15 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "Z200WWPDiscussionMessageId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z200WWPDiscussionMessageId), 10, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z200WWPDiscussionMessageId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z200WWPDiscussionMessageId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z203WWPDiscussionMessageDate", context.localUtil.TToC( Z203WWPDiscussionMessageDate, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z204WWPDiscussionMessageMessage", Z204WWPDiscussionMessageMessage);
          GxWebStd.gx_hidden_field( context, "Z205WWPDiscussionMessageEntityReco", Z205WWPDiscussionMessageEntityReco);
          GxWebStd.gx_hidden_field( context, "Z112WWPUserExtendedId", StringUtil.RTrim( Z112WWPUserExtendedId));
-         GxWebStd.gx_hidden_field( context, "Z125WWPEntityId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z125WWPEntityId), 10, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z199WWPDiscussionMessageThreadId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z199WWPDiscussionMessageThreadId), 10, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z125WWPEntityId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z125WWPEntityId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "Z199WWPDiscussionMessageThreadId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z199WWPDiscussionMessageThreadId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "WWPUSEREXTENDEDPHOTO_GXI", A40000WWPUserExtendedPhoto_GXI);
          GXCCtlgxBlob = "WWPUSEREXTENDEDPHOTO" + "_gxBlob";
@@ -2109,6 +2107,18 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -2154,13 +2164,13 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       public override string GetPgmdesc( )
       {
-         return "Discussion Message" ;
+         return context.GetMessage( "Discussion Message", "") ;
       }
 
       protected void InitializeNonKey0R38( )
       {
          A203WWPDiscussionMessageDate = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A112WWPUserExtendedId = "";
          AssignAttri("", false, "A112WWPUserExtendedId", A112WWPUserExtendedId);
          A199WWPDiscussionMessageThreadId = 0;
@@ -2202,7 +2212,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       protected void StandaloneModalInsert( )
       {
          A203WWPDiscussionMessageDate = i203WWPDiscussionMessageDate;
-         AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A112WWPUserExtendedId = i112WWPUserExtendedId;
          AssignAttri("", false, "A112WWPUserExtendedId", A112WWPUserExtendedId);
       }
@@ -2219,7 +2229,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198342443", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115422457", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2234,8 +2244,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionmessage.js", "?202411198342443", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionmessage.js", "?2024112115422457", false, true);
          /* End function include_jscripts */
       }
 
@@ -2279,7 +2289,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Discussion Message";
+         Form.Caption = context.GetMessage( "Discussion Message", "");
          bttBtn_delete_Enabled = 1;
          bttBtn_delete_Visible = 1;
          bttBtn_cancel_Visible = 1;
@@ -2383,7 +2393,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          send_integrity_footer_hashes( ) ;
          dynload_actions( ) ;
          /*  Sending validation outputs */
-         AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A203WWPDiscussionMessageDate", context.localUtil.TToC( A203WWPDiscussionMessageDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A112WWPUserExtendedId", StringUtil.RTrim( A112WWPUserExtendedId));
          AssignAttri("", false, "A199WWPDiscussionMessageThreadId", StringUtil.LTrim( StringUtil.NToC( (decimal)(A199WWPDiscussionMessageThreadId), 10, 0, ".", "")));
          AssignAttri("", false, "A204WWPDiscussionMessageMessage", A204WWPDiscussionMessageMessage);
@@ -2398,7 +2408,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          AssignAttri("", false, "A126WWPEntityName", A126WWPEntityName);
          AssignAttri("", false, "Gx_mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "Z200WWPDiscussionMessageId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z200WWPDiscussionMessageId), 10, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z203WWPDiscussionMessageDate", context.localUtil.TToC( Z203WWPDiscussionMessageDate, 10, 8, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z203WWPDiscussionMessageDate", context.localUtil.TToC( Z203WWPDiscussionMessageDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z112WWPUserExtendedId", StringUtil.RTrim( Z112WWPUserExtendedId));
          GxWebStd.gx_hidden_field( context, "Z199WWPDiscussionMessageThreadId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z199WWPDiscussionMessageThreadId), 10, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Z204WWPDiscussionMessageMessage", Z204WWPDiscussionMessageMessage);
@@ -2422,7 +2432,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             if ( ! ( (0==A199WWPDiscussionMessageThreadId) ) )
             {
-               GX_msglist.addItem("No matching 'Discussion Message Thread'.", "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGETHREADID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Discussion Message Thread", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPDISCUSSIONMESSAGETHREADID");
                AnyError = 1;
                GX_FocusControl = edtWWPDiscussionMessageThreadId_Internalname;
             }
@@ -2438,7 +2448,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(16, new Object[] {A112WWPUserExtendedId});
          if ( (pr_default.getStatus(16) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
             AnyError = 1;
             GX_FocusControl = edtWWPUserExtendedId_Internalname;
          }
@@ -2462,7 +2472,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          pr_default.execute(17, new Object[] {A125WWPEntityId});
          if ( (pr_default.getStatus(17) == 101) )
          {
-            GX_msglist.addItem("No matching 'WWP_Entity'.", "ForeignKeyNotFound", 1, "WWPENTITYID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Entity", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPENTITYID");
             AnyError = 1;
             GX_FocusControl = edtWWPEntityId_Internalname;
          }
@@ -2626,6 +2636,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          ZZ126WWPEntityName = "";
          T000R23_A199WWPDiscussionMessageThreadId = new long[1] ;
          T000R23_n199WWPDiscussionMessageThreadId = new bool[] {false} ;
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.discussions.wwp_discussionmessage__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.discussions.wwp_discussionmessage__gam(),
             new Object[][] {
             }
@@ -2701,7 +2715,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       }
 
       private short GxWebError ;
-      private short gxcookieaux ;
       private short AnyError ;
       private short IsModified ;
       private short IsConfirmed ;
@@ -2837,6 +2850,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string Z115WWPUserExtendedPhoto ;
       private string ZZ115WWPUserExtendedPhoto ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -2895,10 +2909,11 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private long[] T000R22_A200WWPDiscussionMessageId ;
       private long[] T000R23_A199WWPDiscussionMessageThreadId ;
       private bool[] T000R23_n199WWPDiscussionMessageThreadId ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_discussionmessage__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_discussionmessage__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -2925,39 +2940,17 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_discussionmessage__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_discussionmessage__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new ForEachCursor(def[9])
-       ,new ForEachCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new UpdateCursor(def[12])
-       ,new ForEachCursor(def[13])
-       ,new UpdateCursor(def[14])
-       ,new UpdateCursor(def[15])
-       ,new ForEachCursor(def[16])
-       ,new ForEachCursor(def[17])
-       ,new ForEachCursor(def[18])
-       ,new ForEachCursor(def[19])
-       ,new ForEachCursor(def[20])
-       ,new ForEachCursor(def[21])
      };
   }
 
@@ -2966,126 +2959,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
   {
      if ( def == null )
      {
-        Object[] prmT000R2;
-        prmT000R2 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R3;
-        prmT000R3 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R4;
-        prmT000R4 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0)
-        };
-        Object[] prmT000R5;
-        prmT000R5 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R6;
-        prmT000R6 = new Object[] {
-        new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true}
-        };
-        Object[] prmT000R7;
-        prmT000R7 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R8;
-        prmT000R8 = new Object[] {
-        new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true}
-        };
-        Object[] prmT000R9;
-        prmT000R9 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0)
-        };
-        Object[] prmT000R10;
-        prmT000R10 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R11;
-        prmT000R11 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R12;
-        prmT000R12 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R13;
-        prmT000R13 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R14;
-        prmT000R14 = new Object[] {
-        new ParDef("WWPDiscussionMessageDate",GXType.DateTime,8,5) ,
-        new ParDef("WWPDiscussionMessageMessage",GXType.VarChar,400,0) ,
-        new ParDef("WWPDiscussionMessageEntityReco",GXType.VarChar,100,0) ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0) ,
-        new ParDef("WWPEntityId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true}
-        };
-        Object[] prmT000R15;
-        prmT000R15 = new Object[] {
-        };
-        Object[] prmT000R16;
-        prmT000R16 = new Object[] {
-        new ParDef("WWPDiscussionMessageDate",GXType.DateTime,8,5) ,
-        new ParDef("WWPDiscussionMessageMessage",GXType.VarChar,400,0) ,
-        new ParDef("WWPDiscussionMessageEntityReco",GXType.VarChar,100,0) ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0) ,
-        new ParDef("WWPEntityId",GXType.Int64,10,0) ,
-        new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true} ,
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R17;
-        prmT000R17 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R18;
-        prmT000R18 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0)
-        };
-        Object[] prmT000R19;
-        prmT000R19 = new Object[] {
-        new ParDef("WWPEntityId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R20;
-        prmT000R20 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R21;
-        prmT000R21 = new Object[] {
-        new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
-        };
-        Object[] prmT000R22;
-        prmT000R22 = new Object[] {
-        };
-        Object[] prmT000R23;
-        prmT000R23 = new Object[] {
-        new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true}
-        };
         def= new CursorDef[] {
-            new CursorDef("T000R2", "SELECT WWPDiscussionMessageId, WWPDiscussionMessageDate, WWPDiscussionMessageMessage, WWPDiscussionMessageEntityReco, WWPUserExtendedId, WWPEntityId, WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId  FOR UPDATE OF WWP_DiscussionMessage NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000R2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R3", "SELECT WWPDiscussionMessageId, WWPDiscussionMessageDate, WWPDiscussionMessageMessage, WWPDiscussionMessageEntityReco, WWPUserExtendedId, WWPEntityId, WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R4", "SELECT WWPUserExtendedPhoto_GXI, WWPUserExtendedFullName, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R5", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R6", "SELECT WWPDiscussionMessageId AS WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageThreadId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R7", "SELECT TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMessageDate, TM1.WWPDiscussionMessageMessage, T2.WWPUserExtendedPhoto_GXI, T2.WWPUserExtendedFullName, T3.WWPEntityName, TM1.WWPDiscussionMessageEntityReco, TM1.WWPUserExtendedId, TM1.WWPEntityId, TM1.WWPDiscussionMessageThreadId AS WWPDiscussionMessageThreadId, T2.WWPUserExtendedPhoto FROM ((WWP_DiscussionMessage TM1 INNER JOIN WWP_UserExtended T2 ON T2.WWPUserExtendedId = TM1.WWPUserExtendedId) INNER JOIN WWP_Entity T3 ON T3.WWPEntityId = TM1.WWPEntityId) WHERE TM1.WWPDiscussionMessageId = :WWPDiscussionMessageId ORDER BY TM1.WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R7,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R8", "SELECT WWPDiscussionMessageId AS WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageThreadId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R8,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R9", "SELECT WWPUserExtendedPhoto_GXI, WWPUserExtendedFullName, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R9,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R10", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R10,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R11", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R11,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R12", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE ( WWPDiscussionMessageId > :WWPDiscussionMessageId) ORDER BY WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R12,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000R13", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE ( WWPDiscussionMessageId < :WWPDiscussionMessageId) ORDER BY WWPDiscussionMessageId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R13,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000R14", "SAVEPOINT gxupdate;INSERT INTO WWP_DiscussionMessage(WWPDiscussionMessageDate, WWPDiscussionMessageMessage, WWPDiscussionMessageEntityReco, WWPUserExtendedId, WWPEntityId, WWPDiscussionMessageThreadId) VALUES(:WWPDiscussionMessageDate, :WWPDiscussionMessageMessage, :WWPDiscussionMessageEntityReco, :WWPUserExtendedId, :WWPEntityId, :WWPDiscussionMessageThreadId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000R14)
-           ,new CursorDef("T000R15", "SELECT currval('WWPDiscussionMessageId') ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R15,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R16", "SAVEPOINT gxupdate;UPDATE WWP_DiscussionMessage SET WWPDiscussionMessageDate=:WWPDiscussionMessageDate, WWPDiscussionMessageMessage=:WWPDiscussionMessageMessage, WWPDiscussionMessageEntityReco=:WWPDiscussionMessageEntityReco, WWPUserExtendedId=:WWPUserExtendedId, WWPEntityId=:WWPEntityId, WWPDiscussionMessageThreadId=:WWPDiscussionMessageThreadId  WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000R16)
-           ,new CursorDef("T000R17", "SAVEPOINT gxupdate;DELETE FROM WWP_DiscussionMessage  WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000R17)
-           ,new CursorDef("T000R18", "SELECT WWPUserExtendedPhoto_GXI, WWPUserExtendedFullName, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R18,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R19", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R19,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R20", "SELECT WWPDiscussionMessageId AS WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageThreadId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R20,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000R21", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R21,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000R22", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage ORDER BY WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R22,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000R23", "SELECT WWPDiscussionMessageId AS WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageThreadId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R23,1, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -3094,99 +2968,272 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getString(5, 40);
-              ((long[]) buf[5])[0] = rslt.getLong(6);
-              ((long[]) buf[6])[0] = rslt.getLong(7);
-              ((bool[]) buf[7])[0] = rslt.wasNull(7);
-              return;
-           case 1 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getString(5, 40);
-              ((long[]) buf[5])[0] = rslt.getLong(6);
-              ((long[]) buf[6])[0] = rslt.getLong(7);
-              ((bool[]) buf[7])[0] = rslt.wasNull(7);
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getMultimediaUri(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaFile(3, rslt.getVarchar(1));
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 4 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 5 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getString(8, 40);
-              ((long[]) buf[8])[0] = rslt.getLong(9);
-              ((long[]) buf[9])[0] = rslt.getLong(10);
-              ((bool[]) buf[10])[0] = rslt.wasNull(10);
-              ((string[]) buf[11])[0] = rslt.getMultimediaFile(11, rslt.getVarchar(4));
-              return;
-           case 6 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 7 :
-              ((string[]) buf[0])[0] = rslt.getMultimediaUri(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaFile(3, rslt.getVarchar(1));
-              return;
-           case 8 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 9 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 10 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 11 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 13 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 16 :
-              ((string[]) buf[0])[0] = rslt.getMultimediaUri(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaFile(3, rslt.getVarchar(1));
-              return;
-           case 17 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 18 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 19 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 40);
-              return;
-           case 20 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 21 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_discussionmessage__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new ForEachCursor(def[9])
+      ,new ForEachCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new UpdateCursor(def[12])
+      ,new ForEachCursor(def[13])
+      ,new UpdateCursor(def[14])
+      ,new UpdateCursor(def[15])
+      ,new ForEachCursor(def[16])
+      ,new ForEachCursor(def[17])
+      ,new ForEachCursor(def[18])
+      ,new ForEachCursor(def[19])
+      ,new ForEachCursor(def[20])
+      ,new ForEachCursor(def[21])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmT000R2;
+       prmT000R2 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R3;
+       prmT000R3 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R4;
+       prmT000R4 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0)
+       };
+       Object[] prmT000R5;
+       prmT000R5 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R6;
+       prmT000R6 = new Object[] {
+       new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true}
+       };
+       Object[] prmT000R7;
+       prmT000R7 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R8;
+       prmT000R8 = new Object[] {
+       new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true}
+       };
+       Object[] prmT000R9;
+       prmT000R9 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0)
+       };
+       Object[] prmT000R10;
+       prmT000R10 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R11;
+       prmT000R11 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R12;
+       prmT000R12 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R13;
+       prmT000R13 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R14;
+       prmT000R14 = new Object[] {
+       new ParDef("WWPDiscussionMessageDate",GXType.DateTime,8,5) ,
+       new ParDef("WWPDiscussionMessageMessage",GXType.VarChar,400,0) ,
+       new ParDef("WWPDiscussionMessageEntityReco",GXType.VarChar,100,0) ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0) ,
+       new ParDef("WWPEntityId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true}
+       };
+       Object[] prmT000R15;
+       prmT000R15 = new Object[] {
+       };
+       Object[] prmT000R16;
+       prmT000R16 = new Object[] {
+       new ParDef("WWPDiscussionMessageDate",GXType.DateTime,8,5) ,
+       new ParDef("WWPDiscussionMessageMessage",GXType.VarChar,400,0) ,
+       new ParDef("WWPDiscussionMessageEntityReco",GXType.VarChar,100,0) ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0) ,
+       new ParDef("WWPEntityId",GXType.Int64,10,0) ,
+       new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true} ,
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R17;
+       prmT000R17 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R18;
+       prmT000R18 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0)
+       };
+       Object[] prmT000R19;
+       prmT000R19 = new Object[] {
+       new ParDef("WWPEntityId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R20;
+       prmT000R20 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R21;
+       prmT000R21 = new Object[] {
+       new ParDef("WWPDiscussionMessageId",GXType.Int64,10,0)
+       };
+       Object[] prmT000R22;
+       prmT000R22 = new Object[] {
+       };
+       Object[] prmT000R23;
+       prmT000R23 = new Object[] {
+       new ParDef("WWPDiscussionMessageThreadId",GXType.Int64,10,0){Nullable=true}
+       };
+       def= new CursorDef[] {
+           new CursorDef("T000R2", "SELECT WWPDiscussionMessageId, WWPDiscussionMessageDate, WWPDiscussionMessageMessage, WWPDiscussionMessageEntityReco, WWPUserExtendedId, WWPEntityId, WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId  FOR UPDATE OF WWP_DiscussionMessage NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000R2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R3", "SELECT WWPDiscussionMessageId, WWPDiscussionMessageDate, WWPDiscussionMessageMessage, WWPDiscussionMessageEntityReco, WWPUserExtendedId, WWPEntityId, WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R4", "SELECT WWPUserExtendedPhoto_GXI, WWPUserExtendedFullName, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R5", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R6", "SELECT WWPDiscussionMessageId AS WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageThreadId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R7", "SELECT TM1.WWPDiscussionMessageId, TM1.WWPDiscussionMessageDate, TM1.WWPDiscussionMessageMessage, T2.WWPUserExtendedPhoto_GXI, T2.WWPUserExtendedFullName, T3.WWPEntityName, TM1.WWPDiscussionMessageEntityReco, TM1.WWPUserExtendedId, TM1.WWPEntityId, TM1.WWPDiscussionMessageThreadId AS WWPDiscussionMessageThreadId, T2.WWPUserExtendedPhoto FROM ((WWP_DiscussionMessage TM1 INNER JOIN WWP_UserExtended T2 ON T2.WWPUserExtendedId = TM1.WWPUserExtendedId) INNER JOIN WWP_Entity T3 ON T3.WWPEntityId = TM1.WWPEntityId) WHERE TM1.WWPDiscussionMessageId = :WWPDiscussionMessageId ORDER BY TM1.WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R7,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R8", "SELECT WWPDiscussionMessageId AS WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageThreadId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R8,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R9", "SELECT WWPUserExtendedPhoto_GXI, WWPUserExtendedFullName, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R9,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R10", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R10,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R11", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R11,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R12", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE ( WWPDiscussionMessageId > :WWPDiscussionMessageId) ORDER BY WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R12,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000R13", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE ( WWPDiscussionMessageId < :WWPDiscussionMessageId) ORDER BY WWPDiscussionMessageId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R13,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000R14", "SAVEPOINT gxupdate;INSERT INTO WWP_DiscussionMessage(WWPDiscussionMessageDate, WWPDiscussionMessageMessage, WWPDiscussionMessageEntityReco, WWPUserExtendedId, WWPEntityId, WWPDiscussionMessageThreadId) VALUES(:WWPDiscussionMessageDate, :WWPDiscussionMessageMessage, :WWPDiscussionMessageEntityReco, :WWPUserExtendedId, :WWPEntityId, :WWPDiscussionMessageThreadId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000R14)
+          ,new CursorDef("T000R15", "SELECT currval('WWPDiscussionMessageId') ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R15,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R16", "SAVEPOINT gxupdate;UPDATE WWP_DiscussionMessage SET WWPDiscussionMessageDate=:WWPDiscussionMessageDate, WWPDiscussionMessageMessage=:WWPDiscussionMessageMessage, WWPDiscussionMessageEntityReco=:WWPDiscussionMessageEntityReco, WWPUserExtendedId=:WWPUserExtendedId, WWPEntityId=:WWPEntityId, WWPDiscussionMessageThreadId=:WWPDiscussionMessageThreadId  WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000R16)
+          ,new CursorDef("T000R17", "SAVEPOINT gxupdate;DELETE FROM WWP_DiscussionMessage  WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000R17)
+          ,new CursorDef("T000R18", "SELECT WWPUserExtendedPhoto_GXI, WWPUserExtendedFullName, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R18,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R19", "SELECT WWPEntityName FROM WWP_Entity WHERE WWPEntityId = :WWPEntityId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R19,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R20", "SELECT WWPDiscussionMessageId AS WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageThreadId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R20,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000R21", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMessageId = :WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R21,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000R22", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage ORDER BY WWPDiscussionMessageId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R22,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000R23", "SELECT WWPDiscussionMessageId AS WWPDiscussionMessageThreadId FROM WWP_DiscussionMessage WHERE WWPDiscussionMessageId = :WWPDiscussionMessageThreadId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000R23,1, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 40);
+             ((long[]) buf[5])[0] = rslt.getLong(6);
+             ((long[]) buf[6])[0] = rslt.getLong(7);
+             ((bool[]) buf[7])[0] = rslt.wasNull(7);
+             return;
+          case 1 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 40);
+             ((long[]) buf[5])[0] = rslt.getLong(6);
+             ((long[]) buf[6])[0] = rslt.getLong(7);
+             ((bool[]) buf[7])[0] = rslt.wasNull(7);
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getMultimediaUri(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaFile(3, rslt.getVarchar(1));
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 4 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 5 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getString(8, 40);
+             ((long[]) buf[8])[0] = rslt.getLong(9);
+             ((long[]) buf[9])[0] = rslt.getLong(10);
+             ((bool[]) buf[10])[0] = rslt.wasNull(10);
+             ((string[]) buf[11])[0] = rslt.getMultimediaFile(11, rslt.getVarchar(4));
+             return;
+          case 6 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 7 :
+             ((string[]) buf[0])[0] = rslt.getMultimediaUri(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaFile(3, rslt.getVarchar(1));
+             return;
+          case 8 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 9 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 10 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 11 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 13 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 16 :
+             ((string[]) buf[0])[0] = rslt.getMultimediaUri(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaFile(3, rslt.getVarchar(1));
+             return;
+          case 17 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 18 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 19 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 40);
+             return;
+          case 20 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 21 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+    }
+ }
 
 }
 

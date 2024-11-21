@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -229,13 +231,13 @@ namespace GeneXus.Programs {
          pr_default.execute(5, new Object[] {A29LocationId, A318Trn_PageName, A310Trn_PageId});
          if ( (pr_default.getStatus(5) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Location Id"+","+"Trn_Page Name"}), 1, "");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Location Id", "")+","+context.GetMessage( "Trn_Page Name", "")}), 1, "");
             AnyError = 1;
          }
          pr_default.close(5);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A318Trn_PageName)) )
          {
-            GX_msglist.addItem("Page name cannot be empty.", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Page name cannot be empty.", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00175 */
@@ -244,7 +246,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A58ProductServiceId) || (Guid.Empty==A29LocationId) || (Guid.Empty==A11OrganisationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_ProductService'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_ProductService", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
          }
@@ -253,7 +255,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -1366,6 +1368,10 @@ namespace GeneXus.Programs {
          BC001712_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_page_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_page_bc__gam(),
             new Object[][] {
             }
@@ -1470,6 +1476,7 @@ namespace GeneXus.Programs {
       private Guid A29LocationId ;
       private Guid Z11OrganisationId ;
       private Guid A11OrganisationId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1553,10 +1560,11 @@ namespace GeneXus.Programs {
       private SdtTrn_Page bcTrn_Page ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_page_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_page_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1583,28 +1591,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_page_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_page_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new ForEachCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new ForEachCursor(def[10])
      };
   }
 
@@ -1613,87 +1610,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC00172;
-        prmBC00172 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00173;
-        prmBC00173 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00174;
-        prmBC00174 = new Object[] {
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00175;
-        prmBC00175 = new Object[] {
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00176;
-        prmBC00176 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00177;
-        prmBC00177 = new Object[] {
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00178;
-        prmBC00178 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC00179;
-        prmBC00179 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
-        new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("PageIsPublished",GXType.Boolean,4,0){Nullable=true} ,
-        new ParDef("PageIsContentPage",GXType.Boolean,4,0){Nullable=true} ,
-        new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001710;
-        prmBC001710 = new Object[] {
-        new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
-        new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("PageIsPublished",GXType.Boolean,4,0){Nullable=true} ,
-        new ParDef("PageIsContentPage",GXType.Boolean,4,0){Nullable=true} ,
-        new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true} ,
-        new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001711;
-        prmBC001711 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC001712;
-        prmBC001712 = new Object[] {
-        new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC00172", "SELECT Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, ProductServiceId, LocationId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId  FOR UPDATE OF Trn_Page",true, GxErrorMask.GX_NOMASK, false, this,prmBC00172,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00173", "SELECT Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, ProductServiceId, LocationId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00173,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00174", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00174,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00175", "SELECT ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00175,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00176", "SELECT TM1.Trn_PageId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren, TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00176,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00177", "SELECT LocationId FROM Trn_Page WHERE (LocationId = :LocationId AND Trn_PageName = :Trn_PageName) AND (Not ( Trn_PageId = :Trn_PageId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00177,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00178", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00178,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC00179", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, ProductServiceId, LocationId, OrganisationId) VALUES(:Trn_PageId, :Trn_PageName, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, :PageChildren, :ProductServiceId, :LocationId, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00179)
-           ,new CursorDef("BC001710", "SAVEPOINT gxupdate;UPDATE Trn_Page SET Trn_PageName=:Trn_PageName, PageJsonContent=:PageJsonContent, PageGJSHtml=:PageGJSHtml, PageGJSJson=:PageGJSJson, PageIsPublished=:PageIsPublished, PageIsContentPage=:PageIsContentPage, PageChildren=:PageChildren, ProductServiceId=:ProductServiceId, LocationId=:LocationId, OrganisationId=:OrganisationId  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001710)
-           ,new CursorDef("BC001711", "SAVEPOINT gxupdate;DELETE FROM Trn_Page  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001711)
-           ,new CursorDef("BC001712", "SELECT TM1.Trn_PageId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren, TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001712,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1702,102 +1619,225 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[5])[0] = rslt.wasNull(4);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(5);
-              ((bool[]) buf[7])[0] = rslt.wasNull(5);
-              ((bool[]) buf[8])[0] = rslt.getBool(6);
-              ((bool[]) buf[9])[0] = rslt.wasNull(6);
-              ((bool[]) buf[10])[0] = rslt.getBool(7);
-              ((bool[]) buf[11])[0] = rslt.wasNull(7);
-              ((string[]) buf[12])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[13])[0] = rslt.wasNull(8);
-              ((Guid[]) buf[14])[0] = rslt.getGuid(9);
-              ((bool[]) buf[15])[0] = rslt.wasNull(9);
-              ((Guid[]) buf[16])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[17])[0] = rslt.getGuid(11);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[5])[0] = rslt.wasNull(4);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(5);
-              ((bool[]) buf[7])[0] = rslt.wasNull(5);
-              ((bool[]) buf[8])[0] = rslt.getBool(6);
-              ((bool[]) buf[9])[0] = rslt.wasNull(6);
-              ((bool[]) buf[10])[0] = rslt.getBool(7);
-              ((bool[]) buf[11])[0] = rslt.wasNull(7);
-              ((string[]) buf[12])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[13])[0] = rslt.wasNull(8);
-              ((Guid[]) buf[14])[0] = rslt.getGuid(9);
-              ((bool[]) buf[15])[0] = rslt.wasNull(9);
-              ((Guid[]) buf[16])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[17])[0] = rslt.getGuid(11);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[5])[0] = rslt.wasNull(4);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(5);
-              ((bool[]) buf[7])[0] = rslt.wasNull(5);
-              ((bool[]) buf[8])[0] = rslt.getBool(6);
-              ((bool[]) buf[9])[0] = rslt.wasNull(6);
-              ((bool[]) buf[10])[0] = rslt.getBool(7);
-              ((bool[]) buf[11])[0] = rslt.wasNull(7);
-              ((string[]) buf[12])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[13])[0] = rslt.wasNull(8);
-              ((Guid[]) buf[14])[0] = rslt.getGuid(9);
-              ((bool[]) buf[15])[0] = rslt.wasNull(9);
-              ((Guid[]) buf[16])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[17])[0] = rslt.getGuid(11);
-              return;
-           case 5 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 6 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 10 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[5])[0] = rslt.wasNull(4);
-              ((string[]) buf[6])[0] = rslt.getLongVarchar(5);
-              ((bool[]) buf[7])[0] = rslt.wasNull(5);
-              ((bool[]) buf[8])[0] = rslt.getBool(6);
-              ((bool[]) buf[9])[0] = rslt.wasNull(6);
-              ((bool[]) buf[10])[0] = rslt.getBool(7);
-              ((bool[]) buf[11])[0] = rslt.wasNull(7);
-              ((string[]) buf[12])[0] = rslt.getLongVarchar(8);
-              ((bool[]) buf[13])[0] = rslt.wasNull(8);
-              ((Guid[]) buf[14])[0] = rslt.getGuid(9);
-              ((bool[]) buf[15])[0] = rslt.wasNull(9);
-              ((Guid[]) buf[16])[0] = rslt.getGuid(10);
-              ((Guid[]) buf[17])[0] = rslt.getGuid(11);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_page_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new ForEachCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new ForEachCursor(def[10])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC00172;
+       prmBC00172 = new Object[] {
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00173;
+       prmBC00173 = new Object[] {
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00174;
+       prmBC00174 = new Object[] {
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00175;
+       prmBC00175 = new Object[] {
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00176;
+       prmBC00176 = new Object[] {
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00177;
+       prmBC00177 = new Object[] {
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00178;
+       prmBC00178 = new Object[] {
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC00179;
+       prmBC00179 = new Object[] {
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
+       new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("PageIsPublished",GXType.Boolean,4,0){Nullable=true} ,
+       new ParDef("PageIsContentPage",GXType.Boolean,4,0){Nullable=true} ,
+       new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001710;
+       prmBC001710 = new Object[] {
+       new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
+       new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("PageIsPublished",GXType.Boolean,4,0){Nullable=true} ,
+       new ParDef("PageIsContentPage",GXType.Boolean,4,0){Nullable=true} ,
+       new ParDef("PageChildren",GXType.LongVarChar,2097152,0){Nullable=true} ,
+       new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001711;
+       prmBC001711 = new Object[] {
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001712;
+       prmBC001712 = new Object[] {
+       new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC00172", "SELECT Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, ProductServiceId, LocationId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId  FOR UPDATE OF Trn_Page",true, GxErrorMask.GX_NOMASK, false, this,prmBC00172,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00173", "SELECT Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, ProductServiceId, LocationId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00173,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00174", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00174,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00175", "SELECT ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00175,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00176", "SELECT TM1.Trn_PageId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren, TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00176,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00177", "SELECT LocationId FROM Trn_Page WHERE (LocationId = :LocationId AND Trn_PageName = :Trn_PageName) AND (Not ( Trn_PageId = :Trn_PageId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00177,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00178", "SELECT Trn_PageId FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00178,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00179", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageChildren, ProductServiceId, LocationId, OrganisationId) VALUES(:Trn_PageId, :Trn_PageName, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, :PageChildren, :ProductServiceId, :LocationId, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00179)
+          ,new CursorDef("BC001710", "SAVEPOINT gxupdate;UPDATE Trn_Page SET Trn_PageName=:Trn_PageName, PageJsonContent=:PageJsonContent, PageGJSHtml=:PageGJSHtml, PageGJSJson=:PageGJSJson, PageIsPublished=:PageIsPublished, PageIsContentPage=:PageIsContentPage, PageChildren=:PageChildren, ProductServiceId=:ProductServiceId, LocationId=:LocationId, OrganisationId=:OrganisationId  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001710)
+          ,new CursorDef("BC001711", "SAVEPOINT gxupdate;DELETE FROM Trn_Page  WHERE Trn_PageId = :Trn_PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001711)
+          ,new CursorDef("BC001712", "SELECT TM1.Trn_PageId, TM1.Trn_PageName, TM1.PageJsonContent, TM1.PageGJSHtml, TM1.PageGJSJson, TM1.PageIsPublished, TM1.PageIsContentPage, TM1.PageChildren, TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId FROM Trn_Page TM1 WHERE TM1.Trn_PageId = :Trn_PageId ORDER BY TM1.Trn_PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001712,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[5])[0] = rslt.wasNull(4);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[7])[0] = rslt.wasNull(5);
+             ((bool[]) buf[8])[0] = rslt.getBool(6);
+             ((bool[]) buf[9])[0] = rslt.wasNull(6);
+             ((bool[]) buf[10])[0] = rslt.getBool(7);
+             ((bool[]) buf[11])[0] = rslt.wasNull(7);
+             ((string[]) buf[12])[0] = rslt.getLongVarchar(8);
+             ((bool[]) buf[13])[0] = rslt.wasNull(8);
+             ((Guid[]) buf[14])[0] = rslt.getGuid(9);
+             ((bool[]) buf[15])[0] = rslt.wasNull(9);
+             ((Guid[]) buf[16])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[17])[0] = rslt.getGuid(11);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[5])[0] = rslt.wasNull(4);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[7])[0] = rslt.wasNull(5);
+             ((bool[]) buf[8])[0] = rslt.getBool(6);
+             ((bool[]) buf[9])[0] = rslt.wasNull(6);
+             ((bool[]) buf[10])[0] = rslt.getBool(7);
+             ((bool[]) buf[11])[0] = rslt.wasNull(7);
+             ((string[]) buf[12])[0] = rslt.getLongVarchar(8);
+             ((bool[]) buf[13])[0] = rslt.wasNull(8);
+             ((Guid[]) buf[14])[0] = rslt.getGuid(9);
+             ((bool[]) buf[15])[0] = rslt.wasNull(9);
+             ((Guid[]) buf[16])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[17])[0] = rslt.getGuid(11);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[5])[0] = rslt.wasNull(4);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[7])[0] = rslt.wasNull(5);
+             ((bool[]) buf[8])[0] = rslt.getBool(6);
+             ((bool[]) buf[9])[0] = rslt.wasNull(6);
+             ((bool[]) buf[10])[0] = rslt.getBool(7);
+             ((bool[]) buf[11])[0] = rslt.wasNull(7);
+             ((string[]) buf[12])[0] = rslt.getLongVarchar(8);
+             ((bool[]) buf[13])[0] = rslt.wasNull(8);
+             ((Guid[]) buf[14])[0] = rslt.getGuid(9);
+             ((bool[]) buf[15])[0] = rslt.wasNull(9);
+             ((Guid[]) buf[16])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[17])[0] = rslt.getGuid(11);
+             return;
+          case 5 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 6 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 10 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[5])[0] = rslt.wasNull(4);
+             ((string[]) buf[6])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[7])[0] = rslt.wasNull(5);
+             ((bool[]) buf[8])[0] = rslt.getBool(6);
+             ((bool[]) buf[9])[0] = rslt.wasNull(6);
+             ((bool[]) buf[10])[0] = rslt.getBool(7);
+             ((bool[]) buf[11])[0] = rslt.wasNull(7);
+             ((string[]) buf[12])[0] = rslt.getLongVarchar(8);
+             ((bool[]) buf[13])[0] = rslt.wasNull(8);
+             ((Guid[]) buf[14])[0] = rslt.getGuid(9);
+             ((bool[]) buf[15])[0] = rslt.wasNull(9);
+             ((Guid[]) buf[16])[0] = rslt.getGuid(10);
+             ((Guid[]) buf[17])[0] = rslt.getGuid(11);
+             return;
+    }
+ }
 
 }
 

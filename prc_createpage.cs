@@ -28,6 +28,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -84,14 +86,14 @@ namespace GeneXus.Programs {
             A89ReceptionistId = P008V2_A89ReceptionistId[0];
             AV20LocationId = A29LocationId;
             AV21OrganisationId = A11OrganisationId;
-            new prc_logtofile(context ).execute(  "LocationId: "+AV20LocationId.ToString()) ;
-            new prc_logtofile(context ).execute(  "&OrganisationId: "+AV21OrganisationId.ToString()) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "LocationId: ", "")+AV20LocationId.ToString()) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "&OrganisationId: ", "")+AV21OrganisationId.ToString()) ;
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         new prc_logtofile(context ).execute(  "Location Info: "+new prc_getlocationinformation(context).executeUdp(  Guid.Empty)) ;
-         new prc_logtofile(context ).execute(  "User Info: "+new prc_getloggedinusername(context).executeUdp( )) ;
-         new prc_logtofile(context ).execute(  "Org Info: "+new prc_getorganisationinformation(context).executeUdp(  Guid.Empty)) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Location Info: ", "")+new prc_getlocationinformation(context).executeUdp(  Guid.Empty)) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "User Info: ", "")+new prc_getloggedinusername(context).executeUdp( )) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Org Info: ", "")+new prc_getorganisationinformation(context).executeUdp(  Guid.Empty)) ;
          AV8BC_Trn_Page = new SdtTrn_Page(context);
          AV8BC_Trn_Page.gxTpr_Trn_pagename = AV16PageName;
          AV8BC_Trn_Page.gxTpr_Pageispublished = false;
@@ -103,7 +105,7 @@ namespace GeneXus.Programs {
          AV8BC_Trn_Page.gxTv_SdtTrn_Page_Pagechildren_SetNull();
          AV8BC_Trn_Page.gxTv_SdtTrn_Page_Productserviceid_SetNull();
          AV8BC_Trn_Page.Save();
-         new prc_logtofile(context ).execute(  "Something") ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Something", "")) ;
          if ( AV8BC_Trn_Page.Success() )
          {
             context.CommitDataStores("prc_createpage",pr_default);
@@ -153,6 +155,10 @@ namespace GeneXus.Programs {
          AV8BC_Trn_Page = new SdtTrn_Page(context);
          AV23GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV9Message = new GeneXus.Utils.SdtMessages_Message(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_createpage__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_createpage__gam(),
             new Object[][] {
             }
@@ -178,6 +184,7 @@ namespace GeneXus.Programs {
       private Guid A89ReceptionistId ;
       private Guid AV20LocationId ;
       private Guid AV21OrganisationId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private string aP1_Response ;
@@ -189,10 +196,11 @@ namespace GeneXus.Programs {
       private SdtTrn_Page AV8BC_Trn_Page ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV23GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV9Message ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class prc_createpage__gam : DataStoreHelperBase, IDataStoreHelper
+   public class prc_createpage__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -219,18 +227,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class prc_createpage__default : DataStoreHelperBase, IDataStoreHelper
+ public class prc_createpage__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
      };
   }
 
@@ -239,12 +246,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmP008V2;
-        prmP008V2 = new Object[] {
-        new ParDef("AV19UserName",GXType.VarChar,100,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P008V2", "SELECT ReceptionistEmail, LocationId, OrganisationId, ReceptionistId FROM Trn_Receptionist WHERE ReceptionistEmail = ( RTRIM(LTRIM(:AV19UserName))) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008V2,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -253,16 +255,54 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class prc_createpage__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP008V2;
+       prmP008V2 = new Object[] {
+       new ParDef("AV19UserName",GXType.VarChar,100,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P008V2", "SELECT ReceptionistEmail, LocationId, OrganisationId, ReceptionistId FROM Trn_Receptionist WHERE ReceptionistEmail = ( RTRIM(LTRIM(:AV19UserName))) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008V2,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+             return;
+    }
+ }
 
 }
 

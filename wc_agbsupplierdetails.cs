@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -39,6 +40,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -250,7 +252,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WC_Agb Supplier Details") ;
+            context.SendWebValue( context.GetMessage( "WC_Agb Supplier Details", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -296,7 +298,7 @@ namespace GeneXus.Programs {
             context.skipLines(1);
             if ( nGXWrapped != 1 )
             {
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+               GXKey = Crypto.GetSiteKey( );
                GXEncryptionTmp = "wc_agbsupplierdetails.aspx"+UrlEncode(StringUtil.RTrim(AV10TrnMode)) + "," + UrlEncode(AV14SupplierAgbId.ToString());
                context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wc_agbsupplierdetails.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
                GxWebStd.gx_hidden_field( context, "_EventName", "");
@@ -346,7 +348,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -433,7 +435,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WC_Agb Supplier Details" ;
+         return context.GetMessage( "WC_Agb Supplier Details", "") ;
       }
 
       protected void WB790( )
@@ -491,7 +493,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbname_Internalname, "Name", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbname_Internalname, context.GetMessage( "Name", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -508,7 +510,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbkvknumber_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbkvknumber_Internalname, "KvK Number", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbkvknumber_Internalname, context.GetMessage( "KvK Number", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -525,7 +527,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbtypename_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbtypename_Internalname, "Category", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbtypename_Internalname, context.GetMessage( "Category", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -542,7 +544,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbcontactname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbcontactname_Internalname, "Contact Person", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbcontactname_Internalname, context.GetMessage( "Contact Person", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -559,7 +561,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbphone_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbphone_Internalname, "Phone", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbphone_Internalname, context.GetMessage( "Phone", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -576,7 +578,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbemail_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbemail_Internalname, "Email", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbemail_Internalname, context.GetMessage( "Email", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -599,7 +601,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbnumber_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbnumber_Internalname, "AGB Number", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbnumber_Internalname, context.GetMessage( "AGB Number", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -616,7 +618,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbaddressline1_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddressline1_Internalname, "Address Line 1", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddressline1_Internalname, context.GetMessage( "Address Line 1", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -633,7 +635,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbaddressline2_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddressline2_Internalname, "Address Line 2", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddressline2_Internalname, context.GetMessage( "Address Line 2", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -650,7 +652,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbaddresszipcode_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddresszipcode_Internalname, "Zip Code", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddresszipcode_Internalname, context.GetMessage( "Zip Code", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -667,7 +669,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbaddresscity_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddresscity_Internalname, "City", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddresscity_Internalname, context.GetMessage( "City", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -684,7 +686,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_supplieragb_supplieragbaddresscountry_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddresscountry_Internalname, "Country", "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_supplieragb_supplieragbaddresscountry_Internalname, context.GetMessage( "Country", ""), "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -737,7 +739,7 @@ namespace GeneXus.Programs {
          wbStart = 0;
          if ( StringUtil.Len( sPrefix) != 0 )
          {
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          if ( StringUtil.Len( sPrefix) == 0 )
          {
@@ -748,7 +750,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WC_Agb Supplier Details", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WC_Agb Supplier Details", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -925,18 +927,9 @@ namespace GeneXus.Programs {
             {
                initialize_properties( ) ;
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  GxWebError = 1;
-                  context.HttpContext.Response.StatusCode = 403;
-                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-                  context.WriteHtmlText( "<p /><hr />") ;
-                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-               }
                if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
                {
                   GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -1138,7 +1131,7 @@ namespace GeneXus.Programs {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -1246,7 +1239,7 @@ namespace GeneXus.Programs {
 
       protected override EncryptionType GetEncryptionType( )
       {
-         return EncryptionType.SESSION ;
+         return EncryptionType.SITE ;
       }
 
       public override void componentbind( Object[] obj )
@@ -1434,7 +1427,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198314435", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115402185", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1452,7 +1445,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_agbsupplierdetails.js", "?202411198314435", false, true);
+            context.AddJavascriptSource("wc_agbsupplierdetails.js", "?2024112115402186", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1729,6 +1722,7 @@ namespace GeneXus.Programs {
       private Guid AV14SupplierAgbId ;
       private Guid wcpOAV14SupplierAgbId ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtTrn_SupplierAgb AV7Trn_SupplierAgb ;

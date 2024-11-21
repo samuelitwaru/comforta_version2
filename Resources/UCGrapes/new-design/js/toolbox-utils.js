@@ -163,6 +163,7 @@ function mapContentToPageData(templateData) {
       const attributes = ctaChild.attributes || {};
         if (ctaChild.classes?.includes("cta-container-child")) {
           output.Cta.push({
+              CtaId: attributes["cta-button-id"],
               CtaType: attributes["cta-button-type"],
               CtaLabel: attributes["cta-button-label"] || "Email Us",
               CtaAction: attributes["cta-button-action"],
@@ -200,8 +201,4 @@ function mapContentToPageData(templateData) {
   });
 
   return output;
-}
-
-function applyThemeToPageContent(pageContent, theme){
-  
 }

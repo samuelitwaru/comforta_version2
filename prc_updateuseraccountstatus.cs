@@ -28,6 +28,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -137,6 +139,10 @@ namespace GeneXus.Programs {
          A29LocationId = Guid.Empty;
          A89ReceptionistId = Guid.Empty;
          AV9Trn_Receptionist = new SdtTrn_Receptionist(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updateuseraccountstatus__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_updateuseraccountstatus__gam(),
             new Object[][] {
             }
@@ -163,6 +169,7 @@ namespace GeneXus.Programs {
       private Guid A21ManagerId ;
       private Guid A29LocationId ;
       private Guid A89ReceptionistId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV8GAMUser ;
@@ -178,10 +185,11 @@ namespace GeneXus.Programs {
       private Guid[] P007Z3_A11OrganisationId ;
       private Guid[] P007Z3_A89ReceptionistId ;
       private SdtTrn_Receptionist AV9Trn_Receptionist ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class prc_updateuseraccountstatus__gam : DataStoreHelperBase, IDataStoreHelper
+   public class prc_updateuseraccountstatus__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -208,19 +216,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class prc_updateuseraccountstatus__default : DataStoreHelperBase, IDataStoreHelper
+ public class prc_updateuseraccountstatus__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
      };
   }
 
@@ -229,19 +235,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmP007Z2;
-        prmP007Z2 = new Object[] {
-        new ParDef("AV8GAMUser__Email",GXType.VarChar,100,0) ,
-        new ParDef("AV8GAMUser__Guid",GXType.Char,40,0)
-        };
-        Object[] prmP007Z3;
-        prmP007Z3 = new Object[] {
-        new ParDef("AV8GAMUser__Email",GXType.VarChar,100,0) ,
-        new ParDef("AV8GAMUser__Guid",GXType.Char,40,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P007Z2", "SELECT ManagerEmail, ManagerGAMGUID, OrganisationId, ManagerId FROM Trn_Manager WHERE (LOWER(ManagerEmail) = ( :AV8GAMUser__Email)) AND (ManagerGAMGUID = ( :AV8GAMUser__Guid)) ORDER BY ManagerId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007Z2,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("P007Z3", "SELECT ReceptionistEmail, ReceptionistGAMGUID, LocationId, OrganisationId, ReceptionistId FROM Trn_Receptionist WHERE (LOWER(ReceptionistEmail) = ( :AV8GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV8GAMUser__Guid)) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007Z3,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -250,23 +244,69 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-              ((Guid[]) buf[4])[0] = rslt.getGuid(5);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class prc_updateuseraccountstatus__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP007Z2;
+       prmP007Z2 = new Object[] {
+       new ParDef("AV8GAMUser__Email",GXType.VarChar,100,0) ,
+       new ParDef("AV8GAMUser__Guid",GXType.Char,40,0)
+       };
+       Object[] prmP007Z3;
+       prmP007Z3 = new Object[] {
+       new ParDef("AV8GAMUser__Email",GXType.VarChar,100,0) ,
+       new ParDef("AV8GAMUser__Guid",GXType.Char,40,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P007Z2", "SELECT ManagerEmail, ManagerGAMGUID, OrganisationId, ManagerId FROM Trn_Manager WHERE (LOWER(ManagerEmail) = ( :AV8GAMUser__Email)) AND (ManagerGAMGUID = ( :AV8GAMUser__Guid)) ORDER BY ManagerId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007Z2,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("P007Z3", "SELECT ReceptionistEmail, ReceptionistGAMGUID, LocationId, OrganisationId, ReceptionistId FROM Trn_Receptionist WHERE (LOWER(ReceptionistEmail) = ( :AV8GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV8GAMUser__Guid)) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007Z3,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+             ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+             return;
+    }
+ }
 
 }
 

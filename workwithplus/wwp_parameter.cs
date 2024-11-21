@@ -88,16 +88,7 @@ namespace GeneXus.Programs.workwithplus {
                enableJsOutput();
             }
          }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            GxWebError = 1;
-            context.HttpContext.Response.StatusCode = 403;
-            context.WriteHtmlText( "<title>403 Forbidden</title>") ;
-            context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
-            context.WriteHtmlText( "<p /><hr />") ;
-            GXUtil.WriteLog("send_http_error_code " + 403.ToString());
-         }
+         GXKey = Crypto.GetSiteKey( );
          if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
          {
             GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
@@ -163,7 +154,7 @@ namespace GeneXus.Programs.workwithplus {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Parameter", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WWP_Parameter_Transaction_Description", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -187,6 +178,7 @@ namespace GeneXus.Programs.workwithplus {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -197,6 +189,7 @@ namespace GeneXus.Programs.workwithplus {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -356,7 +349,7 @@ namespace GeneXus.Programs.workwithplus {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPParameterKey_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPParameterKey_Internalname, "Key", " AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPParameterKey_Internalname, context.GetMessage( "WWP_ParameterKey_Attribute_ContextualTitle", ""), " AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -370,7 +363,7 @@ namespace GeneXus.Programs.workwithplus {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPParameterCategory_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPParameterCategory_Internalname, "Category", " AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPParameterCategory_Internalname, context.GetMessage( "WWP_ParameterCategory_Attribute_ContextualTitle", ""), " AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -387,7 +380,7 @@ namespace GeneXus.Programs.workwithplus {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPParameterDescription_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPParameterDescription_Internalname, "Description", " AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPParameterDescription_Internalname, context.GetMessage( "WWP_ParameterDescription_Attribute_ContextualTitle", ""), " AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -405,7 +398,7 @@ namespace GeneXus.Programs.workwithplus {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPParameterValue_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPParameterValue_Internalname, "Value", " AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPParameterValue_Internalname, context.GetMessage( "WWP_ParameterValue_Attribute_ContextualTitle", ""), " AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -437,21 +430,21 @@ namespace GeneXus.Programs.workwithplus {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", "Confirm", bttBtntrn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_Parameter.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_Parameter.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 42,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", "Cancel", bttBtntrn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_Parameter.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_Parameter.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", "Delete", bttBtntrn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_Parameter.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_Parameter.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -504,8 +497,8 @@ namespace GeneXus.Programs.workwithplus {
                Z109WWPParameterDescription = cgiGet( "Z109WWPParameterDescription");
                Z110WWPParameterDisableDelete = StringUtil.StrToBool( cgiGet( "Z110WWPParameterDisableDelete"));
                A110WWPParameterDisableDelete = StringUtil.StrToBool( cgiGet( "Z110WWPParameterDisableDelete"));
-               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
                A111WWPParameterValueTrimmed = cgiGet( "WWPPARAMETERVALUETRIMMED");
                AV7WWPParameterKey = cgiGet( "vWWPPARAMETERKEY");
@@ -526,6 +519,7 @@ namespace GeneXus.Programs.workwithplus {
                Dvpanel_tableattributes_Iconposition = cgiGet( "DVPANEL_TABLEATTRIBUTES_Iconposition");
                Dvpanel_tableattributes_Autoscroll = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Autoscroll"));
                Dvpanel_tableattributes_Visible = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLEATTRIBUTES_Visible"));
+               Dvpanel_tableattributes_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DVPANEL_TABLEATTRIBUTES_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                A106WWPParameterKey = cgiGet( edtWWPParameterKey_Internalname);
                AssignAttri("", false, "A106WWPParameterKey", A106WWPParameterKey);
@@ -537,7 +531,7 @@ namespace GeneXus.Programs.workwithplus {
                AssignAttri("", false, "A107WWPParameterValue", A107WWPParameterValue);
                /* Read subfile selected row values. */
                /* Read hidden variables. */
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+               GXKey = Crypto.GetSiteKey( );
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"WWP_Parameter");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -895,7 +889,7 @@ namespace GeneXus.Programs.workwithplus {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A106WWPParameterKey)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Parameter Key", "", "", "", "", "", "", "", ""), 1, "WWPPARAMETERKEY");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_ParameterKey_Attribute_Description", ""), "", "", "", "", "", "", "", ""), 1, "WWPPARAMETERKEY");
             AnyError = 1;
             GX_FocusControl = edtWWPParameterKey_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1573,7 +1567,7 @@ namespace GeneXus.Programs.workwithplus {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "workwithplus.wwp_parameter.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(StringUtil.RTrim(AV7WWPParameterKey));
          context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("workwithplus.wwp_parameter.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
@@ -1590,7 +1584,7 @@ namespace GeneXus.Programs.workwithplus {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"WWP_Parameter");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -1608,8 +1602,8 @@ namespace GeneXus.Programs.workwithplus {
          GxWebStd.gx_hidden_field( context, "Z108WWPParameterCategory", Z108WWPParameterCategory);
          GxWebStd.gx_hidden_field( context, "Z109WWPParameterDescription", Z109WWPParameterDescription);
          GxWebStd.gx_boolean_hidden_field( context, "Z110WWPParameterDisableDelete", Z110WWPParameterDisableDelete);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_Mode", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
@@ -1660,6 +1654,18 @@ namespace GeneXus.Programs.workwithplus {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -1695,7 +1701,7 @@ namespace GeneXus.Programs.workwithplus {
 
       public override string GetSelfLink( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "workwithplus.wwp_parameter.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(StringUtil.RTrim(AV7WWPParameterKey));
          return formatLink("workwithplus.wwp_parameter.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
@@ -1707,7 +1713,7 @@ namespace GeneXus.Programs.workwithplus {
 
       public override string GetPgmdesc( )
       {
-         return "Parameter" ;
+         return context.GetMessage( "WWP_Parameter_Transaction_Description", "") ;
       }
 
       protected void InitializeNonKey0H27( )
@@ -1749,7 +1755,7 @@ namespace GeneXus.Programs.workwithplus {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411198333740", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211541574", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1764,8 +1770,8 @@ namespace GeneXus.Programs.workwithplus {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("workwithplus/wwp_parameter.js", "?202411198333740", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("workwithplus/wwp_parameter.js", "?202411211541574", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1801,7 +1807,7 @@ namespace GeneXus.Programs.workwithplus {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Parameter";
+         Form.Caption = context.GetMessage( "WWP_Parameter_Transaction_Description", "");
          bttBtntrn_delete_Enabled = 0;
          bttBtntrn_delete_Visible = 1;
          bttBtntrn_cancel_Visible = 1;
@@ -1818,7 +1824,7 @@ namespace GeneXus.Programs.workwithplus {
          Dvpanel_tableattributes_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Title = "General Information";
+         Dvpanel_tableattributes_Title = context.GetMessage( "WWP_TemplateDataPanelTitle", "");
          Dvpanel_tableattributes_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_tableattributes_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tableattributes_Autowidth = Convert.ToBoolean( 0);
@@ -1957,6 +1963,10 @@ namespace GeneXus.Programs.workwithplus {
          FormProcess = "";
          bodyStyle = "";
          GXEncryptionTmp = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.wwp_parameter__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.wwp_parameter__gam(),
             new Object[][] {
             }
@@ -2012,6 +2022,7 @@ namespace GeneXus.Programs.workwithplus {
       private int bttBtntrn_cancel_Visible ;
       private int bttBtntrn_delete_Visible ;
       private int bttBtntrn_delete_Enabled ;
+      private int Dvpanel_tableattributes_Gxcontroltype ;
       private int idxLst ;
       private string sPrefix ;
       private string wcpOGx_mode ;
@@ -2093,6 +2104,7 @@ namespace GeneXus.Programs.workwithplus {
       private GXProperties forbiddenHiddens ;
       private GXUserControl ucDvpanel_tableattributes ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -2117,10 +2129,11 @@ namespace GeneXus.Programs.workwithplus {
       private string[] T000H2_A107WWPParameterValue ;
       private bool[] T000H2_A110WWPParameterDisableDelete ;
       private string[] T000H11_A106WWPParameterKey ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_parameter__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_parameter__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -2147,27 +2160,17 @@ namespace GeneXus.Programs.workwithplus {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_parameter__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_parameter__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new ForEachCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new ForEachCursor(def[9])
      };
   }
 
@@ -2176,64 +2179,7 @@ namespace GeneXus.Programs.workwithplus {
   {
      if ( def == null )
      {
-        Object[] prmT000H2;
-        prmT000H2 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmT000H3;
-        prmT000H3 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmT000H4;
-        prmT000H4 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmT000H5;
-        prmT000H5 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmT000H6;
-        prmT000H6 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmT000H7;
-        prmT000H7 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmT000H8;
-        prmT000H8 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0) ,
-        new ParDef("WWPParameterCategory",GXType.VarChar,200,0) ,
-        new ParDef("WWPParameterDescription",GXType.VarChar,200,0) ,
-        new ParDef("WWPParameterValue",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPParameterDisableDelete",GXType.Boolean,4,0)
-        };
-        Object[] prmT000H9;
-        prmT000H9 = new Object[] {
-        new ParDef("WWPParameterCategory",GXType.VarChar,200,0) ,
-        new ParDef("WWPParameterDescription",GXType.VarChar,200,0) ,
-        new ParDef("WWPParameterValue",GXType.LongVarChar,2097152,0) ,
-        new ParDef("WWPParameterDisableDelete",GXType.Boolean,4,0) ,
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmT000H10;
-        prmT000H10 = new Object[] {
-        new ParDef("WWPParameterKey",GXType.VarChar,300,0)
-        };
-        Object[] prmT000H11;
-        prmT000H11 = new Object[] {
-        };
         def= new CursorDef[] {
-            new CursorDef("T000H2", "SELECT WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey  FOR UPDATE OF WWP_Parameter NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000H2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000H3", "SELECT WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000H4", "SELECT TM1.WWPParameterKey, TM1.WWPParameterCategory, TM1.WWPParameterDescription, TM1.WWPParameterValue, TM1.WWPParameterDisableDelete FROM WWP_Parameter TM1 WHERE TM1.WWPParameterKey = ( :WWPParameterKey) ORDER BY TM1.WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000H5", "SELECT WWPParameterKey FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("T000H6", "SELECT WWPParameterKey FROM WWP_Parameter WHERE ( WWPParameterKey > ( :WWPParameterKey)) ORDER BY WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H6,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000H7", "SELECT WWPParameterKey FROM WWP_Parameter WHERE ( WWPParameterKey < ( :WWPParameterKey)) ORDER BY WWPParameterKey DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H7,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("T000H8", "SAVEPOINT gxupdate;INSERT INTO WWP_Parameter(WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete) VALUES(:WWPParameterKey, :WWPParameterCategory, :WWPParameterDescription, :WWPParameterValue, :WWPParameterDisableDelete);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000H8)
-           ,new CursorDef("T000H9", "SAVEPOINT gxupdate;UPDATE WWP_Parameter SET WWPParameterCategory=:WWPParameterCategory, WWPParameterDescription=:WWPParameterDescription, WWPParameterValue=:WWPParameterValue, WWPParameterDisableDelete=:WWPParameterDisableDelete  WHERE WWPParameterKey = :WWPParameterKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000H9)
-           ,new CursorDef("T000H10", "SAVEPOINT gxupdate;DELETE FROM WWP_Parameter  WHERE WWPParameterKey = :WWPParameterKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000H10)
-           ,new CursorDef("T000H11", "SELECT WWPParameterKey FROM WWP_Parameter ORDER BY WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H11,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -2242,43 +2188,142 @@ namespace GeneXus.Programs.workwithplus {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.getBool(5);
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.getBool(5);
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-              ((bool[]) buf[4])[0] = rslt.getBool(5);
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 4 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 5 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-           case 9 :
-              ((string[]) buf[0])[0] = rslt.getVarchar(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_parameter__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new ForEachCursor(def[9])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmT000H2;
+       prmT000H2 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmT000H3;
+       prmT000H3 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmT000H4;
+       prmT000H4 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmT000H5;
+       prmT000H5 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmT000H6;
+       prmT000H6 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmT000H7;
+       prmT000H7 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmT000H8;
+       prmT000H8 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0) ,
+       new ParDef("WWPParameterCategory",GXType.VarChar,200,0) ,
+       new ParDef("WWPParameterDescription",GXType.VarChar,200,0) ,
+       new ParDef("WWPParameterValue",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPParameterDisableDelete",GXType.Boolean,4,0)
+       };
+       Object[] prmT000H9;
+       prmT000H9 = new Object[] {
+       new ParDef("WWPParameterCategory",GXType.VarChar,200,0) ,
+       new ParDef("WWPParameterDescription",GXType.VarChar,200,0) ,
+       new ParDef("WWPParameterValue",GXType.LongVarChar,2097152,0) ,
+       new ParDef("WWPParameterDisableDelete",GXType.Boolean,4,0) ,
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmT000H10;
+       prmT000H10 = new Object[] {
+       new ParDef("WWPParameterKey",GXType.VarChar,300,0)
+       };
+       Object[] prmT000H11;
+       prmT000H11 = new Object[] {
+       };
+       def= new CursorDef[] {
+           new CursorDef("T000H2", "SELECT WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey  FOR UPDATE OF WWP_Parameter NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000H2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000H3", "SELECT WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000H4", "SELECT TM1.WWPParameterKey, TM1.WWPParameterCategory, TM1.WWPParameterDescription, TM1.WWPParameterValue, TM1.WWPParameterDisableDelete FROM WWP_Parameter TM1 WHERE TM1.WWPParameterKey = ( :WWPParameterKey) ORDER BY TM1.WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000H5", "SELECT WWPParameterKey FROM WWP_Parameter WHERE WWPParameterKey = :WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000H6", "SELECT WWPParameterKey FROM WWP_Parameter WHERE ( WWPParameterKey > ( :WWPParameterKey)) ORDER BY WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H6,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000H7", "SELECT WWPParameterKey FROM WWP_Parameter WHERE ( WWPParameterKey < ( :WWPParameterKey)) ORDER BY WWPParameterKey DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H7,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000H8", "SAVEPOINT gxupdate;INSERT INTO WWP_Parameter(WWPParameterKey, WWPParameterCategory, WWPParameterDescription, WWPParameterValue, WWPParameterDisableDelete) VALUES(:WWPParameterKey, :WWPParameterCategory, :WWPParameterDescription, :WWPParameterValue, :WWPParameterDisableDelete);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000H8)
+          ,new CursorDef("T000H9", "SAVEPOINT gxupdate;UPDATE WWP_Parameter SET WWPParameterCategory=:WWPParameterCategory, WWPParameterDescription=:WWPParameterDescription, WWPParameterValue=:WWPParameterValue, WWPParameterDisableDelete=:WWPParameterDisableDelete  WHERE WWPParameterKey = :WWPParameterKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000H9)
+          ,new CursorDef("T000H10", "SAVEPOINT gxupdate;DELETE FROM WWP_Parameter  WHERE WWPParameterKey = :WWPParameterKey;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000H10)
+          ,new CursorDef("T000H11", "SELECT WWPParameterKey FROM WWP_Parameter ORDER BY WWPParameterKey ",true, GxErrorMask.GX_NOMASK, false, this,prmT000H11,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.getBool(5);
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.getBool(5);
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[4])[0] = rslt.getBool(5);
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 4 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 5 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 9 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+    }
+ }
 
 }
 

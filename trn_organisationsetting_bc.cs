@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -141,8 +143,8 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         AV12WebSession.Remove("SelectedBaseColor");
-         GX_msglist.addItem("Saved successfully");
+         AV12WebSession.Remove(context.GetMessage( "SelectedBaseColor", ""));
+         GX_msglist.addItem(context.GetMessage( "Saved successfully", ""));
       }
 
       protected void ZM0F25( short GX_JID )
@@ -184,9 +186,9 @@ namespace GeneXus.Programs {
          GXt_guid1 = A11OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
          A11OrganisationId = GXt_guid1;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12WebSession.Get("SelectedBaseColor"))) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12WebSession.Get(context.GetMessage( context.GetMessage( "SelectedBaseColor", ""), "")))) )
          {
-            A103OrganisationSettingBaseColor = AV12WebSession.Get("SelectedBaseColor");
+            A103OrganisationSettingBaseColor = AV12WebSession.Get(context.GetMessage( context.GetMessage( "SelectedBaseColor", ""), ""));
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
@@ -225,7 +227,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -615,7 +617,7 @@ namespace GeneXus.Programs {
          /* Before Insert Rules */
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A103OrganisationSettingBaseColor)) )
          {
-            A103OrganisationSettingBaseColor = "Teal";
+            A103OrganisationSettingBaseColor = context.GetMessage( "Teal", "");
          }
       }
 
@@ -1250,6 +1252,10 @@ namespace GeneXus.Programs {
          i11OrganisationId = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationsetting_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationsetting_bc__gam(),
             new Object[][] {
             }
@@ -1329,6 +1335,7 @@ namespace GeneXus.Programs {
       private Guid GXt_guid1 ;
       private Guid i11OrganisationId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1376,10 +1383,11 @@ namespace GeneXus.Programs {
       private SdtTrn_OrganisationSetting bcTrn_OrganisationSetting ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_organisationsetting_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_organisationsetting_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1406,28 +1414,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_organisationsetting_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_organisationsetting_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new ForEachCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new UpdateCursor(def[8])
-       ,new UpdateCursor(def[9])
-       ,new ForEachCursor(def[10])
      };
   }
 
@@ -1436,78 +1433,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC000F2;
-        prmBC000F2 = new Object[] {
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F3;
-        prmBC000F3 = new Object[] {
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F4;
-        prmBC000F4 = new Object[] {
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F5;
-        prmBC000F5 = new Object[] {
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F6;
-        prmBC000F6 = new Object[] {
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F7;
-        prmBC000F7 = new Object[] {
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationSettingBaseColor",GXType.VarChar,40,0) ,
-        new ParDef("OrganisationSettingLogo",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("OrganisationSettingLogo_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=2, Tbl="Trn_OrganisationSetting", Fld="OrganisationSettingLogo"} ,
-        new ParDef("OrganisationSettingFavicon",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("OrganisationSettingFavicon_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=4, Tbl="Trn_OrganisationSetting", Fld="OrganisationSettingFavicon"} ,
-        new ParDef("OrganisationSettingFontSize",GXType.VarChar,40,0) ,
-        new ParDef("OrganisationSettingLanguage",GXType.LongVarChar,2097152,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F8;
-        prmBC000F8 = new Object[] {
-        new ParDef("OrganisationSettingBaseColor",GXType.VarChar,40,0) ,
-        new ParDef("OrganisationSettingFontSize",GXType.VarChar,40,0) ,
-        new ParDef("OrganisationSettingLanguage",GXType.LongVarChar,2097152,0) ,
-        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F9;
-        prmBC000F9 = new Object[] {
-        new ParDef("OrganisationSettingLogo",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("OrganisationSettingLogo_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_OrganisationSetting", Fld="OrganisationSettingLogo"} ,
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F10;
-        prmBC000F10 = new Object[] {
-        new ParDef("OrganisationSettingFavicon",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("OrganisationSettingFavicon_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_OrganisationSetting", Fld="OrganisationSettingFavicon"} ,
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F11;
-        prmBC000F11 = new Object[] {
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000F12;
-        prmBC000F12 = new Object[] {
-        new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000F2", "SELECT OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingLogo_GXI, OrganisationSettingFavicon_GXI, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationId, OrganisationSettingLogo, OrganisationSettingFavicon FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid  FOR UPDATE OF Trn_OrganisationSetting",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000F3", "SELECT OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingLogo_GXI, OrganisationSettingFavicon_GXI, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationId, OrganisationSettingLogo, OrganisationSettingFavicon FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000F4", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F4,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000F5", "SELECT TM1.OrganisationSettingid, TM1.OrganisationSettingBaseColor, TM1.OrganisationSettingLogo_GXI, TM1.OrganisationSettingFavicon_GXI, TM1.OrganisationSettingFontSize, TM1.OrganisationSettingLanguage, TM1.OrganisationId, TM1.OrganisationSettingLogo, TM1.OrganisationSettingFavicon FROM Trn_OrganisationSetting TM1 WHERE TM1.OrganisationSettingid = :OrganisationSettingid ORDER BY TM1.OrganisationSettingid ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F5,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000F6", "SELECT OrganisationSettingid FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F6,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000F7", "SAVEPOINT gxupdate;INSERT INTO Trn_OrganisationSetting(OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingLogo, OrganisationSettingLogo_GXI, OrganisationSettingFavicon, OrganisationSettingFavicon_GXI, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationId) VALUES(:OrganisationSettingid, :OrganisationSettingBaseColor, :OrganisationSettingLogo, :OrganisationSettingLogo_GXI, :OrganisationSettingFavicon, :OrganisationSettingFavicon_GXI, :OrganisationSettingFontSize, :OrganisationSettingLanguage, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F7)
-           ,new CursorDef("BC000F8", "SAVEPOINT gxupdate;UPDATE Trn_OrganisationSetting SET OrganisationSettingBaseColor=:OrganisationSettingBaseColor, OrganisationSettingFontSize=:OrganisationSettingFontSize, OrganisationSettingLanguage=:OrganisationSettingLanguage, OrganisationId=:OrganisationId  WHERE OrganisationSettingid = :OrganisationSettingid;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F8)
-           ,new CursorDef("BC000F9", "SAVEPOINT gxupdate;UPDATE Trn_OrganisationSetting SET OrganisationSettingLogo=:OrganisationSettingLogo, OrganisationSettingLogo_GXI=:OrganisationSettingLogo_GXI  WHERE OrganisationSettingid = :OrganisationSettingid;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F9)
-           ,new CursorDef("BC000F10", "SAVEPOINT gxupdate;UPDATE Trn_OrganisationSetting SET OrganisationSettingFavicon=:OrganisationSettingFavicon, OrganisationSettingFavicon_GXI=:OrganisationSettingFavicon_GXI  WHERE OrganisationSettingid = :OrganisationSettingid;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F10)
-           ,new CursorDef("BC000F11", "SAVEPOINT gxupdate;DELETE FROM Trn_OrganisationSetting  WHERE OrganisationSettingid = :OrganisationSettingid;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F11)
-           ,new CursorDef("BC000F12", "SELECT TM1.OrganisationSettingid, TM1.OrganisationSettingBaseColor, TM1.OrganisationSettingLogo_GXI, TM1.OrganisationSettingFavicon_GXI, TM1.OrganisationSettingFontSize, TM1.OrganisationSettingLanguage, TM1.OrganisationId, TM1.OrganisationSettingLogo, TM1.OrganisationSettingFavicon FROM Trn_OrganisationSetting TM1 WHERE TM1.OrganisationSettingid = :OrganisationSettingid ORDER BY TM1.OrganisationSettingid ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F12,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1516,60 +1442,174 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
-              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
-              ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(4));
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
-              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
-              ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(4));
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
-              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
-              ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(4));
-              return;
-           case 4 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 10 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-              ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
-              ((Guid[]) buf[6])[0] = rslt.getGuid(7);
-              ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
-              ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(4));
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_organisationsetting_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new ForEachCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new UpdateCursor(def[8])
+      ,new UpdateCursor(def[9])
+      ,new ForEachCursor(def[10])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000F2;
+       prmBC000F2 = new Object[] {
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F3;
+       prmBC000F3 = new Object[] {
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F4;
+       prmBC000F4 = new Object[] {
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F5;
+       prmBC000F5 = new Object[] {
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F6;
+       prmBC000F6 = new Object[] {
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F7;
+       prmBC000F7 = new Object[] {
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationSettingBaseColor",GXType.VarChar,40,0) ,
+       new ParDef("OrganisationSettingLogo",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("OrganisationSettingLogo_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=2, Tbl="Trn_OrganisationSetting", Fld="OrganisationSettingLogo"} ,
+       new ParDef("OrganisationSettingFavicon",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("OrganisationSettingFavicon_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=4, Tbl="Trn_OrganisationSetting", Fld="OrganisationSettingFavicon"} ,
+       new ParDef("OrganisationSettingFontSize",GXType.VarChar,40,0) ,
+       new ParDef("OrganisationSettingLanguage",GXType.LongVarChar,2097152,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F8;
+       prmBC000F8 = new Object[] {
+       new ParDef("OrganisationSettingBaseColor",GXType.VarChar,40,0) ,
+       new ParDef("OrganisationSettingFontSize",GXType.VarChar,40,0) ,
+       new ParDef("OrganisationSettingLanguage",GXType.LongVarChar,2097152,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F9;
+       prmBC000F9 = new Object[] {
+       new ParDef("OrganisationSettingLogo",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("OrganisationSettingLogo_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_OrganisationSetting", Fld="OrganisationSettingLogo"} ,
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F10;
+       prmBC000F10 = new Object[] {
+       new ParDef("OrganisationSettingFavicon",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("OrganisationSettingFavicon_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_OrganisationSetting", Fld="OrganisationSettingFavicon"} ,
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F11;
+       prmBC000F11 = new Object[] {
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000F12;
+       prmBC000F12 = new Object[] {
+       new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000F2", "SELECT OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingLogo_GXI, OrganisationSettingFavicon_GXI, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationId, OrganisationSettingLogo, OrganisationSettingFavicon FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid  FOR UPDATE OF Trn_OrganisationSetting",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000F3", "SELECT OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingLogo_GXI, OrganisationSettingFavicon_GXI, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationId, OrganisationSettingLogo, OrganisationSettingFavicon FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000F4", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000F5", "SELECT TM1.OrganisationSettingid, TM1.OrganisationSettingBaseColor, TM1.OrganisationSettingLogo_GXI, TM1.OrganisationSettingFavicon_GXI, TM1.OrganisationSettingFontSize, TM1.OrganisationSettingLanguage, TM1.OrganisationId, TM1.OrganisationSettingLogo, TM1.OrganisationSettingFavicon FROM Trn_OrganisationSetting TM1 WHERE TM1.OrganisationSettingid = :OrganisationSettingid ORDER BY TM1.OrganisationSettingid ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F5,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000F6", "SELECT OrganisationSettingid FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000F7", "SAVEPOINT gxupdate;INSERT INTO Trn_OrganisationSetting(OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingLogo, OrganisationSettingLogo_GXI, OrganisationSettingFavicon, OrganisationSettingFavicon_GXI, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationId) VALUES(:OrganisationSettingid, :OrganisationSettingBaseColor, :OrganisationSettingLogo, :OrganisationSettingLogo_GXI, :OrganisationSettingFavicon, :OrganisationSettingFavicon_GXI, :OrganisationSettingFontSize, :OrganisationSettingLanguage, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F7)
+          ,new CursorDef("BC000F8", "SAVEPOINT gxupdate;UPDATE Trn_OrganisationSetting SET OrganisationSettingBaseColor=:OrganisationSettingBaseColor, OrganisationSettingFontSize=:OrganisationSettingFontSize, OrganisationSettingLanguage=:OrganisationSettingLanguage, OrganisationId=:OrganisationId  WHERE OrganisationSettingid = :OrganisationSettingid;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F8)
+          ,new CursorDef("BC000F9", "SAVEPOINT gxupdate;UPDATE Trn_OrganisationSetting SET OrganisationSettingLogo=:OrganisationSettingLogo, OrganisationSettingLogo_GXI=:OrganisationSettingLogo_GXI  WHERE OrganisationSettingid = :OrganisationSettingid;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F9)
+          ,new CursorDef("BC000F10", "SAVEPOINT gxupdate;UPDATE Trn_OrganisationSetting SET OrganisationSettingFavicon=:OrganisationSettingFavicon, OrganisationSettingFavicon_GXI=:OrganisationSettingFavicon_GXI  WHERE OrganisationSettingid = :OrganisationSettingid;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F10)
+          ,new CursorDef("BC000F11", "SAVEPOINT gxupdate;DELETE FROM Trn_OrganisationSetting  WHERE OrganisationSettingid = :OrganisationSettingid;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000F11)
+          ,new CursorDef("BC000F12", "SELECT TM1.OrganisationSettingid, TM1.OrganisationSettingBaseColor, TM1.OrganisationSettingLogo_GXI, TM1.OrganisationSettingFavicon_GXI, TM1.OrganisationSettingFontSize, TM1.OrganisationSettingLanguage, TM1.OrganisationId, TM1.OrganisationSettingLogo, TM1.OrganisationSettingFavicon FROM Trn_OrganisationSetting TM1 WHERE TM1.OrganisationSettingid = :OrganisationSettingid ORDER BY TM1.OrganisationSettingid ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000F12,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
+             ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(4));
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
+             ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(4));
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
+             ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(4));
+             return;
+          case 4 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 10 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+             ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
+             ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(4));
+             return;
+    }
+ }
 
 }
 

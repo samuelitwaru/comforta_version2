@@ -26,6 +26,7 @@ namespace GeneXus.Programs.general.ui {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -35,6 +36,7 @@ namespace GeneXus.Programs.general.ui {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -99,7 +101,7 @@ namespace GeneXus.Programs.general.ui {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -136,7 +138,7 @@ namespace GeneXus.Programs.general.ui {
          }
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202411198345972", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?2024112115425436", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -152,7 +154,7 @@ namespace GeneXus.Programs.general.ui {
 
       public override string GetPgmdesc( )
       {
-         return "Master Unanimo Sidebar" ;
+         return context.GetMessage( "Master Unanimo Sidebar", "") ;
       }
 
       protected void WB010( )
@@ -224,7 +226,7 @@ namespace GeneXus.Programs.general.ui {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "Center", "top", "", "flex-grow:1;min-height:20px;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblApplicationheader_Internalname, "Application Name", "", "", lblApplicationheader_Jsonclick, "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "header__title", 0, "", 1, 1, 0, 0, "HLP_General/UI/MasterUnanimoSidebar.htm");
+            GxWebStd.gx_label_ctrl( context, lblApplicationheader_Internalname, context.GetMessage( "Application Name", ""), "", "", lblApplicationheader_Jsonclick, "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "header__title", 0, "", 1, 1, 0, 0, "HLP_General/UI/MasterUnanimoSidebar.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -410,11 +412,7 @@ namespace GeneXus.Programs.general.ui {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -516,11 +514,11 @@ namespace GeneXus.Programs.general.ui {
             /* Read saved values. */
             AV6target = cgiGet( "vTARGET_MPAGE");
             Sidebarmenu_Title = cgiGet( "SIDEBARMENU_MPAGE_Title");
-            Sidebarmenu_Distancetotop = (int)(Math.Round(context.localUtil.CToN( cgiGet( "SIDEBARMENU_MPAGE_Distancetotop"), ".", ","), 18, MidpointRounding.ToEven));
+            Sidebarmenu_Distancetotop = (int)(Math.Round(context.localUtil.CToN( cgiGet( "SIDEBARMENU_MPAGE_Distancetotop"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -589,7 +587,7 @@ namespace GeneXus.Programs.general.ui {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202411198345982", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2024112115425451", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -604,7 +602,7 @@ namespace GeneXus.Programs.general.ui {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?202411198345982", false, true);
+         context.AddJavascriptSource("general/ui/masterunanimosidebar.js", "?2024112115425452", false, true);
          context.AddJavascriptSource("Unanimo_chameleon/chameleon-loader.js", "", false, true);
          context.AddJavascriptSource("UserControls/GeneXusUnanimo.SidebarRender.js", "", false, true);
          /* End function include_jscripts */
@@ -697,7 +695,6 @@ namespace GeneXus.Programs.general.ui {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short nGotPars ;
       private short nGXWrapped ;
       private int Sidebarmenu_Distancetotop ;
@@ -736,6 +733,7 @@ namespace GeneXus.Programs.general.ui {
       private string AV6target ;
       private GXUserControl ucSidebarmenu ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXDataAreaControl Contentholder ;

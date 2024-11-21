@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -189,7 +191,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          standaloneModal( ) ;
          if ( ! ( GxRegex.IsMatch(A114WWPUserExtendedEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Field User Email does not match the specified pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "User Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -494,7 +496,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(8, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(8) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessageMention"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessageMention", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(8);
@@ -502,7 +504,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(9, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWPForm Instance"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWPForm Instance", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);
@@ -510,7 +512,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(10, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessage"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessage", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -518,7 +520,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(11, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_Notification"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_Notification", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -526,7 +528,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(12, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_WebClient"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_WebClient", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -534,7 +536,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(13, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_Subscription"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_Subscription", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -1336,6 +1338,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          BC000G16_A115WWPUserExtendedPhoto = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_userextended_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_userextended_bc__gam(),
             new Object[][] {
             }
@@ -1430,6 +1436,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string A40000WWPUserExtendedPhoto_GXI ;
       private string Z115WWPUserExtendedPhoto ;
       private string A115WWPUserExtendedPhoto ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
@@ -1505,10 +1512,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended bcwwpbaseobjects_WWP_UserExtended ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_userextended_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_userextended_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1535,32 +1543,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_userextended_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_userextended_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new UpdateCursor(def[7])
-       ,new ForEachCursor(def[8])
-       ,new ForEachCursor(def[9])
-       ,new ForEachCursor(def[10])
-       ,new ForEachCursor(def[11])
-       ,new ForEachCursor(def[12])
-       ,new ForEachCursor(def[13])
-       ,new ForEachCursor(def[14])
      };
   }
 
@@ -1569,106 +1562,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
   {
      if ( def == null )
      {
-        Object[] prmBC000G2;
-        prmBC000G2 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G3;
-        prmBC000G3 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G4;
-        prmBC000G4 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G5;
-        prmBC000G5 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G6;
-        prmBC000G6 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true} ,
-        new ParDef("WWPUserExtendedPhoto",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("WWPUserExtendedPhoto_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=1, Tbl="WWP_UserExtended", Fld="WWPUserExtendedPhoto"} ,
-        new ParDef("WWPUserExtendedName",GXType.VarChar,100,0) ,
-        new ParDef("WWPUserExtendedFullName",GXType.VarChar,100,0) ,
-        new ParDef("WWPUserExtendedPhone",GXType.Char,20,0) ,
-        new ParDef("WWPUserExtendedEmail",GXType.VarChar,100,0) ,
-        new ParDef("WWPUserExtendedEmaiNotif",GXType.Boolean,100,0) ,
-        new ParDef("WWPUserExtendedSMSNotif",GXType.Boolean,4,0) ,
-        new ParDef("WWPUserExtendedMobileNotif",GXType.Boolean,4,0) ,
-        new ParDef("WWPUserExtendedDesktopNotif",GXType.Boolean,4,0) ,
-        new ParDef("WWPUserExtendedDeleted",GXType.Boolean,4,0) ,
-        new ParDef("WWPUserExtendedDeletedIn",GXType.DateTime,8,5){Nullable=true}
-        };
-        Object[] prmBC000G7;
-        prmBC000G7 = new Object[] {
-        new ParDef("WWPUserExtendedName",GXType.VarChar,100,0) ,
-        new ParDef("WWPUserExtendedFullName",GXType.VarChar,100,0) ,
-        new ParDef("WWPUserExtendedPhone",GXType.Char,20,0) ,
-        new ParDef("WWPUserExtendedEmail",GXType.VarChar,100,0) ,
-        new ParDef("WWPUserExtendedEmaiNotif",GXType.Boolean,100,0) ,
-        new ParDef("WWPUserExtendedSMSNotif",GXType.Boolean,4,0) ,
-        new ParDef("WWPUserExtendedMobileNotif",GXType.Boolean,4,0) ,
-        new ParDef("WWPUserExtendedDesktopNotif",GXType.Boolean,4,0) ,
-        new ParDef("WWPUserExtendedDeleted",GXType.Boolean,4,0) ,
-        new ParDef("WWPUserExtendedDeletedIn",GXType.DateTime,8,5){Nullable=true} ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G8;
-        prmBC000G8 = new Object[] {
-        new ParDef("WWPUserExtendedPhoto",GXType.Byte,1024,0){InDB=false} ,
-        new ParDef("WWPUserExtendedPhoto_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="WWP_UserExtended", Fld="WWPUserExtendedPhoto"} ,
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G9;
-        prmBC000G9 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G10;
-        prmBC000G10 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G11;
-        prmBC000G11 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G12;
-        prmBC000G12 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G13;
-        prmBC000G13 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G14;
-        prmBC000G14 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G15;
-        prmBC000G15 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
-        Object[] prmBC000G16;
-        prmBC000G16 = new Object[] {
-        new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000G2", "SELECT WWPUserExtendedId, WWPUserExtendedPhoto_GXI, WWPUserExtendedName, WWPUserExtendedFullName, WWPUserExtendedPhone, WWPUserExtendedEmail, WWPUserExtendedEmaiNotif, WWPUserExtendedSMSNotif, WWPUserExtendedMobileNotif, WWPUserExtendedDesktopNotif, WWPUserExtendedDeleted, WWPUserExtendedDeletedIn, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId  FOR UPDATE OF WWP_UserExtended",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000G3", "SELECT WWPUserExtendedId, WWPUserExtendedPhoto_GXI, WWPUserExtendedName, WWPUserExtendedFullName, WWPUserExtendedPhone, WWPUserExtendedEmail, WWPUserExtendedEmaiNotif, WWPUserExtendedSMSNotif, WWPUserExtendedMobileNotif, WWPUserExtendedDesktopNotif, WWPUserExtendedDeleted, WWPUserExtendedDeletedIn, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000G4", "SELECT TM1.WWPUserExtendedId, TM1.WWPUserExtendedPhoto_GXI, TM1.WWPUserExtendedName, TM1.WWPUserExtendedFullName, TM1.WWPUserExtendedPhone, TM1.WWPUserExtendedEmail, TM1.WWPUserExtendedEmaiNotif, TM1.WWPUserExtendedSMSNotif, TM1.WWPUserExtendedMobileNotif, TM1.WWPUserExtendedDesktopNotif, TM1.WWPUserExtendedDeleted, TM1.WWPUserExtendedDeletedIn, TM1.WWPUserExtendedPhoto FROM WWP_UserExtended TM1 WHERE TM1.WWPUserExtendedId = ( :WWPUserExtendedId) ORDER BY TM1.WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000G5", "SELECT WWPUserExtendedId FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000G6", "SAVEPOINT gxupdate;INSERT INTO WWP_UserExtended(WWPUserExtendedId, WWPUserExtendedPhoto, WWPUserExtendedPhoto_GXI, WWPUserExtendedName, WWPUserExtendedFullName, WWPUserExtendedPhone, WWPUserExtendedEmail, WWPUserExtendedEmaiNotif, WWPUserExtendedSMSNotif, WWPUserExtendedMobileNotif, WWPUserExtendedDesktopNotif, WWPUserExtendedDeleted, WWPUserExtendedDeletedIn) VALUES(:WWPUserExtendedId, :WWPUserExtendedPhoto, :WWPUserExtendedPhoto_GXI, :WWPUserExtendedName, :WWPUserExtendedFullName, :WWPUserExtendedPhone, :WWPUserExtendedEmail, :WWPUserExtendedEmaiNotif, :WWPUserExtendedSMSNotif, :WWPUserExtendedMobileNotif, :WWPUserExtendedDesktopNotif, :WWPUserExtendedDeleted, :WWPUserExtendedDeletedIn);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000G6)
-           ,new CursorDef("BC000G7", "SAVEPOINT gxupdate;UPDATE WWP_UserExtended SET WWPUserExtendedName=:WWPUserExtendedName, WWPUserExtendedFullName=:WWPUserExtendedFullName, WWPUserExtendedPhone=:WWPUserExtendedPhone, WWPUserExtendedEmail=:WWPUserExtendedEmail, WWPUserExtendedEmaiNotif=:WWPUserExtendedEmaiNotif, WWPUserExtendedSMSNotif=:WWPUserExtendedSMSNotif, WWPUserExtendedMobileNotif=:WWPUserExtendedMobileNotif, WWPUserExtendedDesktopNotif=:WWPUserExtendedDesktopNotif, WWPUserExtendedDeleted=:WWPUserExtendedDeleted, WWPUserExtendedDeletedIn=:WWPUserExtendedDeletedIn  WHERE WWPUserExtendedId = :WWPUserExtendedId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000G7)
-           ,new CursorDef("BC000G8", "SAVEPOINT gxupdate;UPDATE WWP_UserExtended SET WWPUserExtendedPhoto=:WWPUserExtendedPhoto, WWPUserExtendedPhoto_GXI=:WWPUserExtendedPhoto_GXI  WHERE WWPUserExtendedId = :WWPUserExtendedId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000G8)
-           ,new CursorDef("BC000G9", "SAVEPOINT gxupdate;DELETE FROM WWP_UserExtended  WHERE WWPUserExtendedId = :WWPUserExtendedId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000G9)
-           ,new CursorDef("BC000G10", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMentionUserId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G10,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000G11", "SELECT WWPFormInstanceId FROM WWP_FormInstance WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G11,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000G12", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G12,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000G13", "SELECT WWPNotificationId FROM WWP_Notification WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G13,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000G14", "SELECT WWPWebClientId FROM WWP_WebClient WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G14,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000G15", "SELECT WWPSubscriptionId FROM WWP_Subscription WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G15,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000G16", "SELECT TM1.WWPUserExtendedId, TM1.WWPUserExtendedPhoto_GXI, TM1.WWPUserExtendedName, TM1.WWPUserExtendedFullName, TM1.WWPUserExtendedPhone, TM1.WWPUserExtendedEmail, TM1.WWPUserExtendedEmaiNotif, TM1.WWPUserExtendedSMSNotif, TM1.WWPUserExtendedMobileNotif, TM1.WWPUserExtendedDesktopNotif, TM1.WWPUserExtendedDeleted, TM1.WWPUserExtendedDeletedIn, TM1.WWPUserExtendedPhoto FROM WWP_UserExtended TM1 WHERE TM1.WWPUserExtendedId = ( :WWPUserExtendedId) ORDER BY TM1.WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G16,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1677,96 +1571,242 @@ namespace GeneXus.Programs.wwpbaseobjects {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getString(5, 20);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((bool[]) buf[6])[0] = rslt.getBool(7);
-              ((bool[]) buf[7])[0] = rslt.getBool(8);
-              ((bool[]) buf[8])[0] = rslt.getBool(9);
-              ((bool[]) buf[9])[0] = rslt.getBool(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(12);
-              ((bool[]) buf[12])[0] = rslt.wasNull(12);
-              ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(2));
-              return;
-           case 1 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getString(5, 20);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((bool[]) buf[6])[0] = rslt.getBool(7);
-              ((bool[]) buf[7])[0] = rslt.getBool(8);
-              ((bool[]) buf[8])[0] = rslt.getBool(9);
-              ((bool[]) buf[9])[0] = rslt.getBool(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(12);
-              ((bool[]) buf[12])[0] = rslt.wasNull(12);
-              ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(2));
-              return;
-           case 2 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getString(5, 20);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((bool[]) buf[6])[0] = rslt.getBool(7);
-              ((bool[]) buf[7])[0] = rslt.getBool(8);
-              ((bool[]) buf[8])[0] = rslt.getBool(9);
-              ((bool[]) buf[9])[0] = rslt.getBool(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(12);
-              ((bool[]) buf[12])[0] = rslt.wasNull(12);
-              ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(2));
-              return;
-           case 3 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              return;
-           case 8 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getString(2, 40);
-              return;
-           case 9 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              return;
-           case 10 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 11 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 12 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 100);
-              return;
-           case 13 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              return;
-           case 14 :
-              ((string[]) buf[0])[0] = rslt.getString(1, 40);
-              ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getString(5, 20);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((bool[]) buf[6])[0] = rslt.getBool(7);
-              ((bool[]) buf[7])[0] = rslt.getBool(8);
-              ((bool[]) buf[8])[0] = rslt.getBool(9);
-              ((bool[]) buf[9])[0] = rslt.getBool(10);
-              ((bool[]) buf[10])[0] = rslt.getBool(11);
-              ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(12);
-              ((bool[]) buf[12])[0] = rslt.wasNull(12);
-              ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(2));
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_userextended_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new UpdateCursor(def[7])
+      ,new ForEachCursor(def[8])
+      ,new ForEachCursor(def[9])
+      ,new ForEachCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
+      ,new ForEachCursor(def[13])
+      ,new ForEachCursor(def[14])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000G2;
+       prmBC000G2 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G3;
+       prmBC000G3 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G4;
+       prmBC000G4 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G5;
+       prmBC000G5 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G6;
+       prmBC000G6 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true} ,
+       new ParDef("WWPUserExtendedPhoto",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("WWPUserExtendedPhoto_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=1, Tbl="WWP_UserExtended", Fld="WWPUserExtendedPhoto"} ,
+       new ParDef("WWPUserExtendedName",GXType.VarChar,100,0) ,
+       new ParDef("WWPUserExtendedFullName",GXType.VarChar,100,0) ,
+       new ParDef("WWPUserExtendedPhone",GXType.Char,20,0) ,
+       new ParDef("WWPUserExtendedEmail",GXType.VarChar,100,0) ,
+       new ParDef("WWPUserExtendedEmaiNotif",GXType.Boolean,100,0) ,
+       new ParDef("WWPUserExtendedSMSNotif",GXType.Boolean,4,0) ,
+       new ParDef("WWPUserExtendedMobileNotif",GXType.Boolean,4,0) ,
+       new ParDef("WWPUserExtendedDesktopNotif",GXType.Boolean,4,0) ,
+       new ParDef("WWPUserExtendedDeleted",GXType.Boolean,4,0) ,
+       new ParDef("WWPUserExtendedDeletedIn",GXType.DateTime,8,5){Nullable=true}
+       };
+       Object[] prmBC000G7;
+       prmBC000G7 = new Object[] {
+       new ParDef("WWPUserExtendedName",GXType.VarChar,100,0) ,
+       new ParDef("WWPUserExtendedFullName",GXType.VarChar,100,0) ,
+       new ParDef("WWPUserExtendedPhone",GXType.Char,20,0) ,
+       new ParDef("WWPUserExtendedEmail",GXType.VarChar,100,0) ,
+       new ParDef("WWPUserExtendedEmaiNotif",GXType.Boolean,100,0) ,
+       new ParDef("WWPUserExtendedSMSNotif",GXType.Boolean,4,0) ,
+       new ParDef("WWPUserExtendedMobileNotif",GXType.Boolean,4,0) ,
+       new ParDef("WWPUserExtendedDesktopNotif",GXType.Boolean,4,0) ,
+       new ParDef("WWPUserExtendedDeleted",GXType.Boolean,4,0) ,
+       new ParDef("WWPUserExtendedDeletedIn",GXType.DateTime,8,5){Nullable=true} ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G8;
+       prmBC000G8 = new Object[] {
+       new ParDef("WWPUserExtendedPhoto",GXType.Byte,1024,0){InDB=false} ,
+       new ParDef("WWPUserExtendedPhoto_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="WWP_UserExtended", Fld="WWPUserExtendedPhoto"} ,
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G9;
+       prmBC000G9 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G10;
+       prmBC000G10 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G11;
+       prmBC000G11 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G12;
+       prmBC000G12 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G13;
+       prmBC000G13 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G14;
+       prmBC000G14 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G15;
+       prmBC000G15 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       Object[] prmBC000G16;
+       prmBC000G16 = new Object[] {
+       new ParDef("WWPUserExtendedId",GXType.Char,40,0){Nullable=true}
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000G2", "SELECT WWPUserExtendedId, WWPUserExtendedPhoto_GXI, WWPUserExtendedName, WWPUserExtendedFullName, WWPUserExtendedPhone, WWPUserExtendedEmail, WWPUserExtendedEmaiNotif, WWPUserExtendedSMSNotif, WWPUserExtendedMobileNotif, WWPUserExtendedDesktopNotif, WWPUserExtendedDeleted, WWPUserExtendedDeletedIn, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId  FOR UPDATE OF WWP_UserExtended",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000G3", "SELECT WWPUserExtendedId, WWPUserExtendedPhoto_GXI, WWPUserExtendedName, WWPUserExtendedFullName, WWPUserExtendedPhone, WWPUserExtendedEmail, WWPUserExtendedEmaiNotif, WWPUserExtendedSMSNotif, WWPUserExtendedMobileNotif, WWPUserExtendedDesktopNotif, WWPUserExtendedDeleted, WWPUserExtendedDeletedIn, WWPUserExtendedPhoto FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000G4", "SELECT TM1.WWPUserExtendedId, TM1.WWPUserExtendedPhoto_GXI, TM1.WWPUserExtendedName, TM1.WWPUserExtendedFullName, TM1.WWPUserExtendedPhone, TM1.WWPUserExtendedEmail, TM1.WWPUserExtendedEmaiNotif, TM1.WWPUserExtendedSMSNotif, TM1.WWPUserExtendedMobileNotif, TM1.WWPUserExtendedDesktopNotif, TM1.WWPUserExtendedDeleted, TM1.WWPUserExtendedDeletedIn, TM1.WWPUserExtendedPhoto FROM WWP_UserExtended TM1 WHERE TM1.WWPUserExtendedId = ( :WWPUserExtendedId) ORDER BY TM1.WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000G5", "SELECT WWPUserExtendedId FROM WWP_UserExtended WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000G6", "SAVEPOINT gxupdate;INSERT INTO WWP_UserExtended(WWPUserExtendedId, WWPUserExtendedPhoto, WWPUserExtendedPhoto_GXI, WWPUserExtendedName, WWPUserExtendedFullName, WWPUserExtendedPhone, WWPUserExtendedEmail, WWPUserExtendedEmaiNotif, WWPUserExtendedSMSNotif, WWPUserExtendedMobileNotif, WWPUserExtendedDesktopNotif, WWPUserExtendedDeleted, WWPUserExtendedDeletedIn) VALUES(:WWPUserExtendedId, :WWPUserExtendedPhoto, :WWPUserExtendedPhoto_GXI, :WWPUserExtendedName, :WWPUserExtendedFullName, :WWPUserExtendedPhone, :WWPUserExtendedEmail, :WWPUserExtendedEmaiNotif, :WWPUserExtendedSMSNotif, :WWPUserExtendedMobileNotif, :WWPUserExtendedDesktopNotif, :WWPUserExtendedDeleted, :WWPUserExtendedDeletedIn);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000G6)
+          ,new CursorDef("BC000G7", "SAVEPOINT gxupdate;UPDATE WWP_UserExtended SET WWPUserExtendedName=:WWPUserExtendedName, WWPUserExtendedFullName=:WWPUserExtendedFullName, WWPUserExtendedPhone=:WWPUserExtendedPhone, WWPUserExtendedEmail=:WWPUserExtendedEmail, WWPUserExtendedEmaiNotif=:WWPUserExtendedEmaiNotif, WWPUserExtendedSMSNotif=:WWPUserExtendedSMSNotif, WWPUserExtendedMobileNotif=:WWPUserExtendedMobileNotif, WWPUserExtendedDesktopNotif=:WWPUserExtendedDesktopNotif, WWPUserExtendedDeleted=:WWPUserExtendedDeleted, WWPUserExtendedDeletedIn=:WWPUserExtendedDeletedIn  WHERE WWPUserExtendedId = :WWPUserExtendedId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000G7)
+          ,new CursorDef("BC000G8", "SAVEPOINT gxupdate;UPDATE WWP_UserExtended SET WWPUserExtendedPhoto=:WWPUserExtendedPhoto, WWPUserExtendedPhoto_GXI=:WWPUserExtendedPhoto_GXI  WHERE WWPUserExtendedId = :WWPUserExtendedId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000G8)
+          ,new CursorDef("BC000G9", "SAVEPOINT gxupdate;DELETE FROM WWP_UserExtended  WHERE WWPUserExtendedId = :WWPUserExtendedId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000G9)
+          ,new CursorDef("BC000G10", "SELECT WWPDiscussionMessageId, WWPDiscussionMentionUserId FROM WWP_DiscussionMessageMention WHERE WWPDiscussionMentionUserId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G10,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000G11", "SELECT WWPFormInstanceId FROM WWP_FormInstance WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G11,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000G12", "SELECT WWPDiscussionMessageId FROM WWP_DiscussionMessage WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G12,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000G13", "SELECT WWPNotificationId FROM WWP_Notification WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G13,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000G14", "SELECT WWPWebClientId FROM WWP_WebClient WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G14,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000G15", "SELECT WWPSubscriptionId FROM WWP_Subscription WHERE WWPUserExtendedId = :WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G15,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000G16", "SELECT TM1.WWPUserExtendedId, TM1.WWPUserExtendedPhoto_GXI, TM1.WWPUserExtendedName, TM1.WWPUserExtendedFullName, TM1.WWPUserExtendedPhone, TM1.WWPUserExtendedEmail, TM1.WWPUserExtendedEmaiNotif, TM1.WWPUserExtendedSMSNotif, TM1.WWPUserExtendedMobileNotif, TM1.WWPUserExtendedDesktopNotif, TM1.WWPUserExtendedDeleted, TM1.WWPUserExtendedDeletedIn, TM1.WWPUserExtendedPhoto FROM WWP_UserExtended TM1 WHERE TM1.WWPUserExtendedId = ( :WWPUserExtendedId) ORDER BY TM1.WWPUserExtendedId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000G16,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.getBool(7);
+             ((bool[]) buf[7])[0] = rslt.getBool(8);
+             ((bool[]) buf[8])[0] = rslt.getBool(9);
+             ((bool[]) buf[9])[0] = rslt.getBool(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(12);
+             ((bool[]) buf[12])[0] = rslt.wasNull(12);
+             ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(2));
+             return;
+          case 1 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.getBool(7);
+             ((bool[]) buf[7])[0] = rslt.getBool(8);
+             ((bool[]) buf[8])[0] = rslt.getBool(9);
+             ((bool[]) buf[9])[0] = rslt.getBool(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(12);
+             ((bool[]) buf[12])[0] = rslt.wasNull(12);
+             ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(2));
+             return;
+          case 2 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.getBool(7);
+             ((bool[]) buf[7])[0] = rslt.getBool(8);
+             ((bool[]) buf[8])[0] = rslt.getBool(9);
+             ((bool[]) buf[9])[0] = rslt.getBool(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(12);
+             ((bool[]) buf[12])[0] = rslt.wasNull(12);
+             ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(2));
+             return;
+          case 3 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             return;
+          case 8 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 40);
+             return;
+          case 9 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             return;
+          case 10 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 11 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 12 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 100);
+             return;
+          case 13 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             return;
+          case 14 :
+             ((string[]) buf[0])[0] = rslt.getString(1, 40);
+             ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.getBool(7);
+             ((bool[]) buf[7])[0] = rslt.getBool(8);
+             ((bool[]) buf[8])[0] = rslt.getBool(9);
+             ((bool[]) buf[9])[0] = rslt.getBool(10);
+             ((bool[]) buf[10])[0] = rslt.getBool(11);
+             ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(12);
+             ((bool[]) buf[12])[0] = rslt.wasNull(12);
+             ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(2));
+             return;
+    }
+ }
 
 }
 

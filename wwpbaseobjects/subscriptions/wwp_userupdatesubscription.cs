@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -167,6 +169,10 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          AV13WWPSubscription = new GeneXus.Programs.wwpbaseobjects.subscriptions.SdtWWP_Subscription(context);
          GXt_char1 = "";
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.subscriptions.wwp_userupdatesubscription__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.subscriptions.wwp_userupdatesubscription__gam(),
             new Object[][] {
             }
@@ -185,15 +191,17 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private bool returnInSub ;
       private string AV10WWPSubscriptionEntityRecordId ;
       private string AV11WWPSubscriptionEntityRecordDescription ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private long aP1_WWPSubscriptionId ;
       private GeneXus.Programs.wwpbaseobjects.subscriptions.SdtWWP_Subscription AV13WWPSubscription ;
       private IDataStoreProvider pr_default ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_userupdatesubscription__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_userupdatesubscription__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -220,12 +228,12 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_userupdatesubscription__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_userupdatesubscription__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -249,6 +257,38 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_userupdatesubscription__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

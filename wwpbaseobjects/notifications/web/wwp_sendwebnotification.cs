@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -126,6 +128,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          AV13NotificationInfo = new GeneXus.Core.genexus.server.SdtNotificationInfo(context);
          AV12ClientId = "";
          AV8ServerSocket = new GeneXus.Core.genexus.server.SdtSocket(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.web.wwp_sendwebnotification__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.web.wwp_sendwebnotification__gam(),
             new Object[][] {
             }
@@ -143,6 +149,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       private long AV10WebNotificationId ;
       private string AV14Pgmname ;
       private string AV12ClientId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.notifications.web.SdtWWP_WebNotification AV9webnotification ;
@@ -150,10 +157,11 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       private GeneXus.Core.genexus.server.SdtSocket AV8ServerSocket ;
       private IDataStoreProvider pr_default ;
       private short aP1_SendStatus ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_sendwebnotification__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_sendwebnotification__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -180,12 +188,12 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_sendwebnotification__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_sendwebnotification__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -209,6 +217,38 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_sendwebnotification__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

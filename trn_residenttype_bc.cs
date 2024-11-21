@@ -26,6 +26,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -180,7 +182,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A97ResidentTypeName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Type Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Type Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
       }
@@ -460,7 +462,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A96ResidentTypeId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Resident"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Resident", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);
@@ -1098,6 +1100,10 @@ namespace GeneXus.Programs {
          BC000D10_A97ResidentTypeName = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_residenttype_bc__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.trn_residenttype_bc__gam(),
             new Object[][] {
             }
@@ -1153,6 +1159,7 @@ namespace GeneXus.Programs {
       private Guid Z96ResidentTypeId ;
       private Guid A96ResidentTypeId ;
       private IGxSession AV12WebSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
@@ -1173,10 +1180,11 @@ namespace GeneXus.Programs {
       private SdtTrn_ResidentType bcTrn_ResidentType ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class trn_residenttype_bc__gam : DataStoreHelperBase, IDataStoreHelper
+   public class trn_residenttype_bc__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -1203,26 +1211,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class trn_residenttype_bc__default : DataStoreHelperBase, IDataStoreHelper
+ public class trn_residenttype_bc__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
-       ,new ForEachCursor(def[3])
-       ,new UpdateCursor(def[4])
-       ,new UpdateCursor(def[5])
-       ,new UpdateCursor(def[6])
-       ,new ForEachCursor(def[7])
-       ,new ForEachCursor(def[8])
      };
   }
 
@@ -1231,54 +1230,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmBC000D2;
-        prmBC000D2 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000D3;
-        prmBC000D3 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000D4;
-        prmBC000D4 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000D5;
-        prmBC000D5 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000D6;
-        prmBC000D6 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0) ,
-        new ParDef("ResidentTypeName",GXType.VarChar,100,0)
-        };
-        Object[] prmBC000D7;
-        prmBC000D7 = new Object[] {
-        new ParDef("ResidentTypeName",GXType.VarChar,100,0) ,
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000D8;
-        prmBC000D8 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000D9;
-        prmBC000D9 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmBC000D10;
-        prmBC000D10 = new Object[] {
-        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("BC000D2", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId  FOR UPDATE OF Trn_ResidentType",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D2,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000D3", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D3,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000D4", "SELECT TM1.ResidentTypeId, TM1.ResidentTypeName FROM Trn_ResidentType TM1 WHERE TM1.ResidentTypeId = :ResidentTypeId ORDER BY TM1.ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D4,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000D5", "SELECT ResidentTypeId FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D5,1, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("BC000D6", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentType(ResidentTypeId, ResidentTypeName) VALUES(:ResidentTypeId, :ResidentTypeName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000D6)
-           ,new CursorDef("BC000D7", "SAVEPOINT gxupdate;UPDATE Trn_ResidentType SET ResidentTypeName=:ResidentTypeName  WHERE ResidentTypeId = :ResidentTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000D7)
-           ,new CursorDef("BC000D8", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentType  WHERE ResidentTypeId = :ResidentTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000D8)
-           ,new CursorDef("BC000D9", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D9,1, GxCacheFrequency.OFF ,true,true )
-           ,new CursorDef("BC000D10", "SELECT TM1.ResidentTypeId, TM1.ResidentTypeName FROM Trn_ResidentType TM1 WHERE TM1.ResidentTypeId = :ResidentTypeId ORDER BY TM1.ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D10,100, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -1287,34 +1239,122 @@ namespace GeneXus.Programs {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 1 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 2 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-           case 3 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              return;
-           case 7 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-              return;
-           case 8 :
-              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class trn_residenttype_bc__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
+      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[5])
+      ,new UpdateCursor(def[6])
+      ,new ForEachCursor(def[7])
+      ,new ForEachCursor(def[8])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmBC000D2;
+       prmBC000D2 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000D3;
+       prmBC000D3 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000D4;
+       prmBC000D4 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000D5;
+       prmBC000D5 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000D6;
+       prmBC000D6 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentTypeName",GXType.VarChar,100,0)
+       };
+       Object[] prmBC000D7;
+       prmBC000D7 = new Object[] {
+       new ParDef("ResidentTypeName",GXType.VarChar,100,0) ,
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000D8;
+       prmBC000D8 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000D9;
+       prmBC000D9 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000D10;
+       prmBC000D10 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("BC000D2", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId  FOR UPDATE OF Trn_ResidentType",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000D3", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000D4", "SELECT TM1.ResidentTypeId, TM1.ResidentTypeName FROM Trn_ResidentType TM1 WHERE TM1.ResidentTypeId = :ResidentTypeId ORDER BY TM1.ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D4,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000D5", "SELECT ResidentTypeId FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D5,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000D6", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentType(ResidentTypeId, ResidentTypeName) VALUES(:ResidentTypeId, :ResidentTypeName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000D6)
+          ,new CursorDef("BC000D7", "SAVEPOINT gxupdate;UPDATE Trn_ResidentType SET ResidentTypeName=:ResidentTypeName  WHERE ResidentTypeId = :ResidentTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000D7)
+          ,new CursorDef("BC000D8", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentType  WHERE ResidentTypeId = :ResidentTypeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000D8)
+          ,new CursorDef("BC000D9", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D9,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000D10", "SELECT TM1.ResidentTypeId, TM1.ResidentTypeName FROM Trn_ResidentType TM1 WHERE TM1.ResidentTypeId = :ResidentTypeId ORDER BY TM1.ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000D10,100, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 1 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 2 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+          case 3 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 7 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 8 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             return;
+    }
+ }
 
 }
 
