@@ -3,6 +3,8 @@ let baseURL = window.location.origin;
 
 if (baseURL.startsWith("http://localhost")) baseURL += environment;
 
+alert(baseURL)
+
 let contentPageJson = `
 [
   {
