@@ -136,9 +136,10 @@ function mapContentToPageData(templateData) {
     const imageComponent =
       component.components?.[0]?.components?.[0]?.components?.[0];
     if (imageComponent?.type === "image") {
+      console.log('imageComponent?.attributes.src', imageComponent?.attributes.src)
       output.Content.push({
         ContentType: "Image",
-        ContentValue: imageComponent?.attributes.src,
+        ContentValue: baseURL + '/' + imageComponent?.attributes.src,
       });
     }
 

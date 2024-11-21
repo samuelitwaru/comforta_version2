@@ -436,7 +436,7 @@ class EditorManager {
                   data-gjs-droppable="false"
                   data-gjs-highlightable="false"
                   data-gjs-hoverable="false"
-                  src="${baseURL}/${contentPageData.ProductServiceImage}"
+                  src="${contentPageData.ProductServiceImage}"
                   style="width: 100%; height: 100%; object-fit: cover"
                   alt="Full-width Image"
                 />
