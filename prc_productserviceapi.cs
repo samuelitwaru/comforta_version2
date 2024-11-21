@@ -95,6 +95,7 @@ namespace GeneXus.Programs {
                A58ProductServiceId = P00913_A58ProductServiceId[0];
                A367CallToActionId = P00913_A367CallToActionId[0];
                AV15BC_Trn_CallToAction.Load(A367CallToActionId);
+               new prc_logtofile(context ).execute(  ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+AV15BC_Trn_CallToAction.gxTpr_Calltoactionurl) ;
                AV13SDT_CallToActionItem = new SdtSDT_CallToAction_SDT_CallToActionItem(context);
                AV13SDT_CallToActionItem.gxTpr_Calltoactionid = AV15BC_Trn_CallToAction.gxTpr_Calltoactionid;
                AV13SDT_CallToActionItem.gxTpr_Calltoactionname = AV15BC_Trn_CallToAction.gxTpr_Calltoactionname;
