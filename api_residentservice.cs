@@ -305,6 +305,20 @@ namespace GeneXus.Programs {
          aP2_SDT_ContentPageCollection=this.AV69SDT_ContentPageCollection;
       }
 
+      public void gxep_contentpageapi( Guid aP0_PageId ,
+                                       Guid aP1_locationId ,
+                                       Guid aP2_organisationId ,
+                                       out SdtSDT_ContentPage aP3_SDT_ContentPage )
+      {
+         this.AV54PageId = aP0_PageId;
+         this.AV12locationId = aP1_locationId;
+         this.AV16organisationId = aP2_organisationId;
+         initialize();
+         /* ContentPageAPI Constructor */
+         new prc_contentpageapi(context ).execute(  AV54PageId,  AV12locationId,  AV16organisationId, out  AV78SDT_ContentPage) ;
+         aP3_SDT_ContentPage=this.AV78SDT_ContentPage;
+      }
+
       public void gxep_getsinglepage( Guid aP0_PageId ,
                                       out SdtSDT_Page aP1_SDT_Page )
       {
@@ -450,6 +464,7 @@ namespace GeneXus.Programs {
          AV70SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2");
          AV75SDT_MobilePage = new SdtSDT_MobilePage(context);
          AV69SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>( context, "SDT_ContentPage", "Comforta_version2");
+         AV78SDT_ContentPage = new SdtSDT_ContentPage(context);
          AV64SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          AV72SDT_Theme = new SdtSDT_Theme(context);
          AV67SDT_ProductService = new SdtSDT_ProductService(context);
@@ -514,6 +529,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_MobilePage aP3_SDT_MobilePage ;
       protected GXBaseCollection<SdtSDT_ContentPage> AV69SDT_ContentPageCollection ;
       protected GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection ;
+      protected SdtSDT_ContentPage AV78SDT_ContentPage ;
+      protected SdtSDT_ContentPage aP3_SDT_ContentPage ;
       protected SdtSDT_Page AV55SDT_Page ;
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> AV64SDT_PageStructureCollection ;

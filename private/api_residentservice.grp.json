@@ -135,6 +135,16 @@
 "Verb":"GET"
 },
 {
+"PathRegexp":"toolbox/content-page",
+"Path":"toolbox/content-page",
+"Name":"contentpageapi",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_contentpageapi",
+"Implementation":"Prc_ContentPageAPI",
+"Verb":"GET"
+},
+{
 "PathRegexp":"toolbox/singlepage",
 "Path":"toolbox/singlepage",
 "Name":"getsinglepage",

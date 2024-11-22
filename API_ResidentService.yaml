@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241121184438"
+  version: "20241122092342"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -361,6 +361,43 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/content-page:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ContentPageAPI"
+      summary: "Content Page API"
+      parameters:
+        - name: "Pageid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_ContentPage"  
+
+        404:
+          description: "Not found"
+
   /toolbox/singlepage:
     get:
       tags:
@@ -673,6 +710,7 @@ components:
           format: "int64"
         MediaType:
           type: "string"
+
 
 
 

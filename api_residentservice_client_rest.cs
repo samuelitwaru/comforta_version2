@@ -64,7 +64,7 @@ namespace GeneXus.Programs {
          restLocation = new GxLocation();
          restLocation.Host = "localhost";
          restLocation.Port = 8082;
-         restLocation.BaseUrl = "staging.comforta.yukon.software/api";
+         restLocation.BaseUrl = "Comforta_version2DevelopmentNETPostgreSQL/api";
          gxProperties = new GxObjectProperties();
       }
 
@@ -465,6 +465,37 @@ namespace GeneXus.Programs {
          /* ContentPagesAPI Constructor */
       }
 
+      public void gxep_contentpageapi( Guid aP0_PageId ,
+                                       Guid aP1_locationId ,
+                                       Guid aP2_organisationId ,
+                                       out SdtSDT_ContentPage aP3_SDT_ContentPage )
+      {
+         restCliContentPageAPI = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/content-page";
+         restCliContentPageAPI.Location = restLocation;
+         restCliContentPageAPI.HttpMethod = "GET";
+         restCliContentPageAPI.AddQueryVar("Pageid", (Guid)(aP0_PageId));
+         restCliContentPageAPI.AddQueryVar("Locationid", (Guid)(aP1_locationId));
+         restCliContentPageAPI.AddQueryVar("Organisationid", (Guid)(aP2_organisationId));
+         restCliContentPageAPI.RestExecute();
+         if ( restCliContentPageAPI.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliContentPageAPI.ErrorCode;
+            gxProperties.ErrorMessage = restCliContentPageAPI.ErrorMessage;
+            gxProperties.StatusCode = restCliContentPageAPI.StatusCode;
+            aP3_SDT_ContentPage = new SdtSDT_ContentPage();
+         }
+         else
+         {
+            aP3_SDT_ContentPage = restCliContentPageAPI.GetBodySdt<SdtSDT_ContentPage>("SDT_ContentPage");
+         }
+         /* ContentPageAPI Constructor */
+      }
+
       public void gxep_getsinglepage( Guid aP0_PageId ,
                                       out SdtSDT_Page aP1_SDT_Page )
       {
@@ -795,6 +826,8 @@ namespace GeneXus.Programs {
          aP3_SDT_MobilePage = new SdtSDT_MobilePage();
          restCliContentPagesAPI = new GXRestAPIClient();
          aP2_SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>();
+         restCliContentPageAPI = new GXRestAPIClient();
+         aP3_SDT_ContentPage = new SdtSDT_ContentPage();
          restCliGetSinglePage = new GXRestAPIClient();
          aP1_SDT_Page = new SdtSDT_Page();
          restCliListPages = new GXRestAPIClient();
@@ -829,6 +862,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliPagesAPI ;
       protected GXRestAPIClient restCliPageAPI ;
       protected GXRestAPIClient restCliContentPagesAPI ;
+      protected GXRestAPIClient restCliContentPageAPI ;
       protected GXRestAPIClient restCliGetSinglePage ;
       protected GXRestAPIClient restCliListPages ;
       protected GXRestAPIClient restCliCreatePage ;
@@ -857,6 +891,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_MobilePageCollection ;
       protected SdtSDT_MobilePage aP3_SDT_MobilePage ;
       protected GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection ;
+      protected SdtSDT_ContentPage aP3_SDT_ContentPage ;
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
       protected string aP1_result ;

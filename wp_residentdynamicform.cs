@@ -797,6 +797,9 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         GXt_char1 = AV11ResidentId;
+         new prc_getuseridfromaccesstoken(context ).execute(  AV15AccessToken, out  GXt_char1) ;
+         AV11ResidentId = GXt_char1;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11ResidentId)) )
          {
             AV12WebSession.Set(context.GetMessage( "ResidentId", ""), AV11ResidentId);
@@ -963,7 +966,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112210411988", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112210565599", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -979,7 +982,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdynamicform.js", "?2024112210411989", false, true);
+         context.AddJavascriptSource("wp_residentdynamicform.js", "?2024112210565599", false, true);
          /* End function include_jscripts */
       }
 
@@ -1071,6 +1074,7 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          AV11ResidentId = "";
+         GXt_char1 = "";
          AV12WebSession = context.GetSession();
          AV13WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          sStyleString = "";
@@ -1123,6 +1127,7 @@ namespace GeneXus.Programs {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string GXt_char1 ;
       private string tblSpacetable2_Internalname ;
       private string tblSpacetable1_Internalname ;
       private string sStyleString ;
