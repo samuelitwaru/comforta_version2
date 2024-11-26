@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241126125404"
+  version: "20241126130535"
 servers:
   - url: https://staging.comforta.yukon.software//rest
 paths:
@@ -1851,6 +1851,9 @@ components:
         CtaBGColor:
           description: "Cta BGColor"
           type: "string"
+        IsFullWidth:
+          description: "Is Full Width"
+          type: "boolean"
       x-gx-level: "SDT_ContentPage"
     SDT_Location:
       properties:

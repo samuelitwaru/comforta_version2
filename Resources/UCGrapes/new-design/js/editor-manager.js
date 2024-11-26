@@ -10,6 +10,7 @@ class EditorManager {
   currentEditorIndex = 1
   editorsContainer = document.getElementById('editors-container')
 
+  editors = {}
 
   constructor(editor, currentLanguage) {
     globalEditor = editor;
@@ -26,7 +27,14 @@ class EditorManager {
     this.pageName = "Home";
     this.toolsSection = null;
     this.dataManager = null;
-
+    this.editors['Home'] = editor
+    let homePageFrame =  document.getElementById('homePageFrame')
+    homePageFrame.addEventListener('click', (event)=>{
+      this.toolsSection.editorManager.editor = this.editors[0]
+      this.editor = this.editors['Home']
+      console.log(this.editor)
+      alert(event)
+    })
   }
 
   setToolsSection(toolBox) {
@@ -38,6 +46,12 @@ class EditorManager {
   }
 
   renderChildEditors(){
+    // remove all child editors
+    while (this.editorsContainer.children.length > 1) {
+      this.editorsContainer.removeChild(this.editorsContainer.children[1]);
+    }
+    //this.editors = this.editors.slice(1, this.editors.length)
+
     for (let index = 0; index < this.childPageIds.length; index++) {
       const PageId = this.childPageIds[index];
       let frameHTML = `
@@ -56,25 +70,26 @@ class EditorManager {
       div.id = PageId
       div.innerHTML = frameHTML
       
-      // create editor
-      let editor = initEditor(index)
-      let page = this.dataManager.pages.find(page=>page.PageId==PageId)
-      if(page){
-        alert(editor)
-        editor.loadProjectData(JSON.parse(page.PageGJSJson))
-        this.editors.push(editor)
-      }
+      div.addEventListener('click', ()=>{
+        console.log('mouse over '+index)
+        console.log(this.editors)
+        this.toolsSection.editorManager.editor = this.editors[PageId]
+        this.editor = this.editors[PageId]
+        console.log(this.editor)
+      })
       
-      div.addEventListener('mouseenter', () => {
-        div.style.backgroundColor = 'lightgreen'; // Change background color on hover
-        console.log('Mouse is over!')
-        //this.toolsSection.editorManager.editor = editor
-
-      });
       this.editorsContainer.appendChild(div)
 
 
 
+      // create editor
+      let editor = initEditor(index)
+      let page = this.dataManager.pages.find(page=>page.PageId==PageId)
+      if(page){
+        editor.loadProjectData(JSON.parse(page.PageGJSJson))
+        this.editors[PageId] = editor
+      }
+      console.log(this.editors)
     }
 
   }
@@ -283,7 +298,8 @@ class EditorManager {
       this.childPageIds = []
       this.childPageIds.push(nextPageId)
       if (nextPageId) {
-        //this.renderChildEditors()
+        console.log(this.childPageIds)
+        this.renderChildEditors()
       }
     });
 

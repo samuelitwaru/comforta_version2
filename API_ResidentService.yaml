@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241126125404"
+  version: "20241126130535"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -1218,6 +1218,9 @@ components:
         CtaBGColor:
           description: "Cta BGColor"
           type: "string"
+        IsFullWidth:
+          description: "Is Full Width"
+          type: "boolean"
 
 
       x-gx-level: "SDT_ContentPage"

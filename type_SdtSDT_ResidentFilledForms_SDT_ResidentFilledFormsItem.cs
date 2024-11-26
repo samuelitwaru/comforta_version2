@@ -34,6 +34,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formtitle = "";
 
+			gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formfilleddate = (DateTime)(DateTime.MinValue);
+
 			gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formfilledby = "";
 
 		}
@@ -75,14 +77,24 @@ namespace GeneXus.Programs
 			AddObjectProperty("FormTitle", gxTpr_Formtitle, false);
 
 
+			datetime_STZ = gxTpr_Formfilleddate;
 			sDateCnv = "";
-			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Year(gxTpr_Formfilleddate)), 10, 0));
-			sDateCnv = sDateCnv + StringUtil.Substring("0000", 1, 4-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Year(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
 			sDateCnv = sDateCnv + "-";
-			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Month(gxTpr_Formfilleddate)), 10, 0));
+			sNumToPad = StringUtil.Trim( StringUtil.Str((decimal)(DateTimeUtil.Month(datetime_STZ)), 10, 0));
 			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
 			sDateCnv = sDateCnv + "-";
-			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Day(gxTpr_Formfilleddate)), 10, 0));
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Day(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + "T";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Hour(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + ":";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Minute(datetime_STZ)), 10, 0));
+			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
+			sDateCnv = sDateCnv + ":";
+			sNumToPad = StringUtil.Trim(StringUtil.Str((decimal)(DateTimeUtil.Second(datetime_STZ)), 10, 0));
 			sDateCnv = sDateCnv + StringUtil.Substring("00", 1, 2-StringUtil.Len(sNumToPad)) + sNumToPad;
 			AddObjectProperty("FormFilledDate", sDateCnv, false);
 
@@ -169,7 +181,7 @@ namespace GeneXus.Programs
 			get {
 				if ( gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formfilleddate == DateTime.MinValue)
 					return null;
-				return new GxDateString(gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formfilleddate).value ;
+				return new GxDatetimeString(gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formfilleddate).value ;
 			}
 			set {
 				gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formfilleddate = DateTimeUtil.CToD2(value);
@@ -244,9 +256,10 @@ namespace GeneXus.Programs
 		{
 			gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formreferencename = "";
 			gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formtitle = "";
-
+			gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formfilleddate = (DateTime)(DateTime.MinValue);
 
 			gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formfilledby = "";
+			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
 			return  ;
@@ -260,6 +273,8 @@ namespace GeneXus.Programs
 
 		protected string sDateCnv ;
 		protected string sNumToPad ;
+		protected DateTime datetime_STZ ;
+
 		protected short gxTv_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem_Formid;
 		 
 
@@ -350,11 +365,11 @@ namespace GeneXus.Programs
 		public  string gxTpr_Formfilleddate
 		{
 			get { 
-				return DateTimeUtil.DToC2( sdt.gxTpr_Formfilleddate);
+				return DateTimeUtil.TToC2( sdt.gxTpr_Formfilleddate,context);
 
 			}
 			set { 
-				sdt.gxTpr_Formfilleddate = DateTimeUtil.CToD2(value);
+				sdt.gxTpr_Formfilleddate = DateTimeUtil.CToT2(value,context);
 			}
 		}
 

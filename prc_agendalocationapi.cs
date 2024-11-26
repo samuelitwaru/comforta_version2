@@ -111,9 +111,9 @@ namespace GeneXus.Programs {
          {
             AV22DateSplit = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
             AV22DateSplit = GxRegex.Split(AV20StartDateString,"-");
-            if ( ( AV22DateSplit.Count == 3 ) && ( StringUtil.Len( AV22DateSplit.GetString(3)) == 4 ) )
+            if ( ( AV22DateSplit.Count == 3 ) && ( StringUtil.Len( AV22DateSplit.GetString(1)) == 4 ) )
             {
-               AV18DateToStart = context.localUtil.YMDToD( (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(3), "."), 18, MidpointRounding.ToEven)), (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(2), "."), 18, MidpointRounding.ToEven)), (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(1), "."), 18, MidpointRounding.ToEven)));
+               AV18DateToStart = context.localUtil.YMDToD( (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(1), "."), 18, MidpointRounding.ToEven)), (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(2), "."), 18, MidpointRounding.ToEven)), (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(3), "."), 18, MidpointRounding.ToEven)));
             }
             else
             {
@@ -128,9 +128,9 @@ namespace GeneXus.Programs {
          {
             AV22DateSplit = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
             AV22DateSplit = GxRegex.Split(AV21EndDateString,"-");
-            if ( ( AV22DateSplit.Count == 3 ) && ( StringUtil.Len( AV22DateSplit.GetString(3)) == 4 ) )
+            if ( ( AV22DateSplit.Count == 3 ) && ( StringUtil.Len( AV22DateSplit.GetString(1)) == 4 ) )
             {
-               AV19DateToEnd = context.localUtil.YMDToD( (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(3), "."), 18, MidpointRounding.ToEven)), (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(2), "."), 18, MidpointRounding.ToEven)), (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(1), "."), 18, MidpointRounding.ToEven)));
+               AV19DateToEnd = context.localUtil.YMDToD( (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(1), "."), 18, MidpointRounding.ToEven)), (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(2), "."), 18, MidpointRounding.ToEven)), (int)(Math.Round(NumberUtil.Val( AV22DateSplit.GetString(3), "."), 18, MidpointRounding.ToEven)));
             }
             else
             {

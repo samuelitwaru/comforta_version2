@@ -76,6 +76,9 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("CtaBGColor", gxTpr_Ctabgcolor, false);
 
+
+			AddObjectProperty("IsFullWidth", gxTpr_Isfullwidth, false);
+
 			return;
 		}
 		#endregion
@@ -145,6 +148,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="IsFullWidth")]
+		[XmlElement(ElementName="IsFullWidth")]
+		public bool gxTpr_Isfullwidth
+		{
+			get {
+				return gxTv_SdtSDT_ContentPage_CtaItem_Isfullwidth; 
+			}
+			set {
+				gxTv_SdtSDT_ContentPage_CtaItem_Isfullwidth = value;
+				SetDirty("Isfullwidth");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -170,6 +189,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctalabel = "";
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctaaction = "";
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctabgcolor = "";
+
 			return  ;
 		}
 
@@ -189,6 +209,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_ContentPage_CtaItem_Ctabgcolor;
+		 
+
+		protected bool gxTv_SdtSDT_ContentPage_CtaItem_Isfullwidth;
 		 
 
 
@@ -253,6 +276,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Ctabgcolor = value;
+			}
+		}
+
+		[DataMember(Name="IsFullWidth", Order=4)]
+		public bool gxTpr_Isfullwidth
+		{
+			get { 
+				return sdt.gxTpr_Isfullwidth;
+
+			}
+			set { 
+				sdt.gxTpr_Isfullwidth = value;
 			}
 		}
 

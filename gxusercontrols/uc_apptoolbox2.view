@@ -34,7 +34,7 @@
    </div>
    <div class="toolbox-container">
       <div id="editors-container" class="main-content frames-list">
-         <div class="mobile-frame">
+         <div id="homePageFrame" class="mobile-frame">
             <div class="header">
                <span id="current-time"></span>
                <span class="icons">
