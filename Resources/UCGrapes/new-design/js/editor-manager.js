@@ -60,6 +60,7 @@ class EditorManager {
       let editor = initEditor(index)
       let page = this.dataManager.pages.find(page=>page.PageId==PageId)
       if(page){
+        alert(editor)
         editor.loadProjectData(JSON.parse(page.PageGJSJson))
         this.editors.push(editor)
       }
@@ -67,7 +68,7 @@ class EditorManager {
       div.addEventListener('mouseenter', () => {
         div.style.backgroundColor = 'lightgreen'; // Change background color on hover
         console.log('Mouse is over!')
-        this.toolsSection.editorManager.editor = editor
+        //this.toolsSection.editorManager.editor = editor
 
       });
       this.editorsContainer.appendChild(div)
@@ -282,7 +283,7 @@ class EditorManager {
       this.childPageIds = []
       this.childPageIds.push(nextPageId)
       if (nextPageId) {
-        this.renderChildEditors()
+        //this.renderChildEditors()
       }
     });
 
