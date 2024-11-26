@@ -261,8 +261,9 @@ body {
 .cta-button-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap; /* Enables wrapping */
   gap: 0.5em;
 }
 
@@ -303,8 +304,8 @@ body {
 }
 
 .cta-container-child {
-  flex: 0, 0, 50%;
-  width: 50%;
+  /* flex: 0, 0, 50%;
+  width: 50%; */
   align-items: center;
   display: flex;
   flex-direction: column;

@@ -43,6 +43,7 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wp_changeyourpassword
 wp_usernotificationsboard
 gamconfiguration
 gamwwappmenuoptions
@@ -296,6 +297,7 @@ wwpbaseobjects\workwithplusmasterpageprompt
 gamactivateuseraccount
 gamssologin
 gamremotelogin
+gamrecoverpasswordstep2
 gamrecoverpasswordstep2
 gamregisteruser
 gamrecoverpasswordstep1

@@ -976,8 +976,7 @@ namespace GeneXus.Programs {
                AssignAttri(sPrefix, false, "A318Trn_PageName", A318Trn_PageName);
                /* Execute user event: Load */
                E125N2 ();
-               /* Exiting from a For First loop. */
-               if (true) break;
+               pr_default.readNext(0);
             }
             pr_default.close(0);
             WB5N0( ) ;
@@ -1366,7 +1365,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115424472", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411251663481", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1382,7 +1381,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_pagegeneral.js", "?2024112115424473", false, true);
+         context.AddJavascriptSource("trn_pagegeneral.js", "?202411251663481", false, true);
          /* End function include_jscripts */
       }
 
@@ -1665,7 +1664,7 @@ namespace GeneXus.Programs {
           new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H005N2", "SELECT Trn_PageId, ProductServiceId, PageIsContentPage, PageGJSJson, PageGJSHtml, PageJsonContent, Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005N2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H005N2", "SELECT Trn_PageId, ProductServiceId, PageIsContentPage, PageGJSJson, PageGJSHtml, PageJsonContent, Trn_PageName FROM Trn_Page WHERE Trn_PageId = :Trn_PageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005N2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

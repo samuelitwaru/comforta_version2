@@ -380,21 +380,23 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_updatepage( Guid aP0_PageId ,
-                                   string aP1_PageJsonContent ,
-                                   string aP2_PageGJSHtml ,
-                                   string aP3_PageGJSJson ,
-                                   bool aP4_PageIsPublished ,
-                                   out string aP5_result )
+                                   string aP1_PageName ,
+                                   string aP2_PageJsonContent ,
+                                   string aP3_PageGJSHtml ,
+                                   string aP4_PageGJSJson ,
+                                   bool aP5_PageIsPublished ,
+                                   out string aP6_result )
       {
          this.AV54PageId = aP0_PageId;
-         this.AV58PageJsonContent = aP1_PageJsonContent;
-         this.AV56PageGJSHtml = aP2_PageGJSHtml;
-         this.AV57PageGJSJson = aP3_PageGJSJson;
-         this.AV65PageIsPublished = aP4_PageIsPublished;
+         this.AV60PageName = aP1_PageName;
+         this.AV58PageJsonContent = aP2_PageJsonContent;
+         this.AV56PageGJSHtml = aP3_PageGJSHtml;
+         this.AV57PageGJSJson = aP4_PageGJSJson;
+         this.AV65PageIsPublished = aP5_PageIsPublished;
          initialize();
          /* UpdatePage Constructor */
-         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, ref  AV65PageIsPublished, out  AV17result) ;
-         aP5_result=this.AV17result;
+         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV60PageName, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, ref  AV65PageIsPublished, out  AV17result) ;
+         aP6_result=this.AV17result;
       }
 
       public void gxep_addpagecildren( Guid aP0_ParentPageId ,

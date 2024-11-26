@@ -970,14 +970,14 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV6WWPContext) ;
          lblWorkwithlink_Link = formatLink("trn_organisationsettingww.aspx") ;
          AssignProp("", false, lblWorkwithlink_Internalname, "Link", lblWorkwithlink_Link, true);
-         AV16GXLvl9 = 0;
+         AV17GXLvl9 = 0;
          /* Using cursor H003W3 */
          pr_default.execute(1, new Object[] {AV10OrganisationSettingid});
          while ( (pr_default.getStatus(1) != 101) )
          {
             A100OrganisationSettingid = H003W3_A100OrganisationSettingid[0];
             A103OrganisationSettingBaseColor = H003W3_A103OrganisationSettingBaseColor[0];
-            AV16GXLvl9 = 1;
+            AV17GXLvl9 = 1;
             Form.Caption = A103OrganisationSettingBaseColor;
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
             AV9Exists = true;
@@ -985,7 +985,7 @@ namespace GeneXus.Programs {
             if (true) break;
          }
          pr_default.close(1);
-         if ( AV16GXLvl9 == 0 )
+         if ( AV17GXLvl9 == 0 )
          {
             Form.Caption = context.GetMessage( "WWP_RecordNotFound", "");
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
@@ -1194,7 +1194,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115442114", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241125342763", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1210,7 +1210,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsettingview.js", "?2024112115442114", false, true);
+         context.AddJavascriptSource("trn_organisationsettingview.js", "?20241125342764", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1371,7 +1371,7 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short AV16GXLvl9 ;
+      private short AV17GXLvl9 ;
       private short nGXWrapped ;
       private int idxLst ;
       private string AV8TabCode ;

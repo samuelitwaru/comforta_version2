@@ -483,6 +483,14 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSDT_NETWORKINDIVIDUALS", AV23SDT_NetworkIndividuals);
          }
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWIZARDDATA", AV27WizardData);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWIZARDDATA", AV27WizardData);
+         }
          GxWebStd.gx_hidden_field( context, sPrefix+"vPREVIOUSSTEP", AV22PreviousStep);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vGOINGBACK", AV7GoingBack);
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDS_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
@@ -2062,6 +2070,7 @@ namespace GeneXus.Programs {
             }
          }
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV27WizardData", AV27WizardData);
       }
 
       protected void E126R2( )
@@ -2081,6 +2090,7 @@ namespace GeneXus.Programs {
          CallWebObject(formatLink("wp_createresidentandnetwork.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
          context.wjLocDisableFrm = 1;
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV27WizardData", AV27WizardData);
       }
 
       protected void E136R2( )
@@ -2144,7 +2154,8 @@ namespace GeneXus.Programs {
                GXt_char2 = "";
                new prc_concatenateaddress(context ).execute(  AV14NetworkIndividualCountry,  AV13NetworkIndividualCity,  AV21NetworkIndividualZipCode,  AV10NetworkIndividualAddressLine1,  AV11NetworkIndividualAddressLine2, out  GXt_char2) ;
                AV30SDT_NetworkIndividual.gxTpr_Networkindividualfulladdress = GXt_char2;
-               AV23SDT_NetworkIndividuals.Add(AV30SDT_NetworkIndividual, 0);
+               AV27WizardData.gxTpr_Step2.gxTpr_Sdt_networkindividuals.Add(AV30SDT_NetworkIndividual, 0);
+               AV23SDT_NetworkIndividuals = AV27WizardData.gxTpr_Step2.gxTpr_Sdt_networkindividuals;
                gx_BV109 = true;
                AV28BC_NetworkIndividual = new SdtTrn_NetworkIndividual(context);
                AV28BC_NetworkIndividual.gxTpr_Networkindividualid = AV30SDT_NetworkIndividual.gxTpr_Networkindividualid;
@@ -2181,6 +2192,7 @@ namespace GeneXus.Programs {
          nGXsfl_109_idx = nGXsfl_109_bak_idx;
          sGXsfl_109_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_109_idx), 4, 0), 4, "0");
          SubsflControlProps_1092( ) ;
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV27WizardData", AV27WizardData);
          cmbavNetworkindividualgender.CurrentValue = StringUtil.RTrim( AV16NetworkIndividualGender);
          AssignProp(sPrefix, false, cmbavNetworkindividualgender_Internalname, "Values", cmbavNetworkindividualgender.ToJavascriptSource(), true);
       }
@@ -2496,6 +2508,10 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV38NetworkIndividualPhoneCode", AV38NetworkIndividualPhoneCode);
          AV41NetworkIndividualPhoneNumber = ((SdtSDT_NetworkIndividual)(AV23SDT_NetworkIndividuals.CurrentItem)).gxTpr_Networkindividualphonenumber;
          AssignAttri(sPrefix, false, "AV41NetworkIndividualPhoneNumber", AV41NetworkIndividualPhoneNumber);
+         AV43NetworkIndividualHomePhoneCode = ((SdtSDT_NetworkIndividual)(AV23SDT_NetworkIndividuals.CurrentItem)).gxTpr_Networkindividualhomephonecode;
+         AssignAttri(sPrefix, false, "AV43NetworkIndividualHomePhoneCode", AV43NetworkIndividualHomePhoneCode);
+         AV44NetworkIndividualHomePhoneNumber = ((SdtSDT_NetworkIndividual)(AV23SDT_NetworkIndividuals.CurrentItem)).gxTpr_Networkindividualhomephonenumber;
+         AssignAttri(sPrefix, false, "AV44NetworkIndividualHomePhoneNumber", AV44NetworkIndividualHomePhoneNumber);
          AV16NetworkIndividualGender = ((SdtSDT_NetworkIndividual)(AV23SDT_NetworkIndividuals.CurrentItem)).gxTpr_Networkindividualgender;
          AssignAttri(sPrefix, false, "AV16NetworkIndividualGender", AV16NetworkIndividualGender);
          AV14NetworkIndividualCountry = ((SdtSDT_NetworkIndividual)(AV23SDT_NetworkIndividuals.CurrentItem)).gxTpr_Networkindividualcountry;
@@ -2514,13 +2530,13 @@ namespace GeneXus.Programs {
          {
             AV23SDT_NetworkIndividuals.RemoveItem((int)(Math.Round(AV74Indextoedit, 18, MidpointRounding.ToEven)));
             gx_BV109 = true;
-            AV25WebSession.Set(context.GetMessage( "isLastIndex", ""), context.GetMessage( "true", ""));
-            AV25WebSession.Set(context.GetMessage( "NetworkIndividuals", ""), AV23SDT_NetworkIndividuals.ToJSonString(false));
+            AV27WizardData.gxTpr_Step2.gxTpr_Sdt_networkindividuals = AV23SDT_NetworkIndividuals;
          }
          else
          {
             AV23SDT_NetworkIndividuals.RemoveItem((int)(Math.Round(AV74Indextoedit, 18, MidpointRounding.ToEven)));
             gx_BV109 = true;
+            AV27WizardData.gxTpr_Step2.gxTpr_Sdt_networkindividuals = AV23SDT_NetworkIndividuals;
          }
          /*  Sending Event outputs  */
          cmbavNetworkindividualgender.CurrentValue = StringUtil.RTrim( AV16NetworkIndividualGender);
@@ -2531,14 +2547,13 @@ namespace GeneXus.Programs {
          nGXsfl_109_idx = nGXsfl_109_bak_idx;
          sGXsfl_109_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_109_idx), 4, 0), 4, "0");
          SubsflControlProps_1092( ) ;
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV27WizardData", AV27WizardData);
       }
 
       protected void S172( )
       {
          /* 'CLEARFORMVALUES' Routine */
          returnInSub = false;
-         AV14NetworkIndividualCountry = "";
-         AssignAttri(sPrefix, false, "AV14NetworkIndividualCountry", AV14NetworkIndividualCountry);
          AV13NetworkIndividualCity = "";
          AssignAttri(sPrefix, false, "AV13NetworkIndividualCity", AV13NetworkIndividualCity);
          AV21NetworkIndividualZipCode = "";
@@ -2890,7 +2905,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115413513", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411253402530", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2906,7 +2921,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep2.js", "?2024112115413513", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep2.js", "?202411253402531", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3597,11 +3612,11 @@ namespace GeneXus.Programs {
          setEventMetadata("GRIDS.LOAD","""{"handler":"E186R2","iparms":[]""");
          setEventMetadata("GRIDS.LOAD",""","oparms":[{"av":"AV48UUpdate","fld":"vUUPDATE"},{"av":"AV24UDelete","fld":"vUDELETE"}]}""");
          setEventMetadata("ENTER","""{"handler":"E116R2","iparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV38NetworkIndividualPhoneCode","fld":"vNETWORKINDIVIDUALPHONECODE"},{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"},{"av":"AV43NetworkIndividualHomePhoneCode","fld":"vNETWORKINDIVIDUALHOMEPHONECODE"},{"av":"AV44NetworkIndividualHomePhoneNumber","fld":"vNETWORKINDIVIDUALHOMEPHONENUMBER"},{"av":"AV26WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV10NetworkIndividualAddressLine1","fld":"vNETWORKINDIVIDUALADDRESSLINE1"},{"av":"AV11NetworkIndividualAddressLine2","fld":"vNETWORKINDIVIDUALADDRESSLINE2"},{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV13NetworkIndividualCity","fld":"vNETWORKINDIVIDUALCITY"},{"av":"AV14NetworkIndividualCountry","fld":"vNETWORKINDIVIDUALCOUNTRY"},{"av":"AV18NetworkIndividualId","fld":"vNETWORKINDIVIDUALID"},{"av":"AV17NetworkIndividualGivenName","fld":"vNETWORKINDIVIDUALGIVENNAME"},{"av":"AV19NetworkIndividualLastName","fld":"vNETWORKINDIVIDUALLASTNAME"},{"av":"cmbavNetworkindividualgender"},{"av":"AV16NetworkIndividualGender","fld":"vNETWORKINDIVIDUALGENDER"},{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"},{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"Combo_networkindividualcountry_Ddointernalname","ctrl":"COMBO_NETWORKINDIVIDUALCOUNTRY","prop":"DDOInternalName"}]""");
-         setEventMetadata("ENTER",""","oparms":[{"av":"AV20NetworkIndividualPhone","fld":"vNETWORKINDIVIDUALPHONE"},{"av":"AV45NetworkIndividualHomePhone","fld":"vNETWORKINDIVIDUALHOMEPHONE"},{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("ENTER",""","oparms":[{"av":"AV20NetworkIndividualPhone","fld":"vNETWORKINDIVIDUALPHONE"},{"av":"AV45NetworkIndividualHomePhone","fld":"vNETWORKINDIVIDUALHOMEPHONE"},{"av":"AV27WizardData","fld":"vWIZARDDATA"},{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E126R2","iparms":[{"av":"AV38NetworkIndividualPhoneCode","fld":"vNETWORKINDIVIDUALPHONECODE"},{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"},{"av":"AV43NetworkIndividualHomePhoneCode","fld":"vNETWORKINDIVIDUALHOMEPHONECODE"},{"av":"AV44NetworkIndividualHomePhoneNumber","fld":"vNETWORKINDIVIDUALHOMEPHONENUMBER"},{"av":"AV26WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV10NetworkIndividualAddressLine1","fld":"vNETWORKINDIVIDUALADDRESSLINE1"},{"av":"AV11NetworkIndividualAddressLine2","fld":"vNETWORKINDIVIDUALADDRESSLINE2"},{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV13NetworkIndividualCity","fld":"vNETWORKINDIVIDUALCITY"},{"av":"AV14NetworkIndividualCountry","fld":"vNETWORKINDIVIDUALCOUNTRY"},{"av":"AV18NetworkIndividualId","fld":"vNETWORKINDIVIDUALID"},{"av":"AV17NetworkIndividualGivenName","fld":"vNETWORKINDIVIDUALGIVENNAME"},{"av":"AV19NetworkIndividualLastName","fld":"vNETWORKINDIVIDUALLASTNAME"},{"av":"cmbavNetworkindividualgender"},{"av":"AV16NetworkIndividualGender","fld":"vNETWORKINDIVIDUALGENDER"},{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"},{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109}]""");
-         setEventMetadata("'WIZARDPREVIOUS'",""","oparms":[{"av":"AV20NetworkIndividualPhone","fld":"vNETWORKINDIVIDUALPHONE"},{"av":"AV45NetworkIndividualHomePhone","fld":"vNETWORKINDIVIDUALHOMEPHONE"}]}""");
-         setEventMetadata("'DOUINSERT'","""{"handler":"E136R2","iparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"},{"av":"AV38NetworkIndividualPhoneCode","fld":"vNETWORKINDIVIDUALPHONECODE"},{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"},{"av":"AV43NetworkIndividualHomePhoneCode","fld":"vNETWORKINDIVIDUALHOMEPHONECODE"},{"av":"AV44NetworkIndividualHomePhoneNumber","fld":"vNETWORKINDIVIDUALHOMEPHONENUMBER"},{"av":"AV17NetworkIndividualGivenName","fld":"vNETWORKINDIVIDUALGIVENNAME"},{"av":"AV19NetworkIndividualLastName","fld":"vNETWORKINDIVIDUALLASTNAME"},{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"},{"av":"cmbavNetworkindividualgender"},{"av":"AV16NetworkIndividualGender","fld":"vNETWORKINDIVIDUALGENDER"},{"av":"AV14NetworkIndividualCountry","fld":"vNETWORKINDIVIDUALCOUNTRY"},{"av":"AV13NetworkIndividualCity","fld":"vNETWORKINDIVIDUALCITY"},{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV10NetworkIndividualAddressLine1","fld":"vNETWORKINDIVIDUALADDRESSLINE1"},{"av":"AV11NetworkIndividualAddressLine2","fld":"vNETWORKINDIVIDUALADDRESSLINE2"},{"av":"Combo_networkindividualcountry_Ddointernalname","ctrl":"COMBO_NETWORKINDIVIDUALCOUNTRY","prop":"DDOInternalName"},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"}]""");
-         setEventMetadata("'DOUINSERT'",""","oparms":[{"av":"AV20NetworkIndividualPhone","fld":"vNETWORKINDIVIDUALPHONE"},{"av":"AV45NetworkIndividualHomePhone","fld":"vNETWORKINDIVIDUALHOMEPHONE"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV14NetworkIndividualCountry","fld":"vNETWORKINDIVIDUALCOUNTRY"},{"av":"AV13NetworkIndividualCity","fld":"vNETWORKINDIVIDUALCITY"},{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV10NetworkIndividualAddressLine1","fld":"vNETWORKINDIVIDUALADDRESSLINE1"},{"av":"AV11NetworkIndividualAddressLine2","fld":"vNETWORKINDIVIDUALADDRESSLINE2"},{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"},{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"},{"av":"cmbavNetworkindividualgender"},{"av":"AV16NetworkIndividualGender","fld":"vNETWORKINDIVIDUALGENDER"},{"av":"AV17NetworkIndividualGivenName","fld":"vNETWORKINDIVIDUALGIVENNAME"},{"av":"AV19NetworkIndividualLastName","fld":"vNETWORKINDIVIDUALLASTNAME"},{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"},{"av":"AV44NetworkIndividualHomePhoneNumber","fld":"vNETWORKINDIVIDUALHOMEPHONENUMBER"},{"av":"AV18NetworkIndividualId","fld":"vNETWORKINDIVIDUALID"}]}""");
+         setEventMetadata("'WIZARDPREVIOUS'",""","oparms":[{"av":"AV20NetworkIndividualPhone","fld":"vNETWORKINDIVIDUALPHONE"},{"av":"AV45NetworkIndividualHomePhone","fld":"vNETWORKINDIVIDUALHOMEPHONE"},{"av":"AV27WizardData","fld":"vWIZARDDATA"}]}""");
+         setEventMetadata("'DOUINSERT'","""{"handler":"E136R2","iparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"},{"av":"AV38NetworkIndividualPhoneCode","fld":"vNETWORKINDIVIDUALPHONECODE"},{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"},{"av":"AV43NetworkIndividualHomePhoneCode","fld":"vNETWORKINDIVIDUALHOMEPHONECODE"},{"av":"AV44NetworkIndividualHomePhoneNumber","fld":"vNETWORKINDIVIDUALHOMEPHONENUMBER"},{"av":"AV17NetworkIndividualGivenName","fld":"vNETWORKINDIVIDUALGIVENNAME"},{"av":"AV19NetworkIndividualLastName","fld":"vNETWORKINDIVIDUALLASTNAME"},{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"},{"av":"cmbavNetworkindividualgender"},{"av":"AV16NetworkIndividualGender","fld":"vNETWORKINDIVIDUALGENDER"},{"av":"AV14NetworkIndividualCountry","fld":"vNETWORKINDIVIDUALCOUNTRY"},{"av":"AV13NetworkIndividualCity","fld":"vNETWORKINDIVIDUALCITY"},{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV10NetworkIndividualAddressLine1","fld":"vNETWORKINDIVIDUALADDRESSLINE1"},{"av":"AV11NetworkIndividualAddressLine2","fld":"vNETWORKINDIVIDUALADDRESSLINE2"},{"av":"AV27WizardData","fld":"vWIZARDDATA"},{"av":"Combo_networkindividualcountry_Ddointernalname","ctrl":"COMBO_NETWORKINDIVIDUALCOUNTRY","prop":"DDOInternalName"},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"}]""");
+         setEventMetadata("'DOUINSERT'",""","oparms":[{"av":"AV20NetworkIndividualPhone","fld":"vNETWORKINDIVIDUALPHONE"},{"av":"AV45NetworkIndividualHomePhone","fld":"vNETWORKINDIVIDUALHOMEPHONE"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"AV27WizardData","fld":"vWIZARDDATA"},{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV13NetworkIndividualCity","fld":"vNETWORKINDIVIDUALCITY"},{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV10NetworkIndividualAddressLine1","fld":"vNETWORKINDIVIDUALADDRESSLINE1"},{"av":"AV11NetworkIndividualAddressLine2","fld":"vNETWORKINDIVIDUALADDRESSLINE2"},{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"},{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"},{"av":"cmbavNetworkindividualgender"},{"av":"AV16NetworkIndividualGender","fld":"vNETWORKINDIVIDUALGENDER"},{"av":"AV17NetworkIndividualGivenName","fld":"vNETWORKINDIVIDUALGIVENNAME"},{"av":"AV19NetworkIndividualLastName","fld":"vNETWORKINDIVIDUALLASTNAME"},{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"},{"av":"AV44NetworkIndividualHomePhoneNumber","fld":"vNETWORKINDIVIDUALHOMEPHONENUMBER"},{"av":"AV18NetworkIndividualId","fld":"vNETWORKINDIVIDUALID"}]}""");
          setEventMetadata("VUDELETE.CLICK","""{"handler":"E196R2","iparms":[{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
          setEventMetadata("VUDELETE.CLICK",""","oparms":[{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109}]}""");
          setEventMetadata("VNETWORKINDIVIDUALEMAIL.CONTROLVALUECHANGED","""{"handler":"E146R2","iparms":[{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"}]""");
@@ -3610,8 +3625,8 @@ namespace GeneXus.Programs {
          setEventMetadata("VNETWORKINDIVIDUALBSNNUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VNETWORKINDIVIDUALZIPCODE.CONTROLVALUECHANGED","""{"handler":"E166R2","iparms":[{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"}]""");
          setEventMetadata("VNETWORKINDIVIDUALZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
-         setEventMetadata("VUUPDATE.CLICK","""{"handler":"E206R2","iparms":[{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
-         setEventMetadata("VUUPDATE.CLICK",""","oparms":[{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"},{"av":"AV17NetworkIndividualGivenName","fld":"vNETWORKINDIVIDUALGIVENNAME"},{"av":"AV19NetworkIndividualLastName","fld":"vNETWORKINDIVIDUALLASTNAME"},{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"},{"av":"AV20NetworkIndividualPhone","fld":"vNETWORKINDIVIDUALPHONE"},{"av":"AV38NetworkIndividualPhoneCode","fld":"vNETWORKINDIVIDUALPHONECODE"},{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"},{"av":"cmbavNetworkindividualgender"},{"av":"AV16NetworkIndividualGender","fld":"vNETWORKINDIVIDUALGENDER"},{"av":"AV14NetworkIndividualCountry","fld":"vNETWORKINDIVIDUALCOUNTRY"},{"av":"AV13NetworkIndividualCity","fld":"vNETWORKINDIVIDUALCITY"},{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV10NetworkIndividualAddressLine1","fld":"vNETWORKINDIVIDUALADDRESSLINE1"},{"av":"AV11NetworkIndividualAddressLine2","fld":"vNETWORKINDIVIDUALADDRESSLINE2"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109}]}""");
+         setEventMetadata("VUUPDATE.CLICK","""{"handler":"E206R2","iparms":[{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"AV27WizardData","fld":"vWIZARDDATA"},{"av":"GRIDS_nEOF"},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
+         setEventMetadata("VUUPDATE.CLICK",""","oparms":[{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"},{"av":"AV17NetworkIndividualGivenName","fld":"vNETWORKINDIVIDUALGIVENNAME"},{"av":"AV19NetworkIndividualLastName","fld":"vNETWORKINDIVIDUALLASTNAME"},{"av":"AV15NetworkIndividualEmail","fld":"vNETWORKINDIVIDUALEMAIL"},{"av":"AV20NetworkIndividualPhone","fld":"vNETWORKINDIVIDUALPHONE"},{"av":"AV38NetworkIndividualPhoneCode","fld":"vNETWORKINDIVIDUALPHONECODE"},{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"},{"av":"AV43NetworkIndividualHomePhoneCode","fld":"vNETWORKINDIVIDUALHOMEPHONECODE"},{"av":"AV44NetworkIndividualHomePhoneNumber","fld":"vNETWORKINDIVIDUALHOMEPHONENUMBER"},{"av":"cmbavNetworkindividualgender"},{"av":"AV16NetworkIndividualGender","fld":"vNETWORKINDIVIDUALGENDER"},{"av":"AV14NetworkIndividualCountry","fld":"vNETWORKINDIVIDUALCOUNTRY"},{"av":"AV13NetworkIndividualCity","fld":"vNETWORKINDIVIDUALCITY"},{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV10NetworkIndividualAddressLine1","fld":"vNETWORKINDIVIDUALADDRESSLINE1"},{"av":"AV11NetworkIndividualAddressLine2","fld":"vNETWORKINDIVIDUALADDRESSLINE2"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"GRIDS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"AV27WizardData","fld":"vWIZARDDATA"}]}""");
          setEventMetadata("GRIDS_FIRSTPAGE","""{"handler":"subgrids_firstpage","iparms":[{"av":"GRIDS_nFirstRecordOnPage"},{"av":"GRIDS_nEOF"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"sPrefix"}]}""");
          setEventMetadata("GRIDS_PREVPAGE","""{"handler":"subgrids_previouspage","iparms":[{"av":"GRIDS_nFirstRecordOnPage"},{"av":"GRIDS_nEOF"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"sPrefix"}]}""");
          setEventMetadata("GRIDS_NEXTPAGE","""{"handler":"subgrids_nextpage","iparms":[{"av":"GRIDS_nFirstRecordOnPage"},{"av":"GRIDS_nEOF"},{"av":"AV23SDT_NetworkIndividuals","fld":"vSDT_NETWORKINDIVIDUALS","grid":109},{"av":"nGXsfl_109_idx","ctrl":"GRID","prop":"GridCurrRow","grid":109},{"av":"nRC_GXsfl_109","ctrl":"GRIDS","prop":"GridRC","grid":109},{"av":"subGrids_Rows","ctrl":"GRIDS","prop":"Rows"},{"av":"AV8HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"sPrefix"}]}""");
@@ -3659,6 +3674,7 @@ namespace GeneXus.Programs {
          AV39NetworkIndividualPhoneCode_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          AV46NetworkIndividualHomePhoneCode_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          AV32NetworkIndividualCountry_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
+         AV27WizardData = new SdtWP_CreateResidentAndNetworkData(context);
          GX_FocusControl = "";
          ClassString = "";
          StyleString = "";
@@ -3699,7 +3715,6 @@ namespace GeneXus.Programs {
          GXDecQS = "";
          AV41NetworkIndividualPhoneNumber = "";
          AV44NetworkIndividualHomePhoneNumber = "";
-         AV27WizardData = new SdtWP_CreateResidentAndNetworkData(context);
          AV25WebSession = context.GetSession();
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          ucCombo_networkindividualhomephonecode = new GXUserControl();

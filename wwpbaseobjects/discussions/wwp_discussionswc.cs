@@ -233,6 +233,30 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* End function gxgrGrid_refresh_invoke */
       }
 
+      protected override bool IntegratedSecurityEnabled
+      {
+         get {
+            return true ;
+         }
+
+      }
+
+      protected override GAMSecurityLevel IntegratedSecurityLevel
+      {
+         get {
+            return GAMSecurityLevel.SecurityHigh ;
+         }
+
+      }
+
+      protected override string ExecutePermissionPrefix
+      {
+         get {
+            return "wwpdiscussionswc_Execute" ;
+         }
+
+      }
+
       public override void webExecute( )
       {
          createObjects();
@@ -254,7 +278,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                {
                   if ( nDynComponent == 0 )
                   {
-                     throw new System.Net.WebException("WebComponent is not allowed to run") ;
+                     WE1S2( ) ;
                   }
                }
             }
@@ -505,6 +529,18 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             {
                WebComp_Discussionsonethreadcollapsedwc.componentjscripts();
             }
+            context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+            context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+            if ( ! context.isSpaRequest( ) )
+            {
+               context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+               context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+               context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+               context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+               context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+               context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+            }
+            context.WriteHtmlText( "</script>") ;
             context.WriteHtmlTextNl( "</body>") ;
             context.WriteHtmlTextNl( "</html>") ;
             if ( context.isSpaRequest( ) )
@@ -1107,6 +1143,20 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                      if ( context.isSpaRequest( ) )
                      {
                         disableJsOutput();
+                     }
+                     if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                     {
+                        AV26WWPEntityName = gxfirstwebparm;
+                        AssignAttri(sPrefix, false, "AV26WWPEntityName", AV26WWPEntityName);
+                        if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                        {
+                           AV24WWPDiscussionMessageEntityRecordId = GetPar( "WWPDiscussionMessageEntityRecordId");
+                           AssignAttri(sPrefix, false, "AV24WWPDiscussionMessageEntityRecordId", AV24WWPDiscussionMessageEntityRecordId);
+                           AV28WWPSubscriptionEntityRecordDescription = GetPar( "WWPSubscriptionEntityRecordDescription");
+                           AssignAttri(sPrefix, false, "AV28WWPSubscriptionEntityRecordDescription", AV28WWPSubscriptionEntityRecordDescription);
+                           AV27WWPNotificationLink = GetPar( "WWPNotificationLink");
+                           AssignAttri(sPrefix, false, "AV27WWPNotificationLink", AV27WWPNotificationLink);
+                        }
                      }
                      if ( toggleJsOutput )
                      {
@@ -2133,16 +2183,19 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       public override void componentdraw( )
       {
-         if ( nDoneStart == 0 )
+         if ( CheckCmpSecurityAccess() )
          {
-            WCStart( ) ;
+            if ( nDoneStart == 0 )
+            {
+               WCStart( ) ;
+            }
+            BackMsgLst = context.GX_msglist;
+            context.GX_msglist = LclMsgLst;
+            WCParametersSet( ) ;
+            WE1S2( ) ;
+            SaveComponentMsgList(sPrefix);
+            context.GX_msglist = BackMsgLst;
          }
-         BackMsgLst = context.GX_msglist;
-         context.GX_msglist = LclMsgLst;
-         WCParametersSet( ) ;
-         WE1S2( ) ;
-         SaveComponentMsgList(sPrefix);
-         context.GX_msglist = BackMsgLst;
       }
 
       public override string getstring( string sGXControl )
@@ -2207,7 +2260,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115422867", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411258573482", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2223,7 +2276,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?2024112115422869", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?202411258573483", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */

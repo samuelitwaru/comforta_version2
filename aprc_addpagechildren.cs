@@ -137,7 +137,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV24Trn_Page.Load(AV18ParentPageId);
+         AV24Trn_Page.Load(AV18ParentPageId, A318Trn_PageName);
          /* Using cursor P008X2 */
          pr_default.execute(0, new Object[] {AV18ParentPageId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -145,6 +145,7 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P008X2_A310Trn_PageId[0];
             A437PageChildren = P008X2_A437PageChildren[0];
             n437PageChildren = P008X2_n437PageChildren[0];
+            A318Trn_PageName = P008X2_A318Trn_PageName[0];
             AV23SDT_PageChildrenCollection.FromJSonString(A437PageChildren, null);
             AV27GXV1 = 1;
             while ( AV27GXV1 <= AV23SDT_PageChildrenCollection.Count )
@@ -160,11 +161,10 @@ namespace GeneXus.Programs {
             }
             AV22SDT_PageChildren = new SdtSDT_PageChildren(context);
             AV22SDT_PageChildren.gxTpr_Id = AV19ChildPageId;
-            AV25Child.Load(AV19ChildPageId);
+            AV25Child.Load(AV19ChildPageId, A318Trn_PageName);
             AV22SDT_PageChildren.gxTpr_Name = AV25Child.gxTpr_Trn_pagename;
             AV23SDT_PageChildrenCollection.Add(AV22SDT_PageChildren, 0);
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(0);
          }
          pr_default.close(0);
          AV24Trn_Page.gxTpr_Pagechildren = AV23SDT_PageChildrenCollection.ToJSonString(false);
@@ -187,9 +187,11 @@ namespace GeneXus.Programs {
       {
          AV14response = "";
          AV24Trn_Page = new SdtTrn_Page(context);
+         A318Trn_PageName = "";
          P008X2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          P008X2_A437PageChildren = new string[] {""} ;
          P008X2_n437PageChildren = new bool[] {false} ;
+         P008X2_A318Trn_PageName = new string[] {""} ;
          A310Trn_PageId = Guid.Empty;
          A437PageChildren = "";
          AV23SDT_PageChildrenCollection = new GXBaseCollection<SdtSDT_PageChildren>( context, "SDT_PageChildren", "Comforta_version2");
@@ -206,7 +208,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_addpagechildren__default(),
             new Object[][] {
                 new Object[] {
-               P008X2_A310Trn_PageId, P008X2_A437PageChildren, P008X2_n437PageChildren
+               P008X2_A310Trn_PageId, P008X2_A437PageChildren, P008X2_n437PageChildren, P008X2_A318Trn_PageName
                }
             }
          );
@@ -217,6 +219,7 @@ namespace GeneXus.Programs {
       private bool n437PageChildren ;
       private string AV14response ;
       private string A437PageChildren ;
+      private string A318Trn_PageName ;
       private Guid AV18ParentPageId ;
       private Guid AV19ChildPageId ;
       private Guid A310Trn_PageId ;
@@ -228,6 +231,7 @@ namespace GeneXus.Programs {
       private Guid[] P008X2_A310Trn_PageId ;
       private string[] P008X2_A437PageChildren ;
       private bool[] P008X2_n437PageChildren ;
+      private string[] P008X2_A318Trn_PageName ;
       private GXBaseCollection<SdtSDT_PageChildren> AV23SDT_PageChildrenCollection ;
       private SdtSDT_PageChildren AV22SDT_PageChildren ;
       private SdtTrn_Page AV25Child ;
@@ -320,7 +324,7 @@ public class aprc_addpagechildren__default : DataStoreHelperBase, IDataStoreHelp
        new ParDef("AV18ParentPageId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("P008X2", "SELECT Trn_PageId, PageChildren FROM Trn_Page WHERE Trn_PageId = :AV18ParentPageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008X2,1, GxCacheFrequency.OFF ,true,true )
+           new CursorDef("P008X2", "SELECT Trn_PageId, PageChildren, Trn_PageName FROM Trn_Page WHERE Trn_PageId = :AV18ParentPageId ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008X2,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -335,6 +339,7 @@ public class aprc_addpagechildren__default : DataStoreHelperBase, IDataStoreHelp
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
              ((bool[]) buf[2])[0] = rslt.wasNull(2);
+             ((string[]) buf[3])[0] = rslt.getVarchar(3);
              return;
     }
  }

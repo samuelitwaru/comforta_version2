@@ -28,6 +28,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -105,8 +107,7 @@ namespace GeneXus.Programs {
                AV8SDT_MobilePage.gxTpr_Pageiscontentpage = A439PageIsContentPage;
                AV8SDT_MobilePage.gxTpr_Locationid = A29LocationId;
             }
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(0);
          }
          pr_default.close(0);
          cleanup();
@@ -163,6 +164,7 @@ namespace GeneXus.Programs {
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A310Trn_PageId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtSDT_MobilePage AV8SDT_MobilePage ;
@@ -202,7 +204,7 @@ namespace GeneXus.Programs {
           new ParDef("AV9OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009C2", "SELECT OrganisationId, LocationId, Trn_PageId, PageJsonContent, Trn_PageName, PageIsPublished, PageIsContentPage FROM Trn_Page WHERE (Trn_PageId = :AV11PageId) AND (LocationId = :AV10LocationId) AND (OrganisationId = :AV9OrganisationId) ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009C2,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P009C2", "SELECT OrganisationId, LocationId, Trn_PageId, PageJsonContent, Trn_PageName, PageIsPublished, PageIsContentPage FROM Trn_Page WHERE (Trn_PageId = :AV11PageId) AND (LocationId = :AV10LocationId) AND (OrganisationId = :AV9OrganisationId) ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009C2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

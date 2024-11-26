@@ -189,7 +189,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int GX_INS92 ;
+      private int GX_INS94 ;
       private string Gx_emsg ;
       private bool n431PageJsonContent ;
       private bool n432PageGJSHtml ;

@@ -158,7 +158,7 @@ function mapContentToPageData(templateData) {
 
     // CTA buttons
     if (component.classes?.includes("cta-button-container")) {
-      const ctaChildren = component.components;
+      const ctaChildren = component.components || [];
       
       ctaChildren.forEach((ctaChild) => {
       const attributes = ctaChild.attributes || {};
@@ -173,6 +173,8 @@ function mapContentToPageData(templateData) {
         }
       });
     }
+
+    return output
 
     // Website CTA
     const websiteButton =

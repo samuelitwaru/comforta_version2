@@ -642,11 +642,12 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_updatepage( Guid aP0_PageId ,
-                                   string aP1_PageJsonContent ,
-                                   string aP2_PageGJSHtml ,
-                                   string aP3_PageGJSJson ,
-                                   bool aP4_PageIsPublished ,
-                                   out string aP5_result )
+                                   string aP1_PageName ,
+                                   string aP2_PageJsonContent ,
+                                   string aP3_PageGJSHtml ,
+                                   string aP4_PageGJSJson ,
+                                   bool aP5_PageIsPublished ,
+                                   out string aP6_result )
       {
          restCliUpdatePage = new GXRestAPIClient();
          if ( restLocation == null )
@@ -657,21 +658,22 @@ namespace GeneXus.Programs {
          restCliUpdatePage.Location = restLocation;
          restCliUpdatePage.HttpMethod = "POST";
          restCliUpdatePage.AddBodyVar("PageId", (Guid)(aP0_PageId));
-         restCliUpdatePage.AddBodyVar("PageJsonContent", (string)(aP1_PageJsonContent));
-         restCliUpdatePage.AddBodyVar("PageGJSHtml", (string)(aP2_PageGJSHtml));
-         restCliUpdatePage.AddBodyVar("PageGJSJson", (string)(aP3_PageGJSJson));
-         restCliUpdatePage.AddBodyVar("PageIsPublished", aP4_PageIsPublished);
+         restCliUpdatePage.AddBodyVar("PageName", (string)(aP1_PageName));
+         restCliUpdatePage.AddBodyVar("PageJsonContent", (string)(aP2_PageJsonContent));
+         restCliUpdatePage.AddBodyVar("PageGJSHtml", (string)(aP3_PageGJSHtml));
+         restCliUpdatePage.AddBodyVar("PageGJSJson", (string)(aP4_PageGJSJson));
+         restCliUpdatePage.AddBodyVar("PageIsPublished", aP5_PageIsPublished);
          restCliUpdatePage.RestExecute();
          if ( restCliUpdatePage.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliUpdatePage.ErrorCode;
             gxProperties.ErrorMessage = restCliUpdatePage.ErrorMessage;
             gxProperties.StatusCode = restCliUpdatePage.StatusCode;
-            aP5_result = "";
+            aP6_result = "";
          }
          else
          {
-            aP5_result = restCliUpdatePage.GetBodyString("result");
+            aP6_result = restCliUpdatePage.GetBodyString("result");
          }
          /* UpdatePage Constructor */
       }

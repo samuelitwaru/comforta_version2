@@ -25,6 +25,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -35,6 +36,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -113,7 +115,7 @@ namespace GeneXus.Programs {
          /* Indices for table Trn_Page */
          try
          {
-            cmdBuffer=" CREATE TABLE Trn_Page (Trn_PageId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsContentPage BOOLEAN , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , PRIMARY KEY(Trn_PageId))  "
+            cmdBuffer=" CREATE TABLE Trn_Page (Trn_PageId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsContentPage BOOLEAN , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , PRIMARY KEY(Trn_PageId, Trn_PageName))  "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -158,31 +160,7 @@ namespace GeneXus.Programs {
                   }
                }
             }
-            cmdBuffer=" CREATE TABLE Trn_Page (Trn_PageId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsContentPage BOOLEAN , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , PRIMARY KEY(Trn_PageId))  "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-         }
-         try
-         {
-            cmdBuffer=" CREATE UNIQUE INDEX UTRN_PAGE ON Trn_Page (LocationId ,Trn_PageName ) "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-         }
-         catch
-         {
-            cmdBuffer=" DROP INDEX UTRN_PAGE "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-            cmdBuffer=" CREATE UNIQUE INDEX UTRN_PAGE ON Trn_Page (LocationId ,Trn_PageName ) "
+            cmdBuffer=" CREATE TABLE Trn_Page (Trn_PageId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsContentPage BOOLEAN , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , PRIMARY KEY(Trn_PageId, Trn_PageName))  "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -6185,7 +6163,7 @@ namespace GeneXus.Programs {
          string cmdBuffer;
          try
          {
-            cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT GX_002K000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId) "
+            cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT GX_002M000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId) "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -6196,7 +6174,7 @@ namespace GeneXus.Programs {
          {
             try
             {
-               cmdBuffer=" ALTER TABLE Trn_Page DROP CONSTRAINT GX_002K000B000T "
+               cmdBuffer=" ALTER TABLE Trn_Page DROP CONSTRAINT GX_002M000B000T "
                ;
                RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
                RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
@@ -6206,7 +6184,7 @@ namespace GeneXus.Programs {
             catch
             {
             }
-            cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT GX_002K000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId) "
+            cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT GX_002M000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId) "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -6630,7 +6608,7 @@ namespace GeneXus.Programs {
          GXReorganization.SetMsg( 98 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"ITRN_AGENDAEVENTGROUP1"}) );
          ReorgExecute.RegisterPrecedence( "RITrn_AgendaEventGroupTrn_AgendaCalendar" ,  "CreateTrn_AgendaEventGroup" );
          ReorgExecute.RegisterPrecedence( "RITrn_AgendaEventGroupTrn_AgendaCalendar" ,  "CreateTrn_AgendaCalendar" );
-         GXReorganization.SetMsg( 99 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"GX_002K000B000T"}) );
+         GXReorganization.SetMsg( 99 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"GX_002M000B000T"}) );
          ReorgExecute.RegisterPrecedence( "RITrn_PageTrn_Location" ,  "CreateTrn_Page" );
          ReorgExecute.RegisterPrecedence( "RITrn_PageTrn_Location" ,  "CreateTrn_Location" );
          GXReorganization.SetMsg( 100 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"ITRN_PAGE1"}) );
@@ -6683,6 +6661,7 @@ namespace GeneXus.Programs {
       protected string cmdBuffer ;
       protected string sSchemaVar ;
       protected GxDataStore DS ;
+      protected IGxDataStore dsDataStore1 ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
       protected GxCommand RGZ ;

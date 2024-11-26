@@ -215,7 +215,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/daterangepicker.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DatePicker/DatePickerRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202411211544372", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202411258574456", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -625,12 +625,19 @@ namespace GeneXus.Programs.wwpbaseobjects {
                            /* Execute user event: Onmessage_gx1 */
                            E18392 ();
                         }
+                        else if ( StringUtil.StrCmp(sEvt, "DOUSERACTIONCHAT_MPAGE") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: 'DoUserActionChat' */
+                           E19392 ();
+                        }
                         else if ( StringUtil.StrCmp(sEvt, "LOAD_MPAGE") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: Load */
-                           E19392 ();
+                           E20392 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "ENTER_MPAGE") == 0 )
                         {
@@ -795,7 +802,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E19392 ();
+            E20392 ();
             WB390( ) ;
             if ( context.isSpaRequest( ) )
             {
@@ -1017,6 +1024,42 @@ namespace GeneXus.Programs.wwpbaseobjects {
             bttBtnuexitorganisation_Visible = 0;
             AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
          }
+         if ( AV9GAMUser.checkrole("Root Admin") )
+         {
+            new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
+            if ( ! AV42WWPContext.gxTpr_Iscontextset )
+            {
+               new prc_loadwwpcontext(context ).execute( ref  AV42WWPContext) ;
+            }
+            if ( ! (Guid.Empty==AV42WWPContext.gxTpr_Locationid) )
+            {
+               bttBtnuexitorganisation_Visible = 1;
+               AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
+               bttBtnuexitlocation_Visible = 1;
+               AssignProp("", true, bttBtnuexitlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitlocation_Visible), 5, 0), true);
+               lblOrglocationtextblock_Caption = AV42WWPContext.gxTpr_Organisationname+" - "+AV42WWPContext.gxTpr_Locationname;
+               AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
+            }
+            else
+            {
+               bttBtnuexitlocation_Visible = 0;
+               AssignProp("", true, bttBtnuexitlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitlocation_Visible), 5, 0), true);
+               if ( ! (Guid.Empty==AV42WWPContext.gxTpr_Organisationid) )
+               {
+                  bttBtnuexitorganisation_Visible = 1;
+                  AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
+                  lblOrglocationtextblock_Caption = AV42WWPContext.gxTpr_Organisationname;
+                  AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
+               }
+               else
+               {
+                  bttBtnuexitorganisation_Visible = 0;
+                  AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
+                  lblOrglocationtextblock_Caption = "";
+                  AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
+               }
+            }
+         }
       }
 
       protected void E16392( )
@@ -1165,6 +1208,16 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if (returnInSub) return;
       }
 
+      protected void E19392( )
+      {
+         /* 'DoUserActionChat' Routine */
+         returnInSub = false;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wwpbaseobjects.discussions.wwp_discussionswc.aspx"+UrlEncode(StringUtil.RTrim("sample")) + "," + UrlEncode(StringUtil.RTrim(context.GetMessage( "6a3d0419-a48d-4132-9138-6c043a1bc381", ""))) + "," + UrlEncode(StringUtil.RTrim(context.GetMessage( "Chat", ""))) + "," + UrlEncode(StringUtil.RTrim(formatLink("home.aspx") ));
+         CallWebObject(formatLink("wwpbaseobjects.discussions.wwp_discussionswc.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
+         context.wjLocDisableFrm = 1;
+      }
+
       protected void S112( )
       {
          /* 'LOADNOTIFICATIONS' Routine */
@@ -1185,7 +1238,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
       }
 
-      protected void E19392( )
+      protected void E20392( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1248,7 +1301,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2024112115445096", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202411258575177", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1263,7 +1316,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202411211544511", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202411258575179", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1393,6 +1446,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          setEventMetadata("DDC_ADMINAG_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E14392","iparms":[]""");
          setEventMetadata("DDC_ADMINAG_MPAGE.ONLOADCOMPONENT_MPAGE",""","oparms":[{"ctrl":"WWPAUX_WC_MPAGE"}]}""");
          setEventMetadata("DOSHOWMENU_MPAGE","""{"handler":"E11391","iparms":[]}""");
+         setEventMetadata("DOUSERACTIONCHAT_MPAGE","""{"handler":"E19392","iparms":[]}""");
          setEventMetadata("ONMESSAGE_GX1_MPAGE","""{"handler":"E18392","iparms":[{"av":"AV11NotificationInfo","fld":"vNOTIFICATIONINFO_MPAGE"},{"av":"A112WWPUserExtendedId","fld":"WWPUSEREXTENDEDID_MPAGE"},{"av":"AV48Udparg1","fld":"vUDPARG1_MPAGE"},{"av":"A187WWPNotificationIsRead","fld":"WWPNOTIFICATIONISREAD_MPAGE"},{"av":"Ddc_notificationswc_Icon","ctrl":"DDC_NOTIFICATIONSWC_MPAGE","prop":"Icon"}]}""");
          return  ;
       }

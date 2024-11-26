@@ -60,6 +60,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -70,6 +71,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -110,7 +112,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  "Hello world") ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Hello world", "")) ;
          /* Using cursor P00712 */
          pr_default.execute(0);
          while ( (pr_default.getStatus(0) != 101) )
@@ -155,6 +157,7 @@ namespace GeneXus.Programs {
       private string AV21Trn_PageName ;
       private string A318Trn_PageName ;
       private Guid A310Trn_PageId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtSDT_Page AV11SDT_Page ;
@@ -185,7 +188,7 @@ namespace GeneXus.Programs {
           prmP00712 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P00712", "SELECT Trn_PageName, Trn_PageId FROM Trn_Page ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00712,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00712", "SELECT Trn_PageName, Trn_PageId FROM Trn_Page ORDER BY Trn_PageId, Trn_PageName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00712,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

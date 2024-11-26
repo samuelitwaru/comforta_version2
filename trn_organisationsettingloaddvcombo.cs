@@ -52,6 +52,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -62,6 +63,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -123,16 +125,6 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(AV17ComboName, "OrganisationSettingFontSize") == 0 )
-         {
-            /* Execute user subroutine: 'LOADCOMBOITEMS_ORGANISATIONSETTINGFONTSIZE' */
-            S121 ();
-            if ( returnInSub )
-            {
-               cleanup();
-               if (true) return;
-            }
-         }
          cleanup();
       }
 
@@ -156,26 +148,6 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S121( )
-      {
-         /* 'LOADCOMBOITEMS_ORGANISATIONSETTINGFONTSIZE' Routine */
-         returnInSub = false;
-         if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
-         {
-            /* Using cursor P00673 */
-            pr_default.execute(1, new Object[] {AV20OrganisationSettingid});
-            while ( (pr_default.getStatus(1) != 101) )
-            {
-               A100OrganisationSettingid = P00673_A100OrganisationSettingid[0];
-               A104OrganisationSettingFontSize = P00673_A104OrganisationSettingFontSize[0];
-               AV22SelectedValue = A104OrganisationSettingFontSize;
-               /* Exiting from a For First loop. */
-               if (true) break;
-            }
-            pr_default.close(1);
-         }
-      }
-
       public override void cleanup( )
       {
          CloseCursors();
@@ -195,16 +167,10 @@ namespace GeneXus.Programs {
          P00672_A105OrganisationSettingLanguage = new string[] {""} ;
          A100OrganisationSettingid = Guid.Empty;
          A105OrganisationSettingLanguage = "";
-         P00673_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
-         P00673_A104OrganisationSettingFontSize = new string[] {""} ;
-         A104OrganisationSettingFontSize = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationsettingloaddvcombo__default(),
             new Object[][] {
                 new Object[] {
                P00672_A100OrganisationSettingid, P00672_A105OrganisationSettingLanguage
-               }
-               , new Object[] {
-               P00673_A100OrganisationSettingid, P00673_A104OrganisationSettingFontSize
                }
             }
          );
@@ -216,9 +182,9 @@ namespace GeneXus.Programs {
       private string A105OrganisationSettingLanguage ;
       private string AV17ComboName ;
       private string AV22SelectedValue ;
-      private string A104OrganisationSettingFontSize ;
       private Guid AV20OrganisationSettingid ;
       private Guid A100OrganisationSettingid ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV15Combo_Data ;
@@ -226,8 +192,6 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] P00672_A100OrganisationSettingid ;
       private string[] P00672_A105OrganisationSettingLanguage ;
-      private Guid[] P00673_A100OrganisationSettingid ;
-      private string[] P00673_A104OrganisationSettingFontSize ;
       private string aP3_SelectedValue ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP4_Combo_Data ;
    }
@@ -239,7 +203,6 @@ namespace GeneXus.Programs {
          cursorDefinitions();
          return new Cursor[] {
           new ForEachCursor(def[0])
-         ,new ForEachCursor(def[1])
        };
     }
 
@@ -252,13 +215,8 @@ namespace GeneXus.Programs {
           prmP00672 = new Object[] {
           new ParDef("AV20OrganisationSettingid",GXType.UniqueIdentifier,36,0)
           };
-          Object[] prmP00673;
-          prmP00673 = new Object[] {
-          new ParDef("AV20OrganisationSettingid",GXType.UniqueIdentifier,36,0)
-          };
           def= new CursorDef[] {
               new CursorDef("P00672", "SELECT OrganisationSettingid, OrganisationSettingLanguage FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :AV20OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00672,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00673", "SELECT OrganisationSettingid, OrganisationSettingFontSize FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :AV20OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00673,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -272,10 +230,6 @@ namespace GeneXus.Programs {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
-                return;
-             case 1 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;
        }
     }

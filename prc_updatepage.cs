@@ -45,65 +45,72 @@ namespace GeneXus.Programs {
       }
 
       public void execute( ref Guid aP0_PageId ,
-                           ref string aP1_PageJsonContent ,
-                           ref string aP2_PageGJSHtml ,
-                           ref string aP3_PageGJSJson ,
-                           ref bool aP4_PageIsPublished ,
-                           out string aP5_Response )
+                           ref string aP1_PageName ,
+                           ref string aP2_PageJsonContent ,
+                           ref string aP3_PageGJSHtml ,
+                           ref string aP4_PageGJSJson ,
+                           ref bool aP5_PageIsPublished ,
+                           out string aP6_Response )
       {
          this.AV8PageId = aP0_PageId;
-         this.AV12PageJsonContent = aP1_PageJsonContent;
-         this.AV13PageGJSHtml = aP2_PageGJSHtml;
-         this.AV11PageGJSJson = aP3_PageGJSJson;
-         this.AV17PageIsPublished = aP4_PageIsPublished;
+         this.AV18PageName = aP1_PageName;
+         this.AV12PageJsonContent = aP2_PageJsonContent;
+         this.AV13PageGJSHtml = aP3_PageGJSHtml;
+         this.AV11PageGJSJson = aP4_PageGJSJson;
+         this.AV17PageIsPublished = aP5_PageIsPublished;
          this.AV10Response = "" ;
          initialize();
          ExecuteImpl();
          aP0_PageId=this.AV8PageId;
-         aP1_PageJsonContent=this.AV12PageJsonContent;
-         aP2_PageGJSHtml=this.AV13PageGJSHtml;
-         aP3_PageGJSJson=this.AV11PageGJSJson;
-         aP4_PageIsPublished=this.AV17PageIsPublished;
-         aP5_Response=this.AV10Response;
+         aP1_PageName=this.AV18PageName;
+         aP2_PageJsonContent=this.AV12PageJsonContent;
+         aP3_PageGJSHtml=this.AV13PageGJSHtml;
+         aP4_PageGJSJson=this.AV11PageGJSJson;
+         aP5_PageIsPublished=this.AV17PageIsPublished;
+         aP6_Response=this.AV10Response;
       }
 
       public string executeUdp( ref Guid aP0_PageId ,
-                                ref string aP1_PageJsonContent ,
-                                ref string aP2_PageGJSHtml ,
-                                ref string aP3_PageGJSJson ,
-                                ref bool aP4_PageIsPublished )
+                                ref string aP1_PageName ,
+                                ref string aP2_PageJsonContent ,
+                                ref string aP3_PageGJSHtml ,
+                                ref string aP4_PageGJSJson ,
+                                ref bool aP5_PageIsPublished )
       {
-         execute(ref aP0_PageId, ref aP1_PageJsonContent, ref aP2_PageGJSHtml, ref aP3_PageGJSJson, ref aP4_PageIsPublished, out aP5_Response);
+         execute(ref aP0_PageId, ref aP1_PageName, ref aP2_PageJsonContent, ref aP3_PageGJSHtml, ref aP4_PageGJSJson, ref aP5_PageIsPublished, out aP6_Response);
          return AV10Response ;
       }
 
       public void executeSubmit( ref Guid aP0_PageId ,
-                                 ref string aP1_PageJsonContent ,
-                                 ref string aP2_PageGJSHtml ,
-                                 ref string aP3_PageGJSJson ,
-                                 ref bool aP4_PageIsPublished ,
-                                 out string aP5_Response )
+                                 ref string aP1_PageName ,
+                                 ref string aP2_PageJsonContent ,
+                                 ref string aP3_PageGJSHtml ,
+                                 ref string aP4_PageGJSJson ,
+                                 ref bool aP5_PageIsPublished ,
+                                 out string aP6_Response )
       {
          this.AV8PageId = aP0_PageId;
-         this.AV12PageJsonContent = aP1_PageJsonContent;
-         this.AV13PageGJSHtml = aP2_PageGJSHtml;
-         this.AV11PageGJSJson = aP3_PageGJSJson;
-         this.AV17PageIsPublished = aP4_PageIsPublished;
+         this.AV18PageName = aP1_PageName;
+         this.AV12PageJsonContent = aP2_PageJsonContent;
+         this.AV13PageGJSHtml = aP3_PageGJSHtml;
+         this.AV11PageGJSJson = aP4_PageGJSJson;
+         this.AV17PageIsPublished = aP5_PageIsPublished;
          this.AV10Response = "" ;
          SubmitImpl();
          aP0_PageId=this.AV8PageId;
-         aP1_PageJsonContent=this.AV12PageJsonContent;
-         aP2_PageGJSHtml=this.AV13PageGJSHtml;
-         aP3_PageGJSJson=this.AV11PageGJSJson;
-         aP4_PageIsPublished=this.AV17PageIsPublished;
-         aP5_Response=this.AV10Response;
+         aP1_PageName=this.AV18PageName;
+         aP2_PageJsonContent=this.AV12PageJsonContent;
+         aP3_PageGJSHtml=this.AV13PageGJSHtml;
+         aP4_PageGJSJson=this.AV11PageGJSJson;
+         aP5_PageIsPublished=this.AV17PageIsPublished;
+         aP6_Response=this.AV10Response;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9BC_Trn_Page.Load(AV8PageId);
+         AV9BC_Trn_Page.Load(AV8PageId, AV18PageName);
          new prc_logtofile(context ).execute(  ">>>>>>"+AV12PageJsonContent) ;
          if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
          {
@@ -122,13 +129,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV19GXV2 = 1;
-               AV18GXV1 = AV9BC_Trn_Page.GetMessages();
-               while ( AV19GXV2 <= AV18GXV1.Count )
+               AV20GXV2 = 1;
+               AV19GXV1 = AV9BC_Trn_Page.GetMessages();
+               while ( AV20GXV2 <= AV19GXV1.Count )
                {
-                  AV14Message = ((GeneXus.Utils.SdtMessages_Message)AV18GXV1.Item(AV19GXV2));
+                  AV14Message = ((GeneXus.Utils.SdtMessages_Message)AV19GXV1.Item(AV20GXV2));
                   new prc_logtofile(context ).execute(  AV14Message.gxTpr_Description) ;
-                  AV19GXV2 = (int)(AV19GXV2+1);
+                  AV20GXV2 = (int)(AV20GXV2+1);
                }
             }
          }
@@ -153,7 +160,7 @@ namespace GeneXus.Programs {
       {
          AV10Response = "";
          AV9BC_Trn_Page = new SdtTrn_Page(context);
-         AV18GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV19GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV14Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepage__datastore1(),
             new Object[][] {
@@ -170,26 +177,28 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV19GXV2 ;
+      private int AV20GXV2 ;
       private bool AV17PageIsPublished ;
       private string AV12PageJsonContent ;
       private string AV13PageGJSHtml ;
       private string AV11PageGJSJson ;
       private string AV10Response ;
+      private string AV18PageName ;
       private Guid AV8PageId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private Guid aP0_PageId ;
-      private string aP1_PageJsonContent ;
-      private string aP2_PageGJSHtml ;
-      private string aP3_PageGJSJson ;
-      private bool aP4_PageIsPublished ;
+      private string aP1_PageName ;
+      private string aP2_PageJsonContent ;
+      private string aP3_PageGJSHtml ;
+      private string aP4_PageGJSJson ;
+      private bool aP5_PageIsPublished ;
       private SdtTrn_Page AV9BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV18GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV19GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV14Message ;
-      private string aP5_Response ;
+      private string aP6_Response ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

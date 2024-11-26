@@ -1,5 +1,4 @@
-CREATE TABLE Trn_Page (Trn_PageId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsContentPage BOOLEAN , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , PRIMARY KEY(Trn_PageId));
-CREATE UNIQUE INDEX UTRN_PAGE ON Trn_Page (LocationId ,Trn_PageName );
+CREATE TABLE Trn_Page (Trn_PageId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsContentPage BOOLEAN , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , PRIMARY KEY(Trn_PageId, Trn_PageName));
 CREATE INDEX ITRN_PAGE1 ON Trn_Page (ProductServiceId ,LocationId ,OrganisationId );
 
 CREATE TABLE Trn_AgendaEventGroup (AgendaCalendarId CHAR(36) NOT NULL , ResidentId CHAR(36) NOT NULL , AgendaEventGroupRSVP BOOLEAN NOT NULL , PRIMARY KEY(AgendaCalendarId, ResidentId));
@@ -235,6 +234,6 @@ ALTER TABLE Trn_ThemeIcon ADD CONSTRAINT ITRN_THEMEICON1 FOREIGN KEY (Trn_ThemeI
 
 ALTER TABLE Trn_AgendaEventGroup ADD CONSTRAINT ITRN_AGENDAEVENTGROUP1 FOREIGN KEY (AgendaCalendarId) REFERENCES Trn_AgendaCalendar (AgendaCalendarId);
 
-ALTER TABLE Trn_Page ADD CONSTRAINT GX_002K000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+ALTER TABLE Trn_Page ADD CONSTRAINT GX_002M000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
 ALTER TABLE Trn_Page ADD CONSTRAINT ITRN_PAGE1 FOREIGN KEY (ProductServiceId, LocationId, OrganisationId) REFERENCES Trn_ProductService (ProductServiceId, LocationId, OrganisationId);
 

@@ -3498,7 +3498,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115404940", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241125167287", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3514,7 +3514,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_productservice.js", "?2024112115404942", false, true);
+         context.AddJavascriptSource("trn_productservice.js", "?20241125167290", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4358,6 +4358,7 @@ namespace GeneXus.Programs {
          T000818_A44SupplierGenCompanyName = new string[] {""} ;
          T000819_A51SupplierAgbName = new string[] {""} ;
          T000820_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         T000820_A318Trn_PageName = new string[] {""} ;
          T000821_A367CallToActionId = new Guid[] {Guid.Empty} ;
          T000822_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          T000822_n58ProductServiceId = new bool[] {false} ;
@@ -4441,7 +4442,7 @@ namespace GeneXus.Programs {
                T000819_A51SupplierAgbName
                }
                , new Object[] {
-               T000820_A310Trn_PageId
+               T000820_A310Trn_PageId, T000820_A318Trn_PageName
                }
                , new Object[] {
                T000821_A367CallToActionId
@@ -4965,6 +4966,7 @@ namespace GeneXus.Programs {
       private string[] T000818_A44SupplierGenCompanyName ;
       private string[] T000819_A51SupplierAgbName ;
       private Guid[] T000820_A310Trn_PageId ;
+      private string[] T000820_A318Trn_PageName ;
       private Guid[] T000821_A367CallToActionId ;
       private Guid[] T000822_A58ProductServiceId ;
       private bool[] T000822_n58ProductServiceId ;
@@ -5245,7 +5247,7 @@ public class trn_productservice__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("T000817", "SAVEPOINT gxupdate;DELETE FROM Trn_ProductService  WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000817)
           ,new CursorDef("T000818", "SELECT SupplierGenCompanyName FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000818,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T000819", "SELECT SupplierAgbName FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000819,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000820", "SELECT Trn_PageId FROM Trn_Page WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000820,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000820", "SELECT Trn_PageId, Trn_PageName FROM Trn_Page WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000820,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("T000821", "SELECT CallToActionId FROM Trn_CallToAction WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000821,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("T000822", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService ORDER BY ProductServiceId, LocationId, OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000822,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T000823", "SELECT OrganisationId, LocationId, LocationName FROM Trn_Location ORDER BY LocationName ",true, GxErrorMask.GX_NOMASK, false, this,prmT000823,0, GxCacheFrequency.OFF ,true,false )
@@ -5353,6 +5355,7 @@ public class trn_productservice__default : DataStoreHelperBase, IDataStoreHelper
              return;
           case 18 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
              return;
           case 19 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);

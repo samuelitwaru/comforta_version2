@@ -147,6 +147,7 @@ namespace GeneXus.Programs {
             A29LocationId = P008Z3_A29LocationId[0];
             A58ProductServiceId = P008Z3_A58ProductServiceId[0];
             AV18BC_Trn_ProductService.Load(AV12PageId, AV19LocationId, AV20OrganisationId);
+            AV16PageName = AV18BC_Trn_ProductService.gxTpr_Productservicename;
             /* Exiting from a For First loop. */
             if (true) break;
          }
@@ -154,7 +155,7 @@ namespace GeneXus.Programs {
          if ( ! (Guid.Empty==AV18BC_Trn_ProductService.gxTpr_Productserviceid) )
          {
             AV8BC_Trn_Page = new SdtTrn_Page(context);
-            AV8BC_Trn_Page.Load(AV12PageId);
+            AV8BC_Trn_Page.Load(AV12PageId, AV16PageName);
             new prc_logtofile(context ).execute(  AV8BC_Trn_Page.ToJSonString(true, true)) ;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8BC_Trn_Page.gxTpr_Trn_pagename)) )
             {
@@ -228,6 +229,7 @@ namespace GeneXus.Programs {
          P008Z3_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          A58ProductServiceId = Guid.Empty;
          AV18BC_Trn_ProductService = new SdtTrn_ProductService(context);
+         AV16PageName = "";
          AV8BC_Trn_Page = new SdtTrn_Page(context);
          AV13PageJsonContent = "";
          AV24GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
@@ -259,6 +261,7 @@ namespace GeneXus.Programs {
       private string AV13PageJsonContent ;
       private string AV21UserName ;
       private string A93ReceptionistEmail ;
+      private string AV16PageName ;
       private Guid AV12PageId ;
       private Guid A29LocationId ;
       private Guid A11OrganisationId ;

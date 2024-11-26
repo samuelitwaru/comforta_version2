@@ -111,7 +111,6 @@ class ToolBoxManager {
       let pageId = this.editorManager.getCurrentPageId();
 
       const pageIsContent = this.dataManager.pages.find((page) => page.PageId === pageId);
-
       if (pageIsContent.PageIsContentPage) {
         jsonData = mapContentToPageData(projectData)
         console.log("ProjectData is: ", jsonData)
@@ -123,6 +122,7 @@ class ToolBoxManager {
       if (pageId) {
         let data = {
           PageId: pageId,
+          PageName: pageIsContent.PageName,
           PageJsonContent: JSON.stringify(jsonData),
           PageGJSHtml: htmlData,
           PageGJSJson: JSON.stringify(projectData),
@@ -724,39 +724,35 @@ class ToolBoxManager {
           case "SiteUrl":
             iconHtml = '<i class="fa fa-link"></i>';
             const websiteComponent = `
-              <div class="container-row" ${defaultConstraints}>
-                <div class="template-wrapper" ${defaultConstraints} style="display: flex; width: 100%">
-                  <div class="" ${defaultConstraints} style="flex: 1; padding: 0; height: auto">
-                    <div class="cta-button-container cta-child cta-url-button"
-                      data-gjs-draggable="false"
-                      data-gjs-editable="false"
-                      data-gjs-highlightable="false"
-                      data-gjs-droppable="false"
-                      data-gjs-resizable="false"
-                      data-gjs-hoverable="false"
-                      cta-button-label="${cta.CallToActionName}"
-                      cta-button-type="${cta.CallToActionType}"
-                      cta-button-action="${cta.CallToActionUrl}"
-                      cta-background-color="#5068a8"
-                      >
-                      <button class="cta-main-button" ${defaultConstraints} data-gjs-selectable="true">
-                      ${cta.CallToActionName}
-                      </button>
-                      <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
-                    </div>
-                  </div>
-                </div>
+            <div class="cta-container-child cta-child" 
+              data-gjs-draggable="false"
+              data-gjs-editable="false"
+              data-gjs-highlightable="false"
+              data-gjs-droppable="false"
+              data-gjs-resizable="false"
+              data-gjs-hoverable="false"
+              cta-button-label-id="${cta.CallToActionId}"
+              cta-button-label="${cta.CallToActionName}"
+              cta-button-type="${cta.CallToActionType}"
+              cta-button-action="${cta.CallToActionUrl}"
+              cta-background-color="#5068a8"
+            >
+              <div class="cta-button" ${defaultConstraints}>
+                <i class="fas fa-link" ${defaultConstraints}></i>
+                <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
+              </div>
+              <div class="cta-label" ${defaultConstraints}>${cta.CallToActionName}</div>
               </div>
             `;
             ctaItem.onclick = (e) => {
               e.preventDefault();
               const websiteLinkComponent = this.editorManager.editor
                 .getWrapper()
-                .find(".container-column")[0];
+                .find(".cta-button-container")[0];
 
               if (websiteLinkComponent) {
                 const existingComponent = websiteLinkComponent.find(
-                  ".container-row .cta-url-button"
+                  ".cta-container-child .fas.fa-link"
                 )[0];
 
                 if (existingComponent) {
@@ -773,40 +769,35 @@ class ToolBoxManager {
           case "Form":
             iconHtml = '<i class="fa fa-file"></i>';
             const formComponent = `
-              <div class="container-row" ${defaultConstraints}>
-                <div class="template-wrapper" ${defaultConstraints} style="display: flex; width: 100%">
-                  <div class="" ${defaultConstraints} style="flex: 1; padding: 0; height: auto">
-                    <div class="cta-button-container cta-child cta-form-button"
-                      data-gjs-draggable="false"
-                      data-gjs-editable="false"
-                      data-gjs-highlightable="false"
-                      data-gjs-droppable="false"
-                      data-gjs-resizable="false"
-                      data-gjs-hoverable="false"
-                      cta-button-id="${cta.CallToActionId}"
-                      cta-button-label="${cta.CallToActionName}"
-                      cta-button-type="${cta.CallToActionType}"
-                      cta-button-action="${cta.CallToActionUrl}"
-                      cta-background-color="#5068a8"
-                    >
-                      <button class="cta-main-button" ${defaultConstraints} data-gjs-selectable="true">
-                      ${cta.CallToActionName}
-                      </button>
-                      <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
-                    </div>
-                  </div>
-                </div>
+            <div class="cta-container-child cta-child" 
+              data-gjs-draggable="false"
+              data-gjs-editable="false"
+              data-gjs-highlightable="false"
+              data-gjs-droppable="false"
+              data-gjs-resizable="false"
+              data-gjs-hoverable="false"
+              cta-button-label-id="${cta.CallToActionId}"
+              cta-button-label="${cta.CallToActionName}"
+              cta-button-type="${cta.CallToActionType}"
+              cta-button-action="${cta.CallToActionUrl}"
+              cta-background-color="#5068a8"
+            >
+              <div class="cta-button" ${defaultConstraints}>
+                <i class="fas fa-file" ${defaultConstraints}></i>
+                <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
+              </div>
+              <div class="cta-label" ${defaultConstraints}>${cta.CallToActionName}</div>
               </div>
             `;
             ctaItem.onclick = (e) => {
               e.preventDefault();
               const formLinkComponent = this.editorManager.editor
                 .getWrapper()
-                .find(".container-column")[0];
+                .find(".cta-button-container")[0];
 
               if (formLinkComponent) {
                 const existingComponent = formLinkComponent.find(
-                  ".container-row .cta-form-button"
+                  ".cta-container-child .fas.fa-file"
                 )[0];
 
                 if (existingComponent) {

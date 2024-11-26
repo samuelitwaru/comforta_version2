@@ -1594,6 +1594,7 @@ namespace GeneXus.Programs {
          BC000813_A44SupplierGenCompanyName = new string[] {""} ;
          BC000814_A51SupplierAgbName = new string[] {""} ;
          BC000815_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         BC000815_A318Trn_PageName = new string[] {""} ;
          BC000816_A367CallToActionId = new Guid[] {Guid.Empty} ;
          BC000817_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          BC000817_n58ProductServiceId = new bool[] {false} ;
@@ -1665,7 +1666,7 @@ namespace GeneXus.Programs {
                BC000814_A51SupplierAgbName
                }
                , new Object[] {
-               BC000815_A310Trn_PageId
+               BC000815_A310Trn_PageId, BC000815_A318Trn_PageName
                }
                , new Object[] {
                BC000816_A367CallToActionId
@@ -1822,6 +1823,7 @@ namespace GeneXus.Programs {
       private string[] BC000813_A44SupplierGenCompanyName ;
       private string[] BC000814_A51SupplierAgbName ;
       private Guid[] BC000815_A310Trn_PageId ;
+      private string[] BC000815_A318Trn_PageName ;
       private Guid[] BC000816_A367CallToActionId ;
       private Guid[] BC000817_A58ProductServiceId ;
       private bool[] BC000817_n58ProductServiceId ;
@@ -2067,7 +2069,7 @@ public class trn_productservice_bc__default : DataStoreHelperBase, IDataStoreHel
           ,new CursorDef("BC000812", "SAVEPOINT gxupdate;DELETE FROM Trn_ProductService  WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000812)
           ,new CursorDef("BC000813", "SELECT SupplierGenCompanyName FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000813,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000814", "SELECT SupplierAgbName FROM Trn_SupplierAGB WHERE SupplierAgbId = :SupplierAgbId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000814,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000815", "SELECT Trn_PageId FROM Trn_Page WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000815,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000815", "SELECT Trn_PageId, Trn_PageName FROM Trn_Page WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000815,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("BC000816", "SELECT CallToActionId FROM Trn_CallToAction WHERE ProductServiceId = :ProductServiceId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000816,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("BC000817", "SELECT TM1.ProductServiceId, TM1.ProductServiceName, TM1.ProductServiceTileName, TM1.ProductServiceDescription, TM1.ProductServiceClass, TM1.ProductServiceImage_GXI, TM1.ProductServiceGroup, T2.SupplierGenCompanyName, T3.SupplierAgbName, TM1.LocationId, TM1.OrganisationId, TM1.SupplierGenId, TM1.SupplierAgbId, TM1.ProductServiceImage FROM ((Trn_ProductService TM1 LEFT JOIN Trn_SupplierGen T2 ON T2.SupplierGenId = TM1.SupplierGenId) LEFT JOIN Trn_SupplierAGB T3 ON T3.SupplierAgbId = TM1.SupplierAgbId) WHERE TM1.ProductServiceId = :ProductServiceId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ProductServiceId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000817,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000818", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000818,1, GxCacheFrequency.OFF ,true,false )
@@ -2153,6 +2155,7 @@ public class trn_productservice_bc__default : DataStoreHelperBase, IDataStoreHel
              return;
           case 13 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
              return;
           case 14 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);

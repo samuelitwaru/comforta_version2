@@ -179,8 +179,6 @@ namespace GeneXus.Programs {
                AV25Pgmname = "Trn_OrganisationSettingGeneral";
                edtavOrganisationsettinglanguage_description_Enabled = 0;
                AssignProp(sPrefix, false, edtavOrganisationsettinglanguage_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettinglanguage_description_Enabled), 5, 0), true);
-               edtavOrganisationsettingfontsize_description_Enabled = 0;
-               AssignProp(sPrefix, false, edtavOrganisationsettingfontsize_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettingfontsize_description_Enabled), 5, 0), true);
                WS462( ) ;
                if ( ! isAjaxCallMode( ) )
                {
@@ -442,7 +440,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divUnnamedtable1_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
@@ -452,9 +450,9 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+imgOrganisationSettingLogo_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", context.GetMessage( "Logo", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "Logo", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Static Bitmap Variable */
             ClassString = "Attribute";
             StyleString = "";
@@ -472,9 +470,9 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+imgOrganisationSettingFavicon_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", context.GetMessage( "Favicon", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "Favicon", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Static Bitmap Variable */
             ClassString = "Attribute";
             StyleString = "";
@@ -485,12 +483,6 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -498,12 +490,15 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavOrganisationsettinglanguage_description_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavOrganisationsettinglanguage_description_Internalname, context.GetMessage( "Language", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavOrganisationsettinglanguage_description_Internalname, context.GetMessage( "Language", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavOrganisationsettinglanguage_description_Internalname, AV14OrganisationSettingLanguage_Description, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavOrganisationsettinglanguage_description_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavOrganisationsettinglanguage_description_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_OrganisationSettingGeneral.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 27,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavOrganisationsettinglanguage_description_Internalname, AV14OrganisationSettingLanguage_Description, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,27);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavOrganisationsettinglanguage_description_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavOrganisationsettinglanguage_description_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_OrganisationSettingGeneral.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -511,34 +506,15 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavOrganisationsettingfontsize_description_Internalname+"\"", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavOrganisationsettingfontsize_description_Internalname, context.GetMessage( "Font Size", ""), "col-sm-4 AttributeLabel", 1, true, "");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavOrganisationsettingfontsize_description_Internalname, AV21OrganisationSettingFontSize_Description, StringUtil.RTrim( context.localUtil.Format( AV21OrganisationSettingFontSize_Description, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,34);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavOrganisationsettingfontsize_description_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavOrganisationsettingfontsize_description_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_OrganisationSettingGeneral.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divUnnamedtable3_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_basecolor_Internalname, context.GetMessage( "Base Color", ""), "", "", lblTransactiondetail_basecolor_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock AttributeWeightBold", 0, "", 1, 1, 0, 0, "HLP_Trn_OrganisationSettingGeneral.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -556,14 +532,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 45,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnupdate_Internalname, "", context.GetMessage( "GXM_update", ""), bttBtnupdate_Jsonclick, 5, context.GetMessage( "GXM_update", ""), "", StyleString, ClassString, bttBtnupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 47,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtndelete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtndelete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtndelete_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DODELETE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingGeneral.htm");
@@ -580,6 +556,8 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
+            /* Single line edit */
+            GxWebStd.gx_single_line_edit( context, edtOrganisationSettingFontSize_Internalname, A104OrganisationSettingFontSize, StringUtil.RTrim( context.localUtil.Format( A104OrganisationSettingFontSize, "")), "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtOrganisationSettingFontSize_Jsonclick, 0, "Attribute", "", "", "", "", edtOrganisationSettingFontSize_Visible, 0, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_OrganisationSettingGeneral.htm");
             /* Single line edit */
             GxWebStd.gx_single_line_edit( context, edtOrganisationId_Internalname, A11OrganisationId.ToString(), A11OrganisationId.ToString(), "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtOrganisationId_Jsonclick, 0, "Attribute", "", "", "", "", edtOrganisationId_Visible, 0, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_OrganisationSettingGeneral.htm");
             /* Single line edit */
@@ -934,8 +912,6 @@ namespace GeneXus.Programs {
          AV25Pgmname = "Trn_OrganisationSettingGeneral";
          edtavOrganisationsettinglanguage_description_Enabled = 0;
          AssignProp(sPrefix, false, edtavOrganisationsettinglanguage_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettinglanguage_description_Enabled), 5, 0), true);
-         edtavOrganisationsettingfontsize_description_Enabled = 0;
-         AssignProp(sPrefix, false, edtavOrganisationsettingfontsize_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettingfontsize_description_Enabled), 5, 0), true);
       }
 
       protected void RF462( )
@@ -952,11 +928,12 @@ namespace GeneXus.Programs {
             while ( (pr_default.getStatus(0) != 101) )
             {
                A105OrganisationSettingLanguage = H00462_A105OrganisationSettingLanguage[0];
-               A104OrganisationSettingFontSize = H00462_A104OrganisationSettingFontSize[0];
                A103OrganisationSettingBaseColor = H00462_A103OrganisationSettingBaseColor[0];
                AssignAttri(sPrefix, false, "A103OrganisationSettingBaseColor", A103OrganisationSettingBaseColor);
                A11OrganisationId = H00462_A11OrganisationId[0];
                AssignAttri(sPrefix, false, "A11OrganisationId", A11OrganisationId.ToString());
+               A104OrganisationSettingFontSize = H00462_A104OrganisationSettingFontSize[0];
+               AssignAttri(sPrefix, false, "A104OrganisationSettingFontSize", A104OrganisationSettingFontSize);
                A40001OrganisationSettingFavicon_GXI = H00462_A40001OrganisationSettingFavicon_GXI[0];
                AssignProp(sPrefix, false, imgOrganisationSettingFavicon_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A102OrganisationSettingFavicon)) ? A40001OrganisationSettingFavicon_GXI : context.convertURL( context.PathToRelativeUrl( A102OrganisationSettingFavicon))), true);
                AssignProp(sPrefix, false, imgOrganisationSettingFavicon_Internalname, "SrcSet", context.GetImageSrcSet( A102OrganisationSettingFavicon), true);
@@ -995,12 +972,12 @@ namespace GeneXus.Programs {
          AV25Pgmname = "Trn_OrganisationSettingGeneral";
          edtavOrganisationsettinglanguage_description_Enabled = 0;
          AssignProp(sPrefix, false, edtavOrganisationsettinglanguage_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettinglanguage_description_Enabled), 5, 0), true);
-         edtavOrganisationsettingfontsize_description_Enabled = 0;
-         AssignProp(sPrefix, false, edtavOrganisationsettingfontsize_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavOrganisationsettingfontsize_description_Enabled), 5, 0), true);
          imgOrganisationSettingLogo_Enabled = 0;
          AssignProp(sPrefix, false, imgOrganisationSettingLogo_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(imgOrganisationSettingLogo_Enabled), 5, 0), true);
          imgOrganisationSettingFavicon_Enabled = 0;
          AssignProp(sPrefix, false, imgOrganisationSettingFavicon_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(imgOrganisationSettingFavicon_Enabled), 5, 0), true);
+         edtOrganisationSettingFontSize_Enabled = 0;
+         AssignProp(sPrefix, false, edtOrganisationSettingFontSize_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingFontSize_Enabled), 5, 0), true);
          edtOrganisationId_Enabled = 0;
          AssignProp(sPrefix, false, edtOrganisationId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Enabled), 5, 0), true);
          edtOrganisationSettingid_Enabled = 0;
@@ -1035,8 +1012,8 @@ namespace GeneXus.Programs {
             AV14OrganisationSettingLanguage_Description = cgiGet( edtavOrganisationsettinglanguage_description_Internalname);
             AssignAttri(sPrefix, false, "AV14OrganisationSettingLanguage_Description", AV14OrganisationSettingLanguage_Description);
             GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vORGANISATIONSETTINGLANGUAGE_DESCRIPTION", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), context));
-            AV21OrganisationSettingFontSize_Description = cgiGet( edtavOrganisationsettingfontsize_description_Internalname);
-            AssignAttri(sPrefix, false, "AV21OrganisationSettingFontSize_Description", AV21OrganisationSettingFontSize_Description);
+            A104OrganisationSettingFontSize = cgiGet( edtOrganisationSettingFontSize_Internalname);
+            AssignAttri(sPrefix, false, "A104OrganisationSettingFontSize", A104OrganisationSettingFontSize);
             A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
             AssignAttri(sPrefix, false, "A11OrganisationId", A11OrganisationId.ToString());
             A103OrganisationSettingBaseColor = cgiGet( edtOrganisationSettingBaseColor_Internalname);
@@ -1102,6 +1079,14 @@ namespace GeneXus.Programs {
       {
          /* Load Routine */
          returnInSub = false;
+         edtOrganisationSettingFontSize_Visible = 0;
+         AssignProp(sPrefix, false, edtOrganisationSettingFontSize_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingFontSize_Visible), 5, 0), true);
+         edtOrganisationId_Visible = 0;
+         AssignProp(sPrefix, false, edtOrganisationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Visible), 5, 0), true);
+         edtOrganisationSettingid_Visible = 0;
+         AssignProp(sPrefix, false, edtOrganisationSettingid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingid_Visible), 5, 0), true);
+         edtOrganisationSettingBaseColor_Visible = 0;
+         AssignProp(sPrefix, false, edtOrganisationSettingBaseColor_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingBaseColor_Visible), 5, 0), true);
          AV19ComboSelectedItems = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
          AV19ComboSelectedItems.FromJSonString(A105OrganisationSettingLanguage, null);
          AV24GXV1 = 1;
@@ -1126,35 +1111,8 @@ namespace GeneXus.Programs {
                AssignAttri(sPrefix, false, "AV14OrganisationSettingLanguage_Description", AV14OrganisationSettingLanguage_Description);
                GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vORGANISATIONSETTINGLANGUAGE_DESCRIPTION", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), context));
             }
-            else if ( StringUtil.StrCmp(AV20ComboSelectedItem, "Spanish") == 0 )
-            {
-               AV14OrganisationSettingLanguage_Description += context.GetMessage( "Spanish", "");
-               AssignAttri(sPrefix, false, "AV14OrganisationSettingLanguage_Description", AV14OrganisationSettingLanguage_Description);
-               GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vORGANISATIONSETTINGLANGUAGE_DESCRIPTION", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), context));
-            }
             AV24GXV1 = (int)(AV24GXV1+1);
          }
-         if ( StringUtil.StrCmp(A104OrganisationSettingFontSize, "Small") == 0 )
-         {
-            AV21OrganisationSettingFontSize_Description = context.GetMessage( "Small", "");
-            AssignAttri(sPrefix, false, "AV21OrganisationSettingFontSize_Description", AV21OrganisationSettingFontSize_Description);
-         }
-         else if ( StringUtil.StrCmp(A104OrganisationSettingFontSize, "Medium") == 0 )
-         {
-            AV21OrganisationSettingFontSize_Description = context.GetMessage( "Medium", "");
-            AssignAttri(sPrefix, false, "AV21OrganisationSettingFontSize_Description", AV21OrganisationSettingFontSize_Description);
-         }
-         else if ( StringUtil.StrCmp(A104OrganisationSettingFontSize, "Large") == 0 )
-         {
-            AV21OrganisationSettingFontSize_Description = context.GetMessage( "Large", "");
-            AssignAttri(sPrefix, false, "AV21OrganisationSettingFontSize_Description", AV21OrganisationSettingFontSize_Description);
-         }
-         edtOrganisationId_Visible = 0;
-         AssignProp(sPrefix, false, edtOrganisationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Visible), 5, 0), true);
-         edtOrganisationSettingid_Visible = 0;
-         AssignProp(sPrefix, false, edtOrganisationSettingid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingid_Visible), 5, 0), true);
-         edtOrganisationSettingBaseColor_Visible = 0;
-         AssignProp(sPrefix, false, edtOrganisationSettingBaseColor_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationSettingBaseColor_Visible), 5, 0), true);
          GXt_boolean1 = AV12IsAuthorized_Update;
          new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_organisationsetting_Update", out  GXt_boolean1) ;
          AV12IsAuthorized_Update = GXt_boolean1;
@@ -1430,7 +1388,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115415114", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411253401725", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1446,7 +1404,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_organisationsettinggeneral.js", "?2024112115415114", false, true);
+         context.AddJavascriptSource("trn_organisationsettinggeneral.js", "?202411253401726", false, true);
          /* End function include_jscripts */
       }
 
@@ -1459,16 +1417,15 @@ namespace GeneXus.Programs {
       {
          imgOrganisationSettingLogo_Internalname = sPrefix+"ORGANISATIONSETTINGLOGO";
          imgOrganisationSettingFavicon_Internalname = sPrefix+"ORGANISATIONSETTINGFAVICON";
-         divUnnamedtable1_Internalname = sPrefix+"UNNAMEDTABLE1";
          edtavOrganisationsettinglanguage_description_Internalname = sPrefix+"vORGANISATIONSETTINGLANGUAGE_DESCRIPTION";
-         edtavOrganisationsettingfontsize_description_Internalname = sPrefix+"vORGANISATIONSETTINGFONTSIZE_DESCRIPTION";
-         lblTransactiondetail_basecolor_Internalname = sPrefix+"TRANSACTIONDETAIL_BASECOLOR";
+         divUnnamedtable1_Internalname = sPrefix+"UNNAMEDTABLE1";
          divUnnamedtable3_Internalname = sPrefix+"UNNAMEDTABLE3";
          divUnnamedtable2_Internalname = sPrefix+"UNNAMEDTABLE2";
          divTransactiondetail_tableattributes_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLEATTRIBUTES";
          bttBtnupdate_Internalname = sPrefix+"BTNUPDATE";
          bttBtndelete_Internalname = sPrefix+"BTNDELETE";
          divTable_Internalname = sPrefix+"TABLE";
+         edtOrganisationSettingFontSize_Internalname = sPrefix+"ORGANISATIONSETTINGFONTSIZE";
          edtOrganisationId_Internalname = sPrefix+"ORGANISATIONID";
          edtOrganisationSettingid_Internalname = sPrefix+"ORGANISATIONSETTINGID";
          edtOrganisationSettingBaseColor_Internalname = sPrefix+"ORGANISATIONSETTINGBASECOLOR";
@@ -1494,6 +1451,7 @@ namespace GeneXus.Programs {
          edtOrganisationSettingBaseColor_Enabled = 0;
          edtOrganisationSettingid_Enabled = 0;
          edtOrganisationId_Enabled = 0;
+         edtOrganisationSettingFontSize_Enabled = 0;
          imgOrganisationSettingFavicon_Enabled = 0;
          imgOrganisationSettingLogo_Enabled = 0;
          edtOrganisationSettingBaseColor_Jsonclick = "";
@@ -1502,10 +1460,10 @@ namespace GeneXus.Programs {
          edtOrganisationSettingid_Visible = 1;
          edtOrganisationId_Jsonclick = "";
          edtOrganisationId_Visible = 1;
+         edtOrganisationSettingFontSize_Jsonclick = "";
+         edtOrganisationSettingFontSize_Visible = 1;
          bttBtndelete_Visible = 1;
          bttBtnupdate_Visible = 1;
-         edtavOrganisationsettingfontsize_description_Jsonclick = "";
-         edtavOrganisationsettingfontsize_description_Enabled = 1;
          edtavOrganisationsettinglanguage_description_Jsonclick = "";
          edtavOrganisationsettinglanguage_description_Enabled = 1;
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -1565,10 +1523,9 @@ namespace GeneXus.Programs {
          A102OrganisationSettingFavicon = "";
          A40001OrganisationSettingFavicon_GXI = "";
          TempTags = "";
-         AV21OrganisationSettingFontSize_Description = "";
-         lblTransactiondetail_basecolor_Jsonclick = "";
          bttBtnupdate_Jsonclick = "";
          bttBtndelete_Jsonclick = "";
+         A104OrganisationSettingFontSize = "";
          A11OrganisationId = Guid.Empty;
          A103OrganisationSettingBaseColor = "";
          Form = new GXWebForm();
@@ -1580,15 +1537,14 @@ namespace GeneXus.Programs {
          GXDecQS = "";
          H00462_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          H00462_A105OrganisationSettingLanguage = new string[] {""} ;
-         H00462_A104OrganisationSettingFontSize = new string[] {""} ;
          H00462_A103OrganisationSettingBaseColor = new string[] {""} ;
          H00462_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H00462_A104OrganisationSettingFontSize = new string[] {""} ;
          H00462_A40001OrganisationSettingFavicon_GXI = new string[] {""} ;
          H00462_A40000OrganisationSettingLogo_GXI = new string[] {""} ;
          H00462_A102OrganisationSettingFavicon = new string[] {""} ;
          H00462_A101OrganisationSettingLogo = new string[] {""} ;
          A105OrganisationSettingLanguage = "";
-         A104OrganisationSettingFontSize = "";
          hsh = "";
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV19ComboSelectedItems = new GxSimpleCollection<string>();
@@ -1602,7 +1558,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationsettinggeneral__default(),
             new Object[][] {
                 new Object[] {
-               H00462_A100OrganisationSettingid, H00462_A105OrganisationSettingLanguage, H00462_A104OrganisationSettingFontSize, H00462_A103OrganisationSettingBaseColor, H00462_A11OrganisationId, H00462_A40001OrganisationSettingFavicon_GXI, H00462_A40000OrganisationSettingLogo_GXI, H00462_A102OrganisationSettingFavicon, H00462_A101OrganisationSettingLogo
+               H00462_A100OrganisationSettingid, H00462_A105OrganisationSettingLanguage, H00462_A103OrganisationSettingBaseColor, H00462_A11OrganisationId, H00462_A104OrganisationSettingFontSize, H00462_A40001OrganisationSettingFavicon_GXI, H00462_A40000OrganisationSettingLogo_GXI, H00462_A102OrganisationSettingFavicon, H00462_A101OrganisationSettingLogo
                }
             }
          );
@@ -1610,7 +1566,6 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
          AV25Pgmname = "Trn_OrganisationSettingGeneral";
          edtavOrganisationsettinglanguage_description_Enabled = 0;
-         edtavOrganisationsettingfontsize_description_Enabled = 0;
       }
 
       private short nGotPars ;
@@ -1623,14 +1578,15 @@ namespace GeneXus.Programs {
       private short nDonePA ;
       private short nGXWrapped ;
       private int edtavOrganisationsettinglanguage_description_Enabled ;
-      private int edtavOrganisationsettingfontsize_description_Enabled ;
       private int bttBtnupdate_Visible ;
       private int bttBtndelete_Visible ;
+      private int edtOrganisationSettingFontSize_Visible ;
       private int edtOrganisationId_Visible ;
       private int edtOrganisationSettingid_Visible ;
       private int edtOrganisationSettingBaseColor_Visible ;
       private int imgOrganisationSettingLogo_Enabled ;
       private int imgOrganisationSettingFavicon_Enabled ;
+      private int edtOrganisationSettingFontSize_Enabled ;
       private int edtOrganisationId_Enabled ;
       private int edtOrganisationSettingid_Enabled ;
       private int edtOrganisationSettingBaseColor_Enabled ;
@@ -1643,7 +1599,6 @@ namespace GeneXus.Programs {
       private string sSFPrefix ;
       private string AV25Pgmname ;
       private string edtavOrganisationsettinglanguage_description_Internalname ;
-      private string edtavOrganisationsettingfontsize_description_Internalname ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -1659,18 +1614,17 @@ namespace GeneXus.Programs {
       private string StyleString ;
       private string sImgUrl ;
       private string imgOrganisationSettingFavicon_Internalname ;
-      private string divUnnamedtable2_Internalname ;
       private string TempTags ;
       private string edtavOrganisationsettinglanguage_description_Jsonclick ;
-      private string edtavOrganisationsettingfontsize_description_Jsonclick ;
+      private string divUnnamedtable2_Internalname ;
       private string divUnnamedtable3_Internalname ;
-      private string lblTransactiondetail_basecolor_Internalname ;
-      private string lblTransactiondetail_basecolor_Jsonclick ;
       private string bttBtnupdate_Internalname ;
       private string bttBtnupdate_Jsonclick ;
       private string bttBtndelete_Internalname ;
       private string bttBtndelete_Jsonclick ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
+      private string edtOrganisationSettingFontSize_Internalname ;
+      private string edtOrganisationSettingFontSize_Jsonclick ;
       private string edtOrganisationId_Internalname ;
       private string edtOrganisationId_Jsonclick ;
       private string edtOrganisationSettingid_Internalname ;
@@ -1701,9 +1655,8 @@ namespace GeneXus.Programs {
       private string AV14OrganisationSettingLanguage_Description ;
       private string A40000OrganisationSettingLogo_GXI ;
       private string A40001OrganisationSettingFavicon_GXI ;
-      private string AV21OrganisationSettingFontSize_Description ;
-      private string A103OrganisationSettingBaseColor ;
       private string A104OrganisationSettingFontSize ;
+      private string A103OrganisationSettingBaseColor ;
       private string AV20ComboSelectedItem ;
       private string A101OrganisationSettingLogo ;
       private string A102OrganisationSettingFavicon ;
@@ -1720,9 +1673,9 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] H00462_A100OrganisationSettingid ;
       private string[] H00462_A105OrganisationSettingLanguage ;
-      private string[] H00462_A104OrganisationSettingFontSize ;
       private string[] H00462_A103OrganisationSettingBaseColor ;
       private Guid[] H00462_A11OrganisationId ;
+      private string[] H00462_A104OrganisationSettingFontSize ;
       private string[] H00462_A40001OrganisationSettingFavicon_GXI ;
       private string[] H00462_A40000OrganisationSettingLogo_GXI ;
       private string[] H00462_A102OrganisationSettingFavicon ;
@@ -1754,7 +1707,7 @@ namespace GeneXus.Programs {
           new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H00462", "SELECT OrganisationSettingid, OrganisationSettingLanguage, OrganisationSettingFontSize, OrganisationSettingBaseColor, OrganisationId, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationSettingFavicon, OrganisationSettingLogo FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00462,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H00462", "SELECT OrganisationSettingid, OrganisationSettingLanguage, OrganisationSettingBaseColor, OrganisationId, OrganisationSettingFontSize, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationSettingFavicon, OrganisationSettingLogo FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00462,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -1769,8 +1722,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
                 ((string[]) buf[6])[0] = rslt.getMultimediaUri(7);
                 ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(6));
