@@ -75,8 +75,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          AV9ResidentGUID = "";
          /* Using cursor P009K2 */
-         pr_datastore1.execute(0, new Object[] {AV8access_token});
-         while ( (pr_datastore1.getStatus(0) != 101) )
+         pr_gam.execute(0, new Object[] {AV8access_token});
+         while ( (pr_gam.getStatus(0) != 101) )
          {
             A460sestoken = P009K2_A460sestoken[0];
             A468userguid = P009K2_A468userguid[0];
@@ -88,9 +88,9 @@ namespace GeneXus.Programs {
                /* Exit For each command. Update data (if necessary), close cursors & exit. */
                if (true) break;
             }
-            pr_datastore1.readNext(0);
+            pr_gam.readNext(0);
          }
-         pr_datastore1.close(0);
+         pr_gam.close(0);
          cleanup();
       }
 
@@ -114,7 +114,7 @@ namespace GeneXus.Programs {
          A460sestoken = "";
          A468userguid = "";
          A469sesdate = (DateTime)(DateTime.MinValue);
-         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_getuseridfromaccesstoken__datastore1(),
+         pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_getuseridfromaccesstoken__gam(),
             new Object[][] {
                 new Object[] {
                P009K2_A460sestoken, P009K2_A468userguid, P009K2_A469sesdate, P009K2_A461repid
@@ -133,7 +133,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private IDataStoreProvider pr_datastore1 ;
+      private IDataStoreProvider pr_gam ;
       private string[] P009K2_A460sestoken ;
       private string[] P009K2_A468userguid ;
       private DateTime[] P009K2_A469sesdate ;
@@ -141,7 +141,7 @@ namespace GeneXus.Programs {
       private string aP1_ResidentGUID ;
    }
 
-   public class prc_getuseridfromaccesstoken__datastore1 : DataStoreHelperBase, IDataStoreHelper
+   public class prc_getuseridfromaccesstoken__gam : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -183,7 +183,7 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "DATASTORE1";
+       return "GAM";
     }
 
  }

@@ -222,8 +222,10 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Mailbox", "");
-         Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fa fa-envelope";
+         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Notifications", "");
+         Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fa fa-bell";
+         Gxm1homemodulessdt.gxTpr_Rolename = "Receptionist";
+         Gxm1homemodulessdt.gxTpr_Optionwclink = formatLink("wp_usernotificationsboard.aspx") ;
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);

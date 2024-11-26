@@ -1,6 +1,16 @@
 var globalEditor = null;
 
 class EditorManager {
+  // muti editors
+  editors = []
+
+  childEditors = []
+  childPageIds = []
+
+  currentEditorIndex = 1
+  editorsContainer = document.getElementById('editors-container')
+
+
   constructor(editor, currentLanguage) {
     globalEditor = editor;
     this.editor = editor;
@@ -16,6 +26,7 @@ class EditorManager {
     this.pageName = "Home";
     this.toolsSection = null;
     this.dataManager = null;
+
   }
 
   setToolsSection(toolBox) {
@@ -24,6 +35,47 @@ class EditorManager {
 
   setDataManager(dataManager) {
     this.dataManager = dataManager;
+  }
+
+  renderChildEditors(){
+    for (let index = 0; index < this.childPageIds.length; index++) {
+      const PageId = this.childPageIds[index];
+      let frameHTML = `
+          <div class="header">
+              <span id="current-time"></span>
+              <span class="icons">
+              <i class="fas fa-signal"></i>
+              <i class="fas fa-wifi"></i>
+              <i class="fas fa-battery"></i>
+              </span>
+          </div>
+          <div id="gjs-${index}">${PageId}</div>
+      `
+      let div = document.createElement('div')
+      div.classList.add('mobile-frame')
+      div.id = PageId
+      div.innerHTML = frameHTML
+      
+      // create editor
+      let editor = initEditor(index)
+      let page = this.dataManager.pages.find(page=>page.PageId==PageId)
+      if(page){
+        editor.loadProjectData(JSON.parse(page.PageGJSJson))
+        this.editors.push(editor)
+      }
+      
+      div.addEventListener('mouseenter', () => {
+        div.style.backgroundColor = 'lightgreen'; // Change background color on hover
+        console.log('Mouse is over!')
+        this.toolsSection.editorManager.editor = editor
+
+      });
+      this.editorsContainer.appendChild(div)
+
+
+
+    }
+
   }
 
   init() {
@@ -166,7 +218,6 @@ class EditorManager {
     this.editor.on("component:selected", (component) => {
       this.selectedTemplateWrapper = component.getEl();
       this.selectedComponent = component;
-
       const sidebarInputTitle = document.getElementById("tile-title");
       if (this.selectedTemplateWrapper) {
         const tileLabel =
@@ -220,12 +271,18 @@ class EditorManager {
       }
 
       this.toolsSection.updateTileProperties(this.editor);
-
       // hide context menu if any
       const contextMenu = document.getElementById("contextMenu");
 
       if (contextMenu) {
         contextMenu.style.display = "none";
+      }
+
+      let nextPageId = component.attributes.attributes["tile-action-object-id"]
+      this.childPageIds = []
+      this.childPageIds.push(nextPageId)
+      if (nextPageId) {
+        this.renderChildEditors()
       }
     });
 

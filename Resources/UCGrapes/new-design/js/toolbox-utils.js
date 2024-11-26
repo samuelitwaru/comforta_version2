@@ -205,3 +205,32 @@ function mapContentToPageData(templateData) {
 
   return output;
 }
+
+function initEditor(id){
+
+  return grapesjs.init({
+    container: `#gjs-${id}`,
+    fromElement: true,
+    height: "100%",
+    width: "auto",
+    storageManager: {
+      type: "local",
+    },
+    canvas: {
+      styles: [
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css",
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
+        "https://fonts.googleapis.com/css2?family=Lora&family=Merriweather&family=Poppins:wetts@400;500&family=Roboto:wght@400;500&display=swap",
+        "/Resources/UCGrapes/new-design/css/toolbox.css",
+      ],
+    },
+    baseCss: " ",
+    dragMode: "normal",
+    panels: { defaults: [] },
+    sidebarManager: false,
+    modal: false,
+    commands: false,
+    hoverable: false,
+    highlightable: false,
+  });
+}

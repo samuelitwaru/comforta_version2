@@ -215,7 +215,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/daterangepicker.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DatePicker/DatePickerRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202411258574456", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2024112615133014", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -1060,6 +1060,42 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
             }
          }
+         if ( AV9GAMUser.checkrole("Root Admin") )
+         {
+            new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
+            if ( ! AV42WWPContext.gxTpr_Iscontextset )
+            {
+               new prc_loadwwpcontext(context ).execute( ref  AV42WWPContext) ;
+            }
+            if ( ! (Guid.Empty==AV42WWPContext.gxTpr_Locationid) )
+            {
+               bttBtnuexitorganisation_Visible = 1;
+               AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
+               bttBtnuexitlocation_Visible = 1;
+               AssignProp("", true, bttBtnuexitlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitlocation_Visible), 5, 0), true);
+               lblOrglocationtextblock_Caption = AV42WWPContext.gxTpr_Organisationname+" - "+AV42WWPContext.gxTpr_Locationname;
+               AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
+            }
+            else
+            {
+               bttBtnuexitlocation_Visible = 0;
+               AssignProp("", true, bttBtnuexitlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitlocation_Visible), 5, 0), true);
+               if ( ! (Guid.Empty==AV42WWPContext.gxTpr_Organisationid) )
+               {
+                  bttBtnuexitorganisation_Visible = 1;
+                  AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
+                  lblOrglocationtextblock_Caption = AV42WWPContext.gxTpr_Organisationname;
+                  AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
+               }
+               else
+               {
+                  bttBtnuexitorganisation_Visible = 0;
+                  AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
+                  lblOrglocationtextblock_Caption = "";
+                  AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
+               }
+            }
+         }
       }
 
       protected void E16392( )
@@ -1301,7 +1337,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202411258575177", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2024112615133939", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1316,7 +1352,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202411258575179", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2024112615133942", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

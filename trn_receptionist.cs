@@ -1507,7 +1507,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.Len( A374ReceptionistPhoneNumber) != 9 )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone must contains 9 digits", ""), 1, "RECEPTIONISTPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "RECEPTIONISTPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtReceptionistPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2570,7 +2570,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115412088", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112615131974", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2586,7 +2586,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_receptionist.js", "?2024112115412090", false, true);
+         context.AddJavascriptSource("trn_receptionist.js", "?2024112615131975", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3032,7 +3032,7 @@ namespace GeneXus.Programs {
          A94ReceptionistPhone = GXt_char3;
          if ( StringUtil.Len( A374ReceptionistPhoneNumber) != 9 )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone must contains 9 digits", ""), 1, "RECEPTIONISTPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "RECEPTIONISTPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtReceptionistPhoneNumber_Internalname;
          }

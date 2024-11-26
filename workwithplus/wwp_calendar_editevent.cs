@@ -209,12 +209,12 @@ namespace GeneXus.Programs.workwithplus {
             AV24EventDescription = "Event: " + AV20Title + context.GetMessage( " starting from ", "") + context.localUtil.Format( AV17EventStartDate, "99/99/99 99:99") + context.GetMessage( " to ", "") + context.localUtil.Format( AV15EventEndDate, "99/99/99 99:99");
             if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
             {
-               new prc_sendagendanotification(context ).execute(  context.GetMessage( "New Calendar Event", ""),  AV24EventDescription,  AV30AddressGroup) ;
+               new prc_sendresidentnotification(context ).execute(  context.GetMessage( "New Calendar Event", ""),  AV24EventDescription,  context.GetMessage( "AGENDA", ""),  AV30AddressGroup) ;
                new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "AgendaNotification",  "AgendaEvents",  "",  "",  context.GetMessage( "New Agenda Created", ""),  AV24EventDescription,  AV24EventDescription,  formatLink("wp_calendaragenda.aspx") ,  "",  "",  true) ;
             }
             else if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
             {
-               new prc_sendagendanotification(context ).execute(  context.GetMessage( "Calendar Event Updated", ""),  AV24EventDescription,  AV30AddressGroup) ;
+               new prc_sendresidentnotification(context ).execute(  context.GetMessage( "Calendar Event Updated", ""),  AV24EventDescription,  context.GetMessage( "AGENDA", ""),  AV30AddressGroup) ;
                new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "AgendaNotification",  "AgendaEvents",  "",  "",  context.GetMessage( "Agenda Event Updated", ""),  AV24EventDescription,  AV24EventDescription,  formatLink("wp_calendaragenda.aspx") ,  "",  "",  true) ;
             }
          }

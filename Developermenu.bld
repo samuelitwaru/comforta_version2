@@ -1,3 +1,5 @@
+trn_residentnotification
+trn_appnotification
 trn_gamsession
 trn_agendaeventgroup
 trn_preferredgensupplier
@@ -43,6 +45,8 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wp_residentfilledforms
+wp_residentfilledforms
 wp_changeyourpassword
 wp_usernotificationsboard
 gamconfiguration

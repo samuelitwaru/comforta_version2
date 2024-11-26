@@ -1,6 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CallableObject guid="2b86421c-3f5a-46c4-b38f-61bbb4661024" name="DP_GetUserNotifications" description="DP_Get User Notifications" namespace="GeneXus.Programs">
-  <Signature name="parm">
+  <Signature name="Par">
+    <Parameter name="type">
+      <Field>
+        <Properties>
+          <Property>
+            <Name>Type</Name>
+            <Value>Character</Value>
+          </Property>
+          <Property>
+            <Name>Length</Name>
+            <Value>20</Value>
+          </Property>
+        </Properties>
+      </Field>
+    </Parameter>
+    <Parameter name="NotificationDefinitionIdCollection" collection="true">
+      <Field>
+        <Properties>
+          <Property>
+            <Name>Type</Name>
+            <Value>Numeric</Value>
+          </Property>
+          <Property>
+            <Name>Length</Name>
+            <Value>4</Value>
+          </Property>
+        </Properties>
+      </Field>
+    </Parameter>
     <Parameter name="ReturnValue" accessor="out">
       <Field name="WWP_SDTNotificationsData" description="WWP_SDTNotifications Data" collection="true">
         <Fields>

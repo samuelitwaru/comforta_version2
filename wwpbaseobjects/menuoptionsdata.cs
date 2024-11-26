@@ -314,7 +314,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV7id = (short)(AV7id+1);
          Gxm3dvelop_menu_subitems.gxTpr_Id = StringUtil.Str( (decimal)(AV7id), 4, 0);
          Gxm3dvelop_menu_subitems.gxTpr_Tooltip = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("wp_usernotificationsboard.aspx") ;
+         Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("wp_notificationpanel.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
          Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Notifications", "");

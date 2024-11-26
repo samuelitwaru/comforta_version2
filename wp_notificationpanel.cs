@@ -275,6 +275,15 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vRESIDENTIDCOLLECTIONEMPTY", AV12ResidentIdCollectionEmpty);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vRESIDENTIDCOLLECTIONEMPTY", AV12ResidentIdCollectionEmpty);
+         }
+         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTIDCOLLECTIONEMPTY", GetSecureSignedToken( "", AV12ResidentIdCollectionEmpty, context));
          GXKey = Crypto.GetSiteKey( );
       }
 
@@ -283,6 +292,16 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
+         GxWebStd.gx_boolean_hidden_field( context, "vCHECKREQUIREDFIELDSRESULT", AV10CheckRequiredFieldsResult);
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vRESIDENTIDCOLLECTIONEMPTY", AV12ResidentIdCollectionEmpty);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vRESIDENTIDCOLLECTIONEMPTY", AV12ResidentIdCollectionEmpty);
+         }
+         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTIDCOLLECTIONEMPTY", GetSecureSignedToken( "", AV12ResidentIdCollectionEmpty, context));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -698,6 +717,15 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes822( )
       {
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vRESIDENTIDCOLLECTIONEMPTY", AV12ResidentIdCollectionEmpty);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vRESIDENTIDCOLLECTIONEMPTY", AV12ResidentIdCollectionEmpty);
+         }
+         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTIDCOLLECTIONEMPTY", GetSecureSignedToken( "", AV12ResidentIdCollectionEmpty, context));
       }
 
       protected void before_start_formulas( )
@@ -757,10 +785,19 @@ namespace GeneXus.Programs {
       {
          /* 'DoSendNotification' Routine */
          returnInSub = false;
-         GXt_char1 = AV11response;
-         new prc_sendnotification(context ).execute(  AV7Title,  AV8Message, out  GXt_char1) ;
-         AV11response = GXt_char1;
-         GX_msglist.addItem(AV11response);
+         /* Execute user subroutine: 'CHECKREQUIREDFIELDS' */
+         S112 ();
+         if (returnInSub) return;
+         if ( AV10CheckRequiredFieldsResult )
+         {
+            new prc_sendresidentnotification(context ).execute(  AV7Title,  AV8Message,  context.GetMessage( "GENERAL", ""),  AV12ResidentIdCollectionEmpty) ;
+            GX_msglist.addItem(context.GetMessage( "Message sent", ""));
+            AV7Title = "";
+            AssignAttri("", false, "AV7Title", AV7Title);
+            AV8Message = "";
+            AssignAttri("", false, "AV8Message", AV8Message);
+         }
+         /*  Sending Event outputs  */
       }
 
       protected void S112( )
@@ -768,15 +805,18 @@ namespace GeneXus.Programs {
          /* 'CHECKREQUIREDFIELDS' Routine */
          returnInSub = false;
          AV10CheckRequiredFieldsResult = true;
+         AssignAttri("", false, "AV10CheckRequiredFieldsResult", AV10CheckRequiredFieldsResult);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV7Title)) )
          {
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Title", ""), "", "", "", "", "", "", "", ""),  "error",  edtavTitle_Internalname,  "true",  ""));
             AV10CheckRequiredFieldsResult = false;
+            AssignAttri("", false, "AV10CheckRequiredFieldsResult", AV10CheckRequiredFieldsResult);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8Message)) )
          {
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Message", ""), "", "", "", "", "", "", "", ""),  "error",  edtavMessage_Internalname,  "true",  ""));
             AV10CheckRequiredFieldsResult = false;
+            AssignAttri("", false, "AV10CheckRequiredFieldsResult", AV10CheckRequiredFieldsResult);
          }
       }
 
@@ -829,7 +869,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211546649", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112615131144", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -845,7 +885,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_notificationpanel.js", "?202411211546649", false, true);
+         context.AddJavascriptSource("wp_notificationpanel.js", "?2024112615131145", false, true);
          /* End function include_jscripts */
       }
 
@@ -909,8 +949,9 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV9isToAllUsers","fld":"vISTOALLUSERS"}]}""");
-         setEventMetadata("'DOSENDNOTIFICATION'","""{"handler":"E12822","iparms":[{"av":"AV7Title","fld":"vTITLE"},{"av":"AV8Message","fld":"vMESSAGE"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV9isToAllUsers","fld":"vISTOALLUSERS"},{"av":"AV12ResidentIdCollectionEmpty","fld":"vRESIDENTIDCOLLECTIONEMPTY","hsh":true}]}""");
+         setEventMetadata("'DOSENDNOTIFICATION'","""{"handler":"E12822","iparms":[{"av":"AV10CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV7Title","fld":"vTITLE"},{"av":"AV8Message","fld":"vMESSAGE"},{"av":"AV12ResidentIdCollectionEmpty","fld":"vRESIDENTIDCOLLECTIONEMPTY","hsh":true}]""");
+         setEventMetadata("'DOSENDNOTIFICATION'",""","oparms":[{"av":"AV7Title","fld":"vTITLE"},{"av":"AV8Message","fld":"vMESSAGE"},{"av":"AV10CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          return  ;
       }
 
@@ -930,6 +971,7 @@ namespace GeneXus.Programs {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
+         AV12ResidentIdCollectionEmpty = new GxSimpleCollection<Guid>();
          GXKey = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
@@ -944,8 +986,6 @@ namespace GeneXus.Programs {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
-         AV11response = "";
-         GXt_char1 = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -989,24 +1029,23 @@ namespace GeneXus.Programs {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV10CheckRequiredFieldsResult ;
       private bool wbLoad ;
       private bool AV9isToAllUsers ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private bool AV10CheckRequiredFieldsResult ;
       private string AV7Title ;
       private string AV8Message ;
-      private string AV11response ;
       private GXWebForm Form ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXCheckbox chkavIstoallusers ;
+      private GxSimpleCollection<Guid> AV12ResidentIdCollectionEmpty ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

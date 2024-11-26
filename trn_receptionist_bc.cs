@@ -283,7 +283,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.Len( A374ReceptionistPhoneNumber) != 9 )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone must contains 9 digits", ""), 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
       }

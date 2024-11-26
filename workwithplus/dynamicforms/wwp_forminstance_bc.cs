@@ -261,20 +261,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          /* After Trn Routine */
          returnInSub = false;
-         AV17FormInstanceIdString = StringUtil.Trim( StringUtil.Str( (decimal)(A214WWPFormInstanceId), 6, 0));
-         AV18FormLink = formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV19WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(A214WWPFormInstanceId,6,0)),UrlEncode(StringUtil.RTrim("DSP"))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) ;
-         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
-         {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-plus NotificationFontIconSuccess", ""),  context.GetMessage( "New Form Response", ""),  context.GetMessage( "A dynamic form has been filled", ""),  context.GetMessage( "A dynamic form has been filled", ""),  AV18FormLink,  "",  "",  true) ;
-         }
-         else if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
-         {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-pencil-alt NotificationFontIconWarning", ""),  context.GetMessage( "Form Response Updated", ""),  context.GetMessage( "A dynamic form has been updated", ""),  context.GetMessage( "A dynamic form has been updated", ""),  AV18FormLink,  "",  "",  true) ;
-         }
-         else if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
-         {
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "DynamicFormNotification", ""),  context.GetMessage( "DynamicForms", ""),  "",  context.GetMessage( "fas fa-trash-alt NotificationFontIconDanger", ""),  context.GetMessage( "Form Response Deleted", ""),  context.GetMessage( "A dynamic form has been deleted", ""),  context.GetMessage( "A dynamic form has been delete", ""),  AV18FormLink,  "",  "",  true) ;
-         }
       }
 
       protected void ZM0U42( short GX_JID )
@@ -2210,9 +2196,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AV22Pgmname = "";
          AV13TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV16Insert_WWPUserExtendedId = "";
-         AV17FormInstanceIdString = "";
-         AV18FormLink = "";
-         AV19WWPFormReferenceName = "";
          Z239WWPFormInstanceDate = DateTime.MinValue;
          A239WWPFormInstanceDate = DateTime.MinValue;
          Z112WWPUserExtendedId = "";
@@ -2560,7 +2543,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string sMode42 ;
       private string AV22Pgmname ;
       private string AV16Insert_WWPUserExtendedId ;
-      private string AV17FormInstanceIdString ;
       private string Z112WWPUserExtendedId ;
       private string A112WWPUserExtendedId ;
       private string A223WWPFormInstanceElemBlob_Filetype ;
@@ -2595,8 +2577,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string A229WWPFormElementTitle ;
       private string Z236WWPFormElementMetadata ;
       private string A236WWPFormElementMetadata ;
-      private string AV18FormLink ;
-      private string AV19WWPFormReferenceName ;
       private string Z208WWPFormReferenceName ;
       private string A208WWPFormReferenceName ;
       private string Z209WWPFormTitle ;

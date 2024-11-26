@@ -33,7 +33,7 @@
       </div>
    </div>
    <div class="toolbox-container">
-      <div class="main-content">
+      <div id="editors-container" class="main-content frames-list">
          <div class="mobile-frame">
             <div class="header">
                <span id="current-time"></span>
@@ -44,7 +44,7 @@
                </span>
             </div>
             <div id="gjs"></div>
-         </div>
+         </div>		 
       </div>
       <div class="sidebar sidebar-right">
          <div id="tools-section">

@@ -2000,9 +2000,6 @@ namespace GeneXus.Programs {
                   /* Execute user subroutine: 'CLEARFORMVALUES' */
                   S162 ();
                   if (returnInSub) return;
-                  GX_FocusControl = edtavManagergivenname_Internalname;
-                  AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
-                  context.DoAjaxSetFocus(GX_FocusControl);
                }
             }
          }
@@ -2094,7 +2091,6 @@ namespace GeneXus.Programs {
          AV17isOrganisationInserted = AV37Trn_Organisation.Insert();
          if ( AV17isOrganisationInserted )
          {
-            context.CommitDataStores("wp_createorganisationandmanagerstep2",pr_default);
             AV85GXV15 = 1;
             while ( AV85GXV15 <= AV35SDT_Managers.Count )
             {
@@ -2149,15 +2145,12 @@ namespace GeneXus.Programs {
             if ( AV8ErrorMessages.Count > 0 )
             {
                context.RollbackDataStores("wp_createorganisationandmanagerstep2",pr_default);
-               AV37Trn_Organisation.Delete();
-               context.CommitDataStores("wp_createorganisationandmanagerstep2",pr_default);
                /* Execute user subroutine: 'DISPLAYMESSAGES' */
                S172 ();
                if (returnInSub) return;
             }
             else
             {
-               AV40WebSession.Remove(AV41WebSessionKey);
                AV35SDT_Managers.Clear();
                gx_BV71 = true;
                context.CommitDataStores("wp_createorganisationandmanagerstep2",pr_default);
@@ -2384,7 +2377,7 @@ namespace GeneXus.Programs {
             ucCombo_managerphonecode.SetProperty("DropDownOptionsData", AV50ManagerPhoneCode_Data);
             ucCombo_managerphonecode.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_managerphonecode_Internalname, sPrefix+"COMBO_MANAGERPHONECODEContainer");
             context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "<td>") ;
+            context.WriteHtmlText( "<td class='Required'>") ;
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
@@ -2650,7 +2643,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411253414940", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411261513422", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2666,7 +2659,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createorganisationandmanagerstep2.js", "?202411253414945", false, true);
+         context.AddJavascriptSource("wp_createorganisationandmanagerstep2.js", "?202411261513424", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

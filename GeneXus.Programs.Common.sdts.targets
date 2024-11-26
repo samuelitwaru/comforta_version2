@@ -43,6 +43,8 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_RecurringEventType_SDT_RecurringEventTypeItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Resident.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentAddressBook_SDT_ResidentAddressBookItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentNotification.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Row.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Tile.cs" />
