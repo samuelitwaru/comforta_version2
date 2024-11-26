@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241126121430"
+  version: "20241126123937"
 servers:
   - url: https://staging.comforta.yukon.software//rest
 paths:
@@ -2162,6 +2162,25 @@ components:
           type: "string"
         ResidentImage:
           description: "Resident Image"
+          type: "string"
+    SDT_ResidentNotification:
+      properties:
+        NotificationId:
+          description: "Notification Id"
+          type: "string"
+          format: "uuid"
+        NotificationTitle:
+          description: "App Notification Title"
+          type: "string"
+        NotificationDescription:
+          description: "App Notification Description"
+          type: "string"
+        NotificationDate:
+          description: "App Notification Date"
+          type: "string"
+          format: "date-time"
+        NotificationTopic:
+          description: "App Notification Topic"
           type: "string"
     SDT_Row:
       properties:
