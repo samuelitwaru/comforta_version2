@@ -911,7 +911,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112519435649", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411271351917", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -929,7 +929,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?2024112519435650", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?202411271351917", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBox2Render.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -1049,6 +1049,7 @@ namespace GeneXus.Programs {
          A248Trn_ThemeName = "";
          A247Trn_ThemeId = Guid.Empty;
          AV12BC_Trn_Theme = new SdtTrn_Theme(context);
+         H00476_A29LocationId = new Guid[] {Guid.Empty} ;
          H00476_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          H00476_A318Trn_PageName = new string[] {""} ;
          H00476_A437PageChildren = new string[] {""} ;
@@ -1075,7 +1076,7 @@ namespace GeneXus.Programs {
                H00475_A248Trn_ThemeName, H00475_A247Trn_ThemeId
                }
                , new Object[] {
-               H00476_A310Trn_PageId, H00476_A318Trn_PageName, H00476_A437PageChildren, H00476_n437PageChildren
+               H00476_A29LocationId, H00476_A310Trn_PageId, H00476_A318Trn_PageName, H00476_A437PageChildren, H00476_n437PageChildren
                }
             }
          );
@@ -1179,6 +1180,7 @@ namespace GeneXus.Programs {
       private string[] H00475_A248Trn_ThemeName ;
       private Guid[] H00475_A247Trn_ThemeId ;
       private SdtTrn_Theme AV12BC_Trn_Theme ;
+      private Guid[] H00476_A29LocationId ;
       private Guid[] H00476_A310Trn_PageId ;
       private string[] H00476_A318Trn_PageName ;
       private string[] H00476_A437PageChildren ;
@@ -1229,7 +1231,7 @@ namespace GeneXus.Programs {
              ,new CursorDef("H00473", "SELECT OrganisationId, LocationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceImage FROM Trn_ProductService WHERE LocationId = :AV46Udparg1 and OrganisationId = :AV47Udparg2 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("H00474", "SELECT MediaId FROM Trn_Media ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00475", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Not (char_length(trim(trailing ' ' from RTRIM(LTRIM(Trn_ThemeName))))=0) ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00476", "SELECT Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId, Trn_PageName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00476,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("H00476", "SELECT LocationId, Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00476,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -1260,9 +1262,10 @@ namespace GeneXus.Programs {
                 return;
              case 4 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
-                ((bool[]) buf[3])[0] = rslt.wasNull(3);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+                ((bool[]) buf[4])[0] = rslt.wasNull(4);
                 return;
        }
     }

@@ -53,7 +53,7 @@ namespace GeneXus.Programs {
             dyncall( GetNextPar( )) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action28") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action27") == 0 )
          {
             A42SupplierGenId = StringUtil.StrToGuid( GetPar( "SupplierGenId"));
             n42SupplierGenId = false;
@@ -67,10 +67,10 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            XC_28_069( A42SupplierGenId, A11OrganisationId) ;
+            XC_27_069( A42SupplierGenId, A11OrganisationId) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel15"+"_"+"SUPPLIERGENCONTACTPHONE") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel14"+"_"+"SUPPLIERGENCONTACTPHONE") == 0 )
          {
             A381SupplierGenPhoneCode = GetPar( "SupplierGenPhoneCode");
             AssignAttri("", false, "A381SupplierGenPhoneCode", A381SupplierGenPhoneCode);
@@ -82,10 +82,10 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            GX15ASASUPPLIERGENCONTACTPHONE069( A381SupplierGenPhoneCode, A382SupplierGenPhoneNumber) ;
+            GX14ASASUPPLIERGENCONTACTPHONE069( A381SupplierGenPhoneCode, A382SupplierGenPhoneNumber) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_31") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_30") == 0 )
          {
             A282SupplierGenTypeId = StringUtil.StrToGuid( GetPar( "SupplierGenTypeId"));
             AssignAttri("", false, "A282SupplierGenTypeId", A282SupplierGenTypeId.ToString());
@@ -95,10 +95,10 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_31( A282SupplierGenTypeId) ;
+            gxLoad_30( A282SupplierGenTypeId) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_32") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_31") == 0 )
          {
             A11OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
             n11OrganisationId = false;
@@ -109,7 +109,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_32( A11OrganisationId) ;
+            gxLoad_31( A11OrganisationId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -1526,7 +1526,7 @@ namespace GeneXus.Programs {
 
       protected void ZM069( short GX_JID )
       {
-         if ( ( GX_JID == 30 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 29 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1563,7 +1563,7 @@ namespace GeneXus.Programs {
                Z11OrganisationId = A11OrganisationId;
             }
          }
-         if ( GX_JID == -30 )
+         if ( GX_JID == -29 )
          {
             Z42SupplierGenId = A42SupplierGenId;
             Z335SupplierGenAddressCountry = A335SupplierGenAddressCountry;
@@ -1720,7 +1720,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A282SupplierGenTypeId", A282SupplierGenTypeId.ToString());
             A11OrganisationId = T00066_A11OrganisationId[0];
             n11OrganisationId = T00066_n11OrganisationId[0];
-            ZM069( -30) ;
+            ZM069( -29) ;
          }
          pr_default.close(4);
          OnLoadActions069( ) ;
@@ -1831,13 +1831,6 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtSupplierGenPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
-         if ( ! ( GxRegex.IsMatch(A441SupplierGenWebsite,"\\bhttps?://[^\\s/$.?#].[^\\s]*\\b") ) )
-         {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Supplier Gen Website", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "SUPPLIERGENWEBSITE");
-            AnyError = 1;
-            GX_FocusControl = edtSupplierGenWebsite_Internalname;
-            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
-         }
          if ( ! GxRegex.IsMatch(A441SupplierGenWebsite,context.GetMessage( "^(https?:\\/\\/)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})(\\/[^\\s]*)?$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A441SupplierGenWebsite)) )
          {
             GX_msglist.addItem(context.GetMessage( "Invalid website format", ""), 1, "SUPPLIERGENWEBSITE");
@@ -1868,7 +1861,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_31( Guid A282SupplierGenTypeId )
+      protected void gxLoad_30( Guid A282SupplierGenTypeId )
       {
          /* Using cursor T00067 */
          pr_default.execute(5, new Object[] {A282SupplierGenTypeId});
@@ -1893,7 +1886,7 @@ namespace GeneXus.Programs {
          pr_default.close(5);
       }
 
-      protected void gxLoad_32( Guid A11OrganisationId )
+      protected void gxLoad_31( Guid A11OrganisationId )
       {
          /* Using cursor T00068 */
          pr_default.execute(6, new Object[] {n11OrganisationId, A11OrganisationId});
@@ -1938,7 +1931,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n42SupplierGenId, A42SupplierGenId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM069( 30) ;
+            ZM069( 29) ;
             RcdFound9 = 1;
             A42SupplierGenId = T00063_A42SupplierGenId[0];
             n42SupplierGenId = T00063_n42SupplierGenId[0];
@@ -2995,7 +2988,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115401289", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112714172347", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3011,7 +3004,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_suppliergen.js", "?2024112115401291", false, true);
+         context.AddJavascriptSource("trn_suppliergen.js", "?2024112714172349", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3158,7 +3151,7 @@ namespace GeneXus.Programs {
          /* End function dynload_actions */
       }
 
-      protected void GX15ASASUPPLIERGENCONTACTPHONE069( string A381SupplierGenPhoneCode ,
+      protected void GX14ASASUPPLIERGENCONTACTPHONE069( string A381SupplierGenPhoneCode ,
                                                         string A382SupplierGenPhoneNumber )
       {
          GXt_char2 = A48SupplierGenContactPhone;
@@ -3177,7 +3170,7 @@ namespace GeneXus.Programs {
          AddString( "]") ;
       }
 
-      protected void XC_28_069( Guid A42SupplierGenId ,
+      protected void XC_27_069( Guid A42SupplierGenId ,
                                 Guid A11OrganisationId )
       {
          new prc_deletepreferredgensupplierrecord(context ).execute(  A42SupplierGenId,  A11OrganisationId) ;

@@ -110,7 +110,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0C74( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0C74( 24) ;
+                  ZM0C74( 25) ;
                }
                CloseExtendedTableCursors0C74( ) ;
             }
@@ -142,7 +142,7 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV37Pgmname) ;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV38Pgmname) ;
       }
 
       protected void S112( )
@@ -153,7 +153,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0C74( short GX_JID )
       {
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
          {
             Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
             Z92ReceptionistInitials = A92ReceptionistInitials;
@@ -165,10 +165,10 @@ namespace GeneXus.Programs {
             Z374ReceptionistPhoneNumber = A374ReceptionistPhoneNumber;
             Z398ReceptionistIsActive = A398ReceptionistIsActive;
          }
-         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 25 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -23 )
+         if ( GX_JID == -24 )
          {
             Z89ReceptionistId = A89ReceptionistId;
             Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
@@ -189,7 +189,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV37Pgmname = "Trn_Receptionist_BC";
+         AV38Pgmname = "Trn_Receptionist_BC";
       }
 
       protected void standaloneModal( )
@@ -224,7 +224,7 @@ namespace GeneXus.Programs {
             A398ReceptionistIsActive = BC000C5_A398ReceptionistIsActive[0];
             A40000ReceptionistImage_GXI = BC000C5_A40000ReceptionistImage_GXI[0];
             A459ReceptionistImage = BC000C5_A459ReceptionistImage[0];
-            ZM0C74( -23) ;
+            ZM0C74( -24) ;
          }
          pr_default.close(3);
          OnLoadActions0C74( ) ;
@@ -235,6 +235,9 @@ namespace GeneXus.Programs {
          GXt_char2 = A94ReceptionistPhone;
          new prc_concatenateintlphone(context ).execute(  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber, out  GXt_char2) ;
          A94ReceptionistPhone = GXt_char2;
+         GXt_boolean3 = AV37IsGAMActive;
+         new prc_checkgamuseractivationstatus(context ).execute(  A95ReceptionistGAMGUID, out  GXt_boolean3) ;
+         AV37IsGAMActive = GXt_boolean3;
       }
 
       protected void CheckExtendedTable0C74( )
@@ -286,6 +289,9 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
+         GXt_boolean3 = AV37IsGAMActive;
+         new prc_checkgamuseractivationstatus(context ).execute(  A95ReceptionistGAMGUID, out  GXt_boolean3) ;
+         AV37IsGAMActive = GXt_boolean3;
       }
 
       protected void CloseExtendedTableCursors0C74( )
@@ -318,7 +324,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A89ReceptionistId, A11OrganisationId, A29LocationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0C74( 23) ;
+            ZM0C74( 24) ;
             RcdFound74 = 1;
             A89ReceptionistId = BC000C3_A89ReceptionistId[0];
             A95ReceptionistGAMGUID = BC000C3_A95ReceptionistGAMGUID[0];
@@ -591,7 +597,13 @@ namespace GeneXus.Programs {
       protected void OnDeleteControls0C74( )
       {
          standaloneModal( ) ;
-         /* No delete mode formulas found. */
+         if ( AnyError == 0 )
+         {
+            /* Delete mode formulas */
+            GXt_boolean3 = AV37IsGAMActive;
+            new prc_checkgamuseractivationstatus(context ).execute(  A95ReceptionistGAMGUID, out  GXt_boolean3) ;
+            AV37IsGAMActive = GXt_boolean3;
+         }
       }
 
       protected void EndLevel0C74( )
@@ -755,6 +767,7 @@ namespace GeneXus.Programs {
          A92ReceptionistInitials = "";
          AV14GAMErrorResponse = "";
          A94ReceptionistPhone = "";
+         AV37IsGAMActive = false;
          A90ReceptionistGivenName = "";
          A91ReceptionistLastName = "";
          A93ReceptionistEmail = "";
@@ -916,7 +929,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -23) ;
+         ZM0C74( -24) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;
@@ -955,7 +968,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -23) ;
+         ZM0C74( -24) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;
@@ -1353,7 +1366,7 @@ namespace GeneXus.Programs {
          AV25TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV28WebSession = context.GetSession();
          AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         AV37Pgmname = "";
+         AV38Pgmname = "";
          Z95ReceptionistGAMGUID = "";
          A95ReceptionistGAMGUID = "";
          Z92ReceptionistInitials = "";
@@ -1488,7 +1501,7 @@ namespace GeneXus.Programs {
          );
          Z89ReceptionistId = Guid.NewGuid( );
          A89ReceptionistId = Guid.NewGuid( );
-         AV37Pgmname = "Trn_Receptionist_BC";
+         AV38Pgmname = "Trn_Receptionist_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1503,7 +1516,7 @@ namespace GeneXus.Programs {
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV37Pgmname ;
+      private string AV38Pgmname ;
       private string Z92ReceptionistInitials ;
       private string A92ReceptionistInitials ;
       private string Z94ReceptionistPhone ;
@@ -1513,7 +1526,9 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool Z398ReceptionistIsActive ;
       private bool A398ReceptionistIsActive ;
+      private bool AV37IsGAMActive ;
       private bool Gx_longc ;
+      private bool GXt_boolean3 ;
       private string AV14GAMErrorResponse ;
       private string Z95ReceptionistGAMGUID ;
       private string A95ReceptionistGAMGUID ;

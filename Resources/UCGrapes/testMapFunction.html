@@ -7,95 +7,55 @@
   </head>
   <body>
     <script>
-      const jsonData = 
-      {"assets":[],"styles":[{"selectors":["#i6u5"],"style":{"display":"flex","width":"100%"}},{"selectors":["#i0ah"],"style":{"flex":"1","padding":"0"}},{"selectors":["#i5yc"],"style":{"width":"100%","height":"100%","object-fit":"cover"}},{"selectors":["#i9dm"],"style":{"display":"flex","width":"100%"}},{"selectors":["#i7bj"],"style":{"flex":"1","padding":"0","height":"auto"}},{"selectors":["#iluzn"],"style":{"margin":"0"}},{"selectors":["#io7i1"],"style":{"background-color":"#4C9155"}},{"selectors":["#iehqo"],"style":{"background-color":"#FF6C37"}}],"pages":[{"frames":[{"component":{"type":"wrapper","droppable":false,"stylable":["background","background-color","background-image","background-repeat","background-attachment","background-position","background-size"],"resizable":{"handles":"e"},"selectable":false,"_undoexc":["status","open"],"components":[{"type":"template-wrapper","draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["frame-container"],"attributes":{"id":"frame-container"},"_undoexc":["status","open"],"components":[{"type":"template-wrapper","draggable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["container-column"],"_undoexc":["status","open"],"components":[{"type":"template-wrapper","droppable":false,"selectable":false,"classes":["container-row"],"_undoexc":["status","open"],"components":[{"type":"template-wrapper","draggable":false,"droppable":false,"selectable":false,"classes":["template-wrapper"],"attributes":{"id":"i6u5"},"_undoexc":["status","open"],"components":[{"draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["template-block"],"attributes":{"id":"i0ah"},"_undoexc":["status","open"],"components":[{"type":"image","draggable":false,"droppable":false,"highlightable":false,"resizable":{"ratioDefault":1},"editable":false,"selectable":false,"hoverable":false,"attributes":{"src":"PublicTempStorage/multimedia/8616fb1c-0b22-4aac-b371-bcdd983f1ba5_f68ae864292141f7ad79e91669bb36de.tmp","alt":"Full-width Image","id":"i5yc"},"_undoexc":["status","open"]}]}]}]},{"type":"template-wrapper","droppable":false,"selectable":false,"classes":["container-row"],"_undoexc":["status","open"],"components":[{"type":"template-wrapper","draggable":false,"droppable":false,"selectable":false,"classes":["template-wrapper"],"attributes":{"id":"i9dm"},"_undoexc":["status","open"],"components":[{"draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["template-block"],"attributes":{"id":"i7bj"},"_undoexc":["status","open"],"components":[{"tagName":"p","type":"text","draggable":false,"highlightable":false,"editable":false,"selectable":false,"hoverable":false,"attributes":{"id":"iluzn"},"_undoexc":["status","open"],"components":[{"type":"textnode","content":"\n                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. \n                ","_undoexc":["status","open"]}]}]}]}]},{"draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["cta-button-container"],"_undoexc":["status","open"],"components":[{"draggable":false,"droppable":false,"highlightable":false,"hoverable":false,"classes":["cta-container-child","cta-child"],"attributes":{"cta-button-label":"Call Us","cta-button-type":"Phone","cta-button-action":"+256742434003","cta-background-color":"#4C9155"},"_undoexc":["status","open"],"components":[{"draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["cta-button"],"attributes":{"id":"io7i1"},"_undoexc":["status","open"],"components":[{"tagName":"i","draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["fas","fa-phone-alt"],"_undoexc":["status","open"]},{"draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["cta-badge"],"_undoexc":["status","open"],"components":[{"tagName":"i","draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["fa","fa-minus"],"_undoexc":["status","open"]}]}]},{"type":"text","draggable":false,"highlightable":false,"editable":false,"selectable":false,"hoverable":false,"classes":["cta-label"],"_undoexc":["status","open"],"components":[{"type":"textnode","content":"Call Us","_undoexc":["status","open"]}]}]},{"draggable":false,"droppable":false,"highlightable":false,"hoverable":false,"classes":["cta-container-child","cta-child"],"attributes":{"cta-button-label":"Mail Us","cta-button-type":"Email","cta-button-action":"johndoe@gmail.com","cta-background-color":"#FF6C37"},"_undoexc":["status","open"],"components":[{"draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["cta-button"],"attributes":{"id":"iehqo"},"_undoexc":["status","open"],"components":[{"tagName":"i","draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["fas","fa-envelope"],"_undoexc":["status","open"]},{"draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["cta-badge"],"_undoexc":["status","open"],"components":[{"tagName":"i","draggable":false,"droppable":false,"highlightable":false,"selectable":false,"hoverable":false,"classes":["fa","fa-minus"],"_undoexc":["status","open"]}]}]},{"type":"text","draggable":false,"highlightable":false,"editable":false,"selectable":false,"hoverable":false,"classes":["cta-label"],"_undoexc":["status","open"],"components":[{"type":"textnode","content":"Mail Us","_undoexc":["status","open"]}]}]}]}]}]}]}}],"type":"main","id":"3p1e5oHpfayR50zW"}]}
-      
-      const output = mapJsonToOutput(jsonData);
-      console.log(output);
+      const editors = [
+        {
+          id: "id-d6c1e914-8576-423f-ab1b-00dee604fd52",
+          containerId: "container-id-d6c1e914-8576-423f-ab1b-00dee604fd52",
+          pageId: "d6c1e914-8576-423f-ab1b-00dee604fd52",
+          parentId: "3570c45f-465b-4b68-af2a-fb13f9d8e261",
+        },
+        {
+          id: "id-92ae363a-3d81-4930-aa49-e85f3a8ca526",
+          containerId: "container-id-92ae363a-3d81-4930-aa49-e85f3a8ca526",
+          pageId: "92ae363a-3d81-4930-aa49-e85f3a8ca526",
+          parentId: "d6c1e914-8576-423f-ab1b-00dee604fd52",
+        },
+        {
+          id: "id-06477de4-d199-47de-80ab-0a9fcecf1a90",
+          containerId: "container-id-06477de4-d199-47de-80ab-0a9fcecf1a90",
+          pageId: "06477de4-d199-47de-80ab-0a9fcecf1a90",
+          parentId: "92ae363a-3d81-4930-aa49-e85f3a8ca526",
+        },
+        {
+          id: "id-cfffb54e-6e23-4a6c-bbd9-7bdb8477819a",
+          containerId: "container-id-cfffb54e-6e23-4a6c-bbd9-7bdb8477819a",
+          pageId: "cfffb54e-6e23-4a6c-bbd9-7bdb8477819a",
+          parentId: "06477de4-d199-47de-80ab-0a9fcecf1a90",
+        },
+        {
+          id: "id-59d5d88a-c450-4a40-830a-a3d400ed3e13",
+          containerId: "container-id-59d5d88a-c450-4a40-830a-a3d400ed3e13",
+          pageId: "59d5d88a-c450-4a40-830a-a3d400ed3e13",
+          parentId: "cfffb54e-6e23-4a6c-bbd9-7bdb8477819a",
+        },
+      ];
 
-      function mapJsonToOutput(json) {
-        const page = json.pages[0];
-        const components =
-          page.frames[0].component.components[0].components[0].components;
-
-        const output = {
-          PageId: page.id || "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          PageName: "string",
-          Content: [],
-          Cta: [],
-        };
-
-        // Find image and text content
-        components.forEach((component) => {
-          // Image content
-          const imageComponent =
-            component.components?.[0]?.components?.[0]?.components?.[0];
-          if (imageComponent?.type === "image") {
-            output.Content.push({
-              ContentType: "Image",
-              ContentValue: imageComponent?.attributes.src,
-            });
-          }
-
-          // Text content
-          const textComponent =
-            component.components?.[0]?.components?.[0]?.components?.[0];
-          if (textComponent?.tagName === "p") {
-            const textContent = textComponent.components?.[0]?.content?.trim();
-            if (textContent) {
-              output.Content.push({
-                ContentType: "Description",
-                ContentValue: textContent,
-              });
-            }
-          }
-
-          // CTA buttons
-          if (component.classes?.includes("cta-button-container")) {
-            const ctaChildren = component.components;
-            
-            ctaChildren.forEach((ctaChild) => {
-            const attributes = ctaChild.attributes || {};
-              if (ctaChild.classes?.includes("cta-container-child")) {
-                output.Cta.push({
-                    CtaType: attributes["cta-button-type"],
-                    CtaLabel: attributes["cta-button-label"] || "Email Us",
-                    CtaAction: attributes["cta-button-action"],
-                    CtaBGColor: attributes["cta-background-color"] || "#EEA622",
-                });
-              }
-            });
-          }
-
-          // Website CTA
-          const websiteButton =
-            component.components?.[0]?.components?.[0]?.components?.[0];
-            const websiteAttributes = websiteButton.attributes || {};
-          if (websiteButton?.classes?.includes("cta-url-button")) {
-            output.Cta.push({
-                CtaType: websiteAttributes["cta-button-type"],
-                CtaLabel: websiteAttributes["cta-button-label"] || "Email Us",
-                CtaAction: websiteAttributes["cta-button-action"],
-                CtaBGColor: websiteAttributes["cta-background-color"] || "#EEA622",
-            });
-          }
-
-          // Form CTA
-          const formButton =
-            component.components?.[0]?.components?.[0]?.components?.[0];
-            const formAttributes = websiteButton.attributes || {};
-          if (websiteButton?.classes?.includes("cta-form-button")) {
-            output.Cta.push({
-                CtaType: formAttributes["cta-button-type"],
-                CtaLabel: formAttributes["cta-button-label"] || "Fill Form",
-                CtaAction: formAttributes["cta-button-action"],
-                CtaBGColor: formAttributes["cta-background-color"] || "#EEA622",
-            });
-          }
-        });
-
-        return output;
+      function listItemsAfterParentId(editorsArray, parentId) {
+        // Find the index of the first item with the specified parentId
+        const startIndex = editorsArray.findIndex(item => item.parentId === parentId);
+    
+        if (startIndex === -1) {
+            console.warn(`No item found with parentId: ${parentId}`);
+            return [];
+        }
+    
+        // Skip the item with the specified parentId and return the items starting from the next one
+        return editorsArray.slice(startIndex + 1);
       }
+    
+      // Usage example:
+      const result = listItemsAfterParentId(editors, 'd6c1e914-8576-423f-ab1b-00dee604fd52');
+      console.log(result);
     </script>
   </body>
 </html>

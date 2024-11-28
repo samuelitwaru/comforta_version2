@@ -1,22 +1,12 @@
 var globalEditor = null;
 
 class EditorManager {
-  // muti editors
-  editors = []
-
-  childEditors = []
-  childPageIds = []
-
-  currentEditorIndex = 1
-  editorsContainer = document.getElementById('editors-container')
-
-  editors = {}
-
   constructor(editor, currentLanguage) {
     globalEditor = editor;
     this.editor = editor;
     this.selectedTemplateWrapper = null;
     this.selectedComponent = null;
+    this.wrapperClickHandler = null;
     this.templateComponent = null;
     this.isResizing = false;
     this.currentResizer = null;
@@ -27,14 +17,8 @@ class EditorManager {
     this.pageName = "Home";
     this.toolsSection = null;
     this.dataManager = null;
-    this.editors['Home'] = editor
-    let homePageFrame =  document.getElementById('homePageFrame')
-    homePageFrame.addEventListener('click', (event)=>{
-      this.toolsSection.editorManager.editor = this.editors[0]
-      this.editor = this.editors['Home']
-      console.log(this.editor)
-      alert(event)
-    })
+    this.newEditor = null;
+    //this.editors = []
   }
 
   setToolsSection(toolBox) {
@@ -45,66 +29,20 @@ class EditorManager {
     this.dataManager = dataManager;
   }
 
-  renderChildEditors(){
-    // remove all child editors
-    while (this.editorsContainer.children.length > 1) {
-      this.editorsContainer.removeChild(this.editorsContainer.children[1]);
+  setGlobalEditor(editorInstance) {
+    if (editorInstance) {
+      globalEditor = editorInstance;
     }
-    //this.editors = this.editors.slice(1, this.editors.length)
-
-    for (let index = 0; index < this.childPageIds.length; index++) {
-      const PageId = this.childPageIds[index];
-      let frameHTML = `
-          <div class="header">
-              <span id="current-time"></span>
-              <span class="icons">
-              <i class="fas fa-signal"></i>
-              <i class="fas fa-wifi"></i>
-              <i class="fas fa-battery"></i>
-              </span>
-          </div>
-          <div id="gjs-${index}">${PageId}</div>
-      `
-      let div = document.createElement('div')
-      div.classList.add('mobile-frame')
-      div.id = PageId
-      div.innerHTML = frameHTML
-      
-      div.addEventListener('click', ()=>{
-        console.log('mouse over '+index)
-        console.log(this.editors)
-        this.toolsSection.editorManager.editor = this.editors[PageId]
-        this.editor = this.editors[PageId]
-        console.log(this.editor)
-      })
-      
-      this.editorsContainer.appendChild(div)
-
-
-
-      // create editor
-      let editor = initEditor(index)
-      let page = this.dataManager.pages.find(page=>page.PageId==PageId)
-      if(page){
-        editor.loadProjectData(JSON.parse(page.PageGJSJson))
-        this.editors[PageId] = editor
-      }
-      console.log(this.editors)
-    }
-
   }
 
   init() {
     this.editor.on("load", () => {
-      
       this.toolsSection.resetPropertySection();
 
-      // Define wrapper event handler setup as a separate function
-      const setupWrapperEvents = () => {
-        const wrapper = this.editor.getWrapper();
+      const setupWrapperEvents = (editorInstance) => {
+        const wrapper = editorInstance.getWrapper();
         if (!wrapper || !wrapper.view || !wrapper.view.el) return;
 
-        // Remove existing event listener if it exists
         if (this.wrapperClickHandler) {
           wrapper.view.el.removeEventListener(
             "click",
@@ -112,7 +50,6 @@ class EditorManager {
           );
         }
 
-        // Define the event handler
         this.wrapperClickHandler = (e) => {
           const button = e.target.closest(".action-button");
           if (!button) return;
@@ -120,7 +57,7 @@ class EditorManager {
           const templateWrapper = button.closest(".template-wrapper");
           if (!templateWrapper) return;
 
-          this.templateComponent = this.editor.Components.getById(
+          this.templateComponent = editorInstance.Components.getById(
             templateWrapper.id
           );
           if (!this.templateComponent) return;
@@ -134,106 +71,99 @@ class EditorManager {
           }
         };
 
-        // Add the click event listener
         wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
+        wrapper.view.el.addEventListener("contextmenu", (e) =>
+          this.rightClickEventHandler(e)
+        );
 
-        // Set wrapper properties
         wrapper.set({
           selectable: false,
           droppable: false,
-          resizable: {
-            handles: "e",
-          },
+          resizable: { handles: "e" },
         });
       };
 
-      // Fetch page data directly
+      const handlePageData = (pageData) => {
+        if (pageData && pageData.PageGJSJson) {
+          let parsedData;
+          try {
+            parsedData = JSON.parse(pageData.PageGJSJson);
+            if (!parsedData.pages) {
+              parsedData = {
+                pages: [
+                  {
+                    component: parsedData,
+                    frames: [{ component: parsedData }],
+                  },
+                ],
+              };
+            }
+
+            if (pageData.PageIsContentPage) {
+              this.dataManager
+                .getContentPageData(this.getCurrentPageId())
+                .then((contentPageData) => {
+                  if (contentPageData) {
+                    this.toolsSection.pageContentCtas(
+                      contentPageData.CallToActions
+                    );
+                  }
+                })
+                .catch((error) =>
+                  console.error("Error fetching content page data:", error)
+                );
+
+              this.toolsSection.updatePropertySection();
+            }
+
+            this.editor.loadProjectData(parsedData);
+
+            this.editor.once("load:components", () => {
+              setupWrapperEvents(this.editor);
+            });
+          } catch (error) {
+            const message = this.currentLanguage.getTranslation(
+              "no_icon_selected_error_message"
+            );
+            this.toolsSection.displayAlertMessage(message, "error");
+          }
+        } else if (pageData && pageData.PageIsContentPage) {
+          this.dataManager
+            .getContentPageData(this.getCurrentPageId())
+            .then((contentPageData) => {
+              if (contentPageData) {
+                this.initialContentPageTemplate(contentPageData);
+                this.toolsSection.pageContentCtas(
+                  contentPageData.CallToActions
+                );
+              }
+            })
+            .catch((error) =>
+              console.error("Error fetching content page data:", error)
+            );
+          this.toolsSection.updatePropertySection();
+        } else {
+          this.initialTemplate();
+        }
+      };
+
       this.dataManager
         .getSinglePage(this.getCurrentPageId())
         .then((pageData) => {
-          console.log("Page Data is: ", pageData);
-          if (pageData && pageData.PageGJSJson) {
-            
-            let parsedData;
-            try {
-              parsedData = JSON.parse(pageData.PageGJSJson);
-              if (!parsedData.pages) {
-                parsedData = {
-                  pages: [
-                    {
-                      component: parsedData,
-                      frames: [
-                        {
-                          component: parsedData,
-                        },
-                      ],
-                    },
-                  ],
-                };
-              }
-
-              if (pageData.PageIsContentPage) {
-                this.dataManager
-                  .getContentPageData(this.getCurrentPageId())
-                  .then((contentPageData) => {
-                    if (contentPageData) {
-                      this.toolsSection.pageContentCtas(
-                        contentPageData.CallToActions
-                      );
-                    }
-                  })
-                  .catch((error) => {
-                    console.error("Error fetching content page data:", error);
-                  });
-                this.toolsSection.updatePropertySection();
-              }
-
-              // Load project data and setup events after loading
-              console.log('parsedData', parsedData)
-              this.editor.loadProjectData(parsedData);
-
-              // Setup wrapper events after project data is loaded
-              this.editor.once("load:components", () => {
-                setupWrapperEvents();
-              });
-            } catch (error) {
-              const message = this.currentLanguage.getTranslation(
-                "no_icon_selected_error_message"
-              );
-              const status = "error";
-              this.toolsSection.displayAlertMessage(message, status);
-            }
-          } else if (pageData && pageData.PageIsContentPage) {
-            this.dataManager
-              .getContentPageData(this.getCurrentPageId())
-              .then((contentPageData) => {
-                if (contentPageData) {
-                  this.initialContentPageTemplate(contentPageData);
-                  this.toolsSection.pageContentCtas(
-                    contentPageData.CallToActions
-                  );
-                }
-              })
-              .catch((error) => {
-                console.error("Error fetching content page data:", error);
-              });
-            this.toolsSection.updatePropertySection();
-          } else {
-            this.initialTemplate();
-          }
-
-          // Setup wrapper events after all operations
-          setupWrapperEvents();
+          handlePageData(pageData);
+          setupWrapperEvents(this.editor);
           this.rightClickEventHandler();
         })
-        .catch((error) => {
-          console.error("Error fetching page data:", error);
-        });
+        .catch((error) => console.error("Error fetching page data:", error));
     });
 
     this.editor.on("component:selected", (component) => {
+      this.toolsSection.resetPropertySection();
+      this.setGlobalEditor(this.editor);
       this.selectedTemplateWrapper = component.getEl();
+
       this.selectedComponent = component;
+
       const sidebarInputTitle = document.getElementById("tile-title");
       if (this.selectedTemplateWrapper) {
         const tileLabel =
@@ -242,104 +172,375 @@ class EditorManager {
           sidebarInputTitle.value = tileLabel.textContent;
         }
 
-        // remove tile icon
-        const closeIconSection = this.editor
-          .getSelected()
-          .find(".selected-tile-icon")[0];
-        if (closeIconSection) {
-          const closeIconEl = closeIconSection.getEl();
+        this.removeElementOnClick(".selected-tile-icon", ".tile-icon-section");
+        this.removeElementOnClick(
+          ".selected-tile-title",
+          ".tile-title-section"
+        );
 
-          if (closeIconEl) {
-            closeIconEl.onclick = () => {
-              this.editor.getSelected().find(".tile-icon-section")[0].remove();
-            };
-          } else {
-            console.warn("DOM element not found for selected-tile-icon");
-          }
-        }
+        this.updateUIState();
+        this.activateFrame(`#default-container`);
 
-        // remove tile title
-        const closeTitleSection = this.editor
-          .getSelected()
-          .find(".selected-tile-title")[0];
-        if (closeTitleSection) {
-          const closeTitleEl = closeTitleSection.getEl();
+        // clear existing frames first
+        this.clearEditors();
+        this.setGlobalEditor(this.editor);
 
-          if (closeTitleEl) {
-            closeTitleEl.onclick = () => {
-              this.editor.getSelected().find(".tile-title-section")[0].remove();
-            };
-          } else {
-            console.warn("DOM element not found for selected-tile-icon");
-          }
-        }
-
-        document.querySelector(`#templates-button`).classList.remove("active");
-        document.querySelector(`#pages-button`).classList.remove("active");
-        document.querySelector(`#pages-button`).classList.add("active");
-        document.querySelector(`#mapping-section`).style.display = "none";
-        document.querySelector(`#tools-section`).style.display = "block";
-
-        document
-          .querySelector(`#templates-content`)
-          .classList.remove("active-tab");
-        document.querySelector(`#pages-content`).classList.add("active-tab");
+        this.handlePageSelection();
       }
 
-      this.toolsSection.updateTileProperties(this.editor);
-      // hide context menu if any
-      const contextMenu = document.getElementById("contextMenu");
-
-      if (contextMenu) {
-        contextMenu.style.display = "none";
-      }
-
-      let nextPageId = component.attributes.attributes["tile-action-object-id"]
-      this.childPageIds = []
-      this.childPageIds.push(nextPageId)
-      if (nextPageId) {
-        console.log(this.childPageIds)
-        this.renderChildEditors()
-      }
+      this.toolsSection.updateTileProperties(
+        globalEditor,
+        this.getCurrentPageId()
+      );
+      this.hideContextMenu();
     });
 
-    // Listen for component drag start and change the cursor
-    this.editor.on("component:drag:start", (component) => {
-      const iframe = document.querySelector("#gjs iframe");
-      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-      iframeDoc.body.style.cursor = "grabbing";
-    });
-
-    // Listen for component drag end and reset the cursor
-    this.editor.on("component:drag:end", (component) => {
-      const iframe = document.querySelector("#gjs iframe");
-      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-      iframeDoc.body.style.cursor = "";
-    });
+    this.addDragEventListeners();
 
     const sidebarInputTitle = document.getElementById("tile-title");
-
     sidebarInputTitle.addEventListener("input", (e) => {
       this.updateTileTitle(e.target.value);
     });
 
     const frameEl = this.editor.Canvas.getFrameEl();
-    frameEl.contentDocument.addEventListener("mousedown", this.initResize);
-    frameEl.contentDocument.addEventListener("mousemove", this.resize);
-    frameEl.contentDocument.addEventListener("mouseup", this.stopResize);
+    if (frameEl && frameEl.contentDocument) {
+      frameEl.contentDocument.addEventListener("mousedown", this.initResize);
+      frameEl.contentDocument.addEventListener("mousemove", this.resize);
+      frameEl.contentDocument.addEventListener("mouseup", this.stopResize);
+    }
 
-    //auto save page every 2 seconds
+    // run save every 1 minute
     // setInterval(() => {
-    //   this.saveCurrentPage();
-    // }, 2000);
+    //   this.saveAllPages();
+    // }, 60000);
+  }
+
+  removeElementOnClick(targetSelector, sectionSelector) {
+    const closeSection = globalEditor.getSelected()?.find(targetSelector)[0];
+    if (closeSection) {
+      const closeEl = closeSection.getEl();
+      if (closeEl) {
+        closeEl.onclick = () => {
+          globalEditor.getSelected().find(sectionSelector)[0].remove();
+        };
+      }
+    }
+  }
+
+  updateUIState() {
+    document.querySelector("#templates-button").classList.remove("active");
+    document.querySelector("#pages-button").classList.remove("active");
+    document.querySelector("#pages-button").classList.add("active");
+    document.querySelector("#mapping-section").style.display = "none";
+    document.querySelector("#tools-section").style.display = "block";
+  }
+
+  activateFrame(activeFrameClass) {
+    console.log("Class is: ", activeFrameClass);
+
+    const activeFrame = document.querySelector(activeFrameClass);
+
+    // Deactivate any other frames matching the inactiveFrameClass
+    const inactiveFrames = document.querySelectorAll(".active-editor");
+    inactiveFrames.forEach((frame) => {
+      if (frame !== activeFrame) {
+        console.log("Deactivating frame:", frame);
+        frame.classList.remove("active-editor");
+      }
+    });
+
+    // Activate the correct frame
+    activeFrame.classList.add("active-editor");
+    console.log("Activated frame:", activeFrame);
+  }
+
+  handlePageSelection() {
+    const selectedTile = globalEditor.getSelected()?.getAttributes()?.[
+      "tile-action-object-id"
+    ];
+    const previousEditorId = localStorage.getItem("createdEditor");
+    const page = this.dataManager.pages.find(
+      (page) => page.PageId === selectedTile
+    );
+
+    if (page) {
+      if (previousEditorId && previousEditorId !== page.PageId) {
+        try {
+          this.removeEditor(previousEditorId);
+        } catch (error) {
+          console.warn(
+            `Could not remove previous editor ${previousEditorId}:`,
+            error
+          );
+        }
+      }
+      const parentId = this.getCurrentPageId();
+      this.createEditor(page, parentId);
+      this.handleNewEditor(page, parentId);
+      localStorage.setItem("createdEditor", selectedTile);
+    } else {
+      this.removeEditor(previousEditorId);
+    }
+  }
+
+  hideContextMenu() {
+    const contextMenu = document.getElementById("contextMenu");
+    if (contextMenu) {
+      contextMenu.style.display = "none";
+    }
+  }
+
+  addDragEventListeners() {
+    globalEditor.on("component:drag:start", () => {
+      const iframe = document.querySelector("#gjs iframe");
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      iframeDoc.body.style.cursor = "grabbing";
+    });
+
+    globalEditor.on("component:drag:end", () => {
+      const iframe = document.querySelector("#gjs iframe");
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      iframeDoc.body.style.cursor = "";
+    });
+  }
+
+  handleNewEditor(page, parentId) {
+    this.newEditor.once("load", () => {
+      this.toolsSection.resetPropertySection();
+      this.backButtonAction(page.PageId);
+
+      const setupWrapperEvents = (editorInstance) => {
+        const wrapper = editorInstance.getWrapper();
+        if (!wrapper || !wrapper.view || !wrapper.view.el) {
+          console.error("Wrapper not properly initialized");
+          return;
+        }
+
+        if (this.wrapperClickHandler) {
+          wrapper.view.el.removeEventListener(
+            "click",
+            this.wrapperClickHandler
+          );
+        }
+
+        this.wrapperClickHandler = (e) => {
+          const button = e.target.closest(".action-button");
+          if (!button) return;
+
+          const templateWrapper = button.closest(".template-wrapper");
+          if (!templateWrapper) return;
+
+          this.templateComponent = editorInstance.Components.getById(
+            templateWrapper.id
+          );
+          if (!this.templateComponent) return;
+
+          if (button.classList.contains("delete-button")) {
+            this.deleteTemplate(this.templateComponent);
+          } else if (button.classList.contains("add-button-bottom")) {
+            this.addTemplateBottom(this.templateComponent);
+          } else if (button.classList.contains("add-button-right")) {
+            this.addTemplateRight(this.templateComponent);
+          }
+        };
+
+        wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
+        wrapper.view.el.addEventListener("contextmenu", (e) =>
+          this.rightClickEventHandler(e)
+        );
+
+        wrapper.set({
+          selectable: false,
+          droppable: false,
+          resizable: { handles: "e" },
+        });
+      };
+
+      setupWrapperEvents(this.newEditor);
+
+      const canvas = this.newEditor.Canvas;
+      const frame = canvas.getFrameEl();
+      const frameDoc = frame.contentDocument || frame.contentWindow.document;
+      if (frameDoc && frameDoc.body) {
+        frameDoc.addEventListener(
+          "click",
+          () => {
+            this.activateFrame(`.frame-${page.PageId}`);
+          },
+          true
+        );
+      }
+      
+      // Ensure the frame's body exists before attaching the event
+      if (page.PageIsContentPage) {
+        if (frameDoc && frameDoc.body) {
+          frameDoc.addEventListener(
+            "click",
+            () => {
+              this.activateFrame(`.frame-${page.PageId}`);
+              this.dataManager
+                .getContentPageData(page.PageId)
+                .then((contentData) => {
+                  console.log("Content Data: ", contentData);
+                  this.toolsSection.pageContentCtas(contentData.CallToActions);
+                  this.toolsSection.updatePropertySection();
+                })
+                .catch((error) =>
+                  console.error("Failed to load page content:", error.message)
+                );
+            },
+            true
+          );
+          this.setGlobalEditor(this.newEditor);
+        }
+      }
+    });
+
+    this.newEditor.on("component:selected", (component) => {
+      this.activateFrame(`.frame-${page.PageId}`);
+      this.setGlobalEditor(this.newEditor);
+
+      this.selectedTemplateWrapper = component.getEl();
+
+      this.selectedComponent = component;
+
+      const selectedTileId = component.getAttributes()["tile-action-object-id"];
+
+      if (page.PageIsContentPage) {
+        return;
+      } else {
+        parentId = page.PageId;
+        // Handle non-content page: Check and replace editor
+        if (
+          this.activePageId &&
+          selectedTileId === this.activePageId &&
+          this.activeEditor
+        ) {
+          console.log("Editor for this page is already active.");
+          return;
+        }
+        // Replace editor if a new page is selected
+        this.replaceEditor(selectedTileId, parentId);
+      }
+      this.toolsSection.updateTileProperties(globalEditor, page);
+    });
+  }
+
+  replaceEditor(pageId, parentId) {
+
+    const existingEditorIndex = this.editors.findIndex(
+      (editorObj) => editorObj.pageId === pageId
+    );
+
+    if (existingEditorIndex !== -1) {
+      const existingEditor = this.editors[existingEditorIndex];
+      this.setGlobalEditor(existingEditor.editor);
+      this.activeEditor = existingEditor.editor;
+      this.activePageId = pageId;
+      this.activateFrame(`.frame-${pageId}`);
+      return;
+    }
+
+    // Find the page details
+    const page = this.dataManager.pages.find((p) => p.PageId === pageId);
+
+    if (!page) {
+      return;
+    }
+
+    // Check if the current active editor has the same parent ID as the incoming editor
+    const currentEditor = this.editors.find(
+      (editorObj) => editorObj.pageId === this.activePageId
+    );
+
+    if (currentEditor && currentEditor.parentId === parentId) {
+      this.removeEditor(this.activePageId);
+    } else {
+      console.log(
+        `Outgoing and incoming editors have different parent IDs. Keeping existing editors.`
+      );
+    }
+
+    this.clearDescendants(parentId);
+    // Create and activate the new editor
+    this.activeEditor = this.createEditor(page, parentId);
+    this.activePageId = pageId;
+
+    // Handle events for the new editor
+    this.handleNewEditor(page);
+
+    // Activate navigators
+    this.activateNavigators();
+  }
+
+  clearDescendants(parentId) {
+    const getDescendants =(parentId) => {
+      // Find the index of the first item with the specified parentId
+      const startIndex = this.editors.findIndex(item => item.parentId === parentId);
+  
+      if (startIndex === -1) {
+          console.warn(`No item found with parentId: ${parentId}`);
+          return [];
+      }
+  
+      // Skip the item with the specified parentId and return the items starting from the next one
+      return this.editors.slice(startIndex);
+    }
+
+    const descendants = getDescendants(parentId);
+    
+    descendants.forEach((editorObj) => {
+      this.removeEditor(editorObj.pageId);
+    });
+
+  }
+
+  clearEditors() {
+    if (!this.editors || this.editors.length === 0) {
+      return;
+    }
+
+    this.editors.forEach((editorObj) => {
+      // Destroy the editor instance if it exists
+      if (editorObj.editor && typeof editorObj.editor.destroy === "function") {
+        editorObj.editor.destroy();
+      }
+
+      // Remove the editor container from the DOM
+      const container = document.getElementById(editorObj.containerId);
+      if (container) {
+        container.remove();
+      }
+    });
+
+    // Reset the editors array and active editor references
+    this.editors = [];
+    this.activeEditor = null;
+    this.activePageId = null;
+    globalEditor = null;
+  }
+
+  activateNavigators() {
+    const leftNavigator = document.querySelector(".page-navigator-left");
+    const rightNavigator = document.querySelector(".page-navigator-right");
+
+    if (leftNavigator && rightNavigator) {
+      // Display the navigators
+      leftNavigator.style.display = "block";
+      rightNavigator.style.display = "block";
+
+      // Add event listeners for scrolling
+      const scrollLeftButton = document.getElementById("scroll-left");
+      const scrollRightButton = document.getElementById("scroll-right");
+    }
   }
 
   updateTileTitle(inputTitle) {
     if (this.selectedTemplateWrapper) {
-      const titleComponent = this.editor.getSelected().find(".tile-title")[0];
+      const titleComponent = globalEditor.getSelected().find(".tile-title")[0];
       if (titleComponent) {
         titleComponent.components(inputTitle);
-        this.editor.getSelected().addAttributes({ "tile-title": inputTitle });
+        globalEditor.getSelected().addAttributes({ "tile-title": inputTitle });
       }
     }
   }
@@ -377,7 +578,7 @@ class EditorManager {
   }
 
   addFreshTemplate(template) {
-    this.editor.DomComponents.clear();
+    globalEditor.DomComponents.clear();
     let fullTemplate = "";
 
     template.forEach((columns) => {
@@ -385,7 +586,7 @@ class EditorManager {
       fullTemplate += templateRow;
     });
 
-    this.editor.addComponents(`
+    globalEditor.addComponents(`
         <div class="frame-container"
              id="frame-container"
              data-gjs-type="template-wrapper"
@@ -449,11 +650,10 @@ class EditorManager {
   }
 
   initialContentPageTemplate(contentPageData) {
-    return this.editor.addComponents(`
+    return `
       <div
-        class="frame-container"
+        class="content-frame-container"
         id="frame-container"
-        data-gjs-type="template-wrapper"
         data-gjs-draggable="false"
         data-gjs-selectable="false"
         data-gjs-editable="false"
@@ -463,7 +663,6 @@ class EditorManager {
       >
         <div
           class="container-column"
-          data-gjs-type="template-wrapper"
           data-gjs-draggable="false"
           data-gjs-selectable="false"
           data-gjs-editable="false"
@@ -473,8 +672,7 @@ class EditorManager {
         >
           <div
             class="container-row"
-            data-gjs-type="template-wrapper"
-            data-gjs-draggable="true"
+            data-gjs-draggable="false"
             data-gjs-selectable="false"
             data-gjs-editable="false"
             data-gjs-droppable="false"
@@ -483,7 +681,6 @@ class EditorManager {
           >
             <div
               class="template-wrapper"
-              data-gjs-type="template-wrapper"
               data-gjs-draggable="false"
               data-gjs-selectable="false"
               data-gjs-editable="false"
@@ -493,66 +690,31 @@ class EditorManager {
               style="display: flex; width: 100%"
             >
               <div
-                class="template-block"
                 data-gjs-draggable="false"
                 data-gjs-selectable="false"
                 data-gjs-editable="false"
                 data-gjs-highlightable="false"
-                data-gjs-droppable="false"
+                data-gjs-droppable="true"
                 data-gjs-resizable="false"
                 data-gjs-hoverable="false"
                 style="flex: 1; padding: 0"
               >
                 <img
-                  data-gjs-draggable="false"
+                  class="content-page-block"
+                  data-gjs-draggable="true"
                   data-gjs-selectable="false"
                   data-gjs-editable="false"
                   data-gjs-droppable="false"
                   data-gjs-highlightable="false"
                   data-gjs-hoverable="false"
                   src="${contentPageData.ProductServiceImage}"
-                  style="width: 100%; height: 100%; object-fit: cover"
+                  style="width: 100%; height: 7rem; border-radius: 14px; margin-bottom: 15px"
                   alt="Full-width Image"
                 />
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="container-row"
-            data-gjs-type="template-wrapper"
-            data-gjs-draggable="true"
-            data-gjs-selectable="false"
-            data-gjs-editable="false"
-            data-gjs-droppable="false"
-            data-gjs-highlightable="true"
-            data-gjs-hoverable="true"
-          >
-            <div
-              class="template-wrapper"
-              data-gjs-type="template-wrapper"
-              data-gjs-draggable="false"
-              data-gjs-selectable="false"
-              data-gjs-editable="false"
-              data-gjs-droppable="false"
-              data-gjs-highlightable="true"
-              data-gjs-hoverable="true"
-              style="display: flex; width: 100%"
-            >
-              <div
-                class="template-block"
-                data-gjs-draggable="false"
-                data-gjs-selectable="false"
-                data-gjs-editable="false"
-                data-gjs-highlightable="false"
-                data-gjs-droppable="false"
-                data-gjs-resizable="false"
-                data-gjs-hoverable="false"
-                style="flex: 1; padding: 0; height: auto"
-              >
                 <p
-                  style="margin: 0"
-                  data-gjs-draggable="false"
+                  style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px"
+                  class="content-page-block"
+                  data-gjs-draggable="true"
                   data-gjs-selectable="false"
                   data-gjs-editable="false"
                   data-gjs-droppable="false"
@@ -568,19 +730,21 @@ class EditorManager {
         </div>
       </div>
 
-    `)[0];
+    `;
   }
 
   createTemplateHTML(isDefault = false) {
     return `
-        <div ${defaultTileAttrs} class="template-wrapper ${
-      isDefault ? "default-template" : ""
-    }"
+        <div class="template-wrapper ${
+          isDefault ? "default-template" : ""
+        }"        
+              data-gjs-selectable="false"
               data-gjs-type="template-wrapper"
               data-gjs-droppable="false">
           <div class="template-block"
+              ${defaultTileAttrs} 
              data-gjs-draggable="false"
-             data-gjs-selectable="false"
+             data-gjs-selectable="true"
              data-gjs-editable="false"
              data-gjs-highlightable="false"
              data-gjs-droppable="false"
@@ -765,10 +929,11 @@ class EditorManager {
                   ${defaultTileAttrs}
                   style="flex: 0 0 ${columnWidth}%);"
                   data-gjs-type="template-wrapper"
+                  data-gjs-selectable="false"
                   data-gjs-droppable="false">
                   <div class="template-block"
                     data-gjs-draggable="false"
-                    data-gjs-selectable="false"
+                    data-gjs-selectable="true"
                     data-gjs-editable="false"
                     data-gjs-highlightable="false"
                     data-gjs-droppable="false"
@@ -1048,7 +1213,7 @@ class EditorManager {
   addTemplateRight(templateComponent) {
     const containerRow = templateComponent.parent();
     if (!containerRow || containerRow.components().length >= 3) return;
-    const newComponents = this.editor.addComponents(this.createTemplateHTML());
+    const newComponents = globalEditor.addComponents(this.createTemplateHTML());
     const newTemplate = newComponents[0];
     if (!newTemplate) return;
 
@@ -1072,7 +1237,7 @@ class EditorManager {
 
     if (!containerColumn) return;
 
-    const newRow = this.editor.addComponents(`
+    const newRow = globalEditor.addComponents(`
         <div class="container-row"
             data-gjs-type="template-wrapper"
             data-gjs-draggable="false"
@@ -1112,50 +1277,50 @@ class EditorManager {
     this.updateRightButtons(containerRow);
   }
 
-  saveCurrentPage() {
-    const localStorageKey = `page-${this.getCurrentPageId()}`;
-    try {
-      const data = this.editor.getProjectData();
-      localStorage.setItem(localStorageKey, JSON.stringify(data));
-      let projectData = this.editor.getProjectData();
-      let pageData;
+  saveAllPages() {
+    if (!this.editors || this.editors.length === 0) {
+      console.warn("No editors found to save.");
+      return;
+    }
 
-      
-      // this.dataManager
-      //   .getSinglePage(this.getCurrentPageId())
-      //   .then((page) => {
-      //     console.log("Page Data is: ", page);
-      //     if (page) {
-      //       if (page.PageIsContentPage) {
-      //         pageData = mapContentToPageData(projectData);
-      //       } else {
+    this.editors.forEach((editorObj) => {
+      const { editor, pageId } = editorObj;
 
-      //       }
-      //     }
-      //   });
-      
-      let pageId = this.getCurrentPageId();
+      if (!editor || !pageId) {
+        console.warn("Editor or PageId is missing for an editor entry.");
+        return;
+      }
+
+      let projectData = editor.getProjectData();
+      let htmlData = editor.getHtml();
+      let jsonData;
+
+      const pageIsContent = this.dataManager.pages.find(
+        (page) => page.PageId === pageId
+      );
+
+      if (pageIsContent.PageIsContentPage) {
+        jsonData = mapContentToPageData(projectData);
+        console.log("ProjectData is: ", jsonData);
+      } else {
+        jsonData = mapTemplateToPageData(projectData);
+        console.log("ProjectData is: ", jsonData);
+      }
+
       if (pageId) {
         let data = {
           PageId: pageId,
-          PageJsonContent: JSON.stringify(pageData),
-          PageGJSHtml: this.editor.getHtml(),
+          PageJsonContent: JSON.stringify(jsonData),
+          PageGJSHtml: htmlData,
           PageGJSJson: JSON.stringify(projectData),
-          SDT_Page: pageData,
+          SDT_Page: jsonData,
           PageIsPublished: true,
         };
-
-        this.toolsSection.dataManager.updatePage(data).then((res) => {
-          console.log("Page Save Successfully");
+        this.dataManager.updatePage(data).then((res) => {
+          this.displayAlertMessage("Page Save Successfully", "success");
         });
       }
-    } catch (error) {
-      const message = this.currentLanguage.getTranslation(
-        "failed_to_save_current_page_message"
-      );
-      const status = "error";
-      this.toolsSection.displayAlertMessage(message, status);
-    }
+    });
   }
 
   rightClickEventHandler() {
@@ -1209,7 +1374,7 @@ class EditorManager {
     deleteImage.addEventListener("click", () => {
       const blockToDelete = window.currentBlock;
       if (blockToDelete) {
-        const component = this.editor
+        const component = globalEditor
           .getWrapper()
           .find('[data-gjs-type="default"]')
           .filter((comp) => comp.getEl() === blockToDelete)[0];
@@ -1232,5 +1397,302 @@ class EditorManager {
         hideContextMenu();
       }
     });
+  }
+
+  sanitizeId(id) {
+    return `id-${id.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
+  }
+
+  createEditor(page, parentId) {
+    console.log("Creating editor for page:", page);
+    const editorsContainer = document.getElementById("editors-container");
+    const sanitizedId = this.sanitizeId(page.PageId);
+
+    this.parentId = page.PageId;
+    // Deactivate any currently active editors
+    if (this.editors) {
+      this.editors.forEach((editorObj) => {
+        const container = document.getElementById(editorObj.containerId);
+        if (container) {
+          container.classList.remove("active-editor");
+        }
+      });
+    }
+
+    // Create a container for the editor
+    const editorContainer = document.createElement("div");
+    editorContainer.className = `mobile-frame frame-${page.PageId}`; // Add active-editor class
+    editorContainer.id = `container-${sanitizedId}`;
+
+    // Header
+    const header = document.createElement("div");
+    header.innerHTML = `
+      <div class="header">
+        <span id="current-time"></span>
+        <span class="icons">
+          <i class="fas fa-signal"></i>
+          <i class="fas fa-wifi"></i>
+          <i class="fas fa-battery"></i>
+        </span>
+      </div>`;
+    const appBar = document.createElement("div");
+    appBar.className = "app-bar";
+    appBar.innerHTML = `
+    <button id="content-back-button" class="back-button">
+        <svg class="back-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5"/>
+            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M5 12L12 19M5 12L12 5"/>
+        </svg>
+    </button>
+    <h1 class="title">${page.PageName}</h1>
+    `;
+
+    const editorDiv = document.createElement("div");
+    editorDiv.id = sanitizedId;
+    editorDiv.className = "gjs-container";
+
+    // Append the title and the editor container to the main container
+    editorContainer.appendChild(header);
+    if (page.PageIsContentPage) {
+      editorContainer.appendChild(appBar);
+    }
+    editorContainer.appendChild(editorDiv);
+    editorsContainer.appendChild(editorContainer);
+
+    // Initialize the GrapesJS editor
+    this.newEditor = grapesjs.init({
+      container: `#${sanitizedId}`,
+      fromElement: true,
+      height: "100%",
+      width: "auto",
+      storageManager: {
+        type: "local",
+      },
+      canvas: {
+        styles: [
+          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css",
+          "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
+          "https://fonts.googleapis.com/css2?family=Lora&family=Merriweather&family=Poppins:wetts@400;500&family=Roboto:wght@400;500&display=swap",
+          "/Resources/UCGrapes/new-design/css/toolbox.css",
+        ],
+      },
+      baseCss: " ",
+      dragMode: "normal",
+      panels: { defaults: [] },
+      sidebarManager: false,
+      modal: false,
+      commands: false,
+      hoverable: false,
+      highlightable: false,
+    });
+
+    // Set this new editor as the active editor
+    // this.editor = editor;
+
+    // Load page content
+    if (page.PageGJSJson) {
+      this.pageContent(page.PageId)
+        .then((parsedData) => {
+          this.newEditor.loadProjectData(parsedData);
+          console.log("Project data successfully loaded:", parsedData);
+        })
+        .catch((error) => {
+          console.error("Failed to load page content:", error.message);
+        });
+    } else {
+      // load product/service content
+      this.dataManager
+        .getContentPageData(page.PageId)
+        .then((contentPageData) => {
+          if (contentPageData) {
+            this.newEditor.DomComponents.clear();
+            console.log("Content page data from products");
+            console.log("Page Id is: ", page.PageId);
+            const projectData =
+              this.initialContentPageTemplate(contentPageData);
+            this.newEditor.addComponents(projectData)[0];
+          }
+        })
+        .catch((error) =>
+          console.error("Error fetching content page data:", error)
+        );
+    }
+    // Store editor reference and its associated metadata
+    if (!this.editors) {
+      this.editors = [];
+    }
+
+    // Check if an editor with this pageId already exists and remove it
+    const existingEditorIndex = this.editors.findIndex(
+      (editorObj) => editorObj.pageId === page.PageId
+    );
+
+    if (existingEditorIndex !== -1) {
+      const existingEditor = this.editors[existingEditorIndex];
+
+      // Destroy existing editor
+      if (
+        existingEditor.editor &&
+        typeof existingEditor.editor.destroy === "function"
+      ) {
+        existingEditor.editor.destroy();
+      }
+
+      // Remove container from DOM
+      const existingContainer = document.getElementById(
+        existingEditor.containerId
+      );
+      if (existingContainer) {
+        existingContainer.remove();
+      }
+
+      // Remove from editors array
+      this.editors.splice(existingEditorIndex, 1);
+    }
+
+    // Add new editor to the array
+    this.editors.push({
+      id: sanitizedId,
+      containerId: `container-${sanitizedId}`,
+      editor: this.newEditor,
+      pageId: page.PageId,
+      parentId: parentId,
+    });
+
+    console.log("Editors are ", this.editors);
+    // Scroll to the new editor
+    const container = document.getElementById(`container-${sanitizedId}`);
+    if (container) {
+      container.scrollIntoView({
+        left: 300,
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+
+    if (page.PageIsContentPage) {
+      const canvas = this.newEditor.Canvas.getElement();
+
+      if (canvas) {
+        canvas.style.setProperty("height", "calc(100% - 100px)", "important");
+        console.log("canvas found, ", canvas);
+      }
+    }
+    localStorage.setItem("createdEditor", page.PageId);
+
+    const wrapper = this.newEditor.getWrapper();
+
+    // Enable selectable behavior for the wrapper
+    wrapper.set({
+      selectable: false,
+      droppable: false,
+      draggable: false,
+      hoverable: false,
+    });
+    return this.newEditor;
+  }
+
+  removeEditor(id) {
+    if (!this.editors) {
+      console.log("No editors array exists");
+      return;
+    }
+
+    console.log("Current editors:", this.editors);
+    console.log("ID trying to remove:", id);
+
+    // Log the details of each editor for comparison
+    this.editors.forEach((editorObj, index) => {
+      console.log(`Editor ${index}:`, {
+        id: editorObj.id,
+        containerId: editorObj.containerId,
+        pageId: editorObj.pageId,
+      });
+    });
+
+    const index = this.editors.findIndex((editorObj) => {
+      // Try different matching strategies
+      return (
+        editorObj.id === id ||
+        editorObj.containerId === id ||
+        editorObj.pageId === id
+      );
+    });
+
+    console.log("Found index:", index);
+
+    if (index !== -1) {
+      const editorObj = this.editors[index];
+      console.log("Reached here at delete function", editorObj);
+
+      // Destroy the editor
+      if (editorObj.editor && typeof editorObj.editor.destroy === "function") {
+        editorObj.editor.destroy();
+      }
+
+      // Remove the container from the DOM
+      const containerElement = document.getElementById(editorObj.containerId);
+      if (containerElement) {
+        containerElement.remove();
+      }
+
+      // Remove from the editors array
+      this.editors.splice(index, 1);
+    } else {
+      console.warn(`No editor found matching id: ${id}`);
+    }
+  }
+
+  pageContent(pageId) {
+    return this.dataManager
+      .getSinglePage(pageId)
+      .then((pageData) => {
+        console.log("Page Data received:", pageData);
+
+        if (pageData && pageData.PageGJSJson) {
+          try {
+            let parsedData = JSON.parse(pageData.PageGJSJson);
+
+            // Ensure data is in the expected structure
+            if (!parsedData.pages) {
+              parsedData = {
+                pages: [
+                  {
+                    component: parsedData,
+                    frames: [
+                      {
+                        component: parsedData,
+                      },
+                    ],
+                  },
+                ],
+              };
+            }
+
+            return parsedData; // Return parsed and formatted data
+          } catch (error) {
+            console.error("Error parsing page data:", error);
+            throw new Error("Invalid JSON format in PageGJSJson.");
+          }
+        } else {
+          console.warn("Page data or PageGJSJson is missing.");
+          throw new Error("Page data or PageGJSJson is unavailable.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching page data from dataManager:", error);
+        throw new Error("Failed to fetch page data.");
+      });
+  }
+
+  backButtonAction(pageId) {
+    const backButton = document.getElementById("content-back-button");
+    if (backButton) {
+      backButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.removeEditor(pageId);
+        // this.activateFrame()
+      });
+    }
   }
 }

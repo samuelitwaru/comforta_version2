@@ -24,6 +24,14 @@
               </Property>
             </Properties>
           </Field>
+          <Field name="LocationId" description="Location Id">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>GUID</Value>
+              </Property>
+            </Properties>
+          </Field>
           <Field name="PageJsonContent" description="Page Json Content">
             <Properties>
               <Property>
@@ -97,14 +105,6 @@
             </Properties>
           </Field>
           <Field name="OrganisationId" description="Organisation Id">
-            <Properties>
-              <Property>
-                <Name>Type</Name>
-                <Value>GUID</Value>
-              </Property>
-            </Properties>
-          </Field>
-          <Field name="LocationId" description="Location Id">
             <Properties>
               <Property>
                 <Name>Type</Name>

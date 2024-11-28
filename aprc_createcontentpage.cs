@@ -152,33 +152,33 @@ namespace GeneXus.Programs {
             if (true) break;
          }
          pr_default.close(1);
+         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> pag ", "")+AV12PageId.ToString()) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> pagname ", "")+AV16PageName) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> loc ", "")+AV19LocationId.ToString()) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> org ", "")+AV20OrganisationId.ToString()) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> usr ", "")+AV21UserName) ;
          if ( ! (Guid.Empty==AV18BC_Trn_ProductService.gxTpr_Productserviceid) )
          {
             AV8BC_Trn_Page = new SdtTrn_Page(context);
-            AV8BC_Trn_Page.Load(AV12PageId, AV16PageName);
-            new prc_logtofile(context ).execute(  AV8BC_Trn_Page.ToJSonString(true, true)) ;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8BC_Trn_Page.gxTpr_Trn_pagename)) )
-            {
-               AV8BC_Trn_Page.gxTpr_Trn_pageid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
-               AV8BC_Trn_Page.gxTpr_Trn_pagename = AV18BC_Trn_ProductService.gxTpr_Productservicename;
-               AV8BC_Trn_Page.gxTpr_Productserviceid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
-               AV8BC_Trn_Page.gxTpr_Pagejsoncontent = AV13PageJsonContent;
-               AV8BC_Trn_Page.gxTpr_Pagegjshtml = "";
-               AV8BC_Trn_Page.gxTpr_Pagegjsjson = "";
-               AV8BC_Trn_Page.gxTpr_Pageiscontentpage = true;
-               AV8BC_Trn_Page.gxTpr_Pageispublished = false;
-               AV8BC_Trn_Page.gxTpr_Locationid = AV19LocationId;
-               AV8BC_Trn_Page.gxTpr_Organisationid = AV20OrganisationId;
-            }
-            else
-            {
-               new prc_logtofile(context ).execute(  context.GetMessage( "Updating...", "")+AV12PageId.ToString()) ;
-            }
+            new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> bc_page ", "")+AV8BC_Trn_Page.ToJSonString(true, true)) ;
+            AV8BC_Trn_Page.Load(AV12PageId, AV16PageName, AV19LocationId);
+            new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> bc_page ", "")+AV8BC_Trn_Page.ToJSonString(true, true)) ;
+            AV8BC_Trn_Page.gxTpr_Trn_pageid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
+            AV8BC_Trn_Page.gxTpr_Trn_pagename = AV18BC_Trn_ProductService.gxTpr_Productservicename;
+            AV8BC_Trn_Page.gxTpr_Productserviceid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
+            AV8BC_Trn_Page.gxTpr_Pagejsoncontent = AV13PageJsonContent;
+            AV8BC_Trn_Page.gxTpr_Pagegjshtml = "";
+            AV8BC_Trn_Page.gxTpr_Pagegjsjson = "";
+            AV8BC_Trn_Page.gxTpr_Pageiscontentpage = true;
+            AV8BC_Trn_Page.gxTpr_Pageispublished = false;
+            AV8BC_Trn_Page.gxTpr_Locationid = AV19LocationId;
+            AV8BC_Trn_Page.gxTpr_Organisationid = AV20OrganisationId;
             AV8BC_Trn_Page.Save();
             if ( AV8BC_Trn_Page.Success() )
             {
                context.CommitDataStores("prc_createcontentpage",pr_default);
                AV17Response = context.GetMessage( "Content page saved successfully", "");
+               new prc_logtofile(context ).execute(  AV17Response) ;
             }
             else
             {

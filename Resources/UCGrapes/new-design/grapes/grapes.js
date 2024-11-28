@@ -476,9 +476,8 @@
                           listening: a,
                         })),
                         a) &&
-                          (((this._listeners || (this._listeners = {}))[
-                            a.id
-                          ] = a),
+                          (((this._listeners || (this._listeners = {}))[a.id] =
+                            a),
                           (a.interop = !1));
                         return this;
                       }),
@@ -1782,8 +1781,10 @@
                                 (this.iframe.style.display = "none"),
                                 (this.iframe.tabIndex = -1);
                               var r = document.body,
-                                i = r.insertBefore(this.iframe, r.firstChild)
-                                  .contentWindow;
+                                i = r.insertBefore(
+                                  this.iframe,
+                                  r.firstChild
+                                ).contentWindow;
                               i.document.open(),
                                 i.document.close(),
                                 (i.location.hash = "#" + this.fragment);
@@ -1951,7 +1952,8 @@
                             !/^;/.test(n);
                     },
                   });
-                var e = /^(a|abbr|acronym|area|base|bdo|big|br|button|caption|cite|code|col|colgroup|dd|del|dfn|em|frame|hr|iframe|img|input|ins|kbd|label|legend|link|map|object|optgroup|option|param|q|samp|script|select|small|span|strong|sub|sup|textarea|tt|var)$/;
+                var e =
+                  /^(a|abbr|acronym|area|base|bdo|big|br|button|caption|cite|code|col|colgroup|dd|del|dfn|em|frame|hr|iframe|img|input|ins|kbd|label|legend|link|map|object|optgroup|option|param|q|samp|script|select|small|span|strong|sub|sup|textarea|tt|var)$/;
                 t.extendMode("xml", {
                   commentStart: "\x3c!--",
                   commentEnd: "--\x3e",
@@ -2263,7 +2265,8 @@
                     n
                   );
                 }
-                var et = /[\u00df\u0587\u0590-\u05f4\u0600-\u06ff\u3040-\u309f\u30a0-\u30ff\u3400-\u4db5\u4e00-\u9fcc\uac00-\ud7af]/;
+                var et =
+                  /[\u00df\u0587\u0590-\u05f4\u0600-\u06ff\u3040-\u309f\u30a0-\u30ff\u3400-\u4db5\u4e00-\u9fcc\uac00-\ud7af]/;
                 function nt(t) {
                   return (
                     /\w/.test(t) ||
@@ -2280,7 +2283,8 @@
                   for (var e in t) if (t.hasOwnProperty(e) && t[e]) return !1;
                   return !0;
                 }
-                var ot = /[\u0300-\u036f\u0483-\u0489\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7\u0610-\u061a\u064b-\u065e\u0670\u06d6-\u06dc\u06de-\u06e4\u06e7\u06e8\u06ea-\u06ed\u0711\u0730-\u074a\u07a6-\u07b0\u07eb-\u07f3\u0816-\u0819\u081b-\u0823\u0825-\u0827\u0829-\u082d\u0900-\u0902\u093c\u0941-\u0948\u094d\u0951-\u0955\u0962\u0963\u0981\u09bc\u09be\u09c1-\u09c4\u09cd\u09d7\u09e2\u09e3\u0a01\u0a02\u0a3c\u0a41\u0a42\u0a47\u0a48\u0a4b-\u0a4d\u0a51\u0a70\u0a71\u0a75\u0a81\u0a82\u0abc\u0ac1-\u0ac5\u0ac7\u0ac8\u0acd\u0ae2\u0ae3\u0b01\u0b3c\u0b3e\u0b3f\u0b41-\u0b44\u0b4d\u0b56\u0b57\u0b62\u0b63\u0b82\u0bbe\u0bc0\u0bcd\u0bd7\u0c3e-\u0c40\u0c46-\u0c48\u0c4a-\u0c4d\u0c55\u0c56\u0c62\u0c63\u0cbc\u0cbf\u0cc2\u0cc6\u0ccc\u0ccd\u0cd5\u0cd6\u0ce2\u0ce3\u0d3e\u0d41-\u0d44\u0d4d\u0d57\u0d62\u0d63\u0dca\u0dcf\u0dd2-\u0dd4\u0dd6\u0ddf\u0e31\u0e34-\u0e3a\u0e47-\u0e4e\u0eb1\u0eb4-\u0eb9\u0ebb\u0ebc\u0ec8-\u0ecd\u0f18\u0f19\u0f35\u0f37\u0f39\u0f71-\u0f7e\u0f80-\u0f84\u0f86\u0f87\u0f90-\u0f97\u0f99-\u0fbc\u0fc6\u102d-\u1030\u1032-\u1037\u1039\u103a\u103d\u103e\u1058\u1059\u105e-\u1060\u1071-\u1074\u1082\u1085\u1086\u108d\u109d\u135f\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17b7-\u17bd\u17c6\u17c9-\u17d3\u17dd\u180b-\u180d\u18a9\u1920-\u1922\u1927\u1928\u1932\u1939-\u193b\u1a17\u1a18\u1a56\u1a58-\u1a5e\u1a60\u1a62\u1a65-\u1a6c\u1a73-\u1a7c\u1a7f\u1b00-\u1b03\u1b34\u1b36-\u1b3a\u1b3c\u1b42\u1b6b-\u1b73\u1b80\u1b81\u1ba2-\u1ba5\u1ba8\u1ba9\u1c2c-\u1c33\u1c36\u1c37\u1cd0-\u1cd2\u1cd4-\u1ce0\u1ce2-\u1ce8\u1ced\u1dc0-\u1de6\u1dfd-\u1dff\u200c\u200d\u20d0-\u20f0\u2cef-\u2cf1\u2de0-\u2dff\u302a-\u302f\u3099\u309a\ua66f-\ua672\ua67c\ua67d\ua6f0\ua6f1\ua802\ua806\ua80b\ua825\ua826\ua8c4\ua8e0-\ua8f1\ua926-\ua92d\ua947-\ua951\ua980-\ua982\ua9b3\ua9b6-\ua9b9\ua9bc\uaa29-\uaa2e\uaa31\uaa32\uaa35\uaa36\uaa43\uaa4c\uaab0\uaab2-\uaab4\uaab7\uaab8\uaabe\uaabf\uaac1\uabe5\uabe8\uabed\udc00-\udfff\ufb1e\ufe00-\ufe0f\ufe20-\ufe26\uff9e\uff9f]/;
+                var ot =
+                  /[\u0300-\u036f\u0483-\u0489\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7\u0610-\u061a\u064b-\u065e\u0670\u06d6-\u06dc\u06de-\u06e4\u06e7\u06e8\u06ea-\u06ed\u0711\u0730-\u074a\u07a6-\u07b0\u07eb-\u07f3\u0816-\u0819\u081b-\u0823\u0825-\u0827\u0829-\u082d\u0900-\u0902\u093c\u0941-\u0948\u094d\u0951-\u0955\u0962\u0963\u0981\u09bc\u09be\u09c1-\u09c4\u09cd\u09d7\u09e2\u09e3\u0a01\u0a02\u0a3c\u0a41\u0a42\u0a47\u0a48\u0a4b-\u0a4d\u0a51\u0a70\u0a71\u0a75\u0a81\u0a82\u0abc\u0ac1-\u0ac5\u0ac7\u0ac8\u0acd\u0ae2\u0ae3\u0b01\u0b3c\u0b3e\u0b3f\u0b41-\u0b44\u0b4d\u0b56\u0b57\u0b62\u0b63\u0b82\u0bbe\u0bc0\u0bcd\u0bd7\u0c3e-\u0c40\u0c46-\u0c48\u0c4a-\u0c4d\u0c55\u0c56\u0c62\u0c63\u0cbc\u0cbf\u0cc2\u0cc6\u0ccc\u0ccd\u0cd5\u0cd6\u0ce2\u0ce3\u0d3e\u0d41-\u0d44\u0d4d\u0d57\u0d62\u0d63\u0dca\u0dcf\u0dd2-\u0dd4\u0dd6\u0ddf\u0e31\u0e34-\u0e3a\u0e47-\u0e4e\u0eb1\u0eb4-\u0eb9\u0ebb\u0ebc\u0ec8-\u0ecd\u0f18\u0f19\u0f35\u0f37\u0f39\u0f71-\u0f7e\u0f80-\u0f84\u0f86\u0f87\u0f90-\u0f97\u0f99-\u0fbc\u0fc6\u102d-\u1030\u1032-\u1037\u1039\u103a\u103d\u103e\u1058\u1059\u105e-\u1060\u1071-\u1074\u1082\u1085\u1086\u108d\u109d\u135f\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17b7-\u17bd\u17c6\u17c9-\u17d3\u17dd\u180b-\u180d\u18a9\u1920-\u1922\u1927\u1928\u1932\u1939-\u193b\u1a17\u1a18\u1a56\u1a58-\u1a5e\u1a60\u1a62\u1a65-\u1a6c\u1a73-\u1a7c\u1a7f\u1b00-\u1b03\u1b34\u1b36-\u1b3a\u1b3c\u1b42\u1b6b-\u1b73\u1b80\u1b81\u1ba2-\u1ba5\u1ba8\u1ba9\u1c2c-\u1c33\u1c36\u1c37\u1cd0-\u1cd2\u1cd4-\u1ce0\u1ce2-\u1ce8\u1ced\u1dc0-\u1de6\u1dfd-\u1dff\u200c\u200d\u20d0-\u20f0\u2cef-\u2cf1\u2de0-\u2dff\u302a-\u302f\u3099\u309a\ua66f-\ua672\ua67c\ua67d\ua6f0\ua6f1\ua802\ua806\ua80b\ua825\ua826\ua8c4\ua8e0-\ua8f1\ua926-\ua92d\ua947-\ua951\ua980-\ua982\ua9b3\ua9b6-\ua9b9\ua9bc\uaa29-\uaa2e\uaa31\uaa32\uaa35\uaa36\uaa43\uaa4c\uaab0\uaab2-\uaab4\uaab7\uaab8\uaabe\uaabf\uaac1\uabe5\uabe8\uabed\udc00-\udfff\ufb1e\ufe00-\ufe0f\ufe20-\ufe26\uff9e\uff9f]/;
                 function at(t) {
                   return t.charCodeAt(0) >= 768 && ot.test(t);
                 }
@@ -4593,7 +4597,10 @@
                 }
                 function pr(t) {
                   hr(t),
-                    (t.display.cachedCharWidth = t.display.cachedTextHeight = t.display.cachedPaddingH = null),
+                    (t.display.cachedCharWidth =
+                      t.display.cachedTextHeight =
+                      t.display.cachedPaddingH =
+                        null),
                     t.options.lineWrapping || (t.display.maxLineChanged = !0),
                     (t.display.lineNumChars = null);
                 }
@@ -5729,8 +5736,9 @@
                   (mi.prototype.zeroWidthHack = function () {
                     var t = b && !d ? "12px" : "18px";
                     (this.horiz.style.height = this.vert.style.width = t),
-                      (this.horiz.style.visibility = this.vert.style.visibility =
-                        "hidden"),
+                      (this.horiz.style.visibility =
+                        this.vert.style.visibility =
+                          "hidden"),
                       (this.disableHoriz = new V()),
                       (this.disableVert = new V());
                   }),
@@ -6487,13 +6495,23 @@
                     (o.updateLineNumbers = null),
                     (o.nativeBarWidth = o.barHeight = o.barWidth = 0),
                     (o.scrollbarsClipped = !1),
-                    (o.lineNumWidth = o.lineNumInnerWidth = o.lineNumChars = null),
+                    (o.lineNumWidth =
+                      o.lineNumInnerWidth =
+                      o.lineNumChars =
+                        null),
                     (o.alignWidgets = !1),
-                    (o.cachedCharWidth = o.cachedTextHeight = o.cachedPaddingH = null),
+                    (o.cachedCharWidth =
+                      o.cachedTextHeight =
+                      o.cachedPaddingH =
+                        null),
                     (o.maxLine = null),
                     (o.maxLineLength = 0),
                     (o.maxLineChanged = !1),
-                    (o.wheelDX = o.wheelDY = o.wheelStartX = o.wheelStartY = null),
+                    (o.wheelDX =
+                      o.wheelDY =
+                      o.wheelStartX =
+                      o.wheelStartY =
+                        null),
                     (o.shift = !1),
                     (o.selForContextMenu = null),
                     (o.activeTouch = null),
@@ -6838,9 +6856,8 @@
                     (this.lastModTime = this.lastSelTime = 0),
                     (this.lastOp = this.lastSelOp = null),
                     (this.lastOrigin = this.lastSelOrigin = null),
-                    (this.generation = this.maxGeneration = t
-                      ? t.maxGeneration
-                      : 1);
+                    (this.generation = this.maxGeneration =
+                      t ? t.maxGeneration : 1);
                 }
                 function Co(t, e) {
                   var n = {
@@ -7892,7 +7909,8 @@
                         if (
                           (a &&
                             (fr(a),
-                            (r.curOp.selectionChanged = r.curOp.forceUpdate = !0)),
+                            (r.curOp.selectionChanged = r.curOp.forceUpdate =
+                              !0)),
                           (r.curOp.updateMaxLine = !0),
                           !on(n.doc, i) && null != n.height)
                         ) {
@@ -8246,7 +8264,10 @@
                   changeGeneration: function (t) {
                     return (
                       t &&
-                        (this.history.lastOp = this.history.lastSelOp = this.history.lastOrigin = null),
+                        (this.history.lastOp =
+                          this.history.lastSelOp =
+                          this.history.lastOrigin =
+                            null),
                       this.history.generation
                     );
                   },
@@ -8720,7 +8741,10 @@
                 }
                 function Ma(t) {
                   var e = t.display;
-                  (e.cachedCharWidth = e.cachedTextHeight = e.cachedPaddingH = null),
+                  (e.cachedCharWidth =
+                    e.cachedTextHeight =
+                    e.cachedPaddingH =
+                      null),
                     (e.scrollbarsClipped = !1),
                     t.setSize();
                 }
@@ -11267,7 +11291,11 @@
                 }
                 var Qs = function (t) {
                   (this.cm = t),
-                    (this.lastAnchorNode = this.lastAnchorOffset = this.lastFocusNode = this.lastFocusOffset = null),
+                    (this.lastAnchorNode =
+                      this.lastAnchorOffset =
+                      this.lastFocusNode =
+                      this.lastFocusOffset =
+                        null),
                     (this.polling = new V()),
                     (this.composing = null),
                     (this.gracePeriod = !1),
@@ -14349,7 +14377,8 @@
                       };
                     })(),
                     p = /[+\-*&%=<>!?|~^@]/,
-                    d = /^@(context|id|value|language|type|container|list|set|reverse|index|base|vocab|graph)"/;
+                    d =
+                      /^@(context|id|value|language|type|container|list|set|reverse|index|base|vocab|graph)"/;
                   function g(t) {
                     for (var e, n = !1, r = !1; null != (e = t.next()); ) {
                       if (!n) {
@@ -14473,9 +14502,10 @@
                     var n = t.string.indexOf("=>", t.start);
                     if (!(n < 0)) {
                       if (u) {
-                        var r = /:\s*(?:\w+(?:<[^>]*>|\[\])?|\{[^}]*\})\s*$/.exec(
-                          t.string.slice(t.start, n)
-                        );
+                        var r =
+                          /:\s*(?:\w+(?:<[^>]*>|\[\])?|\{[^}]*\})\s*$/.exec(
+                            t.string.slice(t.start, n)
+                          );
                         r && (n = r.index);
                       }
                       for (var i = 0, o = !1, a = n - 1; a >= 0; --a) {
@@ -17120,15 +17150,16 @@
                             headers: h,
                             body: a,
                           };
-                          return (l
-                            ? l(f, d)
-                            : (0, D.Z)(f, d).then(function (t) {
-                                return 1 == ((t.status / 200) | 0)
-                                  ? t.text()
-                                  : t.text().then(function (t) {
-                                      return Promise.reject(t);
-                                    });
-                              })
+                          return (
+                            l
+                              ? l(f, d)
+                              : (0, D.Z)(f, d).then(function (t) {
+                                  return 1 == ((t.status / 200) | 0)
+                                    ? t.text()
+                                    : t.text().then(function (t) {
+                                        return Promise.reject(t);
+                                      });
+                                })
                           )
                             .then(function (t) {
                               return n.onUploadResponse(t, e);
@@ -19150,15 +19181,16 @@
                                 );
                             } else {
                               var i = "#" + r.ids.join(", #");
-                              e += "\n          var items = document.querySelectorAll('"
-                                .concat(
-                                  i,
-                                  "');\n          for (var i = 0, len = items.length; i < len; i++) {\n            (function(){\n"
-                                )
-                                .concat(
-                                  r.code,
-                                  "\n}.bind(items[i]))();\n          }"
-                                );
+                              e +=
+                                "\n          var items = document.querySelectorAll('"
+                                  .concat(
+                                    i,
+                                    "');\n          for (var i = 0, len = items.length; i < len; i++) {\n            (function(){\n"
+                                  )
+                                  .concat(
+                                    r.code,
+                                    "\n}.bind(items[i]))();\n          }"
+                                  );
                             }
                         }
                         return e;
@@ -21278,9 +21310,8 @@
                   var n = t.view.el;
                   this.startSelectPosition(n, this.frameEl.contentDocument),
                     (this.sorter.draggable = e),
-                    (this.sorter.onEndMove = this.onEndMoveFromModel.bind(
-                      this
-                    )),
+                    (this.sorter.onEndMove =
+                      this.onEndMoveFromModel.bind(this)),
                     this.stopSelectComponent(),
                     (0, a.on)(
                       this.getContentWindow(),
@@ -22403,9 +22434,10 @@
                       r.forEach(function (e) {
                         var n = e.body,
                           r = n.className || "";
-                        n.className = ("add" == t
-                          ? "".concat(r, " ").concat(c)
-                          : r.replace(c, "")
+                        n.className = (
+                          "add" == t
+                            ? "".concat(r, " ").concat(c)
+                            : r.replace(c, "")
                         ).trim();
                       });
                   };
@@ -22734,9 +22766,8 @@
                         ? i(this.cDim[this.posIndex][5]).parent()
                         : i(this.outsideElem)),
                     (this.posTargetModel = this.posTargetEl.data("model")),
-                    (this.posTargetCollection = this.posTargetEl.data(
-                      "model-comp"
-                    )));
+                    (this.posTargetCollection =
+                      this.posTargetEl.data("model-comp")));
               },
               enable: function () {
                 this.startSelectPosition();
@@ -24711,9 +24742,8 @@
                       (this.config = t.config || {}),
                         (this.em = this.config.em),
                         (this.ppfx = this.config.pStylePrefix || ""),
-                        (this.events[
-                          "click ." + this.ppfx + "add-trasp"
-                        ] = this.startAdd),
+                        (this.events["click ." + this.ppfx + "add-trasp"] =
+                          this.startAdd),
                         this.listenTo(
                           this.em,
                           "change:device",
@@ -26133,9 +26163,8 @@
                       value: function () {
                         if (!this.__isSymbolOrInst() || this.__isSymbolTop())
                           return !1;
-                        var t = (this.__isSymbol()
-                            ? this
-                            : this.__getSymbol()
+                        var t = (
+                            this.__isSymbol() ? this : this.__getSymbol()
                           ).__getSymbTop(),
                           e = this.__getSymbTop();
                         return (e.__isSymbol() ? e : e.__getSymbol()) !== t;
@@ -27010,12 +27039,14 @@
                               (0, p.isEmpty)(e[t]) &&
                               delete e[t];
                           }),
-                          (0, p.forEach)(["classes", "components"], function (
-                            t
-                          ) {
-                            (!e[t] || ((0, p.isEmpty)(n[t]) && !e[t].length)) &&
-                              delete e[t];
-                          }),
+                          (0, p.forEach)(
+                            ["classes", "components"],
+                            function (t) {
+                              (!e[t] ||
+                                ((0, p.isEmpty)(n[t]) && !e[t].length)) &&
+                                delete e[t];
+                            }
+                          ),
                           e
                         );
                       },
@@ -30588,13 +30619,14 @@
                       );
                     }
                     _t(),
-                      mt.bind("click.spectrum touchstart.spectrum", function (
-                        e
-                      ) {
-                        Y || Dt(),
-                          e.stopPropagation(),
-                          t(e.target).is("input") || e.preventDefault();
-                      }),
+                      mt.bind(
+                        "click.spectrum touchstart.spectrum",
+                        function (e) {
+                          Y || Dt(),
+                            e.stopPropagation(),
+                            t(e.target).is("input") || e.preventDefault();
+                        }
+                      ),
                       (K.is(":disabled") || !0 === d.disabled) && $t(),
                       X.click(E),
                       at.change(Rt),
@@ -33210,8 +33242,7 @@
                   },
                 },
                 link: {
-                  icon:
-                    '<svg viewBox="0 0 24 24">\n          <path fill="currentColor" d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z" />\n        </svg>',
+                  icon: '<svg viewBox="0 0 24 24">\n          <path fill="currentColor" d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z" />\n        </svg>',
                   name: "link",
                   attributes: {
                     style: "font-size:1.4rem;padding:0 4px 2px;",
@@ -33233,8 +33264,7 @@
                 },
                 wrap: {
                   name: "wrap",
-                  icon:
-                    '<svg viewBox="0 0 24 24">\n            <path fill="currentColor" d="M20.71,4.63L19.37,3.29C19,2.9 18.35,2.9 17.96,3.29L9,12.25L11.75,15L20.71,6.04C21.1,5.65 21.1,5 20.71,4.63M7,14A3,3 0 0,0 4,17C4,18.31 2.84,19 2,19C2.92,20.22 4.5,21 6,21A4,4 0 0,0 10,17A3,3 0 0,0 7,14Z" />\n        </svg>',
+                  icon: '<svg viewBox="0 0 24 24">\n            <path fill="currentColor" d="M20.71,4.63L19.37,3.29C19,2.9 18.35,2.9 17.96,3.29L9,12.25L11.75,15L20.71,6.04C21.1,5.65 21.1,5 20.71,4.63M7,14A3,3 0 0,0 4,17C4,18.31 2.84,19 2,19C2.92,20.22 4.5,21 6,21A4,4 0 0,0 10,17A3,3 0 0,0 7,14Z" />\n        </svg>',
                   attributes: { title: "Wrap for style" },
                   state: function (t) {
                     return null != t && t.selection() && y(t, "SPAN") ? m : v;
@@ -33263,9 +33293,8 @@
                   if (((this.em = i), r[d])) return r[d];
                   (r[d] = this),
                     this.setEl(r),
-                    (this.updateActiveActions = this.updateActiveActions.bind(
-                      this
-                    )),
+                    (this.updateActiveActions =
+                      this.updateActiveActions.bind(this)),
                     (this.__onKeydown = this.__onKeydown.bind(this)),
                     (this.__onPaste = this.__onPaste.bind(this));
                   var o = (n.actions || []).map(function (t) {
@@ -33641,9 +33670,7 @@
                     (this.em = n.em),
                     (this.actions = n.actions || []),
                     (0, l.hasWin)()
-                      ? (((t = document.createElement(
-                          "div"
-                        )).className = ""
+                      ? (((t = document.createElement("div")).className = ""
                           .concat(r, "rte-toolbar ")
                           .concat(r, "one-bg")),
                         this.initRte(document.createElement("div")),
@@ -37505,9 +37532,8 @@
                     value: function () {
                       return (
                         this.propsWrapEl ||
-                          (this.propsWrapEl = this.el.querySelector(
-                            "[data-properties]"
-                          )),
+                          (this.propsWrapEl =
+                            this.el.querySelector("[data-properties]")),
                         this.propsWrapEl
                       );
                     },
@@ -37517,9 +37543,8 @@
                     value: function () {
                       return (
                         this.previewEl ||
-                          (this.previewEl = this.el.querySelector(
-                            "[data-preview]"
-                          )),
+                          (this.previewEl =
+                            this.el.querySelector("[data-preview]")),
                         this.previewEl
                       );
                     },
@@ -37529,9 +37554,8 @@
                     value: function () {
                       return (
                         this.labelEl ||
-                          (this.labelEl = this.el.querySelector(
-                            "[data-label]"
-                          )),
+                          (this.labelEl =
+                            this.el.querySelector("[data-label]")),
                         this.labelEl
                       );
                     },
@@ -39099,9 +39123,8 @@
                     value: function () {
                       return (
                         this.slider ||
-                          (this.slider = this.el.querySelector(
-                            "input[type=range]"
-                          )),
+                          (this.slider =
+                            this.el.querySelector("input[type=range]")),
                         this.slider
                       );
                     },
@@ -43162,12 +43185,16 @@
             function b(t, e) {
               return new y(t, e);
             }
-            var w = (b.fn = b.prototype = y.prototype = {
-              constructor: b,
-              __cash: !0,
-              length: 0,
-              splice: h,
-            });
+            var w =
+              (b.fn =
+              b.prototype =
+              y.prototype =
+                {
+                  constructor: b,
+                  __cash: !0,
+                  length: 0,
+                  splice: h,
+                });
             (w.get = function (t) {
               return void 0 === t
                 ? f.call(this)
@@ -43223,16 +43250,17 @@
                   delete n[t];
                 });
               }),
-              (b.extend = w.extend = function (t) {
-                void 0 === t && (t = this);
-                for (
-                  var e = arguments, n = e.length, r = n < 2 ? 0 : 1;
-                  r < n;
-                  r++
-                )
-                  for (var i in e[r]) t[i] = e[r][i];
-                return t;
-              });
+              (b.extend = w.extend =
+                function (t) {
+                  void 0 === t && (t = this);
+                  for (
+                    var e = arguments, n = e.length, r = n < 2 ? 0 : 1;
+                    r < n;
+                    r++
+                  )
+                    for (var i in e[r]) t[i] = e[r][i];
+                  return t;
+                });
             var S = 1;
             function _(t, e) {
               var n =
@@ -45483,9 +45511,8 @@
                           r = this.container;
                         for (
                           r ||
-                          (((r = document.createElement(
-                            "div"
-                          )).className = "".concat(e, "resizer-c")),
+                          (((r = document.createElement("div")).className =
+                            "".concat(e, "resizer-c")),
                           n.appendChild(r),
                           (this.container = r));
                           r.firstChild;
@@ -47410,7 +47437,7 @@
                         )
                         .concat(
                           l,
-                          "selected {\n        outline: 2px dashed #5d7ba0 !important;\n    border-radius: 1px;\n       outline-offset: -2px;\n     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)     }\n\n      ."
+                          "selected {\n        outline: 2px solid #5d7ba0 !important;\n    border-radius: 4px;\n       outline-offset: -2px;\n     box-shadow: 0 4px 6px -1px rgb(93 123 160 / 32%), 0 2px 4px -1px rgba(0, 0, 0, 0.06);     }\n\n      ."
                         )
                         .concat(
                           l,
@@ -48243,10 +48270,11 @@
                         ? i
                         : "function(){\n".concat(i, "\n;}"),
                       a = JSON.stringify(e.__getScriptProps());
-                    (r.innerHTML = "\n      setTimeout(function() {\n        var item = document.getElementById('"
-                      .concat(n, "');\n        if (!item) return;\n        (")
-                      .concat(o, ".bind(item))(")
-                      .concat(a, ")\n      }, 1);")),
+                    (r.innerHTML =
+                      "\n      setTimeout(function() {\n        var item = document.getElementById('"
+                        .concat(n, "');\n        if (!item) return;\n        (")
+                        .concat(o, ".bind(item))(")
+                        .concat(a, ")\n      }, 1);")),
                       setTimeout(function () {
                         var e = t.scriptContainer;
                         null == e || e.appendChild(r);
@@ -58028,9 +58056,10 @@
             var r = n(8698)["default"];
             function i() {
               "use strict";
-              (t.exports = i = function () {
-                return e;
-              }),
+              (t.exports = i =
+                function () {
+                  return e;
+                }),
                 (t.exports.__esModule = !0),
                 (t.exports["default"] = t.exports);
               var e = {},
@@ -59273,7 +59302,8 @@
             }
             const et = tt("byteLength"),
               nt = Q(et);
-            var rt = /\[object ((I|Ui)nt(8|16|32)|Float(32|64)|Uint8Clamped|Big(I|Ui)nt64)Array\]/;
+            var rt =
+              /\[object ((I|Ui)nt(8|16|32)|Float(32|64)|Uint8Clamped|Big(I|Ui)nt64)Array\]/;
             const it = p
                 ? function (t) {
                     return y ? y(t) && !W(t) : nt(t) && rt.test(f.call(t));
@@ -60086,7 +60116,8 @@
                   });
               return o;
             }
-            var un = /[^\ud800-\udfff]|[\ud800-\udbff][\udc00-\udfff]|[\ud800-\udfff]/g;
+            var un =
+              /[^\ud800-\udfff]|[\ud800-\udbff][\udc00-\udfff]|[\ud800-\udfff]/g;
             function fn(t) {
               return t
                 ? $(t)
@@ -60426,22 +60457,18 @@
             icons: {
               close:
                 '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>',
-              move:
-                '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M13,6V11H18V7.75L22.25,12L18,16.25V13H13V18H16.25L12,22.25L7.75,18H11V13H6V16.25L1.75,12L6,7.75V11H11V6H7.75L12,1.75L16.25,6H13Z"/></svg>',
-              plus:
-                '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>',
+              move: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M13,6V11H18V7.75L22.25,12L18,16.25V13H13V18H16.25L12,22.25L7.75,18H11V13H6V16.25L1.75,12L6,7.75V11H11V6H7.75L12,1.75L16.25,6H13Z"/></svg>',
+              plus: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>',
               caret:
                 '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M7,10L12,15L17,10H7Z" /></svg>',
               delete:
                 '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>',
-              copy:
-                '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" /></svg>',
+              copy: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" /></svg>',
               arrowUp:
                 '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" /></svg>',
               chevron:
                 '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg>',
-              eye:
-                '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" /></svg>',
+              eye: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" /></svg>',
               eyeOff:
                 '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z" /></svg>',
             },

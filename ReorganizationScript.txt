@@ -1,7 +1,5 @@
-CREATE TABLE Trn_ResidentNotification (ResidentNotificationId CHAR(36) NOT NULL , AppNotificationId CHAR(36) NOT NULL , ResidentId CHAR(36) NOT NULL , PRIMARY KEY(ResidentNotificationId));
-CREATE INDEX ITRN_RESIDENTNOTIFICATION1 ON Trn_ResidentNotification (AppNotificationId );
+CREATE UNIQUE INDEX UTRN_PAGE ON Trn_Page (Trn_PageName ,LocationId );
 
-CREATE TABLE Trn_AppNotification (AppNotificationId CHAR(36) NOT NULL , AppNotificationTitle VARCHAR(100) NOT NULL , AppNotificationDescription VARCHAR(200) NOT NULL , AppNotificationDate timestamp without time zone NOT NULL , AppNotificationTopic VARCHAR(100) NOT NULL , PRIMARY KEY(AppNotificationId));
-
-ALTER TABLE Trn_ResidentNotification ADD CONSTRAINT ITRN_RESIDENTNOTIFICATION1 FOREIGN KEY (AppNotificationId) REFERENCES Trn_AppNotification (AppNotificationId);
+ALTER TABLE Trn_Page ADD CONSTRAINT GX_002Q000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+ALTER TABLE Trn_Page ADD CONSTRAINT ITRN_PAGE1 FOREIGN KEY (ProductServiceId, LocationId, OrganisationId) REFERENCES Trn_ProductService (ProductServiceId, LocationId, OrganisationId);
 

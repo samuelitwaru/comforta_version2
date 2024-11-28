@@ -110,7 +110,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable035( ) ;
                if ( AnyError == 0 )
                {
-                  ZM035( 24) ;
+                  ZM035( 25) ;
                }
                CloseExtendedTableCursors035( ) ;
             }
@@ -139,7 +139,7 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV29AuditingObject,  AV30Pgmname) ;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV29AuditingObject,  AV32Pgmname) ;
       }
 
       protected void S112( )
@@ -150,7 +150,7 @@ namespace GeneXus.Programs {
 
       protected void ZM035( short GX_JID )
       {
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
          {
             Z28ManagerGAMGUID = A28ManagerGAMGUID;
             Z24ManagerInitials = A24ManagerInitials;
@@ -164,10 +164,10 @@ namespace GeneXus.Programs {
             Z360ManagerIsMainManager = A360ManagerIsMainManager;
             Z394ManagerIsActive = A394ManagerIsActive;
          }
-         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 25 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -23 )
+         if ( GX_JID == -24 )
          {
             Z21ManagerId = A21ManagerId;
             Z28ManagerGAMGUID = A28ManagerGAMGUID;
@@ -190,7 +190,7 @@ namespace GeneXus.Programs {
       protected void standaloneNotModal( )
       {
          Gx_BScreen = 0;
-         AV30Pgmname = "Trn_Manager_BC";
+         AV32Pgmname = "Trn_Manager_BC";
       }
 
       protected void standaloneModal( )
@@ -228,7 +228,7 @@ namespace GeneXus.Programs {
             A394ManagerIsActive = BC00035_A394ManagerIsActive[0];
             A40000ManagerImage_GXI = BC00035_A40000ManagerImage_GXI[0];
             A458ManagerImage = BC00035_A458ManagerImage[0];
-            ZM035( -23) ;
+            ZM035( -24) ;
          }
          pr_default.close(3);
          OnLoadActions035( ) ;
@@ -239,6 +239,9 @@ namespace GeneXus.Programs {
          GXt_char1 = A26ManagerPhone;
          new prc_concatenateintlphone(context ).execute(  A385ManagerPhoneCode,  A386ManagerPhoneNumber, out  GXt_char1) ;
          A26ManagerPhone = GXt_char1;
+         GXt_boolean2 = AV31IsGAMActive;
+         new prc_checkgamuseractivationstatus(context ).execute(  A28ManagerGAMGUID, out  GXt_boolean2) ;
+         AV31IsGAMActive = GXt_boolean2;
       }
 
       protected void CheckExtendedTable035( )
@@ -291,6 +294,9 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Manager Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
+         GXt_boolean2 = AV31IsGAMActive;
+         new prc_checkgamuseractivationstatus(context ).execute(  A28ManagerGAMGUID, out  GXt_boolean2) ;
+         AV31IsGAMActive = GXt_boolean2;
       }
 
       protected void CloseExtendedTableCursors035( )
@@ -323,7 +329,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A21ManagerId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM035( 23) ;
+            ZM035( 24) ;
             RcdFound5 = 1;
             A21ManagerId = BC00033_A21ManagerId[0];
             A28ManagerGAMGUID = BC00033_A28ManagerGAMGUID[0];
@@ -603,6 +609,9 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
+            GXt_boolean2 = AV31IsGAMActive;
+            new prc_checkgamuseractivationstatus(context ).execute(  A28ManagerGAMGUID, out  GXt_boolean2) ;
+            AV31IsGAMActive = GXt_boolean2;
             if ( IsDlt( )  && ( StringUtil.StrCmp(A28ManagerGAMGUID, new prc_getloggedinuserid(context).executeUdp( )) == 0 ) )
             {
                GX_msglist.addItem(context.GetMessage( "Invalid Delete Action: You cannot delete you're own account.", ""), 1, "");
@@ -773,6 +782,7 @@ namespace GeneXus.Programs {
          A24ManagerInitials = "";
          AV24GAMErrorResponse = "";
          A26ManagerPhone = "";
+         AV31IsGAMActive = false;
          A22ManagerGivenName = "";
          A23ManagerLastName = "";
          A25ManagerEmail = "";
@@ -939,7 +949,7 @@ namespace GeneXus.Programs {
             Z21ManagerId = A21ManagerId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM035( -23) ;
+         ZM035( -24) ;
          OnLoadActions035( ) ;
          AddRow035( ) ;
          ScanKeyEnd035( ) ;
@@ -977,7 +987,7 @@ namespace GeneXus.Programs {
             Z21ManagerId = A21ManagerId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM035( -23) ;
+         ZM035( -24) ;
          OnLoadActions035( ) ;
          AddRow035( ) ;
          ScanKeyEnd035( ) ;
@@ -1370,7 +1380,7 @@ namespace GeneXus.Programs {
          AV12TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV13WebSession = context.GetSession();
          AV29AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         AV30Pgmname = "";
+         AV32Pgmname = "";
          Z28ManagerGAMGUID = "";
          A28ManagerGAMGUID = "";
          Z24ManagerInitials = "";
@@ -1512,7 +1522,7 @@ namespace GeneXus.Programs {
          i360ManagerIsMainManager = false;
          Z21ManagerId = Guid.NewGuid( );
          A21ManagerId = Guid.NewGuid( );
-         AV30Pgmname = "Trn_Manager_BC";
+         AV32Pgmname = "Trn_Manager_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1527,7 +1537,7 @@ namespace GeneXus.Programs {
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV30Pgmname ;
+      private string AV32Pgmname ;
       private string Z24ManagerInitials ;
       private string A24ManagerInitials ;
       private string Z26ManagerPhone ;
@@ -1539,7 +1549,9 @@ namespace GeneXus.Programs {
       private bool A360ManagerIsMainManager ;
       private bool Z394ManagerIsActive ;
       private bool A394ManagerIsActive ;
+      private bool AV31IsGAMActive ;
       private bool Gx_longc ;
+      private bool GXt_boolean2 ;
       private bool i360ManagerIsMainManager ;
       private string AV24GAMErrorResponse ;
       private string Z28ManagerGAMGUID ;

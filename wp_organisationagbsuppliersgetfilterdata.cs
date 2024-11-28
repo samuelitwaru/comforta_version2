@@ -52,6 +52,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -62,6 +63,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -923,6 +925,7 @@ namespace GeneXus.Programs {
       private Guid A283SupplierAgbTypeId ;
       private Guid A49SupplierAgbId ;
       private IGxSession AV32Session ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV27Options ;
@@ -1019,7 +1022,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
          }
@@ -1027,7 +1030,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbName))=0))");
          }
@@ -1047,7 +1050,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
          }
@@ -1055,7 +1058,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.SupplierAgbTypeName))=0))");
          }
@@ -1067,7 +1070,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
          }
@@ -1075,7 +1078,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbContactName))=0))");
          }
@@ -1087,7 +1090,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[12] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
          }
@@ -1095,7 +1098,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[13] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbPhone))=0))");
          }
@@ -1107,7 +1110,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[14] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
          }
@@ -1115,7 +1118,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[15] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbEmail))=0))");
          }
@@ -1171,7 +1174,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
          }
@@ -1179,7 +1182,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbName))=0))");
          }
@@ -1199,7 +1202,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
          }
@@ -1207,7 +1210,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.SupplierAgbTypeName))=0))");
          }
@@ -1219,7 +1222,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
          }
@@ -1227,7 +1230,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbContactName))=0))");
          }
@@ -1239,7 +1242,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[12] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
          }
@@ -1247,7 +1250,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[13] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbPhone))=0))");
          }
@@ -1259,7 +1262,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[14] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
          }
@@ -1267,7 +1270,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[15] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbEmail))=0))");
          }
@@ -1323,7 +1326,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
          }
@@ -1331,7 +1334,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbName))=0))");
          }
@@ -1351,7 +1354,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
          }
@@ -1359,7 +1362,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.SupplierAgbTypeName))=0))");
          }
@@ -1371,7 +1374,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
          }
@@ -1379,7 +1382,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbContactName))=0))");
          }
@@ -1391,7 +1394,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[12] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
          }
@@ -1399,7 +1402,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[13] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbPhone))=0))");
          }
@@ -1411,7 +1414,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[14] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
          }
@@ -1419,7 +1422,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[15] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbEmail))=0))");
          }
@@ -1475,7 +1478,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
          }
@@ -1483,7 +1486,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbName))=0))");
          }
@@ -1503,7 +1506,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
          }
@@ -1511,7 +1514,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.SupplierAgbTypeName))=0))");
          }
@@ -1523,7 +1526,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
          }
@@ -1531,7 +1534,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbContactName))=0))");
          }
@@ -1543,7 +1546,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[12] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
          }
@@ -1551,7 +1554,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[13] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbPhone))=0))");
          }
@@ -1563,7 +1566,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[14] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
          }
@@ -1571,7 +1574,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[15] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbEmail))=0))");
          }
@@ -1627,7 +1630,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
          }
@@ -1635,7 +1638,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV55Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbName))=0))");
          }
@@ -1655,7 +1658,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
          }
@@ -1663,7 +1666,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV57Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.SupplierAgbTypeName))=0))");
          }
@@ -1675,7 +1678,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
          }
@@ -1683,7 +1686,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbContactName))=0))");
          }
@@ -1695,7 +1698,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[12] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
          }
@@ -1703,7 +1706,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[13] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbPhone))=0))");
          }
@@ -1715,7 +1718,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[14] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
          }
@@ -1723,7 +1726,7 @@ namespace GeneXus.Programs {
          {
             GXv_int9[15] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbEmail))=0))");
          }

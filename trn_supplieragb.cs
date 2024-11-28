@@ -53,7 +53,7 @@ namespace GeneXus.Programs {
             dyncall( GetNextPar( )) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel15"+"_"+"SUPPLIERAGBPHONE") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel14"+"_"+"SUPPLIERAGBPHONE") == 0 )
          {
             A377SupplierAgbPhoneCode = GetPar( "SupplierAgbPhoneCode");
             AssignAttri("", false, "A377SupplierAgbPhoneCode", A377SupplierAgbPhoneCode);
@@ -65,10 +65,10 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            GX15ASASUPPLIERAGBPHONE0711( A377SupplierAgbPhoneCode, A378SupplierAgbPhoneNumber) ;
+            GX14ASASUPPLIERAGBPHONE0711( A377SupplierAgbPhoneCode, A378SupplierAgbPhoneNumber) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_30") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_29") == 0 )
          {
             A283SupplierAgbTypeId = StringUtil.StrToGuid( GetPar( "SupplierAgbTypeId"));
             AssignAttri("", false, "A283SupplierAgbTypeId", A283SupplierAgbTypeId.ToString());
@@ -78,7 +78,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_30( A283SupplierAgbTypeId) ;
+            gxLoad_29( A283SupplierAgbTypeId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -1508,7 +1508,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0711( short GX_JID )
       {
-         if ( ( GX_JID == 29 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 28 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1547,7 +1547,7 @@ namespace GeneXus.Programs {
                Z283SupplierAgbTypeId = A283SupplierAgbTypeId;
             }
          }
-         if ( GX_JID == -29 )
+         if ( GX_JID == -28 )
          {
             Z49SupplierAgbId = A49SupplierAgbId;
             Z332SupplierAGBAddressCountry = A332SupplierAGBAddressCountry;
@@ -1692,7 +1692,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A440SupplierAgbWebsite", A440SupplierAgbWebsite);
             A283SupplierAgbTypeId = T00075_A283SupplierAgbTypeId[0];
             AssignAttri("", false, "A283SupplierAgbTypeId", A283SupplierAgbTypeId.ToString());
-            ZM0711( -29) ;
+            ZM0711( -28) ;
          }
          pr_default.close(3);
          OnLoadActions0711( ) ;
@@ -1817,13 +1817,6 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtSupplierAgbEmail_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
-         if ( ! ( GxRegex.IsMatch(A440SupplierAgbWebsite,"\\bhttps?://[^\\s/$.?#].[^\\s]*\\b") ) )
-         {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid website format", ""), context.GetMessage( "Supplier Agb Website", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "SUPPLIERAGBWEBSITE");
-            AnyError = 1;
-            GX_FocusControl = edtSupplierAgbWebsite_Internalname;
-            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
-         }
          if ( ! GxRegex.IsMatch(A440SupplierAgbWebsite,context.GetMessage( "^(https?:\\/\\/)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})(\\/[^\\s]*)?$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A440SupplierAgbWebsite)) )
          {
             GX_msglist.addItem(context.GetMessage( "Invalid website format", ""), 1, "SUPPLIERAGBWEBSITE");
@@ -1842,7 +1835,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_30( Guid A283SupplierAgbTypeId )
+      protected void gxLoad_29( Guid A283SupplierAgbTypeId )
       {
          /* Using cursor T00076 */
          pr_default.execute(4, new Object[] {A283SupplierAgbTypeId});
@@ -1888,7 +1881,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n49SupplierAgbId, A49SupplierAgbId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0711( 29) ;
+            ZM0711( 28) ;
             RcdFound11 = 1;
             A49SupplierAgbId = T00073_A49SupplierAgbId[0];
             n49SupplierAgbId = T00073_n49SupplierAgbId[0];
@@ -2952,7 +2945,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211540203", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112714174959", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2968,7 +2961,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragb.js", "?202411211540205", false, true);
+         context.AddJavascriptSource("trn_supplieragb.js", "?2024112714174960", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3121,7 +3114,7 @@ namespace GeneXus.Programs {
          /* End function dynload_actions */
       }
 
-      protected void GX15ASASUPPLIERAGBPHONE0711( string A377SupplierAgbPhoneCode ,
+      protected void GX14ASASUPPLIERAGBPHONE0711( string A377SupplierAgbPhoneCode ,
                                                   string A378SupplierAgbPhoneNumber )
       {
          GXt_char2 = A56SupplierAgbPhone;

@@ -38,17 +38,18 @@ namespace GeneXus.Programs {
       }
 
       public void Load( Guid AV310Trn_PageId ,
-                        string AV318Trn_PageName )
+                        string AV318Trn_PageName ,
+                        Guid AV29LocationId )
       {
          IGxSilentTrn obj;
          obj = getTransaction();
-         obj.LoadKey(new Object[] {(Guid)AV310Trn_PageId,(string)AV318Trn_PageName});
+         obj.LoadKey(new Object[] {(Guid)AV310Trn_PageId,(string)AV318Trn_PageName,(Guid)AV29LocationId});
          return  ;
       }
 
       public override Object[][] GetBCKey( )
       {
-         return (Object[][])(new Object[][]{new Object[]{"Trn_PageId", typeof(Guid)}, new Object[]{"Trn_PageName", typeof(string)}}) ;
+         return (Object[][])(new Object[][]{new Object[]{"Trn_PageId", typeof(Guid)}, new Object[]{"Trn_PageName", typeof(string)}, new Object[]{"LocationId", typeof(Guid)}}) ;
       }
 
       public override GXProperties GetMetadata( )
@@ -56,7 +57,7 @@ namespace GeneXus.Programs {
          GXProperties metadata = new GXProperties();
          metadata.Set("Name", "Trn_Page");
          metadata.Set("BT", "Trn_Page");
-         metadata.Set("PK", "[ \"Trn_PageId\",\"Trn_PageName\" ]");
+         metadata.Set("PK", "[ \"Trn_PageId\",\"Trn_PageName\",\"LocationId\" ]");
          metadata.Set("PKAssigned", "[ \"Trn_PageId\" ]");
          metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"ProductServiceId\",\"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
@@ -72,11 +73,11 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Initialized");
          state.Add("gxTpr_Trn_pageid_Z");
          state.Add("gxTpr_Trn_pagename_Z");
+         state.Add("gxTpr_Locationid_Z");
          state.Add("gxTpr_Pageispublished_Z");
          state.Add("gxTpr_Pageiscontentpage_Z");
          state.Add("gxTpr_Productserviceid_Z");
          state.Add("gxTpr_Organisationid_Z");
-         state.Add("gxTpr_Locationid_Z");
          state.Add("gxTpr_Pagejsoncontent_N");
          state.Add("gxTpr_Pagegjshtml_N");
          state.Add("gxTpr_Pagegjsjson_N");
@@ -93,6 +94,7 @@ namespace GeneXus.Programs {
          sdt = (SdtTrn_Page)(source);
          gxTv_SdtTrn_Page_Trn_pageid = sdt.gxTv_SdtTrn_Page_Trn_pageid ;
          gxTv_SdtTrn_Page_Trn_pagename = sdt.gxTv_SdtTrn_Page_Trn_pagename ;
+         gxTv_SdtTrn_Page_Locationid = sdt.gxTv_SdtTrn_Page_Locationid ;
          gxTv_SdtTrn_Page_Pagejsoncontent = sdt.gxTv_SdtTrn_Page_Pagejsoncontent ;
          gxTv_SdtTrn_Page_Pagegjshtml = sdt.gxTv_SdtTrn_Page_Pagegjshtml ;
          gxTv_SdtTrn_Page_Pagegjsjson = sdt.gxTv_SdtTrn_Page_Pagegjsjson ;
@@ -101,16 +103,15 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Page_Pagechildren = sdt.gxTv_SdtTrn_Page_Pagechildren ;
          gxTv_SdtTrn_Page_Productserviceid = sdt.gxTv_SdtTrn_Page_Productserviceid ;
          gxTv_SdtTrn_Page_Organisationid = sdt.gxTv_SdtTrn_Page_Organisationid ;
-         gxTv_SdtTrn_Page_Locationid = sdt.gxTv_SdtTrn_Page_Locationid ;
          gxTv_SdtTrn_Page_Mode = sdt.gxTv_SdtTrn_Page_Mode ;
          gxTv_SdtTrn_Page_Initialized = sdt.gxTv_SdtTrn_Page_Initialized ;
          gxTv_SdtTrn_Page_Trn_pageid_Z = sdt.gxTv_SdtTrn_Page_Trn_pageid_Z ;
          gxTv_SdtTrn_Page_Trn_pagename_Z = sdt.gxTv_SdtTrn_Page_Trn_pagename_Z ;
+         gxTv_SdtTrn_Page_Locationid_Z = sdt.gxTv_SdtTrn_Page_Locationid_Z ;
          gxTv_SdtTrn_Page_Pageispublished_Z = sdt.gxTv_SdtTrn_Page_Pageispublished_Z ;
          gxTv_SdtTrn_Page_Pageiscontentpage_Z = sdt.gxTv_SdtTrn_Page_Pageiscontentpage_Z ;
          gxTv_SdtTrn_Page_Productserviceid_Z = sdt.gxTv_SdtTrn_Page_Productserviceid_Z ;
          gxTv_SdtTrn_Page_Organisationid_Z = sdt.gxTv_SdtTrn_Page_Organisationid_Z ;
-         gxTv_SdtTrn_Page_Locationid_Z = sdt.gxTv_SdtTrn_Page_Locationid_Z ;
          gxTv_SdtTrn_Page_Pagejsoncontent_N = sdt.gxTv_SdtTrn_Page_Pagejsoncontent_N ;
          gxTv_SdtTrn_Page_Pagegjshtml_N = sdt.gxTv_SdtTrn_Page_Pagegjshtml_N ;
          gxTv_SdtTrn_Page_Pagegjsjson_N = sdt.gxTv_SdtTrn_Page_Pagegjsjson_N ;
@@ -138,6 +139,7 @@ namespace GeneXus.Programs {
       {
          AddObjectProperty("Trn_PageId", gxTv_SdtTrn_Page_Trn_pageid, false, includeNonInitialized);
          AddObjectProperty("Trn_PageName", gxTv_SdtTrn_Page_Trn_pagename, false, includeNonInitialized);
+         AddObjectProperty("LocationId", gxTv_SdtTrn_Page_Locationid, false, includeNonInitialized);
          AddObjectProperty("PageJsonContent", gxTv_SdtTrn_Page_Pagejsoncontent, false, includeNonInitialized);
          AddObjectProperty("PageJsonContent_N", gxTv_SdtTrn_Page_Pagejsoncontent_N, false, includeNonInitialized);
          AddObjectProperty("PageGJSHtml", gxTv_SdtTrn_Page_Pagegjshtml, false, includeNonInitialized);
@@ -153,18 +155,17 @@ namespace GeneXus.Programs {
          AddObjectProperty("ProductServiceId", gxTv_SdtTrn_Page_Productserviceid, false, includeNonInitialized);
          AddObjectProperty("ProductServiceId_N", gxTv_SdtTrn_Page_Productserviceid_N, false, includeNonInitialized);
          AddObjectProperty("OrganisationId", gxTv_SdtTrn_Page_Organisationid, false, includeNonInitialized);
-         AddObjectProperty("LocationId", gxTv_SdtTrn_Page_Locationid, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_Page_Mode, false, includeNonInitialized);
             AddObjectProperty("Initialized", gxTv_SdtTrn_Page_Initialized, false, includeNonInitialized);
             AddObjectProperty("Trn_PageId_Z", gxTv_SdtTrn_Page_Trn_pageid_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_PageName_Z", gxTv_SdtTrn_Page_Trn_pagename_Z, false, includeNonInitialized);
+            AddObjectProperty("LocationId_Z", gxTv_SdtTrn_Page_Locationid_Z, false, includeNonInitialized);
             AddObjectProperty("PageIsPublished_Z", gxTv_SdtTrn_Page_Pageispublished_Z, false, includeNonInitialized);
             AddObjectProperty("PageIsContentPage_Z", gxTv_SdtTrn_Page_Pageiscontentpage_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceId_Z", gxTv_SdtTrn_Page_Productserviceid_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_Page_Organisationid_Z, false, includeNonInitialized);
-            AddObjectProperty("LocationId_Z", gxTv_SdtTrn_Page_Locationid_Z, false, includeNonInitialized);
             AddObjectProperty("PageJsonContent_N", gxTv_SdtTrn_Page_Pagejsoncontent_N, false, includeNonInitialized);
             AddObjectProperty("PageGJSHtml_N", gxTv_SdtTrn_Page_Pagegjshtml_N, false, includeNonInitialized);
             AddObjectProperty("PageGJSJson_N", gxTv_SdtTrn_Page_Pagegjsjson_N, false, includeNonInitialized);
@@ -187,6 +188,11 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_Page_Trn_pagename = sdt.gxTv_SdtTrn_Page_Trn_pagename ;
+         }
+         if ( sdt.IsDirty("LocationId") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Page_Locationid = sdt.gxTv_SdtTrn_Page_Locationid ;
          }
          if ( sdt.IsDirty("PageJsonContent") )
          {
@@ -235,11 +241,6 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Page_Organisationid = sdt.gxTv_SdtTrn_Page_Organisationid ;
          }
-         if ( sdt.IsDirty("LocationId") )
-         {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Page_Locationid = sdt.gxTv_SdtTrn_Page_Locationid ;
-         }
          return  ;
       }
 
@@ -258,11 +259,11 @@ namespace GeneXus.Programs {
                gxTv_SdtTrn_Page_Mode = "INS";
                this.gxTv_SdtTrn_Page_Trn_pageid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Trn_pagename_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Locationid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageispublished_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageiscontentpage_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Productserviceid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Organisationid_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Locationid_Z_SetNull( );
             }
             gxTv_SdtTrn_Page_Trn_pageid = value;
             SetDirty("Trn_pageid");
@@ -285,14 +286,41 @@ namespace GeneXus.Programs {
                gxTv_SdtTrn_Page_Mode = "INS";
                this.gxTv_SdtTrn_Page_Trn_pageid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Trn_pagename_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Locationid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageispublished_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageiscontentpage_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Productserviceid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Organisationid_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Locationid_Z_SetNull( );
             }
             gxTv_SdtTrn_Page_Trn_pagename = value;
             SetDirty("Trn_pagename");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "LocationId" )]
+      [  XmlElement( ElementName = "LocationId"   )]
+      public Guid gxTpr_Locationid
+      {
+         get {
+            return gxTv_SdtTrn_Page_Locationid ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            if ( gxTv_SdtTrn_Page_Locationid != value )
+            {
+               gxTv_SdtTrn_Page_Mode = "INS";
+               this.gxTv_SdtTrn_Page_Trn_pageid_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Trn_pagename_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Locationid_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Pageispublished_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Pageiscontentpage_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Productserviceid_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Organisationid_Z_SetNull( );
+            }
+            gxTv_SdtTrn_Page_Locationid = value;
+            SetDirty("Locationid");
          }
 
       }
@@ -523,22 +551,6 @@ namespace GeneXus.Programs {
 
       }
 
-      [  SoapElement( ElementName = "LocationId" )]
-      [  XmlElement( ElementName = "LocationId"   )]
-      public Guid gxTpr_Locationid
-      {
-         get {
-            return gxTv_SdtTrn_Page_Locationid ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Page_Locationid = value;
-            SetDirty("Locationid");
-         }
-
-      }
-
       [  SoapElement( ElementName = "Mode" )]
       [  XmlElement( ElementName = "Mode"   )]
       public string gxTpr_Mode
@@ -651,6 +663,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "LocationId_Z" )]
+      [  XmlElement( ElementName = "LocationId_Z"   )]
+      public Guid gxTpr_Locationid_Z
+      {
+         get {
+            return gxTv_SdtTrn_Page_Locationid_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Page_Locationid_Z = value;
+            SetDirty("Locationid_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Page_Locationid_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Page_Locationid_Z = Guid.Empty;
+         SetDirty("Locationid_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Page_Locationid_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "PageIsPublished_Z" )]
       [  XmlElement( ElementName = "PageIsPublished_Z"   )]
       public bool gxTpr_Pageispublished_Z
@@ -759,34 +799,6 @@ namespace GeneXus.Programs {
       }
 
       public bool gxTv_SdtTrn_Page_Organisationid_Z_IsNull( )
-      {
-         return false ;
-      }
-
-      [  SoapElement( ElementName = "LocationId_Z" )]
-      [  XmlElement( ElementName = "LocationId_Z"   )]
-      public Guid gxTpr_Locationid_Z
-      {
-         get {
-            return gxTv_SdtTrn_Page_Locationid_Z ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Page_Locationid_Z = value;
-            SetDirty("Locationid_Z");
-         }
-
-      }
-
-      public void gxTv_SdtTrn_Page_Locationid_Z_SetNull( )
-      {
-         gxTv_SdtTrn_Page_Locationid_Z = Guid.Empty;
-         SetDirty("Locationid_Z");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Page_Locationid_Z_IsNull( )
       {
          return false ;
       }
@@ -1006,6 +1018,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Page_Trn_pageid = Guid.Empty;
          sdtIsNull = 1;
          gxTv_SdtTrn_Page_Trn_pagename = "";
+         gxTv_SdtTrn_Page_Locationid = Guid.Empty;
          gxTv_SdtTrn_Page_Pagejsoncontent = "";
          gxTv_SdtTrn_Page_Pagegjshtml = "";
          gxTv_SdtTrn_Page_Pagegjsjson = "";
@@ -1014,13 +1027,12 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Page_Pagechildren = "";
          gxTv_SdtTrn_Page_Productserviceid = Guid.Empty;
          gxTv_SdtTrn_Page_Organisationid = Guid.Empty;
-         gxTv_SdtTrn_Page_Locationid = Guid.Empty;
          gxTv_SdtTrn_Page_Mode = "";
          gxTv_SdtTrn_Page_Trn_pageid_Z = Guid.Empty;
          gxTv_SdtTrn_Page_Trn_pagename_Z = "";
+         gxTv_SdtTrn_Page_Locationid_Z = Guid.Empty;
          gxTv_SdtTrn_Page_Productserviceid_Z = Guid.Empty;
          gxTv_SdtTrn_Page_Organisationid_Z = Guid.Empty;
-         gxTv_SdtTrn_Page_Locationid_Z = Guid.Empty;
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_page", "GeneXus.Programs.trn_page_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -1056,13 +1068,13 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Page_Trn_pagename ;
       private string gxTv_SdtTrn_Page_Trn_pagename_Z ;
       private Guid gxTv_SdtTrn_Page_Trn_pageid ;
+      private Guid gxTv_SdtTrn_Page_Locationid ;
       private Guid gxTv_SdtTrn_Page_Productserviceid ;
       private Guid gxTv_SdtTrn_Page_Organisationid ;
-      private Guid gxTv_SdtTrn_Page_Locationid ;
       private Guid gxTv_SdtTrn_Page_Trn_pageid_Z ;
+      private Guid gxTv_SdtTrn_Page_Locationid_Z ;
       private Guid gxTv_SdtTrn_Page_Productserviceid_Z ;
       private Guid gxTv_SdtTrn_Page_Organisationid_Z ;
-      private Guid gxTv_SdtTrn_Page_Locationid_Z ;
    }
 
    [DataContract(Name = @"Trn_Page", Namespace = "Comforta_version2")]
@@ -1105,7 +1117,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "PageJsonContent" , Order = 2 )]
+      [DataMember( Name = "LocationId" , Order = 2 )]
+      [GxSeudo()]
+      public Guid gxTpr_Locationid
+      {
+         get {
+            return sdt.gxTpr_Locationid ;
+         }
+
+         set {
+            sdt.gxTpr_Locationid = value;
+         }
+
+      }
+
+      [DataMember( Name = "PageJsonContent" , Order = 3 )]
       public string gxTpr_Pagejsoncontent
       {
          get {
@@ -1118,7 +1144,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "PageGJSHtml" , Order = 3 )]
+      [DataMember( Name = "PageGJSHtml" , Order = 4 )]
       public string gxTpr_Pagegjshtml
       {
          get {
@@ -1131,7 +1157,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "PageGJSJson" , Order = 4 )]
+      [DataMember( Name = "PageGJSJson" , Order = 5 )]
       public string gxTpr_Pagegjsjson
       {
          get {
@@ -1144,7 +1170,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "PageIsPublished" , Order = 5 )]
+      [DataMember( Name = "PageIsPublished" , Order = 6 )]
       [GxSeudo()]
       public bool gxTpr_Pageispublished
       {
@@ -1158,7 +1184,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "PageIsContentPage" , Order = 6 )]
+      [DataMember( Name = "PageIsContentPage" , Order = 7 )]
       [GxSeudo()]
       public bool gxTpr_Pageiscontentpage
       {
@@ -1172,7 +1198,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "PageChildren" , Order = 7 )]
+      [DataMember( Name = "PageChildren" , Order = 8 )]
       public string gxTpr_Pagechildren
       {
          get {
@@ -1185,7 +1211,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ProductServiceId" , Order = 8 )]
+      [DataMember( Name = "ProductServiceId" , Order = 9 )]
       [GxSeudo()]
       public Guid gxTpr_Productserviceid
       {
@@ -1199,7 +1225,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "OrganisationId" , Order = 9 )]
+      [DataMember( Name = "OrganisationId" , Order = 10 )]
       [GxSeudo()]
       public Guid gxTpr_Organisationid
       {
@@ -1209,20 +1235,6 @@ namespace GeneXus.Programs {
 
          set {
             sdt.gxTpr_Organisationid = value;
-         }
-
-      }
-
-      [DataMember( Name = "LocationId" , Order = 10 )]
-      [GxSeudo()]
-      public Guid gxTpr_Locationid
-      {
-         get {
-            return sdt.gxTpr_Locationid ;
-         }
-
-         set {
-            sdt.gxTpr_Locationid = value;
          }
 
       }

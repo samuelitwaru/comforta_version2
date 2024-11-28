@@ -2593,7 +2593,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411253421032", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241128942895", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2609,7 +2609,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsettingww.js", "?202411253421037", false, true);
+         context.AddJavascriptSource("trn_organisationsettingww.js", "?20241128942897", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3594,7 +3594,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(OrganisationSettingBaseColor) like '%' || LOWER(:lV50Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingFontSize) like '%' || LOWER(:lV50Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingLanguage) like '%' || LOWER(:lV50Trn_organisationsettingwwds_1_filterfulltext)))");
          }
          else
          {
@@ -3604,7 +3604,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingBaseColor like :lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolo)");
+            AddWhere(sWhereString, "(LOWER(OrganisationSettingBaseColor) like LOWER(:lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolo))");
          }
          else
          {
@@ -3624,7 +3624,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingFontSize like :lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize)");
+            AddWhere(sWhereString, "(LOWER(OrganisationSettingFontSize) like LOWER(:lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize))");
          }
          else
          {
@@ -3644,7 +3644,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingLanguage like :lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage)");
+            AddWhere(sWhereString, "(LOWER(OrganisationSettingLanguage) like LOWER(:lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage))");
          }
          else
          {
@@ -3733,7 +3733,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM Trn_OrganisationSetting";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_organisationsettingwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV50Trn_organisationsettingwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(OrganisationSettingBaseColor) like '%' || LOWER(:lV50Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingFontSize) like '%' || LOWER(:lV50Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingLanguage) like '%' || LOWER(:lV50Trn_organisationsettingwwds_1_filterfulltext)))");
          }
          else
          {
@@ -3743,7 +3743,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_organisationsettingwwds_3_tforganisationsettingbasecolor_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolor)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingBaseColor like :lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolo)");
+            AddWhere(sWhereString, "(LOWER(OrganisationSettingBaseColor) like LOWER(:lV51Trn_organisationsettingwwds_2_tforganisationsettingbasecolo))");
          }
          else
          {
@@ -3763,7 +3763,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_organisationsettingwwds_5_tforganisationsettingfontsize_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingFontSize like :lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize)");
+            AddWhere(sWhereString, "(LOWER(OrganisationSettingFontSize) like LOWER(:lV53Trn_organisationsettingwwds_4_tforganisationsettingfontsize))");
          }
          else
          {
@@ -3783,7 +3783,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_organisationsettingwwds_7_tforganisationsettinglanguage_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage)) ) )
          {
-            AddWhere(sWhereString, "(OrganisationSettingLanguage like :lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage)");
+            AddWhere(sWhereString, "(LOWER(OrganisationSettingLanguage) like LOWER(:lV55Trn_organisationsettingwwds_6_tforganisationsettinglanguage))");
          }
          else
          {

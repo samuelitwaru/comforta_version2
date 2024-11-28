@@ -137,7 +137,7 @@ namespace GeneXus.Programs {
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                   {
                      AV25BC_Trn_Page = new SdtTrn_Page(context);
-                     AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename);
+                     AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, AV26LocationId);
                      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV25BC_Trn_Page.gxTpr_Trn_pagename)) )
                      {
                         AV19SDT_PageChild = new SdtSDT_PageChildren(context);
@@ -248,7 +248,7 @@ namespace GeneXus.Programs {
           new ParDef("AV27OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008W2", "SELECT OrganisationId, LocationId, Trn_PageId, Trn_PageName, PageJsonContent FROM Trn_Page WHERE (LocationId = :AV26LocationId) AND (OrganisationId = :AV27OrganisationId) ORDER BY Trn_PageId, Trn_PageName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008W2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P008W2", "SELECT OrganisationId, LocationId, Trn_PageId, Trn_PageName, PageJsonContent FROM Trn_Page WHERE (LocationId = :AV26LocationId) AND (OrganisationId = :AV27OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008W2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

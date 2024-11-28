@@ -145,6 +145,7 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         new prc_createlocationhomepage(context ).execute(  A29LocationId) ;
          new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV24AuditingObject,  AV27Pgmname) ;
       }
 

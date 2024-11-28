@@ -34,8 +34,8 @@ body {
   width: 0px;
 }
 
-.frame-container {
-  margin-top: 95px;
+.frame-container,
+.content-frame-container {
   min-height: 100vh;
   padding: 1em;
   display: flex;
@@ -45,6 +45,14 @@ body {
   background-color: #fdfdfd;
   box-sizing: border-box;
   overflow: hidden;
+}
+
+.frame-container {
+  margin-top: 95px;
+}
+
+.content-frame-container {
+  margin-top: 5px !important;
 }
 
 /* Templates section */
@@ -72,7 +80,7 @@ body {
   flex: 1 1 30%;
   max-width: 100%;
   border-radius: 1px;
-  min-width: 100px;
+  min-width: calc(76px - 0.3rem);
   transition: flex 0.3s ease;
   box-sizing: border-box;
 }
@@ -80,7 +88,7 @@ body {
 .template-block {
   border: 2px dashed #4c53577d;
   border-radius: 1px;
-  height: 9rem;
+  height: 7rem;
   padding: 1rem;
   background-color: transparent;
   display: flex;
@@ -97,6 +105,38 @@ body {
 .template-title {
   color: #6b7280;
   font-size: 1rem;
+}
+
+.content-page-block {
+  border-radius: 13px;
+  height: 7rem;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  position: relative;
+}
+
+.content-page-block .drag-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  opacity: 0;
+}
+
+.content-page-block:hover {
+  border: 2px dashed #4c53577d;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: move;
+}
+
+.content-page-block:hover img {
+  opacity: 0.5;
 }
 
 .action-button {
@@ -206,7 +246,7 @@ body {
 }
 
 .tile-title {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .tile-close-icon {
@@ -263,10 +303,9 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  flex-wrap: wrap; /* Enables wrapping */
-  gap: 0.5em;
+  flex-wrap: wrap; 
+  gap: 0.5em;
 }
-
 
 .cta-main-button {
   padding: 10px 20px;
@@ -283,7 +322,7 @@ body {
   position: absolute;
   top: -8px;
   right: -12px;
-  background-color: #D32F2F;
+  background-color: #d32f2f;
   color: white;
   border-radius: 50%;
   width: 25px;
@@ -295,59 +334,58 @@ body {
   opacity: 0;
 }
 
-.cta-main-button:hover + .cta-badge{
+.cta-main-button:hover + .cta-badge {
   opacity: 1;
 }
 
-.cta-badge:hover{
+.cta-badge:hover {
   opacity: 1;
 }
 
 .cta-container-child {
-  /* flex: 0, 0, 50%;
-  width: 50%; */
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin: 0.5rem;
 }
 
 .cta-button {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background-color: #5068a8; /* Green background */
   border-radius: 50%; /* Makes it circular */
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 32px; /* Adjust for icon size */
+  font-size: 28px; /* Adjust for icon size */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
 }
 
 .cta-button .cta-badge {
-    position: absolute;
-    top: 1px;
-    right: -8px;
-    background-color: #D32F2F;
-    color: white;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    opacity: 0;
+  position: absolute;
+  top: 1px;
+  right: -8px;
+  background-color: #d32f2f;
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  opacity: 0;
 }
 
 .cta-button:hover .cta-badge {
-    opacity: 1;
+  opacity: 1;
 }
 
 .cta-label {
   margin-top: 8px;
-  font-size: 16px;
+  font-size: 12px;
   color: #555;
 }
 

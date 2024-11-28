@@ -2494,7 +2494,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211545591", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411289422664", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2510,7 +2510,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_templateww.js", "?202411211545593", false, true);
+         context.AddJavascriptSource("trn_templateww.js", "?202411289422666", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3362,7 +3362,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV48Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV48Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV48Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {
@@ -3372,7 +3372,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_templatewwds_3_tftrn_templatename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_templatewwds_2_tftrn_templatename)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateName like :lV49Trn_templatewwds_2_tftrn_templatename)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateName) like LOWER(:lV49Trn_templatewwds_2_tftrn_templatename))");
          }
          else
          {
@@ -3392,7 +3392,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_templatewwds_5_tftrn_templatemedia_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_templatewwds_4_tftrn_templatemedia)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateMedia like :lV51Trn_templatewwds_4_tftrn_templatemedia)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateMedia) like LOWER(:lV51Trn_templatewwds_4_tftrn_templatemedia))");
          }
          else
          {
@@ -3412,7 +3412,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_templatewwds_7_tftrn_templatecontent_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_templatewwds_6_tftrn_templatecontent)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateContent like :lV53Trn_templatewwds_6_tftrn_templatecontent)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateContent) like LOWER(:lV53Trn_templatewwds_6_tftrn_templatecontent))");
          }
          else
          {
@@ -3485,7 +3485,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV48Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV48Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV48Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {
@@ -3495,7 +3495,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_templatewwds_3_tftrn_templatename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_templatewwds_2_tftrn_templatename)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateName like :lV49Trn_templatewwds_2_tftrn_templatename)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateName) like LOWER(:lV49Trn_templatewwds_2_tftrn_templatename))");
          }
          else
          {
@@ -3515,7 +3515,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_templatewwds_5_tftrn_templatemedia_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Trn_templatewwds_4_tftrn_templatemedia)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateMedia like :lV51Trn_templatewwds_4_tftrn_templatemedia)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateMedia) like LOWER(:lV51Trn_templatewwds_4_tftrn_templatemedia))");
          }
          else
          {
@@ -3535,7 +3535,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_templatewwds_7_tftrn_templatecontent_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_templatewwds_6_tftrn_templatecontent)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateContent like :lV53Trn_templatewwds_6_tftrn_templatecontent)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateContent) like LOWER(:lV53Trn_templatewwds_6_tftrn_templatecontent))");
          }
          else
          {

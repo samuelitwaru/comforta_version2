@@ -52,6 +52,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -62,6 +63,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -557,6 +559,7 @@ namespace GeneXus.Programs {
       private string AV22Option ;
       private Guid A278Trn_TemplateId ;
       private IGxSession AV28Session ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV23Options ;
@@ -604,7 +607,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateName, Trn_TemplateContent, Trn_TemplateMedia, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {
@@ -614,13 +617,13 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_templatewwds_2_tftrn_templatename)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateName like :lV43Trn_templatewwds_2_tftrn_templatename)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateName) like LOWER(:lV43Trn_templatewwds_2_tftrn_templatename))");
          }
          else
          {
             GXv_int1[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateName = ( :AV44Trn_templatewwds_3_tftrn_templatename_sel))");
          }
@@ -628,19 +631,19 @@ namespace GeneXus.Programs {
          {
             GXv_int1[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateName))=0))");
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_templatewwds_4_tftrn_templatemedia)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateMedia like :lV45Trn_templatewwds_4_tftrn_templatemedia)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateMedia) like LOWER(:lV45Trn_templatewwds_4_tftrn_templatemedia))");
          }
          else
          {
             GXv_int1[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ! ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ! ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateMedia = ( :AV46Trn_templatewwds_5_tftrn_templatemedia_sel))");
          }
@@ -648,19 +651,19 @@ namespace GeneXus.Programs {
          {
             GXv_int1[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateMedia))=0))");
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_templatewwds_6_tftrn_templatecontent)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateContent like :lV47Trn_templatewwds_6_tftrn_templatecontent)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateContent) like LOWER(:lV47Trn_templatewwds_6_tftrn_templatecontent))");
          }
          else
          {
             GXv_int1[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ! ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ! ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateContent = ( :AV48Trn_templatewwds_7_tftrn_templatecontent_sel))");
          }
@@ -668,7 +671,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateContent))=0))");
          }
@@ -698,7 +701,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateMedia, Trn_TemplateContent, Trn_TemplateName, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {
@@ -708,13 +711,13 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_templatewwds_2_tftrn_templatename)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateName like :lV43Trn_templatewwds_2_tftrn_templatename)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateName) like LOWER(:lV43Trn_templatewwds_2_tftrn_templatename))");
          }
          else
          {
             GXv_int3[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateName = ( :AV44Trn_templatewwds_3_tftrn_templatename_sel))");
          }
@@ -722,19 +725,19 @@ namespace GeneXus.Programs {
          {
             GXv_int3[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateName))=0))");
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_templatewwds_4_tftrn_templatemedia)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateMedia like :lV45Trn_templatewwds_4_tftrn_templatemedia)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateMedia) like LOWER(:lV45Trn_templatewwds_4_tftrn_templatemedia))");
          }
          else
          {
             GXv_int3[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ! ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ! ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateMedia = ( :AV46Trn_templatewwds_5_tftrn_templatemedia_sel))");
          }
@@ -742,19 +745,19 @@ namespace GeneXus.Programs {
          {
             GXv_int3[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateMedia))=0))");
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_templatewwds_6_tftrn_templatecontent)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateContent like :lV47Trn_templatewwds_6_tftrn_templatecontent)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateContent) like LOWER(:lV47Trn_templatewwds_6_tftrn_templatecontent))");
          }
          else
          {
             GXv_int3[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ! ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ! ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateContent = ( :AV48Trn_templatewwds_7_tftrn_templatecontent_sel))");
          }
@@ -762,7 +765,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateContent))=0))");
          }
@@ -792,7 +795,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateContent, Trn_TemplateMedia, Trn_TemplateName, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {
@@ -802,13 +805,13 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_templatewwds_2_tftrn_templatename)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateName like :lV43Trn_templatewwds_2_tftrn_templatename)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateName) like LOWER(:lV43Trn_templatewwds_2_tftrn_templatename))");
          }
          else
          {
             GXv_int5[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateName = ( :AV44Trn_templatewwds_3_tftrn_templatename_sel))");
          }
@@ -816,19 +819,19 @@ namespace GeneXus.Programs {
          {
             GXv_int5[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Trn_templatewwds_3_tftrn_templatename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateName))=0))");
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_templatewwds_4_tftrn_templatemedia)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateMedia like :lV45Trn_templatewwds_4_tftrn_templatemedia)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateMedia) like LOWER(:lV45Trn_templatewwds_4_tftrn_templatemedia))");
          }
          else
          {
             GXv_int5[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ! ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ! ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateMedia = ( :AV46Trn_templatewwds_5_tftrn_templatemedia_sel))");
          }
@@ -836,19 +839,19 @@ namespace GeneXus.Programs {
          {
             GXv_int5[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV46Trn_templatewwds_5_tftrn_templatemedia_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateMedia))=0))");
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_templatewwds_6_tftrn_templatecontent)) ) )
          {
-            AddWhere(sWhereString, "(Trn_TemplateContent like :lV47Trn_templatewwds_6_tftrn_templatecontent)");
+            AddWhere(sWhereString, "(LOWER(Trn_TemplateContent) like LOWER(:lV47Trn_templatewwds_6_tftrn_templatecontent))");
          }
          else
          {
             GXv_int5[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ! ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ! ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_TemplateContent = ( :AV48Trn_templatewwds_7_tftrn_templatecontent_sel))");
          }
@@ -856,7 +859,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV48Trn_templatewwds_7_tftrn_templatecontent_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_TemplateContent))=0))");
          }

@@ -1206,7 +1206,7 @@ namespace GeneXus.Programs {
             bttBtndelete_Visible = 0;
             AssignProp(sPrefix, false, bttBtndelete_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtndelete_Visible), 5, 0), true);
          }
-         if ( ! ( ( StringUtil.StrCmp(Gx_mode, context.GetMessage( "INS", "")) != 0 ) ) )
+         if ( ! ( ( AV20Isgamactive == Convert.ToDecimal( true )) ) )
          {
             chkManagerIsActive.Visible = 0;
             AssignProp(sPrefix, false, chkManagerIsActive_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkManagerIsActive.Visible), 5, 0), true);
@@ -1536,7 +1536,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115385823", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112714165368", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1552,7 +1552,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_managergeneral.js", "?2024112115385824", false, true);
+         context.AddJavascriptSource("trn_managergeneral.js", "?2024112714165368", false, true);
          /* End function include_jscripts */
       }
 
@@ -1744,7 +1744,6 @@ namespace GeneXus.Programs {
          AV16Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          AV18ComboSelectedValue = "";
          GXt_objcol_SdtDVB_SDTComboData_Item1 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
-         Gx_mode = "";
          AV8TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV11HTTPRequest = new GxHttpRequest( context);
          AV10Session = context.GetSession();
@@ -1794,6 +1793,7 @@ namespace GeneXus.Programs {
       private int edtManagerPhone_Enabled ;
       private int edtManagerGAMGUID_Enabled ;
       private int idxLst ;
+      private decimal AV20Isgamactive ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sPrefix ;
@@ -1853,7 +1853,6 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string GXDecQS ;
       private string edtManagerPhoneNumber_Internalname ;
-      private string Gx_mode ;
       private string sStyleString ;
       private string tblTablemergedmanagerphonecode_description_Internalname ;
       private string edtavManagerphonecode_description_Jsonclick ;

@@ -52,6 +52,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -62,6 +63,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -313,6 +315,7 @@ namespace GeneXus.Programs {
       private string AV18Option ;
       private Guid A283SupplierAgbTypeId ;
       private IGxSession AV24Session ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV19Options ;
@@ -344,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT SupplierAgbTypeName, SupplierAgbTypeId FROM Trn_SupplierAgbType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_supplieragbtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SupplierAgbTypeName like '%' || :lV38Trn_supplieragbtypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(SupplierAgbTypeName) like '%' || LOWER(:lV38Trn_supplieragbtypewwds_1_filterfulltext)))");
          }
          else
          {
@@ -352,13 +355,13 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV39Trn_supplieragbtypewwds_2_tfsupplieragbtypename)) ) )
          {
-            AddWhere(sWhereString, "(SupplierAgbTypeName like :lV39Trn_supplieragbtypewwds_2_tfsupplieragbtypename)");
+            AddWhere(sWhereString, "(LOWER(SupplierAgbTypeName) like LOWER(:lV39Trn_supplieragbtypewwds_2_tfsupplieragbtypename))");
          }
          else
          {
             GXv_int1[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(SupplierAgbTypeName = ( :AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel))");
          }
@@ -366,7 +369,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from SupplierAgbTypeName))=0))");
          }

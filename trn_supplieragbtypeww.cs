@@ -2315,7 +2315,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211545724", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411289424073", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2331,7 +2331,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragbtypeww.js", "?202411211545727", false, true);
+         context.AddJavascriptSource("trn_supplieragbtypeww.js", "?202411289424075", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3089,7 +3089,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_supplieragbtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SupplierAgbTypeName like '%' || :lV43Trn_supplieragbtypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(SupplierAgbTypeName) like '%' || LOWER(:lV43Trn_supplieragbtypewwds_1_filterfulltext)))");
          }
          else
          {
@@ -3097,7 +3097,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_supplieragbtypewwds_2_tfsupplieragbtypename)) ) )
          {
-            AddWhere(sWhereString, "(SupplierAgbTypeName like :lV44Trn_supplieragbtypewwds_2_tfsupplieragbtypename)");
+            AddWhere(sWhereString, "(LOWER(SupplierAgbTypeName) like LOWER(:lV44Trn_supplieragbtypewwds_2_tfsupplieragbtypename))");
          }
          else
          {
@@ -3147,7 +3147,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM Trn_SupplierAgbType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_supplieragbtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SupplierAgbTypeName like '%' || :lV43Trn_supplieragbtypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(SupplierAgbTypeName) like '%' || LOWER(:lV43Trn_supplieragbtypewwds_1_filterfulltext)))");
          }
          else
          {
@@ -3155,7 +3155,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_supplieragbtypewwds_2_tfsupplieragbtypename)) ) )
          {
-            AddWhere(sWhereString, "(SupplierAgbTypeName like :lV44Trn_supplieragbtypewwds_2_tfsupplieragbtypename)");
+            AddWhere(sWhereString, "(LOWER(SupplierAgbTypeName) like LOWER(:lV44Trn_supplieragbtypewwds_2_tfsupplieragbtypename))");
          }
          else
          {

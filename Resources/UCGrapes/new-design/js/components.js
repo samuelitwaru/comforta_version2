@@ -29,26 +29,6 @@ class ActionListComponent {
           };
         }),
       },
-      {
-        name: "Dynamic Form",
-        label: this.currentLanguage.getTranslation("category_dynamic_form"),
-        options: [
-          {
-            PageId: "2354481d-5df0-4154-92b8-2fc0aaf9b3e7",
-            PageName: "Form 1",
-          },
-        ],
-      },
-      {
-        name: "Call to Action",
-        label: this.currentLanguage.getTranslation("category_call_to_action"),
-        options: [
-          {
-            PageId: "2354481d-5df0-4154-92b8-2fc0aaf9b3e7",
-            PageName: "Call To Action",
-          },
-        ],
-      },
     ];
     this.init();
   }
@@ -179,19 +159,19 @@ class ActionListComponent {
     // Handle selecting an option and displaying it in the header
     document.querySelectorAll(".category-content li").forEach((item) => {
       item.addEventListener("click", function () {
-        
         dropdownHeader.textContent = `${
           this.closest(".category").dataset.category
         }, ${this.textContent}`;
 
         // add value to the tile
-        if (self.editorManager.editor.getSelected()) {
-          const titleComponent = self.editorManager.editor
+        if (globalEditor.getSelected()) {
+          const titleComponent = globalEditor
             .getSelected()
             .find(".tile-title")[0];
 
           // add apage to a selected tile
           const currentPageId = localStorage.getItem("pageId");
+
           if (currentPageId !== undefined) {
             self.toolBoxManager.setAttributeToSelected(
               "tile-action-object-id",
@@ -203,7 +183,6 @@ class ActionListComponent {
                 this.textContent
               }`
             );
-
             if (self.selectedObject == 'Service/Product Page'){
               self.createContentPage(this.id)
             }
@@ -252,6 +231,7 @@ class ActionListComponent {
   }
 
   createContentPage(pageId) {
+    alert(pageId)
     let self = this
     this.dataManager.createContentPage(pageId).then(res=>{
       this.dataManager.getPages().then(pages=>{
@@ -358,6 +338,7 @@ class MappingComponent {
   }
 
   createTree(data, isRoot = false) {
+    console.log('data for tree', data)
     // Create a deep copy to avoid modifying original data
     const sortedData = JSON.parse(JSON.stringify(data)).sort((a, b) => 
       a.Name === "Home" ? -1 : b.Name === "Home" ? 1 : 0
@@ -438,7 +419,7 @@ class MappingComponent {
       const page = this.dataManager.pages.find(page => page.PageId === item.Id);
       this.editorManager.setCurrentPage(page);
 
-      const editor = this.editorManager.editor;
+      const editor = globalEditor;
       editor.DomComponents.clear();
       this.editorManager.templateComponent = null;
       editor.trigger("load");
@@ -549,7 +530,7 @@ class MediaComponent {
 
       openModal.addEventListener("click", (e) => {
           e.preventDefault();
-          if (self.editorManager.editor.getSelected()) {
+          if (this.editorManager.selectedComponent) {
           fileInputField.type = "file";
           fileInputField.multiple = true;
           fileInputField.accept = "image/jpeg, image/jpg, image/png"; // Only accept specific image types
@@ -668,7 +649,7 @@ class MediaComponent {
       const saveBtn = modal.querySelector("#saveBtn");
       saveBtn.onclick = () => {
           if (this.selectedFile) {
-          const templateBlock = this.editorManager.editor
+          const templateBlock = globalEditor
               .getSelected()
               .find(".template-block")[0];
           templateBlock.addStyle({

@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0711( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0711( 23) ;
+                  ZM0711( 22) ;
                }
                CloseExtendedTableCursors0711( ) ;
             }
@@ -147,7 +147,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0711( short GX_JID )
       {
-         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 21 ) || ( GX_JID == 0 ) )
          {
             Z56SupplierAgbPhone = A56SupplierAgbPhone;
             Z50SupplierAgbNumber = A50SupplierAgbNumber;
@@ -165,11 +165,11 @@ namespace GeneXus.Programs {
             Z440SupplierAgbWebsite = A440SupplierAgbWebsite;
             Z283SupplierAgbTypeId = A283SupplierAgbTypeId;
          }
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
          {
             Z291SupplierAgbTypeName = A291SupplierAgbTypeName;
          }
-         if ( GX_JID == -22 )
+         if ( GX_JID == -21 )
          {
             Z49SupplierAgbId = A49SupplierAgbId;
             Z56SupplierAgbPhone = A56SupplierAgbPhone;
@@ -231,7 +231,7 @@ namespace GeneXus.Programs {
             A57SupplierAgbEmail = BC00075_A57SupplierAgbEmail[0];
             A440SupplierAgbWebsite = BC00075_A440SupplierAgbWebsite[0];
             A283SupplierAgbTypeId = BC00075_A283SupplierAgbTypeId[0];
-            ZM0711( -22) ;
+            ZM0711( -21) ;
          }
          pr_default.close(3);
          OnLoadActions0711( ) ;
@@ -324,11 +324,6 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Supplier Agb Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! ( GxRegex.IsMatch(A440SupplierAgbWebsite,"\\bhttps?://[^\\s/$.?#].[^\\s]*\\b") ) )
-         {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid website format", ""), context.GetMessage( "Supplier Agb Website", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
-            AnyError = 1;
-         }
          if ( ! GxRegex.IsMatch(A440SupplierAgbWebsite,context.GetMessage( "^(https?:\\/\\/)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})(\\/[^\\s]*)?$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A440SupplierAgbWebsite)) )
          {
             GX_msglist.addItem(context.GetMessage( "Invalid website format", ""), 1, "");
@@ -366,7 +361,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n49SupplierAgbId, A49SupplierAgbId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0711( 22) ;
+            ZM0711( 21) ;
             RcdFound11 = 1;
             A49SupplierAgbId = BC00073_A49SupplierAgbId[0];
             n49SupplierAgbId = BC00073_n49SupplierAgbId[0];
@@ -974,7 +969,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         ZM0711( -22) ;
+         ZM0711( -21) ;
          OnLoadActions0711( ) ;
          AddRow0711( ) ;
          ScanKeyEnd0711( ) ;
@@ -1003,7 +998,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         ZM0711( -22) ;
+         ZM0711( -21) ;
          OnLoadActions0711( ) ;
          AddRow0711( ) ;
          ScanKeyEnd0711( ) ;

@@ -45,6 +45,7 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+trn_pageview
 wp_residentfilledforms
 wp_residentfilledforms
 wp_changeyourpassword
@@ -325,6 +326,8 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+trn_pageloaddvcombo
+aprc_createlocationhomepage
 aprc_contentpageapi
 aprc_productserviceapi
 aprc_contentpagesapi
