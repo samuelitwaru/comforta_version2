@@ -231,7 +231,6 @@ class ActionListComponent {
   }
 
   createContentPage(pageId) {
-    alert(pageId)
     let self = this
     this.dataManager.createContentPage(pageId).then(res=>{
       this.dataManager.getPages().then(pages=>{

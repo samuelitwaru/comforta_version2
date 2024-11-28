@@ -1,5 +1,4 @@
 function mapTemplateToPageData(templateData) {
-  console.log(templateData)
   // Helper function to generate UUID
   function generateUUID() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -36,11 +35,13 @@ function mapTemplateToPageData(templateData) {
 
   if (!containerColumn) return pageData;
 
+  console.log(containerColumn)
   // Find and map container rows
   const containerRows =
     containerColumn.components?.filter((comp) =>
       comp.classes?.includes("container-row")
     ) || [];
+
 
   // Map rows to final structure
   pageData.Row = containerRows.map((rowComponent) => {
@@ -67,7 +68,12 @@ function mapTemplateToPageData(templateData) {
       };
 
       // Map tile
-      const attributes = templateComponent.attributes || {};
+      let attributes = {};
+      if (templateComponent.components){
+        attributes = templateComponent.components[0].attributes || {}
+      }
+
+      console.log(attributes)
 
       // Find tile title
       const templateBlock = templateComponent.components?.find((comp) =>
@@ -114,7 +120,7 @@ function mapTemplateToPageData(templateData) {
 
     return row;
   });
-  
+
   return pageData;
 }
 

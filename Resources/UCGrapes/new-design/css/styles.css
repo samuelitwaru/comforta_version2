@@ -604,6 +604,40 @@ li .selected-page::after {
   color: #747474;
 }
 
+.cta-button-layout-container {
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 16px;
+  gap: 0.8rem;
+}
+
+.toolbox-btn.cta-button-layout {
+  width: 100%;
+  border-radius: 7px;
+  border: 1px solid #B4B9BD;
+  background-color: transparent;
+  display: inline-block;
+    align-self: center;
+    vertical-align: middle;
+}
+
+.toolbox-btn.cta-button-layout:hover {
+  background-color: #e9e9e9;
+}
+
+.cta-button-layout svg {
+  height: 14px;
+  width: 18px;
+}
+
+
+.plain-button:hover {
+  background-color: #e9e9e9;
+}
+
+.plain-button svg {
+  height: 14px;
+}
 .text-color-palette {
   display: flex;
   padding: 6px;

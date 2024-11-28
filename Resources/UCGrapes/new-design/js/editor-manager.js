@@ -29,12 +29,6 @@ class EditorManager {
     this.dataManager = dataManager;
   }
 
-  setGlobalEditor(editorInstance) {
-    if (editorInstance) {
-      globalEditor = editorInstance;
-    }
-  }
-
   init() {
     this.editor.on("load", () => {
       this.toolsSection.resetPropertySection();
@@ -65,15 +59,15 @@ class EditorManager {
           if (button.classList.contains("delete-button")) {
             this.deleteTemplate(this.templateComponent);
           } else if (button.classList.contains("add-button-bottom")) {
-            this.addTemplateBottom(this.templateComponent);
+            this.addTemplateBottom(this.templateComponent, editorInstance);
           } else if (button.classList.contains("add-button-right")) {
-            this.addTemplateRight(this.templateComponent);
+            this.addTemplateRight(this.templateComponent, editorInstance);
           }
         };
 
         wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
         wrapper.view.el.addEventListener("contextmenu", (e) =>
-          this.rightClickEventHandler(e)
+          this.rightClickEventHandler(this.editor)
         );
 
         wrapper.set({
@@ -105,7 +99,8 @@ class EditorManager {
                 .then((contentPageData) => {
                   if (contentPageData) {
                     this.toolsSection.pageContentCtas(
-                      contentPageData.CallToActions
+                      contentPageData.CallToActions,
+                      this.editor
                     );
                   }
                 })
@@ -134,7 +129,8 @@ class EditorManager {
               if (contentPageData) {
                 this.initialContentPageTemplate(contentPageData);
                 this.toolsSection.pageContentCtas(
-                  contentPageData.CallToActions
+                  contentPageData.CallToActions,
+                  this.editor
                 );
               }
             })
@@ -142,6 +138,7 @@ class EditorManager {
               console.error("Error fetching content page data:", error)
             );
           this.toolsSection.updatePropertySection();
+          this.toolsSection.unDoReDo(this.editor);
         } else {
           this.initialTemplate();
         }
@@ -152,14 +149,13 @@ class EditorManager {
         .then((pageData) => {
           handlePageData(pageData);
           setupWrapperEvents(this.editor);
-          this.rightClickEventHandler();
+          this.rightClickEventHandler(this.editor);
         })
         .catch((error) => console.error("Error fetching page data:", error));
     });
 
     this.editor.on("component:selected", (component) => {
       this.toolsSection.resetPropertySection();
-      this.setGlobalEditor(this.editor);
       this.selectedTemplateWrapper = component.getEl();
 
       this.selectedComponent = component;
@@ -183,19 +179,20 @@ class EditorManager {
 
         // clear existing frames first
         this.clearEditors();
-        this.setGlobalEditor(this.editor);
 
         this.handlePageSelection();
       }
 
       this.toolsSection.updateTileProperties(
-        globalEditor,
+        this.editor,
         this.getCurrentPageId()
       );
       this.hideContextMenu();
+      
+      this.toolsSection.unDoReDo(this.editor);
     });
 
-    this.addDragEventListeners();
+    this.addDragEventListeners(this.editor);
 
     const sidebarInputTitle = document.getElementById("tile-title");
     sidebarInputTitle.addEventListener("input", (e) => {
@@ -216,12 +213,12 @@ class EditorManager {
   }
 
   removeElementOnClick(targetSelector, sectionSelector) {
-    const closeSection = globalEditor.getSelected()?.find(targetSelector)[0];
+    const closeSection = this.selectedComponent?.find(targetSelector)[0];
     if (closeSection) {
       const closeEl = closeSection.getEl();
       if (closeEl) {
         closeEl.onclick = () => {
-          globalEditor.getSelected().find(sectionSelector)[0].remove();
+          this.selectedComponent.find(sectionSelector)[0].remove();
         };
       }
     }
@@ -236,26 +233,20 @@ class EditorManager {
   }
 
   activateFrame(activeFrameClass) {
-    console.log("Class is: ", activeFrameClass);
-
     const activeFrame = document.querySelector(activeFrameClass);
 
-    // Deactivate any other frames matching the inactiveFrameClass
     const inactiveFrames = document.querySelectorAll(".active-editor");
     inactiveFrames.forEach((frame) => {
       if (frame !== activeFrame) {
-        console.log("Deactivating frame:", frame);
         frame.classList.remove("active-editor");
       }
     });
 
-    // Activate the correct frame
     activeFrame.classList.add("active-editor");
-    console.log("Activated frame:", activeFrame);
   }
 
   handlePageSelection() {
-    const selectedTile = globalEditor.getSelected()?.getAttributes()?.[
+    const selectedTile = this.selectedComponent?.getAttributes()?.[
       "tile-action-object-id"
     ];
     const previousEditorId = localStorage.getItem("createdEditor");
@@ -290,14 +281,14 @@ class EditorManager {
     }
   }
 
-  addDragEventListeners() {
-    globalEditor.on("component:drag:start", () => {
+  addDragEventListeners(editorInstance) {
+    editorInstance.on("component:drag:start", () => {
       const iframe = document.querySelector("#gjs iframe");
       const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
       iframeDoc.body.style.cursor = "grabbing";
     });
 
-    globalEditor.on("component:drag:end", () => {
+    editorInstance.on("component:drag:end", () => {
       const iframe = document.querySelector("#gjs iframe");
       const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
       iframeDoc.body.style.cursor = "";
@@ -307,6 +298,7 @@ class EditorManager {
   handleNewEditor(page, parentId) {
     this.newEditor.once("load", () => {
       this.toolsSection.resetPropertySection();
+      this.toolsSection.unDoReDo(this.newEditor);
       this.backButtonAction(page.PageId);
       const setupWrapperEvents = (editorInstance) => {
         const wrapper = editorInstance.getWrapper();
@@ -337,15 +329,15 @@ class EditorManager {
           if (button.classList.contains("delete-button")) {
             this.deleteTemplate(this.templateComponent);
           } else if (button.classList.contains("add-button-bottom")) {
-            this.addTemplateBottom(this.templateComponent);
+            this.addTemplateBottom(this.templateComponent, editorInstance);
           } else if (button.classList.contains("add-button-right")) {
-            this.addTemplateRight(this.templateComponent);
+            this.addTemplateRight(this.templateComponent, editorInstance);
           }
         };
 
         wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
         wrapper.view.el.addEventListener("contextmenu", (e) =>
-          this.rightClickEventHandler(e)
+          this.rightClickEventHandler(this.newEditor)
         );
 
         wrapper.set({
@@ -369,19 +361,20 @@ class EditorManager {
           true
         );
       }
-      
+
       // Ensure the frame's body exists before attaching the event
       if (page.PageIsContentPage) {
         if (frameDoc && frameDoc.body) {
           frameDoc.addEventListener(
             "click",
             () => {
+              console.log("Content Page Clicked");
               this.activateFrame(`.frame-${page.PageId}`);
               this.dataManager
                 .getContentPageData(page.PageId)
                 .then((contentData) => {
                   console.log("Content Data: ", contentData);
-                  this.toolsSection.pageContentCtas(contentData.CallToActions);
+                  this.toolsSection.pageContentCtas(contentData.CallToActions, this.newEditor);
                   this.toolsSection.updatePropertySection();
                 })
                 .catch((error) =>
@@ -390,14 +383,11 @@ class EditorManager {
             },
             true
           );
-          this.setGlobalEditor(this.newEditor);
         }
       }
     });
 
     this.newEditor.on("component:selected", (component) => {
-      this.activateFrame(`.frame-${page.PageId}`);
-      this.setGlobalEditor(this.newEditor);
 
       this.selectedTemplateWrapper = component.getEl();
 
@@ -421,7 +411,11 @@ class EditorManager {
         // Replace editor if a new page is selected
         this.replaceEditor(selectedTileId, parentId);
       }
-      this.toolsSection.updateTileProperties(globalEditor, page);
+      this.activateFrame(`.frame-${page.PageId}`);
+
+      this.toolsSection.updateTileProperties(this.newEditor, page);
+
+      this.toolsSection.unDoReDo(this.newEditor);
     });
   }
 
@@ -433,7 +427,7 @@ class EditorManager {
 
     if (existingEditorIndex !== -1) {
       const existingEditor = this.editors[existingEditorIndex];
-      this.setGlobalEditor(existingEditor.editor);
+      this.newEditor = existingEditor.editor;
       this.activeEditor = existingEditor.editor;
       this.activePageId = pageId;
       this.activateFrame(`.frame-${pageId}`);
@@ -516,7 +510,7 @@ class EditorManager {
     this.editors = [];
     this.activeEditor = null;
     this.activePageId = null;
-    globalEditor = null;
+    this.newEditor = null;
   }
 
   activateNavigators() {
@@ -536,10 +530,10 @@ class EditorManager {
 
   updateTileTitle(inputTitle) {
     if (this.selectedTemplateWrapper) {
-      const titleComponent = globalEditor.getSelected().find(".tile-title")[0];
+      const titleComponent = this.selectedComponent.find(".tile-title")[0];
       if (titleComponent) {
         titleComponent.components(inputTitle);
-        globalEditor.getSelected().addAttributes({ "tile-title": inputTitle });
+        this.selectedComponent.addAttributes({ "tile-title": inputTitle });
       }
     }
   }
@@ -576,8 +570,8 @@ class EditorManager {
     localStorage.setItem("pageName", pageName);
   }
 
-  addFreshTemplate(template) {
-    globalEditor.DomComponents.clear();
+  addFreshTemplate(template, editorInstance) {
+    editorInstance.DomComponents.clear();
     let fullTemplate = "";
 
     template.forEach((columns) => {
@@ -585,7 +579,7 @@ class EditorManager {
       fullTemplate += templateRow;
     });
 
-    globalEditor.addComponents(`
+    editorInstance.addComponents(`
         <div class="frame-container"
              id="frame-container"
              data-gjs-type="template-wrapper"
@@ -1211,10 +1205,10 @@ class EditorManager {
     });
   }
 
-  addTemplateRight(templateComponent) {
+  addTemplateRight(templateComponent, editorInstance) {
     const containerRow = templateComponent.parent();
     if (!containerRow || containerRow.components().length >= 3) return;
-    const newComponents = globalEditor.addComponents(this.createTemplateHTML());
+    const newComponents = editorInstance.addComponents(this.createTemplateHTML());
     const newTemplate = newComponents[0];
     if (!newTemplate) return;
 
@@ -1232,13 +1226,13 @@ class EditorManager {
     this.updateRightButtons(containerRow);
   }
 
-  addTemplateBottom(templateComponent) {
+  addTemplateBottom(templateComponent, editorInstance) {
     const currentRow = templateComponent.parent();
     const containerColumn = currentRow?.parent();
 
     if (!containerColumn) return;
 
-    const newRow = globalEditor.addComponents(`
+    const newRow = editorInstance.addComponents(`
         <div class="container-row"
             data-gjs-type="template-wrapper"
             data-gjs-draggable="false"
@@ -1324,7 +1318,7 @@ class EditorManager {
     });
   }
 
-  rightClickEventHandler() {
+  rightClickEventHandler(editorInstance) {
     const iframe = document.querySelector("#gjs iframe");
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
     const contextMenu = document.getElementById("contextMenu");
@@ -1375,7 +1369,7 @@ class EditorManager {
     deleteImage.addEventListener("click", () => {
       const blockToDelete = window.currentBlock;
       if (blockToDelete) {
-        const component = globalEditor
+        const component = editorInstance
           .getWrapper()
           .find('[data-gjs-type="default"]')
           .filter((comp) => comp.getEl() === blockToDelete)[0];
