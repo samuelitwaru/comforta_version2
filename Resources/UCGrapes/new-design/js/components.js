@@ -648,9 +648,9 @@ class MediaComponent {
       const saveBtn = modal.querySelector("#saveBtn");
       saveBtn.onclick = () => {
           if (this.selectedFile) {
-          const templateBlock = globalEditor
-              .getSelected()
-              .find(".template-block")[0];
+            console.log(globalEditor.getSelected().find(".template-block"))
+          const templateBlock =  this.editorManager.selectedComponent
+              // .find(".template-block")[0];
           templateBlock.addStyle({
               "background-image": `url(${this.selectedFile.MediaUrl})`,
               "background-size": "cover",

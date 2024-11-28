@@ -35,7 +35,6 @@ function mapTemplateToPageData(templateData) {
 
   if (!containerColumn) return pageData;
 
-  console.log(containerColumn)
   // Find and map container rows
   const containerRows =
     containerColumn.components?.filter((comp) =>

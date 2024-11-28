@@ -64,7 +64,7 @@ namespace GeneXus.Programs {
          restLocation = new GxLocation();
          restLocation.Host = "localhost";
          restLocation.Port = 8082;
-         restLocation.BaseUrl = "staging.comforta.yukon.software/api";
+         restLocation.BaseUrl = "Comforta_version2DevelopmentNETPostgreSQL/api";
          gxProperties = new GxObjectProperties();
       }
 

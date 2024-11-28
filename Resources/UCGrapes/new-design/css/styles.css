@@ -205,15 +205,15 @@ button#open-mapping {
   flex-shrink: 0;
   width: 90vw;
   height: 90vh;
-  max-width: 300px;
-  max-height: 600px;
+  max-width: 320px;
+  max-height: 700px;
   background-color: #fdfdfd;
   border-radius: 25px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   position: relative;
   border: #373737 solid 5px;
   margin-top: 20px;
-  min-height: 600px;
+  min-height: 700px;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
 }

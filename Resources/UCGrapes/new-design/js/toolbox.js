@@ -301,15 +301,15 @@ class ToolBoxManager {
     updateButtonVisibility();
   }
 
-  publishPages () {
-    let editors = this.editorManager.editors
+  publishPages() {
+    let editors = this.editorManager.editors;
     if (editors && editors.length) {
       for (let index = 0; index < editors.length; index++) {
         const editorData = editors[index];
-        console.log(editorData)
-        let pageId = editorData.pageId
-        let editor = editorData.editor
-        let page = this.dataManager.pages.find(page=>page.PageId == pageId)
+        console.log(editorData);
+        let pageId = editorData.pageId;
+        let editor = editorData.editor;
+        let page = this.dataManager.pages.find((page) => page.PageId == pageId);
         let projectData = editor.getProjectData();
         let htmlData = editor.getHtml();
         let jsonData;
@@ -681,15 +681,22 @@ class ToolBoxManager {
           const componentsWithClass = [
             ...selectedComponent.find(".cta-main-button"),
             ...selectedComponent.find(".cta-button"),
+            ...selectedComponent.find(".img-button"),
+            ...selectedComponent.find(".plain-button"),
           ];
+
+          console.log("Component selected: ", selectedComponent)
+          console.log("Component picked: ", componentsWithClass)
 
           // Get the first matching component
           const button =
             componentsWithClass.length > 0 ? componentsWithClass[0] : null;
 
           if (button) {
+            console.log("Button opened ", button)
             button.addStyle({
               "background-color": colorValue,
+              "border-color": colorValue,
             });
           }
           this.setAttributeToSelected("cta-background-color", colorValue);
@@ -739,6 +746,7 @@ class ToolBoxManager {
         const ctaComponent = `
           <div class="cta-container-child cta-child" 
             id="id-${cta.CallToActionId}"
+            cta-button-id="${cta.CallToActionId}"
             data-gjs-draggable="false"
             data-gjs-editable="false"
             data-gjs-highlightable="false"
@@ -770,21 +778,40 @@ class ToolBoxManager {
             .getWrapper()
             .find(".cta-button-container")[0];
 
-          if (ctaButton) {
-            const existingComponent = ctaButton.find(ctaType.iconList)[0];
-
-            if (existingComponent) {
-              const message =
-                this.currentLanguage.getTranslation("cta_button_exists");
-              this.displayAlertMessage(message, "error");
+            if (!ctaButton) {
+              console.error("CTA Button container not found.");
               return;
-            }
-            ctaButton.append(ctaComponent);
           }
+          
+          const selectedComponent = this.editorManager.selectedComponent;
+          if (!selectedComponent) {
+              console.error("No selected component found.");
+              return;
+          }
+          
+          const attributes = selectedComponent.getAttributes();
+          
+          const existingSelectedComponent =
+              attributes["cta-button-id"] === cta.CallToActionId;
+          
+          const existingButton = ctaButton.find(`#id-${cta.CallToActionId}`)?.[0];
+          
+          if (existingButton) {
+              if (existingSelectedComponent) {
+                console.log("Replaced")
+                  selectedComponent.replaceWith(ctaComponent);
+              } else {
+              }
+              return;
+          }
+          console.log("New")
+          ctaButton.append(ctaComponent);
+          
         };
 
         contentPageCtas.appendChild(ctaItem);
-        // change button layout
+
+        // change button layout to plain
         const plainButton = document.getElementById("plain-button-layout");
 
         plainButton.onclick = (e) => {
@@ -806,9 +833,11 @@ class ToolBoxManager {
 
               if (isCta) {
                 // Extract existing attributes
+                const ctaId = attributes["cta-button-id"];
                 const ctaName = attributes["cta-button-label"];
                 const ctaType = attributes["cta-button-type"];
                 const ctaAction = attributes["cta-button-action"];
+                const ctaButtonBgColor = attributes["cta-background-color"];
 
                 const plainButtonComponent = `
                   <div class="plain-button-container" 
@@ -818,12 +847,14 @@ class ToolBoxManager {
                       data-gjs-droppable="false"
                       data-gjs-resizable="false"
                       data-gjs-hoverable="false"
+                      id="id-${ctaId}"
+                      cta-button-id="${ctaId}"
                       cta-button-label="${ctaName}"
                       cta-button-type="${ctaType}"
                       cta-button-action="${ctaAction}"
-                      cta-background-color="#5068a8"
+                      cta-background-color="${ctaButtonBgColor}"
                     >
-                      <button class="plain-button" ${defaultConstraints}>
+                      <button style="background-color: ${ctaButtonBgColor}; border-color: ${ctaButtonBgColor};" class="plain-button" ${defaultConstraints}>
                         <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
                         ${ctaName}
                       </button>
@@ -831,12 +862,97 @@ class ToolBoxManager {
                 `;
 
                 // Remove the current component and replace it
-                this.editorManager.selectedComponent.remove();
-                ctaContainer.append(plainButtonComponent);
+                this.editorManager.selectedComponent.replaceWith(plainButtonComponent);
               } else {
-                const message = this.currentLanguage.getTranslation("please_select_cta_button");
+                const message = this.currentLanguage.getTranslation(
+                  "please_select_cta_button"
+                );
                 this.displayAlertMessage(message, "error");
-                return;                
+                return;
+              }
+            }
+          }
+        };
+
+        // change button layout to plain
+        const imgButton = document.getElementById("img-button-layout");
+
+        imgButton.onclick = (e) => {
+          e.preventDefault();
+          const ctaContainer = editorInstance
+            .getWrapper()
+            .find(".cta-button-container")[0];
+
+          if (ctaContainer) {
+            const selectedComponent = this.editorManager.selectedComponent;
+
+            if (selectedComponent) {
+              // Check if the selected component is a CTA
+              const attributes = selectedComponent.getAttributes();
+              const isCta =
+                attributes.hasOwnProperty("cta-button-label") &&
+                attributes.hasOwnProperty("cta-button-type") &&
+                attributes.hasOwnProperty("cta-button-action");
+
+              if (isCta) {
+                // Extract existing attributes
+                const ctaId = attributes["cta-button-id"];
+                const ctaName = attributes["cta-button-label"];
+                const ctaType = attributes["cta-button-type"];
+                const ctaAction = attributes["cta-button-action"];
+                const ctaButtonBgColor = attributes["cta-background-color"];
+
+                let icon;
+                switch (ctaType) {
+                  case "Phone":
+                    icon = "fas fa-phone-alt";
+                    break;
+
+                  case "Email":
+                    icon = "fas fa-envelope";
+                    break;
+
+                  case "SiteUrl":
+                    icon = "fas fa-calendar";
+                    break;
+
+                  case "Form":
+                    icon = "fas fa-file";
+                    break;
+                }
+
+                const imgButtonComponent = `
+                  <div class="img-button-container" 
+                      data-gjs-draggable="false"
+                      data-gjs-editable="false"
+                      data-gjs-highlightable="false"
+                      data-gjs-droppable="false"
+                      data-gjs-resizable="false"
+                      data-gjs-hoverable="false"
+                      id="id-${ctaId}"
+                      cta-button-id="${ctaId}"
+                      cta-button-label="${ctaName}"
+                      cta-button-type="${ctaType}"
+                      cta-button-action="${ctaAction}"
+                      cta-background-color="${ctaButtonBgColor}"
+                    >
+                      <div style="background-color: ${ctaButtonBgColor}; border-color: ${ctaButtonBgColor};" class="img-button" ${defaultConstraints}>
+                        <i class="${icon} img-button-icon" ${defaultConstraints}></i>
+                        <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
+                        <span class="img-button-label" ${defaultConstraints}>${ctaName}</span>
+                        <i class="fa fa-angle-right img-button-arrow" ${defaultConstraints}></i>
+                      </div>
+                  </div>
+                `;
+
+                // Remove the current component and replace it
+                this.editorManager.selectedComponent.replaceWith(imgButtonComponent);
+              } else {
+                const message = this.currentLanguage.getTranslation(
+                  "please_select_cta_button"
+                );
+                this.displayAlertMessage(message, "error");
+                return;
               }
             }
           }
@@ -855,18 +971,21 @@ class ToolBoxManager {
 
       e.stopPropagation();
 
-      const ctaChild = badge.closest(".cta-container-child, .plain-button-container");
-      if (ctaChild) {
-        console.log("ctaChild is: ", ctaChild);
-        // Check if this is the last child in the container
-        const parentContainer = ctaChild.closest(".cta-button-container");
-        const childId = ctaChild.getAttribute("id");
-        const component = editorInstance.getWrapper().find(`#${childId}`)[0];
+      const ctaChild = badge.closest(
+        ".cta-container-child, .plain-button-container, .img-button-container"
+      );
+      if (ctaChild)
+        if (ctaChild) {
+          console.log("ctaChild is: ", ctaChild);
+          // Check if this is the last child in the container
+          const parentContainer = ctaChild.closest(".cta-button-container");
+          const childId = ctaChild.getAttribute("id");
+          const component = editorInstance.getWrapper().find(`#${childId}`)[0];
 
-        if (component) {
-          component.remove();
+          if (component) {
+            component.remove();
+          }
         }
-      }
     });
   }
 
@@ -975,7 +1094,6 @@ class ToolBoxManager {
 
             if (iconComponent) {
               iconComponent.components(icon.IconSVG);
-              alert(icon.IconName)
               this.setAttributeToSelected("tile-icon", icon.IconName);
             }
           } else {
@@ -1134,6 +1252,7 @@ class ToolBoxManager {
   }
 
   updateTileProperties(editor, page) {
+    console.log("Selected", editor);
     if (page && page.PageIsContentPage) {
       // update cta button bg color
       console.log("Selected", editor);
@@ -1141,6 +1260,7 @@ class ToolBoxManager {
         this.editorManager.selectedComponent?.getAttributes()?.[
           "cta-background-color"
         ];
+      
       const CtaRadios = document.querySelectorAll(
         '#cta-color-palette input[type="radio"]'
       );
@@ -1148,10 +1268,9 @@ class ToolBoxManager {
       CtaRadios.forEach((radio) => {
         const colorBox = radio.nextElementSibling;
         radio.checked =
-          colorBox.getAttribute("data-cta-color") === currentCtaBgColor;
+          colorBox.getAttribute("data-cta-color").toUpperCase() === currentCtaBgColor.toUpperCase();
       });
     } else {
-      console.log("Selected", editor);
       // Combined alignment checker
       const alignmentTypes = [
         { type: "text", attribute: "tile-text-align" },

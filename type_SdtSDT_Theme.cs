@@ -30,9 +30,9 @@ namespace GeneXus.Programs
 		public SdtSDT_Theme( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtSDT_Theme_Trn_themename = "";
+			gxTv_SdtSDT_Theme_Themename = "";
 
-			gxTv_SdtSDT_Theme_Trn_themefontfamily = "";
+			gxTv_SdtSDT_Theme_Themefontfamily = "";
 
 		}
 
@@ -61,84 +61,166 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("Trn_ThemeId", gxTpr_Trn_themeid, false);
+			AddObjectProperty("ThemeId", gxTpr_Themeid, false);
 
 
-			AddObjectProperty("Trn_ThemeName", gxTpr_Trn_themename, false);
+			AddObjectProperty("ThemeName", gxTpr_Themename, false);
 
 
-			AddObjectProperty("Trn_ThemeFontFamily", gxTpr_Trn_themefontfamily, false);
+			AddObjectProperty("ThemeFontFamily", gxTpr_Themefontfamily, false);
 
 
-			AddObjectProperty("Trn_ThemeFontSize", gxTpr_Trn_themefontsize, false);
+			AddObjectProperty("ThemeFontSize", gxTpr_Themefontsize, false);
 
+			if (gxTv_SdtSDT_Theme_Icons != null)
+			{
+				AddObjectProperty("Icons", gxTv_SdtSDT_Theme_Icons, false);
+			}
+			if (gxTv_SdtSDT_Theme_Colors != null)
+			{
+				AddObjectProperty("Colors", gxTv_SdtSDT_Theme_Colors, false);
+			}
 			return;
 		}
 		#endregion
 
 		#region Properties
 
-		[SoapElement(ElementName="Trn_ThemeId")]
-		[XmlElement(ElementName="Trn_ThemeId")]
-		public Guid gxTpr_Trn_themeid
+		[SoapElement(ElementName="ThemeId")]
+		[XmlElement(ElementName="ThemeId")]
+		public Guid gxTpr_Themeid
 		{
 			get {
-				return gxTv_SdtSDT_Theme_Trn_themeid; 
+				return gxTv_SdtSDT_Theme_Themeid; 
 			}
 			set {
-				gxTv_SdtSDT_Theme_Trn_themeid = value;
-				SetDirty("Trn_themeid");
+				gxTv_SdtSDT_Theme_Themeid = value;
+				SetDirty("Themeid");
 			}
 		}
 
 
 
 
-		[SoapElement(ElementName="Trn_ThemeName")]
-		[XmlElement(ElementName="Trn_ThemeName")]
-		public string gxTpr_Trn_themename
+		[SoapElement(ElementName="ThemeName")]
+		[XmlElement(ElementName="ThemeName")]
+		public string gxTpr_Themename
 		{
 			get {
-				return gxTv_SdtSDT_Theme_Trn_themename; 
+				return gxTv_SdtSDT_Theme_Themename; 
 			}
 			set {
-				gxTv_SdtSDT_Theme_Trn_themename = value;
-				SetDirty("Trn_themename");
+				gxTv_SdtSDT_Theme_Themename = value;
+				SetDirty("Themename");
 			}
 		}
 
 
 
 
-		[SoapElement(ElementName="Trn_ThemeFontFamily")]
-		[XmlElement(ElementName="Trn_ThemeFontFamily")]
-		public string gxTpr_Trn_themefontfamily
+		[SoapElement(ElementName="ThemeFontFamily")]
+		[XmlElement(ElementName="ThemeFontFamily")]
+		public string gxTpr_Themefontfamily
 		{
 			get {
-				return gxTv_SdtSDT_Theme_Trn_themefontfamily; 
+				return gxTv_SdtSDT_Theme_Themefontfamily; 
 			}
 			set {
-				gxTv_SdtSDT_Theme_Trn_themefontfamily = value;
-				SetDirty("Trn_themefontfamily");
+				gxTv_SdtSDT_Theme_Themefontfamily = value;
+				SetDirty("Themefontfamily");
 			}
 		}
 
 
 
 
-		[SoapElement(ElementName="Trn_ThemeFontSize")]
-		[XmlElement(ElementName="Trn_ThemeFontSize")]
-		public short gxTpr_Trn_themefontsize
+		[SoapElement(ElementName="ThemeFontSize")]
+		[XmlElement(ElementName="ThemeFontSize")]
+		public short gxTpr_Themefontsize
 		{
 			get {
-				return gxTv_SdtSDT_Theme_Trn_themefontsize; 
+				return gxTv_SdtSDT_Theme_Themefontsize; 
 			}
 			set {
-				gxTv_SdtSDT_Theme_Trn_themefontsize = value;
-				SetDirty("Trn_themefontsize");
+				gxTv_SdtSDT_Theme_Themefontsize = value;
+				SetDirty("Themefontsize");
 			}
 		}
 
+
+
+
+		[SoapElement(ElementName="Icons" )]
+		[XmlArray(ElementName="Icons"  )]
+		[XmlArrayItemAttribute(ElementName="IconsItem" , IsNullable=false )]
+		public GXBaseCollection<SdtSDT_Theme_IconsItem> gxTpr_Icons
+		{
+			get {
+				if ( gxTv_SdtSDT_Theme_Icons == null )
+				{
+					gxTv_SdtSDT_Theme_Icons = new GXBaseCollection<SdtSDT_Theme_IconsItem>( context, "SDT_Theme.IconsItem", "");
+				}
+				return gxTv_SdtSDT_Theme_Icons;
+			}
+			set {
+				gxTv_SdtSDT_Theme_Icons_N = false;
+				gxTv_SdtSDT_Theme_Icons = value;
+				SetDirty("Icons");
+			}
+		}
+
+		public void gxTv_SdtSDT_Theme_Icons_SetNull()
+		{
+			gxTv_SdtSDT_Theme_Icons_N = true;
+			gxTv_SdtSDT_Theme_Icons = null;
+		}
+
+		public bool gxTv_SdtSDT_Theme_Icons_IsNull()
+		{
+			return gxTv_SdtSDT_Theme_Icons == null;
+		}
+		public bool ShouldSerializegxTpr_Icons_GxSimpleCollection_Json()
+		{
+			return gxTv_SdtSDT_Theme_Icons != null && gxTv_SdtSDT_Theme_Icons.Count > 0;
+
+		}
+
+
+
+		[SoapElement(ElementName="Colors" )]
+		[XmlArray(ElementName="Colors"  )]
+		[XmlArrayItemAttribute(ElementName="ColorsItem" , IsNullable=false )]
+		public GXBaseCollection<SdtSDT_Theme_ColorsItem> gxTpr_Colors
+		{
+			get {
+				if ( gxTv_SdtSDT_Theme_Colors == null )
+				{
+					gxTv_SdtSDT_Theme_Colors = new GXBaseCollection<SdtSDT_Theme_ColorsItem>( context, "SDT_Theme.ColorsItem", "");
+				}
+				return gxTv_SdtSDT_Theme_Colors;
+			}
+			set {
+				gxTv_SdtSDT_Theme_Colors_N = false;
+				gxTv_SdtSDT_Theme_Colors = value;
+				SetDirty("Colors");
+			}
+		}
+
+		public void gxTv_SdtSDT_Theme_Colors_SetNull()
+		{
+			gxTv_SdtSDT_Theme_Colors_N = true;
+			gxTv_SdtSDT_Theme_Colors = null;
+		}
+
+		public bool gxTv_SdtSDT_Theme_Colors_IsNull()
+		{
+			return gxTv_SdtSDT_Theme_Colors == null;
+		}
+		public bool ShouldSerializegxTpr_Colors_GxSimpleCollection_Json()
+		{
+			return gxTv_SdtSDT_Theme_Colors != null && gxTv_SdtSDT_Theme_Colors.Count > 0;
+
+		}
 
 
 		public override bool ShouldSerializeSdtJson()
@@ -162,8 +244,14 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
-			gxTv_SdtSDT_Theme_Trn_themename = "";
-			gxTv_SdtSDT_Theme_Trn_themefontfamily = "";
+			gxTv_SdtSDT_Theme_Themename = "";
+			gxTv_SdtSDT_Theme_Themefontfamily = "";
+
+
+			gxTv_SdtSDT_Theme_Icons_N = true;
+
+
+			gxTv_SdtSDT_Theme_Colors_N = true;
 
 			return  ;
 		}
@@ -174,17 +262,23 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected Guid gxTv_SdtSDT_Theme_Trn_themeid;
+		protected Guid gxTv_SdtSDT_Theme_Themeid;
 		 
 
-		protected string gxTv_SdtSDT_Theme_Trn_themename;
+		protected string gxTv_SdtSDT_Theme_Themename;
 		 
 
-		protected string gxTv_SdtSDT_Theme_Trn_themefontfamily;
+		protected string gxTv_SdtSDT_Theme_Themefontfamily;
 		 
 
-		protected short gxTv_SdtSDT_Theme_Trn_themefontsize;
+		protected short gxTv_SdtSDT_Theme_Themefontsize;
 		 
+		protected bool gxTv_SdtSDT_Theme_Icons_N;
+		protected GXBaseCollection<SdtSDT_Theme_IconsItem> gxTv_SdtSDT_Theme_Icons = null; 
+
+		protected bool gxTv_SdtSDT_Theme_Colors_N;
+		protected GXBaseCollection<SdtSDT_Theme_ColorsItem> gxTv_SdtSDT_Theme_Colors = null; 
+
 
 
 		#endregion
@@ -203,51 +297,81 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="Trn_ThemeId", Order=0)]
-		public Guid gxTpr_Trn_themeid
+		[DataMember(Name="ThemeId", Order=0)]
+		public Guid gxTpr_Themeid
 		{
 			get { 
-				return sdt.gxTpr_Trn_themeid;
+				return sdt.gxTpr_Themeid;
 
 			}
 			set { 
-				sdt.gxTpr_Trn_themeid = value;
+				sdt.gxTpr_Themeid = value;
 			}
 		}
 
-		[DataMember(Name="Trn_ThemeName", Order=1)]
-		public  string gxTpr_Trn_themename
+		[DataMember(Name="ThemeName", Order=1)]
+		public  string gxTpr_Themename
 		{
 			get { 
-				return sdt.gxTpr_Trn_themename;
+				return sdt.gxTpr_Themename;
 
 			}
 			set { 
-				 sdt.gxTpr_Trn_themename = value;
+				 sdt.gxTpr_Themename = value;
 			}
 		}
 
-		[DataMember(Name="Trn_ThemeFontFamily", Order=2)]
-		public  string gxTpr_Trn_themefontfamily
+		[DataMember(Name="ThemeFontFamily", Order=2)]
+		public  string gxTpr_Themefontfamily
 		{
 			get { 
-				return sdt.gxTpr_Trn_themefontfamily;
+				return sdt.gxTpr_Themefontfamily;
 
 			}
 			set { 
-				 sdt.gxTpr_Trn_themefontfamily = value;
+				 sdt.gxTpr_Themefontfamily = value;
 			}
 		}
 
-		[DataMember(Name="Trn_ThemeFontSize", Order=3)]
-		public short gxTpr_Trn_themefontsize
+		[DataMember(Name="ThemeFontSize", Order=3)]
+		public short gxTpr_Themefontsize
 		{
 			get { 
-				return sdt.gxTpr_Trn_themefontsize;
+				return sdt.gxTpr_Themefontsize;
 
 			}
 			set { 
-				sdt.gxTpr_Trn_themefontsize = value;
+				sdt.gxTpr_Themefontsize = value;
+			}
+		}
+
+		[DataMember(Name="Icons", Order=4, EmitDefaultValue=false)]
+		public GxGenericCollection<SdtSDT_Theme_IconsItem_RESTInterface> gxTpr_Icons
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Icons_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtSDT_Theme_IconsItem_RESTInterface>(sdt.gxTpr_Icons);
+				else
+					return null;
+
+			}
+			set {
+				value.LoadCollection(sdt.gxTpr_Icons);
+			}
+		}
+
+		[DataMember(Name="Colors", Order=5, EmitDefaultValue=false)]
+		public GxGenericCollection<SdtSDT_Theme_ColorsItem_RESTInterface> gxTpr_Colors
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Colors_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtSDT_Theme_ColorsItem_RESTInterface>(sdt.gxTpr_Colors);
+				else
+					return null;
+
+			}
+			set {
+				value.LoadCollection(sdt.gxTpr_Colors);
 			}
 		}
 

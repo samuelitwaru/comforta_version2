@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241128064440"
+  version: "20241128182206"
 servers:
-  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -1244,22 +1244,69 @@ components:
 
     SDT_Theme:
       properties:
-        Trn_ThemeId:
+        ThemeId:
           description: "Trn_Theme Id"
           type: "string"
           format: "uuid"
-        Trn_ThemeName:
+        ThemeName:
           description: "Trn_Theme Name"
           type: "string"
-        Trn_ThemeFontFamily:
+        ThemeFontFamily:
           description: "Trn_Theme Font Family"
           type: "string"
-        Trn_ThemeFontSize:
+        ThemeFontSize:
           description: "Trn_Theme Font Size"
           type: "integer"
           format: "int32"
 
+        Icons:
+          type: array
+          items:
+            description: IconsItem
+            $ref: "#/components/schemas/SDT_Theme.Icons_IconsItem"
 
+        Colors:
+          type: array
+          items:
+            description: ColorsItem
+            $ref: "#/components/schemas/SDT_Theme.Colors_ColorsItem"
+
+
+    SDT_Theme.Icons_IconsItem:
+      properties:
+        IconId:
+          description: "Icon Id"
+          type: "string"
+          format: "uuid"
+        IconCategory:
+          description: "Icon Category"
+          type: "string"
+        IconName:
+          description: "Icon Name"
+          type: "string"
+        IconSVG:
+          description: "Icon SVG"
+          type: "string"
+
+
+      x-gx-level: "SDT_Theme"
+
+
+    SDT_Theme.Colors_ColorsItem:
+      properties:
+        ColorId:
+          description: "Color Id"
+          type: "string"
+          format: "uuid"
+        ColorName:
+          description: "Color Name"
+          type: "string"
+        ColorCode:
+          description: "Color Code"
+          type: "string"
+
+
+      x-gx-level: "SDT_Theme"
 
     SDT_ProductService:
       properties:

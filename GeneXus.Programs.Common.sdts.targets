@@ -47,6 +47,8 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentNotification.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Row.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme_IconsItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme_ColorsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Tile.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_TileAction.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWPConfFormattingVariable.cs" />

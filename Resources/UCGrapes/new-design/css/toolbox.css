@@ -34,6 +34,10 @@ body {
   width: 0px;
 }
 
+button {
+  cursor: pointer !important;
+}
+
 .frame-container,
 .content-frame-container {
   min-height: 100vh;
@@ -304,7 +308,7 @@ body {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  /* gap: 0.5em; */
+  gap: 1rem;
 }
 
 .cta-main-button {
@@ -364,7 +368,8 @@ body {
 }
 
 .cta-button .cta-badge,
-.plain-button .cta-badge {
+.plain-button .cta-badge,
+.img-button-container .cta-badge {
   position: absolute;
   top: 1px;
   right: -8px;
@@ -384,8 +389,13 @@ body {
   right: -12px;
 }
 
+.img-button-container .cta-badge {
+  top: -12px;
+  right: -12px;
+}
 .cta-button:hover .cta-badge,
-.plain-button:hover .cta-badge {
+.plain-button:hover .cta-badge,
+.img-button-container:hover .cta-badge {
   opacity: 1;
 }
 
@@ -395,9 +405,51 @@ body {
   color: #555;
 }
 
+.img-button-container,
 .plain-button-container {
   width: 100%;
   margin-bottom: 10px;
+}
+
+/* .img-button-container {
+  position: relative;
+  width: 100%;
+  border-radius: 13px;
+  border: 2px solid #5068a8;
+  background-color: #5068a8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 16px;
+} */
+
+.img-button-container .img-button-icon {
+  font-size: 24px;
+  margin: 0.5rem;
+}
+
+.img-button-container .img-button-label {
+  flex: 1;
+  font-size: 16px;
+}
+
+.img-button-container .img-button-arrow {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.img-button-container .img-button {
+  position: relative;
+  width: 100%;
+  border-radius: 13px;
+  border: 2px solid #5068a8;
+  background-color: #5068a8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 16px;
 }
 .plain-button {
   position: relative;
@@ -409,6 +461,12 @@ body {
   vertical-align: middle;
   color: white;
   padding: 6px;
+}
+
+@media (max-width: 1440px) {
+  .cta-button-container {
+    gap: 0;
+  }
 }
 
 .gjs-badge__name,

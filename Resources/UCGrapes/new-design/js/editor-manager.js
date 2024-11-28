@@ -32,30 +32,30 @@ class EditorManager {
   init() {
     this.editor.on("load", () => {
       this.toolsSection.resetPropertySection();
-
+  
+      const frameEl = this.editor.Canvas.getFrameEl();
+  
       const setupWrapperEvents = (editorInstance) => {
         const wrapper = editorInstance.getWrapper();
         if (!wrapper || !wrapper.view || !wrapper.view.el) return;
-
+  
+        // Remove existing click handler if any
         if (this.wrapperClickHandler) {
-          wrapper.view.el.removeEventListener(
-            "click",
-            this.wrapperClickHandler
-          );
+          wrapper.view.el.removeEventListener("click", this.wrapperClickHandler);
         }
-
+  
         this.wrapperClickHandler = (e) => {
           const button = e.target.closest(".action-button");
           if (!button) return;
-
+  
           const templateWrapper = button.closest(".template-wrapper");
           if (!templateWrapper) return;
-
+  
           this.templateComponent = editorInstance.Components.getById(
             templateWrapper.id
           );
           if (!this.templateComponent) return;
-
+  
           if (button.classList.contains("delete-button")) {
             this.deleteTemplate(this.templateComponent);
           } else if (button.classList.contains("add-button-bottom")) {
@@ -64,24 +64,24 @@ class EditorManager {
             this.addTemplateRight(this.templateComponent, editorInstance);
           }
         };
-
+  
         wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
         wrapper.view.el.addEventListener("contextmenu", (e) =>
           this.rightClickEventHandler(this.editor)
         );
-
+  
         wrapper.set({
           selectable: false,
           droppable: false,
           resizable: { handles: "e" },
         });
       };
-
+  
       const handlePageData = (pageData) => {
         if (pageData && pageData.PageGJSJson) {
-          let parsedData;
           try {
-            parsedData = JSON.parse(pageData.PageGJSJson);
+            let parsedData = JSON.parse(pageData.PageGJSJson);
+  
             if (!parsedData.pages) {
               parsedData = {
                 pages: [
@@ -92,7 +92,7 @@ class EditorManager {
                 ],
               };
             }
-
+  
             if (pageData.PageIsContentPage) {
               this.dataManager
                 .getContentPageData(this.getCurrentPageId())
@@ -107,20 +107,21 @@ class EditorManager {
                 .catch((error) =>
                   console.error("Error fetching content page data:", error)
                 );
-
+  
               this.toolsSection.updatePropertySection();
             }
-
+  
             this.editor.loadProjectData(parsedData);
-
+  
             this.editor.once("load:components", () => {
               setupWrapperEvents(this.editor);
             });
           } catch (error) {
-            const message = this.currentLanguage.getTranslation(
-              "no_icon_selected_error_message"
+            console.error("Error parsing page data:", error.message);
+            this.toolsSection.displayAlertMessage(
+              this.currentLanguage.getTranslation("no_icon_selected_error_message"),
+              "error"
             );
-            this.toolsSection.displayAlertMessage(message, "error");
           }
         } else if (pageData && pageData.PageIsContentPage) {
           this.dataManager
@@ -143,7 +144,7 @@ class EditorManager {
           this.initialTemplate();
         }
       };
-
+  
       this.dataManager
         .getSinglePage(this.getCurrentPageId())
         .then((pageData) => {
@@ -152,65 +153,54 @@ class EditorManager {
           this.rightClickEventHandler(this.editor);
         })
         .catch((error) => console.error("Error fetching page data:", error));
+  
+      if (frameEl && frameEl.contentDocument) {
+        const frameDoc = frameEl.contentDocument;
+        frameDoc.addEventListener("mousedown", this.initResize);
+        frameDoc.addEventListener("mousemove", this.resize);
+        frameDoc.addEventListener("mouseup", this.stopResize);
+      }
     });
-
+  
     this.editor.on("component:selected", (component) => {
       this.toolsSection.resetPropertySection();
+  
       this.selectedTemplateWrapper = component.getEl();
-
       this.selectedComponent = component;
-
+  
       const sidebarInputTitle = document.getElementById("tile-title");
       if (this.selectedTemplateWrapper) {
-        const tileLabel =
-          this.selectedTemplateWrapper.querySelector(".tile-title");
+        const tileLabel = this.selectedTemplateWrapper.querySelector(".tile-title");
         if (tileLabel) {
           sidebarInputTitle.value = tileLabel.textContent;
         }
-
+  
         this.removeElementOnClick(".selected-tile-icon", ".tile-icon-section");
-        this.removeElementOnClick(
-          ".selected-tile-title",
-          ".tile-title-section"
-        );
-
+        this.removeElementOnClick(".selected-tile-title", ".tile-title-section");
+  
         this.updateUIState();
         this.activateFrame(`#default-container`);
-
-        // clear existing frames first
+  
         this.clearEditors();
-
         this.handlePageSelection();
       }
-
+  
       this.toolsSection.updateTileProperties(
         this.editor,
         this.getCurrentPageId()
       );
       this.hideContextMenu();
-      
       this.toolsSection.unDoReDo(this.editor);
     });
-
+  
     this.addDragEventListeners(this.editor);
-
+  
     const sidebarInputTitle = document.getElementById("tile-title");
     sidebarInputTitle.addEventListener("input", (e) => {
       this.updateTileTitle(e.target.value);
     });
-
-    const frameEl = this.editor.Canvas.getFrameEl();
-    if (frameEl && frameEl.contentDocument) {
-      frameEl.contentDocument.addEventListener("mousedown", this.initResize);
-      frameEl.contentDocument.addEventListener("mousemove", this.resize);
-      frameEl.contentDocument.addEventListener("mouseup", this.stopResize);
-    }
-
-    // run save every 1 minute
-    // setInterval(() => {
-    //   this.saveAllPages();
-    // }, 60000);
   }
+  
 
   removeElementOnClick(targetSelector, sectionSelector) {
     const closeSection = this.selectedComponent?.find(targetSelector)[0];
@@ -246,9 +236,8 @@ class EditorManager {
   }
 
   handlePageSelection() {
-    const selectedTile = this.selectedComponent?.getAttributes()?.[
-      "tile-action-object-id"
-    ];
+    const selectedTile =
+      this.selectedComponent?.getAttributes()?.["tile-action-object-id"];
     const previousEditorId = localStorage.getItem("createdEditor");
     const page = this.dataManager.pages.find(
       (page) => page.PageId === selectedTile
@@ -299,33 +288,30 @@ class EditorManager {
     this.newEditor.once("load", () => {
       this.toolsSection.resetPropertySection();
       this.toolsSection.unDoReDo(this.newEditor);
+  
       this.backButtonAction(page.PageId);
+  
       const setupWrapperEvents = (editorInstance) => {
         const wrapper = editorInstance.getWrapper();
-        if (!wrapper || !wrapper.view || !wrapper.view.el) {
+        if (!wrapper?.view?.el) {
           console.error("Wrapper not properly initialized");
           return;
         }
-
+  
         if (this.wrapperClickHandler) {
-          wrapper.view.el.removeEventListener(
-            "click",
-            this.wrapperClickHandler
-          );
+          wrapper.view.el.removeEventListener("click", this.wrapperClickHandler);
         }
-
-        this.wrapperClickHandler = (e) => {
-          const button = e.target.closest(".action-button");
+  
+        this.wrapperClickHandler = (event) => {
+          const button = event.target.closest(".action-button");
           if (!button) return;
-
+  
           const templateWrapper = button.closest(".template-wrapper");
           if (!templateWrapper) return;
-
-          this.templateComponent = editorInstance.Components.getById(
-            templateWrapper.id
-          );
+  
+          this.templateComponent = editorInstance.Components.getById(templateWrapper.id);
           if (!this.templateComponent) return;
-
+  
           if (button.classList.contains("delete-button")) {
             this.deleteTemplate(this.templateComponent);
           } else if (button.classList.contains("add-button-bottom")) {
@@ -334,25 +320,25 @@ class EditorManager {
             this.addTemplateRight(this.templateComponent, editorInstance);
           }
         };
-
+  
         wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
         wrapper.view.el.addEventListener("contextmenu", (e) =>
           this.rightClickEventHandler(this.newEditor)
         );
-
+  
         wrapper.set({
           selectable: false,
           droppable: false,
           resizable: { handles: "e" },
         });
       };
-
+  
       setupWrapperEvents(this.newEditor);
-
+  
       const canvas = this.newEditor.Canvas;
       const frame = canvas.getFrameEl();
-      const frameDoc = frame.contentDocument || frame.contentWindow.document;
-      if (frameDoc && frameDoc.body) {
+      const frameDoc = frame?.contentDocument || frame?.contentWindow?.document;
+      if (frameDoc?.body) {
         frameDoc.addEventListener(
           "click",
           () => {
@@ -360,67 +346,66 @@ class EditorManager {
           },
           true
         );
-      }
-
-      // Ensure the frame's body exists before attaching the event
-      if (page.PageIsContentPage) {
-        if (frameDoc && frameDoc.body) {
+  
+        if (page.PageIsContentPage) {
           frameDoc.addEventListener(
             "click",
             () => {
               console.log("Content Page Clicked");
               this.activateFrame(`.frame-${page.PageId}`);
-              this.dataManager
-                .getContentPageData(page.PageId)
-                .then((contentData) => {
-                  console.log("Content Data: ", contentData);
-                  this.toolsSection.pageContentCtas(contentData.CallToActions, this.newEditor);
-                  this.toolsSection.updatePropertySection();
-                })
-                .catch((error) =>
-                  console.error("Failed to load page content:", error.message)
-                );
+              this.loadContentPageData(page);
             },
             true
           );
         }
       }
     });
-
+  
     this.newEditor.on("component:selected", (component) => {
-
       this.selectedTemplateWrapper = component.getEl();
-
       this.selectedComponent = component;
-
+  
       const selectedTileId = component.getAttributes()["tile-action-object-id"];
-
+  
       if (page.PageIsContentPage) {
+        this.toolsSection.updateTileProperties(this.newEditor, page);
         return;
-      } else {
-        parentId = page.PageId;
-        // Handle non-content page: Check and replace editor
-        if (
-          this.activePageId &&
-          selectedTileId === this.activePageId &&
-          this.activeEditor
-        ) {
-          console.log("Editor for this page is already active.");
-          return;
-        }
-        // Replace editor if a new page is selected
-        this.replaceEditor(selectedTileId, parentId);
       }
+  
+      parentId = page.PageId;
+  
+      if (
+        this.activePageId &&
+        selectedTileId === this.activePageId &&
+        this.activeEditor
+      ) {
+        console.log("Editor for this page is already active.");
+        return;
+      }
+  
+      this.replaceEditor(selectedTileId, parentId);
       this.activateFrame(`.frame-${page.PageId}`);
-
+  
       this.toolsSection.updateTileProperties(this.newEditor, page);
-
       this.toolsSection.unDoReDo(this.newEditor);
     });
   }
+  
+  loadContentPageData(page) {
+    this.dataManager
+      .getContentPageData(page.PageId)
+      .then((contentData) => {
+        console.log("Content Data: ", contentData);
+        this.toolsSection.pageContentCtas(contentData.CallToActions, this.newEditor);
+        this.toolsSection.updatePropertySection();
+      })
+      .catch((error) =>
+        console.error("Failed to load page content:", error.message)
+      );
+  }
+  
 
   replaceEditor(pageId, parentId) {
-
     const existingEditorIndex = this.editors.findIndex(
       (editorObj) => editorObj.pageId === pageId
     );
@@ -467,25 +452,26 @@ class EditorManager {
   }
 
   clearDescendants(parentId) {
-    const getDescendants =(parentId) => {
+    const getDescendants = (parentId) => {
       // Find the index of the first item with the specified parentId
-      const startIndex = this.editors.findIndex(item => item.parentId === parentId);
-  
+      const startIndex = this.editors.findIndex(
+        (item) => item.parentId === parentId
+      );
+
       if (startIndex === -1) {
-          console.warn(`No item found with parentId: ${parentId}`);
-          return [];
+        console.warn(`No item found with parentId: ${parentId}`);
+        return [];
       }
-  
+
       // Skip the item with the specified parentId and return the items starting from the next one
       return this.editors.slice(startIndex);
-    }
+    };
 
     const descendants = getDescendants(parentId);
-    
+
     descendants.forEach((editorObj) => {
       this.removeEditor(editorObj.pageId);
     });
-
   }
 
   clearEditors() {
@@ -660,7 +646,7 @@ class EditorManager {
           data-gjs-selectable="false"
           data-gjs-editable="false"
           data-gjs-highlightable="false"
-          data-gjs-droppable="true"
+          data-gjs-droppable="false"
           data-gjs-hoverable="false"
         >
           <div
@@ -1208,7 +1194,9 @@ class EditorManager {
   addTemplateRight(templateComponent, editorInstance) {
     const containerRow = templateComponent.parent();
     if (!containerRow || containerRow.components().length >= 3) return;
-    const newComponents = editorInstance.addComponents(this.createTemplateHTML());
+    const newComponents = editorInstance.addComponents(
+      this.createTemplateHTML()
+    );
     const newTemplate = newComponents[0];
     if (!newTemplate) return;
 
@@ -1490,23 +1478,27 @@ class EditorManager {
         .then((parsedData) => {
           this.newEditor.loadProjectData(parsedData);
           console.log("Project data successfully loaded:", parsedData);
-          if(page.PageIsContentPage) {
-            this.dataManager.getContentPageData(page.PageId).then(res=>{
-              console.log(res)
-              console.log(parsedData.pages[0])
-              let img = this.newEditor.getWrapper().find('#product-service-image')
-              let p = this.newEditor.getWrapper().find('#product-service-description')
-              if(img.length) {
-                img[0].setAttributes({'src':res.ProductServiceImage})
+          if (page.PageIsContentPage) {
+            this.dataManager.getContentPageData(page.PageId).then((res) => {
+              console.log(res);
+              console.log(parsedData.pages[0]);
+              let img = this.newEditor
+                .getWrapper()
+                .find("#product-service-image");
+              let p = this.newEditor
+                .getWrapper()
+                .find("#product-service-description");
+              if (img.length) {
+                img[0].setAttributes({ src: res.ProductServiceImage });
               }
-              if(p.length) {
+              if (p.length) {
                 p[0].replaceWith(`
                   <p id="product-service-description" class="content-page-block">
                     ${res.ProductServiceDescription}
                   </p>
-                  `)
+                  `);
               }
-            })
+            });
           }
         })
         .catch((error) => {
