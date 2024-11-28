@@ -42,9 +42,6 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_ResidentType(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_MedicalIndication(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new GeneXus.Programs.wwpbaseobjects.SdtWWP_Entity(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
@@ -157,6 +154,9 @@ namespace GeneXus.Programs {
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_SupplierAgb(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_MedicalIndication(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          return 1 ;

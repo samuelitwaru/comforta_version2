@@ -308,7 +308,6 @@ class EditorManager {
     this.newEditor.once("load", () => {
       this.toolsSection.resetPropertySection();
       this.backButtonAction(page.PageId);
-
       const setupWrapperEvents = (editorInstance) => {
         const wrapper = editorInstance.getWrapper();
         if (!wrapper || !wrapper.view || !wrapper.view.el) {
@@ -701,6 +700,7 @@ class EditorManager {
               >
                 <img
                   class="content-page-block"
+                  id="product-service-image"
                   data-gjs-draggable="true"
                   data-gjs-selectable="false"
                   data-gjs-editable="false"
@@ -720,6 +720,7 @@ class EditorManager {
                   data-gjs-droppable="false"
                   data-gjs-highlightable="false"
                   data-gjs-hoverable="false"
+                  id="product-service-description"
                 >
                 ${contentPageData.ProductServiceDescription}
                 </p>
@@ -1495,6 +1496,24 @@ class EditorManager {
         .then((parsedData) => {
           this.newEditor.loadProjectData(parsedData);
           console.log("Project data successfully loaded:", parsedData);
+          if(page.PageIsContentPage) {
+            this.dataManager.getContentPageData(page.PageId).then(res=>{
+              console.log(res)
+              console.log(parsedData.pages[0])
+              let img = this.newEditor.getWrapper().find('#product-service-image')
+              let p = this.newEditor.getWrapper().find('#product-service-description')
+              if(img.length) {
+                img[0].setAttributes({'src':res.ProductServiceImage})
+              }
+              if(p.length) {
+                p[0].replaceWith(`
+                  <p id="product-service-description" class="content-page-block">
+                    ${res.ProductServiceDescription}
+                  </p>
+                  `)
+              }
+            })
+          }
         })
         .catch((error) => {
           console.error("Failed to load page content:", error.message);

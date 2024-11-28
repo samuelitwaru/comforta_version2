@@ -109,7 +109,7 @@ body {
 
 .content-page-block {
   border-radius: 13px;
-  height: 7rem;
+  /* height: 7rem; */
   background-color: transparent;
   display: flex;
   flex-direction: column;
