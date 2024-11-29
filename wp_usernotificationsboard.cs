@@ -2002,7 +2002,6 @@ namespace GeneXus.Programs {
          }
          /* Grid_Onlineactivate Routine */
          returnInSub = false;
-         GX_msglist.addItem(context.GetMessage( "Line: ", "")+((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)(AV10WWP_SDTNotificationsData.CurrentItem)).gxTpr_Notificationtitle);
          AV50LinkUrl = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)(AV10WWP_SDTNotificationsData.CurrentItem)).gxTpr_Notificationlink;
          CallWebObject(formatLink(AV50LinkUrl) );
          context.wjLocDisableFrm = 0;
@@ -2125,7 +2124,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112615131510", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914315062", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2141,7 +2140,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_usernotificationsboard.js", "?2024112615131510", false, true);
+         context.AddJavascriptSource("wp_usernotificationsboard.js", "?2024112914315063", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);

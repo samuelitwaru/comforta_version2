@@ -488,7 +488,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV12GXV1 = nGXsfl_12_idx;
+               AV13GXV1 = nGXsfl_12_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"GridhomemodulessdtsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridhomemodulessdts", GridhomemodulessdtsContainer, subGridhomemodulessdts_Internalname);
@@ -528,7 +528,7 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  AV12GXV1 = nGXsfl_12_idx;
+                  AV13GXV1 = nGXsfl_12_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"GridhomemodulessdtsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridhomemodulessdts", GridhomemodulessdtsContainer, subGridhomemodulessdts_Internalname);
@@ -1020,16 +1020,24 @@ namespace GeneXus.Programs {
          GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 = AV6HomeModulesSDT;
          new prc_getuserdashboarditems(context ).execute( out  GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1) ;
          AV6HomeModulesSDT = GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1;
+         GXt_SdtGAMUser2 = AV12GAMUser;
+         new prc_getloggedinuser(context ).execute( out  GXt_SdtGAMUser2) ;
+         AV12GAMUser = GXt_SdtGAMUser2;
+         if ( AV12GAMUser.checkrole("Receptionist") )
+         {
+            CallWebObject(formatLink("wp_usernotificationsboard.aspx") );
+            context.wjLocDisableFrm = 1;
+         }
       }
 
       private void E12132( )
       {
          /* Gridhomemodulessdts_Load Routine */
          returnInSub = false;
-         AV12GXV1 = 1;
-         while ( AV12GXV1 <= AV6HomeModulesSDT.Count )
+         AV13GXV1 = 1;
+         while ( AV13GXV1 <= AV6HomeModulesSDT.Count )
          {
-            AV6HomeModulesSDT.CurrentItem = ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV6HomeModulesSDT.Item(AV12GXV1));
+            AV6HomeModulesSDT.CurrentItem = ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV6HomeModulesSDT.Item(AV13GXV1));
             AV5OptionLink = ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)(AV6HomeModulesSDT.CurrentItem)).gxTpr_Optionwclink;
             AssignAttri("", false, edtavOptionlink_Internalname, AV5OptionLink);
             if ( ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)(AV6HomeModulesSDT.CurrentItem)).gxTpr_Optiontype == 1 )
@@ -1112,7 +1120,7 @@ namespace GeneXus.Programs {
             {
                DoAjaxLoad(12, GridhomemodulessdtsRow);
             }
-            AV12GXV1 = (int)(AV12GXV1+1);
+            AV13GXV1 = (int)(AV13GXV1+1);
          }
          /*  Sending Event outputs  */
       }
@@ -1174,7 +1182,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115434323", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914295019", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1190,7 +1198,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("home.js", "?2024112115434323", false, true);
+         context.AddJavascriptSource("home.js", "?2024112914295020", false, true);
          /* End function include_jscripts */
       }
 
@@ -1826,6 +1834,8 @@ namespace GeneXus.Programs {
          WebComp_Layoutprogressbarwc_Component = "";
          WebComp_Layoutprogresscirclewc_Component = "";
          GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDTItem", "Comforta_version2");
+         AV12GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
+         GXt_SdtGAMUser2 = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          GridhomemodulessdtsRow = new GXWebRow();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1865,7 +1875,7 @@ namespace GeneXus.Programs {
       private int nRC_GXsfl_12 ;
       private int subGridhomemodulessdts_Recordcount ;
       private int nGXsfl_12_idx=1 ;
-      private int AV12GXV1 ;
+      private int AV13GXV1 ;
       private int nGXsfl_12_webc_idx=0 ;
       private int subGridhomemodulessdts_Islastpage ;
       private int edtavOptiontitle_Enabled ;
@@ -1958,6 +1968,8 @@ namespace GeneXus.Programs {
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> AV6HomeModulesSDT ;
       private GXWebComponent WebComp_GX_Process ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 ;
+      private GeneXus.Programs.genexussecurity.SdtGAMUser AV12GAMUser ;
+      private GeneXus.Programs.genexussecurity.SdtGAMUser GXt_SdtGAMUser2 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

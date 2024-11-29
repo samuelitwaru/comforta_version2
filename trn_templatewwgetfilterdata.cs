@@ -607,7 +607,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateName, Trn_TemplateContent, Trn_TemplateMedia, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
          }
          else
          {
@@ -617,7 +617,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_templatewwds_2_tftrn_templatename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateName) like LOWER(:lV43Trn_templatewwds_2_tftrn_templatename))");
+            AddWhere(sWhereString, "(Trn_TemplateName like :lV43Trn_templatewwds_2_tftrn_templatename)");
          }
          else
          {
@@ -637,7 +637,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_templatewwds_4_tftrn_templatemedia)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateMedia) like LOWER(:lV45Trn_templatewwds_4_tftrn_templatemedia))");
+            AddWhere(sWhereString, "(Trn_TemplateMedia like :lV45Trn_templatewwds_4_tftrn_templatemedia)");
          }
          else
          {
@@ -657,7 +657,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_templatewwds_6_tftrn_templatecontent)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateContent) like LOWER(:lV47Trn_templatewwds_6_tftrn_templatecontent))");
+            AddWhere(sWhereString, "(Trn_TemplateContent like :lV47Trn_templatewwds_6_tftrn_templatecontent)");
          }
          else
          {
@@ -701,7 +701,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateMedia, Trn_TemplateContent, Trn_TemplateName, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
          }
          else
          {
@@ -711,7 +711,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_templatewwds_2_tftrn_templatename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateName) like LOWER(:lV43Trn_templatewwds_2_tftrn_templatename))");
+            AddWhere(sWhereString, "(Trn_TemplateName like :lV43Trn_templatewwds_2_tftrn_templatename)");
          }
          else
          {
@@ -731,7 +731,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_templatewwds_4_tftrn_templatemedia)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateMedia) like LOWER(:lV45Trn_templatewwds_4_tftrn_templatemedia))");
+            AddWhere(sWhereString, "(Trn_TemplateMedia like :lV45Trn_templatewwds_4_tftrn_templatemedia)");
          }
          else
          {
@@ -751,7 +751,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_templatewwds_6_tftrn_templatecontent)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateContent) like LOWER(:lV47Trn_templatewwds_6_tftrn_templatecontent))");
+            AddWhere(sWhereString, "(Trn_TemplateContent like :lV47Trn_templatewwds_6_tftrn_templatecontent)");
          }
          else
          {
@@ -795,7 +795,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateContent, Trn_TemplateMedia, Trn_TemplateName, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
          }
          else
          {
@@ -805,7 +805,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_templatewwds_3_tftrn_templatename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_templatewwds_2_tftrn_templatename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateName) like LOWER(:lV43Trn_templatewwds_2_tftrn_templatename))");
+            AddWhere(sWhereString, "(Trn_TemplateName like :lV43Trn_templatewwds_2_tftrn_templatename)");
          }
          else
          {
@@ -825,7 +825,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_templatewwds_5_tftrn_templatemedia_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_templatewwds_4_tftrn_templatemedia)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateMedia) like LOWER(:lV45Trn_templatewwds_4_tftrn_templatemedia))");
+            AddWhere(sWhereString, "(Trn_TemplateMedia like :lV45Trn_templatewwds_4_tftrn_templatemedia)");
          }
          else
          {
@@ -845,7 +845,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_7_tftrn_templatecontent_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_templatewwds_6_tftrn_templatecontent)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_TemplateContent) like LOWER(:lV47Trn_templatewwds_6_tftrn_templatecontent))");
+            AddWhere(sWhereString, "(Trn_TemplateContent like :lV47Trn_templatewwds_6_tftrn_templatecontent)");
          }
          else
          {

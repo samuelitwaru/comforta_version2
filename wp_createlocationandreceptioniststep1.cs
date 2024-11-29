@@ -920,6 +920,22 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "VLOCATIONPHONENUMBER.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6T0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E156T2 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -933,7 +949,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E156T2 ();
+                                    E166T2 ();
                                  }
                               }
                               /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1110,7 +1126,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E156T2 ();
+            E166T2 ();
             WB6T0( ) ;
          }
       }
@@ -1201,6 +1217,10 @@ namespace GeneXus.Programs {
          AV23Trn_Organisation.Load(new prc_getuserorganisationid(context).executeUdp( ));
          AV16LocationCountry = AV23Trn_Organisation.gxTpr_Organisationaddresscountry;
          AssignAttri(sPrefix, false, "AV16LocationCountry", AV16LocationCountry);
+         Combo_locationcountry_Selectedtext_set = AV16LocationCountry;
+         ucCombo_locationcountry.SendProperty(context, sPrefix, false, Combo_locationcountry_Internalname, "SelectedText_set", Combo_locationcountry_Selectedtext_set);
+         Combo_locationcountry_Selectedvalue_set = AV16LocationCountry;
+         ucCombo_locationcountry.SendProperty(context, sPrefix, false, Combo_locationcountry_Internalname, "SelectedValue_set", Combo_locationcountry_Selectedvalue_set);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV31LocationPhoneCode)) )
          {
             AV28defaultCountryPhoneCode = "+31";
@@ -1210,13 +1230,6 @@ namespace GeneXus.Programs {
             ucCombo_locationphonecode.SendProperty(context, sPrefix, false, Combo_locationphonecode_Internalname, "SelectedText_set", Combo_locationphonecode_Selectedtext_set);
             Combo_locationphonecode_Selectedvalue_set = AV28defaultCountryPhoneCode;
             ucCombo_locationphonecode.SendProperty(context, sPrefix, false, Combo_locationphonecode_Internalname, "SelectedValue_set", Combo_locationphonecode_Selectedvalue_set);
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV31LocationPhoneCode)) )
-         {
-            Combo_locationcountry_Selectedtext_set = AV16LocationCountry;
-            ucCombo_locationcountry.SendProperty(context, sPrefix, false, Combo_locationcountry_Internalname, "SelectedText_set", Combo_locationcountry_Selectedtext_set);
-            Combo_locationcountry_Selectedvalue_set = AV16LocationCountry;
-            ucCombo_locationcountry.SendProperty(context, sPrefix, false, Combo_locationcountry_Internalname, "SelectedValue_set", Combo_locationcountry_Selectedvalue_set);
          }
       }
 
@@ -1434,11 +1447,24 @@ namespace GeneXus.Programs {
          ucCombo_locationphonecode.SendProperty(context, sPrefix, false, Combo_locationphonecode_Internalname, "SelectedValue_set", Combo_locationphonecode_Selectedvalue_set);
       }
 
+      protected void E156T2( )
+      {
+         /* Locationphonenumber_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! GxRegex.IsMatch(AV34LocationPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV34LocationPhoneNumber)) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Phone contains 9 digits", ""),  "error",  edtavLocationphonenumber_Internalname,  "true",  ""));
+            AV22CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV22CheckRequiredFieldsResult", AV22CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E156T2( )
+      protected void E166T2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1727,7 +1753,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115385418", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411291428359", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1743,7 +1769,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createlocationandreceptioniststep1.js", "?2024112115385419", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptioniststep1.js", "?202411291428359", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1870,8 +1896,8 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"E136T2","iparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV13LocationName","fld":"vLOCATIONNAME"},{"av":"AV21LocationDescription","fld":"vLOCATIONDESCRIPTION"},{"av":"AV19LocationAddressLine1","fld":"vLOCATIONADDRESSLINE1"},{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"},{"av":"AV17LocationCity","fld":"vLOCATIONCITY"},{"av":"AV14LocationEmail","fld":"vLOCATIONEMAIL"},{"av":"AV31LocationPhoneCode","fld":"vLOCATIONPHONECODE"},{"av":"AV34LocationPhoneNumber","fld":"vLOCATIONPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV20LocationAddressLine2","fld":"vLOCATIONADDRESSLINE2"},{"av":"AV16LocationCountry","fld":"vLOCATIONCOUNTRY"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV12LocationId","fld":"vLOCATIONID"},{"av":"AV15LocationPhone","fld":"vLOCATIONPHONE"}]}""");
          setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E146T2","iparms":[]}""");
-         setEventMetadata("VALIDV_LOCATIONEMAIL","""{"handler":"Validv_Locationemail","iparms":[]}""");
-         setEventMetadata("VALIDV_LOCATIONPHONENUMBER","""{"handler":"Validv_Locationphonenumber","iparms":[]}""");
+         setEventMetadata("VLOCATIONPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E156T2","iparms":[{"av":"AV34LocationPhoneNumber","fld":"vLOCATIONPHONENUMBER"}]""");
+         setEventMetadata("VLOCATIONPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VALIDV_LOCATIONID","""{"handler":"Validv_Locationid","iparms":[]}""");
          return  ;
       }
@@ -1932,11 +1958,11 @@ namespace GeneXus.Programs {
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          ucCombo_locationphonecode = new GXUserControl();
          AV23Trn_Organisation = new SdtTrn_Organisation(context);
+         Combo_locationcountry_Selectedtext_set = "";
+         Combo_locationcountry_Selectedvalue_set = "";
          AV28defaultCountryPhoneCode = "";
          Combo_locationphonecode_Selectedtext_set = "";
          Combo_locationphonecode_Selectedvalue_set = "";
-         Combo_locationcountry_Selectedtext_set = "";
-         Combo_locationcountry_Selectedvalue_set = "";
          AV11WizardData = new SdtWP_CreateLocationAndReceptionistData(context);
          AV5WebSession = context.GetSession();
          AV34LocationPhoneNumber = "";
@@ -2055,16 +2081,16 @@ namespace GeneXus.Programs {
       private string Combo_locationcountry_Htmltemplate ;
       private string Combo_locationphonecode_Htmltemplate ;
       private string Combo_locationphonecode_Internalname ;
-      private string Combo_locationphonecode_Selectedtext_set ;
-      private string Combo_locationphonecode_Selectedvalue_set ;
       private string Combo_locationcountry_Selectedtext_set ;
       private string Combo_locationcountry_Selectedvalue_set ;
+      private string Combo_locationphonecode_Selectedtext_set ;
+      private string Combo_locationphonecode_Selectedvalue_set ;
       private string GXt_char2 ;
+      private string edtavLocationphonenumber_Internalname ;
       private string sStyleString ;
       private string tblTablemergedlocationphonecode_Internalname ;
       private string Combo_locationphonecode_Caption ;
       private string Combo_locationphonecode_Cls ;
-      private string edtavLocationphonenumber_Internalname ;
       private string edtavLocationphonenumber_Jsonclick ;
       private string sCtrlAV6WebSessionKey ;
       private string sCtrlAV8PreviousStep ;

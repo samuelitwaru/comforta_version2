@@ -52,6 +52,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -62,6 +63,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -629,6 +631,7 @@ namespace GeneXus.Programs {
             {
                A99MedicalIndicationName = P007A12_A99MedicalIndicationName[0];
                A98MedicalIndicationId = P007A12_A98MedicalIndicationId[0];
+               n98MedicalIndicationId = P007A12_n98MedicalIndicationId[0];
                AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
                AV16Combo_DataItem.gxTpr_Id = StringUtil.Trim( A98MedicalIndicationId.ToString());
                AV16Combo_DataItem.gxTpr_Title = A99MedicalIndicationName;
@@ -657,6 +660,7 @@ namespace GeneXus.Programs {
                      A29LocationId = P007A13_A29LocationId[0];
                      A62ResidentId = P007A13_A62ResidentId[0];
                      A98MedicalIndicationId = P007A13_A98MedicalIndicationId[0];
+                     n98MedicalIndicationId = P007A13_n98MedicalIndicationId[0];
                      A99MedicalIndicationName = P007A13_A99MedicalIndicationName[0];
                      A99MedicalIndicationName = P007A13_A99MedicalIndicationName[0];
                      AV24SelectedValue = ((Guid.Empty==A98MedicalIndicationId) ? "" : StringUtil.Trim( A98MedicalIndicationId.ToString()));
@@ -674,6 +678,7 @@ namespace GeneXus.Programs {
                   while ( (pr_default.getStatus(12) != 101) )
                   {
                      A98MedicalIndicationId = P007A14_A98MedicalIndicationId[0];
+                     n98MedicalIndicationId = P007A14_n98MedicalIndicationId[0];
                      A99MedicalIndicationName = P007A14_A99MedicalIndicationName[0];
                      AV25SelectedText = A99MedicalIndicationName;
                      /* Exit For each command. Update data (if necessary), close cursors & exit. */
@@ -765,14 +770,17 @@ namespace GeneXus.Programs {
          A99MedicalIndicationName = "";
          P007A12_A99MedicalIndicationName = new string[] {""} ;
          P007A12_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         P007A12_n98MedicalIndicationId = new bool[] {false} ;
          A98MedicalIndicationId = Guid.Empty;
          P007A13_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P007A13_A29LocationId = new Guid[] {Guid.Empty} ;
          P007A13_A62ResidentId = new Guid[] {Guid.Empty} ;
          P007A13_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         P007A13_n98MedicalIndicationId = new bool[] {false} ;
          P007A13_A99MedicalIndicationName = new string[] {""} ;
          AV31MedicalIndicationId = Guid.Empty;
          P007A14_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         P007A14_n98MedicalIndicationId = new bool[] {false} ;
          P007A14_A99MedicalIndicationName = new string[] {""} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_residentloaddvcombo__default(),
             new Object[][] {
@@ -810,7 +818,7 @@ namespace GeneXus.Programs {
                P007A12_A99MedicalIndicationName, P007A12_A98MedicalIndicationId
                }
                , new Object[] {
-               P007A13_A11OrganisationId, P007A13_A29LocationId, P007A13_A62ResidentId, P007A13_A98MedicalIndicationId, P007A13_A99MedicalIndicationName
+               P007A13_A11OrganisationId, P007A13_A29LocationId, P007A13_A62ResidentId, P007A13_A98MedicalIndicationId, P007A13_n98MedicalIndicationId, P007A13_A99MedicalIndicationName
                }
                , new Object[] {
                P007A14_A98MedicalIndicationId, P007A14_A99MedicalIndicationName
@@ -844,6 +852,7 @@ namespace GeneXus.Programs {
       private string AV18TrnMode ;
       private bool AV19IsDynamicCall ;
       private bool returnInSub ;
+      private bool n98MedicalIndicationId ;
       private string AV26Combo_DataJson ;
       private string AV17ComboName ;
       private string AV23SearchTxtParms ;
@@ -873,6 +882,7 @@ namespace GeneXus.Programs {
       private Guid AV30ResidentTypeId ;
       private Guid A98MedicalIndicationId ;
       private Guid AV31MedicalIndicationId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV9WWPContext ;
@@ -920,12 +930,15 @@ namespace GeneXus.Programs {
       private string[] P007A11_A97ResidentTypeName ;
       private string[] P007A12_A99MedicalIndicationName ;
       private Guid[] P007A12_A98MedicalIndicationId ;
+      private bool[] P007A12_n98MedicalIndicationId ;
       private Guid[] P007A13_A11OrganisationId ;
       private Guid[] P007A13_A29LocationId ;
       private Guid[] P007A13_A62ResidentId ;
       private Guid[] P007A13_A98MedicalIndicationId ;
+      private bool[] P007A13_n98MedicalIndicationId ;
       private string[] P007A13_A99MedicalIndicationName ;
       private Guid[] P007A14_A98MedicalIndicationId ;
+      private bool[] P007A14_n98MedicalIndicationId ;
       private string[] P007A14_A99MedicalIndicationName ;
       private string aP7_SelectedValue ;
       private string aP8_SelectedText ;
@@ -1179,7 +1192,7 @@ namespace GeneXus.Programs {
              ,new CursorDef("P007A10", "SELECT T1.OrganisationId, T1.LocationId, T1.ResidentId, T1.ResidentTypeId, T2.ResidentTypeName FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId) WHERE T1.ResidentId = :AV20ResidentId and T1.LocationId = :AV21LocationId and T1.OrganisationId = :AV22OrganisationId ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007A10,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P007A11", "SELECT ResidentTypeId, ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :AV30ResidentTypeId ORDER BY ResidentTypeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007A11,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P007A12", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007A12,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P007A13", "SELECT T1.OrganisationId, T1.LocationId, T1.ResidentId, T1.MedicalIndicationId, T2.MedicalIndicationName FROM (Trn_Resident T1 INNER JOIN Trn_MedicalIndication T2 ON T2.MedicalIndicationId = T1.MedicalIndicationId) WHERE T1.ResidentId = :AV20ResidentId and T1.LocationId = :AV21LocationId and T1.OrganisationId = :AV22OrganisationId ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007A13,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P007A13", "SELECT T1.OrganisationId, T1.LocationId, T1.ResidentId, T1.MedicalIndicationId, T2.MedicalIndicationName FROM (Trn_Resident T1 LEFT JOIN Trn_MedicalIndication T2 ON T2.MedicalIndicationId = T1.MedicalIndicationId) WHERE T1.ResidentId = :AV20ResidentId and T1.LocationId = :AV21LocationId and T1.OrganisationId = :AV22OrganisationId ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007A13,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P007A14", "SELECT MedicalIndicationId, MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :AV31MedicalIndicationId ORDER BY MedicalIndicationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007A14,1, GxCacheFrequency.OFF ,false,true )
           };
        }
@@ -1249,7 +1262,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((bool[]) buf[4])[0] = rslt.wasNull(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
                 return;
              case 12 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

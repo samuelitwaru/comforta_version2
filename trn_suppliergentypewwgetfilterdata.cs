@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT SupplierGenTypeName, SupplierGenTypeId FROM Trn_SupplierGenType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_suppliergentypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(SupplierGenTypeName) like '%' || LOWER(:lV38Trn_suppliergentypewwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( SupplierGenTypeName like '%' || :lV38Trn_suppliergentypewwds_1_filterfulltext))");
          }
          else
          {
@@ -355,7 +355,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_suppliergentypewwds_3_tfsuppliergentypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV39Trn_suppliergentypewwds_2_tfsuppliergentypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(SupplierGenTypeName) like LOWER(:lV39Trn_suppliergentypewwds_2_tfsuppliergentypename))");
+            AddWhere(sWhereString, "(SupplierGenTypeName like :lV39Trn_suppliergentypewwds_2_tfsuppliergentypename)");
          }
          else
          {

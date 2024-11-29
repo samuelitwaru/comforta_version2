@@ -204,9 +204,9 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Network Company Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! ( GxRegex.IsMatch(A392NetworkCompanyPhoneNumber,"\\b\\d{9}\\b") ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A392NetworkCompanyPhoneNumber)) && ! GxRegex.IsMatch(A392NetworkCompanyPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Network Company Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
       }

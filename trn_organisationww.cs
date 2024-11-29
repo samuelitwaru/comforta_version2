@@ -2603,7 +2603,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411289422274", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914302668", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2619,7 +2619,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationww.js", "?202411289422276", false, true);
+         context.AddJavascriptSource("trn_organisationww.js", "?2024112914302670", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3805,7 +3805,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV80Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(T1.OrganisationName) like '%' || LOWER(:lV80Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T2.OrganisationTypeName) like '%' || LOWER(:lV80Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationEmail) like '%' || LOWER(:lV80Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationPhone) like '%' || LOWER(:lV80Trn_organisationwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV80Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV80Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV80Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV80Trn_organisationwwds_1_filterfulltext))");
          }
          else
          {
@@ -3816,7 +3816,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV82Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV81Trn_organisationwwds_2_tforganisationname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.OrganisationName) like LOWER(:lV81Trn_organisationwwds_2_tforganisationname))");
+            AddWhere(sWhereString, "(T1.OrganisationName like :lV81Trn_organisationwwds_2_tforganisationname)");
          }
          else
          {
@@ -3836,7 +3836,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV84Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV83Trn_organisationwwds_4_tforganisationtypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T2.OrganisationTypeName) like LOWER(:lV83Trn_organisationwwds_4_tforganisationtypename))");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV83Trn_organisationwwds_4_tforganisationtypename)");
          }
          else
          {
@@ -3856,7 +3856,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV86Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV85Trn_organisationwwds_6_tforganisationemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.OrganisationEmail) like LOWER(:lV85Trn_organisationwwds_6_tforganisationemail))");
+            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV85Trn_organisationwwds_6_tforganisationemail)");
          }
          else
          {
@@ -3876,7 +3876,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV88Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV87Trn_organisationwwds_8_tforganisationphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.OrganisationPhone) like LOWER(:lV87Trn_organisationwwds_8_tforganisationphone))");
+            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV87Trn_organisationwwds_8_tforganisationphone)");
          }
          else
          {
@@ -3960,7 +3960,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV80Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(T1.OrganisationName) like '%' || LOWER(:lV80Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T2.OrganisationTypeName) like '%' || LOWER(:lV80Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationEmail) like '%' || LOWER(:lV80Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationPhone) like '%' || LOWER(:lV80Trn_organisationwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV80Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV80Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV80Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV80Trn_organisationwwds_1_filterfulltext))");
          }
          else
          {
@@ -3971,7 +3971,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV82Trn_organisationwwds_3_tforganisationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV81Trn_organisationwwds_2_tforganisationname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.OrganisationName) like LOWER(:lV81Trn_organisationwwds_2_tforganisationname))");
+            AddWhere(sWhereString, "(T1.OrganisationName like :lV81Trn_organisationwwds_2_tforganisationname)");
          }
          else
          {
@@ -3991,7 +3991,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV84Trn_organisationwwds_5_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV83Trn_organisationwwds_4_tforganisationtypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T2.OrganisationTypeName) like LOWER(:lV83Trn_organisationwwds_4_tforganisationtypename))");
+            AddWhere(sWhereString, "(T2.OrganisationTypeName like :lV83Trn_organisationwwds_4_tforganisationtypename)");
          }
          else
          {
@@ -4011,7 +4011,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV86Trn_organisationwwds_7_tforganisationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV85Trn_organisationwwds_6_tforganisationemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.OrganisationEmail) like LOWER(:lV85Trn_organisationwwds_6_tforganisationemail))");
+            AddWhere(sWhereString, "(T1.OrganisationEmail like :lV85Trn_organisationwwds_6_tforganisationemail)");
          }
          else
          {
@@ -4031,7 +4031,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV88Trn_organisationwwds_9_tforganisationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV87Trn_organisationwwds_8_tforganisationphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.OrganisationPhone) like LOWER(:lV87Trn_organisationwwds_8_tforganisationphone))");
+            AddWhere(sWhereString, "(T1.OrganisationPhone like :lV87Trn_organisationwwds_8_tforganisationphone)");
          }
          else
          {

@@ -631,7 +631,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV9WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_locationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(LocationName) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationEmail) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationPhone) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( LocationName like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationEmail like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationPhone like '%' || :lV65Trn_locationwwds_1_filterfulltext))");
          }
          else
          {
@@ -641,7 +641,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_locationwwds_3_tflocationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_locationwwds_2_tflocationname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationName) like LOWER(:lV66Trn_locationwwds_2_tflocationname))");
+            AddWhere(sWhereString, "(LocationName like :lV66Trn_locationwwds_2_tflocationname)");
          }
          else
          {
@@ -661,7 +661,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_locationwwds_5_tflocationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_locationwwds_4_tflocationemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationEmail) like LOWER(:lV68Trn_locationwwds_4_tflocationemail))");
+            AddWhere(sWhereString, "(LocationEmail like :lV68Trn_locationwwds_4_tflocationemail)");
          }
          else
          {
@@ -681,7 +681,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_locationwwds_7_tflocationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_locationwwds_6_tflocationphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationPhone) like LOWER(:lV70Trn_locationwwds_6_tflocationphone))");
+            AddWhere(sWhereString, "(LocationPhone like :lV70Trn_locationwwds_6_tflocationphone)");
          }
          else
          {
@@ -728,7 +728,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV9WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_locationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(LocationName) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationEmail) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationPhone) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( LocationName like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationEmail like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationPhone like '%' || :lV65Trn_locationwwds_1_filterfulltext))");
          }
          else
          {
@@ -738,7 +738,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_locationwwds_3_tflocationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_locationwwds_2_tflocationname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationName) like LOWER(:lV66Trn_locationwwds_2_tflocationname))");
+            AddWhere(sWhereString, "(LocationName like :lV66Trn_locationwwds_2_tflocationname)");
          }
          else
          {
@@ -758,7 +758,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_locationwwds_5_tflocationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_locationwwds_4_tflocationemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationEmail) like LOWER(:lV68Trn_locationwwds_4_tflocationemail))");
+            AddWhere(sWhereString, "(LocationEmail like :lV68Trn_locationwwds_4_tflocationemail)");
          }
          else
          {
@@ -778,7 +778,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_locationwwds_7_tflocationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_locationwwds_6_tflocationphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationPhone) like LOWER(:lV70Trn_locationwwds_6_tflocationphone))");
+            AddWhere(sWhereString, "(LocationPhone like :lV70Trn_locationwwds_6_tflocationphone)");
          }
          else
          {
@@ -825,7 +825,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV9WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_locationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(LocationName) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationEmail) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationPhone) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( LocationName like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationEmail like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationPhone like '%' || :lV65Trn_locationwwds_1_filterfulltext))");
          }
          else
          {
@@ -835,7 +835,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_locationwwds_3_tflocationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_locationwwds_2_tflocationname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationName) like LOWER(:lV66Trn_locationwwds_2_tflocationname))");
+            AddWhere(sWhereString, "(LocationName like :lV66Trn_locationwwds_2_tflocationname)");
          }
          else
          {
@@ -855,7 +855,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_locationwwds_5_tflocationemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_locationwwds_4_tflocationemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationEmail) like LOWER(:lV68Trn_locationwwds_4_tflocationemail))");
+            AddWhere(sWhereString, "(LocationEmail like :lV68Trn_locationwwds_4_tflocationemail)");
          }
          else
          {
@@ -875,7 +875,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_locationwwds_7_tflocationphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_locationwwds_6_tflocationphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(LocationPhone) like LOWER(:lV70Trn_locationwwds_6_tflocationphone))");
+            AddWhere(sWhereString, "(LocationPhone like :lV70Trn_locationwwds_6_tflocationphone)");
          }
          else
          {

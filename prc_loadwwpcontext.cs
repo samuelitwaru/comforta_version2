@@ -28,6 +28,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -223,7 +225,7 @@ namespace GeneXus.Programs {
             AV25GXV1 = (int)(AV25GXV1+1);
          }
          AV18WWPContext.gxTpr_Filtereddashboarditems = AV14FilteredDashboardItems;
-         AV15FooterText = "Comforta Software";
+         AV15FooterText = context.GetMessage( "Comforta Software", "");
          if ( AV18WWPContext.gxTpr_Isorganisationmanager )
          {
             AV15FooterText = AV18WWPContext.gxTpr_Organisationname;
@@ -366,6 +368,7 @@ namespace GeneXus.Programs {
       private Guid A21ManagerId ;
       private Guid A89ReceptionistId ;
       private Guid A100OrganisationSettingid ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV18WWPContext ;

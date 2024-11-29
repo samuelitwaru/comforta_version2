@@ -1358,7 +1358,7 @@ namespace GeneXus.Programs {
             A22ManagerGivenName = H003E2_A22ManagerGivenName[0];
             A11OrganisationId = H003E2_A11OrganisationId[0];
             A21ManagerId = H003E2_A21ManagerId[0];
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV91Trn_managerwwds_1_filterfulltext)) || ( ( StringUtil.Like( StringUtil.Lower( A22ManagerGivenName) , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A23ManagerLastName) , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A25ManagerEmail) , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A26ManagerPhone) , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( "male", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Male") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "female", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Female") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "other", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Other") == 0 ) ) ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV91Trn_managerwwds_1_filterfulltext)) || ( ( StringUtil.Like( A22ManagerGivenName , StringUtil.PadR( "%" + AV91Trn_managerwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A23ManagerLastName , StringUtil.PadR( "%" + AV91Trn_managerwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A25ManagerEmail , StringUtil.PadR( "%" + AV91Trn_managerwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A26ManagerPhone , StringUtil.PadR( "%" + AV91Trn_managerwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( "male", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Male") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "female", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Female") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "other", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Other") == 0 ) ) ) )
             {
                GRID_nRecordCount = (long)(GRID_nRecordCount+1);
             }
@@ -1461,7 +1461,7 @@ namespace GeneXus.Programs {
                A22ManagerGivenName = H003E3_A22ManagerGivenName[0];
                A11OrganisationId = H003E3_A11OrganisationId[0];
                A21ManagerId = H003E3_A21ManagerId[0];
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV91Trn_managerwwds_1_filterfulltext)) || ( ( StringUtil.Like( StringUtil.Lower( A22ManagerGivenName) , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A23ManagerLastName) , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A25ManagerEmail) , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A26ManagerPhone) , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( "male", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Male") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "female", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Female") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "other", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Other") == 0 ) ) ) )
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV91Trn_managerwwds_1_filterfulltext)) || ( ( StringUtil.Like( A22ManagerGivenName , StringUtil.PadR( "%" + AV91Trn_managerwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A23ManagerLastName , StringUtil.PadR( "%" + AV91Trn_managerwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A25ManagerEmail , StringUtil.PadR( "%" + AV91Trn_managerwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( A26ManagerPhone , StringUtil.PadR( "%" + AV91Trn_managerwwds_1_filterfulltext , 101 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( "male", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Male") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "female", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Female") == 0 ) ) || ( StringUtil.Like( context.GetMessage( "other", "") , StringUtil.PadR( "%" + StringUtil.Lower( AV91Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, "Other") == 0 ) ) ) )
                {
                   /* Execute user event: Grid.Load */
                   E213E2 ();
@@ -2804,7 +2804,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411289424222", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914305856", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2820,7 +2820,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_managerww.js", "?202411289424224", false, true);
+         context.AddJavascriptSource("trn_managerww.js", "?2024112914305860", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4098,7 +4098,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV61OrganisationId)");
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV93Trn_managerwwds_3_tfmanagergivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV92Trn_managerwwds_2_tfmanagergivenname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ManagerGivenName) like LOWER(:lV92Trn_managerwwds_2_tfmanagergivenname))");
+            AddWhere(sWhereString, "(ManagerGivenName like :lV92Trn_managerwwds_2_tfmanagergivenname)");
          }
          else
          {
@@ -4118,7 +4118,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV95Trn_managerwwds_5_tfmanagerlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV94Trn_managerwwds_4_tfmanagerlastname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ManagerLastName) like LOWER(:lV94Trn_managerwwds_4_tfmanagerlastname))");
+            AddWhere(sWhereString, "(ManagerLastName like :lV94Trn_managerwwds_4_tfmanagerlastname)");
          }
          else
          {
@@ -4138,7 +4138,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV97Trn_managerwwds_7_tfmanageremail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV96Trn_managerwwds_6_tfmanageremail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ManagerEmail) like LOWER(:lV96Trn_managerwwds_6_tfmanageremail))");
+            AddWhere(sWhereString, "(ManagerEmail like :lV96Trn_managerwwds_6_tfmanageremail)");
          }
          else
          {
@@ -4158,7 +4158,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV99Trn_managerwwds_9_tfmanagerphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV98Trn_managerwwds_8_tfmanagerphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ManagerPhone) like LOWER(:lV98Trn_managerwwds_8_tfmanagerphone))");
+            AddWhere(sWhereString, "(ManagerPhone like :lV98Trn_managerwwds_8_tfmanagerphone)");
          }
          else
          {
@@ -4256,7 +4256,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV61OrganisationId)");
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV93Trn_managerwwds_3_tfmanagergivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV92Trn_managerwwds_2_tfmanagergivenname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ManagerGivenName) like LOWER(:lV92Trn_managerwwds_2_tfmanagergivenname))");
+            AddWhere(sWhereString, "(ManagerGivenName like :lV92Trn_managerwwds_2_tfmanagergivenname)");
          }
          else
          {
@@ -4276,7 +4276,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV95Trn_managerwwds_5_tfmanagerlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV94Trn_managerwwds_4_tfmanagerlastname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ManagerLastName) like LOWER(:lV94Trn_managerwwds_4_tfmanagerlastname))");
+            AddWhere(sWhereString, "(ManagerLastName like :lV94Trn_managerwwds_4_tfmanagerlastname)");
          }
          else
          {
@@ -4296,7 +4296,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV97Trn_managerwwds_7_tfmanageremail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV96Trn_managerwwds_6_tfmanageremail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ManagerEmail) like LOWER(:lV96Trn_managerwwds_6_tfmanageremail))");
+            AddWhere(sWhereString, "(ManagerEmail like :lV96Trn_managerwwds_6_tfmanageremail)");
          }
          else
          {
@@ -4316,7 +4316,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV99Trn_managerwwds_9_tfmanagerphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV98Trn_managerwwds_8_tfmanagerphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ManagerPhone) like LOWER(:lV98Trn_managerwwds_8_tfmanagerphone))");
+            AddWhere(sWhereString, "(ManagerPhone like :lV98Trn_managerwwds_8_tfmanagerphone)");
          }
          else
          {

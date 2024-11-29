@@ -1003,9 +1003,9 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtNetworkCompanyEmail_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
-         if ( ! ( GxRegex.IsMatch(A392NetworkCompanyPhoneNumber,"\\b\\d{9}\\b") ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A392NetworkCompanyPhoneNumber)) && ! GxRegex.IsMatch(A392NetworkCompanyPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Network Company Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "NETWORKCOMPANYPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "NETWORKCOMPANYPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtNetworkCompanyPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2071,7 +2071,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115411150", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914295257", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2087,7 +2087,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_networkcompany.js", "?2024112115411150", false, true);
+         context.AddJavascriptSource("trn_networkcompany.js", "?2024112914295258", false, true);
          /* End function include_jscripts */
       }
 

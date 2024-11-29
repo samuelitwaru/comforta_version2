@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT ResidentTypeName, ResidentTypeId FROM Trn_ResidentType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_residenttypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(ResidentTypeName) like '%' || LOWER(:lV38Trn_residenttypewwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( ResidentTypeName like '%' || :lV38Trn_residenttypewwds_1_filterfulltext))");
          }
          else
          {
@@ -355,7 +355,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_residenttypewwds_3_tfresidenttypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV39Trn_residenttypewwds_2_tfresidenttypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ResidentTypeName) like LOWER(:lV39Trn_residenttypewwds_2_tfresidenttypename))");
+            AddWhere(sWhereString, "(ResidentTypeName like :lV39Trn_residenttypewwds_2_tfresidenttypename)");
          }
          else
          {

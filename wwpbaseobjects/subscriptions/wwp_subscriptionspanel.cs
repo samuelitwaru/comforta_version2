@@ -1475,6 +1475,9 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          {
             /* Grid_Load Routine */
             returnInSub = false;
+            AV8WWPNotificationId = A128WWPNotificationDefinitionId;
+            AssignAttri(sPrefix, false, "AV8WWPNotificationId", StringUtil.LTrimStr( (decimal)(AV8WWPNotificationId), 10, 0));
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPNOTIFICATIONID", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV8WWPNotificationId), "ZZZZZZZZZ9"), context));
             /* Execute user subroutine: 'LOADCHECKINCLUDENOTIFICATIONS' */
             S142 ();
             if ( returnInSub )
@@ -1482,9 +1485,6 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                returnInSub = true;
                if (true) return;
             }
-            AV8WWPNotificationId = A128WWPNotificationDefinitionId;
-            AssignAttri(sPrefix, false, "AV8WWPNotificationId", StringUtil.LTrimStr( (decimal)(AV8WWPNotificationId), 10, 0));
-            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPNOTIFICATIONID", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV8WWPNotificationId), "ZZZZZZZZZ9"), context));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -1908,7 +1908,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115421258", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914273082", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1926,7 +1926,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/subscriptions/wwp_subscriptionspanel.js", "?2024112115421258", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/subscriptions/wwp_subscriptionspanel.js", "?2024112914273083", false, true);
          }
          /* End function include_jscripts */
       }

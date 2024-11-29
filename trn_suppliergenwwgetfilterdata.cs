@@ -1019,7 +1019,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_suppliergenwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenWebsite) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenWebsite like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext))");
          }
          else
          {
@@ -1031,7 +1031,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_suppliergenwwds_3_tfsuppliergencompanyname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenCompanyName) like LOWER(:lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname))");
+            AddWhere(sWhereString, "(T1.SupplierGenCompanyName like :lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)");
          }
          else
          {
@@ -1051,7 +1051,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_suppliergenwwds_5_tfsuppliergentypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_suppliergenwwds_4_tfsuppliergentypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T2.SupplierGenTypeName) like LOWER(:lV66Trn_suppliergenwwds_4_tfsuppliergentypename))");
+            AddWhere(sWhereString, "(T2.SupplierGenTypeName like :lV66Trn_suppliergenwwds_4_tfsuppliergentypename)");
          }
          else
          {
@@ -1071,7 +1071,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_suppliergenwwds_7_tfsuppliergencontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_suppliergenwwds_6_tfsuppliergencontactname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactName) like LOWER(:lV68Trn_suppliergenwwds_6_tfsuppliergencontactname))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactName like :lV68Trn_suppliergenwwds_6_tfsuppliergencontactname)");
          }
          else
          {
@@ -1091,7 +1091,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_suppliergenwwds_9_tfsuppliergencontactphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactPhone) like LOWER(:lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactPhone like :lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)");
          }
          else
          {
@@ -1111,7 +1111,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_suppliergenwwds_11_tfsuppliergenwebsite_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenWebsite) like LOWER(:lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite))");
+            AddWhere(sWhereString, "(T1.SupplierGenWebsite like :lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)");
          }
          else
          {
@@ -1163,7 +1163,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_suppliergenwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenWebsite) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenWebsite like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext))");
          }
          else
          {
@@ -1175,7 +1175,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_suppliergenwwds_3_tfsuppliergencompanyname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenCompanyName) like LOWER(:lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname))");
+            AddWhere(sWhereString, "(T1.SupplierGenCompanyName like :lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)");
          }
          else
          {
@@ -1195,7 +1195,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_suppliergenwwds_5_tfsuppliergentypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_suppliergenwwds_4_tfsuppliergentypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T2.SupplierGenTypeName) like LOWER(:lV66Trn_suppliergenwwds_4_tfsuppliergentypename))");
+            AddWhere(sWhereString, "(T2.SupplierGenTypeName like :lV66Trn_suppliergenwwds_4_tfsuppliergentypename)");
          }
          else
          {
@@ -1215,7 +1215,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_suppliergenwwds_7_tfsuppliergencontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_suppliergenwwds_6_tfsuppliergencontactname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactName) like LOWER(:lV68Trn_suppliergenwwds_6_tfsuppliergencontactname))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactName like :lV68Trn_suppliergenwwds_6_tfsuppliergencontactname)");
          }
          else
          {
@@ -1235,7 +1235,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_suppliergenwwds_9_tfsuppliergencontactphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactPhone) like LOWER(:lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactPhone like :lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)");
          }
          else
          {
@@ -1255,7 +1255,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_suppliergenwwds_11_tfsuppliergenwebsite_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenWebsite) like LOWER(:lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite))");
+            AddWhere(sWhereString, "(T1.SupplierGenWebsite like :lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)");
          }
          else
          {
@@ -1307,7 +1307,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_suppliergenwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenWebsite) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenWebsite like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext))");
          }
          else
          {
@@ -1319,7 +1319,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_suppliergenwwds_3_tfsuppliergencompanyname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenCompanyName) like LOWER(:lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname))");
+            AddWhere(sWhereString, "(T1.SupplierGenCompanyName like :lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)");
          }
          else
          {
@@ -1339,7 +1339,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_suppliergenwwds_5_tfsuppliergentypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_suppliergenwwds_4_tfsuppliergentypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T2.SupplierGenTypeName) like LOWER(:lV66Trn_suppliergenwwds_4_tfsuppliergentypename))");
+            AddWhere(sWhereString, "(T2.SupplierGenTypeName like :lV66Trn_suppliergenwwds_4_tfsuppliergentypename)");
          }
          else
          {
@@ -1359,7 +1359,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_suppliergenwwds_7_tfsuppliergencontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_suppliergenwwds_6_tfsuppliergencontactname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactName) like LOWER(:lV68Trn_suppliergenwwds_6_tfsuppliergencontactname))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactName like :lV68Trn_suppliergenwwds_6_tfsuppliergencontactname)");
          }
          else
          {
@@ -1379,7 +1379,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_suppliergenwwds_9_tfsuppliergencontactphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactPhone) like LOWER(:lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactPhone like :lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)");
          }
          else
          {
@@ -1399,7 +1399,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_suppliergenwwds_11_tfsuppliergenwebsite_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenWebsite) like LOWER(:lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite))");
+            AddWhere(sWhereString, "(T1.SupplierGenWebsite like :lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)");
          }
          else
          {
@@ -1451,7 +1451,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_suppliergenwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenWebsite) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenWebsite like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext))");
          }
          else
          {
@@ -1463,7 +1463,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_suppliergenwwds_3_tfsuppliergencompanyname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenCompanyName) like LOWER(:lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname))");
+            AddWhere(sWhereString, "(T1.SupplierGenCompanyName like :lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)");
          }
          else
          {
@@ -1483,7 +1483,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_suppliergenwwds_5_tfsuppliergentypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_suppliergenwwds_4_tfsuppliergentypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T2.SupplierGenTypeName) like LOWER(:lV66Trn_suppliergenwwds_4_tfsuppliergentypename))");
+            AddWhere(sWhereString, "(T2.SupplierGenTypeName like :lV66Trn_suppliergenwwds_4_tfsuppliergentypename)");
          }
          else
          {
@@ -1503,7 +1503,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_suppliergenwwds_7_tfsuppliergencontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_suppliergenwwds_6_tfsuppliergencontactname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactName) like LOWER(:lV68Trn_suppliergenwwds_6_tfsuppliergencontactname))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactName like :lV68Trn_suppliergenwwds_6_tfsuppliergencontactname)");
          }
          else
          {
@@ -1523,7 +1523,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_suppliergenwwds_9_tfsuppliergencontactphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactPhone) like LOWER(:lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactPhone like :lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)");
          }
          else
          {
@@ -1543,7 +1543,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_suppliergenwwds_11_tfsuppliergenwebsite_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenWebsite) like LOWER(:lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite))");
+            AddWhere(sWhereString, "(T1.SupplierGenWebsite like :lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)");
          }
          else
          {
@@ -1595,7 +1595,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId IS NULL)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_suppliergenwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)) or ( LOWER(T1.SupplierGenWebsite) like '%' || LOWER(:lV63Trn_suppliergenwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext) or ( T1.SupplierGenWebsite like '%' || :lV63Trn_suppliergenwwds_1_filterfulltext))");
          }
          else
          {
@@ -1607,7 +1607,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_suppliergenwwds_3_tfsuppliergencompanyname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenCompanyName) like LOWER(:lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname))");
+            AddWhere(sWhereString, "(T1.SupplierGenCompanyName like :lV64Trn_suppliergenwwds_2_tfsuppliergencompanyname)");
          }
          else
          {
@@ -1627,7 +1627,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV67Trn_suppliergenwwds_5_tfsuppliergentypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Trn_suppliergenwwds_4_tfsuppliergentypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T2.SupplierGenTypeName) like LOWER(:lV66Trn_suppliergenwwds_4_tfsuppliergentypename))");
+            AddWhere(sWhereString, "(T2.SupplierGenTypeName like :lV66Trn_suppliergenwwds_4_tfsuppliergentypename)");
          }
          else
          {
@@ -1647,7 +1647,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV69Trn_suppliergenwwds_7_tfsuppliergencontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV68Trn_suppliergenwwds_6_tfsuppliergencontactname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactName) like LOWER(:lV68Trn_suppliergenwwds_6_tfsuppliergencontactname))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactName like :lV68Trn_suppliergenwwds_6_tfsuppliergencontactname)");
          }
          else
          {
@@ -1667,7 +1667,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV71Trn_suppliergenwwds_9_tfsuppliergencontactphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenContactPhone) like LOWER(:lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone))");
+            AddWhere(sWhereString, "(T1.SupplierGenContactPhone like :lV70Trn_suppliergenwwds_8_tfsuppliergencontactphone)");
          }
          else
          {
@@ -1687,7 +1687,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV73Trn_suppliergenwwds_11_tfsuppliergenwebsite_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(T1.SupplierGenWebsite) like LOWER(:lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite))");
+            AddWhere(sWhereString, "(T1.SupplierGenWebsite like :lV72Trn_suppliergenwwds_10_tfsuppliergenwebsite)");
          }
          else
          {

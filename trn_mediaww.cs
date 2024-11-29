@@ -2586,7 +2586,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411289433542", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914323979", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2602,7 +2602,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_mediaww.js", "?202411289433544", false, true);
+         context.AddJavascriptSource("trn_mediaww.js", "?2024112914323981", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3549,7 +3549,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_mediawwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(MediaName) like '%' || LOWER(:lV47Trn_mediawwds_1_filterfulltext)) or ( SUBSTR(TO_CHAR(MediaSize,'99999999'), 2) like '%' || :lV47Trn_mediawwds_1_filterfulltext) or ( LOWER(MediaType) like '%' || LOWER(:lV47Trn_mediawwds_1_filterfulltext)) or ( LOWER(MediaUrl) like '%' || LOWER(:lV47Trn_mediawwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( MediaName like '%' || :lV47Trn_mediawwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(MediaSize,'99999999'), 2) like '%' || :lV47Trn_mediawwds_1_filterfulltext) or ( MediaType like '%' || :lV47Trn_mediawwds_1_filterfulltext) or ( MediaUrl like '%' || :lV47Trn_mediawwds_1_filterfulltext))");
          }
          else
          {
@@ -3560,7 +3560,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_mediawwds_3_tfmedianame_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_mediawwds_2_tfmedianame)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(MediaName) like LOWER(:lV48Trn_mediawwds_2_tfmedianame))");
+            AddWhere(sWhereString, "(MediaName like :lV48Trn_mediawwds_2_tfmedianame)");
          }
          else
          {
@@ -3596,7 +3596,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_mediawwds_7_tfmediatype_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_mediawwds_6_tfmediatype)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(MediaType) like LOWER(:lV52Trn_mediawwds_6_tfmediatype))");
+            AddWhere(sWhereString, "(MediaType like :lV52Trn_mediawwds_6_tfmediatype)");
          }
          else
          {
@@ -3616,7 +3616,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_mediawwds_9_tfmediaurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_mediawwds_8_tfmediaurl)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(MediaUrl) like LOWER(:lV54Trn_mediawwds_8_tfmediaurl))");
+            AddWhere(sWhereString, "(MediaUrl like :lV54Trn_mediawwds_8_tfmediaurl)");
          }
          else
          {
@@ -3708,7 +3708,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM Trn_Media";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Trn_mediawwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(MediaName) like '%' || LOWER(:lV47Trn_mediawwds_1_filterfulltext)) or ( SUBSTR(TO_CHAR(MediaSize,'99999999'), 2) like '%' || :lV47Trn_mediawwds_1_filterfulltext) or ( LOWER(MediaType) like '%' || LOWER(:lV47Trn_mediawwds_1_filterfulltext)) or ( LOWER(MediaUrl) like '%' || LOWER(:lV47Trn_mediawwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( MediaName like '%' || :lV47Trn_mediawwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(MediaSize,'99999999'), 2) like '%' || :lV47Trn_mediawwds_1_filterfulltext) or ( MediaType like '%' || :lV47Trn_mediawwds_1_filterfulltext) or ( MediaUrl like '%' || :lV47Trn_mediawwds_1_filterfulltext))");
          }
          else
          {
@@ -3719,7 +3719,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV49Trn_mediawwds_3_tfmedianame_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_mediawwds_2_tfmedianame)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(MediaName) like LOWER(:lV48Trn_mediawwds_2_tfmedianame))");
+            AddWhere(sWhereString, "(MediaName like :lV48Trn_mediawwds_2_tfmedianame)");
          }
          else
          {
@@ -3755,7 +3755,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV53Trn_mediawwds_7_tfmediatype_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_mediawwds_6_tfmediatype)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(MediaType) like LOWER(:lV52Trn_mediawwds_6_tfmediatype))");
+            AddWhere(sWhereString, "(MediaType like :lV52Trn_mediawwds_6_tfmediatype)");
          }
          else
          {
@@ -3775,7 +3775,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_mediawwds_9_tfmediaurl_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_mediawwds_8_tfmediaurl)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(MediaUrl) like LOWER(:lV54Trn_mediawwds_8_tfmediaurl))");
+            AddWhere(sWhereString, "(MediaUrl like :lV54Trn_mediawwds_8_tfmediaurl)");
          }
          else
          {

@@ -153,6 +153,7 @@ namespace GeneXus.Programs {
          if ( IsIns( )  && (Guid.Empty==A98MedicalIndicationId) )
          {
             A98MedicalIndicationId = Guid.NewGuid( );
+            n98MedicalIndicationId = false;
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
@@ -162,7 +163,7 @@ namespace GeneXus.Programs {
       protected void Load0E24( )
       {
          /* Using cursor BC000E4 */
-         pr_default.execute(2, new Object[] {A98MedicalIndicationId});
+         pr_default.execute(2, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
          if ( (pr_default.getStatus(2) != 101) )
          {
             RcdFound24 = 1;
@@ -193,7 +194,7 @@ namespace GeneXus.Programs {
       protected void GetKey0E24( )
       {
          /* Using cursor BC000E5 */
-         pr_default.execute(3, new Object[] {A98MedicalIndicationId});
+         pr_default.execute(3, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
          if ( (pr_default.getStatus(3) != 101) )
          {
             RcdFound24 = 1;
@@ -208,12 +209,13 @@ namespace GeneXus.Programs {
       protected void getByPrimaryKey( )
       {
          /* Using cursor BC000E3 */
-         pr_default.execute(1, new Object[] {A98MedicalIndicationId});
+         pr_default.execute(1, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
             ZM0E24( 3) ;
             RcdFound24 = 1;
             A98MedicalIndicationId = BC000E3_A98MedicalIndicationId[0];
+            n98MedicalIndicationId = BC000E3_n98MedicalIndicationId[0];
             A99MedicalIndicationName = BC000E3_A99MedicalIndicationName[0];
             Z98MedicalIndicationId = A98MedicalIndicationId;
             sMode24 = Gx_mode;
@@ -273,7 +275,7 @@ namespace GeneXus.Programs {
          if ( ! IsIns( ) )
          {
             /* Using cursor BC000E2 */
-            pr_default.execute(0, new Object[] {A98MedicalIndicationId});
+            pr_default.execute(0, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
             if ( (pr_default.getStatus(0) == 103) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_MedicalIndication"}), "RecordIsLocked", 1, "");
@@ -309,7 +311,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC000E6 */
-                     pr_default.execute(4, new Object[] {A98MedicalIndicationId, A99MedicalIndicationName});
+                     pr_default.execute(4, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId, A99MedicalIndicationName});
                      pr_default.close(4);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_MedicalIndication");
                      if ( (pr_default.getStatus(4) == 1) )
@@ -364,7 +366,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC000E7 */
-                     pr_default.execute(5, new Object[] {A99MedicalIndicationName, A98MedicalIndicationId});
+                     pr_default.execute(5, new Object[] {A99MedicalIndicationName, n98MedicalIndicationId, A98MedicalIndicationId});
                      pr_default.close(5);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_MedicalIndication");
                      if ( (pr_default.getStatus(5) == 103) )
@@ -420,7 +422,7 @@ namespace GeneXus.Programs {
                {
                   /* No cascading delete specified. */
                   /* Using cursor BC000E8 */
-                  pr_default.execute(6, new Object[] {A98MedicalIndicationId});
+                  pr_default.execute(6, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
                   pr_default.close(6);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_MedicalIndication");
                   if ( AnyError == 0 )
@@ -454,7 +456,7 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Using cursor BC000E9 */
-            pr_default.execute(7, new Object[] {A98MedicalIndicationId});
+            pr_default.execute(7, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
             if ( (pr_default.getStatus(7) != 101) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Resident", "")}), "CannotDeleteReferencedRecord", 1, "");
@@ -494,12 +496,13 @@ namespace GeneXus.Programs {
       {
          /* Scan By routine */
          /* Using cursor BC000E10 */
-         pr_default.execute(8, new Object[] {A98MedicalIndicationId});
+         pr_default.execute(8, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
          RcdFound24 = 0;
          if ( (pr_default.getStatus(8) != 101) )
          {
             RcdFound24 = 1;
             A98MedicalIndicationId = BC000E10_A98MedicalIndicationId[0];
+            n98MedicalIndicationId = BC000E10_n98MedicalIndicationId[0];
             A99MedicalIndicationName = BC000E10_A99MedicalIndicationName[0];
          }
          /* Load Subordinate Levels */
@@ -521,6 +524,7 @@ namespace GeneXus.Programs {
          {
             RcdFound24 = 1;
             A98MedicalIndicationId = BC000E10_A98MedicalIndicationId[0];
+            n98MedicalIndicationId = BC000E10_n98MedicalIndicationId[0];
             A99MedicalIndicationName = BC000E10_A99MedicalIndicationName[0];
          }
          Gx_mode = sMode24;
@@ -588,6 +592,7 @@ namespace GeneXus.Programs {
       protected void InitAll0E24( )
       {
          A98MedicalIndicationId = Guid.NewGuid( );
+         n98MedicalIndicationId = false;
          InitializeNonKey0E24( ) ;
       }
 
@@ -622,6 +627,7 @@ namespace GeneXus.Programs {
          obj24.gxTpr_Medicalindicationid = A98MedicalIndicationId;
          obj24.gxTpr_Medicalindicationid_Z = Z98MedicalIndicationId;
          obj24.gxTpr_Medicalindicationname_Z = Z99MedicalIndicationName;
+         obj24.gxTpr_Medicalindicationid_N = (short)(Convert.ToInt16(n98MedicalIndicationId));
          obj24.gxTpr_Mode = Gx_mode;
          return  ;
       }
@@ -638,8 +644,10 @@ namespace GeneXus.Programs {
          Gx_mode = obj24.gxTpr_Mode;
          A99MedicalIndicationName = obj24.gxTpr_Medicalindicationname;
          A98MedicalIndicationId = obj24.gxTpr_Medicalindicationid;
+         n98MedicalIndicationId = false;
          Z98MedicalIndicationId = obj24.gxTpr_Medicalindicationid_Z;
          Z99MedicalIndicationName = obj24.gxTpr_Medicalindicationname_Z;
+         n98MedicalIndicationId = (bool)(Convert.ToBoolean(obj24.gxTpr_Medicalindicationid_N));
          Gx_mode = obj24.gxTpr_Mode;
          return  ;
       }
@@ -649,6 +657,7 @@ namespace GeneXus.Programs {
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
          A98MedicalIndicationId = (Guid)getParm(obj,0);
+         n98MedicalIndicationId = false;
          AnyError = 0;
          context.GX_msglist.removeAllItems();
          InitializeNonKey0E24( ) ;
@@ -718,6 +727,7 @@ namespace GeneXus.Programs {
                if ( A98MedicalIndicationId != Z98MedicalIndicationId )
                {
                   A98MedicalIndicationId = Z98MedicalIndicationId;
+                  n98MedicalIndicationId = false;
                   GX_msglist.addItem(context.GetMessage( "GXM_getbeforeupd", ""), "CandidateKeyNotFound", 1, "");
                   AnyError = 1;
                }
@@ -896,6 +906,7 @@ namespace GeneXus.Programs {
             else if ( A98MedicalIndicationId != Z98MedicalIndicationId )
             {
                A98MedicalIndicationId = Z98MedicalIndicationId;
+               n98MedicalIndicationId = false;
                GX_msglist.addItem(context.GetMessage( "GXM_getbeforeupd", ""), "DuplicatePrimaryKey", 1, "");
                AnyError = 1;
             }
@@ -1081,17 +1092,22 @@ namespace GeneXus.Programs {
          Z99MedicalIndicationName = "";
          A99MedicalIndicationName = "";
          BC000E4_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         BC000E4_n98MedicalIndicationId = new bool[] {false} ;
          BC000E4_A99MedicalIndicationName = new string[] {""} ;
          BC000E5_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         BC000E5_n98MedicalIndicationId = new bool[] {false} ;
          BC000E3_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         BC000E3_n98MedicalIndicationId = new bool[] {false} ;
          BC000E3_A99MedicalIndicationName = new string[] {""} ;
          sMode24 = "";
          BC000E2_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         BC000E2_n98MedicalIndicationId = new bool[] {false} ;
          BC000E2_A99MedicalIndicationName = new string[] {""} ;
          BC000E9_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC000E9_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000E9_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000E10_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         BC000E10_n98MedicalIndicationId = new bool[] {false} ;
          BC000E10_A99MedicalIndicationName = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1132,7 +1148,9 @@ namespace GeneXus.Programs {
             }
          );
          Z98MedicalIndicationId = Guid.NewGuid( );
+         n98MedicalIndicationId = false;
          A98MedicalIndicationId = Guid.NewGuid( );
+         n98MedicalIndicationId = false;
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1149,6 +1167,7 @@ namespace GeneXus.Programs {
       private string endTrnMsgCod ;
       private string sMode24 ;
       private bool returnInSub ;
+      private bool n98MedicalIndicationId ;
       private string Z99MedicalIndicationName ;
       private string A99MedicalIndicationName ;
       private Guid Z98MedicalIndicationId ;
@@ -1161,16 +1180,21 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV11TrnContext ;
       private IDataStoreProvider pr_default ;
       private Guid[] BC000E4_A98MedicalIndicationId ;
+      private bool[] BC000E4_n98MedicalIndicationId ;
       private string[] BC000E4_A99MedicalIndicationName ;
       private Guid[] BC000E5_A98MedicalIndicationId ;
+      private bool[] BC000E5_n98MedicalIndicationId ;
       private Guid[] BC000E3_A98MedicalIndicationId ;
+      private bool[] BC000E3_n98MedicalIndicationId ;
       private string[] BC000E3_A99MedicalIndicationName ;
       private Guid[] BC000E2_A98MedicalIndicationId ;
+      private bool[] BC000E2_n98MedicalIndicationId ;
       private string[] BC000E2_A99MedicalIndicationName ;
       private Guid[] BC000E9_A62ResidentId ;
       private Guid[] BC000E9_A29LocationId ;
       private Guid[] BC000E9_A11OrganisationId ;
       private Guid[] BC000E10_A98MedicalIndicationId ;
+      private bool[] BC000E10_n98MedicalIndicationId ;
       private string[] BC000E10_A99MedicalIndicationName ;
       private SdtTrn_MedicalIndication bcTrn_MedicalIndication ;
       private msglist BackMsgLst ;
@@ -1268,41 +1292,41 @@ public class trn_medicalindication_bc__default : DataStoreHelperBase, IDataStore
     {
        Object[] prmBC000E2;
        prmBC000E2 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000E3;
        prmBC000E3 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000E4;
        prmBC000E4 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000E5;
        prmBC000E5 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000E6;
        prmBC000E6 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("MedicalIndicationName",GXType.VarChar,100,0)
        };
        Object[] prmBC000E7;
        prmBC000E7 = new Object[] {
        new ParDef("MedicalIndicationName",GXType.VarChar,100,0) ,
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000E8;
        prmBC000E8 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000E9;
        prmBC000E9 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000E10;
        prmBC000E10 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        def= new CursorDef[] {
            new CursorDef("BC000E2", "SELECT MedicalIndicationId, MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId  FOR UPDATE OF Trn_MedicalIndication",true, GxErrorMask.GX_NOMASK, false, this,prmBC000E2,1, GxCacheFrequency.OFF ,true,false )

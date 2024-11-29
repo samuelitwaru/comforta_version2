@@ -299,6 +299,8 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISCUSSIONS", AV18IsAuthorized_Discussions);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISCUSSIONS", GetSecureSignedToken( "", AV18IsAuthorized_Discussions, context));
          GxWebStd.gx_hidden_field( context, "vPRODUCTSERVICEID", AV10ProductServiceId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vPRODUCTSERVICEID", GetSecureSignedToken( "", AV10ProductServiceId, context));
          GxWebStd.gx_hidden_field( context, "vLOCATIONID", AV17LocationId.ToString());
@@ -320,6 +322,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "ORGANISATIONID", A11OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISCUSSIONS", AV18IsAuthorized_Discussions);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISCUSSIONS", GetSecureSignedToken( "", AV18IsAuthorized_Discussions, context));
          GxWebStd.gx_boolean_hidden_field( context, "vLOADALLTABS", AV11LoadAllTabs);
          GxWebStd.gx_hidden_field( context, "vSELECTEDTABCODE", StringUtil.RTrim( AV12SelectedTabCode));
          GxWebStd.gx_hidden_field( context, "vPRODUCTSERVICEID", AV10ProductServiceId.ToString());
@@ -339,6 +343,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DDC_DISCUSSIONS_Icon", StringUtil.RTrim( Ddc_discussions_Icon));
          GxWebStd.gx_hidden_field( context, "DDC_DISCUSSIONS_Tooltip", StringUtil.RTrim( Ddc_discussions_Tooltip));
          GxWebStd.gx_hidden_field( context, "DDC_DISCUSSIONS_Cls", StringUtil.RTrim( Ddc_discussions_Cls));
+         GxWebStd.gx_hidden_field( context, "DDC_DISCUSSIONS_Visible", StringUtil.BoolToStr( Ddc_discussions_Visible));
          GxWebStd.gx_hidden_field( context, "PANEL_GENERAL_Width", StringUtil.RTrim( Panel_general_Width));
          GxWebStd.gx_hidden_field( context, "PANEL_GENERAL_Autowidth", StringUtil.BoolToStr( Panel_general_Autowidth));
          GxWebStd.gx_hidden_field( context, "PANEL_GENERAL_Autoheight", StringUtil.BoolToStr( Panel_general_Autoheight));
@@ -1038,6 +1043,8 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISCUSSIONS", AV18IsAuthorized_Discussions);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISCUSSIONS", GetSecureSignedToken( "", AV18IsAuthorized_Discussions, context));
       }
 
       protected void before_start_formulas( )
@@ -1068,6 +1075,7 @@ namespace GeneXus.Programs {
             Ddc_discussions_Icon = cgiGet( "DDC_DISCUSSIONS_Icon");
             Ddc_discussions_Tooltip = cgiGet( "DDC_DISCUSSIONS_Tooltip");
             Ddc_discussions_Cls = cgiGet( "DDC_DISCUSSIONS_Cls");
+            Ddc_discussions_Visible = StringUtil.StrToBool( cgiGet( "DDC_DISCUSSIONS_Visible"));
             Panel_general_Width = cgiGet( "PANEL_GENERAL_Width");
             Panel_general_Autowidth = StringUtil.StrToBool( cgiGet( "PANEL_GENERAL_Autowidth"));
             Panel_general_Autoheight = StringUtil.StrToBool( cgiGet( "PANEL_GENERAL_Autoheight"));
@@ -1112,7 +1120,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV6WWPContext) ;
          lblWorkwithlink_Link = formatLink("trn_productserviceww.aspx") ;
          AssignProp("", false, lblWorkwithlink_Internalname, "Link", lblWorkwithlink_Link, true);
-         AV18GXLvl9 = 0;
+         AV19GXLvl9 = 0;
          /* Using cursor H005B3 */
          pr_default.execute(1, new Object[] {AV10ProductServiceId, AV17LocationId, AV16OrganisationId});
          while ( (pr_default.getStatus(1) != 101) )
@@ -1121,7 +1129,7 @@ namespace GeneXus.Programs {
             A29LocationId = H005B3_A29LocationId[0];
             A58ProductServiceId = H005B3_A58ProductServiceId[0];
             A59ProductServiceName = H005B3_A59ProductServiceName[0];
-            AV18GXLvl9 = 1;
+            AV19GXLvl9 = 1;
             Form.Caption = A59ProductServiceName;
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
             AV9Exists = true;
@@ -1129,7 +1137,7 @@ namespace GeneXus.Programs {
             if (true) break;
          }
          pr_default.close(1);
-         if ( AV18GXLvl9 == 0 )
+         if ( AV19GXLvl9 == 0 )
          {
             Form.Caption = context.GetMessage( "WWP_RecordNotFound", "");
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
@@ -1184,6 +1192,21 @@ namespace GeneXus.Programs {
             Ddc_subscriptions_Visible = false;
             ucDdc_subscriptions.SendProperty(context, "", false, Ddc_subscriptions_Internalname, "Visible", StringUtil.BoolToStr( Ddc_subscriptions_Visible));
          }
+         GXt_boolean1 = AV18IsAuthorized_Discussions;
+         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "wwpdiscussionswc_Execute", out  GXt_boolean1) ;
+         AV18IsAuthorized_Discussions = GXt_boolean1;
+         AssignAttri("", false, "AV18IsAuthorized_Discussions", AV18IsAuthorized_Discussions);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DISCUSSIONS", GetSecureSignedToken( "", AV18IsAuthorized_Discussions, context));
+         if ( AV18IsAuthorized_Discussions )
+         {
+            Ddc_discussions_Visible = true;
+            ucDdc_discussions.SendProperty(context, "", false, Ddc_discussions_Internalname, "Visible", StringUtil.BoolToStr( Ddc_discussions_Visible));
+         }
+         else
+         {
+            Ddc_discussions_Visible = false;
+            ucDdc_discussions.SendProperty(context, "", false, Ddc_discussions_Internalname, "Visible", StringUtil.BoolToStr( Ddc_discussions_Visible));
+         }
          /*  Sending Event outputs  */
       }
 
@@ -1232,31 +1255,39 @@ namespace GeneXus.Programs {
       {
          /* Ddc_discussions_Onloadcomponent Routine */
          returnInSub = false;
-         /* Object Property */
-         if ( true )
+         if ( AV18IsAuthorized_Discussions )
          {
-            bDynCreated_Wwpaux_wc = true;
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Wwpaux_wc = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "WWPBaseObjects.Discussions.WWP_DiscussionsWC")) != 0 )
+            {
+               WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "wwpbaseobjects.discussions.wwp_discussionswc", new Object[] {context} );
+               WebComp_Wwpaux_wc.ComponentInit();
+               WebComp_Wwpaux_wc.Name = "WWPBaseObjects.Discussions.WWP_DiscussionsWC";
+               WebComp_Wwpaux_wc_Component = "WWPBaseObjects.Discussions.WWP_DiscussionsWC";
+            }
+            if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
+            {
+               WebComp_Wwpaux_wc.setjustcreated();
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+               WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0042",(string)"",(string)"Trn_ProductService",StringUtil.Trim( A58ProductServiceId.ToString())+";"+StringUtil.Trim( A29LocationId.ToString())+";"+StringUtil.Trim( A11OrganisationId.ToString()),(string)AV14RecordDescription,formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
+               WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+"",(string)"",(string)""+"",(string)"",(string)"",(string)"",(string)""+""});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0042"+"");
+               WebComp_Wwpaux_wc.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
          }
-         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "WWPBaseObjects.Discussions.WWP_DiscussionsWC")) != 0 )
+         else
          {
-            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "wwpbaseobjects.discussions.wwp_discussionswc", new Object[] {context} );
-            WebComp_Wwpaux_wc.ComponentInit();
-            WebComp_Wwpaux_wc.Name = "WWPBaseObjects.Discussions.WWP_DiscussionsWC";
-            WebComp_Wwpaux_wc_Component = "WWPBaseObjects.Discussions.WWP_DiscussionsWC";
-         }
-         if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
-         {
-            WebComp_Wwpaux_wc.setjustcreated();
-            GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0042",(string)"",(string)"Trn_ProductService",StringUtil.Trim( A58ProductServiceId.ToString())+";"+StringUtil.Trim( A29LocationId.ToString())+";"+StringUtil.Trim( A11OrganisationId.ToString()),(string)AV14RecordDescription,formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
-            WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+"",(string)"",(string)""+"",(string)"",(string)"",(string)"",(string)""+""});
-         }
-         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
-         {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0042"+"");
-            WebComp_Wwpaux_wc.componentdraw();
-            context.httpAjaxContext.ajax_rspEndCmp();
+            GX_msglist.addItem(context.GetMessage( "WWP_ActionNoLongerAvailable", ""));
+            context.DoAjaxRefresh();
          }
          /*  Sending Event outputs  */
       }
@@ -1414,7 +1445,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115452327", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914305980", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1430,7 +1461,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_productserviceview.js", "?2024112115452328", false, true);
+         context.AddJavascriptSource("trn_productserviceview.js", "?2024112914305980", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1497,6 +1528,7 @@ namespace GeneXus.Programs {
          Panel_general_Autoheight = Convert.ToBoolean( -1);
          Panel_general_Autowidth = Convert.ToBoolean( 0);
          Panel_general_Width = "100%";
+         Ddc_discussions_Visible = Convert.ToBoolean( -1);
          Ddc_discussions_Cls = "DropDownComponent";
          Ddc_discussions_Tooltip = "WWP_Discussions_Tooltip";
          Ddc_discussions_Icon = "far fa-comment-dots";
@@ -1524,11 +1556,11 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"AV10ProductServiceId","fld":"vPRODUCTSERVICEID","hsh":true},{"av":"AV17LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV16OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV8TabCode","fld":"vTABCODE","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"Ddc_discussions_Icon","ctrl":"DDC_DISCUSSIONS","prop":"Icon"},{"av":"Ddc_subscriptions_Visible","ctrl":"DDC_SUBSCRIPTIONS","prop":"Visible"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"AV18IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"AV10ProductServiceId","fld":"vPRODUCTSERVICEID","hsh":true},{"av":"AV17LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV16OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV8TabCode","fld":"vTABCODE","hsh":true}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"Ddc_discussions_Icon","ctrl":"DDC_DISCUSSIONS","prop":"Icon"},{"av":"Ddc_subscriptions_Visible","ctrl":"DDC_SUBSCRIPTIONS","prop":"Visible"},{"av":"AV18IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"Ddc_discussions_Visible","ctrl":"DDC_DISCUSSIONS","prop":"Visible"}]}""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E115B2","iparms":[{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true}]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
-         setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E125B2","iparms":[{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"}]""");
+         setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E125B2","iparms":[{"av":"AV18IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"}]""");
          setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
          setEventMetadata("TABS.TABCHANGED","""{"handler":"E135B2","iparms":[{"av":"Tabs_Activepagecontrolname","ctrl":"TABS","prop":"ActivePageControlName"},{"av":"AV11LoadAllTabs","fld":"vLOADALLTABS"},{"av":"AV12SelectedTabCode","fld":"vSELECTEDTABCODE"},{"av":"AV10ProductServiceId","fld":"vPRODUCTSERVICEID","hsh":true},{"av":"AV17LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV16OrganisationId","fld":"vORGANISATIONID","hsh":true}]""");
          setEventMetadata("TABS.TABCHANGED",""","oparms":[{"av":"AV12SelectedTabCode","fld":"vSELECTEDTABCODE"},{"av":"AV11LoadAllTabs","fld":"vLOADALLTABS"},{"ctrl":"TRN_CALLTOACTIONWC"}]}""");
@@ -1620,7 +1652,7 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short AV18GXLvl9 ;
+      private short AV19GXLvl9 ;
       private short nGXWrapped ;
       private int Tabs_Pagecount ;
       private int idxLst ;
@@ -1683,8 +1715,10 @@ namespace GeneXus.Programs {
       private string GXDecQS ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV18IsAuthorized_Discussions ;
       private bool AV11LoadAllTabs ;
       private bool Ddc_subscriptions_Visible ;
+      private bool Ddc_discussions_Visible ;
       private bool Panel_general_Autowidth ;
       private bool Panel_general_Autoheight ;
       private bool Panel_general_Collapsible ;
@@ -1698,6 +1732,7 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool AV9Exists ;
+      private bool GXt_boolean1 ;
       private bool bDynCreated_Wwpaux_wc ;
       private bool bDynCreated_Webcomponent_general ;
       private bool bDynCreated_Trn_calltoactionwc ;

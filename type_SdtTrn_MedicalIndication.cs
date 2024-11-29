@@ -70,6 +70,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Initialized");
          state.Add("gxTpr_Medicalindicationid_Z");
          state.Add("gxTpr_Medicalindicationname_Z");
+         state.Add("gxTpr_Medicalindicationid_N");
          return state ;
       }
 
@@ -83,6 +84,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_MedicalIndication_Initialized = sdt.gxTv_SdtTrn_MedicalIndication_Initialized ;
          gxTv_SdtTrn_MedicalIndication_Medicalindicationid_Z = sdt.gxTv_SdtTrn_MedicalIndication_Medicalindicationid_Z ;
          gxTv_SdtTrn_MedicalIndication_Medicalindicationname_Z = sdt.gxTv_SdtTrn_MedicalIndication_Medicalindicationname_Z ;
+         gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N = sdt.gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N ;
          return  ;
       }
 
@@ -102,6 +104,7 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("MedicalIndicationId", gxTv_SdtTrn_MedicalIndication_Medicalindicationid, false, includeNonInitialized);
+         AddObjectProperty("MedicalIndicationId_N", gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N, false, includeNonInitialized);
          AddObjectProperty("MedicalIndicationName", gxTv_SdtTrn_MedicalIndication_Medicalindicationname, false, includeNonInitialized);
          if ( includeState )
          {
@@ -109,6 +112,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("Initialized", gxTv_SdtTrn_MedicalIndication_Initialized, false, includeNonInitialized);
             AddObjectProperty("MedicalIndicationId_Z", gxTv_SdtTrn_MedicalIndication_Medicalindicationid_Z, false, includeNonInitialized);
             AddObjectProperty("MedicalIndicationName_Z", gxTv_SdtTrn_MedicalIndication_Medicalindicationname_Z, false, includeNonInitialized);
+            AddObjectProperty("MedicalIndicationId_N", gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -278,6 +282,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "MedicalIndicationId_N" )]
+      [  XmlElement( ElementName = "MedicalIndicationId_N"   )]
+      public short gxTpr_Medicalindicationid_N
+      {
+         get {
+            return gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N = value;
+            SetDirty("Medicalindicationid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N_SetNull( )
+      {
+         gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N = 0;
+         SetDirty("Medicalindicationid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -316,6 +348,7 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_MedicalIndication_Initialized ;
+      private short gxTv_SdtTrn_MedicalIndication_Medicalindicationid_N ;
       private string gxTv_SdtTrn_MedicalIndication_Mode ;
       private string gxTv_SdtTrn_MedicalIndication_Medicalindicationname ;
       private string gxTv_SdtTrn_MedicalIndication_Medicalindicationname_Z ;

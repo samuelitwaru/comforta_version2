@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT SupplierAgbTypeName, SupplierAgbTypeId FROM Trn_SupplierAgbType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_supplieragbtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(SupplierAgbTypeName) like '%' || LOWER(:lV38Trn_supplieragbtypewwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( SupplierAgbTypeName like '%' || :lV38Trn_supplieragbtypewwds_1_filterfulltext))");
          }
          else
          {
@@ -355,7 +355,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_supplieragbtypewwds_3_tfsupplieragbtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV39Trn_supplieragbtypewwds_2_tfsupplieragbtypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(SupplierAgbTypeName) like LOWER(:lV39Trn_supplieragbtypewwds_2_tfsupplieragbtypename))");
+            AddWhere(sWhereString, "(SupplierAgbTypeName like :lV39Trn_supplieragbtypewwds_2_tfsupplieragbtypename)");
          }
          else
          {

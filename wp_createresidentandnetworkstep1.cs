@@ -1239,6 +1239,38 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTPHONENUMBER.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6Q0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E206Q2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTHOMEPHONENUMBER.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6Q0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E216Q2 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -1252,7 +1284,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E206Q2 ();
+                                    E226Q2 ();
                                  }
                               }
                               /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1449,7 +1481,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E206Q2 ();
+            E226Q2 ();
             WB6Q0( ) ;
          }
       }
@@ -2175,11 +2207,37 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
+      protected void E206Q2( )
+      {
+         /* Residentphonenumber_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! GxRegex.IsMatch(AV40ResidentPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV40ResidentPhoneNumber)) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Phone contains 9 digits", ""),  "error",  edtavResidentphonenumber_Internalname,  "true",  ""));
+            AV31CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV31CheckRequiredFieldsResult", AV31CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E216Q2( )
+      {
+         /* Residenthomephonenumber_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! GxRegex.IsMatch(AV45ResidentHomePhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV45ResidentHomePhoneNumber)) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Phone contains 9 digits", ""),  "error",  edtavResidenthomephonenumber_Internalname,  "true",  ""));
+            AV31CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV31CheckRequiredFieldsResult", AV31CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E206Q2( )
+      protected void E226Q2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -2507,7 +2565,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115374743", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914274858", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2523,7 +2581,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?2024112115374743", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?2024112914274858", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2737,11 +2795,13 @@ namespace GeneXus.Programs {
          setEventMetadata("VRESIDENTBSNNUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VRESIDENTZIPCODE.CONTROLVALUECHANGED","""{"handler":"E196Q2","iparms":[{"av":"AV28ResidentZipCode","fld":"vRESIDENTZIPCODE"}]""");
          setEventMetadata("VRESIDENTZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VRESIDENTPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E206Q2","iparms":[{"av":"AV40ResidentPhoneNumber","fld":"vRESIDENTPHONENUMBER"}]""");
+         setEventMetadata("VRESIDENTPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VRESIDENTHOMEPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E216Q2","iparms":[{"av":"AV45ResidentHomePhoneNumber","fld":"vRESIDENTHOMEPHONENUMBER"}]""");
+         setEventMetadata("VRESIDENTHOMEPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VALIDV_RESIDENTSALUTATION","""{"handler":"Validv_Residentsalutation","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTGENDER","""{"handler":"Validv_Residentgender","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTEMAIL","""{"handler":"Validv_Residentemail","iparms":[]}""");
-         setEventMetadata("VALIDV_RESIDENTPHONENUMBER","""{"handler":"Validv_Residentphonenumber","iparms":[]}""");
-         setEventMetadata("VALIDV_RESIDENTHOMEPHONENUMBER","""{"handler":"Validv_Residenthomephonenumber","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTTYPEID","""{"handler":"Validv_Residenttypeid","iparms":[]}""");
          setEventMetadata("VALIDV_MEDICALINDICATIONID","""{"handler":"Validv_Medicalindicationid","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTID","""{"handler":"Validv_Residentid","iparms":[]}""");

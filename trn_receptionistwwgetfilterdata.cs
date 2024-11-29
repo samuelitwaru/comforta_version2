@@ -840,7 +840,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT ReceptionistGivenName, ReceptionistIsActive, ReceptionistPhone, ReceptionistEmail, ReceptionistLastName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(ReceptionistGivenName) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistLastName) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistEmail) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistPhone) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV54Trn_receptionistwwds_1_filterfulltext))");
          }
          else
          {
@@ -851,7 +851,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistGivenName) like LOWER(:lV55Trn_receptionistwwds_2_tfreceptionistgivenname))");
+            AddWhere(sWhereString, "(ReceptionistGivenName like :lV55Trn_receptionistwwds_2_tfreceptionistgivenname)");
          }
          else
          {
@@ -871,7 +871,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistLastName) like LOWER(:lV57Trn_receptionistwwds_4_tfreceptionistlastname))");
+            AddWhere(sWhereString, "(ReceptionistLastName like :lV57Trn_receptionistwwds_4_tfreceptionistlastname)");
          }
          else
          {
@@ -891,7 +891,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistEmail) like LOWER(:lV59Trn_receptionistwwds_6_tfreceptionistemail))");
+            AddWhere(sWhereString, "(ReceptionistEmail like :lV59Trn_receptionistwwds_6_tfreceptionistemail)");
          }
          else
          {
@@ -911,7 +911,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistPhone) like LOWER(:lV61Trn_receptionistwwds_8_tfreceptionistphone))");
+            AddWhere(sWhereString, "(ReceptionistPhone like :lV61Trn_receptionistwwds_8_tfreceptionistphone)");
          }
          else
          {
@@ -968,7 +968,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT ReceptionistLastName, ReceptionistIsActive, ReceptionistPhone, ReceptionistEmail, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(ReceptionistGivenName) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistLastName) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistEmail) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistPhone) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV54Trn_receptionistwwds_1_filterfulltext))");
          }
          else
          {
@@ -979,7 +979,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistGivenName) like LOWER(:lV55Trn_receptionistwwds_2_tfreceptionistgivenname))");
+            AddWhere(sWhereString, "(ReceptionistGivenName like :lV55Trn_receptionistwwds_2_tfreceptionistgivenname)");
          }
          else
          {
@@ -999,7 +999,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistLastName) like LOWER(:lV57Trn_receptionistwwds_4_tfreceptionistlastname))");
+            AddWhere(sWhereString, "(ReceptionistLastName like :lV57Trn_receptionistwwds_4_tfreceptionistlastname)");
          }
          else
          {
@@ -1019,7 +1019,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistEmail) like LOWER(:lV59Trn_receptionistwwds_6_tfreceptionistemail))");
+            AddWhere(sWhereString, "(ReceptionistEmail like :lV59Trn_receptionistwwds_6_tfreceptionistemail)");
          }
          else
          {
@@ -1039,7 +1039,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistPhone) like LOWER(:lV61Trn_receptionistwwds_8_tfreceptionistphone))");
+            AddWhere(sWhereString, "(ReceptionistPhone like :lV61Trn_receptionistwwds_8_tfreceptionistphone)");
          }
          else
          {
@@ -1096,7 +1096,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT ReceptionistEmail, ReceptionistIsActive, ReceptionistPhone, ReceptionistLastName, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(ReceptionistGivenName) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistLastName) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistEmail) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistPhone) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV54Trn_receptionistwwds_1_filterfulltext))");
          }
          else
          {
@@ -1107,7 +1107,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistGivenName) like LOWER(:lV55Trn_receptionistwwds_2_tfreceptionistgivenname))");
+            AddWhere(sWhereString, "(ReceptionistGivenName like :lV55Trn_receptionistwwds_2_tfreceptionistgivenname)");
          }
          else
          {
@@ -1127,7 +1127,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistLastName) like LOWER(:lV57Trn_receptionistwwds_4_tfreceptionistlastname))");
+            AddWhere(sWhereString, "(ReceptionistLastName like :lV57Trn_receptionistwwds_4_tfreceptionistlastname)");
          }
          else
          {
@@ -1147,7 +1147,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistEmail) like LOWER(:lV59Trn_receptionistwwds_6_tfreceptionistemail))");
+            AddWhere(sWhereString, "(ReceptionistEmail like :lV59Trn_receptionistwwds_6_tfreceptionistemail)");
          }
          else
          {
@@ -1167,7 +1167,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistPhone) like LOWER(:lV61Trn_receptionistwwds_8_tfreceptionistphone))");
+            AddWhere(sWhereString, "(ReceptionistPhone like :lV61Trn_receptionistwwds_8_tfreceptionistphone)");
          }
          else
          {
@@ -1224,7 +1224,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT ReceptionistPhone, ReceptionistIsActive, ReceptionistEmail, ReceptionistLastName, ReceptionistGivenName, ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(ReceptionistGivenName) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistLastName) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistEmail) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistPhone) like '%' || LOWER(:lV54Trn_receptionistwwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV54Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV54Trn_receptionistwwds_1_filterfulltext))");
          }
          else
          {
@@ -1235,7 +1235,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV56Trn_receptionistwwds_3_tfreceptionistgivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV55Trn_receptionistwwds_2_tfreceptionistgivenname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistGivenName) like LOWER(:lV55Trn_receptionistwwds_2_tfreceptionistgivenname))");
+            AddWhere(sWhereString, "(ReceptionistGivenName like :lV55Trn_receptionistwwds_2_tfreceptionistgivenname)");
          }
          else
          {
@@ -1255,7 +1255,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_receptionistwwds_5_tfreceptionistlastname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_receptionistwwds_4_tfreceptionistlastname)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistLastName) like LOWER(:lV57Trn_receptionistwwds_4_tfreceptionistlastname))");
+            AddWhere(sWhereString, "(ReceptionistLastName like :lV57Trn_receptionistwwds_4_tfreceptionistlastname)");
          }
          else
          {
@@ -1275,7 +1275,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_receptionistwwds_7_tfreceptionistemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_receptionistwwds_6_tfreceptionistemail)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistEmail) like LOWER(:lV59Trn_receptionistwwds_6_tfreceptionistemail))");
+            AddWhere(sWhereString, "(ReceptionistEmail like :lV59Trn_receptionistwwds_6_tfreceptionistemail)");
          }
          else
          {
@@ -1295,7 +1295,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_receptionistwwds_9_tfreceptionistphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_8_tfreceptionistphone)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(ReceptionistPhone) like LOWER(:lV61Trn_receptionistwwds_8_tfreceptionistphone))");
+            AddWhere(sWhereString, "(ReceptionistPhone like :lV61Trn_receptionistwwds_8_tfreceptionistphone)");
          }
          else
          {

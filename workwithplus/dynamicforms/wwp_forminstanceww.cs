@@ -2428,7 +2428,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411289422287", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914303097", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2444,7 +2444,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_forminstanceww.js", "?202411289422289", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_forminstanceww.js", "?202411291430310", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3404,7 +3404,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AddWhere(sWhereString, "(T1.WWPFormId = :AV58Workwithplus_dynamicforms_wwp_forminstancewwds_1_wwpformid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SUBSTR(TO_CHAR(T1.WWPFormInstanceId,'999999'), 2) like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( SUBSTR(TO_CHAR(T1.WWPFormVersionNumber,'9999'), 2) like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( LOWER(T2.WWPUserExtendedFullName) like '%' || LOWER(:lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull)))");
+            AddWhere(sWhereString, "(( SUBSTR(TO_CHAR(T1.WWPFormInstanceId,'999999'), 2) like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( SUBSTR(TO_CHAR(T1.WWPFormVersionNumber,'9999'), 2) like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( T2.WWPUserExtendedFullName like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull))");
          }
          else
          {
@@ -3541,7 +3541,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AddWhere(sWhereString, "(T1.WWPFormId = :AV58Workwithplus_dynamicforms_wwp_forminstancewwds_1_wwpformid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SUBSTR(TO_CHAR(T1.WWPFormInstanceId,'999999'), 2) like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( SUBSTR(TO_CHAR(T1.WWPFormVersionNumber,'9999'), 2) like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( LOWER(T3.WWPUserExtendedFullName) like '%' || LOWER(:lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull)))");
+            AddWhere(sWhereString, "(( SUBSTR(TO_CHAR(T1.WWPFormInstanceId,'999999'), 2) like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( SUBSTR(TO_CHAR(T1.WWPFormVersionNumber,'9999'), 2) like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( T3.WWPUserExtendedFullName like '%' || :lV59Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull))");
          }
          else
          {

@@ -1068,6 +1068,22 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "VORGANISATIONPHONENUMBER.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP4G0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E204G2 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -1081,7 +1097,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E204G2 ();
+                                    E214G2 ();
                                  }
                               }
                               /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1258,7 +1274,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E204G2 ();
+            E214G2 ();
             WB4G0( ) ;
          }
       }
@@ -1794,11 +1810,24 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
+      protected void E204G2( )
+      {
+         /* Organisationphonenumber_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! GxRegex.IsMatch(AV41OrganisationPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV41OrganisationPhoneNumber)) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Phone contains 9 digits", ""),  "error",  edtavOrganisationphonenumber_Internalname,  "true",  ""));
+            AV22CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV22CheckRequiredFieldsResult", AV22CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E204G2( )
+      protected void E214G2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -2087,7 +2116,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112714165461", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241129142856", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2103,7 +2132,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createorganisationandmanagerstep1.js", "?2024112714165462", false, true);
+         context.AddJavascriptSource("wp_createorganisationandmanagerstep1.js", "?20241129142857", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2256,9 +2285,10 @@ namespace GeneXus.Programs {
          setEventMetadata("VORGANISATIONKVKNUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VORGANISATIONADDRESSZIPCODE.CONTROLVALUECHANGED","""{"handler":"E194G2","iparms":[{"av":"AV26OrganisationAddressZipCode","fld":"vORGANISATIONADDRESSZIPCODE"}]""");
          setEventMetadata("VORGANISATIONADDRESSZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VORGANISATIONPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E204G2","iparms":[{"av":"AV41OrganisationPhoneNumber","fld":"vORGANISATIONPHONENUMBER"}]""");
+         setEventMetadata("VORGANISATIONPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VALIDV_ORGANISATIONKVKNUMBER","""{"handler":"Validv_Organisationkvknumber","iparms":[]}""");
          setEventMetadata("VALIDV_ORGANISATIONEMAIL","""{"handler":"Validv_Organisationemail","iparms":[]}""");
-         setEventMetadata("VALIDV_ORGANISATIONPHONENUMBER","""{"handler":"Validv_Organisationphonenumber","iparms":[]}""");
          setEventMetadata("VALIDV_ORGANISATIONTYPEID","""{"handler":"Validv_Organisationtypeid","iparms":[]}""");
          setEventMetadata("VALIDV_ORGANISATIONID","""{"handler":"Validv_Organisationid","iparms":[]}""");
          return  ;

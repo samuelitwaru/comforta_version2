@@ -53,7 +53,7 @@ namespace GeneXus.Programs {
             dyncall( GetNextPar( )) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel14"+"_"+"ORGANISATIONPHONE") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel13"+"_"+"ORGANISATIONPHONE") == 0 )
          {
             A389OrganisationPhoneCode = GetPar( "OrganisationPhoneCode");
             AssignAttri("", false, "A389OrganisationPhoneCode", A389OrganisationPhoneCode);
@@ -65,10 +65,10 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            GX14ASAORGANISATIONPHONE013( A389OrganisationPhoneCode, A390OrganisationPhoneNumber) ;
+            GX13ASAORGANISATIONPHONE013( A389OrganisationPhoneCode, A390OrganisationPhoneNumber) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_23") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_22") == 0 )
          {
             A19OrganisationTypeId = StringUtil.StrToGuid( GetPar( "OrganisationTypeId"));
             AssignAttri("", false, "A19OrganisationTypeId", A19OrganisationTypeId.ToString());
@@ -78,7 +78,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_23( A19OrganisationTypeId) ;
+            gxLoad_22( A19OrganisationTypeId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -1425,7 +1425,7 @@ namespace GeneXus.Programs {
 
       protected void ZM013( short GX_JID )
       {
-         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 21 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1460,7 +1460,7 @@ namespace GeneXus.Programs {
                Z19OrganisationTypeId = A19OrganisationTypeId;
             }
          }
-         if ( GX_JID == -22 )
+         if ( GX_JID == -21 )
          {
             Z11OrganisationId = A11OrganisationId;
             Z331OrganisationAddressCountry = A331OrganisationAddressCountry;
@@ -1590,7 +1590,7 @@ namespace GeneXus.Programs {
             A20OrganisationTypeName = T00015_A20OrganisationTypeName[0];
             A19OrganisationTypeId = T00015_A19OrganisationTypeId[0];
             AssignAttri("", false, "A19OrganisationTypeId", A19OrganisationTypeId.ToString());
-            ZM013( -22) ;
+            ZM013( -21) ;
          }
          pr_default.close(3);
          OnLoadActions013( ) ;
@@ -1633,16 +1633,9 @@ namespace GeneXus.Programs {
          new prc_concatenateintlphone(context ).execute(  A389OrganisationPhoneCode,  A390OrganisationPhoneNumber, out  GXt_char2) ;
          A17OrganisationPhone = GXt_char2;
          AssignAttri("", false, "A17OrganisationPhone", A17OrganisationPhone);
-         if ( ! ( GxRegex.IsMatch(A390OrganisationPhoneNumber,"\\b\\d{9}\\b") ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A390OrganisationPhoneNumber)) && ! GxRegex.IsMatch(A390OrganisationPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Organisation Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "ORGANISATIONPHONENUMBER");
-            AnyError = 1;
-            GX_FocusControl = edtOrganisationPhoneNumber_Internalname;
-            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
-         }
-         if ( StringUtil.Len( A390OrganisationPhoneNumber) != 9 )
-         {
-            GX_msglist.addItem(context.GetMessage( "Phone must contain 9 digits", ""), 1, "ORGANISATIONPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "ORGANISATIONPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtOrganisationPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1683,7 +1676,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_23( Guid A19OrganisationTypeId )
+      protected void gxLoad_22( Guid A19OrganisationTypeId )
       {
          /* Using cursor T00016 */
          pr_default.execute(4, new Object[] {A19OrganisationTypeId});
@@ -1729,7 +1722,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM013( 22) ;
+            ZM013( 21) ;
             RcdFound3 = 1;
             A11OrganisationId = T00013_A11OrganisationId[0];
             n11OrganisationId = T00013_n11OrganisationId[0];
@@ -2796,7 +2789,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211539914", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411291428329", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2812,7 +2805,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisation.js", "?202411211539916", false, true);
+         context.AddJavascriptSource("trn_organisation.js", "?2024112914283212", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2961,7 +2954,7 @@ namespace GeneXus.Programs {
          /* End function dynload_actions */
       }
 
-      protected void GX14ASAORGANISATIONPHONE013( string A389OrganisationPhoneCode ,
+      protected void GX13ASAORGANISATIONPHONE013( string A389OrganisationPhoneCode ,
                                                   string A390OrganisationPhoneNumber )
       {
          GXt_char2 = A17OrganisationPhone;
@@ -3007,18 +3000,12 @@ namespace GeneXus.Programs {
 
       public void Valid_Organisationphonenumber( )
       {
-         if ( ! ( GxRegex.IsMatch(A390OrganisationPhoneNumber,"\\b\\d{9}\\b") ) )
-         {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Organisation Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "ORGANISATIONPHONENUMBER");
-            AnyError = 1;
-            GX_FocusControl = edtOrganisationPhoneNumber_Internalname;
-         }
          GXt_char2 = A17OrganisationPhone;
          new prc_concatenateintlphone(context ).execute(  A389OrganisationPhoneCode,  A390OrganisationPhoneNumber, out  GXt_char2) ;
          A17OrganisationPhone = GXt_char2;
-         if ( StringUtil.Len( A390OrganisationPhoneNumber) != 9 )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A390OrganisationPhoneNumber)) && ! GxRegex.IsMatch(A390OrganisationPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone must contain 9 digits", ""), 1, "ORGANISATIONPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "ORGANISATIONPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtOrganisationPhoneNumber_Internalname;
          }
@@ -3059,7 +3046,7 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_ORGANISATIONKVKNUMBER","""{"handler":"Valid_Organisationkvknumber","iparms":[]}""");
          setEventMetadata("VALID_ORGANISATIONEMAIL","""{"handler":"Valid_Organisationemail","iparms":[]}""");
          setEventMetadata("VALID_ORGANISATIONPHONECODE","""{"handler":"Valid_Organisationphonecode","iparms":[]}""");
-         setEventMetadata("VALID_ORGANISATIONPHONENUMBER","""{"handler":"Valid_Organisationphonenumber","iparms":[{"av":"A390OrganisationPhoneNumber","fld":"ORGANISATIONPHONENUMBER"},{"av":"A389OrganisationPhoneCode","fld":"ORGANISATIONPHONECODE"},{"av":"A17OrganisationPhone","fld":"ORGANISATIONPHONE"}]""");
+         setEventMetadata("VALID_ORGANISATIONPHONENUMBER","""{"handler":"Valid_Organisationphonenumber","iparms":[{"av":"A389OrganisationPhoneCode","fld":"ORGANISATIONPHONECODE"},{"av":"A390OrganisationPhoneNumber","fld":"ORGANISATIONPHONENUMBER"},{"av":"A17OrganisationPhone","fld":"ORGANISATIONPHONE"}]""");
          setEventMetadata("VALID_ORGANISATIONPHONENUMBER",""","oparms":[{"av":"A17OrganisationPhone","fld":"ORGANISATIONPHONE"}]}""");
          setEventMetadata("VALID_ORGANISATIONTYPEID","""{"handler":"Valid_Organisationtypeid","iparms":[{"av":"A19OrganisationTypeId","fld":"ORGANISATIONTYPEID"},{"av":"A20OrganisationTypeName","fld":"ORGANISATIONTYPENAME"}]""");
          setEventMetadata("VALID_ORGANISATIONTYPEID",""","oparms":[{"av":"A20OrganisationTypeName","fld":"ORGANISATIONTYPENAME"}]}""");

@@ -500,7 +500,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_ThemeName, Trn_ThemeFontSize, Trn_ThemeFontFamily, Trn_ThemeId FROM Trn_Theme";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(Trn_ThemeName) like '%' || LOWER(:lV42Trn_themewwds_1_filterfulltext)) or ( LOWER(Trn_ThemeFontFamily) like '%' || LOWER(:lV42Trn_themewwds_1_filterfulltext)) or ( SUBSTR(TO_CHAR(Trn_ThemeFontSize,'9999'), 2) like '%' || :lV42Trn_themewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( Trn_ThemeName like '%' || :lV42Trn_themewwds_1_filterfulltext) or ( Trn_ThemeFontFamily like '%' || :lV42Trn_themewwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(Trn_ThemeFontSize,'9999'), 2) like '%' || :lV42Trn_themewwds_1_filterfulltext))");
          }
          else
          {
@@ -510,7 +510,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_themewwds_2_tftrn_themename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_ThemeName) like LOWER(:lV43Trn_themewwds_2_tftrn_themename))");
+            AddWhere(sWhereString, "(Trn_ThemeName like :lV43Trn_themewwds_2_tftrn_themename)");
          }
          else
          {
@@ -530,7 +530,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_themewwds_4_tftrn_themefontfamily)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_ThemeFontFamily) like LOWER(:lV45Trn_themewwds_4_tftrn_themefontfamily))");
+            AddWhere(sWhereString, "(Trn_ThemeFontFamily like :lV45Trn_themewwds_4_tftrn_themefontfamily)");
          }
          else
          {
@@ -590,7 +590,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_ThemeFontFamily, Trn_ThemeFontSize, Trn_ThemeName, Trn_ThemeId FROM Trn_Theme";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_themewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(Trn_ThemeName) like '%' || LOWER(:lV42Trn_themewwds_1_filterfulltext)) or ( LOWER(Trn_ThemeFontFamily) like '%' || LOWER(:lV42Trn_themewwds_1_filterfulltext)) or ( SUBSTR(TO_CHAR(Trn_ThemeFontSize,'9999'), 2) like '%' || :lV42Trn_themewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( Trn_ThemeName like '%' || :lV42Trn_themewwds_1_filterfulltext) or ( Trn_ThemeFontFamily like '%' || :lV42Trn_themewwds_1_filterfulltext) or ( SUBSTR(TO_CHAR(Trn_ThemeFontSize,'9999'), 2) like '%' || :lV42Trn_themewwds_1_filterfulltext))");
          }
          else
          {
@@ -600,7 +600,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_themewwds_2_tftrn_themename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_ThemeName) like LOWER(:lV43Trn_themewwds_2_tftrn_themename))");
+            AddWhere(sWhereString, "(Trn_ThemeName like :lV43Trn_themewwds_2_tftrn_themename)");
          }
          else
          {
@@ -620,7 +620,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_themewwds_4_tftrn_themefontfamily)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(Trn_ThemeFontFamily) like LOWER(:lV45Trn_themewwds_4_tftrn_themefontfamily))");
+            AddWhere(sWhereString, "(Trn_ThemeFontFamily like :lV45Trn_themewwds_4_tftrn_themefontfamily)");
          }
          else
          {

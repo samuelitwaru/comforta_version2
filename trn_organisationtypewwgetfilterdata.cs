@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT OrganisationTypeName, OrganisationTypeId FROM Trn_OrganisationType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_organisationtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LOWER(OrganisationTypeName) like '%' || LOWER(:lV38Trn_organisationtypewwds_1_filterfulltext)))");
+            AddWhere(sWhereString, "(( OrganisationTypeName like '%' || :lV38Trn_organisationtypewwds_1_filterfulltext))");
          }
          else
          {
@@ -355,7 +355,7 @@ namespace GeneXus.Programs {
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_organisationtypewwds_3_tforganisationtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV39Trn_organisationtypewwds_2_tforganisationtypename)) ) )
          {
-            AddWhere(sWhereString, "(LOWER(OrganisationTypeName) like LOWER(:lV39Trn_organisationtypewwds_2_tforganisationtypename))");
+            AddWhere(sWhereString, "(OrganisationTypeName like :lV39Trn_organisationtypewwds_2_tforganisationtypename)");
          }
          else
          {

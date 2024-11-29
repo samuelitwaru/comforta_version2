@@ -52,6 +52,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -62,6 +63,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -198,8 +200,8 @@ namespace GeneXus.Programs {
             }
             else if ( StringUtil.StrCmp(AV35GridStateFilterValue.gxTpr_Name, "TFWWPFORMDATE") == 0 )
             {
-               AV15TFWWPFormDate = context.localUtil.CToT( AV35GridStateFilterValue.gxTpr_Value, 2);
-               AV16TFWWPFormDate_To = context.localUtil.CToT( AV35GridStateFilterValue.gxTpr_Valueto, 2);
+               AV15TFWWPFormDate = context.localUtil.CToT( AV35GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV16TFWWPFormDate_To = context.localUtil.CToT( AV35GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             else if ( StringUtil.StrCmp(AV35GridStateFilterValue.gxTpr_Name, "TFWWPFORMVERSIONNUMBER") == 0 )
             {
@@ -560,6 +562,7 @@ namespace GeneXus.Programs {
       private Guid A395LocationDynamicFormId ;
       private Guid A11OrganisationId ;
       private IGxSession AV32Session ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV27Options ;
@@ -626,7 +629,7 @@ namespace GeneXus.Programs {
          {
             GXv_int2[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ! ( StringUtil.StrCmp(AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ! ( StringUtil.StrCmp(AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.WWPFormReferenceName = ( :AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel))");
          }
@@ -634,7 +637,7 @@ namespace GeneXus.Programs {
          {
             GXv_int2[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPFormReferenceName))=0))");
          }
@@ -646,7 +649,7 @@ namespace GeneXus.Programs {
          {
             GXv_int2[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ! ( StringUtil.StrCmp(AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ! ( StringUtil.StrCmp(AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.WWPFormTitle = ( :AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel))");
          }
@@ -654,7 +657,7 @@ namespace GeneXus.Programs {
          {
             GXv_int2[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPFormTitle))=0))");
          }
@@ -731,7 +734,7 @@ namespace GeneXus.Programs {
          {
             GXv_int4[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ! ( StringUtil.StrCmp(AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel)) && ! ( StringUtil.StrCmp(AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.WWPFormReferenceName = ( :AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel))");
          }
@@ -739,7 +742,7 @@ namespace GeneXus.Programs {
          {
             GXv_int4[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV49Wp_locationdynamicformds_3_tfwwpformreferencename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPFormReferenceName))=0))");
          }
@@ -751,7 +754,7 @@ namespace GeneXus.Programs {
          {
             GXv_int4[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ! ( StringUtil.StrCmp(AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel)) && ! ( StringUtil.StrCmp(AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.WWPFormTitle = ( :AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel))");
          }
@@ -759,7 +762,7 @@ namespace GeneXus.Programs {
          {
             GXv_int4[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV51Wp_locationdynamicformds_5_tfwwpformtitle_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPFormTitle))=0))");
          }

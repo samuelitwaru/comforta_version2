@@ -152,7 +152,6 @@ class EditorManager {
           this.rightClickEventHandler(this.editor);
         })
         .catch((error) => console.error("Error fetching page data:", error));
-        
     });
 
     this.editor.on("component:selected", (component) => {
@@ -316,14 +315,14 @@ class EditorManager {
           );
         }
 
-        this.wrapperClickHandler = (e) => {
+        this.wrapperClickHandler = ((e) => {
           const button = e.target.closest(".action-button");
           if (!button) return;
 
           const templateWrapper = button.closest(".template-wrapper");
           if (!templateWrapper) return;
 
-          this.templateComponent = editorInstance.Components.getById(
+          this.templateComponent = this.newEditor.Components.getById(
             templateWrapper.id
           );
           if (!this.templateComponent) return;
@@ -331,11 +330,11 @@ class EditorManager {
           if (button.classList.contains("delete-button")) {
             this.deleteTemplate(this.templateComponent);
           } else if (button.classList.contains("add-button-bottom")) {
-            this.addTemplateBottom(this.templateComponent, editorInstance);
+            this.addTemplateBottom(this.templateComponent, this.newEditor);
           } else if (button.classList.contains("add-button-right")) {
-            this.addTemplateRight(this.templateComponent, editorInstance);
+            this.addTemplateRight(this.templateComponent, this.newEditor);
           }
-        };
+        }).bind(this);
 
         wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
         wrapper.view.el.addEventListener("contextmenu", (e) =>
