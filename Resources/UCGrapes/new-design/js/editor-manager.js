@@ -312,10 +312,10 @@ class EditorManager {
         alert(this.wrapperClickHandler)
 
         if (this.wrapperClickHandler) {
-          wrapper.view.el.removeEventListener(
-            "click",
-            this.wrapperClickHandler
-          );
+          // wrapper.view.el.removeEventListener(
+          //   "click",
+          //   this.wrapperClickHandler
+          // );
         }
 
         this.wrapperClickHandler = (e) => {
