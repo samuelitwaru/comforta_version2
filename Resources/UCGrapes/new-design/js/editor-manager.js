@@ -309,17 +309,14 @@ class EditorManager {
           return;
         }
 
-        alert(this.wrapperClickHandler)
-
         if (this.wrapperClickHandler) {
-          // wrapper.view.el.removeEventListener(
-          //   "click",
-          //   this.wrapperClickHandler
-          // );
+          wrapper.view.el.removeEventListener(
+            "click",
+            this.wrapperClickHandler
+          );
         }
 
         this.wrapperClickHandler = (e) => {
-          alert()
           const button = e.target.closest(".action-button");
           if (!button) return;
 
