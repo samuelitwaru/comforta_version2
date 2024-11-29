@@ -303,12 +303,12 @@ class EditorManager {
       this.backButtonAction(page.PageId);
 
       const setupWrapperEvents = (editorInstance) => {
-        alert()
         const wrapper = editorInstance.getWrapper();
         if (!wrapper || !wrapper.view || !wrapper.view.el) {
           console.error("Wrapper not properly initialized");
           return;
         }
+        alert()
 
         if (this.wrapperClickHandler) {
           wrapper.view.el.removeEventListener(
