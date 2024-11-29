@@ -296,129 +296,104 @@ class EditorManager {
 
   handleNewEditor(page, parentId) {
     this.newEditor.once("load", () => {
-      this.toolsSection.resetPropertySection();
-      this.toolsSection.unDoReDo(this.newEditor);
-
-      this.backButtonAction(page.PageId);
-
-      const setupWrapperEvents = (editorInstance) => {
-        const wrapper = editorInstance.getWrapper();
-        if (!wrapper || !wrapper.view || !wrapper.view.el) {
-          console.error("Wrapper not properly initialized");
+      // Consolidate event setup into a single, more robust method
+      const setupEditorEvents = (editorInstance) => {
+        const canvas = editorInstance.Canvas;
+        const frame = canvas.getFrameEl();
+        const frameDoc = frame.contentDocument || frame.contentWindow.document;
+  
+        if (!frameDoc || !frameDoc.body) {
+          console.error("Unable to access frame document");
           return;
         }
-
-        if (this.wrapperClickHandler) {
-          wrapper.view.el.removeEventListener(
-            "click",
-            this.wrapperClickHandler
-          );
-        }
-
-        this.wrapperClickHandler = ((e) => {
+  
+        // Comprehensive click handler with detailed logging
+        const comprehensiveClickHandler = (e) => {
+          // Action button handling
           const button = e.target.closest(".action-button");
-          if (!button) return;
-
-          const templateWrapper = button.closest(".template-wrapper");
-          if (!templateWrapper) return;
-
-          this.templateComponent = this.newEditor.Components.getById(
-            templateWrapper.id
-          );
-          if (!this.templateComponent) return;
-
-          if (button.classList.contains("delete-button")) {
-            this.deleteTemplate(this.templateComponent);
-          } else if (button.classList.contains("add-button-bottom")) {
-            this.addTemplateBottom(this.templateComponent, this.newEditor);
-          } else if (button.classList.contains("add-button-right")) {
-            this.addTemplateRight(this.templateComponent, this.newEditor);
+          if (button) {
+            const templateWrapper = button.closest(".template-wrapper");
+            if (templateWrapper) {
+              const templateComponent = editorInstance.Components.getById(
+                templateWrapper.id
+              );
+  
+              if (templateComponent) {
+                if (button.classList.contains("delete-button")) {
+                  this.deleteTemplate(templateComponent);
+                } else if (button.classList.contains("add-button-bottom")) {
+                  this.addTemplateBottom(templateComponent, editorInstance);
+                } else if (button.classList.contains("add-button-right")) {
+                  this.addTemplateRight(templateComponent, editorInstance);
+                }
+              }
+            }
           }
-        }).bind(this);
-
-        wrapper.view.el.addEventListener("click", this.wrapperClickHandler);
-        wrapper.view.el.addEventListener("contextmenu", (e) =>
-          this.rightClickEventHandler(this.newEditor)
-        );
-
-        wrapper.set({
-          selectable: false,
-          droppable: false,
-          resizable: { handles: "e" },
-        });
-      };
-
-      setupWrapperEvents(this.newEditor);
-
-      const canvas = this.newEditor.Canvas;
-      const frame = canvas.getFrameEl();
-      const frameDoc = frame.contentDocument || frame.contentWindow.document;
-      if (frameDoc && frameDoc.body) {
-        frameDoc.addEventListener(
-          "click",
-          () => {
-            this.activateFrame(`.frame-${page.PageId}`);
-          },
-          true
-        );
-      }
-
-      // Ensure the frame's body exists before attaching the event
-      if (page.PageIsContentPage) {
-        if (frameDoc && frameDoc.body) {
-          frameDoc.addEventListener(
-            "click",
-            () => {
-              console.log("Content Page Clicked");
-              this.activateFrame(`.frame-${page.PageId}`);
-              this.dataManager
-                .getContentPageData(page.PageId)
-                .then((contentData) => {
-                  console.log("Content Data: ", contentData);
-                  this.toolsSection.pageContentCtas(
-                    contentData.CallToActions,
-                    this.newEditor
-                  );
-                  this.toolsSection.updatePropertySection();
-                })
-                .catch((error) =>
-                  console.error("Failed to load page content:", error.message)
+  
+          // Frame activation logic
+          this.activateFrame(`.frame-${page.PageId}`);
+  
+          // Content page specific handling
+          if (page.PageIsContentPage) {
+            this.dataManager
+              .getContentPageData(page.PageId)
+              .then((contentData) => {
+                this.toolsSection.pageContentCtas(
+                  contentData.CallToActions,
+                  editorInstance
                 );
-            },
-            true
-          );
+                this.toolsSection.updatePropertySection();
+              })
+              .catch((error) => {
+                console.error("Failed to load page content:", error);
+              });
+          }
+        };
+  
+        // Remove existing listeners to prevent multiple attachments
+        if (this.wrapperClickHandler) {
+          frameDoc.body.removeEventListener('click', this.wrapperClickHandler);
         }
-      }
+  
+        // Attach new comprehensive handler
+        this.wrapperClickHandler = comprehensiveClickHandler;
+        frameDoc.body.addEventListener('click', this.wrapperClickHandler);
+      };
+  
+      // Initial setup
+      this.toolsSection.resetPropertySection();
+      this.toolsSection.unDoReDo(this.newEditor);
+      this.backButtonAction(page.PageId);
+  
+      // Setup events
+      setupEditorEvents(this.newEditor);
     });
-
+  
+    // Component selection handler
     this.newEditor.on("component:selected", (component) => {
       this.selectedTemplateWrapper = component.getEl();
-
       this.selectedComponent = component;
-
+  
       const selectedTileId = component.getAttributes()["tile-action-object-id"];
-
+  
+      // Simplified logic for content and non-content pages
       if (page.PageIsContentPage) {
         this.toolsSection.updateTileProperties(this.newEditor, page);
         return;
-      } else {
-        parentId = page.PageId;
-        // Handle non-content page: Check and replace editor
-        if (
-          this.activePageId &&
-          selectedTileId === this.activePageId &&
-          this.activeEditor
-        ) {
-          console.log("Editor for this page is already active.");
-          return;
-        }
-        // Replace editor if a new page is selected
+      }
+  
+      // Handle non-content page editor replacement
+      parentId = page.PageId;
+      if (
+        !this.activePageId || 
+        selectedTileId !== this.activePageId || 
+        !this.activeEditor
+      ) {
         this.replaceEditor(selectedTileId, parentId);
       }
+  
       this.activateFrame(`.frame-${page.PageId}`);
-
       this.toolsSection.updateTileProperties(this.newEditor, page);
-
       this.toolsSection.unDoReDo(this.newEditor);
     });
   }
@@ -637,8 +612,8 @@ class EditorManager {
                  data-gjs-draggable="false"
                  data-gjs-selectable="false"
                  data-gjs-editable="false"
-                 data-gjs-highlightable="true"
-                 data-gjs-hoverable="true">
+                 data-gjs-highlightable="false"
+                 data-gjs-hoverable="false">
               ${this.createTemplateHTML(true)}
             </div>
           </div>
@@ -739,7 +714,11 @@ class EditorManager {
         }"        
               data-gjs-selectable="false"
               data-gjs-type="template-wrapper"
-              data-gjs-droppable="false">
+              data-gjs-editable="false"
+              data-gjs-highlightable="false"
+              data-gjs-droppable="false"
+              data-gjs-resizable="false"
+              data-gjs-hoverable="false">
           <div class="template-block"
               ${defaultTileAttrs} 
              data-gjs-draggable="false"
