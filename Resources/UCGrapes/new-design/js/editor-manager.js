@@ -309,6 +309,8 @@ class EditorManager {
           return;
         }
 
+        alert(this.wrapperClickHandler)
+
         if (this.wrapperClickHandler) {
           wrapper.view.el.removeEventListener(
             "click",
