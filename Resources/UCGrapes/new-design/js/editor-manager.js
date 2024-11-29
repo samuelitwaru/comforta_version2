@@ -296,106 +296,115 @@ class EditorManager {
 
   handleNewEditor(page, parentId) {
     this.newEditor.once("load", () => {
-      // Consolidate event setup into a single, more robust method
-      const setupEditorEvents = (editorInstance) => {
-        const canvas = editorInstance.Canvas;
-        const frame = canvas.getFrameEl();
-        const frameDoc = frame.contentDocument || frame.contentWindow.document;
-  
-        if (!frameDoc || !frameDoc.body) {
-          console.error("Unable to access frame document");
-          return;
-        }
-  
-        // Comprehensive click handler with detailed logging
-        const comprehensiveClickHandler = (e) => {
-          // Action button handling
-          const button = e.target.closest(".action-button");
-          if (button) {
-            const templateWrapper = button.closest(".template-wrapper");
-            if (templateWrapper) {
-              const templateComponent = editorInstance.Components.getById(
-                templateWrapper.id
-              );
-  
-              if (templateComponent) {
-                if (button.classList.contains("delete-button")) {
-                  this.deleteTemplate(templateComponent);
-                } else if (button.classList.contains("add-button-bottom")) {
-                  this.addTemplateBottom(templateComponent, editorInstance);
-                } else if (button.classList.contains("add-button-right")) {
-                  this.addTemplateRight(templateComponent, editorInstance);
-                }
-              }
-            }
-          }
-  
-          // Frame activation logic
-          this.activateFrame(`.frame-${page.PageId}`);
-  
-          // Content page specific handling
-          if (page.PageIsContentPage) {
-            this.dataManager
-              .getContentPageData(page.PageId)
-              .then((contentData) => {
-                this.toolsSection.pageContentCtas(
-                  contentData.CallToActions,
-                  editorInstance
-                );
-                this.toolsSection.updatePropertySection();
-              })
-              .catch((error) => {
-                console.error("Failed to load page content:", error);
-              });
-          }
-        };
-  
-        // Remove existing listeners to prevent multiple attachments
-        if (this.wrapperClickHandler) {
-          frameDoc.body.removeEventListener('click', this.wrapperClickHandler);
-        }
-  
-        // Attach new comprehensive handler
-        this.wrapperClickHandler = comprehensiveClickHandler;
-        frameDoc.body.addEventListener('click', this.wrapperClickHandler);
-      };
-  
-      // Initial setup
+      // Reset tools section and set up undo/redo
       this.toolsSection.resetPropertySection();
       this.toolsSection.unDoReDo(this.newEditor);
+
+      // Handle back button action
       this.backButtonAction(page.PageId);
-  
-      // Setup events
-      setupEditorEvents(this.newEditor);
+
+      // Get canvas and frame
+      const canvas = this.newEditor.Canvas;
+      const frame = canvas.getFrameEl();
+      const frameDoc = frame.contentDocument || frame.contentWindow.document;
+
+      if (!frameDoc || !frameDoc.body) {
+        console.error("Frame document is unavailable");
+        return;
+      }
+
+      // Unified click handler with delegation
+      const clickHandler = (e) => {
+        const target = e.target;
+
+        // Handle action buttons
+        const button = target.closest(".action-button");
+        if (button) {
+          this.handleActionButtonClick(button);
+          return;
+        }
+
+        // Activate frame
+        this.activateFrame(`.frame-${page.PageId}`);
+      };
+
+      // Content page-specific click handler
+      const contentPageClickHandler = (e) => {
+        console.log("Content Page Clicked");
+        this.dataManager
+          .getContentPageData(page.PageId)
+          .then((contentData) => {
+            console.log("Content Data: ", contentData);
+            this.toolsSection.pageContentCtas(
+              contentData.CallToActions,
+              this.newEditor
+            );
+            this.toolsSection.updatePropertySection();
+          })
+          .catch((error) =>
+            console.error("Failed to load page content:", error.message)
+          );
+      };
+
+      // Add click listener with delegation
+      frameDoc.body.addEventListener("click", clickHandler);
+
+      // Additional setup for content pages
+      if (page.PageIsContentPage) {
+        frameDoc.body.addEventListener("click", contentPageClickHandler);
+      }
+
+      // Cleanup when editor is replaced
+      this.newEditor.on("destroy", () => {
+        frameDoc.body.removeEventListener("click", clickHandler);
+        if (page.PageIsContentPage) {
+          frameDoc.body.removeEventListener("click", contentPageClickHandler);
+        }
+      });
     });
-  
+
     // Component selection handler
     this.newEditor.on("component:selected", (component) => {
       this.selectedTemplateWrapper = component.getEl();
       this.selectedComponent = component;
-  
+
       const selectedTileId = component.getAttributes()["tile-action-object-id"];
-  
-      // Simplified logic for content and non-content pages
+
       if (page.PageIsContentPage) {
         this.toolsSection.updateTileProperties(this.newEditor, page);
         return;
       }
-  
-      // Handle non-content page editor replacement
-      parentId = page.PageId;
+
       if (
-        !this.activePageId || 
-        selectedTileId !== this.activePageId || 
+        !this.activePageId ||
+        selectedTileId !== this.activePageId ||
         !this.activeEditor
       ) {
         this.replaceEditor(selectedTileId, parentId);
       }
-  
+
       this.activateFrame(`.frame-${page.PageId}`);
       this.toolsSection.updateTileProperties(this.newEditor, page);
       this.toolsSection.unDoReDo(this.newEditor);
     });
+  }
+
+  handleActionButtonClick(button) {
+    const templateWrapper = button.closest(".template-wrapper");
+    if (!templateWrapper) return;
+
+    const templateComponent = this.newEditor.Components.getById(
+      templateWrapper.id
+    );
+    if (!templateComponent) return;
+
+    if (button.classList.contains("delete-button")) {
+      this.deleteTemplate(templateComponent);
+    } else if (button.classList.contains("add-button-bottom")) {
+      this.addTemplateBottom(templateComponent, this.newEditor);
+    } else if (button.classList.contains("add-button-right")) {
+      this.addTemplateRight(templateComponent, this.newEditor);
+    }
   }
 
   replaceEditor(pageId, parentId) {
