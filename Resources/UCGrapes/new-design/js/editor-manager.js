@@ -308,7 +308,6 @@ class EditorManager {
           console.error("Wrapper not properly initialized");
           return;
         }
-        alert()
 
         if (this.wrapperClickHandler) {
           wrapper.view.el.removeEventListener(
@@ -318,6 +317,7 @@ class EditorManager {
         }
 
         this.wrapperClickHandler = (e) => {
+          alert()
           const button = e.target.closest(".action-button");
           if (!button) return;
 
