@@ -46,17 +46,7 @@
             </svg>
          </div>
          <div class="frame-list" id="editors-container">
-            <div class="mobile-frame active-editor" id="default-container">
-               <div class="header">
-                  <span id="current-time"></span>
-                  <span class="icons">
-                  <i class="fas fa-signal"></i>
-                  <i class="fas fa-wifi"></i>
-                  <i class="fas fa-battery"></i>
-                  </span>
-               </div>
-               <div id="gjs"></div>
-            </div>
+
          </div>
          <div class="navigator page-navigator-right" style="display:none">
             <svg id="scroll-right" xmlns="http://www.w3.org/2000/svg" id="Component_42_4" data-name="Component 42 – 4" width="46" height="46" viewBox="0 0 46 46">
