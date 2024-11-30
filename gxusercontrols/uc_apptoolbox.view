@@ -2,7 +2,7 @@
    rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
    />
-<script src="/Resources/UCGrapes/new-design/js/toolbox-utils.js"></script>
+<script src="/Resources/UCGrapes1/new-design/js/toolbox-utils.js"></script>
 <div id="toolbox-body">
    <div class="toolbox-navbar">
       <h3 id="navbar_title"></h3>
@@ -59,8 +59,7 @@
             </div>
          </div>
 		 
-		 <button id='trigger'>Trigger</button>
-		 <div class='mobile-frame' id='child-container'>Hello</div>
+		 <div id="child-container"></div>
 		 
          <div class="navigator page-navigator-right" style="display:none">
             <svg id="scroll-right" xmlns="http://www.w3.org/2000/svg" id="Component_42_4" data-name="Component 42 – 4" width="46" height="46" viewBox="0 0 46 46">
@@ -295,11 +294,11 @@
          l>
       </div>
    </div>
-   <script src="/Resources/UCGrapes/new-design/js/component-types.js"></script>
-   <script src="/Resources/UCGrapes/new-design/locale/locale.js"></script>
-   <script src="/Resources/UCGrapes/new-design/js/data.js"></script>
-   <script src="/Resources/UCGrapes/new-design/js/components.js"></script>
-   <script src="/Resources/UCGrapes/new-design/js/editor-manager.js"></script>
-   <script src="/Resources/UCGrapes/new-design/js/toolbox.js"></script>
-   <script src="/Resources/UCGrapes/new-design/js/child-editor-manager.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/component-types.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/locale/locale.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/data.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/components.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/editor-manager.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/toolbox.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/child-editor-manager.js"></script>
 </div>
