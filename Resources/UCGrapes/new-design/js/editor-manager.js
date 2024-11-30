@@ -43,7 +43,7 @@ class EditorManager {
     // Additional manager and configuration placeholders
     this.toolsSection = null;
     this.dataManager = null;
-    this.newEditor = null;
+    this.editor = null;
     // this.editors = [] // Uncomment if managing multiple editors
 
     console.log("EditorManager initialized with:", {
@@ -77,9 +77,6 @@ class EditorManager {
     this.setToolsSection(this.toolBox);
     this.setDataManager(this.dataManager);
 
-    // Additional setup if required
-    this.toolBox.init();
-
     this.dataManager
       .getSinglePage(this.getCurrentPageId())
       .then((pageData) => {
@@ -88,12 +85,22 @@ class EditorManager {
         // this.rightClickEventHandler(this.editor);
       })
       .catch((error) => console.error("Error fetching page data:", error));
+
+    const sidebarInputTitle = document.getElementById("tile-title");
+    sidebarInputTitle.addEventListener("input", (e) => {
+      this.updateTileTitle(e.target.value);
+    });
+
+    // call toolbox manager after loading
+    this.toolBox.init();
   }
 
   loadEditor(newEditorInstance, page, parentId) {
     newEditorInstance.on("load", () => {
-      this.toolsSection.resetPropertySection();
-      this.toolsSection.unDoReDo(newEditorInstance);
+      globalEditor = newEditorInstance;
+
+      this.toolBox.resetPropertySection();
+      this.toolBox.unDoReDo(newEditorInstance);
       this.backButtonAction(page.PageId);
 
       const setupWrapperEvents = (editorInstance) => {
@@ -142,23 +149,27 @@ class EditorManager {
 
       // Initialize wrapper event handling
       setupWrapperEvents(newEditorInstance);
-  
+
       // Attach the frame click handler to activate the frame
       const canvas = newEditorInstance.Canvas;
       const frame = canvas.getFrameEl();
       const frameDoc = frame.contentDocument || frame.contentWindow.document;
-  
+
       // Ensure the frame's body exists before attaching the event
       if (frameDoc && frameDoc.body) {
         frameDoc.addEventListener(
           "click",
           () => {
-            this.activateFrame(`.frame-${page.PageId}`);
+            if (page.PageName === "Home") {
+              this.activateFrame(`#default-container`);
+            } else {
+              this.activateFrame(`.frame-${page.PageId}`);
+            }
           },
           true
         );
       }
-  
+
       // Ensure content page click functionality is working
       if (page.PageIsContentPage && frameDoc && frameDoc.body) {
         frameDoc.addEventListener(
@@ -170,7 +181,10 @@ class EditorManager {
               .getContentPageData(page.PageId)
               .then((contentData) => {
                 console.log("Content Data: ", contentData);
-                this.toolsSection.pageContentCtas(contentData.CallToActions, newEditorInstance);
+                this.toolsSection.pageContentCtas(
+                  contentData.CallToActions,
+                  newEditorInstance
+                );
                 this.toolsSection.updatePropertySection();
               })
               .catch((error) =>
@@ -185,16 +199,31 @@ class EditorManager {
     newEditorInstance.on("component:selected", (component) => {
       this.selectedTemplateWrapper = component.getEl();
       this.selectedComponent = component;
-  
+
+      const sidebarInputTitle = document.getElementById("tile-title");
+      if (this.selectedTemplateWrapper) {
+        const tileLabel =
+          this.selectedTemplateWrapper.querySelector(".tile-title");
+        if (tileLabel) {
+          sidebarInputTitle.value = tileLabel.textContent;
+        }
+
+        this.removeElementOnClick(".selected-tile-icon", ".tile-icon-section");
+        this.removeElementOnClick(
+          ".selected-tile-title",
+          ".tile-title-section"
+        );
+      }
+
       const selectedTileId = component.getAttributes()["tile-action-object-id"];
-  
+
       // Handle content page properties
       if (page.PageIsContentPage) {
         this.toolsSection.updateTileProperties(newEditorInstance, page);
         return;
       } else {
         parentId = page.PageId;
-  
+
         // Check and replace editor if necessary
         if (
           this.activePageId &&
@@ -204,12 +233,17 @@ class EditorManager {
           console.log("Editor for this page is already active.");
           return;
         }
-  
+
         // Replace editor for new page selection
         this.replaceEditor(selectedTileId, parentId);
       }
-  
-      this.activateFrame(`.frame-${page.PageId}`);
+
+      if (page.PageName === "Home") {
+        this.activateFrame(`#default-container`);
+      } else {
+        this.activateFrame(`.frame-${page.PageId}`);
+      }
+
       this.toolsSection.updateTileProperties(newEditorInstance, page);
       this.toolsSection.unDoReDo(newEditorInstance);
     });
@@ -306,9 +340,9 @@ class EditorManager {
   }
 
   handleNewEditor(page, parentId) {
-    this.newEditor.once("load", () => {
+    this.editor.once("load", () => {
       this.toolsSection.resetPropertySection();
-      this.toolsSection.unDoReDo(this.newEditor);
+      this.toolsSection.unDoReDo(this.editor);
 
       this.backButtonAction(page.PageId);
 
@@ -357,7 +391,7 @@ class EditorManager {
 
         // Attach the contextmenu (right-click) event handler
         wrapper.view.el.addEventListener("contextmenu", (e) =>
-          this.rightClickEventHandler(this.newEditor)
+          this.rightClickEventHandler(this.editor)
         );
 
         // Set wrapper properties
@@ -369,10 +403,10 @@ class EditorManager {
       };
 
       // Initialize wrapper event handling
-      setupWrapperEvents(this.newEditor);
+      setupWrapperEvents(this.editor);
 
       // Attach the frame click handler to activate the frame
-      const canvas = this.newEditor.Canvas;
+      const canvas = this.editor.Canvas;
       const frame = canvas.getFrameEl();
       const frameDoc = frame.contentDocument || frame.contentWindow.document;
 
@@ -400,7 +434,7 @@ class EditorManager {
                 console.log("Content Data: ", contentData);
                 this.toolsSection.pageContentCtas(
                   contentData.CallToActions,
-                  this.newEditor
+                  this.editor
                 );
                 this.toolsSection.updatePropertySection();
               })
@@ -414,7 +448,7 @@ class EditorManager {
     });
 
     // Handle component selection
-    this.newEditor.on("component:selected", (component) => {
+    this.editor.on("component:selected", (component) => {
       this.selectedTemplateWrapper = component.getEl();
       this.selectedComponent = component;
 
@@ -422,7 +456,7 @@ class EditorManager {
 
       // Handle content page properties
       if (page.PageIsContentPage) {
-        this.toolsSection.updateTileProperties(this.newEditor, page);
+        this.toolsSection.updateTileProperties(this.editor, page);
         return;
       } else {
         parentId = page.PageId;
@@ -442,8 +476,8 @@ class EditorManager {
       }
 
       this.activateFrame(`.frame-${page.PageId}`);
-      this.toolsSection.updateTileProperties(this.newEditor, page);
-      this.toolsSection.unDoReDo(this.newEditor);
+      this.toolsSection.updateTileProperties(this.editor, page);
+      this.toolsSection.unDoReDo(this.editor);
     });
   }
 
@@ -454,7 +488,7 @@ class EditorManager {
 
     if (existingEditorIndex !== -1) {
       const existingEditor = this.editors[existingEditorIndex];
-      this.newEditor = existingEditor.editor;
+      this.editor = existingEditor.editor;
       this.activeEditor = existingEditor.editor;
       this.activePageId = pageId;
       this.activateFrame(`.frame-${pageId}`);
@@ -487,7 +521,7 @@ class EditorManager {
     this.activePageId = pageId;
 
     // Handle events for the new editor
-    this.handleNewEditor(page);
+    this.loadEditor(this.activeEditor, page);
 
     // Activate navigators
     this.activateNavigators();
@@ -538,7 +572,7 @@ class EditorManager {
     this.editors = [];
     this.activeEditor = null;
     this.activePageId = null;
-    this.newEditor = null;
+    this.editor = null;
   }
 
   activateNavigators() {
@@ -1459,7 +1493,7 @@ class EditorManager {
     const header = document.createElement("div");
     header.innerHTML = `
       <div class="header">
-        <span id="current-time"></span>
+        <span id="current-time-${page.PageId}"></span>
         <span class="icons">
           <i class="fas fa-signal"></i>
           <i class="fas fa-wifi"></i>
@@ -1491,7 +1525,7 @@ class EditorManager {
     editorsContainer.appendChild(editorContainer);
 
     // Initialize the GrapesJS editor
-    this.newEditor = grapesjs.init({
+    this.editor = grapesjs.init({
       container: `#${sanitizedId}`,
       fromElement: true,
       height: "100%",
@@ -1517,22 +1551,22 @@ class EditorManager {
       highlightable: false,
     });
 
-    new Clock();
+    new Clock(`current-time-${page.PageId}`);
 
     // Load page content
     if (page.PageGJSJson) {
       this.pageContent(page.PageId)
         .then((parsedData) => {
-          this.newEditor.loadProjectData(parsedData);
+          this.editor.loadProjectData(parsedData);
           console.log("Project data successfully loaded:", parsedData);
           if (page.PageIsContentPage) {
             this.dataManager.getContentPageData(page.PageId).then((res) => {
               console.log(res);
               console.log(parsedData.pages[0]);
-              let img = this.newEditor
+              let img = this.editor
                 .getWrapper()
                 .find("#product-service-image");
-              let p = this.newEditor
+              let p = this.editor
                 .getWrapper()
                 .find("#product-service-description");
               if (img.length) {
@@ -1557,12 +1591,12 @@ class EditorManager {
         .getContentPageData(page.PageId)
         .then((contentPageData) => {
           if (contentPageData) {
-            this.newEditor.DomComponents.clear();
+            this.editor.DomComponents.clear();
             console.log("Content page data from products");
             console.log("Page Id is: ", page.PageId);
             const projectData =
               this.initialContentPageTemplate(contentPageData);
-            this.newEditor.addComponents(projectData)[0];
+            this.editor.addComponents(projectData)[0];
           }
         })
         .catch((error) =>
@@ -1606,7 +1640,7 @@ class EditorManager {
     this.editors.push({
       id: sanitizedId,
       containerId: `container-${sanitizedId}`,
-      editor: this.newEditor,
+      editor: this.editor,
       pageId: page.PageId,
       parentId: parentId,
     });
@@ -1623,7 +1657,7 @@ class EditorManager {
     }
 
     if (page.PageIsContentPage) {
-      const canvas = this.newEditor.Canvas.getElement();
+      const canvas = this.editor.Canvas.getElement();
 
       if (canvas) {
         canvas.style.setProperty("height", "calc(100% - 100px)", "important");
@@ -1632,7 +1666,7 @@ class EditorManager {
     }
     localStorage.setItem("createdEditor", page.PageId);
 
-    const wrapper = this.newEditor.getWrapper();
+    const wrapper = this.editor.getWrapper();
 
     // Enable selectable behavior for the wrapper
     wrapper.set({
@@ -1641,7 +1675,7 @@ class EditorManager {
       draggable: false,
       hoverable: false,
     });
-    return this.newEditor;
+    return this.editor;
   }
 
   removeEditor(id) {

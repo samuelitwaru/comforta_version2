@@ -32,7 +32,6 @@ class ToolBoxManager {
         if (page.PageName === "Home") {
           this.editorManager.pageId = page.PageId;
           this.editorManager.setCurrentPage(page);
-          globalEditor.trigger("load");
         }
       });
     });
@@ -41,7 +40,8 @@ class ToolBoxManager {
       this.setTheme(theme.Trn_ThemeName);
     });
 
-    this.loadTheme();
+    // this.loadTheme();
+    
     this.listThemesInSelectField();
     this.colorPalette();
     this.ctaColorPalette();
@@ -423,8 +423,9 @@ class ToolBoxManager {
     this.applyTheme();
 
     // TODO: Apply theme attribute to json out output (research on editor methods to do this)
-    let wrapper = globalEditor.getWrapper();
+    let wrapper = this.editorManager.editor.getWrapper();
     wrapper.addAttributes({ theme: theme.name });
+    
     this.icons = theme.icons.map((icon) => {
       return {
         name: icon.IconName,
@@ -432,18 +433,18 @@ class ToolBoxManager {
         category: icon.IconCategory,
       };
     });
+    
     this.loadThemeIcons(theme.icons);
 
     this.themeColorPalette(this.currentTheme.colors);
     localStorage.setItem("selectedTheme", themeName);
-
     return true;
   }
 
   applyTheme() {
     const root = document.documentElement;
-    const iframe = document.querySelector("#gjs iframe");
-
+    const iframe = document.querySelector(".gjs-container iframe");
+    console.log("Iframe is:", iframe);
     // Set CSS variables from the selected theme
     root.style.setProperty(
       "--primary-color",
@@ -685,15 +686,15 @@ class ToolBoxManager {
             ...selectedComponent.find(".plain-button"),
           ];
 
-          console.log("Component selected: ", selectedComponent)
-          console.log("Component picked: ", componentsWithClass)
+          console.log("Component selected: ", selectedComponent);
+          console.log("Component picked: ", componentsWithClass);
 
           // Get the first matching component
           const button =
             componentsWithClass.length > 0 ? componentsWithClass[0] : null;
 
           if (button) {
-            console.log("Button opened ", button)
+            console.log("Button opened ", button);
             button.addStyle({
               "background-color": colorValue,
               "border-color": colorValue,
@@ -778,35 +779,36 @@ class ToolBoxManager {
             .getWrapper()
             .find(".cta-button-container")[0];
 
-            if (!ctaButton) {
-              console.error("CTA Button container not found.");
-              return;
+          if (!ctaButton) {
+            console.error("CTA Button container not found.");
+            return;
           }
-          
+
           const selectedComponent = this.editorManager.selectedComponent;
           if (!selectedComponent) {
-              console.error("No selected component found.");
-              return;
+            console.error("No selected component found.");
+            return;
           }
-          
+
           const attributes = selectedComponent.getAttributes();
-          
+
           const existingSelectedComponent =
-              attributes["cta-button-id"] === cta.CallToActionId;
-          
-          const existingButton = ctaButton.find(`#id-${cta.CallToActionId}`)?.[0];
-          
+            attributes["cta-button-id"] === cta.CallToActionId;
+
+          const existingButton = ctaButton.find(
+            `#id-${cta.CallToActionId}`
+          )?.[0];
+
           if (existingButton) {
-              if (existingSelectedComponent) {
-                console.log("Replaced")
-                  selectedComponent.replaceWith(ctaComponent);
-              } else {
-              }
-              return;
+            if (existingSelectedComponent) {
+              console.log("Replaced");
+              selectedComponent.replaceWith(ctaComponent);
+            } else {
+            }
+            return;
           }
-          console.log("New")
+          console.log("New");
           ctaButton.append(ctaComponent);
-          
         };
 
         contentPageCtas.appendChild(ctaItem);
@@ -862,7 +864,9 @@ class ToolBoxManager {
                 `;
 
                 // Remove the current component and replace it
-                this.editorManager.selectedComponent.replaceWith(plainButtonComponent);
+                this.editorManager.selectedComponent.replaceWith(
+                  plainButtonComponent
+                );
               } else {
                 const message = this.currentLanguage.getTranslation(
                   "please_select_cta_button"
@@ -946,7 +950,9 @@ class ToolBoxManager {
                 `;
 
                 // Remove the current component and replace it
-                this.editorManager.selectedComponent.replaceWith(imgButtonComponent);
+                this.editorManager.selectedComponent.replaceWith(
+                  imgButtonComponent
+                );
               } else {
                 const message = this.currentLanguage.getTranslation(
                   "please_select_cta_button"
@@ -1242,7 +1248,7 @@ class ToolBoxManager {
       this.editorManager.selectedComponent.addAttributes({
         [attributeName]: attributeValue,
       });
-      console.log(this.editorManager.selectedComponent)
+      console.log(this.editorManager.selectedComponent);
     } else {
       this.displayAlertMessage(
         this.currentLanguage.getTranslation("no_tile_selected_error_message"),
@@ -1260,15 +1266,18 @@ class ToolBoxManager {
         this.editorManager.selectedComponent?.getAttributes()?.[
           "cta-background-color"
         ];
-      
+
       const CtaRadios = document.querySelectorAll(
         '#cta-color-palette input[type="radio"]'
       );
 
       CtaRadios.forEach((radio) => {
         const colorBox = radio.nextElementSibling;
-        radio.checked =
-          colorBox.getAttribute("data-cta-color").toUpperCase() === currentCtaBgColor.toUpperCase();
+        if (currentCtaBgColor) {
+          radio.checked =
+          colorBox.getAttribute("data-cta-color").toUpperCase() ===
+          currentCtaBgColor.toUpperCase();
+        }
       });
     } else {
       // Combined alignment checker
@@ -1438,9 +1447,10 @@ class PagesManager {
 }
 
 class Clock {
-  constructor() {
+  constructor(pageId) {
+    this.pageId = pageId;
     this.updateTime();
-    setInterval(() => this.updateTime(), 60000); // Update time every minute
+    // setInterval(() => this.updateTime(), 60000); // Update time every minute
   }
 
   updateTime() {
@@ -1451,6 +1461,6 @@ class Clock {
     hours = hours % 12;
     hours = hours ? hours : 12; // Adjust hours for 12-hour format
     const timeString = `${hours}:${minutes}`;
-    document.getElementById("current-time").textContent = timeString;
+    document.getElementById(this.pageId).textContent = timeString;
   }
 }
